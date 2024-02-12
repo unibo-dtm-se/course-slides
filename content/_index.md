@@ -1,422 +1,240 @@
- 
-+++
+ +++
 
-title = "Guide for writing markdown slides"
-description = "A Hugo theme for creating Reveal.js presentations"
+title = "Software Engineering Module 3: Intro"
+description = "Introduction to the course"
 outputs = ["Reveal"]
 aliases = [
-    "/guide/"
+    "/intro/"
 ]
 
 +++
 
+# Software Engineering
+### **(for Intelligent Distributed Systems)**
+# Module 3: DevOps
 
-# Short guide to Markdown slides
-
----
-
-# Headers
-
-# H1
-## H2
-### H3
-#### H4
+## *Introduction to the module*
 
 ---
 
-# Text
+# Teacher
 
-normal text
+**[Danilo Pianini](https://www.unibo.it/sitoweb/danilo.pianini/en)**, Senior assistant professor (RTDB)
 
-`inline code`
+**email** [danilo.pianini@unibo.it](mailto:danilo.pianini@unibo.it)
 
-*italic*
-
-**bold**
-
-**_emphasized_**
-
-*__emphasized alternative__*
-
-~~strikethrough~~
-
-[link](http://www.google.com)
+**office hours** dynamic, send me an email for an appointment
 
 ---
 
-# Lists and enums
+# Module contents and action plan
 
-1. First ordered list item
-1. Another item
-    * Unordered sub-list.
-    * with two items
-        * another sublist
-            1. With a sub-enum
-            1. yay!
-1. Actual numbers don't matter, just that it's a number
-  1. Ordered sub-list
-1. And another item.
+<!--
+2-3-3-2-3-3-2?
+2022-04-05 - 2h intro
+2022-04-06 - 3h git1
+2022-04-20 - 3h git2
+2022-05-03 - 2h tdd-qa
+2022-05-04 - 3h build
+2022-05-11 - 3h ci
+2022-05-17 - 2h ?
+2022-05-18 - 3h ?
+-->
 
----
-
-# Inline images
-
-![Alternative text](https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg)
-
----
-
-## Fallback to shortcodes for resizing
-
-Autoresize specifying
-
-* `max-w` (percent of parent element width) and/or `max-h` (percent of viewport height) as max sizes , and
-* `width` and/or `height` as *exact* sizes (as percent of viewport size)
-
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg" height="20">}}
+* **2h** [introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)
+* **3h+3h** [decentralized version control (with git) and team organization](dvcs-basics)
+* **2h** [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)
+* **3h** [software dependencies, build automation (examples with virtualenv / pyenv / pip)](build)
+* **3h** [Continuous integration (examples with GitHub Actions)](ci)
+* **2h** [versioning, semantic release](https://danysk.github.io/course-laboratory-of-software-systems/05-version-selection), [licenses](https://danysk.github.io/course-laboratory-of-software-systems/06-licenses) (if we got time)
 
 ---
 
-## Multi-column slide
+## Exam
 
-{{% multicol %}}{{% col %}}
-Column 1
-{{% /col %}}{{% col %}}
-Column 2
-{{% /col %}}{{% /multicol %}}
+Each student can freely pick *one module* and take the exam on that.
 
----
+For module 3, the exam requires the production of either an essay or an actionable tool part,
+followed by a discussion with the teacher.
 
-## Tick and Cross
-
-{{% tick %}} This is something good {{% /tick %}}
-{{% cross %}} This is something good {{% /cross %}}
-
----
-
-## Chart.js
-
-{{< chart >}}
-{
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: 'Bar Chart',
-            data: [12, 19, 18, 16, 13, 14],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-}
-{{< /chart >}}
+* **Option 1**: **Essay**. The student produces a *paper* discussing an investigation/in-depth analysis of some argument of the course
+    * *$\LaTeX$ or Markdown* format (Word / Google Docs and other WYSIWYG formats are not accepted)
+    * Particularly well-done work could be considered for the submission of a *scientific publication*
+    * Work requiring a "practical" investigation can be performed in groups (ideally, couples)
+* **Option 2**: **Project/Demonstrator**. The student produces a *software component* leveraging and/or related to the topics of the module
+    * if the effort is consistent, larger groups will be allowed (up to 4 students)
+    * `git` will be used to verify the actual contribution of each student
 
 ---
 
-## FontAwesome
+## Exam
 
-<i class="fa-solid fa-mug-hot"></i>
-<i class="fa-solid fa-lemon"></i>
-<i class="fa-solid fa-flask"></i>
-<i class="fa-solid fa-apple-whole"></i>
-<i class="fa-solid fa-bacon"></i>
-<i class="fa-solid fa-beer-mug-empty"></i>
-<i class="fa-solid fa-pepper-hot"></i>
+Whichever is the choice, *contact the teacher for a pre-validation **before** beginning the work*!
 
----
+The two options could be *combined*, e.g.,
+a group produces a new tool,
+and another exploits in the essay.
 
-## Bootstrap 1
+* Should the result be so good that the essay qualifies as a candidate scientific paper,
+the authors of the sofware will most likely be included as co-authors.
 
-<div class="card w-100" >
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/View_of_Cesena_from_the_Abbey.jpg/1920px-View_of_Cesena_from_the_Abbey.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+**PROPOSALS FROM STUDENTS ARE WELCOME!**
+
+* If you have an idea, propose it as exam theme!
+* I might amend it or suggest changes/strategies or set requirements
+
+<!--
 
 ---
 
-## Bootstrap 2
+## Example proposal
 
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
+#### Systematic literature review: the experience with Scrum
 
-<button type="button" class="btn btn-link">Link</button>
+* *Type*: essay
+* *Group size*: 1
 
----
+This activity consists in a search in the literature for experience reports on the application/migration to Scrum.
+The research activity must be systematic
+(namely, the search rules for the papers should be formalized).
+The student should devise metrics to evaluate the impact of the methodology under study when comparin across different reports.
+The goal is trying to estimate how successful has been Scrum so far.
 
-## Low res, plain markdown
-
-![](https://upload.wikimedia.org/wikipedia/it/thumb/6/6c/Scavolino_innevata.jpg/260px-Scavolino_innevata.jpg)
+*Notes*:
+* A similar project could be done for other frameworks
 
 ---
 
-## Hi res, plain markdown
+## Example proposal
 
-![](https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg)
+#### An analysis of the prominence of GitHub in science and its fragility
 
----
+* *Type*: essay (possibly mixed)
+* *Group size*: 2
 
-## Low res, default
+This activity consists in a search in the literature for references to GitHub repositories.
+The research activity must be systematic
+(namely, the search rules for the papers should be formalized).
+Papers should classified per year (and theme, possibly),
+then be searched for references to artifacts stored on GitHub.
+The goals are to:
+1. Understand if and how GitHub penetrated into the scientific literature with time
+2. Verify how many such repositories are still reachable and maintained
 
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/thumb/6/6c/Scavolino_innevata.jpg/260px-Scavolino_innevata.jpg" >}}
-
----
-
-## Hi res, default
-
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg" >}}
-
----
-
-## Low res, enlarged horizontally
-
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/thumb/6/6c/Scavolino_innevata.jpg/260px-Scavolino_innevata.jpg" width="100">}}
+*Notes*:
+* It is likely that the investigation requires a software tool to be performed in human time
+* Other DVCS hosting providers could be analyzes as well (gitlab, bitbucket...)
 
 ---
 
-## Low res, enlarged vertically
+## Example proposal
 
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/thumb/6/6c/Scavolino_innevata.jpg/260px-Scavolino_innevata.jpg" height="100">}}
+#### Infrastructure as a service: state of the art in industry
 
----
+* *Type*: essay
+* *Group size*: 1
 
-## Hi res, reduced horizontally
+This activity consists in an analysis of the existing techniques and tools for Infrastructure as a Service (IaaS).
+Information must be searched in the literature and on other sources, too.
 
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg" width="50">}}
-
----
-
-## Hi res, reduced vertically
-
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg" height="50">}}
+*Notes*:
+* It might include a demo
 
 ---
 
-## Hi res, reducing maximum expansion horizontally
+## Example proposal
 
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg" width="50">}}
+#### An analysis of developer distress on social media
 
----
+* *Type*: mixed
+* *Group size*: 2-4
 
-## Hi res, reducing maximum expansion vertically
+This activity consists in the analysis (via scraping / API) of social media posts that indicate developers' distress,
+and on a classification of their origin.
+Sources may include Twitter, Reddit, Stack Overlow, etc.
 
-{{< figure src="https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg" height="50">}}
-
----
-
-{{< slide background-image="https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg" >}}
-
-# Large images as background
-## (May affect printing)
+*Notes*:
+* It might benefit of pre-existing skills in sentiment analysis
 
 ---
 
-{{< slide background-image="https://upload.wikimedia.org/wikipedia/it/6/6c/Scavolino_innevata.jpg" state="blur-animation-light"  transition="fade-in fade-out" >}}
+## Example proposal
 
-# Also available with blur and custom transitions
-## (May affect printing)
+#### How are successful GitHub workflows organized?
 
----
+* *Type*: mixed
+* *Group size*: 2-4
 
-# $$\LaTeX{}$$
+This activity consists in the analysis (via API) of some interesting relationships that could be found on GitHub,
+with the goal of investigating developer's habits and their evolution with time.
+Some questions of interests may be:
+* do the developer count relate to the branch count?
+* do the presence of merge commits relate to the "success" of the project?
 
-
-Inline equations like $E=mc^2$
-
-$$\frac{n!}{k!(n-k)!} = \binom{n}{k}$$  
-
----
-
-# Code snippets
-
-
-```kotlin
-val x = pippo
-```
-
-```go
-package main
- 
-import "fmt"
- 
-func main() {
-    fmt.Println("Hello world!")
-}
-```
+*Notes*:
+* Identifying developers univocally may not be so easy
+* More metrics could be devised
+* Project success should be measured somehow but it is not trivial at all
 
 ---
 
-# Tables
+## Example proposal
 
-Colons can be used to align columns.
+#### Private clouds with Kubernetes: a complete setup
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+* *Type*: project
+* *Group size*: 1-2
 
-There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don't need to make the 
-raw Markdown line up prettily. You can also use inline Markdown.
+This activity consists in the construction of a working private cloud based on Kubernetes.
+Required features:
+* Resilience to the loss of a master node (multi-master)
+* Ability to run services (long-lived processes) or tasks (short-lived processes)
+* Resource control and allocation via RBAC
 
----
-
-# Quotes
-
-> Multiple
-> lines
-> of
-> a
-> single
-> quote
-> get
-> joined
-
-> Very long one liners of Markdown text automatically get broken into a multiline quotation, which is then rendered in the slides.
+*Notes*:
+* Compute servers will be provided by the teacher
+* Setup details should be collected into a guide
+* Previous experience with Kubernetes and containerization is helpful
 
 ---
 
-# Fragments
+## Example proposal
 
-* {{< frag c="pluto" >}}
-* {{< frag c="pluto" >}}
-* {{< frag c="pluto" >}}
+#### Automated document difference
 
----
+* *Type*: project
+* *Group size*: 1-2
 
-# Graphs via Gravizo
+The goal of this project is to build a library leveraging the web API of [Draftable](https://draftable.com/)
+to produce differential documents.
+The software can be developed in any language of choice,
+and must feature appropriate automation (build) and get published on official distribution channels.
 
-{{< gravizo "Example Gravizo graph" >}}
-  digraph G {
-    aize ="4,4";
-    main [shape=box];
-    main -> parse [weight=8];
-    parse -> execute;
-    main -> init [style=dotted];
-    main -> cleanup;
-    execute -> { make_string; printf}
-    init -> make_string;
-    edge [color=red];
-    main -> printf [style=bold,label="100 times"];
-    make_string [label="make a string"];
-    node [shape=box,style=filled,color=".7 .3 1.0"];
-    execute -> compare;
-  }
-{{< /gravizo >}}
+The library should be exercised with a GitHub action.
+
+*Notes*:
+* The API key for the Draftable service will be provided by the teacher
+* The language should be agreed with the teacher
+    * Python, Java, Scala, Kotlin, Rust, and Ruby are all valid picks, other should be discussed
 
 ---
 
-# Graphs via mermaid.js
+## Example proposal
 
-```mermaid
-classDiagram
-  Class01 <|-- AveryLongClass : Coosssl
-  Class03 *-- Class04
-  Class05 o-- Class06
-  Class07 .. Class08
-  Class09 --> C2 : Where am i?
-  Class09 --* C3
-  Class09 --|> Class07
-  Class07 : equals()
-  Class07 : Object[] elementData
-  Class01 : size()
-  Class01 : int chimp
-  Class01 : int gorillasaaaaaaaaaaaaaaaaaaaaaa
-  Class08 <--> C2: Cool label
-```
+#### A tool to support systematic literature reviews
 
+* *Type*: project
+* *Group size*: 1-2
 
----
+The goal of this project is to build a software that queries multiple sources in the literature
+(Google Scholar, Pubmed, Scopus, Web of Science, Arxiv...)
+with a specific query, supporting the scientific investigation of existing results.
+The software can be developed in any language of choice,
+and must feature appropriate automation (build) and get published on official distribution channels.
 
+*Notes*:
+* The language should be agreed with the teacher
+    * Python, Java, Scala, Kotlin, Rust, and Ruby are all valid picks, other should be discussed
 
-# Graphs via mermaid.js with options
-
-```mermaid
-%%{init: {'theme':'default', 'themeVariables': { 'fontSize': '.34em', 'fontFamily': 'verdana' }}}%%
-classDiagram
-  Class01 <|-- AveryLongClass : Coosssl
-  Class03 *-- Class04
-  Class05 o-- Class06
-  Class07 .. Class08
-  Class09 --> C2 : Where am i?
-  Class09 --* C3
-  Class09 --|> Class07
-  Class07 : equals()
-  Class07 : Object[] elementData
-  Class01 : size()
-  Class01 : int chimp
-  Class01 : int gorillasaaaaaaaaaaaaaaaaaaaaaa
-  Class08 <--> C2: Cool label
-```
-
-
----
-# Graphs via mermaid.js 2
-
-```mermaid
-graph TD
-  SL([fa:fa-user second level]) --> L[solution]
-  L -- solution email --> db[(mysql)]
-  db --> X[automatic] 
-  X --> CM([fa:fa-users first level])
-  db -- Email --> c([customer support]);
-```
-
----
-
-# Graphs via mermaid.js 3
-
-```mermaid
-gitGraph
-  commit id: "Initialize project"
-  commit id: "Make some changes"
-  branch develop
-  checkout develop
-  commit
-  commit
-  checkout main
-  merge develop
-  commit
-  commit
-```
-
----
-
-# Import of shared slides
-
-{{% import path="shared-slides/devops/devops-intro.md" %}}
+-->
 

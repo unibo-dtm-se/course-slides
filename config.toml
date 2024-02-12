@@ -1,9 +1,10 @@
-baseURL = "https://danysk.github.io/Template-Hugo-Reveal-Slides"
+baseURL = "https://unibo-dtm-se.github.io/course-slides"
 languageCode = "en-us"
-title = "A Hugo theme for creating Reveal.js presentations"
+title = "Software Engineering [for Intelligent Distributed Systems] Module 'Principles and Methods'"
 disableKinds = ["sitemap", "RSS"]
 theme = "reveal-hugo"
 publishDir = "build"
+ignoreFiles = ['.*generator.md$']
 
 # uncomment for browsing at file:///
 # relativeURLs = true
@@ -19,7 +20,7 @@ unsafe = true
 # choose between Hugo compile-time or Highlight.js
 # syntax highlighting for code inside of code fences
 [markup.highlight]
-#codeFences = false  # use highlight.js 
+# codeFences = false  # use highlight.js 
 codeFences = true  # use hugo highlighting at compile time
 style = "tango"  # set a style for hugo highlighting
 
@@ -31,41 +32,46 @@ isHTML = true
 [params.reveal_hugo]
 history = true
 theme = "league"
-highlight_theme = "solarized-dark"
+highlight_theme = "github"
 slide_number = true
 transition = "slide"
 transition_speed = "fast"
 custom_theme = "custom-theme.scss"
 custom_theme_compile = true
-width = '1440'
-height = '900'
+width = '1920'
+height = '1080'
+# width = '3840'
+# height = '2160'
+# width = '100%'
+# height = '100%'
+[[params.reveal_hugo.mermaid]]
+startOnLoad = false
+#theme = "default"
+# fontFamily = "Inconsolata"
+useMaxWidth = false
+# actorFontSize = 40
+# noteFontSize = 40
+# fontSize = 40
+
+[params.reveal_hugo.mermaid.gitGraph]
+mainBranchName = 'master'
+rotateCommitLabel = true
+#fontSize = "3em"
+#commitLabelFontSize = '160px'
+
+# [params.reveal_hugo.mermaid.gitGraph.nodeLabel]
+# width = 750
+# height = 100
+# x = -250
+# y = 0
+
+#[params.reveal_hugo.mermaid.themeVariables]
+#commitLabelColor = '#ff0000'
+# commitLabelBackground = '#00ff00'
+# commitLabelFontSize = '1.2em'
+# tagLabelFontSize = '1.2em'
+# labelFontSize = '1.2em'
 
 [params.reveal_hugo.custom_theme_options]
 targetPath = "css/custom-theme.css"
 enableSourceMap = true
-
-[[params.reveal_hugo.mermaid]]
-# startOnLoad = false
-# theme = "default"
-# fontFamily = "Inconsolata"
-# useMaxWidth = false
-
-# gitGraph options break the image generation
-# [params.reveal_hugo.mermaid.gitGraph]
-# mainBranchName = 'master'
-# rotateCommitLabel = true
-
-[security]
-  enableInlineShortcodes = false
-  [security.exec]
-    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$']
-    osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|(XDG_CONFIG_)?HOME|USERPROFILE|SSH_AUTH_SOCK|DISPLAY|LANG)$']
-  [security.funcs]
-    getenv = ['^HUGO_', '^CI$', 'GITHUB_TOKEN' ]
-  [security.goTemplates]
-    allowActionJSTmpl = false
-  [security.http]
-    methods = ['(?i)GET|POST']
-    urls = ['.*']
-
-

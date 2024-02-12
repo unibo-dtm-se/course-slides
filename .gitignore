@@ -1,5 +1,6 @@
 public/
 build/
+!content/build/
 _gen/
 *.pdf
 *.hprof

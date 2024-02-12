@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "custom-theme.css",
-	"sourceRoot": "/home/runner/work/unibo-dtm-se-course-slides/unibo-dtm-se-course-slides",
+	"sourceRoot": "/home/runner/work/course-slides/course-slides",
 	"sources": [
 		"assets/custom-theme.scss",
 		"themes/reveal-hugo/assets/reveal-js/dist/theme/template/mixins.scss",

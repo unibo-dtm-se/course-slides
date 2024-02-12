@@ -1,0 +1,1709 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Software Engineering Module 3: Introduction to agile and DevOps</title>
+<meta name="description" content="Introduction to agile and DevOps, a case from the literature, SCRUM">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.1a38f952ad4fe39d0c6997be4ebfeb2dd1d24c5191378417611ac238204dee27.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="software-engineering">Software Engineering</h1>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h1 id="module-3-devops">Module 3: DevOps</h1>
+<h2 id="introduction-to-agile-and-devops"><em>Introduction to agile and DevOps</em></h2>
+</section><section>
+<!-- this file includes generated content. Do not edit. Edit content/devops-intro/_generator.md, instead. -->
+<h1 id="development">Development</h1>
+<ul>
+<li>Analysis of a domain</li>
+<li>Design of a solution</li>
+<li>Implementation</li>
+<li>Testing</li>
+</ul>
+</section><section>
+<h1 id="operations">Operations</h1>
+<ul>
+<li>IT infrastructure</li>
+<li>Deployment</li>
+<li>Maintenance</li>
+</ul>
+</section><section>
+<h1 id="silo-mentality">Silo mentality</h1>
+<p><img src="https://raw.githubusercontent.com/DanySK/shared-slides/6824b93d3d52b841386a744f57953a73ccb67378/devops/silos.svg" alt="silos"></p>
+</section><section>
+<h1 id="no-silos"><strong>No</strong> silos</h1>
+<p><img src="https://raw.githubusercontent.com/DanySK/shared-slides/6824b93d3d52b841386a744f57953a73ccb67378/devops/no-silos.svg" alt="silos"></p>
+</section><section>
+<h1 id="devops-culture">DevOps culture</h1>
+<ul>
+<li>
+<p><strong>Increased collaboration</strong></p>
+<ul>
+<li>Dev and Ops should <em>exchange information</em> and <em>work together</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Shared responsibility</strong></p>
+<ul>
+<li>A team is responsible for the (sub) product for its <em>whole lifetime</em></li>
+<li><em>No handing over</em> projects from devs to ops</li>
+</ul>
+</li>
+<li>
+<p><strong>Autonomous teams</strong></p>
+<ul>
+<li><em>Lightweight decision making</em> process</li>
+</ul>
+</li>
+<li>
+<p><strong>Focus on the process, not just the product</strong></p>
+<ul>
+<li>Promote small, <em>incremental changes</em></li>
+<li><em>Automate</em> as much as possible</li>
+<li>Leverage the right <em>tool</em> for the job at hand</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="why-bother">Why bother?</h1>
+<ol>
+<li>
+<p><strong>Risk management</strong></p>
+<ul>
+<li>Reduce the probability of <em>failure</em></li>
+<li>Detect <em>defects</em> before hitting the market</li>
+<li>Quickly <em>react</em> to problems</li>
+</ul>
+</li>
+<li>
+<p><strong>Resource exploitation</strong></p>
+<ul>
+<li>Use <em>human resources</em> for human-y work</li>
+<li>Reduce <em>time to market</em></li>
+<li>Embrace <em>innovation</em></li>
+<li>Exploit <em>emerging technologies</em></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h1 id="devops">DevOps</h1>
+<ol>
+<li><strong>Principles</strong></li>
+<li><strong>Practices</strong></li>
+<li><strong>Tools</strong></li>
+</ol>
+<p><strong>Principles</strong> <em>inspire</em> <strong>practices</strong></p>
+<p><strong>Practices</strong> <em>require</em> <strong>tools</strong></p>
+</section><section>
+<h1 id="devops-principles">DevOps principles</h1>
+<h3 id="not-exhaustive">(not exhaustive)</h3>
+<ul>
+<li>Collaboration</li>
+<li>Reproducibility</li>
+<li>Automation</li>
+<li>Incrementality</li>
+<li>Robustness</li>
+</ul>
+</section><section>
+<h1 id="devops-practices">DevOps practices</h1>
+<ul>
+<li>Workflow organization</li>
+<li>Build automation</li>
+<li>Self-testing code</li>
+<li>Code quality control</li>
+<li>Continuous Integration</li>
+<li>Continuous Delivery</li>
+<li>Continuous Deployment</li>
+<li>Continuous Monitoring</li>
+</ul>
+</section><section>
+<!-- this file includes generated content. Do not edit. Edit content/devops-intro/_generator.md, instead. -->
+<h1 id="a-real-world-test-case">A real-world test case</h1>
+<p>We applied DevOps (and microservice-ification) to an existing software project,
+measuring some metrics <em>before</em> and <em>after</em> the operation.</p>
+<ul>
+<li>The detailed <em>experience report</em> has been presented at the 37th International Conference on Software Maintenance and Evolution (<a href="https://icsme2021.github.io/">ICSME 2021</a>)
+<ul>
+<li><a href="https://doi.org/10.1109/ICSME52107.2021.00051">Scientific paper</a></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/6qd6GG3XQXA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="" title="YouTube Video"></iframe>
+</div>
+</section><section>
+<h2 id="the-target">The target</h2>
+<h3 id="maggioli-spa">Maggioli S.p.A</h3>
+<ul>
+<li><em>Multinational</em>, based in Italy</li>
+<li><em>~2000 collaborators</em> at the time of writing</li>
+<li>An <em>internal IT/Operations</em> team</li>
+<li>Our target team was composed of <strong>five people</strong></li>
+</ul>
+<h3 id="sisred-before-intervention">sisred (before intervention)</h3>
+<ul>
+<li><em>Client-server</em> stand-alone application</li>
+<li><em>Delphi</em> front-end, <em>Microsoft SQL Server</em> backend</li>
+<li>Editors (paid by Maggioli) are <em>experts in law entering information on the client</em></li>
+<li>The information is then exposed into a (paid access) <em>portal</em> with up-to-date legal information</li>
+</ul>
+</section><section>
+<h2 id="previous-architecture">Previous architecture</h2>
+<p><img src="https://raw.githubusercontent.com/DanySK/shared-slides/6824b93d3d52b841386a744f57953a73ccb67378/devops/sisred-old-arch.svg" alt="old-arch"></p>
+</section><section>
+<h1 id="heading"></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h2 id="microservice-ified-architecture">Microservice-ified architecture</h2>
+<p><img src="https://raw.githubusercontent.com/DanySK/shared-slides/6824b93d3d52b841386a744f57953a73ccb67378/devops/sisred-new-arch.svg" alt="new-arch"></p>
+</section><section>
+<h2 id="ci-pipeline">CI Pipeline</h2>
+<p><img src="https://raw.githubusercontent.com/DanySK/shared-slides/6824b93d3d52b841386a744f57953a73ccb67378/devops/docker-publish.svg" alt="pipeline"></p>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td style="text-align:center"><em>0.19</em></td>
+<td style="text-align:right"><strong>~ -98.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td style="text-align:center"><em>0.19</em></td>
+<td style="text-align:right"><strong>~ -98.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td style="text-align:center"><em>7.1</em></td>
+<td style="text-align:right"><strong>+255%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td style="text-align:center"><em>0.19</em></td>
+<td style="text-align:right"><strong>~ -98.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td style="text-align:center"><em>7.1</em></td>
+<td style="text-align:right"><strong>+255%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td style="text-align:center"><em>0.5</em></td>
+<td style="text-align:right"><strong>-98.6%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td style="text-align:center"><em>0.19</em></td>
+<td style="text-align:right"><strong>~ -98.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td style="text-align:center"><em>7.1</em></td>
+<td style="text-align:right"><strong>+255%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td style="text-align:center"><em>0.5</em></td>
+<td style="text-align:right"><strong>-98.6%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td style="text-align:center"><em>0.35</em></td>
+<td style="text-align:right"><strong>-97.8%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td style="text-align:center"><em>0.19</em></td>
+<td style="text-align:right"><strong>~ -98.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td style="text-align:center"><em>7.1</em></td>
+<td style="text-align:right"><strong>+255%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td style="text-align:center"><em>0.5</em></td>
+<td style="text-align:right"><strong>-98.6%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td style="text-align:center"><em>0.35</em></td>
+<td style="text-align:right"><strong>-97.8%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td style="text-align:center"><em>9</em></td>
+<td style="text-align:right"><strong>-92.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td style="text-align:center"><em>0.19</em></td>
+<td style="text-align:right"><strong>~ -98.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td style="text-align:center"><em>7.1</em></td>
+<td style="text-align:right"><strong>+255%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td style="text-align:center"><em>0.5</em></td>
+<td style="text-align:right"><strong>-98.6%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td style="text-align:center"><em>0.35</em></td>
+<td style="text-align:right"><strong>-97.8%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td style="text-align:center"><em>9</em></td>
+<td style="text-align:right"><strong>-92.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td style="text-align:center"><em>0</em></td>
+<td style="text-align:right"><strong>-100%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td style="text-align:center"><em>0.19</em></td>
+<td style="text-align:right"><strong>~ -98.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td style="text-align:center"><em>7.1</em></td>
+<td style="text-align:right"><strong>+255%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td style="text-align:center"><em>0.5</em></td>
+<td style="text-align:right"><strong>-98.6%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td style="text-align:center"><em>0.35</em></td>
+<td style="text-align:right"><strong>-97.8%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td style="text-align:center"><em>9</em></td>
+<td style="text-align:right"><strong>-92.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td style="text-align:center"><em>0</em></td>
+<td style="text-align:right"><strong>-100%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td style="text-align:center"><em>19</em></td>
+<td style="text-align:right"><strong>-52.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section data-noprocess="" data-shortcode-slide="" data-transition="none">
+  
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:center">Prev.</th>
+<th style="text-align:center">Now</th>
+<th style="text-align:right">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Release frequency ($\frac{releases}{day}$)</td>
+<td style="text-align:center"><a href="">0.071</a></td>
+<td style="text-align:center"><em>2.7</em></td>
+<td style="text-align:right"><strong>+3700%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commit to release time (hours)</td>
+<td style="text-align:center"><a href="">8 to 24</a></td>
+<td style="text-align:center"><em>0.19</em></td>
+<td style="text-align:right"><strong>~ -98.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Commits per day ($\frac{commits}{day}$)</td>
+<td style="text-align:center"><a href="">2</a></td>
+<td style="text-align:center"><em>7.1</em></td>
+<td style="text-align:right"><strong>+255%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">MTTR (hours)</td>
+<td style="text-align:center"><a href="">36</a></td>
+<td style="text-align:center"><em>0.5</em></td>
+<td style="text-align:right"><strong>-98.6%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Prod. env. setup (working hours)</td>
+<td style="text-align:center"><a href="">16</a></td>
+<td style="text-align:center"><em>0.35</em></td>
+<td style="text-align:right"><strong>-97.8%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Dev. env. setup (minutes)</td>
+<td style="text-align:center"><a href="">120</a></td>
+<td style="text-align:center"><em>9</em></td>
+<td style="text-align:right"><strong>-92.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Nightly downtime ($\frac{minutes}{night}$)</td>
+<td style="text-align:center"><a href="">30</a></td>
+<td style="text-align:center"><em>0</em></td>
+<td style="text-align:right"><strong>-100%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Support ticket frequency ($\frac{tickets}{month}$)</td>
+<td style="text-align:center"><a href="">40</a></td>
+<td style="text-align:center"><em>19</em></td>
+<td style="text-align:right"><strong>-52.5%</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Issue resolution time (days)</td>
+<td style="text-align:center"><a href="">4</a></td>
+<td style="text-align:center"><em>3</em></td>
+<td style="text-align:right"><strong>-25%</strong></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h2 id="benefits">Benefits</h2>
+<ul>
+<li>Much less <strong>maintenance</strong> in the traditional meaning: <em>“Time spent to keep the system in nominal conditions”</em>
+<ul>
+<li>No more issues with Windows updates</li>
+<li>No more downtimes related to internal network / electricity / public infrastructure maintenance</li>
+<li>Improved security</li>
+<li>No more critical failures caused by testing stored procedures directly in production by mistake</li>
+</ul>
+</li>
+<li>Much more maintenance in terms of <em>software evolution</em>
+<ul>
+<li>Application (or verification of automatic application) of updates</li>
+<li>Security audits</li>
+<li>Maintenance and update of the pipeline</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="lessons-learned">Lessons learned</h2>
+<ul>
+<li>The teams must be <strong>autonomous</strong></li>
+<li>Practices must be <em>tailored</em> to the team</li>
+<li>Time-consuming, repetitive, and cumbersome procedures must be <em>automated</em></li>
+<li>Obsolete practices must be <em>removed</em></li>
+<li><strong>Communication</strong> is key, awareness must be shed across the team of the expected benefits</li>
+</ul>
+</section><section>
+<h2 id="timeline">Timeline</h2>
+<p><img src="https://raw.githubusercontent.com/DanySK/shared-slides/6824b93d3d52b841386a744f57953a73ccb67378/devops/timeline.svg" alt="timeline"></p>
+</section><section>
+<h1 id="agile-software-development">Agile software development</h1>
+<h2 id="manifestohttpagilemanifestoorg"><a href="http://agilemanifesto.org/">Manifesto</a></h2>
+<p>We are uncovering better ways of developing software by doing it and helping others do it. Through this work we have come to value:</p>
+<ul>
+<li><strong>Individuals and interactions</strong> over <em>processes and tools</em></li>
+<li><strong>Working software</strong> over <em>comprehensive documentation</em></li>
+<li><strong>Customer collaboration</strong> over <em>contract negotiation</em></li>
+<li><strong>Responding to change</strong> over <em>following a plan</em></li>
+</ul>
+<p>That is, while <em>there is value in the items on the right</em>, <strong>we value the items on the left more</strong>.</p>
+</section><section>
+<h2 id="agile-principles-ihttpagilemanifestoorgprincipleshtml"><a href="http://agilemanifesto.org/principles.html">Agile Principles I</a></h2>
+<p><em>(emphasis mine)</em>
+<strong>(comments mine)</strong></p>
+<ol>
+<li>
+<p>Our highest priority is to satisfy the customer
+through early and <em>continuous delivery</em>
+of valuable software.</p>
+</li>
+<li>
+<p>Welcome <em>changing requirements</em>, even late in
+development. Agile processes harness change for
+the customer’s <em>competitive advantage</em>.
+<strong>(Not an excuse for not collecting requirements upfront)</strong></p>
+</li>
+<li>
+<p><em>Deliver</em> working software <em>frequently</em>, from a
+couple of weeks to a couple of months, with a
+preference to the shorter timescale.
+<strong>(Daily, hourly)</strong></p>
+</li>
+<li>
+<p><em>Business people and developers must work together</em> daily throughout the project.
+<strong>(And understand each other!)</strong></p>
+</li>
+<li>
+<p>Build projects around <em>motivated individuals</em>.
+Give them the environment and support they need,
+and <em>trust</em> them to get the job done.
+<strong>(Teams must be independent)</strong></p>
+</li>
+<li>
+<p>The most efficient and effective method of
+conveying information to and within a development
+team is <em>face-to-face conversation</em>.
+<strong>(Yes, it is pre-covid stuff)</strong></p>
+</li>
+</ol>
+</section><section>
+<h2 id="agile-principles-iihttpagilemanifestoorgprincipleshtml"><a href="http://agilemanifesto.org/principles.html">Agile Principles II</a></h2>
+<p><em>(emphasis mine)</em>
+<strong>(comments mine)</strong></p>
+<ol start="7">
+<li>
+<p><em>Working software</em> is the primary measure of progress.
+<strong>(But if used as the only measure progress, progress will halt soon)</strong></p>
+</li>
+<li>
+<p>Agile processes promote <em>sustainable</em> development.
+The sponsors, developers, and users should be able
+to maintain a constant pace indefinitely.
+<strong>(Bureaucracy and maintenance task should not pile up)</strong></p>
+</li>
+<li>
+<p>Continuous attention to <em>technical excellence</em>
+and <em>good design</em> enhances agility.
+<strong>(First, do it well)</strong></p>
+</li>
+<li>
+<p>Simplicity–the art of maximizing the amount
+of work not done–is essential.
+<strong>(Also known as KISS)</strong></p>
+</li>
+<li>
+<p>The best architectures, requirements, and designs
+emerge from self-organizing teams.</p>
+</li>
+<li>
+<p>At regular intervals, the team reflects on how
+to become more effective, then tunes and adjusts
+its behavior accordingly.
+<strong>(Or, maybe, continuously…)</strong></p>
+</li>
+</ol>
+</section><section>
+<h2 id="practices-vs-frameworks">Practices vs. Frameworks</h2>
+<p><strong>Principles</strong> get reified into <em>practices</em></p>
+<p><strong>Practices</strong> get often interpreted and formalized into <em>frameworks</em></p>
+<p>Framework are <em>actionable</em>, but formalization may introduce <em>assumptions about projects and teams that do not hold always!</em></p>
+<p><strong>Agile principles and practices</strong> get often captured into these well-known frameworks, with slightly different focuses and goals:</p>
+<ul>
+<li><em>Scrum</em>: focus on team structure, roles, responsibilities, procedures</li>
+<li><em>Kanban</em>: focus on tasks, streamlining, bottleneck mitigation</li>
+<li><em>XP (Extreme Programming)</em>: focus on release frequency</li>
+<li><em>Feature Driven Development</em>: focus on clients’ requests and satisfaction</li>
+<li><em>Crystal</em>: focus on self-management of teams</li>
+<li><em>DSDM (Dynamic Systems Development Method)</em>: focus on time and budget constraints</li>
+</ul>
+</section><section>
+<h1 id="scrum">Scrum</h1>
+<p>Seminal paper from 1986 by Hirotaka Takeuchi and Ikujiro Nonaka:</p>
+<ul>
+<li><a href="https://hbr.org/1986/01/the-new-new-product-development-game">The New New Product Development Game</a></li>
+</ul>
+<p>Then refined to the current framework. The name is from Rugby’s “scrummage”</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/ST_vs_Gloucester_-_Match_-_23.JPG" alt="Scrummage"></p>
+</section><section>
+<h2 id="scrum-key-ideas">Scrum key ideas</h2>
+<ul>
+<li>Requirements are <em>volatile</em></li>
+<li>There will be <em>unpredictability</em> along the road</li>
+<li>Accept that the problem may not be fully understood upfront, and focus on <em>quick response</em> to unexpected changes</li>
+</ul>
+</section><section>
+<h2 id="scrum-workflow">Scrum workflow</h2>
+<ul>
+<li>The development is divided in <strong>Sprints</strong></li>
+<li>A Sprint is <em>timeboxed</em>: the length is agreed in advance
+<ul>
+<li>The most commonly adopted length is two weeks</li>
+</ul>
+</li>
+<li>A Sprint must end with a <em>deliverable</em> advancement</li>
+<li>Each sprint is macro-structured as follows:
+<ol>
+<li><em>Planning</em>: define the activities of the sprint</li>
+<li><em>Daily scrums</em> (aka “stand-up meetings”): daily updates on the state of work</li>
+<li><em>Sprint review</em>: at the of the sprint, present the work to the stakeholders</li>
+</ol>
+</li>
+<li>At regular intervals a <em>Sprint retrospective</em> is held
+<ul>
+<li>Reason on the past sprints with the goal of <em>continuous improvement</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="scrum-roles">Scrum roles</h2>
+<ul>
+<li>
+<p><strong>Product owner (PO)</strong>, <em>Goal</em>: maximimizing ROI</p>
+<ul>
+<li><em>Tasks</em>: identify the necessary features and prioritize them</li>
+<li><em>Vision</em>: strategic, similar to a product manager, but <em>understands the product development</em>!</li>
+<li><em>Interactions</em>: customers, development team, SM</li>
+<li><em>Responsibilities</em>: coarse-grained, high-level decision on product directions</li>
+</ul>
+</li>
+<li>
+<p><strong>Development team</strong>, <em>Goal</em>: make things happen</p>
+<ul>
+<li><em>Tasks</em>: build the selected features, provide time estimates, provide feedback to the PO</li>
+<li><em>Vision</em>: tactic, cross-functional (T-shaped, the team can deal with all the aspects of a sub-project)</li>
+<li><em>Interactions</em>: PO and SM</li>
+<li><em>Responsibilities</em>: fine-grained, autonomous and hence accountable</li>
+</ul>
+</li>
+<li>
+<p><strong>Scrum master (SM)</strong>, <em>Goal</em>: coaching and supervision</p>
+<ul>
+<li><em>Tasks</em>: explain Scrum, supervise its application, help learning the methodology</li>
+<li><em>Vision</em>: process-oriented, expert in Scrum</li>
+<li><em>Interactions</em>: PO and development team</li>
+<li><em>Responsibilities</em>: help the team understand and apply Scrum, no formal responsibility on the product.
+Optional (if the team is already experienced), often externalized.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="scrum-tools">Scrum tools</h2>
+<ul>
+<li><strong>Product backlog</strong>
+<ul>
+<li>A <em>prioritized</em> list of <em>customer-driven</em> features</li>
+<li>Maintained and sorted by the PO</li>
+<li>Each item has an associated <em>size estimation</em> (in arbitrary measure)</li>
+<li>Refined at the conclusion of each sprint</li>
+</ul>
+</li>
+<li><strong>Sprint backlog</strong>
+<ul>
+<li><em>Refines</em> the product backlog</li>
+<li>Each product backlog item selected for the current sprint gets split into <em>sprint tasks</em></li>
+<li>Each task has an <em>effort estimation</em>, an <em>assignee</em>, and a <em>progress tracker</em></li>
+<li>The progress is often tracked by updating the “remaining effort” day by day
+<ul>
+<li>The <a href="https://en.wikipedia.org/wiki/Burn_down_chart">burn-down chart</a> is a common way to visualize it</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="product-backlog">Product backlog</h3>
+<p><img src="product-backlog.png" alt="product backlog"></p>
+</section><section>
+<h3 id="sprint-backlog">Sprint backlog</h3>
+<p><img src="sprint-backlog.png" alt="sprint backlog"></p>
+</section><section>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/SampleBurndownChart.svg/2880px-SampleBurndownChart.svg.png" alt="burn down chart"></p>
+</section><section>
+<h2 id="key-concept-the-definition-of-done">Key concept: <strong>the definition of done</strong></h2>
+<p>Apparently simple concept that is <em>central</em> for Scrum to work</p>
+<p>(and for many other workflows)</p>
+<p>Every actor in the process <strong>must agree</strong> and what is the meaning of a task being considered <strong>done</strong></p>
+<ul>
+<li>Is it done when the acceptance tests work?</li>
+<li>Is it done when the assignee marks it as so?</li>
+<li>Is it done when it is delivered to the main application?</li>
+<li>Is it done when it has been in production for at least one week without bug reports?</li>
+</ul>
+</section><section>
+<h2 id="process-overview">Process overview</h2>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Scrum_process.svg/2880px-Scrum_process.svg.png" alt="scrum process"></p>
+</section><section>
+<h2 id="workflow-overview">Workflow overview</h2>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Scrum_Framework.png" alt="scrum process"></p>
+</section><section>
+<h2 id="pull-mode-kanban">Pull mode: Kanban</h2>
+<ul>
+<li>Timeboxing in SCRUM resembles a <em>push</em> mechanism
+<ul>
+<li>Work is allocated to the team to be performed within a timebox</li>
+</ul>
+</li>
+<li>Some activities may benefit of a <em>pull</em> mechanism
+<ul>
+<li>Resources are allocated on a per-need basis</li>
+<li>The two modes can (should) cohexist in a sane agile workflow</li>
+</ul>
+</li>
+</ul>
+<p>Based on the concept of a <strong>board</strong> (Kanban is Japanese for “board”) divided in <strong>columns</strong> where <strong>cards</strong> can be moved,
+specifically:</p>
+<ul>
+<li><strong>Columns</strong> represent the different <em>stages of the workflow</em></li>
+<li><strong>Cards</strong> represent the <em>tasks</em> to be performed</li>
+<li><strong>Cards’ color and/or shape</strong> can be used to <em>classify</em> them (e.g., priority, type of work, reference project, etc.)</li>
+<li>The cards are moved from <em>column to column</em> as they <em>progress</em>, in real time</li>
+<li>The board can be <em>virtual</em> or <em>physical</em>
+<ul>
+<li>Personally, I prefer physical boards, but it’s a matter of taste</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="simple-kanban-board">Simple Kanban board</h3>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Simple-kanban-board-.jpg" alt="kanban board"></p>
+</section><section>
+<h3 id="kanban-board-for-an-articulated-workflow">Kanban board for an articulated workflow</h3>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Sample_Kanban_Board.png" alt="kanban board"></p>
+</section><section>
+<h1 id="scrum--kanban--scrumban">Scrum + Kanban = Scrumban</h1>
+<p><img src="https://i.imgflip.com/7dlkk7.jpg" alt="scrumban"></p>
+<p>(<em>Scrumban</em> actually exists)</p>
+<p>Base ideas:</p>
+<ul>
+<li><strong>Scrum</strong> for the <em>planning</em> and <em>sprint management</em></li>
+<li><strong>Kanban</strong> for the <em>continuous flow</em> of work</li>
+</ul>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/oyVksFviJVE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="" title="YouTube Video"></iframe>
+</div>
+</section><section>
+<h2 id="the-problem-with-scrum">The problem with Scrum</h2>
+<p>Scrum and agile are often used as <em>synonyms</em>, but <strong>they are not</strong></p>
+<p>In the literature, Scrum and agile show mixed evidence of efficacy</p>
+<p>(even though, anecdotically, many success stories can be found)</p>
+<h3 id="warning-opinions"><strong>WARNING: opinions!</strong></h3>
+<ul>
+<li>From now on, facts are mixed with opinions of practitioners (included myself)</li>
+<li>There will be citations. Please note: many authors of these quotes, although regarded professionals, often use agile and Scrum interchangeably</li>
+<li>We are going to ask ourselves to what doesn’t work, when, and why</li>
+<li>Let’s see if we can find some general guidance…</li>
+</ul>
+</section><section>
+<blockquote>
+<p>Waterfall replicates the social model of a dysfunctional organization with a defined hierarchy. Agile, quite often, replicates the social model of a dysfunctional organization <em>without</em> a well-defined hierarchy.</p>
+</blockquote>
+<ul>
+<li>Michael O. Church: <a href="https://michaelochurch.wordpress.com/2015/06/06/why-agile-and-especially-scrum-are-terrible/">Why “Agile” and especially Scrum are terrible</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>If your team has combined agile with a legacy methodology such as waterfall, creating a ‘water-scrum’ approach, you may have the worst of both worlds: You have combined the rigid structure of the traditional approach with the terminology of agile.</p>
+</blockquote>
+<ul>
+<li>Peter Varhol: <a href="https://techbeacon.com/app-dev-testing/8-reasons-ditch-agile">8 reasons to ditch agile</a></li>
+</ul>
+</section><section>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/programming/comments/9wcku8/why_agile_and_especially_scrum_are_terrible/e9k4adq/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="300" width="800" scrolling="no"></iframe>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/programming/comments/9wcku8/why_agile_and_especially_scrum_are_terrible/e9kccas/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="300" width="800" scrolling="no"></iframe>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/programming/comments/9wcku8/why_agile_and_especially_scrum_are_terrible/e9kdpz8/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="300" width="800" scrolling="no"></iframe>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/programming/comments/9wcku8/why_agile_and_especially_scrum_are_terrible/e9ka6tj/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="300" width="800" scrolling="no"></iframe>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/programming/comments/9wcku8/why_agile_and_especially_scrum_are_terrible/e9kmbvv/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="300" width="800" scrolling="no"></iframe>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/programming/comments/9wcku8/why_agile_and_especially_scrum_are_terrible/e9kbutx/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="300" width="800" scrolling="no"></iframe>
+</section><section>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/scrum/comments/t4fun4/query_from_a_sm_of_6_months/?ref_source=embed&amp;ref=share&amp;embed=true" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="700" width="1920" scrolling="no"></iframe>
+</section><section>
+<blockquote>
+<p>Many practice the terminology without appreciating the underlying values.</p>
+</blockquote>
+<ul>
+<li>Peter Varhol: <a href="https://techbeacon.com/app-dev-testing/8-reasons-ditch-agile">8 reasons to ditch agile</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>I knew the end of Agile was coming when we started using hockey sticks.</p>
+</blockquote>
+<ul>
+<li>Kurt Cagle on Forbes: <a href="https://www.forbes.com/sites/cognitiveworld/2019/08/23/the-end-of-agile/?sh=1bee770a2071">The End of Agile</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>If management is essentially ignoring the developers, there are fixed deadlines to be achieved with a predefined scope, or it’s a dog-eat-dog environment instead of a team focused on achieving the same goal, if planning ahead and thinking out of the box are not appreciated, then yes, eventually you’ll give up and resort to just doing the assigned tasks. I’ve been there.</p>
+</blockquote>
+<ul>
+<li>From <a href="https://softwareengineering.stackexchange.com/questions/410482/how-do-i-prevent-scrum-from-turning-great-developers-into-average-developers/410484#410484">StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p><strong>Standup is effectively “update management”.</strong> The notion that standup is for developers is absurd. Does anyone actually wait until 9AM to report a problem or are they going to just ask in the group chat immediately? In practice, it is someone higher up the food chain keeping tabs on how fast things are moving so they can ask about it later in the day.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>it usually bends and breaks every other process to it and becomes this overarching process where you do nothing consistently except Scrum rituals and making those Scrum rituals seem successful</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<h1 id="what-is-the-root-of-these-issues">What is the root of these issues?</h1>
+</section><section>
+<h2 id="bureaucratization">Bureaucratization</h2>
+<ul>
+<li>There is a very delicate trade-off between <em>standardization</em> of practices and <em>excess of buraucracy</em></li>
+<li>Agile is designed around <em>co-located medium/small teams</em> and <em>low buraucracy</em> (compared to the state of the art at the time)</li>
+<li>Larger scale requires more coordination and buraucracy</li>
+<li>Smaller scale benefits of less buraucracy</li>
+</ul>
+<h3 id="there-is-no-workflow-that-fits-them-all">There is no workflow that “fits-them-all”!</h3>
+<p><strong>Blindly adopting a pre-existing set of practices may lead to failures</strong></p>
+<p><strong>Mixing cherry-picked parts of workflows requires a great deal of experience</strong></p>
+<ul>
+<li>It is paramount that everyone understands <em>why</em> some procedure is in place</li>
+</ul>
+</section><section>
+<blockquote>
+<p><strong>It’s stupidly, dangerously short-term.</strong></p>
+</blockquote>
+<ul>
+<li>Michael O. Church: <a href="https://michaelochurch.wordpress.com/2015/06/06/why-agile-and-especially-scrum-are-terrible/">Why “Agile” and especially Scrum are terrible</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p><strong>Two-week delivery schedules are overkill</strong></p>
+</blockquote>
+<ul>
+<li>Peter Varhol: <a href="https://techbeacon.com/app-dev-testing/8-reasons-ditch-agile">8 reasons to ditch agile</a></li>
+</ul>
+</section><section>
+<h1 id="what-is-the-root-of-these-issues-1">What is the root of these issues?</h1>
+</section><section>
+<h2 id="time-boxes">Time boxes</h2>
+<ul>
+<li>
+<p>Estimating the effort is a <em>good practice</em>.</p>
+</li>
+<li>
+<p>Replacing reality with estimations <em>is not</em>.</p>
+</li>
+<li>
+<p><em>High-risk/high-gain</em> activities hardly fit into time slots</p>
+<ul>
+<li>(hence the “dangerously short-term”)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<blockquote>
+<p>Great developers are often sought out for advice and for second opinions. But any time doing that is less time spent churning out tickets, so their velocity falls.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>Scrum and infinite defects can be good friends because the infinite defects approach lets velocity be artificially high as long as bugs are found after the sprint and therefore counted as new work. You could have an ever higher velocity by constantly generating new bugs.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>Because the developers are independently working away on each ticket sequentially, the architecture rapidly begins to mirror the tickets. The tickets are typically 1-2 sentence user stories. Ticket driven architecture rapidly gets messy simply because more code gets piled on as required.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<h1 id="what-is-the-root-of-these-issues-2">What is the root of these issues?</h1>
+</section><section>
+<h2 id="abuse-of-kpis">Abuse of KPIs</h2>
+<ul>
+<li>Measuring is <em>good</em> and <em>must</em> be done</li>
+<li>But keep in mind that measures show <em>a view</em> over a <em>complex</em> system</li>
+<li>Blindly using metrics to measure quality can be perilous</li>
+</ul>
+</section><section>
+<blockquote>
+<p>I call this the <em>Whisky Goggles Effect</em>: it turns the 3s and 4s into 5s, but it makes you so sloppy that the 7s and 9s want nothing to do with you. Unable to get their creative juices flowing under a system where everything has to be justified in terms of short-term business value, the best programmers leave.</p>
+</blockquote>
+<ul>
+<li>Michael O. Church: <a href="https://michaelochurch.wordpress.com/2015/06/06/why-agile-and-especially-scrum-are-terrible/">Why “Agile” and especially Scrum are terrible</a></li>
+</ul>
+<p><em>[Emphasis mine]</em></p>
+</section><section>
+<blockquote>
+<p>Culturally, agile may threaten some team members, including those who feel they had obtained an informal leadership status under the previous process that disappeared under agile.</p>
+</blockquote>
+<ul>
+<li>Peter Varhol: <a href="https://www.reddit.com/r/programming/comments/9wcku8/comment/e9lcdaf/?utm_source=share&amp;utm_medium=web2x&amp;context=3">8 reasons to ditch agile</a></li>
+</ul>
+</section><section>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/programming/comments/9wcku8/why_agile_and_especially_scrum_are_terrible/e9lcdaf/?depth=2&amp;showmore=false&amp;embed=true&amp;showtitle=true&amp;context=1&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="1000" width="1920" scrolling="no"></iframe>
+</section><section>
+<iframe id="reddit-embed" src="https://www.redditmedia.com/r/programming/comments/9wcku8/why_agile_and_especially_scrum_are_terrible/e9kclup/?depth=1&amp;showmore=false&amp;embed=true&amp;showmedia=false" sandbox="allow-scripts allow-same-origin allow-popups" style="border: none;" height="500" width="1920" scrolling="no"></iframe>
+</section><section>
+<blockquote>
+<p>developers who think they are under pressure will do a crappy job in any development methodology</p>
+</blockquote>
+<ul>
+<li>From <a href="https://softwareengineering.stackexchange.com/a/410494/337842">StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>Great developers are usually defined as those who can solve tough problems. Scrum encourages picking work that can easily be done and rapidly churned out at a steady pace. A tough problem is a developer being slow on getting the tickets done.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>Teams might self organize if they all have the same goal and incentives. The problem is, that is rarely true. One guy wants a promotion. Another is studying for a degree on the side. A third is upskilling to go to another company. Another just doesn’t want to have arguments so agrees to anything and lets the codebase become a mess. A lot of good design requires the developers to sit down and hash out how a thing should work.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>Even if you get a situation where you are not formally judged on the points completed (which will not happen if management is mostly interacting during Scrum rituals as that is all they have to see regarding progress), people are still going to compete for attention and rewards.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>Just imagine 11 people being handed a soccer manual and being told practice is every day for fifteen minutes around 10 AM in conference room #5. Do you think that is what makes a good soccer team? But what if those 11 people were really good, professional players? Still no team? No. Even Christiano Ronaldo would be getting “average” sooner or later with that kind of “team”. But that’s not soccer’s fault. It’s just not how you build a team.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/questions/410482/how-do-i-prevent-scrum-from-turning-great-developers-into-average-developers/410491#410491">on StackOverflow</a></li>
+</ul>
+</section><section>
+<h1 id="what-is-the-root-of-these-issues-3">What is the root of these issues?</h1>
+</section><section>
+<h2 id="managing-teams-is-hard">Managing teams is hard</h2>
+<h2 id="agile-alone-does-not-make-it-easier"><em>agile alone does not make it easier</em></h2>
+<ul>
+<li>Daily standups may become source of <em>pressure</em>
+<ul>
+<li><em>especially if management is involved</em></li>
+<li>autonomy requires trust!</li>
+</ul>
+</li>
+<li>Changes in consolidated practices have <em>hidden costs</em>
+<ul>
+<li>they challenge a pre-existent stabiity</li>
+<li>and I have no idea how to deal with them</li>
+<li>(well you tell me)</li>
+</ul>
+</li>
+</ul>
+<p><strong>opinion warning below</strong></p>
+<ul>
+<li>Developer quality is not linear</li>
+<li>One insanely good developer can be worth 5 good developers alone
+<ul>
+<li>still they don’t get paid five times as much, and they know it</li>
+</ul>
+</li>
+<li>One good developer can be worth 5 average developers, and so on</li>
+<li>$\Rightarrow$ flattening towards average is usually damaging</li>
+</ul>
+</section><section>
+<blockquote>
+<p>Many practice the terminology without appreciating the underlying values.</p>
+</blockquote>
+<ul>
+<li>Peter Varhol: <a href="https://techbeacon.com/app-dev-testing/8-reasons-ditch-agile">8 reasons to ditch agile</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>If you really don’t have an agile methodology but call it agile to attract and retain developers and other team members, you are in trouble.</p>
+</blockquote>
+<ul>
+<li>Peter Varhol: <a href="https://techbeacon.com/app-dev-testing/8-reasons-ditch-agile">8 reasons to ditch agile</a></li>
+</ul>
+</section><section>
+<h1 id="what-is-the-root-of-these-issues-4">What is the root of these issues?</h1>
+</section><section>
+<h2 id="find-solid-processes-not-just-a-nice-packaging">Find solid <em>processes</em>, not just a nice packaging</h2>
+<ul>
+<li>It is easy to transform agile principles into a set of <em>rituals</em>
+<ul>
+<li>See bureaucratization</li>
+</ul>
+</li>
+<li>Don’t do Scrum because is cool, do it <strong>because</strong>:
+<ol>
+<li><em>you understand it</em></li>
+<li>you have good reasons to think it will <em>help</em></li>
+<li>Don’t be fearful of adapting it to the environment</li>
+</ol>
+</li>
+</ul>
+</section><section>
+<blockquote>
+<p>In Scrum, you need to clear tickets and there is no real check on the quality of the work as “done” or “not done” is decided by a usually non-technical project owner. That incentivizes going into a void and focusing on outputting code.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<blockquote>
+<p>The high level of developer independence means each developer takes different approaches. […] While it is not necessarily wrong, it makes debugging a heck of a lot harder as more places need to be checked.</p>
+</blockquote>
+<ul>
+<li>Matthew Gaiser <a href="https://softwareengineering.stackexchange.com/a/410492/337842">on StackOverflow</a></li>
+</ul>
+</section><section>
+<h1 id="what-is-the-root-of-these-issues-5">What is the root of these issues?</h1>
+</section><section>
+<h2 id="technical-excellence">Technical excellence</h2>
+<ul>
+<li>Working in a persistent <em>emergency state</em> creates <em>technical debt</em></li>
+<li><em>Architectures</em> and <em>abstractions</em> are vital for long-term success
+<ul>
+<li>If they get compromised, they need to be recovered</li>
+<li>(which is <em>paying your techical debt</em>)</li>
+</ul>
+</li>
+<li>There should be <em>consistency</em> across styles and techniques
+<ul>
+<li>And controls should be as much as possible automatic</li>
+</ul>
+</li>
+</ul>
+<h2 id="knowledge-gaps-and-definition-of-done">Knowledge gaps and definition of done</h2>
+<ul>
+<li>The <strong>definition of done</strong> is central
+<ul>
+<li>Arguably, it should include the <em>technical debt</em></li>
+</ul>
+</li>
+<li>Involve technical experts when defining what <em>done</em> means
+<ul>
+<li>Especially if you intend to <em>measure people performance</em> based on how much they have <em>done</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="doing-it-right">Doing it right</h1>
+<ul>
+<li><strong>Know your project</strong>, there is no universal process that works every time</li>
+<li><strong>Know your team</strong>, there is no universal recipe that works everywhere</li>
+<li>Avoid <em>ritualization</em>! Processes are not religions</li>
+<li>Agree on the <em>definition of done</em></li>
+<li>Break down problems in smaller chunks, but <em>do not foget the long-term vision</em></li>
+<li>Sacrify excellence for velocity only when there is an <em>emergency</em></li>
+<li>When in “<strong>emergency</strong> mode”, be aware that you are accumulating <em>technical debt</em> that must be paid</li>
+<li>Avoid <em>shortcuts</em> that break <em>abstractions</em> and <em>architectures</em></li>
+<li>Enforce excellence by <em>strict QA</em> processes</li>
+<li>Beware of <em>scoring individuals</em>, as they will likely begin to <em>chase the metrics</em> in response</li>
+<li>Development is a <em>creative work</em>, excessive <em>management pressure</em> is likely to make things worse</li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

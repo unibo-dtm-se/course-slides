@@ -1,0 +1,566 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Software Engineering Module 3: QA, reproducibility, TDD</title>
+<meta name="description" content="QA, reproducibility, TDD">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.1a38f952ad4fe39d0c6997be4ebfeb2dd1d24c5191378417611ac238204dee27.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="software-engineering">Software Engineering</h1>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h1 id="module-3-devops">Module 3: DevOps</h1>
+<h2 id="quality-assurance-reproducibility-test-driven-development"><em>Quality assurance, reproducibility, test-driven development</em></h2>
+</section><section>
+<h2 id="quality-assurance">Quality assurance</h2>
+<p>As any engineered product, software should be <em>subject to quality assurance control</em>.</p>
+<ul>
+<li>Would you drive a car that has not been succefully passed its <em>quality control</em>?</li>
+<li>What does it mean that a car <strong>passed</strong> its <em>quality control checks</em>?
+<ul>
+<li>What does it mean for a bridge?</li>
+<li>What does it mean for a chair?</li>
+<li>What does it mean for a robot?</li>
+<li>What does it mean for a medical software?</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="testing-criteria">Testing: criteria</h2>
+<p>Verify that the software meets quality criteria.</p>
+<ul>
+<li><strong>Functional</strong> criteria:
+<ul>
+<li>Does <em>what</em> we expect it to do?
+<ul>
+<li>Does the software produce the expected results?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Non-functional</strong> criteria:
+<ul>
+<li>Does it do it <em>how</em> we want it?
+<ul>
+<li>Is it secure?</li>
+<li>Are performance acceptable?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="automated-vs-manual">Automated vs. manual</h2>
+<p>Running an application manually is a form of testing: <em>exploratory testing</em>.</p>
+<ul>
+<li>Done <strong>without a plan</strong></li>
+</ul>
+<p>If there is a plan that can be followed step-by-step, then <em>there is a program that can do it for you</em></p>
+<ul>
+<li>If a program can do it for you, the it <em>should</em> do it for you</li>
+</ul>
+</section><section>
+<h2 id="testing-scope">Testing scope</h2>
+<p>As any engineering product, software can be tested at different levels of abstraction.</p>
+<ul>
+<li><strong>Unit</strong> testing: test <em>single software components</em>
+<ul>
+<li>Is this <code>class</code> behavior the expected one?</li>
+<li>Is this <em>suspension spring</em> behavior the expected one?</li>
+<li>Is this <em>steel rod</em> mechanical properties the expected ones?</li>
+</ul>
+</li>
+<li><strong>Integration</strong> testing: test <em>an entire subsystem</em>, with <em>multiple components</em>
+<ul>
+<li>Is this <em>OCR server</em> behavior the expected ones?</li>
+<li>Is this <em>engine</em>  working as expected?</li>
+<li>Is this <em>span of a bridge</em> working correctly?</li>
+</ul>
+</li>
+<li><strong>End-to-end</strong> (or <strong>acceptance</strong>) testing: test <em>an entire system</em>
+<ul>
+<li>Is this whole application functional?</li>
+<li>Is the car lapping under 2 minutes?</li>
+<li>Does the bridge work nominally with high traffic and strong wind?</li>
+</ul>
+</li>
+</ul>
+<p>A well-maintained engineering product must have tests at all granularity levels</p>
+</section><section>
+<h2 id="reproducibility">Reproducibility</h2>
+<p><strong>Reproducibility</strong> is <strong>central</strong> for testing</p>
+<p>(true for any engineering, but in particular for software)</p>
+<ul>
+<li><em>Tests should always provide the same results</em>
+<ul>
+<li>Tests that work sometimets but sometimes not are called <em>flaky tests</em></li>
+</ul>
+</li>
+<li>Tests should be <em>self-contained</em> (they should not depend on the results of previous tests)</li>
+<li><em>Random</em> events can be tested by <em>seeding</em> the random generators</li>
+</ul>
+<p>Would you be comfortable with a car that passes the crash test 99.9% of time, but on the 0.1% of the cases fails unexplicably?</p>
+</section><section>
+<h2 id="test-plan">Test plan</h2>
+<p>Testing should be <em>planned for in advance</em>.</p>
+<p>A good test plan can guide the development, and should be ready <em>early</em> in the project.</p>
+<p>When designing cars,
+the crash testing procedure,
+the engine test bench,
+and so on are prepared well before the car prototype is ready!</p>
+</section><section>
+<h2 id="test-driven-development-tdd">Test-Driven Development (TDD)</h2>
+<p>The practice of:</p>
+<ul>
+<li>converting <em>requirements to (executable) test</em> cases</li>
+<li>preparing tests <em>before</em> development</li>
+<li>define the <em>expected behavior</em> via test cases</li>
+<li>track all development by <em>always testing all cases</em></li>
+</ul>
+</section><section>
+<h2 id="development-cycle-in-tdd">Development cycle in TDD</h2>
+<ol>
+<li><em>Capture</em> a requirement into an executable <em>test</em></li>
+<li>Run the test suite, the <em>new test should <strong>fail</strong></em></li>
+<li>Fix the code so that the new test passes</li>
+<li>Re-run the whole test suite, all tests should pass</li>
+<li>Improve the quality as needed (refactor, style, duplication…)</li>
+</ol>
+</section><section>
+<h2 id="injecting-tests-into-projects-started-without-tests">Injecting tests into projects started without tests</h2>
+<p>Developing without testing is <em>unsustainable</em></p>
+<p>Yet many software projects have no or minimal tests, as:</p>
+<blockquote>
+<p>We do not have time (or money) for testing</p>
+</blockquote>
+<p>Beware: <strong>testing saves times in the long run</strong>, not testing is a <em>cost</em>!</p>
+<ul>
+<li>Untested software components are likely sources of <em>technical debt</em></li>
+</ul>
+</section><section>
+<h2 id="a-much-better-quotation">A much better quotation</h2>
+<blockquote>
+<p>we never have the money to do it <em>right</em> but somehow we always have the fucking money to do it <em>twice</em></p>
+</blockquote>
+<p>$—$ UserInputSucks (@UserInputSucks) <a href="https://twitter.com/UserInputSucks/status/1132904286415929345">May 27, 2019</a></p>
+</section><section>
+<h2 id="tackling-bugs-and-regressions">Tackling bugs and regressions</h2>
+<p>When a new <strong>bug</strong> (or a <strong>regression</strong>, namely, a feature that was working and it is now compromised) is discovered,
+<em>resist the temptation to “fix” the issue right away</em></p>
+<ul>
+<li>A fix without a test could be <em>insufficient</em></li>
+<li>The “fix” could break another feature (create a <em>regression</em>)</li>
+</ul>
+<p>A more <strong>robust approach</strong>:</p>
+<ol>
+<li>Reproduce the issue in a <em>minimal context</em></li>
+<li>Create a new <em>test case</em> that <em>correctly fails</em></li>
+<li><em>Fix</em> the issue, and make sure that the test now <em>passes</em></li>
+</ol>
+<p>Writing the test <em>after</em> the fix is much less effective.</p>
+<p>See this <a href="https://github.com/AlchemistSimulator/Alchemist/issues/1002">example interaction</a> of a reasonable way to tackle bugs.</p>
+</section><section>
+<h2 id="testing-software-before-it-is-ready-boundaries">Testing software before it is ready: boundaries</h2>
+<p>Problem: how is it possible to test code that <em>does not exist</em>?</p>
+<p>More in general: how to design a testbed for an engineering product that is not prototypied yet?</p>
+<p><strong>clean boundaries</strong>: the component must have a well-defined interface with the rest of the world.
+In software, it means that the component has a <em>well-defined Application Programming Interface</em> (API).
+Our artifact must be <strong>modularized</strong> correctly
+(this also helps with development, simplicity and maintenance)</p>
+<p><strong>clear scope</strong>: well engineered (software) components usually <em>do one thing well</em>.
+Test plans are conceived to test that the one thing is performed correctly.</p>
+</section><section>
+<h2 id="testing-software-before-it-is-ready-missing-components">Testing software before it is ready: missing components</h2>
+<p>We can now <em>design our tests</em>,
+but how to <strong>run</strong> them if <em>the components surrounding the tested one are not ready</em>?</p>
+<p>How to test a new suspension system if the “surrounding” car is not ready (not even fully designed) yet?</p>
+<p>How to test that our new rocket engine works as expected with no rocket?</p>
+<p>How to test that our multi-engine rocket works as expected without payload?</p>
+</section><section>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/QMcj58TbsyU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="" title="YouTube Video"></iframe>
+</div>
+
+</section><section>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/kchq9AGXsyA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="" title="YouTube Video"></iframe>
+</div>
+
+</section><section>
+<h2 id="testing-software-before-it-is-ready-test-doubles">Testing software before it is ready: test doubles</h2>
+<p>The trick: <em>simulate components that are not ready yet</em>!</p>
+<p>When writing software, components required for the execution that are not ready yet can be simulated
+<strong>if their API has been clearly defined</strong></p>
+<p>The simulated component are called <em>test doubles</em></p>
+<ul>
+<li><em>dummy</em>: a (usually unimplemented) placeholder (e.g., unused mandatory argument)
+<ul>
+<li>a weight put on the suspension</li>
+</ul>
+</li>
+<li><em>stub</em>: partly implemented dummy
+<ul>
+<li>a system applying variable weight to the suspension</li>
+</ul>
+</li>
+<li><em>spy</em>: a stub that tracks information of the way it is being used
+<ul>
+<li>a dynamometer recording the suspension behavior under different conditions</li>
+</ul>
+</li>
+<li><em>mock</em>: a spy that expects to be used in a certain way, and fails if the expectation is unmet
+<ul>
+<li>a smart dynamometer that interrupts testing if the suspension behavior is not nominal</li>
+</ul>
+</li>
+<li><em>fake</em>: a fully implemented version of the component unsuitable for production
+<ul>
+<li>a car prototype</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="test-doubles-and-development-cost">Test doubles and development cost</h2>
+<blockquote>
+<p>Why should the team “waste” time creating doubles instead of just writing the thing?</p>
+</blockquote>
+<p>doubles are <strong>cheaper</strong>: dedicated libraries make doubles <em>implementation extremely quick</em></p>
+<ul>
+<li>In Python, <a href="https://docs.python.org/3/library/unittest.mock.html"><code>unittest.mock</code></a> is included in the distribution, and <a href="https://doubles.readthedocs.io/en/latest/">Doubles</a> is a valid alternative.</li>
+</ul>
+<p>doubles are <strong>simpler</strong>: only encode the behavior required to check some part of the behaviour. The probability of them being bugged is lower. <em>Debugging is easier</em>.</p>
+</section><section>
+<h2 id="checking-untested-components-coverage">Checking (<strong>un</strong>)tested components: coverage</h2>
+<p><em>Code coverage</em> is a set of <strong>metrics</strong> that measure how much of the source code of a program has been executed when testing.</p>
+<p>Common metrics:</p>
+<ul>
+<li><em>function coverage</em>: did the flow control get through this function?</li>
+<li><em>branch coverage</em>: did the flow control tried both branches of this condition?</li>
+<li><em>line-of-code coverage</em>: did the flow control get through this line during tests?
+<ul>
+<li><em>most common</em>, usually combined with <em>branch coverage</em></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://app.codecov.io/gh/AlchemistSimulator/Alchemist">Example coverage report</a></p>
+
+
+<span class="fragment ">
+  <p><strong>WARNING</strong></p>
+<ul>
+<li>the actual information coverage provides is which code is <strong>partly tested</strong> or <strong>untested</strong>!</li>
+<li>we <em>know nothing of the testing quality</em> on the covered part, but that control flow goes through.</li>
+<li><em>Useful</em> metric, but it cannot be the <em>only</em> metric to evaluate testing
+<ul>
+<li>Dramatically high coverage requirements may induce <em>metric-chasing</em>!</li>
+</ul>
+</li>
+</ul>
+
+</span>
+
+</section><section>
+<h2 id="quality-assurance-1">Quality Assurance</h2>
+<p><em>“It works”</em> <strong>is <em>not</em> good enough</strong></p>
+<p>(besides, the very notion of “it works” is debatable)</p>
+<ul>
+<li>Software quality should be <em>continuously assessed</em></li>
+<li>The assessment should <em>automatic</em> whenever possible</li>
+<li><strong>QA should be integrated in the build system!</strong>
+<ul>
+<li>It is fine to <em>fail the build</em> if quality criteria are not met</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="quality-assurance-levels">Quality Assurance: levels</h2>
+<ul>
+<li><em>Style</em> and <em>coherence</em></li>
+<li><em>Flawed programming</em> patterns</li>
+<li>Violations of the <em>DRY</em> principle</li>
+<li><strong>Runtime Testing</strong></li>
+</ul>
+</section><section>
+<h2 id="quality-assurance-static-analysis">Quality Assurance: static analysis</h2>
+<p>Code analysis without execution is called <em>static analysis</em>.</p>
+<p>Static analysis tools are often referred to as <em>linters</em>
+(especially those providing auto-formatting tools)</p>
+<p><strong>Idiomatic</strong> and <strong>standardized</strong> code:</p>
+<ul>
+<li>reduces <em>complexity</em></li>
+<li>improves <em>understandandability</em></li>
+<li>prevents <em>style-changing commits</em> with <em>unintelligible diffs</em></li>
+<li>lowers the <em>maintenance</em> burden and related <em>costs</em></li>
+<li>simplifies <em>code reviews</em></li>
+<li>improves <em>security</em></li>
+</ul>
+<p>In <em>Python</em>:</p>
+<ul>
+<li><a href="http://mypy-lang.org/">Mypy</a>: static analysis for bug detection (requires <a href="https://www.python.org/dev/peps/pep-0484/">annotations</a>)</li>
+<li><a href="https://github.com/PyCQA/pyflakes">Pyflakes</a>: effective programming, excluding style</li>
+<li><a href="https://pylint.org/">Pylint</a>: reverse engineering via <a href="https://www.logilab.org/blogentry/6883">Pyreverse</a>, style (enforces <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a>), and effective programming</li>
+<li><a href="https://github.com/PyCQA/bandit">Bandit</a>: security scanner</li>
+<li><a href="https://prospector.landscape.io/en/master">Prospector</a>: tool collection. Includes Pylint and Pyflakes, adds <a href="https://www.python.org/dev/peps/pep-0257/">PEP27</a>-compliance checks for comments, complexity, packaging (via <a href="https://github.com/regebro/pyroma">pyroma</a>), secrets leaking (via <a href="https://github.com/landscapeio/dodgy">dodgy</a>), and unused code (via <a href="https://github.com/jendrikseipp/vulture">vulture</a>) checks.</li>
+</ul>
+</section><section>
+<h2 id="quality-assurance-flawed-programming-patterns">Quality Assurance: flawed programming patterns</h2>
+<p>Identification and reporting of <em>patterns</em> known to be <em>problematic</em></p>
+<ul>
+<li>Early-interception of <em>potential bugs</em></li>
+<li>Enforce <em>good programming principles</em></li>
+<li>Improves <em>performance</em></li>
+<li>Reduces <em>complexity</em></li>
+<li>Reduces <em>maintenance cost</em></li>
+</ul>
+</section><section>
+<h2 id="quality-assurance-violations-of-the-dry-principle">Quality Assurance: violations of the DRY principle</h2>
+<p>Code <em>replicated</em> rather than <em>reused</em></p>
+<ul>
+<li>improves <em>understandandability</em></li>
+<li>Reduces <em>maintenance cost</em></li>
+<li>simplifies <em>code reviews</em></li>
+</ul>
+<p>General advice: <strong>never copy/paste</strong> your code</p>
+<ul>
+<li>If you need to copy something, you probably need to <em>refactor</em> something</li>
+</ul>
+<p>Multi-language tool: <a href="https://pmd.github.io/latest/pmd_userdocs_cpd.html">Copy/Paste Detector (CPD)</a> (part of PMD)</p>
+</section><section>
+<h2 id="additional-checks-and-reportings">Additional checks and reportings</h2>
+<p>There exist a number of recommended services that provide additional QA and reports.</p>
+<p>Non-exhaustive list:</p>
+<ul>
+<li><a href="https://codecov.io/">Codecov.io</a>
+<ul>
+<li>Code coverage</li>
+<li>Supports Jacoco XML reports</li>
+<li>Nice data reporting system</li>
+</ul>
+</li>
+<li><a href="https://sonarcloud.io/">Sonarcloud</a>
+<ul>
+<li>Multiple measures, covering reliability, security, maintainability, duplication, complexity…</li>
+</ul>
+</li>
+<li><a href="https://www.codacy.com/">Codacy</a>
+<ul>
+<li>Automated software QA for several languages</li>
+</ul>
+</li>
+<li><a href="https://www.codefactor.io/">Code Factor</a>
+<ul>
+<li>Automated software QA</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="unit-testing-in-python">Unit testing in Python</h2>
+<p>An example repository: <a href="https://github.com/DanySK/python-testing-101/tree/master/example-py-unittest">https://github.com/DanySK/python-testing-101/tree/master/example-py-unittest</a></p>
+<p>Try the following:</p>
+<ol>
+<li>Clone the repository</li>
+<li>Move into <code>example-py-unittest</code> folder</li>
+<li>Run the tests with <code>python -m unittest discover</code> (option <code>-m</code> runs a module as script, <code>discover</code> is an option that instructs <code>unittest</code> to find and run all tests), observe the results</li>
+<li>Introduce a bug in <code>calc.py</code> and re-run the tests. Observe the behavior</li>
+</ol>
+</section><section>
+<h3 id="do-it-yourself">Do it yourself!</h3>
+<ol>
+<li>Based on the project structure of the examplar, prepare a <code>complex.py</code> implementing a complex number</li>
+<li>The class should support methods for adding, subtracting, multiplying, and dividing complex numbers. Create the number and implement them with <code>pass</code></li>
+<li>Prepare the test cases to verify that the behaviour is the intended one</li>
+<li>Implement the methods!</li>
+</ol>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>A complex number can be modelled as a couple of real numbers, one for the real part, one for the imaginary part.</li>
+<li>Try to emulate the behavior of a number via <a href="https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types">operator overloading</a>!</li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

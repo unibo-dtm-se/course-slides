@@ -282,6 +282,46 @@ and must feature appropriate automation (build) and get published on official di
 
 ---
 
+## Techical Requirements
+
+- An account on [GitHub](https://github.com) (create one if missing)
+    + possibly, __based on your university email address__
+        * if you already have a GitHub account, please add it as the secondary email address 
+    + optionally, __with a profile picture__ showing your face or a recognizable avatar
+    + possibly, with a __professional username__ (e.g., `john-doe` instead of `johnny-the-king`)
+
+- A working installation of [Python](https://www.python.org/)
+    + possibly version `3.11.x`
+
+- A working installation of [Git](https://git-scm.com/)
+    + if you need a GUI, you may choose 
+        1. [GitHub Desktop](https://desktop.github.com/) 
+        2. [SourceTree](https://www.sourcetreeapp.com/)
+        3. [GitKraken](https://www.gitkraken.com/)
+
+- A working installation of [Visual Studio Code](https://code.visualstudio.com/)
+
+- \[Recommended\] A working installation of [PyCharm](https://www.jetbrains.com/pycharm/)
+    + the community edition is free, and it's enough
+
+--- 
+
+# Module "Principles and Methods"
+
+held by Prof. [Giovanni Ciatto](mailto:giovanni.ciatto@unibo.it)
+
+### Remarks
+
+- Lectures are recorded by default
+    + recordings will be available on {{<vle>}}
+    + access to recordings is by-request only (send an email to the teacher)
+
+- Slides and other materials are available on {{<vle>}}
+    + they are produced along the way, so they may not be available in advance
+    + also, please re-download / re-load them before each class
+
+---
+
 # Module contents and action plan
 
 <!--

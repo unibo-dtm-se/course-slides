@@ -301,4 +301,4 @@ and must feature appropriate automation (build) and get published on official di
 * **2h** [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)
 * **3h** [software dependencies, build automation (examples with virtualenv / pyenv / pip)](build)
 * **3h** [Continuous integration (examples with GitHub Actions)](ci)
-* **2h** [versioning, semantic release](https://danysk.github.io/course-laboratory-of-software-systems/05-version-selection), [licenses](https://danysk.github.io/course-laboratory-of-software-systems/06-licenses) (if we got time)
+* **2h** [versioning, semantic release](https://unibo-spe.github.io/05-version-selection), [licenses](https://unibo-spe.github.io/06-licenses/) (if we got time)

@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Introduction to Software Engineering</title>
+<meta name="description" content="QA, reproducibility, TDD">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.e98e7d09f955f316ccf66388b4c5eb8b89dfdb0a57cb72bf0fc9f3f33860984c.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="introduction-to-software-engineering">Introduction to Software Engineering</h1>
+<br>
+<h2 id="hahahugoshortcode1s0hbhb">Software Engineering</h2>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h3 id="module-principles-and-methods">Module “Principles and Methods”</h3>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2023/2024</h4>
+<h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
+<br>
+<br>
+<p>Compiled on: 2024-02-14 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
+</section><section>
+<h2 id="relevant-nomenclature">Relevant nomenclature</h2>
+<blockquote>
+<p><strong>Computer Science</strong> (CS) is the study of <em>computation</em>,
+i.e. the <em>automatic</em> manipulation of <em>information</em> via <em>algorithms</em></p>
+</blockquote>
+<blockquote>
+<p>An <strong>algorithm</strong> is <em>finite sequence</em> of <em>reproducible steps</em>
+to transform <em>input</em> data into <em>output</em> data</p>
+</blockquote>
+<p><img src="./input-processing-output.png" alt="Concept of an algorithm"></p>
+</section><section>
+<h2 id="what-is-computer-science-essentially-about">What is computer science essentially about</h2>
+<ul>
+<li>
+<p>Defining algorithms as the recipe for processing interesting problems</p>
+<ul>
+<li>requires clear representations for input / output / storage data</li>
+</ul>
+</li>
+<li>
+<p>Studying algorithms’ <em>time/memory requirements</em>, formally</p>
+<ul>
+<li>as well as their <em>termination</em></li>
+</ul>
+</li>
+<li>
+<p>Algorithms can be <em>combined</em> to solve <em>more complex</em> problems</p>
+</li>
+</ul>
+</section><section>
+<h2 id="example-sorting-algorithm-bubble-sort">Example: sorting algorithm (Bubble sort)</h2>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row ">
+
+
+<div class="col "><p><img src="./bubble-sort.png" alt="Bubble sort pseudo-code"></p>
+</div>
+
+
+<div class="col "><ul>
+<li>Input: array of comparable items
+<ul>
+<li>several algorithms to compare items
+<ul>
+<li>depending on items type</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>Output: sorted array
+<ul>
+<li>according to comparison strategy</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>Many algorithms with different properties
+<ul>
+<li>e.g. bubble sort</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="more-nomenclature">More nomenclature</h2>
+<p>(from <a href="https://ieeexplore.ieee.org/document/159342">IEEE Standard Glossary</a>)</p>
+<blockquote>
+<p><strong>Software Engineering</strong> (SE) definition:</p>
+<p>(1) The application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance
+of software; that is, the application of engineering to software.</p>
+<p>(2) The study of approaches as in (1).</p>
+</blockquote>
+<blockquote>
+<p><strong>Software definition</strong>: computer programs, procedures, and possibly associated documentation and data
+pertaining to the operation of a computer system</p>
+</blockquote>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

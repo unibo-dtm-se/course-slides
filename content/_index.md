@@ -9,10 +9,7 @@ aliases = [
 
 +++
 
-# Software Engineering
-### **(for Intelligent Distributed Systems)**
-
-## {{<academic_year>}}
+{{% import path="reusable/header-course.md" %}}
 
 ---
 
@@ -20,23 +17,23 @@ aliases = [
 
 ## Module "Principles and Methods" 
 
-**[Giovanni Ciatto](https://www.unibo.it/sitoweb/giovanni.ciatto/en)**, Junior assistant professor (RTD-A)
+**teacher:** {{<gc>}}, Junior assistant professor (RTD-A)
 
-**email** [giovanni.ciatto@unibo.it](mailto:giovanni.ciatto@unibo.it)
+**email:** {{<gc-address>}}
 
 <!-- **office hours** dynamic, send an email to the teacher for an appointment -->
 
 ## Module "Engineering of Distributed Systems and Enterprise Applications"
 
-**[Alessandro Ricci](https://www.unibo.it/sitoweb/a.ricci/en)**, Associate Professor
+**teacher:** {{<ar>}}, Associate Professor
 
-**email** [a.ricci@unibo.it](mailto:a.ricci@unibo.it)
+**email:** {{<ar-address>}}
 
 ## Remarks
 
 **office hours** dynamic, send an email to the teachers for an appointment
 
-Prof. [Ciatto](mailto:giovanni.ciatto@unibo.it) is responsible for the course,
+Prof. {{<gc>}} is responsible for the course,
 contact him for any aspect related to the course or the exam
 
 ---
@@ -308,7 +305,7 @@ and must feature appropriate automation (build) and get published on official di
 
 # Module "Principles and Methods"
 
-held by Prof. [Giovanni Ciatto](mailto:giovanni.ciatto@unibo.it)
+held by Prof. {{<gc>}}
 
 ### Remarks
 

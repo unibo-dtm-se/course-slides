@@ -1,19 +1,15 @@
  
 +++
 
-title = "Software Engineering Module 3: Continuous Integration"
+title = "Continuous Integration and Containerization"
 description = "Make things work, keep them working, move fast"
 outputs = ["Reveal"]
 
 +++
 
-# {{< course_name >}}
+# Continuous Integration and Containerization
 
-## Continuous Integration and Containerization
-
-### [Danilo Pianini](mailto:danilo.pianini@unibo.it)
-
-{{< today >}}
+{{% import path="reusable/header-dp.md" %}}
 
 ---
 

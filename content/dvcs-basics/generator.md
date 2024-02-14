@@ -1,16 +1,14 @@
 +++
 
-title = "Software Engineering Module 3: Introduction to agile and DevOps"
+title = "Distributed version control basics"
 description = "Distributed version control systems, basics of Git"
 outputs = ["Reveal"]
 
 +++
 
-# Software Engineering
-### **(for Intelligent Distributed Systems)**
-# Module 3: DevOps
+# Distributed version control basics
 
-## *Distributed version control basics* 
+{{% import path="reusable/header-dp.md" %}}
 
 ---
 

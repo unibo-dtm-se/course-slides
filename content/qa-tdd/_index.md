@@ -1,16 +1,14 @@
- +++
++++
 
-title = "Software Engineering Module 3: QA, reproducibility, TDD"
+title = "QA, reproducibility, TDD"
 description = "QA, reproducibility, TDD"
 outputs = ["Reveal"]
 
 +++
 
-# Software Engineering
-### **(for Intelligent Distributed Systems)**
-# Module 3: DevOps
+# QA, reproducibility, TDD
 
-## *Quality assurance, reproducibility, test-driven development*
+{{% import path="reusable/header-dp.md" %}}
 
 ---
 

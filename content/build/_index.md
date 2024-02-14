@@ -1,16 +1,14 @@
  +++
 
-title = "Software Engineering Module 3: Introduction to agile and DevOps"
+title = "Software dependencies, Build automation"
 description = "Introduction to agile and DevOps, a case from the literature, SCRUM"
 outputs = ["Reveal"]
 
 +++
 
-# Software Engineering
-### **(for Intelligent Distributed Systems)**
-# Module 3: DevOps
+# Software dependencies, Build automation
 
-## *Software dependencies, Build automation*
+{{% import path="reusable/header-dp.md" %}}
 
 ---
 

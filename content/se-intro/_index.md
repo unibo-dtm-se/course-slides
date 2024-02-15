@@ -202,11 +202,12 @@ outputs = ["Reveal"]
         2. _increase_ the _quality_ of the product
         3. _reduce_ the _time_ to market of novel features / products
 
-- Software development process should be _reproducible_, _sustainable_, _evolvable_, and _maintainable_
+- Software development should be _reproducible_, _sustainable_, _evolvable_, _maintainable_, and _scalable_
     + __reproducible__ $\approx$ repeatable, with _predictable_ outcomes
     + __sustainable__ $\approx$ it's possible to _timely_ satisfy requirements with _controllable_ costs and efforts
     + __evolvable__ $\approx$ it's possible to _adapt_ the product to _new_ requirements in a sustainable way
     + __maintainable__ $\approx$ it's possible to _fix_, _improve_, or just keep the product _alive_ in a sustainable way
+    + __scalable__ $\approx$ it's possible to _grow_ the product in terms of _size_, _complexity_, and _features_ in a sustainable way
 
 ---
 
@@ -236,9 +237,55 @@ outputs = ["Reveal"]
 
 ## About software crises
 
+(from Wikipedia: ["Software crisis"](https://en.wikipedia.org/wiki/Software_crisis) and ["History of software engineering"](https://en.wikipedia.org/wiki/History_of_software_engineering))
+
+- __Software crisis__ is a term used in the early days of CS _(1960s and 1980s)_
+
+- It refers to the difficulty of delivering useful and efficient software on time and within budget
+
+- Software crises recurred several times, as the computational power of computers increased (cf. [Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law))
+    + due to the mismatch among the _complexity_ of the software...
+    + ... and the _inadequacy_ of the _methods_ used to develop it
+
+- Common issues:
+    + projects running _over-budget_ or _over-time_
+    + software was very _inefficient_ or _low-quality_
+    + software often did _not meet requirements_
+    + projects were _unmanageable_ and code _difficult to maintain_
+    + software was _never delivered_
+
+---
+
+## In your opinion...
+
+1. what makes software development _costs rise_ 
+0. what may _delay_ software development?
+0. why could software _miss_ requirements?
+0. why may software be _inefficient_?
+0. what does it mean for software to be of _low-quality_?
+0. what makes code (un)*manageable* or (un)*maintainable*?
+
+<br>
+
+Hopefully, you will have clear answers to these questions by the end of this course
+
 ---
 
 ## Why is software engineering relevant for Digital Transformation?
+
+Should you become __managers__ or __entrepreneurs__ in the future, you will need to:
+- _plan_ and _supervise_ software projects
+- understand explicit and implicit _costs_ of software development
+- _communicate_ with _technical_ personnel
+- understand not only the result but also the _process_ of software development
+
+<br>
+
+Should you be in charge of _driving_/implementing _digital transformation_ in some organization, you will need to:
+- indentify _where_ automation can _add value_ to the organization
+- detect ill-defined development processes and how to _improve_ them
+- be up to date with _state-of-the-art_ software development practices
+- be able to _interpret requirements_ and translate them into a _software design_
 
 ---
 

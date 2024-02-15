@@ -31,26 +31,74 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2024-02-14 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-02-15 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
-<h2 id="relevant-nomenclature">Relevant nomenclature</h2>
+<h2 id="relevant-nomenclature-pt-1">Relevant nomenclature (pt. 1)</h2>
 <blockquote>
 <p><strong>Computer Science</strong> (CS) is the study of <em>computation</em>,
-i.e. the <em>automatic</em> manipulation of <em>information</em> via <em>algorithms</em></p>
+i.e. the <em>automatic</em> manipulation of <em>information</em> via <strong>algorithms</strong></p>
 </blockquote>
+<p>(intuitive definition provided by the teacher)</p>
 <blockquote>
-<p>An <strong>algorithm</strong> is <em>finite sequence</em> of <em>reproducible steps</em>
-to transform <em>input</em> data into <em>output</em> data</p>
+<p>An <strong>algorithm</strong> is a <em>finite</em> set of <em>well-defined</em>
+rules for the solution of a <strong>problem</strong> in a <em>finite</em>
+number of <em>steps</em></p>
 </blockquote>
+<p>(from <a href="https://ieeexplore.ieee.org/document/159342">IEEE Standard Glossary</a>)</p>
+</section><section>
+<h2 id="relevant-nomenclature-pt-2">Relevant nomenclature (pt. 2)</h2>
+<blockquote>
+<p>A <strong>problem</strong> is a <em>well-defined</em> specification of a result to be attained
+(<em>output</em>) from starting from some <em>initial</em> information or preconditions (<em>input</em>)</p>
+</blockquote>
+<p>(intuitive definition provided by the teacher)</p>
+<ul>
+<li>e.g. finding the <em>shortest path</em> between two a source <code>S</code> and a destination <code>D</code> in a <em>graph</em></li>
+<li>e.g. producing a <code>T</code>-jam flavored <em>cheesecake</em> for <code>N</code> guests</li>
+<li>e.g. generating an aggregate report of <em>sales</em> given a <em>database</em> of <em>transactions</em></li>
+</ul>
+</section><section>
+<h2 id="relevant-nomenclature-pt-3">Relevant nomenclature (pt. 3)</h2>
 <p><img src="./input-processing-output.png" alt="Concept of an algorithm"></p>
+<ul>
+<li>
+<p><em>Processing</em> is any operation aimed at transforming input into output when solving a problem</p>
+<ul>
+<li>it may leverage some <em>storage</em> (e.g. to keep track of <em>intermediate</em> results)</li>
+</ul>
+</li>
+<li>
+<p>When both input and output are <em>data</em>, and the process is <em>automatic</em>, we are talking about <em>computation</em></p>
+</li>
+<li>
+<p>Algorithms are a way to <em>express</em> computation in a <em>formal</em> way</p>
+<ul>
+<li><strong>formal</strong> $\approx$ <em>unambiguous</em>, <em>precise</em>, <em>rigorous</em>
+<ul>
+<li>i.e. such that a <em>machine</em> can reproduce the process, precisely
+<ul>
+<li>that machine is a <em>computer</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Algorithms can be studied <em>independently</em> of the <em>machine</em> which executes them</p>
+<ul>
+<li>e.g. to understand their <em>properties</em>, <em>limitations</em>, theoretical <em>costs</em></li>
+</ul>
+</li>
+</ul>
 </section><section>
 <h2 id="what-is-computer-science-essentially-about">What is computer science essentially about</h2>
 <ul>
 <li>
-<p>Defining algorithms as the recipe for processing interesting problems</p>
+<p>Defining <em>algorithms</em> as <strong>recipes</strong> for processing <em>interesting problems</em></p>
 <ul>
-<li>requires clear representations for input / output / storage data</li>
+<li>requires clear representations for input / output / storage <strong>data</strong></li>
 </ul>
 </li>
 <li>
@@ -75,11 +123,11 @@ to transform <em>input</em> data into <em>output</em> data</p>
 
 
 <div class="col "><ul>
-<li>Input: array of comparable items
+<li><code>Input</code>: array of <em>comparable</em> items
 <ul>
-<li>several algorithms to compare items
+<li>several algorithms to <em>compare</em> items
 <ul>
-<li>depending on items type</li>
+<li>depending on items <em>type</em></li>
 </ul>
 </li>
 </ul>
@@ -87,7 +135,7 @@ to transform <em>input</em> data into <em>output</em> data</p>
 </ul>
 <br>
 <ul>
-<li>Output: sorted array
+<li><code>Output</code>: sorted array
 <ul>
 <li>according to comparison strategy</li>
 </ul>
@@ -97,7 +145,7 @@ to transform <em>input</em> data into <em>output</em> data</p>
 <ul>
 <li>Many algorithms with different properties
 <ul>
-<li>e.g. bubble sort</li>
+<li>e.g. <em>bubble sort</em></li>
 </ul>
 </li>
 </ul>
@@ -105,18 +153,244 @@ to transform <em>input</em> data into <em>output</em> data</p>
 </div>
 </div>
 </section><section>
-<h2 id="more-nomenclature">More nomenclature</h2>
+<h2 id="lets-recall-the-big-picture-pt-1">Let’s recall the big picture (pt. 1)</h2>
+<blockquote>
+<p>Why do people care about algorithms in the first place?</p>
+</blockquote>
+<ul>
+<li>
+<p>Put it simply, most people don’t really care about algorithms per se</p>
+</li>
+<li>
+<p>They care about <strong>automating</strong> the <em>solutions</em> to <em>problems</em></p>
+<ul>
+<li>most commonly quicker, more precise, less error-prone than humans
+<ul>
+<li>(when the problem is <em>repetitive</em> and <em>structured</em> enough)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Hence, <em>computers</em> are <strong>enablers</strong> for <em>automation</em></p>
+<ul>
+<li>and algorithms are the strategies followed by computers to solve problems</li>
+</ul>
+</li>
+<li>
+<p>However, <em>not</em> all problems are as <em>simple</em> as ordering an array</p>
+<ul>
+<li>most real-world problems are <em>complex</em>, <em>multi-faceted</em>, and <em>ambiguous</em></li>
+</ul>
+</li>
+<li>
+<p><em>Effort</em> and <em>creativity</em> is required to understand how to</p>
+<ol>
+<li><strong>decompose</strong> real-world <em>problems</em> into simpler ones</li>
+<li><strong>select</strong> the right <em>algorithms</em> to solve them</li>
+<li><strong>combine</strong> <em>algorithms</em> to solve the original problem</li>
+<li><strong>instruct</strong> a <em>computer</em> to do all such stuff</li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h2 id="more-nomenclature-pt-1">More nomenclature (pt. 1)</h2>
+<p>(from <a href="https://ieeexplore.ieee.org/document/159342">IEEE Standard Glossary</a>)</p>
+<blockquote>
+<p>__Software: computer <em>programs</em>, <em>procedures</em>, and possibly associated <em>documentation</em> and data
+pertaining to the operation of a computer system</p>
+</blockquote>
+<ul>
+<li>Software $\supset$ algorithms
+<ul>
+<li>all algorithms can be expressed in software</li>
+<li>not all software is expressing algorithms
+<ul>
+<li>e.g. there are programs which are not meant to <em>terminate</em> (OS, web servers, etc.)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="more-nomenclature-pt-2">More nomenclature (pt. 2)</h2>
 <p>(from <a href="https://ieeexplore.ieee.org/document/159342">IEEE Standard Glossary</a>)</p>
 <blockquote>
 <p><strong>Software Engineering</strong> (SE) definition:</p>
-<p>(1) The application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance
-of software; that is, the application of engineering to software.</p>
+<p>(1) The application of a <em>systematic</em>, disciplined, quantifiable approach to the <em>development</em>, operation,
+and maintenance of <strong>software</strong>; that is, the application of engineering to software.</p>
 <p>(2) The study of approaches as in (1).</p>
 </blockquote>
-<blockquote>
-<p><strong>Software definition</strong>: computer programs, procedures, and possibly associated documentation and data
-pertaining to the operation of a computer system</p>
-</blockquote>
+<ul>
+<li>
+<p>Focus on the <em>development</em> of a software <em>product</em> …</p>
+<ul>
+<li>i.e. something which needs to <em>meet requirements</em></li>
+</ul>
+</li>
+<li>
+<p>… and on the <em>process</em> of developing it</p>
+<ul>
+<li>i.e. making the process <em>reproducible</em>, <em>sustainable</em>, and <em>maintainable</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="lets-recall-the-big-picture-pt-2">Let’s recall the big picture (pt. 2)</h2>
+<ul>
+<li>
+<p>Demand is for <em>automation</em> of <em>solutions</em> to <em>problems</em></p>
+</li>
+<li>
+<p>Supply is for <em>products</em> which do that by means of</p>
+<ul>
+<li>computers (<strong>hardware</strong>), as produced by <em>electronic engineering</em> …</li>
+<li>running <strong>software</strong>, as produced by <em>software engineering</em></li>
+</ul>
+</li>
+<li>
+<p>Computer engineering mostly focuses on creating <strong>general-purpose</strong> computers</p>
+<ul>
+<li>i.e. computers which can be instructed to solve <em>any</em> problem
+<ul>
+<li>(given the right <em>software</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Software engineering mostly focuses on creating <strong>specific-purpose</strong> software</p>
+<ul>
+<li>i.e. software which solves a particular set of problems
+<ul>
+<li>(when run on a <em>general purpose</em> computer)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="what-is-software-engineering-essentially-about-pt-1">What is software engineering essentially about (pt. 1)</h2>
+<ul>
+<li>
+<p>Studying how to <strong>realise</strong> software <em>products</em> which meets <em>customers’ requirements</em></p>
+<ul>
+<li>customers $\approx$ the <em>stakeholders</em> seeking for automatic solutions to problems</li>
+<li>requirements $\approx$ description about <em>what</em> problems should be solved + constraints about <em>how</em></li>
+</ul>
+</li>
+<li>
+<p>As the goal is a product…</p>
+<ul>
+<li>… <em>success</em> is measured in terms of <strong>requirements satisfaction</strong>
+<ul>
+<li>i.e. whether the products is <em>effective</em> / <em>efficient</em> w.r.t. the requirements</li>
+</ul>
+</li>
+<li>… a notion of product <strong>lifecycle</strong> is inherently present
+<ul>
+<li>from requirements specification to implementation, <em>and beyond</em>
+  <!-- ![Concept of software engineering phases](./se.png) -->
+<ul>
+<li>there including validation, and <strong>maintenance</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="./se.png" style="
+    width: 25vw;
+    
+    max-width: 95vw;
+    max-height: 80vh;
+    object-fit: contain;
+">
+
+</section><section>
+<h2 id="what-is-software-engineering-essentially-about-pt-2">What is software engineering essentially about (pt. 2)</h2>
+<ul>
+<li>
+<p>As it is an engineering discipline, <em>optimization</em> of the <em>development</em> process is a key concern</p>
+<ul>
+<li>mostly because <em>demand will evolve</em> and <em>requirements will change</em>
+<ul>
+<li>and <strong>nobody</strong> wants to <em>restart</em> development from scratch</li>
+</ul>
+</li>
+<li>also because the product will need to be <em>maintained</em> over time
+<ul>
+<li>and it is <em>boring</em> and <em>costly</em> to maintain the software</li>
+</ul>
+</li>
+<li>also because optimising development can, on <strong>the long run</strong>,
+<ol>
+<li><em>reduce</em> the <em>cost</em> of the product</li>
+<li><em>increase</em> the <em>quality</em> of the product</li>
+<li><em>reduce</em> the <em>time</em> to market of novel features / products</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Software development process should be <em>reproducible</em>, <em>sustainable</em>, <em>evolvable</em>, and <em>maintainable</em></p>
+<ul>
+<li><strong>reproducible</strong> $\approx$ repeatable, with <em>predictable</em> outcomes</li>
+<li><strong>sustainable</strong> $\approx$ it’s possible to <em>timely</em> satisfy requirements with <em>controllable</em> costs and efforts</li>
+<li><strong>evolvable</strong> $\approx$ it’s possible to <em>adapt</em> the product to <em>new</em> requirements in a sustainable way</li>
+<li><strong>maintainable</strong> $\approx$ it’s possible to <em>fix</em>, <em>improve</em>, or just keep the product <em>alive</em> in a sustainable way</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="why-is-software-engineering-relevant">Why is software engineering relevant?</h2>
+<ul>
+<li>
+<p><em>Software</em> is <em>everywhere</em></p>
+<ul>
+<li>from <em>smartphones</em> to <em>cars</em>, from <em>fridges</em> to <em>toasters</em>, from <em>banks</em> to <em>hospitals</em>, from <em>schools</em> to <em>governments</em>, from <em>entertainment</em> to <em>science</em>, from <em>industry</em> to <em>agriculture</em></li>
+</ul>
+</li>
+<li>
+<p><em>Software</em> is a strange sort of product</p>
+<ul>
+<li>it’s <em>intangible</em>, <em>invisible</em>, and <em>weightless</em></li>
+<li><strong>zero marginal cost</strong>: the cost of producing more one product unit is negligible</li>
+<li>most of the cost is in the <em>conception</em>, <em>development</em> and <em>maintenance</em> of the product</li>
+</ul>
+</li>
+<li>
+<p>Some software products may also come with:</p>
+<ul>
+<li><em>infrastructural</em> costs (e.g. servers, networks, licenses, energy, cooling, etc.)</li>
+<li><em>operational</em> costs (e.g. people operating the servers, networks, etc.)</li>
+</ul>
+</li>
+<li>
+<p>Most cost entries are (directly or indirectly) <em>personnel</em> costs</p>
+<ul>
+<li>personnel must be creative, knowledgeable, disciplined, motivated, and <em>coordinated</em>
+<ul>
+<li>performance is not really proportional to the amount of person-time spent</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Misunderstanding these aspects can lead to <strong>software crises</strong></p>
+<ul>
+<li>cf. <a href="https://www.cse.psu.edu/~gxt29/bug/softwarebug.html">A Collection of Well-Known Software Failures</a></li>
+<li>cf. <a href="https://www.cigniti.com/blog/37-software-failures-inadequate-software-testing/">37 Epic Software Failures that Mandate the Need for Adequate Software Testing</a></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="about-software-crises">About software crises</h2>
+</section><section>
+<h2 id="why-is-software-engineering-relevant-for-digital-transformation">Why is software engineering relevant for Digital Transformation?</h2>
+</section><section>
+<h2 id="what-are-you-expected-to-learn-in-this-course">What are you expected to learn in this course</h2>
 </section>
 
   

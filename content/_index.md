@@ -333,9 +333,11 @@ held by Prof. {{<gc>}}
 2022-05-18 - 3h ?
 -->
 
-* **2h** [introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)
-* **3h+3h** [decentralized version control (with git) and team organization](dvcs-basics)
-* **2h** [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)
-* **3h** [software dependencies, build automation (examples with virtualenv / pyenv / pip)](build)
-* **3h** [Continuous integration (examples with GitHub Actions)](ci)
-* **2h** [versioning, semantic release](https://unibo-spe.github.io/05-version-selection), [licenses](https://unibo-spe.github.io/06-licenses/) (if we got time)
+1. [Introduction to software engineering](se-intro)
+0. [Introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)
+0. [Decentralized version control (with git) and team organization](dvcs-basics)
+0. [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)
+0. [Software dependencies, build automation (examples with virtualenv / pyenv / pip)](build)
+0. [Continuous integration (examples with GitHub Actions)](ci)
+0. [Versioning, semantic release](https://unibo-spe.github.io/05-version-selection)
+0. [Licensing](https://unibo-spe.github.io/06-licenses/) (if we got time)

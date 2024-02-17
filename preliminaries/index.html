@@ -1,0 +1,1313 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Preliminary notions for Software Development</title>
+<meta name="description" content="Quick recap of notions and technical skills for the course">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.e98e7d09f955f316ccf66388b4c5eb8b89dfdb0a57cb72bf0fc9f3f33860984c.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="preliminary-notions-for-software-development">Preliminary notions for Software Development</h1>
+<br>
+<h2 id="hahahugoshortcode1s0hbhb">Software Engineering</h2>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h3 id="module-principles-and-methods">Module “Principles and Methods”</h3>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2023/2024</h4>
+<h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
+<br>
+<br>
+<p>Compiled on: 2024-02-17 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
+</section><section>
+<h2 id="motivation-and-goals">Motivation and goals</h2>
+<ul>
+<li>
+<p>In order to put everybody on the same page…</p>
+</li>
+<li>
+<p>… we are going to recall some basic notions and technical aspects related to software development, namely:</p>
+<ul>
+<li>the command line</li>
+<li>the anatomy of a software project in Python</li>
+<li>the role of modelling in SE</li>
+<li>ubiquitous (w.r.t. SE) notions such as interfaces and runtimes</li>
+</ul>
+</li>
+<li>
+<p>plus, we will provide practical examples about key concepts such as</p>
+<ul>
+<li>automated testing</li>
+<li>deployment, packaging, and release</li>
+<li>maintenance</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="the-command-line">The command-line</h1>
+<p>(a.k.a. the shell, the terminal, the console)</p>
+</section><section>
+<h2 id="first-contact-with-the-terminal">First contact with the terminal</h2>
+<ol>
+<li>Open your terminal application
+<ul>
+<li>Either “PowerShell”, “Command Prompt”, “Terminal” on Windows</li>
+<li>“iTerm” or “Terminal” on macOS</li>
+<li>“Konsole” or “Terminal” on Linux</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>The terminal is a text-based interface to the operative system (OS).
+Each terminal application is executing a <strong>shell</strong> program</p>
+</blockquote>
+<blockquote>
+<p>The shell is a program that has a simple job: <strong>REPL</strong> (Read, Evaluate, Print, Loop)</p>
+<ol>
+<li>it <strong>reads</strong> a <em>command</em> from the user</li>
+<li>it <strong>evaluates</strong> the command</li>
+<li>it <strong>prints</strong> the result</li>
+<li>it <strong>loops</strong> back to step 1, unless the user explicitly asks to <strong>exit</strong></li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>Write a few simple commands and observe the effect
+<ul>
+<li><code>ls</code> (or <code>dir</code> on Windows): should list the files in the current directory</li>
+<li><code>echo "Hello World"</code>: should print “Hello World” on the screen</li>
+<li><code>exit</code>: should close the shell (and the terminal application, if it’s the only shell)</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="why-the-terminal">Why the terminal?</h2>
+<p>Mostly, to look hacker-ish in the eyes of normal people 😎</p>
+<p>(just kidding)</p>
+<br>
+<ul>
+<li>
+<p>The terminal is a powerful tool for software development</p>
+</li>
+<li>
+<p>It allows developers to interact with the OS in a precise, minimal, and efficient way</p>
+</li>
+<li>
+<p>Most operations in software development can, and often should, be performed from the terminal</p>
+</li>
+</ul>
+<blockquote>
+<p>The terminal may accept commands:</p>
+<ul>
+<li><strong>interactively</strong>, from the user</li>
+<li>from a <strong>script</strong>, which is a file containing commands to be executed by a shell</li>
+</ul>
+</blockquote>
+</section><section>
+<h2 id="developers-are-inherently-lazy">Developers are inherently lazy</h2>
+<p>Developers’ mindset:</p>
+<blockquote>
+<p>If a <strong>person</strong> can do it <em>manually</em> via the shell, then a <strong>script</strong> can do it <em>automatically</em></p>
+</blockquote>
+<blockquote>
+<p>If a <strong>script</strong> can do it <em>automatically</em>, then that’s the way of doing it</p>
+</blockquote>
+<ul>
+<li>these are the basic principles behind <strong>automation</strong></li>
+<li>a part from time-saving and precision in execution, automation enables <strong>reproducibility</strong> of the process
+<ol>
+<li>experts can distill their operational knowledge into scripts</li>
+<li>scripts can be called by non-experts</li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h2 id="to-automate-or-not-to-automate">To automate or not to automate?</h2>
+<p>Beware, ‘cause scripts are <strong>software</strong> too, and they require engineering:</p>
+<p><img src="https://imgs.xkcd.com/comics/automation.png" alt="A comic making fun of the excess of automation"></p>
+<p><a href="https://xkcd.com/1319/">https://xkcd.com/1319/</a></p>
+<br>
+<p>There is an implict trade-off between</p>
+<ol>
+<li>the time spent to automate a task</li>
+<li>and the time saved by producing the automation code</li>
+</ol>
+<p>This is not really the case of everyday programming tasks, but let’s keep this in mind</p>
+</section><section>
+<h2 id="why-the-terminal-in-this-course">Why the terminal in this course?</h2>
+<ul>
+<li>
+<p>We are going to use the terminal for:</p>
+<ul>
+<li>running Python scripts</li>
+<li>managing Python projects (version tracking, tests, releases, etc.)</li>
+</ul>
+</li>
+<li>
+<p>Understaing how to do stuff via the terminal is a <em>reusable</em> <strong>skill</strong></p>
+<ul>
+<li>while IDE and GUIs evolve quickly, and every team has its own preferences…</li>
+<li>command line tools are very stable and widely adopted</li>
+</ul>
+</li>
+<li>
+<p>We encourage you to read the following lectures from The MIT’s <a href="https://missing.csail.mit.edu/">“Missing Semester of Your CS Education”</a>:</p>
+<ol>
+<li><a href="https://missing.csail.mit.edu/2020/course-shell/">The shell</a></li>
+<li><a href="https://missing.csail.mit.edu/2020/shell-tools/">Shell tools</a></li>
+<li><a href="https://missing.csail.mit.edu/2020/command-line/">Commnad-line environment</a></li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-1">Stuff you need to know about the shell (pt. 1)</h2>
+<ul>
+<li>There exist essentially two sorts of shells:
+<ol>
+<li>the Unix-like shells (e.g., <code>bash</code>, <code>zsh</code>, <code>fish</code>, <code>ksh</code>, <code>csh</code>, <code>tcsh</code>, etc.) used by Linux and macOS
+<ul>
+<li>and, to some extent, by Windows</li>
+</ul>
+</li>
+<li>the Windows shells (e.g., <code>cmd</code>, <code>PowerShell</code>) which are different from the Unix-like ones, and from each other</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>Whenever working with the terminal, first thing to do is to understand <em>which</em> shell you are using</p>
+<ol>
+<li>if you’re on Linux, you’re probably using <code>bash</code> or <code>zsh</code></li>
+<li>if you’re on macOS, you’re probably using <code>zsh</code> or <code>bash</code></li>
+<li>if you’re on Windows, you’re probably using
+<ul>
+<li><code>cmd</code> if you opened the Command Prompt application</li>
+<li><code>PowerShell</code> is you opened the PowerShell application</li>
+<li><code>bash</code> if are using the Windows Subsystem for Linux (WSL) or Git Bash</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-2">Stuff you need to know about the shell (pt. 2)</h2>
+<ul>
+<li>
+<p>Whenver you open a shell, the shell is “in” a directory, which is called the <strong>current working directory</strong> (CWD)</p>
+<ul>
+<li>by default, commands <em>operate</em> on the CWD (i.e. they read and write files in the CWD)</li>
+</ul>
+</li>
+<li>
+<p>If one wants to operate on a file in a different directory…</p>
+<ul>
+<li>
+<p>… one has to <em>change</em> the CWD</p>
+<ul>
+<li>this is done via the <code>cd</code> command (change directory)</li>
+</ul>
+</li>
+<li>
+<p>… without changing the CWD, one has to <em>specify</em> the <strong>path</strong> to the file</p>
+<ul>
+<li>this is done via the <em>absolute</em> or <em>relative</em> <strong>path</strong> to the file</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-3">Stuff you need to know about the shell (pt. 3)</h2>
+<p>A <strong>path</strong> is a string that represents the location of a file or a directory in the <strong>file system</strong></p>
+<blockquote>
+<p><strong>Beware</strong>: path-separator is different among Windows (<code>\</code>) and other OS (<code>/</code>),</p>
+<p>and <strong>we only use <code>/</code> in the slides</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>A <strong>relative path</strong> is a path that is relative to the CWD</p>
+<ul>
+<li>e.g., <code>./file.txt</code> refers to a file named <code>file.txt</code> in the CWD</li>
+<li>e.g., <code>../file.txt</code> refers to a file named <code>file.txt</code> in the <strong>parent directory</strong> of the CWD</li>
+<li>e.g., <code>./dir/file.txt</code> refers to a file named <code>file.txt</code> in a sub-directory of CWD, named <code>dir</code></li>
+</ul>
+</li>
+<li>
+<p>An <strong>absolute path</strong> is a path that starts from the <strong>root</strong> of the file system</p>
+<ul>
+<li>on <strong>Unix</strong>-like systems, the <em>root is <code>/</code></em>
+<ul>
+<li>e.g. <code>/home/giovanni/file.txt</code> refers to a file named <code>file.txt</code> in <code>giovanni</code>’s home directory on <strong>Linux</strong></li>
+<li>e.g. <code>/Users/giovanni/file.txt</code> refers to a file named <code>file.txt</code> in <code>giovanni</code>’s home directory on <strong>macOS</strong></li>
+</ul>
+</li>
+<li>on <strong>Windows</strong>, there are <em>several roots</em>, one per <strong>drive</strong> (e.g., <code>C:</code>, <code>D:</code>, etc.)
+<ul>
+<li>e.g. <code>C:\Users\giovanni\file.txt</code> refers file <code>file.txt</code> in <code>giovanni</code>’s home directory, <em>on drive <code>C:</code></em></li>
+<li>e.g. <code>D:\Data\Photos\profile.jpg</code> refers file <code>profile.jpg</code> in the <code>Data\Photos</code> directory, <em>on drive <code>D:</code></em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<!-- this file includes generated content. Do not edit. Edit content/preliminaries/_generator.md, instead. -->
+<h2 id="terminal-cheat-sheet">Terminal cheat sheet</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th><i class="fab fa-linux"></i> <i class="fab fa-apple"></i> *nix</th>
+<th><i class="fab fa-windows"></i> win</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Print the current directory location</td>
+<td><code>pwd</code></td>
+<td><code>echo %cd%</code></td>
+</tr>
+<tr>
+<td>Remove the file <code>foo</code> (does not work with directories)</td>
+<td><code>rm foo</code></td>
+<td><code>del foo</code></td>
+</tr>
+<tr>
+<td>Remove directory <code>bar</code></td>
+<td><code>rm -r bar</code></td>
+<td><code>del bar</code></td>
+</tr>
+<tr>
+<td>Change disk (e.g., switch to <code>D:</code>)</td>
+<td>n.a., single root (<code>/</code>)</td>
+<td><code>D:</code></td>
+</tr>
+<tr>
+<td>Move to the subdirectory <code>baz</code></td>
+<td><code>cd baz</code></td>
+<td><code>cd baz</code></td>
+</tr>
+<tr>
+<td>Move to the parent directory</td>
+<td><code>cd ..</code></td>
+<td><code>cd..</code></td>
+</tr>
+<tr>
+<td>Move (rename) file <code>foo</code> to <code>baz</code></td>
+<td><code>mv foo baz</code></td>
+<td><code>move foo baz</code></td>
+</tr>
+<tr>
+<td>Copy file <code>foo</code> to <code>baz</code></td>
+<td><code>cp foo baz</code></td>
+<td><code>copy foo baz</code></td>
+</tr>
+<tr>
+<td>Create a directory named <code>bar</code></td>
+<td><code>mkdir bar</code></td>
+<td><code>md bar</code></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-4">Stuff you need to know about the shell (pt. 4)</h2>
+<ul>
+<li>
+<p>Most commands have <strong>arguments</strong></p>
+<ul>
+<li>roughly, whatever you can write <em>after the command name</em> is an argument</li>
+</ul>
+</li>
+<li>
+<p>If you think of commands as <em>functions</em>, then arguments are the <em>parameters</em> of the function</p>
+<ul>
+<li>and the command is the <em>function name</em></li>
+<li>and the printed output is the <em>return value</em></li>
+<li>simply, no parentheses are required by default for “invoking” the function</li>
+</ul>
+</li>
+<li>
+<p>Consider the <code>ls</code> command</p>
+<ul>
+<li><code>ls</code> lists the files in the CWD, <em>as an inline list</em></li>
+<li><code>ls -l</code> lists the files in the CWD, <em>as a detailed list</em></li>
+<li><code>ls -l /path/to/dir</code> lists the files in the <code>/path/to/dir</code> directory, <em>as a detailed list</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="how-the-hell-can-i-memorise-all-these-commands">How the hell can I memorise all these commands?</h2>
+<p>You should not.</p>
+<ul>
+<li>
+<p>Just try to grasp the basic idea of how shell works</p>
+</li>
+<li>
+<p>You will eventually memorise the syntax of most frequent commands</p>
+</li>
+<li>
+<p>For the rest, you can always look up the documentation</p>
+</li>
+<li>
+<p>Most commands support asking for help when one does not remeber the syntax</p>
+<ul>
+<li>e.g. <code>COMMAND_NAME --help</code> or <code>COMMAND_NAME -h</code> mostly used on Unix-like systems</li>
+<li>e.g. <code>man COMMAND_NAME</code> mostly used on Unix-like systems (man is for <em>“manual”</em>)</li>
+<li>e.g. <code>COMMAND_NAME /?</code> mostly used on Windows</li>
+<li>e.g. <code>Get-Help COMMAND_NAME</code> mostly used on Windows</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Do not waste your memory, learn how to look up the documentation instead</p>
+</blockquote>
+</section><section>
+<h2 id="about-interactive-commands-pt-1">About interactive commands (pt. 1)</h2>
+<ul>
+<li>
+<p>Some commands are <strong>interactive</strong></p>
+<ul>
+<li>when you start them, they to <em>not</em> <strong>terminate immediately</strong></li>
+<li>instead, they <em>wait for user input</em></li>
+</ul>
+</li>
+<li>
+<p>In this case we say that the command is just <em>starting</em> a <strong>process</strong></p>
+<ul>
+<li>“process” is a technical term for a <em>program that is running</em></li>
+<li>an <strong>app</strong> is commonly a process attached to a <strong>graphical user interace</strong> (<em>GUI</em>) shown on the screen</li>
+</ul>
+</li>
+<li>
+<p>There is <em>no difference</em> among <strong>interactive</strong> and <strong>non</strong>-<em>interactive</em> processes, <em>for the shell</em></p>
+<ol>
+<li>a command is used to <em>start</em> the process</li>
+<li>the command will <em>stay alive</em>,
+<ul>
+<li>and possibly consume the user’s <em>input</em></li>
+<li>and possibly produce some <em>output</em></li>
+</ul>
+</li>
+<li>for some reason, the process may eventually <strong>terminate</strong>
+<ul>
+<li>e.g., because of some input from the user, some error, or some condition met</li>
+</ul>
+</li>
+<li>when that the case, <strong>control</strong> is returned to <em>the shell</em>
+<ul>
+<li>which will ask for more commands, as usual</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h2 id="about-interactive-commands-pt-2">About interactive commands (pt. 2)</h2>
+<ul>
+<li>
+<p>Upon termination, each command returns a <strong>status code</strong> (i.e. a <em>non-negative integer</em>)</p>
+<ul>
+<li><code>0</code> means <em>“everything went fine”</em></li>
+<li>any other number means <em>“something went wrong”</em> (each number is a different <em>error code</em>)</li>
+<li>so the shell always knows if the <em>last command was successful</em> or not</li>
+</ul>
+</li>
+<li>
+<p>When using the shell <em>interactively</em>:</p>
+<ul>
+<li>pay attention to whether <em>the last command you wrote</em> was <strong>successful</strong> or not</li>
+</ul>
+</li>
+<li>
+<p>When programmin the shell <em>in a script</em>:</p>
+<ul>
+<li>you can check the status code of the last command via the special variable <code>$?</code></li>
+<li>you can use the <code>if</code> statement to check the status code and act accordingly</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="about-interactive-processes-pt-1">About interactive processes (pt. 1)</h2>
+<p>In the eyes of the OS, any process can be modelled as follows:</p>
+<p><img src="./process.png" alt="A process has three default streams: input, output, and error"></p>
+<ul>
+<li>
+<p>i.e. a black box</p>
+<ul>
+<li>consuming a <em>stream</em> of <em>input data</em> from the <strong>standard input</strong> channel (<code>stdin</code>)</li>
+<li>producing a <em>stream</em> of <em>output data</em> to the <strong>standard output</strong> channel (<code>stdout</code>)</li>
+<li>and, possibly, producing a <em>stream</em> of <em>error data</em> to the <strong>standard error</strong> stream (<code>stderr</code>)</li>
+</ul>
+</li>
+<li>
+<p>more channeles may be opened by the process, e.g. when <em>reading</em> / <em>writing</em> <strong>files</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>a <strong>stream</strong> is an <em>unlimited</em> sequence of <em>bytes</em> (or <em>characters</em>)</p>
+</blockquote>
+<ul>
+<li>this may represent <strong>anything</strong> having a digital representation (e.g. a file, a network connection, a device, etc.)</li>
+</ul>
+</section><section>
+<h2 id="about-interactive-processes-pt-2">About interactive processes (pt. 2)</h2>
+<p>Most commonly, for <strong>interactive</strong> processes, the situation is as follows:</p>
+<!-- ![Default streams of each processes are connected to the terminal by default](./process-terminal.png) -->
+<img src="./process-terminal.png" style="
+    width: 50vw;
+    
+    max-width: 95vw;
+    max-height: 80vh;
+    object-fit: contain;
+">
+
+<ul>
+<li>all three streams are connected to the terminal by default
+<ul>
+<li>so the process <em>reads</em> input from the keyboard</li>
+<li>and <em>writes</em> output to the terminal</li>
+<li>and <em>writes</em> errors to the terminal (sometimes, errors are <em>colored</em> differently)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="about-interactive-processes-pt-3">About interactive processes (pt. 3)</h2>
+<h3 id="example-the-nano-command">Example: the <code>nano</code> command</h3>
+<blockquote>
+<p><code>nano</code> is a simple, interactive, text editor for the terminal</p>
+</blockquote>
+<ol>
+<li>
+<p>Open a shell, and run the following command</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>nano myfile.txt
+</span></span></code></pre></div></li>
+<li>
+<p>This should transform the terminal into a text editor, editing the file <code>myfile.txt</code></p>
+<ul>
+<li>you can write some text in there, e.g. <code>Hello World</code></li>
+</ul>
+</li>
+<li>
+<p>Then, press <kbd>Ctrl</kbd>+<kbd>O</kbd> to save the file</p>
+<ul>
+<li>you will be asked to confirm the file name, press <kbd>Enter</kbd></li>
+</ul>
+</li>
+<li>
+<p>Then, press <kbd>Ctrl</kbd>+<kbd>X</kbd> to exit the editor</p>
+</li>
+<li>
+<p>You should be back to the shell, and the file <code>myfile.txt</code> should have been created</p>
+<ul>
+<li>you can verify that, via the <code>ls</code> command</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="the-python-command">The Python command</h2>
+<ul>
+<li>
+<p>Python is a programming language, namely, the reference programming language we use in the course</p>
+</li>
+<li>
+<p>We will operate Python stuff via the terminal, using the <code>python</code> <strong>command</strong></p>
+</li>
+<li>
+<p>The command’s behaviour is very different depending on which and how many arguments are passed:</p>
+<ul>
+<li><code>python</code> <em>with no arguments</em> starts an <strong>interactive</strong> <em>Python shell</em>
+<ul>
+<li>i.e. yet another shell, but using the <em>Python syntax</em></li>
+</ul>
+</li>
+<li><code>python FILENAME</code> starts a <em>Python process</em> that <em>executes</em> the <em>Python code</em> in the <strong>file</strong> <code>FILENAME</code></li>
+<li><code>python -m MODULE</code> starts a <em>Python process</em> that <em>executes</em> the <strong>module</strong> named <code>MODULE</code>
+<ul>
+<li>we’ll see what a <em>module</em> is, later in the course</li>
+</ul>
+</li>
+<li><code>python -c "CODE"</code> starts a <em>Python process</em> that <em>executes</em> the <em>Python code</em> in the <strong>string</strong> <code>"CODE"</code>
+<ul>
+<li>e.g. <code>python -c "print('Hello World')"</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>Use <code>python --help</code> to inspect the <em>help</em> of the <code>python</code> command, and see all the options</p>
+</li>
+<li>
+<p>When using Python, always remember to check the <em>version</em> of the Python interpreter you are using</p>
+<ul>
+<li><code>python --version</code> or <code>python -V</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="code-and-code-organization">Code and code organization</h1>
+<p>(in Python)</p>
+</section><section>
+<h2 id="running-example-pt-1">Running example (pt. 1)</h2>
+<p>Let’s say we are going to build a simple <em>calculator</em> app, in Python</p>
+<p>Using <a href="https://kivy.org/">Kivy</a> for the GUI, we may easily build the following app:</p>
+<img src="./calculator.png" style="
+    width: 60vw;
+    
+    max-width: 95vw;
+    max-height: 80vh;
+    object-fit: contain;
+">
+
+</section><section>
+<h2 id="running-example-pt-2">Running example (pt. 2)</h2>
+<p>The source code for such application is available here:</p>
+<p><a href="https://github.com/unibo-dtm-se/compact-calculator">https://github.com/unibo-dtm-se/compact-calculator</a></p>
+<p>TO-DO list:</p>
+<ol>
+<li>Download the code by clicking on the <em>green “Code” button</em>, and then <strong>“Download ZIP”</strong></li>
+<li>Unpack the archive in a directory of your choice</li>
+<li>Open the directory in some lightweight IDE like <strong>VS Code</strong>
+<ul>
+<li>possibly exploit the <strong>integrated terminal</strong></li>
+</ul>
+</li>
+<li>Inspect the content of the directory (e.g. via the terminal, using the <code>ls -la</code> command)
+<ul>
+<li>you should notice 4 files:
+<ul>
+<li><code>.python-version</code> (hidden on Unix) <em>textual</em> declaration of the <em>Python version</em> <strong>required</strong> by the application</li>
+<li><code>calculator.py</code>: the <em>source code</em> of the application</li>
+<li><code>requirements.txt</code>: a file containing the <em>dependencies</em> of the application</li>
+<li><code>README.md</code>: a file containing the some <em>notes</em> about of the application</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="running-example-pt-3">Running example (pt. 3)</h2>
+<ol start="4">
+<li>
+<p>Notice that the <code>calculator.py</code> file is a <em>Python script</em> that contains <em>only</em> <strong>46 lines of code</strong></p>
+</li>
+<li>
+<p>Have a look to the source code of the <code>calculator.py</code> file</p>
+<ul>
+<li>do you recognize any structure in the code?</li>
+<li>do you have any clue about what’s going on in the code?</li>
+</ul>
+</li>
+<li>
+<p>Let’s try to run the application</p>
+<ol>
+<li>open a terminal in the directory of the application (the VS Code is fine)</li>
+<li>run the following command
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python calculator.py
+</span></span></code></pre></div></li>
+<li>you may observe the following output in the terminal:
+<pre tabindex="0"><code>Traceback (most recent call last):
+File "/path/to/your/directory/calculator.py", line 1, in &lt;module&gt;
+    from kivy.app import App
+ModuleNotFoundError: No module named 'kivy'
+</code></pre></li>
+</ol>
+</li>
+<li>
+<p>The issue here is that our application <strong>depends on</strong> some <em>third-party</em> <strong>library</strong>, namely <a href="https://kivy.org/">Kivy</a></p>
+<ul>
+<li><strong>third-party</strong> $\approx$ <em>not written by us</em> + <em>not included Python</em> by default</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="running-example-pt-4">Running example (pt. 4)</h2>
+<ol start="8">
+<li>
+<p>The solution is pretty simple: let’s <em>install</em> the missing <strong>dependency</strong></p>
+<ul>
+<li>we can do that via the <code>pip</code> command, which is the <em>Python package manager</em>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>pip install kivy
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>After the installation, we can try to run the application again</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python calculator.py
+</span></span></code></pre></div><p>this time, the application should start, and you should see the calculator Window</p>
+</li>
+<li>
+<p>play a bit with the application</p>
+<ul>
+<li>ensure it works as expected</li>
+<li>finally, close the Window, and notice that control is returned to the terminal</li>
+</ul>
+</li>
+<li>
+<p>either in the terminal (<code>ls -la</code>), or in the GUI, you may notice a new <em>sub-directory</em> named <code>__pycache__</code></p>
+<ul>
+<li>with a file named <code>calculator.cpython-3XXX</code><strong><code>.pyc</code></strong> (or similar) in it
+<ul>
+<li>that is a <strong>compilation</strong> <em>cache</em> file, generated by the Python interpreter, for our application</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="many-hidden-concepts-in-this-example">Many hidden concepts in this example</h2>
+<ol>
+<li>
+<p>the notion of <strong>library</strong></p>
+<ul>
+<li>i.e. a <em>collection</em> of <strong>pre-cooked software</strong> be <em>reused</em> in <em>different</em> applications</li>
+</ul>
+</li>
+<li>
+<p>the notion of <strong>dependency</strong></p>
+<ul>
+<li>i.e. a piece of <em>software</em> that is <em>required</em> by another piece of software to <em>run</em></li>
+</ul>
+</li>
+<li>
+<p>the notion of <strong>runtime</strong></p>
+<ul>
+<li>i.e. the <em>environment</em> in which a <em>piece</em> of software is <em>executed</em></li>
+</ul>
+</li>
+<li>
+<p>the notion of <strong>package manager</strong></p>
+<ul>
+<li>i.e. a <em>tool</em> that <em>automates</em> the <strong>installation</strong> of <em>dependencies</em> into a <em>runtime</em></li>
+</ul>
+</li>
+<li>
+<p>the notion of <strong>compilation</strong></p>
+<ul>
+<li>i.e. the <em>process</em> of <em>translating</em> a <em>source code</em> into a <em>machine code</em> that can be <em>executed</em></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="compilation-vs-interpretation-of-programs">Compilation vs. Interpretation of Programs</h2>
+<ul>
+<li>
+<p>A program is a <strong>set of instructions</strong> that a <em>computer</em> can <strong>execute</strong></p>
+</li>
+<li>
+<p>Computers nowadays follow the <a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">Von Neumann architecture</a></p>
+<ul>
+<li>put it simply, they follow a <em>list</em> of <strong>instructions</strong>, from some <strong>instruction language</strong>
+<ul>
+<li>modern CPU producers (Intel, AMD, ARM, etc.) constuct CPU which comply to well known instruction sets (e.g. <code>x86</code>, <code>amd64</code>, <code>arm</code>, etc.)
+— different architectures have different instruction sets</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Programming languages are meant to be <strong>understood</strong> by <em>humans</em> (<em>not</em> by computers)</p>
+</li>
+<li>
+<p>To make a <em>computer</em> understand a <em>program</em>, the <em>program</em> must be <strong>translated</strong> into <em>machine code</em></p>
+<ul>
+<li>i.e. a list of instructions in the <em>instruction language</em> of that computer’s <em>CPU</em></li>
+</ul>
+</li>
+<li>
+<p>The <strong>translation</strong> procedure is <em>hardware-dependent</em>, and it may vary <em>among OS</em></p>
+<ul>
+<li>to generalise, we say the translation procedure is <strong>platform-dependent</strong></li>
+</ul>
+</li>
+<li>
+<p>There are two main ways to <em>translate</em> a <em>program</em> into <em>machine code</em>:</p>
+<ol>
+<li><strong>compilation</strong>: the program is translated into an <em>executable</em>, via some <strong>compiler</strong>, and then executed</li>
+<li><strong>interpretation</strong>: the program is read by an <strong>interpreter</strong> (i.e. an <em>executable</em>), which <em>executes</em> it</li>
+</ol>
+</li>
+<li>
+<p>The result is the same (the program is executed, i.e. the computer follows the instructions)</p>
+<ul>
+<li>but the <em>implications</em> are different</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="compilation-vs-interpretation-of-programs-pt-2">Compilation vs. Interpretation of Programs (pt. 2)</h2>
+<ul>
+<li>
+<p>Compilation implies:</p>
+<ol>
+<li>a <strong>compiler</strong> should be created <em>for each</em> target platform</li>
+<li>each software project should be <strong>compiled</strong>, <em>for each</em> target platform, <em>before</em> being executed</li>
+<li>execution is potentially <em>faster</em>, as the <em>machine code</em> is <em>optimised</em> for the target CPU
+<ul>
+<li>but higher speed is not guaranteed, and it may be <em>negligible</em> in many cases</li>
+<li>but many application do not require high-speed execution</li>
+</ul>
+</li>
+<li>the compiler may spot some <em>errors</em> in the program <strong>before</strong> it is executed</li>
+</ol>
+</li>
+<li>
+<p>Interpretation implies:</p>
+<ol>
+<li>an <strong>interpreter</strong> should be created <em>for each</em> target platform</li>
+<li>the software can be executed <strong>as is</strong> on all supported platforms
+<ul>
+<li>one less step in the workflow!</li>
+</ul>
+</li>
+<li>execution is potentially <em>slower</em>, as the interpreter translates code <em>on the fly</em>
+<ul>
+<li>but the write-test-debug cycle is potentially <em>faster</em></li>
+</ul>
+</li>
+<li>the programmer may only spot <em>errors</em> in the program <strong>after</strong> it is executed</li>
+</ol>
+</li>
+<li>
+<p>Historically, <em>programming languages</em> have been <strong>categorised</strong> as <em>either compiled or interpreted</em></p>
+<ul>
+<li>C, C++, Rust, Go, etc. are <em>compiled</em> languages</li>
+<li>Ruby, JavaScript, etc. are <em>interpreted</em> languages</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="compilation-vs-interpretation-of-programs-pt-3">Compilation vs. Interpretation of Programs (pt. 3)</h2>
+<ul>
+<li>
+<p>Nowadays, the <em>distinction</em> is <em>blurred</em></p>
+<ul>
+<li>many languages are <em>both</em> compiled and interpreted, there including <em>Python</em>, and <em>Java</em>
+<ol>
+<li>on the surface, they are <em>interpreted</em></li>
+<li>but the interpreter <em>compiles</em> the code <em>on the fly</em>…</li>
+<li>and <strong>saves</strong> the compiled version for later <em>re-use</em></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>As always, mixing opposite approaches may lead to the <em>best of both worlds</em></p>
+<ul>
+<li>e.g. the <em>interpreter</em> may spot errors in the program before it is executed</li>
+<li>e.g. in then interpretation and compilation are mixed, the <em>interpreter</em> can <em>optimise</em> the <em>machine code</em> in a very fine grained way</li>
+</ul>
+</li>
+<li>
+<p>The idea of <strong>saving</strong> a <em>hard-to-achieve</em> result for <em>later re-use</em> is called <strong>caching</strong></p>
+<ul>
+<li>and it is common trick in <em>software development</em></li>
+</ul>
+</li>
+<li>
+<p>The CPython interpreter (i.e. the <em>reference</em> Python implementaton) adopts a strategy of this sort</p>
+<ul>
+<li>the <strong>.pyc</strong> files you met before, are the <strong>cache files</strong> produced by the Python interpreter
+<ul>
+<li>upon <em>first</em> <strong>succesful</strong> execution of a script</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="libraries-pt-1">Libraries (pt. 1)</h2>
+<ul>
+<li>
+<p>Basically no programmer ever writes an entire application <strong>from scratch</strong></p>
+<ul>
+<li>virtually all programmers <em>re-use</em> someone else’s code to do their job</li>
+</ul>
+</li>
+<li>
+<p>One key principle in SE has always been:</p>
+</li>
+</ul>
+<blockquote>
+<p>Don’t reinvent the wheel</p>
+</blockquote>
+<ul>
+<li>
+<p>SE is essentially about how to write <em>good</em> code, which works well, and <strong>can be reused in the future</strong></p>
+<ol>
+<li>let’s design software to be <em>general</em></li>
+<li>let’s write the code to <em>work well</em></li>
+<li>let’s give it a <em>name</em> and clearly <em>document</em> how it works (input, output, etc.)</li>
+<li>let’s make it <em>reusable</em>, i.e. <em>referenceable</em> (<strong>callable</strong>) by other software</li>
+</ol>
+</li>
+<li>
+<p>Collections of <em>reusable</em> code are called <strong>libraries</strong></p>
+</li>
+</ul>
+</section><section>
+<h2 id="libraries-pt-2">Libraries (pt. 2)</h2>
+<ul>
+<li>
+<p>All programming languages have a <em>standard library</em>…</p>
+<ul>
+<li>i.e. a collection of <em>reusable</em> code that comes with the language, by default
+<ul>
+<li>e.g. the <code>math</code> module in Python, the <code>java.util</code> package in Java, etc.</li>
+<li>BTW, Python has one of the <em>richest</em> standard libraries among programming languages</li>
+</ul>
+</li>
+<li>most commonly, <em>any two versions</em> of a programming language would have a <em>different</em> standard library
+<ul>
+<li>the syntax of the language may not even change</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>… plus some mechanism to <em>install</em> and <em>import</em> <strong>third-party</strong> libraries</p>
+<ul>
+<li>e.g., in Python, the <code>pip</code> command is used to install third-party libraries</li>
+<li>e.g., in Python, the <code>import</code> statement is used to import libraries in the script
+<ul>
+<li>upon import, the difference among <em>standard</em> and <em>third-party</em> libraries is <em>irrelevant</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The consequences of this “library” idea are manifold</p>
+<ul>
+<li>what libraries are available for Python program to use?</li>
+<li>what third-party libraries can one install?</li>
+<li>what’s the impact of using a third-party library for my application?</li>
+<li>how can one write a library that can be reused by others?
+<ul>
+<li>why should one do that?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="runtime-pt-1">Runtime (pt. 1)</h2>
+<ul>
+<li>The <strong>runtime</strong> is the <strong>environment</strong> in which a <em>piece</em> of software is <em>executed</em>
+<ul>
+<li>not to be confused with <strong>run-time</strong>, which is the <em>time</em> when the <em>software</em> is <em>executed</em>
+<img src="./fuck-logic.png" style="
+        width: 25vw;
+        
+        max-width: 95vw;
+        max-height: 80vh;
+        object-fit: contain;
+    ">
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Runtime</strong> of a program $\approx$ jargon for “the <em>set of</em> <strong>libraries</strong> actually available for that program at run-time”</p>
+</blockquote>
+<ul>
+<li>this commonly includes:
+<ol>
+<li>the <em>standard library</em> of the interpreter executing the
+<ul>
+<li>e.g. <strong>Python 3.11</strong>’s standard library for our <em>calculator</em> application</li>
+</ul>
+</li>
+<li>any <em>third-party</em> library installed onto that interpreter
+<ul>
+<li>e.g. <strong>Kivy</strong> for our <em>calculator</em> application</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h2 id="dependencies-pt-1">Dependencies (pt. 1)</h2>
+<ul>
+<li>
+<p>Developers <em>exploit libraries</em> produced by others to <em>avoid</em> <strong>wasting time</strong> reinventing the wheel</p>
+</li>
+<li>
+<p>The reasoning is more or less as follows:</p>
+<ol>
+<li>one needs to realise some software for functionality <strong>$F$</strong></li>
+<li>writing the code for <strong>$F$</strong> requires some effort <strong>$E_{scratch} &gt; 0$</strong></li>
+<li>there exist some library <strong>$L$</strong> which reduces the effort to <strong>$0 &lt; E_{use} &lt; E_{scratch}$</strong></li>
+<li>installing the library requires some effort <strong>$E_{install} &gt; 0$</strong></li>
+<li>learning how to use the library requires some effort <strong>$E_{learn} &gt; 0$</strong></li>
+<li>in the likely case that <strong>$E_{install} + E_{learn} + E_{use} &lt; E_{scratch}$</strong>, one should use the library</li>
+</ol>
+</li>
+</ul>
+<br>
+<blockquote>
+<p>A <strong>dependency</strong> among some <em>software</em> <strong>$S$</strong> and some <em>other software</em> <strong>$L$</strong></p>
+<p>occurs when <strong>$S$</strong> <em>requires</em> <strong>$L$</strong> to <em>work</em></p>
+</blockquote>
+<ul>
+<li><strong>requires</strong> $\approx$ <strong>$S$</strong> needs <strong>$L$</strong> to be part of its runtime to be <em>executed</em></li>
+<li>this is commonly the result of the reasoning above</li>
+<li>for instance, the <em>calculator</em> application <strong>depends on</strong> the <em>Kivy</em> library, and on the <em>Python 3.11</em> standard library</li>
+</ul>
+</section><section>
+<h2 id="dependencies-pt-2">Dependencies (pt. 2)</h2>
+<p>Some definitions related to the notion of <strong>dependency</strong>:</p>
+<blockquote>
+<p><strong>Transitive dependency</strong>: if <strong>$S$</strong> depends on <strong>$L$</strong>, and <strong>$L$</strong> depends on <strong>$M$</strong>, then <strong>$S$</strong> <em>transitively</em> depends on <strong>$M$</strong></p>
+</blockquote>
+<ul>
+<li>non-transitive dependencies are called <strong>direct</strong> dependencies</li>
+</ul>
+</section><section>
+<h2 id="dependencies-pt-3">Dependencies (pt. 3)</h2>
+<blockquote>
+<p><strong>Dependency graph</strong> of a software <strong>$S$</strong>: the graph spawned by all the dependencies (direct or transitive) depedencies of <strong>$S$</strong></p>
+</blockquote>
+<ul>
+<li>e.g. the dependency graph of our <em>calculator</em> application includes <em>Kivy</em> and <em>Python 3.11</em> standard library, and all transitive depedencies of <em>Kivy</em>:
+<pre tabindex="0"><code>calculator.py
+├── Python 3.11.7
+└── kivy 2.3.0
+    ├── docutils *
+    ├── kivy-deps-angle &gt;=0.4.0,&lt;0.5.0
+    ├── kivy-deps-glew &gt;=0.3.1,&lt;0.4.0
+    ├── kivy-deps-sdl2 &gt;=0.7.0,&lt;0.8.0
+    ├── kivy-garden &gt;=0.1.4
+    │   └── requests *
+    │       ├── certifi &gt;=2017.4.17
+    │       ├── charset-normalizer &gt;=2,&lt;4
+    │       ├── idna &gt;=2.5,&lt;4
+    │       └── urllib3 &gt;=1.21.1,&lt;3
+    ├── pygments *
+    └── pypiwin32 *
+        └── pywin32 &gt;=223
+</code></pre></li>
+</ul>
+</section><section>
+<h2 id="package-managers-and-package-reporitories">Package managers and package reporitories</h2>
+<ul>
+<li>
+<p>To support the <strong>extension</strong> of <em>runtimes</em>, and therefore the <strong>addition</strong> of <em>dependencies</em>…</p>
+</li>
+<li>
+<p>… most programming languages come with 2 related tools:</p>
+<ol>
+<li>a <strong>package manager</strong>, which is a (command-line)-<em>tool</em> to <em>install</em> and <em>manage</em> <em>dependencies</em>, semi-automatically</li>
+<li><strong>package repositories</strong>, which are <em>collections</em> of <em>software</em> and <em>metadata</em> about that <em>software</em>, commonly accessible via the Web</li>
+</ol>
+</li>
+<li>
+<p><strong>Packgage</strong> $\approx$ a <em>piece</em> of <em>software</em> with a <em>name</em> and a <em>version</em>, and a fixed structure eases <em>installation</em> and <em>reuse</em></p>
+<ul>
+<li>each package manager/repository subtends a <em>package format</em>, and some installation or publication procedures</li>
+</ul>
+</li>
+<li>
+<p>Package managers commonly support specifying from which <em>repository</em> a <em>dependency</em> should be <em>installed</em></p>
+<ul>
+<li>yet, each programming language may have its own <em>default</em> package repository</li>
+</ul>
+</li>
+<li>
+<p>In the Python world:</p>
+<ul>
+<li>the <a href="https://pypi.org/">Python Package Index</a> (<strong>PyPI</strong>) is the <em>default</em> software repository, full of <em>open-source</em> Python software</li>
+<li>the <code>pip</code> command is the <em>default</em> package manager, and it is <em>tightly</em> integrated with PyPI
+<ul>
+<li>by default <code>pip install NAME</code> installs <em>the last version of</em> the <strong>package</strong> <code>NAME</code> from PyPI</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="dependency-declaration">Dependency declaration</h2>
+<ul>
+<li>
+<p>It is a good practice to <strong>document</strong> which <em>dependencies</em> a <em>software</em> relies upon</p>
+<ul>
+<li>names and versions, possibly</li>
+</ul>
+</li>
+<li>
+<p>It is even a better practice to <strong>automate</strong> the <em>installation</em> of <em>dependencies</em></p>
+<ul>
+<li>so that they can be <em>restored</em> in automatically in any new development / usage environment</li>
+</ul>
+</li>
+<li>
+<p>Other than package managers and repositories, automation requires <strong>dependency declaration</strong></p>
+<ul>
+<li>each package manager supports some <strong>file format</strong> for this purpose</li>
+</ul>
+</li>
+<li>
+<p>In the Python world, there are <strong>several conventions</strong> for dependency declaration</p>
+<ul>
+<li>the most common is the <code>requirements.txt</code> file
+<ul>
+<li>which contains a list of <em>dependencies</em> in the form <code>NAME==VERSION</code></li>
+<li>the <code>pip install -r requirements.txt</code> command installs all depndencis in the file</li>
+</ul>
+</li>
+<li>another common convention is to declare Python version in a <code>.python-version</code> file
+<ul>
+<li>the <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a> <code>install</code> command can <em>install</em> corresponding version of Python</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="package-managers-into-the-wild">Package managers into the wild</h2>
+<ul>
+<li>
+<p>The <em>Python</em> world is <em>not</em> the <em>only</em> one where <em>package managers</em> and <em>package repositories</em> are <em>used</em></p>
+</li>
+<li>
+<p>Most programming languages have their own <em>package manager</em> and <em>package repository</em></p>
+<ul>
+<li>e.g. <em>Java</em> has <em>Maven</em> and <em>Gradle</em>, and <em>Maven Central</em></li>
+<li><em>JavaScript</em> has <em>npm</em> and <em>npmjs.com</em></li>
+<li><em>Rust</em> has <em>Cargo</em> and <em>crates.io</em></li>
+<li><em>Go</em> has <em>go</em> and <em>pkg.go.dev</em></li>
+<li><em>Ruby</em> has <em>gem</em> and <em>rubygems.org</em></li>
+<li><em>C++</em> has <em>vcpkg</em> and <em>conan.io</em></li>
+<li>etc.</li>
+</ul>
+</li>
+<li>
+<p>In the Linux world, package managers/repositories are used at the OS level too</p>
+<ul>
+<li>e.g. <em>Debian</em> and <em>Ubuntu</em> distributions use <em>apt</em> and <em>Debian repositories</em></li>
+<li><em>Red Hat</em> and <em>Centos</em> distributions use <em>yum</em> and <em>Red Hat repositories</em></li>
+<li><em>Arch Linux</em> and its derived distriutions use <em>pacman</em> and <em>Arch Linux repositories</em></li>
+<li>etc.</li>
+</ul>
+</li>
+<li>
+<p>On MacOS, the <em>Homebrew</em> package manager is widely used (not shipped with the OS)</p>
+</li>
+<li>
+<p>On Windows, one can use <em>chocolatey</em> or <em>scoop</em> as package managers (not shipped with the OS)</p>
+</li>
+</ul>
+</section><section>
+<h2 id="about-release-and-deployment">About release and deployment</h2>
+<ul>
+<li>
+<p>Notice that private companies may have their own <em>private</em> package repositories</p>
+</li>
+<li>
+<p>Also notice that some private companies may want to <em>publish</em> their <em>software</em> to <em>public</em> repositories</p>
+<ul>
+<li>e.g. the <em>Play store</em> or the <em>App store</em> for mobile applications</li>
+</ul>
+</li>
+<li>
+<p>In all such cases, you may interpret the <em>release</em> and <em>deployment</em> activities as follows:</p>
+<ol>
+<li>
+<p><strong>Release</strong>: the activity of making a particular <strong>version</strong> of some <em>package</em> <strong>available</strong> on a package manager</p>
+</li>
+<li>
+<p><strong>Deployment</strong>: the process of <strong>installing</strong> a particular version of a system onto the <strong>production environment</strong></p>
+<ul>
+<li>i.e. either the machine(s) of the end users, or the servers the end users interact with</li>
+<li>this may be simple when the system is a <em>single package</em>, but it may be <em>complex</em> when the system is a <em>collection</em> of <em>interacting</em> packages</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

@@ -332,8 +332,10 @@ held by Prof. {{<gc>}}
 2022-05-17 - 2h ?
 2022-05-18 - 3h ?
 -->
+(order of lectures is __not final__)
 
 1. [Introduction to software engineering](se-intro)
+2. [Preliminary notions for Software Development](preliminaries)
 0. [Introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)
 0. [Decentralized version control (with git) and team organization](dvcs-basics)
 0. [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)

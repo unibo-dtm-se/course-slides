@@ -52,6 +52,7 @@ outputs = ["Reveal"]
     + it may leverage some _storage_ (e.g. to store of _intermediate_ results)
 
 - When both input and output are _data_, and the process is _automatic_, we are talking about _computation_
+    + __data__ $\approx$ _representation_ of _information_
 
 - Algorithms are a way to _express_ computation in a _formal_ way
     + __formal__ $\approx$ _unambiguous_, _precise_, _rigorous_ (i.e. such that a _machine_ can reproduce the process, precisely)
@@ -59,6 +60,20 @@ outputs = ["Reveal"]
 
 - Algorithms can be studied _independently_ of the _machine_ which executes them
     + e.g. to understand their _properties_, _limitations_, theoretical _costs_
+
+---
+
+## Information vs. representation
+
+![Information vs. representation](./representation.svg)
+
+- __Information__ is a _concept_ which _exists_ in the _world_
+    + e.g. the _meaning_ of a _word_, the _value_ of a _number_, the _color_ of a _pixel_
+
+- __Representation__ is a _physical_ or _abstract_ _object_ which _carries_ information
+
+- __Data__ is a _digital_ representation of information
+    + e.g. a _sequence_ of _bits_, _bytes_, _characters_, etc.
 
 ---
 
@@ -178,8 +193,8 @@ outputs = ["Reveal"]
 ## What is software engineering essentially about (pt. 1)
 
 - Studying how to __realise__ software _products_ which meets _customers' requirements_
-    + customers $\approx$ the _stakeholders_ seeking for automatic solutions to problems
-    + requirements $\approx$ description about _what_ problems should be solved + constraints about _how_
+    + __customers__ $\approx$ the _stakeholders_ seeking for automatic solutions to problems
+    + __requirements__ $\approx$ description about _what_ problems should be solved + constraints about _how_
 
 - As the goal is a product...
     + ... _success_ is measured in terms of __requirements satisfaction__
@@ -189,7 +204,7 @@ outputs = ["Reveal"]
             <!-- ![Concept of software engineering phases](./se.png) -->
             - there including validation, and __maintenance__
 
-{{<image width="25" src="./se.png">}}
+{{<image height="20" src="./se.png">}}
 
 ---
 
@@ -221,12 +236,12 @@ outputs = ["Reveal"]
 
 - _Software_ is a strange sort of product
     + it's _intangible_, _invisible_, and _weightless_; most people don't really understand _how it works_, internally
-    + __zero marginal cost__: the cost of producing more one product unit is negligible
+    + __zero marginal cost__: the cost of producing one more product unit is negligible
     + most of the cost is in the _conception_, _development_ and _maintenance_ of the product
 
 - Some software products may also come with:
-    + _infrastructural_ costs (e.g. servers, networks, licenses, energy, cooling, etc.)
-    + _operational_ costs (e.g. people operating the servers, networks, etc.)
+    + __infrastructural__ costs (e.g. servers, networks, licenses, energy, cooling, etc.)
+    + __operational__ costs (e.g. people operating the servers, networks, etc.)
 
 - Most cost entries are (directly or indirectly) _personnel_ costs
     + personnel must be creative, knowledgeable, disciplined, motivated, and _coordinated_
@@ -335,16 +350,16 @@ in order for you to experience _first-hand_ the _challenges_ of software develop
 ## Software engineering phases (pt. 2)
 
 3. __Design__: produce a _blueprint_ of the software
-    + _modelling_: what entities from the _real world_ are represented in the software?
+    + __modelling__: what entities from the _real world_ are represented in the software?
         * how do they _behave_? how do they _interact_?
-    + _architecture_: how is the software _organised_?
+    + __architecture__: how is the software _organised_?
         * what are the _components_? how do they _communicate_ over the _network_?
 
 4. __Implementation__: write the _code_ that reifies the _design_ into software
 
 5. __Verification__: verify that the software _meets_ the _requirements_
-    + _automated testing_: write more code to check whether the aforementioned implementation code works
-    + _acceptance testing_: test the system with _real_ data and _real_ users
+    + __automated__ _testing_: write more code to check whether the aforementioned implementation code works
+    + __acceptance__ _testing_: test the system with _real_ data and _real_ users
 
 ---
 

@@ -49,9 +49,60 @@ Students _must_ enroll
 
 ---
 
+## Organization
+
+- __Tuesdays__ (_14:00-17:00_) in lab 4.2
+    + you may use the PCs in the lab, or bring your laptops
+
+- __Thursdays__ (_11:00-13:00_) in room 2.13
+    + please, _bring your laptops_
+
+- [Virtual room on Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MmM0ODExZDgtZGFjOS00YzU0LTk0MDQtMzdmZjU2Y2E0Nzg2%40thread.v2/0?context=%7b%22Tid%22%3a%22e99647dc-1b08-454a-bf8c-699181b389ab%22%2c%22Oid%22%3a%228bf5e0a6-9e33-4a87-9fa5-b9332620bedc%22%7d) is __just for the chat__
+    + lectures will be held _in person_
+    + __no__ blended lectures _by default_
+
+> We will do our best follow the Italian convention "_quarto d'ora accademico_" 
+> (i.e., starting 15 minutes after the scheduled time to allow people to accommodate)
+
++ please try to enter the room _on time_
+
+---
+
+## What is the course about? (pt. 1)
+
+(Only insights here, there will be a [dedicated lecture](se-intro) on this topic)
+
+- Put it simply, _software engineering_ is about __producing working software products__
+    + not only writing code, but also 
+        1. _understanding_ the _requirements_, 
+        2. _designing_ the _product_, 
+        3. _testing_ it, 
+        4. _deploying_ it, 
+        5. and _maintaining_ it
+
+- In particular, nowadays, software engineering must also deal with:
+    + __distribution__, i.e. multiple software components interconnected over the _Internet_
+    + __artificial intelligence__, i.e. software components that may exhibit _human-like_ capabilities to some extent
+        - e.g. understanding natural language, recognizing objects, making decisions, learning from data, etc. 
+
+---
+
+## What is the course about? (pt. 2)
+
+- At the end of the course...
+    + ... you shall have a clear understanding on the __whole process__ of software engineering
+    + ... you should be able to _set up_ and _design_ a __software project__
+    + ... you should be able to _reason_ about the __quality__ of a software project
+    + ... you should have a clear understanding of brings __cost__ or __value__ in a software project
+    + ... you will _not_ be required to be an __expert developer__
+
+- To reach that goal, we shall follow a __learn-by-doing__ approach
+
+---
+
 ## Exam (overview)
 
-- The exam consists of a project work to be __produced__ and __presented__ by students 
+- The exam consists of a __project work__ to be _produced_ and _presented_ by students 
 
 - The project work consists of 
     1. the _source code_ of a __software artifact__ and 
@@ -67,7 +118,7 @@ Students _must_ enroll
 - Students are encouraged to __propose__ project works themes/topics/concepts
     + we may help in refining initial proposals
 
-- We incentivise students to _complete_ their project work __as soon as possible__ via extra points
+- We incentivise students to _complete_ their project work __as soon as possible__ 
     + better if within _the next exam session_
     + possibly within _the same academic year_
 
@@ -104,7 +155,7 @@ Students _must_ enroll
 > We don't really require you to be expert developers, nor to complete the development of a software artifact
 
 - The software artifact can be a _simple_ prototype or stub, possibly _incomplete_
-    + of course, completeness will be _rewarded_ with extra points
+    + of course, completeness will be _rewarded_ 
 
 - The software artifact can be developed in _any programming language_ of choice
     + we _recommend_ using __Python__
@@ -136,15 +187,15 @@ so that's what we will _mostly_ evaluate
 
 ## Exam (the evaluation)
 
-- Project work is evaluated once per group
-    1. an overall mark is assigned to the project work, hence to the group
-    2. individual marks are then adjusted based on the _individual_ contributions to the project work
+- Project work is _evaluated_ __once per group__
+    1. an _overall mark_ is assigned to the project work, hence to the group
+    2. _individual marks_ are then adjusted based on the __individual contributions__ to the project work
 
-- Roughly speaking the evaluation of the project work will be based on the following aspects
+- Roughly speaking the evaluation of the project work will be based on the following aspects:
     + the _quality_ of the report and the presentation
     + the _precision_ of requirements elicitation and analysis
     + the _clarity_ of the design _documentation_
-    + the _presence_ of tests and the _meaninfulness_ of the testing process
+    + the _presence_ of tests and the _meaningfulness_ of the testing process
     + the _correct exploitation_ of 
         1. version control systems
         2. build automation systems
@@ -160,7 +211,7 @@ so that's what we will _mostly_ evaluate
 
 ## Exam (examples of project works)
 
-1. A web, mobile, or desktop App, possibly involving some remote service
+1. A web, mobile, or desktop __App__, possibly involving some _remote service_
     + e.g., a simple video game (involving online multiplayer) 
     + e.g., a calculator (involving a remote computation for advanced operations)
     + e.g., an instant messaging application
@@ -169,13 +220,13 @@ so that's what we will _mostly_ evaluate
     + e.g., a news aggregator (possibly scraping news from the web)
     <!-- + e.g., a social network client (possibily aggregating data from multiple sources) -->
 
-2. A startup idea, possibly involving some remote service
+2. A __startup__ _idea_, possibly involving some _remote service_
     + e.g., booking and managing appointments for professionals
     + e.g., general all-you-can-eat menus for restaurants
     + e.g., food delivery service
     + e.g., a platform for sharing and renting cars, bikes, rooms, etc.
 
-3. A toolkit supporting some processing activity (with an output)
+3. A _toolkit_ supporting some (_data?_) __processing__ or __anlysis activity__ (with an _output_)
     + e.g., data analysis on social media, or GitHub
     + e.g., a tool for systematic literature reviews
     + e.g., a tool for automated document difference (possibly relying on third-party Web services)
@@ -208,6 +259,7 @@ Sources may include Twitter, Reddit, Stack Overlow, etc.
 
 This activity consists in the analysis (via API) of some interesting relationships that could be found on GitHub,
 with the goal of investigating developer's habits and their evolution with time.
+
 Some questions of interests may be:
 * do the developer count relate to the branch count?
 * do the presence of merge commits relate to the "success" of the project?

@@ -51,7 +51,7 @@ outputs = ["Reveal"]
 > 3. it __prints__ the result
 > 4. it __loops__ back to step 1, unless the user explicitly asks to __exit__
 
-3. Write a few simple commands and observe the effect
+2. Write a few simple commands and observe the effect
     - `ls` (or `dir` on Windows): should list the files in the current directory
     - `echo "Hello World"`: should print "Hello World" on the screen
     - `exit`: should close the shell (and the terminal application, if it's the only shell)
@@ -87,9 +87,9 @@ Developers' mindset:
 > If a __script__ can do it _automatically_, then that's the way of doing it
 
 - these are the basic principles behind __automation__
-- a part from time-saving and precision in execution, automation enables __reproducibility__ of the process
-    1. experts can distill their operational knowledge into scripts
-    2. scripts can be called by non-experts
+- a part from _time-saving_ and _precision_ in execution, automation enables __reproducibility__ of the process
+    1. experts can _distill_ their _operational knowledge_ into scripts
+    2. scripts can be _called_ (i.e. invoked, executed) by non-experts
 
 ---
 
@@ -103,9 +103,9 @@ Beware, 'cause scripts are __software__ too, and they require engineering:
 
 <br>
 
-There is an implict trade-off between 
-1. the time spent to automate a task 
-2. and the time saved by producing the automation code
+- There is an implict __trade-off__ between 
+    1. the time _spent_ to automate a task (i.e. __coding__)
+    2. and the time _saved_ w.r.t. doing the task __manually__
 
 This is not really the case of everyday programming tasks, but let's keep this in mind
 
@@ -149,12 +149,14 @@ This is not really the case of everyday programming tasks, but let's keep this i
 
 - Whenver you open a shell, the shell is "in" a directory, which is called the __current working directory__ (CWD)
     - by default, commands _operate_ on the CWD (i.e. they read and write files in the CWD)
+    - that directory should be shown _somewhere_ in the shell's _prompt_
+    - if not shown, you can always _ask_ the shell to show it, via some command
 
-- If one wants to operate on a file in a different directory...
-    + ... one has to _change_ the CWD
+- If one wants to operate on a _file_ in a _different directory_...
+    + ... they have to _change_ the CWD
         - this is done via the `cd` command (change directory)
 
-    + ... without changing the CWD, one has to _specify_ the __path__ to the file
+    + ... without changing the CWD, they have to _specify_ the __path__ to the file
         - this is done via the _absolute_ or _relative_ __path__ to the file
 
 ---
@@ -210,11 +212,16 @@ A __path__ is a string that represents the location of a file or a directory in 
 
 You should not.
 
-- Just try to grasp the basic idea of how shell works
+- Just try to grasp the basic idea of how shells work
+
+- Just memorise that __there exist a way to do `X`__ via the shell
+    + and all relevant `X`s
 
 - You will eventually memorise the syntax of most frequent commands
 
 - For the rest, you can always look up the documentation
+    + or the Web, or ask someone, there including ChatGPT or StackOverflow
+        + but please, __do not copy&paste code that you do not understand__
 
 - Most commands support asking for help when one does not remeber the syntax
     - e.g. `COMMAND_NAME --help` or `COMMAND_NAME -h` mostly used on Unix-like systems
@@ -289,7 +296,7 @@ Most commonly, for __interactive__ processes, the situation is as follows:
 
 <!-- ![Default streams of each processes are connected to the terminal by default](./process-terminal.png) -->
 
-{{<image width="50" src="./process-terminal.png">}}
+{{<image height="30" src="./process-terminal.png">}}
 
 + all three streams are connected to the terminal by default
     + so the process _reads_ input from the keyboard
@@ -356,7 +363,7 @@ Let's say we are going to build a simple _calculator_ app, in Python
 
 Using [Kivy](https://kivy.org/) for the GUI, we may easily build the following app:
 
-{{<image width="60" src="./calculator.png">}}
+{{<image height="30" src="./calculator.png">}}
 
 ---
 
@@ -366,7 +373,7 @@ The source code for such application is available here:
 
 <https://github.com/unibo-dtm-se/compact-calculator>
 
-TO-DO list:
+### TO-DO list
 1. Download the code by clicking on the _green "Code" button_, and then __"Download ZIP"__
 2. Unpack the archive in a directory of your choice
 3. Open the directory in some lightweight IDE like __VS Code__
@@ -567,7 +574,8 @@ TO-DO list:
 
 - The __runtime__ is the __environment__ in which a _piece_ of software is _executed_
     + not to be confused with __run-time__, which is the _time_ when the _software_ is _executed_
-    {{<image width="25" src="./fuck-logic.png">}}
+    
+    {{<image height="10" src="./fuck-logic.png">}}
 
 > __Runtime__ of a program $\approx$ jargon for "the _set of_ __libraries__ actually available for that program at run-time" 
 + this commonly includes:

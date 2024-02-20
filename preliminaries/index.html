@@ -84,7 +84,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <li>it <strong>loops</strong> back to step 1, unless the user explicitly asks to <strong>exit</strong></li>
 </ol>
 </blockquote>
-<ol start="3">
+<ol start="2">
 <li>Write a few simple commands and observe the effect
 <ul>
 <li><code>ls</code> (or <code>dir</code> on Windows): should list the files in the current directory</li>
@@ -127,10 +127,10 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 </blockquote>
 <ul>
 <li>these are the basic principles behind <strong>automation</strong></li>
-<li>a part from time-saving and precision in execution, automation enables <strong>reproducibility</strong> of the process
+<li>a part from <em>time-saving</em> and <em>precision</em> in execution, automation enables <strong>reproducibility</strong> of the process
 <ol>
-<li>experts can distill their operational knowledge into scripts</li>
-<li>scripts can be called by non-experts</li>
+<li>experts can <em>distill</em> their <em>operational knowledge</em> into scripts</li>
+<li>scripts can be <em>called</em> (i.e. invoked, executed) by non-experts</li>
 </ol>
 </li>
 </ul>
@@ -140,11 +140,14 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <p><img src="https://imgs.xkcd.com/comics/automation.png" alt="A comic making fun of the excess of automation"></p>
 <p><a href="https://xkcd.com/1319/">https://xkcd.com/1319/</a></p>
 <br>
-<p>There is an implict trade-off between</p>
+<ul>
+<li>There is an implict <strong>trade-off</strong> between
 <ol>
-<li>the time spent to automate a task</li>
-<li>and the time saved by producing the automation code</li>
+<li>the time <em>spent</em> to automate a task (i.e. <strong>coding</strong>)</li>
+<li>and the time <em>saved</em> w.r.t. doing the task <strong>manually</strong></li>
 </ol>
+</li>
+</ul>
 <p>This is not really the case of everyday programming tasks, but let’s keep this in mind</p>
 </section><section>
 <h2 id="why-the-terminal-in-this-course">Why the terminal in this course?</h2>
@@ -207,19 +210,21 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <p>Whenver you open a shell, the shell is “in” a directory, which is called the <strong>current working directory</strong> (CWD)</p>
 <ul>
 <li>by default, commands <em>operate</em> on the CWD (i.e. they read and write files in the CWD)</li>
+<li>that directory should be shown <em>somewhere</em> in the shell’s <em>prompt</em></li>
+<li>if not shown, you can always <em>ask</em> the shell to show it, via some command</li>
 </ul>
 </li>
 <li>
-<p>If one wants to operate on a file in a different directory…</p>
+<p>If one wants to operate on a <em>file</em> in a <em>different directory</em>…</p>
 <ul>
 <li>
-<p>… one has to <em>change</em> the CWD</p>
+<p>… they have to <em>change</em> the CWD</p>
 <ul>
 <li>this is done via the <code>cd</code> command (change directory)</li>
 </ul>
 </li>
 <li>
-<p>… without changing the CWD, one has to <em>specify</em> the <strong>path</strong> to the file</p>
+<p>… without changing the CWD, they have to <em>specify</em> the <strong>path</strong> to the file</p>
 <ul>
 <li>this is done via the <em>absolute</em> or <em>relative</em> <strong>path</strong> to the file</li>
 </ul>
@@ -351,13 +356,26 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <p>You should not.</p>
 <ul>
 <li>
-<p>Just try to grasp the basic idea of how shell works</p>
+<p>Just try to grasp the basic idea of how shells work</p>
+</li>
+<li>
+<p>Just memorise that <strong>there exist a way to do <code>X</code></strong> via the shell</p>
+<ul>
+<li>and all relevant <code>X</code>s</li>
+</ul>
 </li>
 <li>
 <p>You will eventually memorise the syntax of most frequent commands</p>
 </li>
 <li>
 <p>For the rest, you can always look up the documentation</p>
+<ul>
+<li>or the Web, or ask someone, there including ChatGPT or StackOverflow
+<ul>
+<li>but please, <strong>do not copy&amp;paste code that you do not understand</strong></li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
 <p>Most commands support asking for help when one does not remeber the syntax</p>
@@ -465,8 +483,8 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <p>Most commonly, for <strong>interactive</strong> processes, the situation is as follows:</p>
 <!-- ![Default streams of each processes are connected to the terminal by default](./process-terminal.png) -->
 <img src="./process-terminal.png" style="
-    width: 50vw;
     
+    height: 30vh;
     max-width: 95vw;
     max-height: 80vh;
     object-fit: contain;
@@ -564,8 +582,8 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <p>Let’s say we are going to build a simple <em>calculator</em> app, in Python</p>
 <p>Using <a href="https://kivy.org/">Kivy</a> for the GUI, we may easily build the following app:</p>
 <img src="./calculator.png" style="
-    width: 60vw;
     
+    height: 30vh;
     max-width: 95vw;
     max-height: 80vh;
     object-fit: contain;
@@ -575,7 +593,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <h2 id="running-example-pt-2">Running example (pt. 2)</h2>
 <p>The source code for such application is available here:</p>
 <p><a href="https://github.com/unibo-dtm-se/compact-calculator">https://github.com/unibo-dtm-se/compact-calculator</a></p>
-<p>TO-DO list:</p>
+<h3 id="to-do-list">TO-DO list</h3>
 <ol>
 <li>Download the code by clicking on the <em>green “Code” button</em>, and then <strong>“Download ZIP”</strong></li>
 <li>Unpack the archive in a directory of your choice</li>
@@ -904,18 +922,19 @@ ModuleNotFoundError: No module named 'kivy'
 </section><section>
 <h2 id="runtime-pt-1">Runtime (pt. 1)</h2>
 <ul>
-<li>The <strong>runtime</strong> is the <strong>environment</strong> in which a <em>piece</em> of software is <em>executed</em>
+<li>
+<p>The <strong>runtime</strong> is the <strong>environment</strong> in which a <em>piece</em> of software is <em>executed</em></p>
 <ul>
-<li>not to be confused with <strong>run-time</strong>, which is the <em>time</em> when the <em>software</em> is <em>executed</em>
+<li>not to be confused with <strong>run-time</strong>, which is the <em>time</em> when the <em>software</em> is <em>executed</em></li>
+</ul>
 <img src="./fuck-logic.png" style="
-        width: 25vw;
         
+        height: 10vh;
         max-width: 95vw;
         max-height: 80vh;
         object-fit: contain;
     ">
-</li>
-</ul>
+
 </li>
 </ul>
 <blockquote>

@@ -724,3 +724,166 @@ Some definitions related to the notion of __dependency__:
     2. __Deployment__: the process of __installing__ a particular version of a system onto the __production environment__
         + i.e. either the machine(s) of the end users, or the servers the end users interact with
         + this may be simple when the system is a _single package_, but it may be _complex_ when the system is a _collection_ of _interacting_ packages
+
+---
+
+## What about the actual code?
+
+Let's delve into the [actual code](https://github.com/unibo-dtm-se/compact-calculator/blob/master/calculator.py) of the _calculator_ application
+
+(focus on the comments)
+
+```python
+# Import a bunch of stuff from the Kivy library, used below
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+
+# Matrix of button names and their layout in the GUI
+BUTTONS_NAMES = [
+    ['7', '8', '9', '/'],
+    ['4', '5', '6', '*'],
+    ['1', '2', '3', '-'],
+    ['.', '0', '=', '+'],
+]
+
+# Calculator *class*: template for all sorts of calculators. this is a particular case of App (i.e. a window, in Kivy)
+class CalculatorApp(App):
+    # Method to build the GUI of the calculator, accordinging to Kivy's conventions
+    def build(self):
+        # Definition & initialisation of the "expression" field of the calculator.
+        # This fields stores a string, representing the expression to be evaluated when "=" is pressed
+        self.expression = ""
+
+        # Let's create a layout, i.e. a virtual container of the visual components the GUI.
+        # The grid shall dispose components vertically (top to bottom), i.e. it contains *rows* of components
+        grid = BoxLayout(orientation='vertical')
+
+        # Let's create a label, which will serve as the display of the calculator
+        self.display = Label(text='0', font_size=24, size_hint=(1, 0.75))
+        # Let's add the label to the grid, as the first row
+        grid.add_widget(self.display)
+
+        # For each *list of* button names in the matrix of button names...
+        for button_names_row in BUTTONS_NAMES:
+            # ... let's create another virtual container for a *row* for components
+            grid_row = BoxLayout()
+            # ... then, for each button name in the list of button names...
+            for button_name in button_names_row:
+                # ... let's create a button, having the button name as text
+                # (the button is configured to call method on_button_press when pressed)
+                button = Button(text=button_name, font_size=24, on_press=self.on_button_press)
+                # ... and let's add the button to the row
+                grid_row.add_widget(button)
+            # ... and let's add the row to the grid
+            grid.add_widget(grid_row)
+
+        # Finally, let's return the grid, what will be showed in the window
+        return grid
+
+    # Method to be called when a button is pressed
+    def on_button_press(self, button):
+        # If the button is the "=" button
+        if button.text == '=':
+            # Try to...
+            try:
+                # ... evaluate the expresion *as a Python expression*, convert the result to a string, 
+                # and show that string on the calculator display
+                self.display.text = str(eval(self.expression))
+            # If an error occurs in doing the above (e.g. wrong expression)
+            except SyntaxError:
+                # ... set the display to "Error"
+                self.display.text = 'Error'
+            # Reset the calculator's expression
+            self.expression = ""
+        # If the button is any other button
+        else:
+            # Append the button's text to the calculator's expression
+            self.expression += instance.text
+            # Show the calculator's expression on the display
+            self.display.text = self.expression
+
+
+# If the script is executed as a standalone program (i.e. not imported as a module)
+if __name__ == '__main__':
+    # Let's create a new calculator application, and run it
+    CalculatorApp().run()
+```
+
+* the whole application is contained in a single file, `calculator.py`, with a single class `CalculatorApp`
+* the classe mixes _UI_ and _businness logic_ in a single place
+
+---
+
+## The issue with the current version of the code (pt. 1)
+
+<!-- ![The system is what the user sees](./view-only.svg) -->
+
+{{<image src="./view-only.svg" height="40">}}
+
+<br>
+
+- The system __is__ what the user _sees_ (i.e. the __view__)
+
+- The code is __not__ modular: _view_, _controller_, and _model_ are _mixed_ together
+    + the __view__ $\approx$ what is shown to the user
+    + the __model__ $\approx$ what the application _does_ or _can do_
+    + the __controller__ $\approx$ the _glue_ between the _view_ and the _model_
+        - dictating how _changes_ in the _view_ are _reflected_ in the _model_
+
+--- 
+
+## The issue with the current version of the code (pt. 2)
+
+- _Requirements may change_, e.g.: customers may ask for:
+    + novel operations (e.g. square root, power, etc.) to be supported
+        * implies changes in the model, the view, and the controller
+    + a completely different view (e.g. a web interface)
+        * implies rewriting the controller and the model, to just revrite the view
+    + a completely different model (e.g. a programmer calculator, supporting bin, oct, hex, dec)
+        * implies rewriting the view and the controller, to just rewrite the model
+
+- It may be hard to __change__ the model, without breaking the view or the controller
+    + the same apply for any other permutation of the three
+
+- It may be hard to __test__ the model, without testing the view or the controller
+    + the same apply for any other permutation of the three
+
+- The application is, and *will always __only__ be*, a desktop application
+    + unless complete rewrites are performed
+
+---
+
+## A good way to decompose code (pt. 1)
+
+{{<image src="./view-model.svg" height="40">}}
+
+- A good way to decompose code is to follow the [__Model-View-Controller__](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (__MVC__) pattern
+
+- Different _portions_ of the code are _responsible_ for _different_ aspects of the application
+    + some code is responsible for __modelling__ the (_admissible_) _functionalities_ of the application
+    + some code is responsible for __presenting__ the (_view_ of the) application to the user
+    + some code is responsible for __controlling__ the _interaction_ between the _user_ and the _application_
+    + some code just _ties the pieces_ together
+
+- The desktop application is just one of many options
+    + as the GUI is just one of many possible views
+
+---
+
+## A good way to decompose code (pt. 2)
+
+- The same _model_ could be __attached__ to several different _views_, via as many _controllers_
+    + without needing to re-write, or re-test the _model_ at all
+
+- The code of each portion could be _developed_ and _tested_ __independently__
+    + possibly, at different paces, by different teams
+
+- A bug in one portion of the code may be noticed before it affects the others
+
+- It allows managers, developers, and users to _reason_ about
+    + what the _application_ does (i.e. what functionalities it provides)
+    + how the _application_ is _presented_ to users (multiple options may apply)
+    + how the _user_ interacts with the _application_
+

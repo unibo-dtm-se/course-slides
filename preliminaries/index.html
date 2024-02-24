@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2024-02-23 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-02-24 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="motivation-and-goals">Motivation and goals</h2>
@@ -1366,6 +1366,165 @@ ModuleNotFoundError: No module named 'kivy'
 </ul>
 </li>
 </ul>
+</section><section>
+<h2 id="code-decomposition-and-modularity">Code decomposition and modularity</h2>
+<ul>
+<li>
+<p>The idea of <strong>decomposing</strong> code into smaller, simpler <em>units</em> is pervasive in SE</p>
+</li>
+<li>
+<p>Generally speaking, this idea is called <strong>modularity</strong></p>
+<ul>
+<li>the idea is design a software system as a <em>collection</em> of <em>composable</em> <strong>modules</strong>
+<ul>
+<li>a.k.a. <em>components</em>, <em>units</em>, <em>pieces</em>, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Each module should have</p>
+<ol>
+<li>a single <strong>purspose</strong>, and clear <em>responsibilities</em></li>
+<li>a <em>well-defined</em> <strong>interface</strong> to the <em>outside world</em> (i.e. users and other modules)</li>
+<li>a number of <strong>formal parameters</strong> which make the module <em>adaptable</em> to many different instances of the same problem</li>
+</ol>
+</li>
+<li>
+<p>Two important notions here:</p>
+<ol>
+<li><strong>encapsulation</strong> $\approx$ whenever code is produced to solve a problem, let’s encapsulate it into a module for later reuse</li>
+<li><strong>information hiding</strong> $\approx$ whenever a module is produced, only its interface is important for users, the implementation is hidden, and to most extents, irrelevant</li>
+</ol>
+</li>
+<li>
+<p>Programming languages are plenty of <strong>mechanisms</strong> to support modularity, at different <em>levels</em></p>
+<ul>
+<li>e.g. <em>functions</em>, <em>classes</em>, <em>modules</em>, <em>packages</em>, etc.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="code-decomposition-and-modularity-in-python">Code decomposition and modularity in Python</h2>
+<ol>
+<li>
+<p><strong>Functions</strong> are the most basic form of modularity in Python</p>
+<ul>
+<li>function <em>encapsulate</em> a piece of <em>code</em>, aimed at either <em>returning a value</em>, or <em>performing some action</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Classes</strong> are a way to <em>encapsulate</em> both <em>data</em> and <em>functions</em> into a single <em>unit</em></p>
+<ul>
+<li>syntactically, think of classes as <em>groups of related functions</em>, possibly operating on <em>shared variables</em></li>
+<li>semantically, classes are <em>templates</em> for <strong>objects</strong> (cf. <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object Oriented Programming</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Modules</strong> are a way to <em>encapsulate</em> related <em>functions</em> and <em>classes</em> into a single <em>unit</em></p>
+<ul>
+<li>syntactically, a module is a <code>.py</code> <em>file</em> containing <em>Python code</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Packages</strong> are a way to <em>organize</em> related <em>modules</em> in a <em>hierarchical</em> way</p>
+<ul>
+<li>syntactically, a package is a <em>directory</em> containing <em>modules</em> and <em>sub-packages</em></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Beware</strong>: Other programming languages may have similar mechanisms, but with different names,
+or they may have different mechanisms to achieve the same goals,
+or they may have a subset of the mechanisms available in Python</p>
+</blockquote>
+</section><section>
+<h2 id="about-code-organization">About code organization</h2>
+<p>As code is decomosed into smaller and smaller units…</p>
+<ul>
+<li>
+<p>It is important to <em>organize</em> the code in a <em>meaningful</em> way</p>
+<ul>
+<li>so that it is <em>easy</em> to <em>find</em> functionalities, hence easing their <em>reuse</em></li>
+</ul>
+</li>
+<li>
+<p>Recall that code is meant to be read by humans, and that</p>
+<ul>
+<li>development teams may change</li>
+<li>external developers using your code need to understand it</li>
+</ul>
+</li>
+<li>
+<p>As the software grows, a good <em>organization</em> of the code <em>mitigates</em> the following issues:</p>
+<ul>
+<li>it is <em>easier</em> to <em>get lost</em> in a <em>large</em> codebase</li>
+<li>it is <em>easier</em> to <em>forget</em> what a <em>piece</em> of code does, or how it works</li>
+<li>it is <em>easier</em> to <em>forget</em> whether some functionality is <em>already implemented</em>, or not</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="running-example-pt-5">Running example (pt. 5)</h2>
+<p>Let’s decompose the <em>calculator</em> application in such a way that</p>
+<ul>
+<li>it has <strong>two</strong> <em>user interfaces</em> (UI) …
+<ul>
+<li>namely, a <em>GUI</em>, and a <strong>command-line interface</strong> (<em>CLI</em>)</li>
+</ul>
+</li>
+<li>… both <em>attached</em> to the <strong>same</strong> <em>model</em></li>
+</ul>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row ">
+
+
+<div class="col "><h3 id="the-gui">The GUI</h3>
+<p><img src="./calculator.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.gui
+</span></span></code></pre></div></div>
+
+
+<div class="col "><h3 id="the-cli">The CLI</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.cli <span style="color:#4e9a06">"1 + 1"</span>
+</span></span><span style="display:flex;"><span><span style="color:#0000cf;font-weight:bold">2</span>
+</span></span><span style="display:flex;"><span>python -m calculator.ui.cli <span style="color:#4e9a06">"2*3"</span>
+</span></span><span style="display:flex;"><span><span style="color:#0000cf;font-weight:bold">6</span>
+</span></span></code></pre></div></div>
+</div>
+</div>
+</section><section>
+<h2 id="running-example-pt-2-1">Running example (pt. 2)</h2>
+<p>The source code for such application is available here:</p>
+<p><a href="https://github.com/unibo-dtm-se/modular-calculator">https://github.com/unibo-dtm-se/modular-calculator</a></p>
+<h3 id="to-do-list-1">TO-DO list</h3>
+<ol>
+<li>Download the code by clicking on the <em>green “Code” button</em>, and then <strong>“Download ZIP”</strong></li>
+<li>Unpack the archive in a directory of your choice</li>
+<li>Open the directory in some lightweight IDE like <strong>VS Code</strong>
+<ul>
+<li>possibly exploit the <strong>integrated terminal</strong></li>
+</ul>
+</li>
+<li>Inspect the content of the directory (e.g. via the terminal, using the <code>tree</code> command)
+<ul>
+<li>you should note the following directories and files:
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>modular-calculator/     <span style="color:#8f5902;font-style:italic"># project root directory</span>
+</span></span><span style="display:flex;"><span>├── calculator/         <span style="color:#8f5902;font-style:italic"># the main package of the project (full name: calculator)</span>
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py     <span style="color:#8f5902;font-style:italic"># the package initialization content</span>
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── ui/             <span style="color:#8f5902;font-style:italic"># the user interface sub-package (full name: calculator.ui)</span>
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     ├── cli.py      <span style="color:#8f5902;font-style:italic"># the command-line interface module (full name: calculator.ui.cli)</span>
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     └── gui.py      <span style="color:#8f5902;font-style:italic"># the graphical user interface module (full name: calculator.ui.gui)</span>
+</span></span><span style="display:flex;"><span>├── .python-version     <span style="color:#8f5902;font-style:italic"># the Python version required by the project</span>
+</span></span><span style="display:flex;"><span>├── README.md           <span style="color:#8f5902;font-style:italic"># a file containing the some _notes_ about of the application</span>
+</span></span><span style="display:flex;"><span>├── requirements.txt    <span style="color:#8f5902;font-style:italic"># a file declaring the _dependencies_ of the application</span>
+</span></span><span style="display:flex;"><span>└── .vscode             <span style="color:#8f5902;font-style:italic"># a directory containing the VS Code configuration</span>
+</span></span><span style="display:flex;"><span>    └── launch.json     <span style="color:#8f5902;font-style:italic"># a file containing the VS Code launch configuration</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
 </section>
 
   

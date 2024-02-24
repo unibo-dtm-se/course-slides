@@ -887,3 +887,124 @@ if __name__ == '__main__':
     + how the _application_ is _presented_ to users (multiple options may apply)
     + how the _user_ interacts with the _application_
 
+---
+
+## Code decomposition and modularity
+
+- The idea of __decomposing__ code into smaller, simpler _units_ is pervasive in SE
+
+- Generally speaking, this idea is called __modularity__
+    + the idea is design a software system as a _collection_ of _composable_ __modules__
+        * a.k.a. _components_, _units_, _pieces_, etc.
+
+- Each module should have 
+    1. a single __purspose__, and clear _responsibilities_
+    2. a _well-defined_ __interface__ to the _outside world_ (i.e. users and other modules)
+    3. a number of __formal parameters__ which make the module _adaptable_ to many different instances of the same problem
+
+- Two important notions here:
+    1. __encapsulation__ $\approx$ whenever code is produced to solve a problem, let's encapsulate it into a module for later reuse
+    2. __information hiding__ $\approx$ whenever a module is produced, only its interface is important for users, the implementation is hidden, and to most extents, irrelevant
+
+- Programming languages are plenty of __mechanisms__ to support modularity, at different _levels_
+    + e.g. _functions_, _classes_, _modules_, _packages_, etc.
+
+---
+
+## Code decomposition and modularity in Python
+
+1. __Functions__ are the most basic form of modularity in Python
+    + function _encapsulate_ a piece of _code_, aimed at either _returning a value_, or _performing some action_
+
+2. __Classes__ are a way to _encapsulate_ both _data_ and _functions_ into a single _unit_
+    + syntactically, think of classes as _groups of related functions_, possibly operating on _shared variables_ 
+    + semantically, classes are _templates_ for __objects__ (cf. [Object Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming))
+
+3. __Modules__ are a way to _encapsulate_ related _functions_ and _classes_ into a single _unit_
+    + syntactically, a module is a `.py` _file_ containing _Python code_
+
+4. __Packages__ are a way to _organize_ related _modules_ in a _hierarchical_ way
+    + syntactically, a package is a _directory_ containing _modules_ and _sub-packages_
+
+> __Beware__: Other programming languages may have similar mechanisms, but with different names,
+> or they may have different mechanisms to achieve the same goals,
+> or they may have a subset of the mechanisms available in Python
+
+---
+
+## About code organization
+
+As code is decomosed into smaller and smaller units...
+
+- It is important to _organize_ the code in a _meaningful_ way
+    + so that it is _easy_ to _find_ functionalities, hence easing their _reuse_
+
+- Recall that code is meant to be read by humans, and that 
+    + development teams may change
+    + external developers using your code need to understand it
+
+- As the software grows, a good _organization_ of the code _mitigates_ the following issues:
+    + it is _easier_ to _get lost_ in a _large_ codebase
+    + it is _easier_ to _forget_ what a _piece_ of code does, or how it works
+    + it is _easier_ to _forget_ whether some functionality is _already implemented_, or not
+
+---
+
+## Running example (pt. 5)
+
+Let's decompose the _calculator_ application in such a way that 
+- it has __two__ _user interfaces_ (UI) ...
+    + namely, a _GUI_, and a __command-line interface__ (_CLI_)
+- ... both _attached_ to the __same__ _model_
+
+{{<multicol>}}
+{{%col%}}
+### The GUI
+
+![](./calculator.png)
+
+```bash
+python -m calculator.ui.gui
+```
+
+{{%/col%}}
+{{%col%}}
+### The CLI
+
+```bash
+python -m calculator.ui.cli "1 + 1"
+2
+python -m calculator.ui.cli "2*3"
+6
+```
+{{%/col%}}
+{{</multicol>}}
+
+---
+
+## Running example (pt. 2)
+
+The source code for such application is available here:
+
+<https://github.com/unibo-dtm-se/modular-calculator>
+
+### TO-DO list
+1. Download the code by clicking on the _green "Code" button_, and then __"Download ZIP"__
+2. Unpack the archive in a directory of your choice
+3. Open the directory in some lightweight IDE like __VS Code__
+    + possibly exploit the __integrated terminal__
+4. Inspect the content of the directory (e.g. via the terminal, using the `tree` command)
+    + you should note the following directories and files:
+        ```bash
+        modular-calculator/     # project root directory
+        ├── calculator/         # the main package of the project (full name: calculator)
+        │   ├── __init__.py     # the package initialization content
+        │   └── ui/             # the user interface sub-package (full name: calculator.ui)
+        │       ├── cli.py      # the command-line interface module (full name: calculator.ui.cli)
+        │       └── gui.py      # the graphical user interface module (full name: calculator.ui.gui)
+        ├── .python-version     # the Python version required by the project
+        ├── README.md           # a file containing the some _notes_ about of the application
+        ├── requirements.txt    # a file declaring the _dependencies_ of the application
+        └── .vscode             # a directory containing the VS Code configuration
+            └── launch.json     # a file containing the VS Code launch configuration
+        ```

@@ -916,15 +916,60 @@ if __name__ == '__main__':
 1. __Functions__ are the most basic form of modularity in Python
     + function _encapsulate_ a piece of _code_, aimed at either _returning a value_, or _performing some action_
 
+    ```python
+    def sum(a, b):
+        return a + b
+    ```
+
 2. __Classes__ are a way to _encapsulate_ both _data_ and _functions_ into a single _unit_
     + syntactically, think of classes as _groups of related functions_, possibly operating on _shared variables_ 
     + semantically, classes are _templates_ for __objects__ (cf. [Object Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming))
 
+    ```python
+    class Pair:
+        def __init__(self, fst, snd):
+            self.first = fst
+            self.second = snd
+
+        def sum(self):
+            return self.first + self.second
+    ```
+
+---
+
+## Code decomposition and modularity in Python (pt. 2)
+
 3. __Modules__ are a way to _encapsulate_ related _functions_ and _classes_ into a single _unit_
     + syntactically, a module is a `.py` _file_ containing _Python code_
 
+    ```python
+    # file: path/to/pair.py
+    class Pair:
+        def __init__(self, fst, snd):
+            self.first = fst
+            self.second = snd
+
+        def sum(self):
+            return self.first + self.second
+
+    p1 = Pair(1, 2)
+    p2 = Pair(3, 4)
+    ```
+
 4. __Packages__ are a way to _organize_ related _modules_ in a _hierarchical_ way
     + syntactically, a package is a _directory_ containing _modules_ and _sub-packages_
+
+    ```python
+    # another Python file in the same root directory
+    from path.to.pair import p1, p2
+    
+    x1 = p1.sum() # 3
+    x2 = p2.sum() # 7
+    ```
+
+---
+
+## Code decomposition and modularity in Python (pt. 3)
 
 > __Beware__: Other programming languages may have similar mechanisms, but with different names,
 > or they may have different mechanisms to achieve the same goals,
@@ -934,7 +979,7 @@ if __name__ == '__main__':
 
 ## About code organization
 
-As code is decomosed into smaller and smaller units...
+As code is decomposed into smaller and smaller units...
 
 - It is important to _organize_ the code in a _meaningful_ way
     + so that it is _easy_ to _find_ functionalities, hence easing their _reuse_
@@ -982,7 +1027,7 @@ python -m calculator.ui.cli "2*3"
 
 ---
 
-## Running example (pt. 2)
+## Running example (pt. 6)
 
 The source code for such application is available here:
 
@@ -1008,3 +1053,216 @@ The source code for such application is available here:
         └── .vscode             # a directory containing the VS Code configuration
             └── launch.json     # a file containing the VS Code launch configuration
         ```
+
+---
+
+## Running example (pt. 7)
+
+5. Let's try to run the GUI application
+    ```bash
+    python -m calculator.ui.gui
+    ```
+
+    the application should start, and you should see the calculator Window
+
+6. Let's try to run the CLI application
+    ```bash
+    python -m calculator.ui.cli
+    ```
+
+    you should get a hint about how to use the CLI application
+
+7. Let's analyze how the code has been decomposed
+    1. have a look to the `calculator` module
+        * namely, the `calculator/__init__.py` file
+    2. have a look to the `calculator.ui.gui` module
+        * namely, the `calculator/ui/gui.py` file
+    3. have a look to the `calculator.ui.cli` module
+        * namely, the `calculator/ui/cli.py` file
+
+---
+
+## The calculator model (pt. 1)
+
+Code from `calculator/__init__.py`:
+```python
+Number = int | float
+
+class Calculator:
+
+    def __init__(self):
+        self.expression = ""
+
+    def _ensure_is_digit(self, value: int | str):
+        if isinstance(value, str):
+            value = int(value)
+        if value not in range(10):
+            raise ValueError("Value must a digit in [0, 9]: " + value)
+        return value
+
+    def _append(self, value):
+        self.expression += str(value)
+    
+    def digit(self, value: int | str):
+        value = self._ensure_is_digit(value)
+        self._append(value)
+    
+    def plus(self):
+        self._append("+")
+
+    def minus(self):
+        self._append("-")
+    
+    def multiply(self):
+        self._append("*")
+    
+    def divide(self):
+        self._append("/")
+    
+    def compute_result(self) -> Number:
+        try:
+            result = eval(self.expression)
+            if isinstance(result, Number):
+                self.expression = str(result)
+                return result
+            else:
+                raise ValueError("Result is not a number: " + str(result))
+        except SyntaxError as e:
+            expression = self.expression
+            self.expression = ""
+            raise ValueError("Invalid expression: " + expression) from e
+```
+
+---
+
+## The calculator model (pt. 2)
+
+{{<multicol>}}
+{{%col%}}
+Class diagram:
+{{<plantuml>}}
+class Calculator {
+    + expression: str
+    - _ensure_is_digit(value: int | str): int
+    - _append(value: int | str)
+    + digit(value: int | str)
+    + plus()
+    + minus()
+    + multiply()
+    + divide()
+    + compute_result(): int | float
+}
+{{</plantuml>}}
+{{%/col%}}
+{{%col%}}
+Usage example:
+```python
+from calculator import Calculator
+
+c = Calculator() # create a new calculator
+
+c.digit(1) # append digit 1
+c.plus() # append the plus sign
+c.digit(2) # append digit 2
+
+print(c.expression) # "1+2"
+print(c.compute_result()) # 3
+print(c.expression) # ""
+```
+{{%/col%}}
+{{</multicol>}}
+
+---
+
+## The calculator GUI 
+
+Code from `calculator/ui/gui.py`:
+```python
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+from calculator import Calculator # notice this line
+
+
+BUTTONS_NAMES = [
+    ['7', '8', '9', '/'],
+    ['4', '5', '6', '*'],
+    ['1', '2', '3', '-'],
+    ['.', '0', '=', '+'],
+]
+
+
+class CalculatorApp(App):
+    def build(self):
+        self.calc = Calculator() # new entry here
+
+        grid = BoxLayout(orientation='vertical')
+
+        self.display = Label(text="0", font_size=24, size_hint=(1, 0.75))
+        grid.add_widget(self.display)
+
+        for button_names_row in BUTTONS_NAMES:
+            grid_row = BoxLayout()
+            for button_name in button_names_row:
+                button = Button(text=button_name, font_size=24, on_press=self.on_button_press)
+                grid_row.add_widget(button)
+            grid.add_widget(grid_row)
+
+        return grid
+
+    def on_button_press(self, button): # completely rewritten
+        match button.text:
+            case "=":
+                try:
+                    result = self.calc.compute_result()
+                    self.display.text = str(result)
+                except ValueError as e:
+                    self.display.text = "Error"
+            case "+":
+                self.calc.plus()
+                self.display.text = self.calc.expression
+            case "-":
+                self.calc.minus()
+                self.display.text = self.calc.expression
+            case "*":
+                self.calc.multiply()
+                self.display.text = self.calc.expression
+            case "/":
+                self.calc.divide()
+                self.display.text = self.calc.expression
+            case _:
+                self.calc.digit(instance.text)
+                self.display.text = self.calc.expression
+
+
+if __name__ == '__main__':
+    CalculatorApp().run()
+```
+
+---
+
+## The calculator CLI
+
+Content of `calculator/ui/cli.py`:
+```python
+from calculator import Calculator
+import sys
+
+
+def main(args):
+    calc = Calculator()
+    calc.expression = " ".join(args)
+    try:
+        result = calc.compute_result()
+        print(result)
+    except ValueError as e:
+        print(e)
+
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print("Usage: python -m calculator.ui.cli <expression>")
+        sys.exit(1)
+    main(sys.argv[1:])
+```

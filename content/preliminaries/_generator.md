@@ -14,18 +14,18 @@ outputs = ["Reveal"]
 
 ## Motivation and goals
 
-- In order to put everybody on the same page...
+- In order to put everybody on the _same page_...
 
-- ... we are going to recall some basic notions and technical aspects related to software development, namely:
+- ... we are going to recall some _basic notions_ and _technical aspects_ related to __software development__, namely:
     - the command line
     - the anatomy of a software project in Python
     - the role of modelling in SE
     - ubiquitous (w.r.t. SE) notions such as interfaces and runtimes
 
-- plus, we will provide practical examples about key concepts such as
+<!-- - plus, we will provide practical examples about key concepts such as
     - automated testing
     - deployment, packaging, and release
-    - maintenance
+    - maintenance -->
 
 ---
 
@@ -761,9 +761,9 @@ class CalculatorApp(App):
         grid = BoxLayout(orientation='vertical')
 
         # Let's create a label, which will serve as the display of the calculator
-        self.display = Label(text='0', font_size=24, size_hint=(1, 0.75))
+        self._display = Label(text='0', font_size=24, size_hint=(1, 0.75))
         # Let's add the label to the grid, as the first row
-        grid.add_widget(self.display)
+        grid.add_widget(self._display)
 
         # For each *list of* button names in the matrix of button names...
         for button_names_row in BUTTONS_NAMES:
@@ -790,11 +790,11 @@ class CalculatorApp(App):
             try:
                 # ... evaluate the expresion *as a Python expression*, convert the result to a string, 
                 # and show that string on the calculator display
-                self.display.text = str(eval(self.expression))
+                self._display.text = str(eval(self.expression))
             # If an error occurs in doing the above (e.g. wrong expression)
             except SyntaxError:
                 # ... set the display to "Error"
-                self.display.text = 'Error'
+                self._display.text = 'Error'
             # Reset the calculator's expression
             self.expression = ""
         # If the button is any other button
@@ -802,7 +802,7 @@ class CalculatorApp(App):
             # Append the button's text to the calculator's expression
             self.expression += instance.text
             # Show the calculator's expression on the display
-            self.display.text = self.expression
+            self._display.text = self.expression
 
 
 # If the script is executed as a standalone program (i.e. not imported as a module)
@@ -1118,6 +1118,9 @@ class Calculator:
     
     def divide(self):
         self._append("/")
+
+    def dot(self):
+        self._append(".")
     
     def compute_result(self) -> Number:
         try:
@@ -1143,14 +1146,15 @@ Class diagram:
 {{<plantuml>}}
 class Calculator {
     + expression: str
-    - _ensure_is_digit(value: int | str): int
+    - _ensure_is_digit(value: int | str) → int
     - _append(value: int | str)
     + digit(value: int | str)
     + plus()
     + minus()
     + multiply()
     + divide()
-    + compute_result(): int | float
+    + dot()
+    + compute_result() → int | float
 }
 {{</plantuml>}}
 {{%/col%}}
@@ -1195,12 +1199,12 @@ BUTTONS_NAMES = [
 
 class CalculatorApp(App):
     def build(self):
-        self.calc = Calculator() # new entry here
+        self._calc = Calculator() # new entry here
 
         grid = BoxLayout(orientation='vertical')
 
-        self.display = Label(text="0", font_size=24, size_hint=(1, 0.75))
-        grid.add_widget(self.display)
+        self._display = Label(text="0", font_size=24, size_hint=(1, 0.75))
+        grid.add_widget(self._display)
 
         for button_names_row in BUTTONS_NAMES:
             grid_row = BoxLayout()
@@ -1215,25 +1219,28 @@ class CalculatorApp(App):
         match button.text:
             case "=":
                 try:
-                    result = self.calc.compute_result()
-                    self.display.text = str(result)
+                    result = self._calc.compute_result()
+                    self._display.text = str(result)
                 except ValueError as e:
-                    self.display.text = "Error"
+                    self._display.text = "Error"
             case "+":
-                self.calc.plus()
-                self.display.text = self.calc.expression
+                self._calc.plus()
+                self._display.text = self._calc.expression
             case "-":
-                self.calc.minus()
-                self.display.text = self.calc.expression
+                self._calc.minus()
+                self._display.text = self._calc.expression
             case "*":
-                self.calc.multiply()
-                self.display.text = self.calc.expression
+                self._calc.multiply()
+                self._display.text = self._calc.expression
             case "/":
-                self.calc.divide()
-                self.display.text = self.calc.expression
+                self._calc.divide()
+                self._display.text = self._calc.expression
+            case ".":
+                self._calc.dot()
+                self._display.text = self._calc.expression
             case _:
-                self.calc.digit(instance.text)
-                self.display.text = self.calc.expression
+                self._calc.digit(button.text)
+                self._display.text = self._calc.expression
 
 
 if __name__ == '__main__':
@@ -1250,19 +1257,304 @@ from calculator import Calculator
 import sys
 
 
-def main(args):
-    calc = Calculator()
-    calc.expression = " ".join(args)
-    try:
-        result = calc.compute_result()
-        print(result)
-    except ValueError as e:
-        print(e)
+class CalculatorCLI:
+    def __init__(self, args):
+        self._args = args
+        self._calc = Calculator()
+
+    def run(self):
+        if not self._args:
+            print("Usage: python -m calculator.ui.cli <expression>")
+            return
+        self._calc.expression = " ".join(self._args)
+        try:
+            result = self._calc.compute_result()
+            print(result)
+        except ValueError as e:
+            print(e)
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("Usage: python -m calculator.ui.cli <expression>")
-        sys.exit(1)
-    main(sys.argv[1:])
+    CalculatorCLI(sys.argv[1:]).run()
 ```
+
+---
+
+## Overview on code organization (pt. 1)
+
+{{<plantuml>}}
+
+package calculator {
+    class Calculator {
+        + expression: str
+        - _ensure_is_digit(value: int | str) → int
+        - _append(value: int | str)
+        + digit(value: int | str)
+        + plus()
+        + minus()
+        + multiply()
+        + divide()
+        + dot()
+        + compute_result() → int | float
+    }
+    package ui {
+        package gui {
+            class CalculatorApp {
+                - _display: Label
+                - _calc: Calculator
+                + build(): BoxLayout
+                + on_button_press(button: Button)
+            }
+        }
+        package cli {
+            class CalculatorCLI {
+                - _args: list[str]
+                - _calc: Calculator
+                + run()
+            }
+        }
+
+        'cli -[hidden]d- gui
+        CalculatorCLI *-- Calculator: composed by
+        CalculatorApp *-- Calculator: composed by
+    }
+}
+
+{{</plantuml>}}
+
+---
+
+## Overview on code organization (pt. 2)
+
+(including dependencies from Python and Kivy)
+
+{{<plantuml>}}
+
+package "Python Standard Library" as Python {
+    class int
+    class str
+    class float
+    class list
+    class ValueError
+    metaclass sys
+}
+
+package calculator {
+    class Calculator {
+        + expression: str
+        - _ensure_is_digit(value: int | str) → int
+        - _append(value: int | str)
+        + digit(value: int | str)
+        + plus()
+        + minus()
+        + multiply()
+        + divide()
+        + dot()
+        + compute_result() → int | float
+    }
+    package ui {
+        package gui {
+            class CalculatorApp {
+                - _display: Label
+                - _calc: Calculator
+                + build(): BoxLayout
+                + on_button_press(button: Button)
+            }
+        }
+        package cli {
+            class CalculatorCLI {
+                - _args: list[str]
+                - _calc: Calculator
+                + run()
+            }
+        }
+
+        'cli -[hidden]d- gui
+        CalculatorCLI *-- Calculator: composed by
+        CalculatorApp *-- Calculator: composed by
+    }
+}
+
+package kivy {
+    package app {
+        class App
+    }
+    package uix {
+        package boxlayout {
+            class BoxLayout
+        }
+        package button {
+            class Button
+        }
+        package label {
+            class Label
+        }
+    }
+}
+
+CalculatorApp --|> App: subtype of
+CalculatorApp *-- BoxLayout: composed by
+CalculatorApp *-- Button: composed by
+CalculatorApp *-- Label: composed by
+calculator .left.> Python: uses extensively
+
+{{</plantuml>}}
+
+--- 
+
+## Many hidden concepts in this example
+
+1. the notion of __software design__
+    - i.e. the activity of representing _relevant_ __entities__ (and their __relationships__) in the _domain_ at hand, into the _code_
+        + or, the _result_ of such activity (i.e. the representation itself)
+
+2. the notion of __interface__, and, most notably:
+    - the __user__ _interface_ (__UI__)
+        + i.e. the means by which _users_ interact with the _application_ (in order to use it)
+    - the __application programming__ _interface_ (__API__)
+        + i.e. the means by which _developers_ interact with the _application_ (in order to write more software on top of it)
+
+---
+
+## About user interfaces (pt. 1)
+
+- An application's UI is any means by which __human users__ interact with the application
+    + e.g. a _graphical_ user interface (__GUI__), a _command-line_ interface (__CLI__), a _web page_, a _voice user interface_ (__VUI__), etc.
+
+- Regardless of the _appearance_, the __functioning__ of the UI can be summarised as follows:
+    1. __present__ the _initial UI_ to the user
+    2. __wait__ for _inputs_
+    3. __process__ the _inputs_
+    4. __present__ the _output_ / _effects_ of the processing to the user
+        + possibly, __exit__ if the inputs says to do so
+    5. __go__ back to _2_
+
+- Engineering the UI is a _complex_ task, as it involves _many_ aspects of _human-computer interaction_ (__HCI__)...
+    + e.g. _usability_, _accessibility_, _aesthetics_, _ergonomics_, etc.
+
+- ... and, of course, elciting the admissible _inputs_ for the UI:
+    + and engineering how are being __capture__ or _recognised_
+    + and what __processing__ means for each of them
+    + and how to __present__ the corresponding _outputs_ / _effects_
+
+---
+
+## About user interfaces (pt. 2)
+
+Disclaimer:
+
+> While __UI__ is very _important_, and _engineering UI_ __is part__ _of SE_, it is _not_ the _only_ part of SE.
+> It is far _more important_ in SE to take care about the __API__
+
+<br>
+
+The rationale is as follows:
+- UI may change
+- a good API allows to _change_ the UI without _rewriting_ the whole software
+
+---
+
+## About application programming interfaces (pt. 1)
+
+> The __application programming interface__ (_API_) of a software is:
+> 1. the set of __functionalities__ the software _provides_ to __developers__ for building _other_ software on top of it
+> 2. a (semi-)formal __specification__ of 1, including, _for each functionality_:
+>   + the _name_ by which it is known / _referenced_
+>   + the _formal parameters_ it accepts as _input_
+>   + the _return values_ or _effects_ it produces as _outcome_
+>   + the _pre-conditions_ and _post-conditions_ it satisfies/establishes
+
+---
+
+## About application programming interfaces (pt. 2)
+
+Recall that software is often _built_ on top of _other_ software, in a __layered__ way:
+![Layers in a software system](./layers.jpg)
+
+- You can think of a piece of software as a __provider__ of _services_ to their users
+    + here users are, again, software
+
+- At the same time, a piece of software could be a __consumer__ of services from other software
+
+---
+
+## About application programming interfaces (pt. 3)
+
+### Useful metaphor
+
+- The _API_ is the __contract__ between the _provider_ and the _consumer_ of services
+
+- The _provider_ of the services knows __how to provide__ the services
+
+- The _consumer_ of the services knows __what__ the services do, and __how to exploit__ them
+
+- A __change__ in the contract would _affect both_ sides
+
+---
+
+## Application programming interfaces in practice (pt. 1)
+
+### Rule of thumb for Python projects
+
+The _API_ of a _Python project_ consists of
+1. the set of all _public_ __modules__
+2. plus, the set of all _public_ __definitions__ in those modules
+    + e.g. functions, classes, variables, constants
+3. plus, the set of all _public_ __attributes__ of those definitions
+    + e.g. methods, properties, fields
+
+### What does "public" means here?
+
+> - "__Public__" means "intended for _external_ usage"
+>   + i.e. "to be used by _other_ developers (other than the ones who wrote the current code)"
+> - the opposite of "public" is "__private__"
+
+---
+
+## Application programming interfaces in practice (pt. 2)
+
+- In Python, everything is _public_ by convention
+    + except for the _names_ starting with one or more _underscores_ (`_`)
+    + yet, names wrapped by _double_ underscores (`__example__`) are [magic methods](https://realpython.com/python-magic-methods/) 
+        * they __alter__ the _behaviour_ of the _classes_ / _modules_ they belong to...
+        * ... hence, you should consider them as _public_ too
+
+- __Beware__ because Python adopts the ["consenting adults"](https://stackoverflow.com/a/70736) convention
+    + nothing _prevents_ you from using _private_ names, or _magic_ names, as if they were _public_
+    + yet, in doing that you are opening yourself to a __risk__
+        * i.e. the _private_ functionality you're using may __change abruptly__ in some future version of the software
+
+<br>
+
+Another way to think about _private_ stuff in a software project is:
+> _private_ stuff may change __without notice__, in any moment
+
+---
+
+## Application programming interfaces in practice (pt. 3)
+
+- [Class diagrams](https://en.wikipedia.org/wiki/Class_diagram) are a good way to represent the _API_ (as well as the _structure_) of a _software project_
+    + they show the _public_ classes, and their _public_ methods and attributes
+    + they show the _relationships_ between the classes
+        * e.g. the __sub-typing__ and __composition__ relationships, etc.
+    + they show the _disposition_ of the classes into _packages_ and _modules_
+    + they highlight __public and private__ members of classes / modules
+
+- I use [PlantUML](https://plantuml.com/class-diagram) to draw class diagrams
+    + it is a _textual_ way to represent class diagrams
+    + it is _easy_ to _write_ and _read_
+    + it is _easy_ to generate pictures from it
+
+> Get used to:
+> 1. _draw_ class diagrams for your software projects
+> 2. _read_ class diagrams of other software projects
+> 3. reverse-engineer (or just imagine) the class diagrams of software projects you use
+
+---
+
+# Exercise
+
+1. Let's go back to the _class diagram_ from _a few slides ago_
+2. Try to _distinguish_ among _public and private members_ of the classes from _the diagram_
+3. Then go back to the source code of the _calculator_ application
+4. Finally, try to _identify_ the _public and private members_ of the classes from _the code_

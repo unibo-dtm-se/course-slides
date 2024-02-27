@@ -32,16 +32,16 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2024-02-25 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-02-27 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="motivation-and-goals">Motivation and goals</h2>
 <ul>
 <li>
-<p>In order to put everybody on the same page…</p>
+<p>In order to put everybody on the <em>same page</em>…</p>
 </li>
 <li>
-<p>… we are going to recall some basic notions and technical aspects related to software development, namely:</p>
+<p>… we are going to recall some <em>basic notions</em> and <em>technical aspects</em> related to <strong>software development</strong>, namely:</p>
 <ul>
 <li>the command line</li>
 <li>the anatomy of a software project in Python</li>
@@ -49,15 +49,11 @@
 <li>ubiquitous (w.r.t. SE) notions such as interfaces and runtimes</li>
 </ul>
 </li>
-<li>
-<p>plus, we will provide practical examples about key concepts such as</p>
-<ul>
-<li>automated testing</li>
-<li>deployment, packaging, and release</li>
-<li>maintenance</li>
 </ul>
-</li>
-</ul>
+<!-- - plus, we will provide practical examples about key concepts such as
+    - automated testing
+    - deployment, packaging, and release
+    - maintenance -->
 </section><section>
 <h1 id="the-command-line">The command-line</h1>
 <p>(a.k.a. the shell, the terminal, the console)</p>
@@ -1187,9 +1183,9 @@ ModuleNotFoundError: No module named 'kivy'
 </span></span><span style="display:flex;"><span>        <span style="color:#000">grid</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">BoxLayout</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">orientation</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">'vertical'</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># Let's create a label, which will serve as the display of the calculator</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Label</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">text</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">'0'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">font_size</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">24</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">size_hint</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0.75</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Label</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">text</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">'0'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">font_size</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">24</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">size_hint</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0.75</span><span style="color:#000;font-weight:bold">))</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># Let's add the label to the grid, as the first row</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">grid</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">add_widget</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">grid</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">add_widget</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># For each *list of* button names in the matrix of button names...</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">button_names_row</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">BUTTONS_NAMES</span><span style="color:#000;font-weight:bold">:</span>
@@ -1216,11 +1212,11 @@ ModuleNotFoundError: No module named 'kivy'
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>                <span style="color:#8f5902;font-style:italic"># ... evaluate the expresion *as a Python expression*, convert the result to a string, </span>
 </span></span><span style="display:flex;"><span>                <span style="color:#8f5902;font-style:italic">#&nbsp;and show that string on the calculator display</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">))</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic">#&nbsp;If an error occurs in doing the above (e.g. wrong expression)</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">SyntaxError</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>                <span style="color:#8f5902;font-style:italic"># ... set the display to "Error"</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">'Error'</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">'Error'</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic">#&nbsp;Reset the calculator's expression</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">""</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># If the button is any other button</span>
@@ -1228,7 +1224,7 @@ ModuleNotFoundError: No module named 'kivy'
 </span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic">#&nbsp;Append the button's text to the calculator's expression</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">instance</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic">#&nbsp;Show the calculator's expression on the display</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># If the script is executed as a standalone program (i.e. not imported as a module)</span>
@@ -1626,6 +1622,9 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">divide</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"/"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">dot</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"."</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Number</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
@@ -1647,21 +1646,22 @@ or they may have a subset of the mechanisms available in Python</p>
 
 
 <div class="col "><p>Class diagram:</p>
-<figure id="plantuml-figure-1708871898720622422" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1709035459820592402" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class Calculator {
 + expression: str
-- _ensure_is_digit(value: int | str): int
+- _ensure_is_digit(value: int | str) → int
 - _append(value: int | str)
 + digit(value: int | str)
 + plus()
 + minus()
 + multiply()
 + divide()
-+ compute_result(): int | float
++ dot()
++ compute_result() → int | float
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1708871898720622422");
+    handlePlantumlFigureByID("plantuml-figure-1709035459820592402");
 </script>
 </div>
 
@@ -1701,12 +1701,12 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorApp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">App</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">build</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># new entry here</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># new entry here</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#000">grid</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">BoxLayout</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">orientation</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">'vertical'</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Label</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">text</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"0"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">font_size</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">24</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">size_hint</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0.75</span><span style="color:#000;font-weight:bold">))</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">grid</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">add_widget</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Label</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">text</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"0"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">font_size</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">24</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">size_hint</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0.75</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">grid</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">add_widget</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">button_names_row</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">BUTTONS_NAMES</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#000">grid_row</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">BoxLayout</span><span style="color:#000;font-weight:bold">()</span>
@@ -1721,25 +1721,28 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">match</span> <span style="color:#000">button</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">"="</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>                <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>                <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">ValueError</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">"Error"</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">"Error"</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">"+"</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plus</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">"-"</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">minus</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">minus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">"*"</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">multiply</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">multiply</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">"/"</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">divide</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">divide</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#4e9a06">"."</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">dot</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#000">_</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">instance</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">button</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">__name__</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">'__main__'</span><span style="color:#000;font-weight:bold">:</span>
@@ -1751,22 +1754,381 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">sys</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">args</span><span style="color:#000;font-weight:bold">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">calc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">" "</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">join</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">args</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">ValueError</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">e</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorCLI</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">args</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_args</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">args</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">run</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_args</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Usage: python -m calculator.ui.cli &lt;expression&gt;"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">return</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">" "</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">join</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_args</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_calc</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">ValueError</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">e</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">__name__</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">'__main__'</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sys</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">argv</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Usage: python -m calculator.ui.cli &lt;expression&gt;"</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">sys</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">exit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">main</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sys</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">argv</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">:])</span>
-</span></span></code></pre></div></section>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">CalculatorCLI</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sys</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">argv</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">:])</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">run</span><span style="color:#000;font-weight:bold">()</span>
+</span></span></code></pre></div></section><section>
+<h2 id="overview-on-code-organization-pt-1">Overview on code organization (pt. 1)</h2>
+
+<figure id="plantuml-figure-1709035459821358673" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+    
+
+package calculator {
+    class Calculator {
+        + expression: str
+        - _ensure_is_digit(value: int | str) → int
+        - _append(value: int | str)
+        + digit(value: int | str)
+        + plus()
+        + minus()
+        + multiply()
+        + divide()
+        + dot()
+        + compute_result() → int | float
+    }
+    package ui {
+        package gui {
+            class CalculatorApp {
+                - _display: Label
+                - _calc: Calculator
+                + build(): BoxLayout
+                + on_button_press(button: Button)
+            }
+        }
+        package cli {
+            class CalculatorCLI {
+                - _args: list[str]
+                - _calc: Calculator
+                + run()
+            }
+        }
+
+        'cli -[hidden]d- gui
+        CalculatorCLI *-- Calculator: composed by
+        CalculatorApp *-- Calculator: composed by
+    }
+}
+
+
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1709035459821358673");
+</script>
+</section><section>
+<h2 id="overview-on-code-organization-pt-2">Overview on code organization (pt. 2)</h2>
+<p>(including dependencies from Python and Kivy)</p>
+
+<figure id="plantuml-figure-1709035459821372458" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+    
+
+package "Python Standard Library" as Python {
+    class int
+    class str
+    class float
+    class list
+    class ValueError
+    metaclass sys
+}
+
+package calculator {
+    class Calculator {
+        + expression: str
+        - _ensure_is_digit(value: int | str) → int
+        - _append(value: int | str)
+        + digit(value: int | str)
+        + plus()
+        + minus()
+        + multiply()
+        + divide()
+        + dot()
+        + compute_result() → int | float
+    }
+    package ui {
+        package gui {
+            class CalculatorApp {
+                - _display: Label
+                - _calc: Calculator
+                + build(): BoxLayout
+                + on_button_press(button: Button)
+            }
+        }
+        package cli {
+            class CalculatorCLI {
+                - _args: list[str]
+                - _calc: Calculator
+                + run()
+            }
+        }
+
+        'cli -[hidden]d- gui
+        CalculatorCLI *-- Calculator: composed by
+        CalculatorApp *-- Calculator: composed by
+    }
+}
+
+package kivy {
+    package app {
+        class App
+    }
+    package uix {
+        package boxlayout {
+            class BoxLayout
+        }
+        package button {
+            class Button
+        }
+        package label {
+            class Label
+        }
+    }
+}
+
+CalculatorApp --|&gt; App: subtype of
+CalculatorApp *-- BoxLayout: composed by
+CalculatorApp *-- Button: composed by
+CalculatorApp *-- Label: composed by
+calculator .left.&gt; Python: uses extensively
+
+
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1709035459821372458");
+</script>
+</section><section>
+<h2 id="many-hidden-concepts-in-this-example-1">Many hidden concepts in this example</h2>
+<ol>
+<li>
+<p>the notion of <strong>software design</strong></p>
+<ul>
+<li>i.e. the activity of representing <em>relevant</em> <strong>entities</strong> (and their <strong>relationships</strong>) in the <em>domain</em> at hand, into the <em>code</em>
+<ul>
+<li>or, the <em>result</em> of such activity (i.e. the representation itself)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>the notion of <strong>interface</strong>, and, most notably:</p>
+<ul>
+<li>the <strong>user</strong> <em>interface</em> (<strong>UI</strong>)
+<ul>
+<li>i.e. the means by which <em>users</em> interact with the <em>application</em> (in order to use it)</li>
+</ul>
+</li>
+<li>the <strong>application programming</strong> <em>interface</em> (<strong>API</strong>)
+<ul>
+<li>i.e. the means by which <em>developers</em> interact with the <em>application</em> (in order to write more software on top of it)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="about-user-interfaces-pt-1">About user interfaces (pt. 1)</h2>
+<ul>
+<li>
+<p>An application’s UI is any means by which <strong>human users</strong> interact with the application</p>
+<ul>
+<li>e.g. a <em>graphical</em> user interface (<strong>GUI</strong>), a <em>command-line</em> interface (<strong>CLI</strong>), a <em>web page</em>, a <em>voice user interface</em> (<strong>VUI</strong>), etc.</li>
+</ul>
+</li>
+<li>
+<p>Regardless of the <em>appearance</em>, the <strong>functioning</strong> of the UI can be summarised as follows:</p>
+<ol>
+<li><strong>present</strong> the <em>initial UI</em> to the user</li>
+<li><strong>wait</strong> for <em>inputs</em></li>
+<li><strong>process</strong> the <em>inputs</em></li>
+<li><strong>present</strong> the <em>output</em> / <em>effects</em> of the processing to the user
+<ul>
+<li>possibly, <strong>exit</strong> if the inputs says to do so</li>
+</ul>
+</li>
+<li><strong>go</strong> back to <em>2</em></li>
+</ol>
+</li>
+<li>
+<p>Engineering the UI is a <em>complex</em> task, as it involves <em>many</em> aspects of <em>human-computer interaction</em> (<strong>HCI</strong>)…</p>
+<ul>
+<li>e.g. <em>usability</em>, <em>accessibility</em>, <em>aesthetics</em>, <em>ergonomics</em>, etc.</li>
+</ul>
+</li>
+<li>
+<p>… and, of course, elciting the admissible <em>inputs</em> for the UI:</p>
+<ul>
+<li>and engineering how are being <strong>capture</strong> or <em>recognised</em></li>
+<li>and what <strong>processing</strong> means for each of them</li>
+<li>and how to <strong>present</strong> the corresponding <em>outputs</em> / <em>effects</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="about-user-interfaces-pt-2">About user interfaces (pt. 2)</h2>
+<p>Disclaimer:</p>
+<blockquote>
+<p>While <strong>UI</strong> is very <em>important</em>, and <em>engineering UI</em> <strong>is part</strong> <em>of SE</em>, it is <em>not</em> the <em>only</em> part of SE.
+It is far <em>more important</em> in SE to take care about the <strong>API</strong></p>
+</blockquote>
+<br>
+<p>The rationale is as follows:</p>
+<ul>
+<li>UI may change</li>
+<li>a good API allows to <em>change</em> the UI without <em>rewriting</em> the whole software</li>
+</ul>
+</section><section>
+<h2 id="about-application-programming-interfaces-pt-1">About application programming interfaces (pt. 1)</h2>
+<blockquote>
+<p>The <strong>application programming interface</strong> (<em>API</em>) of a software is:</p>
+<ol>
+<li>the set of <strong>functionalities</strong> the software <em>provides</em> to <strong>developers</strong> for building <em>other</em> software on top of it</li>
+<li>a (semi-)formal <strong>specification</strong> of 1, including, <em>for each functionality</em>:</li>
+</ol>
+<ul>
+<li>the <em>name</em> by which it is known / <em>referenced</em></li>
+<li>the <em>formal parameters</em> it accepts as <em>input</em></li>
+<li>the <em>return values</em> or <em>effects</em> it produces as <em>outcome</em></li>
+<li>the <em>pre-conditions</em> and <em>post-conditions</em> it satisfies/establishes</li>
+</ul>
+</blockquote>
+</section><section>
+<h2 id="about-application-programming-interfaces-pt-2">About application programming interfaces (pt. 2)</h2>
+<p>Recall that software is often <em>built</em> on top of <em>other</em> software, in a <strong>layered</strong> way:
+<img src="./layers.jpg" alt="Layers in a software system"></p>
+<ul>
+<li>
+<p>You can think of a piece of software as a <strong>provider</strong> of <em>services</em> to their users</p>
+<ul>
+<li>here users are, again, software</li>
+</ul>
+</li>
+<li>
+<p>At the same time, a piece of software could be a <strong>consumer</strong> of services from other software</p>
+</li>
+</ul>
+</section><section>
+<h2 id="about-application-programming-interfaces-pt-3">About application programming interfaces (pt. 3)</h2>
+<h3 id="useful-metaphor">Useful metaphor</h3>
+<ul>
+<li>
+<p>The <em>API</em> is the <strong>contract</strong> between the <em>provider</em> and the <em>consumer</em> of services</p>
+</li>
+<li>
+<p>The <em>provider</em> of the services knows <strong>how to provide</strong> the services</p>
+</li>
+<li>
+<p>The <em>consumer</em> of the services knows <strong>what</strong> the services do, and <strong>how to exploit</strong> them</p>
+</li>
+<li>
+<p>A <strong>change</strong> in the contract would <em>affect both</em> sides</p>
+</li>
+</ul>
+</section><section>
+<h2 id="application-programming-interfaces-in-practice-pt-1">Application programming interfaces in practice (pt. 1)</h2>
+<h3 id="rule-of-thumb-for-python-projects">Rule of thumb for Python projects</h3>
+<p>The <em>API</em> of a <em>Python project</em> consists of</p>
+<ol>
+<li>the set of all <em>public</em> <strong>modules</strong></li>
+<li>plus, the set of all <em>public</em> <strong>definitions</strong> in those modules
+<ul>
+<li>e.g. functions, classes, variables, constants</li>
+</ul>
+</li>
+<li>plus, the set of all <em>public</em> <strong>attributes</strong> of those definitions
+<ul>
+<li>e.g. methods, properties, fields</li>
+</ul>
+</li>
+</ol>
+<h3 id="what-does-public-means-here">What does “public” means here?</h3>
+<blockquote>
+<ul>
+<li>“<strong>Public</strong>” means “intended for <em>external</em> usage”
+<ul>
+<li>i.e. “to be used by <em>other</em> developers (other than the ones who wrote the current code)”</li>
+</ul>
+</li>
+<li>the opposite of “public” is “<strong>private</strong>”</li>
+</ul>
+</blockquote>
+</section><section>
+<h2 id="application-programming-interfaces-in-practice-pt-2">Application programming interfaces in practice (pt. 2)</h2>
+<ul>
+<li>
+<p>In Python, everything is <em>public</em> by convention</p>
+<ul>
+<li>except for the <em>names</em> starting with one or more <em>underscores</em> (<code>_</code>)</li>
+<li>yet, names wrapped by <em>double</em> underscores (<code>__example__</code>) are <a href="https://realpython.com/python-magic-methods/">magic methods</a>
+<ul>
+<li>they <strong>alter</strong> the <em>behaviour</em> of the <em>classes</em> / <em>modules</em> they belong to…</li>
+<li>… hence, you should consider them as <em>public</em> too</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Beware</strong> because Python adopts the <a href="https://stackoverflow.com/a/70736">“consenting adults”</a> convention</p>
+<ul>
+<li>nothing <em>prevents</em> you from using <em>private</em> names, or <em>magic</em> names, as if they were <em>public</em></li>
+<li>yet, in doing that you are opening yourself to a <strong>risk</strong>
+<ul>
+<li>i.e. the <em>private</em> functionality you’re using may <strong>change abruptly</strong> in some future version of the software</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p>Another way to think about <em>private</em> stuff in a software project is:</p>
+<blockquote>
+<p><em>private</em> stuff may change <strong>without notice</strong>, in any moment</p>
+</blockquote>
+</section><section>
+<h2 id="application-programming-interfaces-in-practice-pt-3">Application programming interfaces in practice (pt. 3)</h2>
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Class_diagram">Class diagrams</a> are a good way to represent the <em>API</em> (as well as the <em>structure</em>) of a <em>software project</em></p>
+<ul>
+<li>they show the <em>public</em> classes, and their <em>public</em> methods and attributes</li>
+<li>they show the <em>relationships</em> between the classes
+<ul>
+<li>e.g. the <strong>sub-typing</strong> and <strong>composition</strong> relationships, etc.</li>
+</ul>
+</li>
+<li>they show the <em>disposition</em> of the classes into <em>packages</em> and <em>modules</em></li>
+<li>they highlight <strong>public and private</strong> members of classes / modules</li>
+</ul>
+</li>
+<li>
+<p>I use <a href="https://plantuml.com/class-diagram">PlantUML</a> to draw class diagrams</p>
+<ul>
+<li>it is a <em>textual</em> way to represent class diagrams</li>
+<li>it is <em>easy</em> to <em>write</em> and <em>read</em></li>
+<li>it is <em>easy</em> to generate pictures from it</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Get used to:</p>
+<ol>
+<li><em>draw</em> class diagrams for your software projects</li>
+<li><em>read</em> class diagrams of other software projects</li>
+<li>reverse-engineer (or just imagine) the class diagrams of software projects you use</li>
+</ol>
+</blockquote>
+</section><section>
+<h1 id="exercise">Exercise</h1>
+<ol>
+<li>Let’s go back to the <em>class diagram</em> from <em>a few slides ago</em></li>
+<li>Try to <em>distinguish</em> among <em>public and private members</em> of the classes from <em>the diagram</em></li>
+<li>Then go back to the source code of the <em>calculator</em> application</li>
+<li>Finally, try to <em>identify</em> the <em>public and private members</em> of the classes from <em>the code</em></li>
+</ol>
+</section>
 
   
 

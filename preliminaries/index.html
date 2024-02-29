@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2024-02-27 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-02-29 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="motivation-and-goals">Motivation and goals</h2>
@@ -431,7 +431,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <h2 id="about-interactive-commands-pt-2">About interactive commands (pt. 2)</h2>
 <ul>
 <li>
-<p>Upon termination, each command returns a <strong>status code</strong> (i.e. a <em>non-negative integer</em>)</p>
+<p>Upon termination, each command returns an <strong>exit code</strong> (i.e. a <em>non-negative integer</em>)</p>
 <ul>
 <li><code>0</code> means <em>“everything went fine”</em></li>
 <li>any other number means <em>“something went wrong”</em> (each number is a different <em>error code</em>)</li>
@@ -445,10 +445,10 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 </ul>
 </li>
 <li>
-<p>When programmin the shell <em>in a script</em>:</p>
+<p>When programming the shell <em>in a script</em>:</p>
 <ul>
-<li>you can check the status code of the last command via the special variable <code>$?</code></li>
-<li>you can use the <code>if</code> statement to check the status code and act accordingly</li>
+<li>you can check the exit code of the last command via the special variable <code>$?</code></li>
+<li>you can use the <code>if</code> statement to check the exit code and act accordingly</li>
 </ul>
 </li>
 </ul>
@@ -466,7 +466,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 </ul>
 </li>
 <li>
-<p>more channeles may be opened by the process, e.g. when <em>reading</em> / <em>writing</em> <strong>files</strong></p>
+<p>more channels may be opened by the process, e.g. when <em>reading</em> / <em>writing</em> <strong>files</strong></p>
 </li>
 </ul>
 <blockquote>
@@ -1646,7 +1646,7 @@ or they may have a subset of the mechanisms available in Python</p>
 
 
 <div class="col "><p>Class diagram:</p>
-<figure id="plantuml-figure-1709035459820592402" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1709200574251436474" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class Calculator {
 + expression: str
 - _ensure_is_digit(value: int | str) → int
@@ -1661,7 +1661,7 @@ or they may have a subset of the mechanisms available in Python</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1709035459820592402");
+    handlePlantumlFigureByID("plantuml-figure-1709200574251436474");
 </script>
 </div>
 
@@ -1776,7 +1776,7 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span></code></pre></div></section><section>
 <h2 id="overview-on-code-organization-pt-1">Overview on code organization (pt. 1)</h2>
 
-<figure id="plantuml-figure-1709035459821358673" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1709200574253099869" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package calculator {
@@ -1818,13 +1818,13 @@ package calculator {
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1709035459821358673");
+    handlePlantumlFigureByID("plantuml-figure-1709200574253099869");
 </script>
 </section><section>
 <h2 id="overview-on-code-organization-pt-2">Overview on code organization (pt. 2)</h2>
 <p>(including dependencies from Python and Kivy)</p>
 
-<figure id="plantuml-figure-1709035459821372458" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1709200574253126239" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package "Python Standard Library" as Python {
@@ -1898,7 +1898,7 @@ calculator .left.&gt; Python: uses extensively
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1709035459821372458");
+    handlePlantumlFigureByID("plantuml-figure-1709200574253126239");
 </script>
 </section><section>
 <h2 id="many-hidden-concepts-in-this-example-1">Many hidden concepts in this example</h2>
@@ -2128,6 +2128,39 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <li>Then go back to the source code of the <em>calculator</em> application</li>
 <li>Finally, try to <em>identify</em> the <em>public and private members</em> of the classes from <em>the code</em></li>
 </ol>
+</section><section>
+<h2 id="is-cli-a-ui-or-an-api">Is CLI a UI or an API?</h2>
+<p>(spoiler: both)</p>
+<ul>
+<li>
+<p>A command line application can be seen as:</p>
+<ul>
+<li>a <strong>UI</strong> for <em>users</em> who interact with the application via the terminal</li>
+<li>part of the <strong>API</strong> for <em>developers</em> who write <strong>scripts</strong> for a given <em>shell</em></li>
+</ul>
+</li>
+<li>
+<p>Recall that a command-line application is just one more <strong>command</strong> for the <em>shell</em></p>
+</li>
+<li>
+<p>The <strong>API</strong> of a command line application is a description of</p>
+<ul>
+<li>the set of <strong>arguments</strong> it accepts when <em>invoked</em> as a command on a shell</li>
+<li>the <strong>output</strong> it prints on the shell after the command is <em>executed</em></li>
+<li>the <strong>exit code</strong> it returns to the shell after the command is <em>executed</em></li>
+<li>the <strong>side effects</strong> it produces on the system after the command is <em>executed</em>
+<ul>
+<li>e.g. file creation, file deletion, file modification, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Most commonly, the <strong>API</strong> of a command line application can be inspected via the <code>--help</code> argument</p>
+</li>
+</ul>
+</section><section>
+<h1 id="to-be-continued">To be continued…</h1>
 </section>
 
   

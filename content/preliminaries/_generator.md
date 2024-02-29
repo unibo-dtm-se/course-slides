@@ -257,7 +257,7 @@ You should not.
 
 ## About interactive commands (pt. 2)
 
-+ Upon termination, each command returns a __status code__ (i.e. a _non-negative integer_)
++ Upon termination, each command returns an __exit code__ (i.e. a _non-negative integer_)
     + `0` means _"everything went fine"_
     + any other number means _"something went wrong"_ (each number is a different _error code_)
     + so the shell always knows if the _last command was successful_ or not
@@ -265,9 +265,9 @@ You should not.
 + When using the shell _interactively_:
     + pay attention to whether _the last command you wrote_ was __successful__ or not
 
-+ When programmin the shell _in a script_:
-    + you can check the status code of the last command via the special variable `$?`
-    + you can use the `if` statement to check the status code and act accordingly
++ When programming the shell _in a script_:
+    + you can check the exit code of the last command via the special variable `$?`
+    + you can use the `if` statement to check the exit code and act accordingly
 
 ---
 
@@ -282,7 +282,7 @@ In the eyes of the OS, any process can be modelled as follows:
     + producing a _stream_ of _output data_ to the __standard output__ channel (`stdout`)
     + and, possibly, producing a _stream_ of _error data_ to the __standard error__ stream (`stderr`)
 
-- more channeles may be opened by the process, e.g. when _reading_ / _writing_ __files__
+- more channels may be opened by the process, e.g. when _reading_ / _writing_ __files__
 
 > a __stream__ is an _unlimited_ sequence of _bytes_ (or _characters_)
 
@@ -1558,3 +1558,30 @@ Another way to think about _private_ stuff in a software project is:
 2. Try to _distinguish_ among _public and private members_ of the classes from _the diagram_
 3. Then go back to the source code of the _calculator_ application
 4. Finally, try to _identify_ the _public and private members_ of the classes from _the code_
+
+---
+
+## Is CLI a UI or an API?
+
+(spoiler: both)
+
+- A command line application can be seen as:
+    + a __UI__ for _users_ who interact with the application via the terminal
+    + part of the __API__ for _developers_ who write __scripts__ for a given _shell_
+
+
+- Recall that a command-line application is just one more __command__ for the _shell_
+
+- The __API__ of a command line application is a description of
+    + the set of __arguments__ it accepts when _invoked_ as a command on a shell
+    + the __output__ it prints on the shell after the command is _executed_
+    + the __exit code__ it returns to the shell after the command is _executed_
+    + the __side effects__ it produces on the system after the command is _executed_
+        - e.g. file creation, file deletion, file modification, etc.
+
+
+- Most commonly, the __API__ of a command line application can be inspected via the `--help` argument
+
+---
+
+# To be continued...

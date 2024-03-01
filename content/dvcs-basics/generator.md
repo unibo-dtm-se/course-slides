@@ -12,19 +12,13 @@ outputs = ["Reveal"]
 
 ---
 
-<!-- write-here "shared-slides/git/dvcs-concepts.md" -->
+<!-- write-here "content/dvcs-basics/dvcs-concepts.md" -->
 
 <!-- end-write -->
 
 ---
 
 <!-- write-here "shared-slides/git/intro.md" -->
-
-<!-- end-write -->
-
----
-
-<!-- write-here "shared-slides/terminal-cheatsheet.md" -->
 
 <!-- end-write -->
 

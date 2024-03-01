@@ -388,10 +388,13 @@ held by Prof. {{<gc>}}
 
 1. [Introduction to software engineering](se-intro)
 2. [Preliminary notions for Software Development](preliminaries)
-0. [Introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)
 0. [Decentralized version control (with git) and team organization](dvcs-basics)
 0. [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)
 0. [Software dependencies, build automation (examples with virtualenv / pyenv / pip)](build)
 0. [Continuous integration (examples with GitHub Actions)](ci)
 0. [Versioning, semantic release](https://unibo-spe.github.io/05-version-selection)
 0. [Licensing](https://unibo-spe.github.io/06-licenses/) (if we got time)
+
+## Extras
+
+- [Introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)

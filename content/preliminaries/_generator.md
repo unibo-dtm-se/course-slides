@@ -1405,7 +1405,7 @@ calculator .left.> Python: uses extensively
 ## Many hidden concepts in this example
 
 1. the notion of __software design__
-    - i.e. the activity of representing _relevant_ __entities__ (and their __relationships__) in the _domain_ at hand, into the _code_
+    - i.e. the activity of representing _relevant_ __concepts__ (and their __relationships__) from the _domain_ at hand, into the _code_
         + or, the _result_ of such activity (i.e. the representation itself)
 
 2. the notion of __interface__, and, most notably:
@@ -1413,6 +1413,38 @@ calculator .left.> Python: uses extensively
         + i.e. the means by which _users_ interact with the _application_ (in order to use it)
     - the __application programming__ _interface_ (__API__)
         + i.e. the means by which _developers_ interact with the _application_ (in order to write more software on top of it)
+
+3. the notion of __project structure__
+    - i.e. how to _organize_ files and directories in software project
+
+---
+
+## About the project structure
+
+- It's important to __organize__ _files_ and _directories_ in software projects in a _clear_ way
+    + this is important for both _humans_ and _interpreters_/_compilers_
+        * humans may _benefit_ by getting more easily _oriented_ when navigating the _source code_
+        * tools most commonly _require_ a _fixed structure_ to _operate_ correctly
+
+- For _Python_ projects, the ultimate project structure will be clear along the way in the course...
+
+- ... for the time being, let's stick to the following project structure:
+
+    ```bash
+    root-directory/
+    ├── main-package/
+    │   ├── __init__.py
+    │   ├── sub-module.py
+    │   └── sub-package/ 
+    │       ├── __init__.py 
+    │       └── sub-sub-module.py 
+    ├── .python-version
+    ├── README.md
+    └── requirements.txt
+    ```
+
+- Further files/directories will pop-up in the next lectures
+    + e.g. for _automated tests_
 
 ---
 
@@ -1584,4 +1616,164 @@ Another way to think about _private_ stuff in a software project is:
 
 ---
 
-# To be continued...
+## Sorts of software projects (pt. 1)
+
+- Depending on _which_ and _how many_ __interfaces__ a software project _exposes_...
+
+- ... the __aim__ of that software project is _different_
+
+- For instace:
+    + a __library__ exposes an _API_
+    + an __application__ exposes a _UI_
+        * a __desktop application__ exposes a _GUI_ (which is tailored for big screens, mouse, and keyboard)
+        * a __mobile application__ exposes a _GUI_ (which is tailored for small screens, touch, and gestures)
+        * a __web application__ exposes a _GUI_ (which is tailored for web browsers, and the Web)
+            - most commonly, this works both on desktop and mobile devices
+        * a __command-line application__ exposes a 
+            1. a _CLI_ (which is tailored for terminals, and shells) 
+            2. an _API_ (which is tailored for shell scripts)
+
+- Further categories may appear along the way in the course:
+    + e.g. _services_, _frameworks_, _scripts_, _notebooks_, etc.
+
+---
+
+## Sorts of software projects (pt. 2)
+
+- Notice that the aforementioned categories are __not__ _mutually exclusive_
+    + e.g. one software product may _simultanoesly_ be a _library_ and an _application_
+        * if properly engineered
+
+- For instance, in order for a software project to support _several UI_...
+    + ... it is common to split it into:
+        1. one or more components acting as _libraries_, which _expose_ __API__
+        2. one or more components acting as __UI__, hence making the whole project an _application_
+
+- We recommend to reason about the __aim__ of the software since the _very beginning_
+    + this will _guide_ the _design_ of the software
+    + and the _organization_ of the code
+
+---
+
+## About software design (pt. 1)
+
+### Just to give you an insight 
+
+1. After understanding the __requirements__, and the __domain__ at hand...
+
+2. ... _software architects_ will reason about the __design__ of the software
+    + which _relevant_ __concepts__ from the domain must be represented in the software?
+    + how should those concepts be _related_ to each other?
+
+3. the _result_ of such reasoning is a __model__ of the software
+    1. __classes__ / __functions__ are envisioned to _represent_ each _concept_ 
+        + possibly __reusing__ existing stuff from _standard_, or _third-party_ libraries
+    2. __relationships__ between classes / functions are described
+        + e.g. _sub-typing_, _composition_, _aggregation_, _inheritance_, etc.
+    3. the __behaviour__ of each class / function is described
+        + e.g. _pre-conditions_, _post-conditions_, _invariants_, _state-transition_, etc. 
+    4. the __interactions__ between classes / functions are described
+        + e.g. who calls what, when, and why
+
+---
+
+## About software design (pt. 2)
+
+### Just to give you an insight (continued)
+
+4. Focus is then directed torwards other _non-functional_ or _trasversal_ aspects of the software
+    + e.g. classes / functions for __UI__, and their attachment to the _model_
+        * how do _humans_ __use__ the software?
+    + e.g. classes / functions for __persistence__, and their attachment to the _model_
+        * do the software need to __store__ or __retrieve__ data? _which_ data? _where_? _how_?
+    + e.g. classes / functions for __communication__ (over the _network_), and their attachment to the _model_
+        * does the software need to __talk__ to other software, located __elsewhere__? 
+        * _where_ is "elsewhere"? what network? (Web? Internet? Bluetooth?)
+        * are _intermetiary_ components involved? (e.g. _servers_, _message brokers_, etc.)
+    + e.g. classes / functions for __authentication__ and __authorization__, and their attachment to the _model_
+        * how to _recognise_ __legitimate__ users? _who_ can do _what_?
+
+---
+
+## About software design (pt. 3)
+
+### Example
+
+Let's consider the _calculator_ application
+
+1. _Which_ relevant concepts?
+    + __Calculator__: an object for _writing_ arithmetic _expressions_ (one symbol at a time), and _evaluating_ them into _results_
+        * repersented by ad-hoc class
+    + __Expression__: a combining _numbers_ and _operators_
+        + represented by strings (type `str` in Python)
+    + __Writing__: an expression should be created by appending digits or symbols, one by one
+        + represented by methods of the `Calculator` class
+    + __Evaluating__: an expression should be evaluated into a _result_
+        + represented by methods of the `Calculator` class
+    + __Result__: the outcome of evaluating an expression
+        + represented by Python numbers (either `int` or `float`)
+
+---
+
+## About software design (pt. 3)
+
+### Example (continued)
+    
+2. How should those concepts be _related_ to each other?
+    + each `Calculator` object is composed by one (and only one) `Expression` object
+        + the latter evolves over time
+
+3. How should the `Calculator` class _behave_?
+    + methods of the `Calculator` class are responsible updating the `Expression`
+        + by appending digits or symbols
+    + one method is responsible for evaluating the `Expression` into a `Result`
+        + and resetting the `Expression` to an empty one
+
+---
+
+# Exercises
+
+All exercises involve either analysing or editing the code of the (modular) _calculator_ application
+
+<https://github.com/unibo-dtm-se/modular-calculator>
+
+---
+
+## Exercise 1 
+
+### The impact of modularity on bug detection / fixing
+
+> The calculator has a _bug_: __it does not properly handle division by zero__
+
+Is this a _presentation_, a _modelling_, or an _implementation_ issue?
++ do the software presents information poorly, or misinterprets inputs?
++ are all views affected by the bug? or just one?
++ did we miss something when designing the model?
++ did the implementer make a mistake?
+
+#### TO-DO List
+
+1. play with the software to understand the bug
+    + try to reproduce the bug in both the GUI and the CLI
+    + try to understand the root cause of the bug
+
+2. solve the bug (by doing some _minimal_ change in the code) 
+
+---
+
+## Exercise 2
+
+### New feature request
+
+> The calculator GUI is missing a feature: __it gives no way to the user to clear the current expression__
+
+We totally missed that functionality when designing the _model_ and the _GUI_
+- what is missing in the model?
+- what is missing in the GUI?
+
+#### TO-DO List
+
+While minimising changes in the code:
+1. extend the _model_ to support the "clearing the current expression" _functionality_
+2. extend the _layout_ of the GUI to support one more _button_
+3. _attach_ the new button to the new functionality from the model

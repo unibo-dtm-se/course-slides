@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2024-02-29 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-03-01 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="motivation-and-goals">Motivation and goals</h2>
@@ -1646,7 +1646,7 @@ or they may have a subset of the mechanisms available in Python</p>
 
 
 <div class="col "><p>Class diagram:</p>
-<figure id="plantuml-figure-1709200574251436474" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1709289993269736506" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class Calculator {
 + expression: str
 - _ensure_is_digit(value: int | str) → int
@@ -1661,7 +1661,7 @@ or they may have a subset of the mechanisms available in Python</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1709200574251436474");
+    handlePlantumlFigureByID("plantuml-figure-1709289993269736506");
 </script>
 </div>
 
@@ -1776,7 +1776,7 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span></code></pre></div></section><section>
 <h2 id="overview-on-code-organization-pt-1">Overview on code organization (pt. 1)</h2>
 
-<figure id="plantuml-figure-1709200574253099869" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1709289993270727962" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package calculator {
@@ -1818,13 +1818,13 @@ package calculator {
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1709200574253099869");
+    handlePlantumlFigureByID("plantuml-figure-1709289993270727962");
 </script>
 </section><section>
 <h2 id="overview-on-code-organization-pt-2">Overview on code organization (pt. 2)</h2>
 <p>(including dependencies from Python and Kivy)</p>
 
-<figure id="plantuml-figure-1709200574253126239" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1709289993270751716" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package "Python Standard Library" as Python {
@@ -1898,7 +1898,7 @@ calculator .left.&gt; Python: uses extensively
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1709200574253126239");
+    handlePlantumlFigureByID("plantuml-figure-1709289993270751716");
 </script>
 </section><section>
 <h2 id="many-hidden-concepts-in-this-example-1">Many hidden concepts in this example</h2>
@@ -1906,7 +1906,7 @@ calculator .left.&gt; Python: uses extensively
 <li>
 <p>the notion of <strong>software design</strong></p>
 <ul>
-<li>i.e. the activity of representing <em>relevant</em> <strong>entities</strong> (and their <strong>relationships</strong>) in the <em>domain</em> at hand, into the <em>code</em>
+<li>i.e. the activity of representing <em>relevant</em> <strong>concepts</strong> (and their <strong>relationships</strong>) from the <em>domain</em> at hand, into the <em>code</em>
 <ul>
 <li>or, the <em>result</em> of such activity (i.e. the representation itself)</li>
 </ul>
@@ -1928,7 +1928,50 @@ calculator .left.&gt; Python: uses extensively
 </li>
 </ul>
 </li>
+<li>
+<p>the notion of <strong>project structure</strong></p>
+<ul>
+<li>i.e. how to <em>organize</em> files and directories in software project</li>
+</ul>
+</li>
 </ol>
+</section><section>
+<h2 id="about-the-project-structure">About the project structure</h2>
+<ul>
+<li>
+<p>It’s important to <strong>organize</strong> <em>files</em> and <em>directories</em> in software projects in a <em>clear</em> way</p>
+<ul>
+<li>this is important for both <em>humans</em> and <em>interpreters</em>/<em>compilers</em>
+<ul>
+<li>humans may <em>benefit</em> by getting more easily <em>oriented</em> when navigating the <em>source code</em></li>
+<li>tools most commonly <em>require</em> a <em>fixed structure</em> to <em>operate</em> correctly</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>For <em>Python</em> projects, the ultimate project structure will be clear along the way in the course…</p>
+</li>
+<li>
+<p>… for the time being, let’s stick to the following project structure:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root-directory/
+</span></span><span style="display:flex;"><span>├── main-package/
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub-module.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── sub-package/ 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     ├── __init__.py 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     └── sub-sub-module.py 
+</span></span><span style="display:flex;"><span>├── .python-version
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>└── requirements.txt
+</span></span></code></pre></div></li>
+<li>
+<p>Further files/directories will pop-up in the next lectures</p>
+<ul>
+<li>e.g. for <em>automated tests</em></li>
+</ul>
+</li>
+</ul>
 </section><section>
 <h2 id="about-user-interfaces-pt-1">About user interfaces (pt. 1)</h2>
 <ul>
@@ -2160,7 +2203,260 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 </li>
 </ul>
 </section><section>
-<h1 id="to-be-continued">To be continued…</h1>
+<h2 id="sorts-of-software-projects-pt-1">Sorts of software projects (pt. 1)</h2>
+<ul>
+<li>
+<p>Depending on <em>which</em> and <em>how many</em> <strong>interfaces</strong> a software project <em>exposes</em>…</p>
+</li>
+<li>
+<p>… the <strong>aim</strong> of that software project is <em>different</em></p>
+</li>
+<li>
+<p>For instace:</p>
+<ul>
+<li>a <strong>library</strong> exposes an <em>API</em></li>
+<li>an <strong>application</strong> exposes a <em>UI</em>
+<ul>
+<li>a <strong>desktop application</strong> exposes a <em>GUI</em> (which is tailored for big screens, mouse, and keyboard)</li>
+<li>a <strong>mobile application</strong> exposes a <em>GUI</em> (which is tailored for small screens, touch, and gestures)</li>
+<li>a <strong>web application</strong> exposes a <em>GUI</em> (which is tailored for web browsers, and the Web)
+<ul>
+<li>most commonly, this works both on desktop and mobile devices</li>
+</ul>
+</li>
+<li>a <strong>command-line application</strong> exposes a
+<ol>
+<li>a <em>CLI</em> (which is tailored for terminals, and shells)</li>
+<li>an <em>API</em> (which is tailored for shell scripts)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Further categories may appear along the way in the course:</p>
+<ul>
+<li>e.g. <em>services</em>, <em>frameworks</em>, <em>scripts</em>, <em>notebooks</em>, etc.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="sorts-of-software-projects-pt-2">Sorts of software projects (pt. 2)</h2>
+<ul>
+<li>
+<p>Notice that the aforementioned categories are <strong>not</strong> <em>mutually exclusive</em></p>
+<ul>
+<li>e.g. one software product may <em>simultanoesly</em> be a <em>library</em> and an <em>application</em>
+<ul>
+<li>if properly engineered</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>For instance, in order for a software project to support <em>several UI</em>…</p>
+<ul>
+<li>… it is common to split it into:
+<ol>
+<li>one or more components acting as <em>libraries</em>, which <em>expose</em> <strong>API</strong></li>
+<li>one or more components acting as <strong>UI</strong>, hence making the whole project an <em>application</em></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>We recommend to reason about the <strong>aim</strong> of the software since the <em>very beginning</em></p>
+<ul>
+<li>this will <em>guide</em> the <em>design</em> of the software</li>
+<li>and the <em>organization</em> of the code</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="about-software-design-pt-1">About software design (pt. 1)</h2>
+<h3 id="just-to-give-you-an-insight">Just to give you an insight</h3>
+<ol>
+<li>
+<p>After understanding the <strong>requirements</strong>, and the <strong>domain</strong> at hand…</p>
+</li>
+<li>
+<p>… <em>software architects</em> will reason about the <strong>design</strong> of the software</p>
+<ul>
+<li>which <em>relevant</em> <strong>concepts</strong> from the domain must be represented in the software?</li>
+<li>how should those concepts be <em>related</em> to each other?</li>
+</ul>
+</li>
+<li>
+<p>the <em>result</em> of such reasoning is a <strong>model</strong> of the software</p>
+<ol>
+<li><strong>classes</strong> / <strong>functions</strong> are envisioned to <em>represent</em> each <em>concept</em>
+<ul>
+<li>possibly <strong>reusing</strong> existing stuff from <em>standard</em>, or <em>third-party</em> libraries</li>
+</ul>
+</li>
+<li><strong>relationships</strong> between classes / functions are described
+<ul>
+<li>e.g. <em>sub-typing</em>, <em>composition</em>, <em>aggregation</em>, <em>inheritance</em>, etc.</li>
+</ul>
+</li>
+<li>the <strong>behaviour</strong> of each class / function is described
+<ul>
+<li>e.g. <em>pre-conditions</em>, <em>post-conditions</em>, <em>invariants</em>, <em>state-transition</em>, etc.</li>
+</ul>
+</li>
+<li>the <strong>interactions</strong> between classes / functions are described
+<ul>
+<li>e.g. who calls what, when, and why</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</section><section>
+<h2 id="about-software-design-pt-2">About software design (pt. 2)</h2>
+<h3 id="just-to-give-you-an-insight-continued">Just to give you an insight (continued)</h3>
+<ol start="4">
+<li>Focus is then directed torwards other <em>non-functional</em> or <em>trasversal</em> aspects of the software
+<ul>
+<li>e.g. classes / functions for <strong>UI</strong>, and their attachment to the <em>model</em>
+<ul>
+<li>how do <em>humans</em> <strong>use</strong> the software?</li>
+</ul>
+</li>
+<li>e.g. classes / functions for <strong>persistence</strong>, and their attachment to the <em>model</em>
+<ul>
+<li>do the software need to <strong>store</strong> or <strong>retrieve</strong> data? <em>which</em> data? <em>where</em>? <em>how</em>?</li>
+</ul>
+</li>
+<li>e.g. classes / functions for <strong>communication</strong> (over the <em>network</em>), and their attachment to the <em>model</em>
+<ul>
+<li>does the software need to <strong>talk</strong> to other software, located <strong>elsewhere</strong>?</li>
+<li><em>where</em> is “elsewhere”? what network? (Web? Internet? Bluetooth?)</li>
+<li>are <em>intermetiary</em> components involved? (e.g. <em>servers</em>, <em>message brokers</em>, etc.)</li>
+</ul>
+</li>
+<li>e.g. classes / functions for <strong>authentication</strong> and <strong>authorization</strong>, and their attachment to the <em>model</em>
+<ul>
+<li>how to <em>recognise</em> <strong>legitimate</strong> users? <em>who</em> can do <em>what</em>?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="about-software-design-pt-3">About software design (pt. 3)</h2>
+<h3 id="example">Example</h3>
+<p>Let’s consider the <em>calculator</em> application</p>
+<ol>
+<li><em>Which</em> relevant concepts?
+<ul>
+<li><strong>Calculator</strong>: an object for <em>writing</em> arithmetic <em>expressions</em> (one symbol at a time), and <em>evaluating</em> them into <em>results</em>
+<ul>
+<li>repersented by ad-hoc class</li>
+</ul>
+</li>
+<li><strong>Expression</strong>: a combining <em>numbers</em> and <em>operators</em>
+<ul>
+<li>represented by strings (type <code>str</code> in Python)</li>
+</ul>
+</li>
+<li><strong>Writing</strong>: an expression should be created by appending digits or symbols, one by one
+<ul>
+<li>represented by methods of the <code>Calculator</code> class</li>
+</ul>
+</li>
+<li><strong>Evaluating</strong>: an expression should be evaluated into a <em>result</em>
+<ul>
+<li>represented by methods of the <code>Calculator</code> class</li>
+</ul>
+</li>
+<li><strong>Result</strong>: the outcome of evaluating an expression
+<ul>
+<li>represented by Python numbers (either <code>int</code> or <code>float</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="about-software-design-pt-3-1">About software design (pt. 3)</h2>
+<h3 id="example-continued">Example (continued)</h3>
+<ol start="2">
+<li>
+<p>How should those concepts be <em>related</em> to each other?</p>
+<ul>
+<li>each <code>Calculator</code> object is composed by one (and only one) <code>Expression</code> object
+<ul>
+<li>the latter evolves over time</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>How should the <code>Calculator</code> class <em>behave</em>?</p>
+<ul>
+<li>methods of the <code>Calculator</code> class are responsible updating the <code>Expression</code>
+<ul>
+<li>by appending digits or symbols</li>
+</ul>
+</li>
+<li>one method is responsible for evaluating the <code>Expression</code> into a <code>Result</code>
+<ul>
+<li>and resetting the <code>Expression</code> to an empty one</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h1 id="exercises">Exercises</h1>
+<p>All exercises involve either analysing or editing the code of the (modular) <em>calculator</em> application</p>
+<p><a href="https://github.com/unibo-dtm-se/modular-calculator">https://github.com/unibo-dtm-se/modular-calculator</a></p>
+</section><section>
+<h2 id="exercise-1">Exercise 1</h2>
+<h3 id="the-impact-of-modularity-on-bug-detection--fixing">The impact of modularity on bug detection / fixing</h3>
+<blockquote>
+<p>The calculator has a <em>bug</em>: <strong>it does not properly handle division by zero</strong></p>
+</blockquote>
+<p>Is this a <em>presentation</em>, a <em>modelling</em>, or an <em>implementation</em> issue?</p>
+<ul>
+<li>do the software presents information poorly, or misinterprets inputs?</li>
+<li>are all views affected by the bug? or just one?</li>
+<li>did we miss something when designing the model?</li>
+<li>did the implementer make a mistake?</li>
+</ul>
+<h4 id="to-do-list-2">TO-DO List</h4>
+<ol>
+<li>
+<p>play with the software to understand the bug</p>
+<ul>
+<li>try to reproduce the bug in both the GUI and the CLI</li>
+<li>try to understand the root cause of the bug</li>
+</ul>
+</li>
+<li>
+<p>solve the bug (by doing some <em>minimal</em> change in the code)</p>
+</li>
+</ol>
+</section><section>
+<h2 id="exercise-2">Exercise 2</h2>
+<h3 id="new-feature-request">New feature request</h3>
+<blockquote>
+<p>The calculator GUI is missing a feature: <strong>it gives no way to the user to clear the current expression</strong></p>
+</blockquote>
+<p>We totally missed that functionality when designing the <em>model</em> and the <em>GUI</em></p>
+<ul>
+<li>what is missing in the model?</li>
+<li>what is missing in the GUI?</li>
+</ul>
+<h4 id="to-do-list-3">TO-DO List</h4>
+<p>While minimising changes in the code:</p>
+<ol>
+<li>extend the <em>model</em> to support the “clearing the current expression” <em>functionality</em></li>
+<li>extend the <em>layout</em> of the GUI to support one more <em>button</em></li>
+<li><em>attach</em> the new button to the new functionality from the model</li>
+</ol>
 </section>
 
   

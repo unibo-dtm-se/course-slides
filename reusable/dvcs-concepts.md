@@ -442,7 +442,7 @@ Appending `~` and a number `i` to a valid tree-ish means "`i-th` parent of this 
     commit id: "c2" tag: "c4~2"
     commit id: "c3" tag: "c4~1"
     commit id: "c4" type: HIGHLIGHT
-    commit id: "c5" 
+    commit id: "c5"
     commit id: "c6" tag: "c10~5"
     commit id: "c7" tag: "c10~3"
     commit id: "c8" tag: "c10~2"
@@ -471,82 +471,54 @@ Let us try to see what happens when ve develop some project, step by step.
 1. first commit
 
 ```mermaid
-flowchart RL
-  HEAD{{HEAD}}
-  b1(default-branch)
-
-  C1([1])
-
-  HEAD -.-> C1
-  HEAD --"fas:fa-link"--o b1
-  b1 -.-> C1
-
-  class HEAD head
-  class b1 branch
-  class C1 commit
+%%{init: { 'gitGraph': { 'mainBranchName': 'default-branch', 'showCommitLabel': true}} }%%
+gitGraph
+  commit id: "1" tag: "HEAD"
 ```
+
+---
 
 2. second commit
 
 ```mermaid
-flowchart RL
-  HEAD{{HEAD}}
-  b1(default-branch)
-
-  C2([2]) --> C1([1])
-
-  HEAD -.-> C2
-  HEAD --"fas:fa-link"--o b1
-  b1 -.-> C2
-
-  class HEAD head;
-  class b1,b2 branch;
-  class C1,C2 commit;
+%%{init: { 'gitGraph': { 'mainBranchName': 'default-branch', 'showCommitLabel': true}} }%%
+gitGraph
+  commit id: "1"
+  commit id: "2" tag: "HEAD"
 ```
 
 ---
 
-![four commits later](https://raw.githubusercontent.com/DanySK/shared-slides/6824b93d3d52b841386a744f57953a73ccb67378/git/4commitslater.png)
+![four commits later](./4commitslater.png)
 
 ---
 
 ```mermaid
-flowchart RL
-  HEAD{{HEAD}}
-  b1(default-branch)
-
-  C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  b1 -.-> C6
-
-  HEAD -.-> C6
-  HEAD --"fas:fa-link"--o b1
-
-  class HEAD head;
-  class b1,b2 branch;
-  class C1,C2,C3,C4,C5,C6 commit;
+%%{init: { 'gitGraph': { 'mainBranchName': 'default-branch', 'showCommitLabel': true}} }%%
+gitGraph
+  commit id: "1"
+  commit id: "2"
+  commit id: "3"
+  commit id: "4" type: REVERSE
+  commit id: "5"
+  commit id: "6" tag: "HEAD"
 ```
 
-Oh, no, there was a mistake! We need to roll back!
+Oh, no, there was a mistake in commit `4`! We need to roll back!
 
 ---
 
 ## *checkout of C4*
 
 ```mermaid
-flowchart RL
-  HEAD{{HEAD fas:fa-unlink}}
-  b1(default-branch)
-
-  C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  b1 -.-> C6
-
-  HEAD -.-> C4
-
-  class HEAD head;
-  class b1,b2 branch;
-  class C1,C2,C3,C4,C5,C6 commit;
+%%{init: { 'gitGraph': { 'mainBranchName': 'default-branch', 'showCommitLabel': true}} }%%
+gitGraph
+  commit id: "1"
+  commit id: "2"
+  commit id: "3"
+  commit id: "4" tag: "HEAD" type: REVERSE
+  commit id: "5"
+  commit id: "6" tag: "default-branch"
 ```
 
 * No information is lost, we can get back to `6` whenever we want to.
@@ -558,52 +530,45 @@ flowchart RL
 
 
 ```mermaid
-flowchart RL
-  HEAD{{"HEAD"}}
-  b1(default-branch)
-  b2(new-branch)
-
-  C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C7([7]) --> C4([4])
-  
-  b1 -.-> C6
-  b2 -.-> C7
-
-  HEAD -.-> C7
-  HEAD --"fas:fa-link"--o b2
-
-  class HEAD head;
-  class b1,b2 branch;
-  class C1,C2,C3,C4,C5,C6,C7,C8 commit;
+%%{init: { 'gitGraph': { 'mainBranchName': 'default-branch', 'showCommitLabel': true}} }%%
+gitGraph
+  commit id: "1"
+  commit id: "2"
+  commit id: "3"
+  commit id: "4" type: REVERSE
+  branch new-branch
+  checkout default-branch
+  commit id: "5"
+  commit id: "6" tag: "default-branch"
+  checkout new-branch
+  commit id: "7" tag: "HEAD"
 ```
 
-* Okay, but there was useful stuff in `5`, I'd like to have it into `new-branch`
+* Okay, but there was useful stuff in `4`, I'd like to have it into `new-branch`
 
 ---
 
 ## Merging!
 
-```mermaid
-flowchart RL
-  HEAD{{"HEAD"}}
-  b1(default-branch)
-  b2(new-branch)
+<!-- ```mermaid
+%%{init: { 'gitGraph': { 'mainBranchName': 'default-branch', 'showCommitLabel': true}} }%%
+gitGraph
+  commit id: "1"
+  commit id: "2"
+  commit id: "3"
+  commit id: "4" type: REVERSE
+  branch new-branch
+  checkout default-branch
+  commit id: "5"
+  checkout new-branch
+  commit id: "7"
+  merge default-branch id: "8" tag: "HEAD"
+  checkout default-branch
+  commit id: "6" tag: "default-branch"
+  checkout new-branch
+``` -->
 
-  C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C7([7]) --> C4
-  C8([8]) --> C7
-  C8 --> C5
-  
-  b1 -.-> C6
-  b2 -.-> C8
-
-  HEAD -.-> C8
-  HEAD --"fas:fa-link"--o b2
-
-  class HEAD head;
-  class b1,b2 branch;
-  class C1,C2,C3,C4,C5,C6,C7,C8 commit;
-```
+{{<image width="80" src="https://mermaid.ink/svg/pako:eNqFkj1rwzAQhv_KcWC8uEO_i7a2Me3QdkigkxbFutiilmQUmRCM_3sl26Gpk9JNennu1QOnDgsrCRkmSaeM8gw6SEvlX5xoqnS4aaHMkxOmqD6EppClkjairf3FekjTDNJtZXfPVmvl38Sa6gB511LfQ58k3Bz6uAEoBgqUZMDxkuNJdnUmuz6T3XAEv2-IwTL_zJerPBKjERjaTXLDWEXFl209_PY-abydXjngs5Zj9H5ENbmSZrUT8RD1RBmPr_njYlb9j8ndz_CM_MsQMwwyYVUy7LKLEEdfkSaORy1xvA-oaL1d7U2BLK4pw7aRwtNCidIJjWwj6m1ISSpv3fv4P4Zv0n8D8j25-w">}}
 
 **Notice that:**
 * we have two branches

@@ -12,7 +12,7 @@ outputs = ["Reveal"]
 
 ---
 
-<!-- write-here "content/dvcs-basics/dvcs-concepts.md" -->
+<!-- write-here "reusable/dvcs-concepts.md" -->
 
 <!-- end-write -->
 

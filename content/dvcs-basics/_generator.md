@@ -18,13 +18,13 @@ outputs = ["Reveal"]
 
 ---
 
-<!-- write-here "shared-slides/git/intro.md" -->
+<!-- write-here "reusable/git-intro.md" -->
 
 <!-- end-write -->
 
 ---
 
-<!-- write-here "shared-slides/git/basics-no-branching.md" -->
+<!-- write-here "reusable/git-basics-no-branching.md" -->
 
 <!-- end-write -->
 

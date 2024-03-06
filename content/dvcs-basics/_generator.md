@@ -1226,7 +1226,7 @@ You are all set! Enjoy your secure authentication.
 
 > Remotes are __local names__ for the *known copies* of a repository that exist somewhere on the Internet
 
-* Each remote has a *name* and a *URI*
+* Each remote has a *name* and a *URL*
 * When a repository is created via `init`, no remote is known.
 * When a repository __cloned__ from the Internet, the remote source is called `origin` by default
 
@@ -1235,7 +1235,7 @@ You are all set! Enjoy your secure authentication.
 The `remote` subcommand is used to inspect and manage remotes:
 * `git remote -v` *lists* the known remotes
 
-* `git remote add a-remote URI` *adds* a new remote named `a-remote` and pointing to `URI`
+* `git remote add a-remote URL` *adds* a new remote named `a-remote` and pointing to `URL`
 * `git remote show a-remote` displays *extended information* on `a-remote`
 * `git remote remove a-remote` *removes* `a-remote` (it does not delete information on the remote, it *locally* forgets that it exits)
 
@@ -1350,10 +1350,10 @@ The `remote` subcommand is used to inspect and manage remotes:
 * But most of the time we want to start from a *local copy* of an **existing** repository
 
 Git provides a `clone` subcommand that copies *the whole history* of a repository locally
-* `git clone URI destination` creates the folder `destination` and clones the repository found at `URI`
+* `git clone URL destination` creates the folder `destination` and clones the repository found at `URL`
   * If `destination` is not empty, fails
-  * if `destination` is omitted, a folder with the same namen of the last segment of `URI` is created
-  * `URI` can be remote or local, Git supports the `file://`, `https://`, and `ssh` protocols
+  * if `destination` is omitted, a folder with the same namen of the last segment of `URL` is created
+  * `URL` can be remote or local, Git supports the `file://`, `https://`, and `ssh` protocols
       * `ssh` *recommended* when available
 * The `clone` subcommand checks out the remote branch where the `HEAD` is attached (*default branch*)
 
@@ -1427,857 +1427,83 @@ class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8
 
 ---
 
-# OLD MATERIAL FROM NOW ON
+# \[New\] Exercise (pt. 1)
+
+## Clone somebody else's repository
+
+1. Clone the following repository: <https://github.com/unibo-dtm-se/repository-example>
+  - `git clone https://github.com/unibo-dtm-se/repository-example.git`
+
+> Such repository is an instance of 
+> [`template-project-work`](https://github.com/unibo-dtm-se/template-project-work), i.e. a template for 
+> your final reports. It consists of static Web-site, based on the [Jekyll](https://jekyllrb.com/) technology.
+> You write `.md` files, and Jekyll generates the HTML for you.
+> The site is then hosted on GitHub pages, i.e. [here](https://unibo-dtm-se.github.io/template-project-work).
+
+2. Wait for the _teacher_ to create and _push_ a few more commits
+    + have a look to the commit history, on <i class="fa-brands fa-github"></i>
+
+3. _Pull_ the commits from the remote
+    + `git pull`
+
+4. Ensure you have the teacher's commits locally
+    + `git log --oneline`
 
 ---
 
-## Importing remote branches
+# Exercise (pt. 2)
 
-`git branch` (or `git checkout -b`) can checkout remote branches locally *once they have been fetched*.
+## Divergent histories
 
-```mermaid
-flowchart RL
+Let's now try to exemplify a potential situation of conflict
 
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-  serverless(feat/serverless)
+5. Let's select a few volunteers
+    + we need your __GitHub usernames__ to give you _write rights_ on the repository
 
-  C10([10]) --> C9([9]) --> C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C12([12]) --> C11([11]) --> C7
+6. The _volunteer_ will be asked to _edit_ one file and _push_ the changes (say, file `sections/01-concept/index.md`)
+    + try to _add_ some content to `.md` files, possibly, _deleting_ some prior content
+    + _tell_ the teacher which files you edited
 
-  master -.-> C10
-  serverless -.-> C12
+7. The _volunteer_ will be asked to _push_ their changes
+    1. `git add <edited files here>` 2. `git commit -m "Description of the changes"` 3. `git push`
 
-  HEAD -.-> C10
-  HEAD --"fas:fa-link"--o master
-end
+8. The _teacher_ will edit some __other__ file (_different_ from the one the volunteer edited) and then _commit_
+    + let's pretend the teacher was not aware of the volunteer's changes
+    + this is to simulate the scenario of __concurrent__ changes _to the different files_
 
-subgraph local
-  direction RL
-  origin[(origin)]
+9. The _teacher_ will attempt to _push_ their changes
+    + `git push`
 
-  masterl(master)
+---
 
-  HEADL{{"HEAD"}}
+## Divergent histories (pt. 1)
 
-  CL10([10]) --> CL9([9]) --> CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
+### How to spot the situation, locally
 
-  masterl -.-> CL10
-  masterl ==o master
+Attempting to __push__ shall result in a _message_ like:
 
-  HEADL -.-> CL10
-  HEADL --"fas:fa-link"--o masterl
-end
-
-origin ==o somesite.com/repo.git
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
+```text
+To somesite.com/repo.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'somesite.com/repo.git'
+hint: Updates were rejected because the remote contains work that you do
+      not have locally. This is usually caused by another repository pushing
+      to the same ref. You may want to first integrate the remote changes
+      (e.g., 'git pull ...') before pushing again.
+      See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-➡️ `git checkout -b imported-feat origin/feat/serverless` ➡️
+* Why is this the case?
+* How to solve?
+  * (Git's `hint` explains it pretty well)
 
 ---
 
-⬇️ `git checkout -b imported-feat origin/feat/serverless` ⬇️
+## Divergent histories (pt. 2)
 
-```mermaid
-flowchart RL
+### Understanding the issue
 
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-  serverless(feat/serverless)
-
-  C10([10]) --> C9([9]) --> C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C12([12]) --> C11([11]) --> C7
-
-  master -.-> C10
-  serverless -.-> C12
-
-  HEAD -.-> C10
-  HEAD --"fas:fa-link"--o master
-end
-
-subgraph local
-  direction RL
-  origin[(origin)]
-
-  masterl(master)
-  imported(imported-feat)
-  HEADL{{"HEAD"}}
-
-  CL12([12]) --> CL11([11]) --> CL7
-  CL10([10]) --> CL9([9]) --> CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL10
-  masterl ==o master
-  imported -.-> CL12
-  imported ==o serverless
-
-  HEADL -.-> CL12
-  HEADL --"fas:fa-link"--o imported
-end
-
-origin ==o somesite.com/repo.git
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-* A new branch `imported-feat` is created locally, and `origin/feat/serverless` is set as its *upstream*
-
----
-
-## Importing remote branches
-
-* It is customary to reuse the upstream name if there are no conflicts
-  * `git checkout -b feat/new-client origin/feat/new-client`
-* Modern versions of Git automatically checkout remote branches if there are no ambiguities:
-  * `git checkout feat/new-client`
-  * creates a new branch `feat/new-client` with the upstream branch set to `origin/feat/new-client` if:
-    * there is **no** *local branch* named `feat/new-client`
-    * there is **no** *ambiguity* with remotes
-  * Quicker if you are working with a single remote (pretty common)
-
----
-
-## Example with multiple remotes
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-  serverless(feat/serverless)
-
-  C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C7([7]) --> C6([6]) --> C5([5]) --> C2 
-
-  master -.-> C4
-  serverless -.-> C7
-
-  HEAD -.-> C4
-  HEAD --"fas:fa-link"--o master
-end
-
-subgraph somewherelse.org/repo.git
-  direction RL
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL10([10]) --> CL9([9]) --> CL8([8]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL10
-
-  HEADL -.-> CL10
-  HEADL --"fas:fa-link"--o masterl
-end
-
-class local,somesite.com/repo.git,somewherelse.org/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ Next: `git clone git@somesite.com/repo.git` ➡️
-
----
-
-⬇️ `git clone git@somesite.com/repo.git` ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-  serverless(feat/serverless)
-
-  C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C7([7]) --> C6([6]) --> C5([5]) --> C2 
-
-  master -.-> C4
-  serverless -.-> C7
-
-  HEAD -.-> C4
-  HEAD --"fas:fa-link"--o master
-end
-
-subgraph somewherelse.org/repo.git
-  direction RL
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL10([10]) --> CL9([9]) --> CL8([8]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL10
-
-  HEADL -.-> CL10
-  HEADL --"fas:fa-link"--o masterl
-end
-
-subgraph local
-  direction RL
-
-  origin[(origin)]
-
-  HEADa{{"HEAD"}}
-  mastera(master)
-
-  C4a([4]) --> C3a([3]) --> C2a([2]) --> C1a([1])
-
-  mastera -.-> C4a
-  mastera ==o master
-
-  HEADa -.-> C4a
-  HEADa --"fas:fa-link"--o mastera
-end
-
-origin ==o somesite.com/repo.git
-
-class local,somesite.com/repo.git,somewherelse.org/repo.git repo;
-class origin remote;
-class HEAD,HEADL,HEADa head;
-class master,masterl,mastera,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C1a,C2a,C3a,C4a,C5a,C6a,C7a,C8a,C9a,C10a,C11a,C12a,C13a,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ Next: `git checkout -b feat/serverless origin/feat/serverless` ➡️
-
----
-
-⬇️ `git checkout -b feat/serverless origin/feat/serverless` ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-  serverless(feat/serverless)
-
-  C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C7([7]) --> C6([6]) --> C5([5]) --> C2 
-
-  master -.-> C4
-  serverless -.-> C7
-
-  HEAD -.-> C4
-  HEAD --"fas:fa-link"--o master
-end
-
-subgraph somewherelse.org/repo.git
-  direction RL
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL10([10]) --> CL9([9]) --> CL8([8]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL10
-
-  HEADL -.-> CL10
-  HEADL --"fas:fa-link"--o masterl
-end
-
-subgraph local
-  direction RL
-
-  origin[(origin)]
-
-  HEADa{{"HEAD"}}
-  mastera(master)
-  serverlessa(feat/serverless)
-
-  C4a([4]) --> C3a([3]) --> C2a([2]) --> C1a([1])
-  C7a([7]) --> C6a([6]) --> C5a([5]) --> C2a 
-
-  mastera -.-> C4a
-  mastera ==o master
-
-  serverlessa -.-> C7a
-  serverlessa ==o serverless
-
-  HEADa -.-> C7a
-  HEADa --"fas:fa-link"--o serverlessa
-end
-
-origin ==o somesite.com/repo.git
-
-class local,somesite.com/repo.git,somewherelse.org/repo.git repo;
-class origin remote;
-class HEAD,HEADL,HEADa head;
-class master,masterl,mastera,bug22,serverless,serverlessa,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C1a,C2a,C3a,C4a,C5a,C6a,C7a,C8a,C9a,C10a,C11a,C12a,C13a,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ Next: `git remote add other git@somewhereelse.org/repo.git` ➡️
-
----
-
-⬇️ `git remote add other git@somewhereelse.org/repo.git` ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-  serverless(feat/serverless)
-
-  C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C7([7]) --> C6([6]) --> C5([5]) --> C2 
-
-  master -.-> C4
-  serverless -.-> C7
-
-  HEAD -.-> C4
-  HEAD --"fas:fa-link"--o master
-end
-
-subgraph somewherelse.org/repo.git
-  direction RL
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL10([10]) --> CL9([9]) --> CL8([8]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL10
-
-  HEADL -.-> CL10
-  HEADL --"fas:fa-link"--o masterl
-end
-
-subgraph local
-  direction RL
-
-  origin[(origin)]
-  other[(other)]
-
-  HEADa{{"HEAD"}}
-  mastera(master)
-  serverlessa(feat/serverless)
-
-  C4a([4]) --> C3a([3]) --> C2a([2]) --> C1a([1])
-  C7a([7]) --> C6a([6]) --> C5a([5]) --> C2a 
-
-  mastera -.-> C4a
-  mastera ==o master
-
-  serverlessa -.-> C7a
-  serverlessa ==o serverless
-
-  HEADa -.-> C7a
-  HEADa --"fas:fa-link"--o serverlessa
-end
-
-origin ==o somesite.com/repo.git
-other ==o somewherelse.org/repo.git
-
-class local,somesite.com/repo.git,somewherelse.org/repo.git repo;
-class origin,other remote;
-class HEAD,HEADL,HEADa head;
-class master,masterl,mastera,bug22,serverless,serverlessa,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C1a,C2a,C3a,C4a,C5a,C6a,C7a,C8a,C9a,C10a,C11a,C12a,C13a,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ Next: `git checkout -b other-master other/master` ➡️
-
----
-
-⬇️ `git checkout -b other-master other/master` ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-  serverless(feat/serverless)
-
-  C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-  C7([7]) --> C6([6]) --> C5([5]) --> C2 
-
-  master -.-> C4
-  serverless -.-> C7
-
-  HEAD -.-> C4
-  HEAD --"fas:fa-link"--o master
-end
-
-subgraph somewherelse.org/repo.git
-  direction RL
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL10([10]) --> CL9([9]) --> CL8([8]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL10
-
-  HEADL -.-> CL10
-  HEADL --"fas:fa-link"--o masterl
-end
-
-subgraph local
-  direction RL
-
-  HEADa{{"HEAD"}}
-  mastera(master)
-  serverlessa(feat/serverless)
-  othermaster(other-master)
-
-  C10a([10]) --> C9a([9]) --> C8a([8]) --> C4a([4]) --> C3a([3]) --> C2a([2]) --> C1a([1])
-  C7a([7]) --> C6a([6]) --> C5a([5]) --> C2a 
-
-  mastera -.-> C4a
-  mastera ==o master
-
-  serverlessa -.-> C7a
-  serverlessa ==o serverless
-
-  othermaster -.-> C10a
-  othermaster ==o masterl
-
-  HEADa -.-> C10a
-  HEADa --"fas:fa-link"--o othermaster
-
-  origin[(origin)]
-  other[(other)]
-end
-
-origin ==o somesite.com/repo.git
-other ==o somewherelse.org/repo.git
-
-class local,somesite.com/repo.git,somewherelse.org/repo.git repo;
-class origin,other remote;
-class HEAD,HEADL,HEADa head;
-class master,masterl,mastera,bug22,serverless,serverlessa,imported,othermaster branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C1a,C2a,C3a,C4a,C5a,C6a,C7a,C8a,C9a,C10a,C11a,C12a,C13a,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
----
-
-## Multiple remotes
-
-You can operate with *multiple remotes*! Just remember: *branch names* must be *unique* for every repository
-  * If you want to track `origin/master` and `anotherRemote/master`, you need *two local branches* with *diverse names*
-
----
-
-## Fetching updates
-
-To check if a *remote* has any *update* available, git provides th `git fetch` subcommand.
-* `git fetch a-remote` checks if `a-remote` has any new information. If so, it downloads it.
-  * **Note**: *it does **not** merge* it anywhere, it just memorizes its current status
-* `git fetch` without a remote:
-  * if `HEAD` is *attached* and the *current branch* has an *upstream*, then the *remote* that is hosting the *upstream branch* is fetched
-  * otherwise, `origin` is fetched, if present
-* To apply the updates, is then necessary to use *manually* use `merge`
-
-The new *information fetched* includes new *commits*, *branches*, and *tags*.
-
----
-
-## Fetch + merge example
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-
-  C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  master -.-> C8
-
-  HEAD -.-> C8
-  HEAD --"fas:fa-link"--o master
-end
-
-origin ==o somesite.com/repo.git
-
-subgraph local
-  direction RL
-  origin[(origin)]
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL8
-  masterl ==o master
-
-  HEADL -.-> CL8
-  HEADL --"fas:fa-link"--o masterl
-end
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ Next: Changes happen on `somesite.com/repo.git` and on our repository concurrently ➡️
-
----
-
-## Fetch + merge example
-
-⬇️ Changes happen on `somesite.com/repo.git` and on our repository concurrently ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-
-  C10([10]) --> C9([9]) --> C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  master -.-> C10
-
-  HEAD -.-> C10
-  HEAD --"fas:fa-link"--o master
-end
-
-origin ==o somesite.com/repo.git
-
-subgraph local
-  direction RL
-  origin[(origin)]
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL12([12]) --> CL11([11]) --> CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL12
-  masterl ==o master
-
-  HEADL -.-> CL12
-  HEADL --"fas:fa-link"--o masterl
-end
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ `git fetch && git merge origin/master` (assuming no conflicts or conflicts resolved) ➡️
-
----
-
-## Fetch + merge example
-
-⬇️ `git fetch && git merge origin/master` (assuming no conflicts or conflicts resolved) ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-
-  C10([10]) --> C9([9]) --> C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  master -.-> C10
-
-  HEAD -.-> C10
-  HEAD --"fas:fa-link"--o master
-end
-
-origin ==o somesite.com/repo.git
-
-subgraph local
-  direction RL
-  origin[(origin)]
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL13([13]) --> CL12([12]) --> CL11([11]) --> CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-  CL13 --> CL10([10]) --> CL9([9]) --> CL8
-
-  masterl -.-> CL13
-  masterl ==o master
-
-  HEADL -.-> CL13
-  HEADL --"fas:fa-link"--o masterl
-end
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-If there had been no updates locally, we would have experienced a *fast-forward*
-
----
-
-## `git pull`
-
-*Fetching* the remote with the upstream branch and then *merging* is *extremely common*,
-so common that there is a special subcommand that operates.
-
-`git pull` is equivalent to `git fetch && git merge FETCH_HEAD`
-* `git pull remote` is the same as `git fetch remote && git merge FETCH_HEAD`
-* `git pull remote branch` is the same as `git fetch remote && git merge remote/branch`
-
-`git pull` is more commonly used than `git fetch` + `git merge`,
-still, it is important to understand that *it is not a primitive operation*
-
----
-
-## Sending local changes
-
-Git provides a way to *send* changes to a remote: `git push remote branch`
-* sends the current branch changes to `remote/branch`, and updates the remote `HEAD`
-* if the branch or the remote is omitted, then the *upstream* branch is used
-* `push` *requires writing rights to the remote repository*
-* `push` *fails* if the pushed branch is not a *descendant* of the destination branch, which means:
-  * the destination branch has *work that is not present* in the local branch
-  * the destination branch *cannot be fast-forwarded* to the local branch
-  * the commits on the destination branch *are not a subset* of the ones on the local branch
-
-#### Pushing tags
-
-By default, `git push` does not send *tags*
-* `git push --tags` sends only the tags
-* `git push --follow-tags` sends commits and then tags
-
----
-
-## Example with git pull and git push
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-
-  C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  master -.-> C8
-
-  HEAD -.-> C8
-  HEAD --"fas:fa-link"--o master
-end
-
-origin ==o somesite.com/repo.git
-
-subgraph local
-  direction RL
-  origin[(origin)]
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL8
-  masterl ==o master
-
-  HEADL -.-> CL8
-  HEADL --"fas:fa-link"--o masterl
-end
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ Next: [some changes] `git add . && git commit` ➡️
-
----
-
-## Example with git pull and git push
-
-⬇️ [some changes] `git add . && git commit` ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-
-  C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  master -.-> C8
-
-  HEAD -.-> C8
-  HEAD --"fas:fa-link"--o master
-end
-
-origin ==o somesite.com/repo.git
-
-subgraph local
-  direction RL
-  origin[(origin)]
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL9([9]) --> CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL9
-  masterl ==o master
-
-  HEADL -.-> CL9
-  HEADL --"fas:fa-link"--o masterl
-end
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ Next: `git push` ➡️
-
----
-
-## Example with git pull and git push
-
-⬇️ `git push` ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-
-  C9([9]) --> C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  master -.-> C9
-
-  HEAD -.-> C9
-  HEAD --"fas:fa-link"--o master
-end
-
-origin ==o somesite.com/repo.git
-
-subgraph local
-  direction RL
-  origin[(origin)]
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL9([9]) --> CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL9
-  masterl ==o master
-
-  HEADL -.-> CL9
-  HEADL --"fas:fa-link"--o masterl
-end
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-* Everything okay! `origin/master` was a *subset* of `master`
-* The remote `HEAD` can be *fast-forwarded*
-
-➡️ Next: someone else pushes a change ➡️
-
----
-
-## Example with git pull and git push
-
-⬇️ someone else pushes a change ⬇️
-
-```mermaid
-flowchart RL
-
-subgraph somesite.com/repo.git
-  direction RL
-  HEAD{{"HEAD"}}
-  master(master)
-
-  C10([10]) --> C9([9]) --> C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2]) --> C1([1])
-
-  master -.-> C10
-
-  HEAD -.-> C10
-  HEAD --"fas:fa-link"--o master
-end
-
-origin ==o somesite.com/repo.git
-
-subgraph local
-  direction RL
-  origin[(origin)]
-
-  masterl(master)
-  HEADL{{"HEAD"}}
-
-  CL9([9]) --> CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5]) --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])
-
-  masterl -.-> CL9
-  masterl ==o master
-
-  HEADL -.-> CL9
-  HEADL --"fas:fa-link"--o masterl
-end
-
-class local,somesite.com/repo.git repo;
-class origin remote;
-class HEAD,HEADL head;
-class master,masterl,bug22,serverless,imported branch;
-class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
-```
-
-➡️ Next: [some changes] `git add . && git commit` ➡️
-
----
-
-## Example with git pull and git push
-
-⬇️ [some changes] `git add . && git commit` ⬇️
+The situation is as follows:
 
 ```mermaid
 flowchart RL
@@ -2320,43 +1546,16 @@ class master,masterl,bug22,serverless,imported branch;
 class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
 ```
 
-➡️ Next: `git push` ➡️
+* The history is the __same__ for _local_ and _remote_, __up to__ commit `9`
+* Then, the _remote_ history has a commit `10`, and the _local_ history has commit `9`
 
 ---
 
-## Example with git pull and git push
+## Divergent histories (pt. 3)
 
-⬇️ `git push` ⬇️
+### Solving the issue
 
-{{% fragment %}}
-**ERROR**
-
-```text
-To somesite.com/repo.git
- ! [rejected]        master -> master (fetch first)
-error: failed to push some refs to 'somesite.com/repo.git'
-hint: Updates were rejected because the remote contains work that you do
-hint: not have locally. This is usually caused by another repository pushing
-hint: to the same ref. You may want to first integrate the remote changes
-hint: (e.g., 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-```
-
-* `master` is not a *superset* of `origin/master`
-  * commit `10` is in `origin/master` but not in `master`, preventing a remote *fast-forward*
-* How to solve?
-  * (Git's error explains it pretty well)
-{{% /fragment %}}
-
-{{% fragment %}}
-➡️ Next: `git pull` ➡️
-{{% /fragment %}}
-
----
-
-## Example with git pull and git push
-
-⬇️ `git pull` (assuming no merge conflicts, or after conflict resolution) ⬇️
+⬇️ `git pull` ⬇️
 
 ```mermaid
 flowchart RL
@@ -2400,14 +1599,30 @@ class master,masterl,bug22,serverless,imported branch;
 class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
 ```
 
-* Now `master` is a *superset* of `origin/master`! (all the commits in `origin/master`, plus `11` and `12`)
+* Now, the local history is a __superset__ of the remote history
+    * i.e., it includes all the commits of the remote history, and some more
 
-➡️ Next: `git push` ➡️
+* A new __merge commit__ (`12`) is created in the _local_ history, which has `10` and `11` as parents
 
 ---
 
-## Example with git pull and git push
+## Divergent histories (pt. 4)
 
+### Solving the issue
+
+> __Beware__: in general, when creating the _merging_ commits, 
+>
+> __conflicts__ might arise _if the same files were edited_
+
+We'll discuss __conflict resolution__ in a few slides
+
+---
+
+## Divergent histories (pt. 5)
+
+### Solving the issue
+
+Assuming that you manage to create the merge commit with no issues...
 
 ⬇️ `git push` ⬇️
 
@@ -2454,27 +1669,135 @@ class master,masterl,bug22,serverless,imported branch;
 class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13 commit;
 ```
 
-The push suceeds now!
+The push succeeds now!
+
+#### The local and remote histories are now __aligned__ 
+
+(i.e., they are equal)
 
 ---
 
-<!-- write-here "shared-slides/git/branching-merging.md" -->
+# Exercise (pt. 3)
+
+## Divergent histories (continued)
+ 
+10. The _teacher_ will __pull__ the changes from the remote
+    + notice that a merge commit is created in the local history
+        + `git log --oneline`
+
+11. The _teacher_ will __push__ the changes to the remote, successfully
+    + `git push`
+    + have a look to the commit history, on <i class="fa-brands fa-github"></i>
+
+12. The _volunteer_ will be asked to __pull__ the changes from the remote
+    + this should work with no issues
+
+---
+
+# Exercise (pt. 4)
+
+## Creating conflicts
+
+13. The _volunteer_ will be asked to _edit_ some more file
+    + try to _add_ some content to `.md` files, possibly, _deleting_ some prior content
+        * say, to file `sections/02-requirements/index.md`
+    + _tell_ the teacher which files you edited
+
+14. The _volunteer_ will be asked to _push_ their changes
+
+15. The _teacher_ will _edit_ the __same__ file (_the one the volunteer edited_) and then _commit_
+    + let's pretend the teacher was not aware of the volunteer's changes
+    + this is to simulate the scenario of __concurrent__ changes _to the same files_
+
+16. The _teacher_ will attempt to _pull_ the volunteer's changes
+    + `git pull`
+    + Git will tell you that there are __merge conflicts__
+
+> Merge conflicts cannot be resolved _automatically_ by Git, they require __human intervention__
+
+---
+
+## Merge conflicts
+
+Git tries to resolve most conflicts by *itself*
+* It's *pretty good* at it
+* but things can still require *human intervention*
+
+In case of conflict on one or more files, Git marks the subject files as *conflicted*, and modifies them adding *merge markers*:
+
+```text
+<<<<<<< Current changes
+Changes made on the branch that is being merged into,
+this is the branch currently checked out (HEAD).
+=======
+Changes made on the branch that is being merged in.
+>>>>>>> Incoming changes
+```
+
+* (_VS Code_ may highlight the conflict markers with _colours_)
+* The user should *change the conflicted files* so that they reflect the *final desired status*
+* The (now fixed) files should get added to the stage with `git add`
+* The merge operation can be concluded through `git commit`
+  * In case of merge, the message is pre-filled in
+  * If the message is okay, `git commit --no-edit` can be used to use it without editing
+
+---
+
+# Exercise (pt. 5)
+
+## Resolving conflicts
+
+17. The _teacher_ will _solve_ the conflicts __manually__ and then _commit_
+    + `git commit --no-edit`
+    + notice that there should be one more commit in the history, _whose message describes the conflict_
+        * `git log`
+
+18. The _teacher_ will attempt to _push_ the changes to the remote
+    + `git push`
+    + this should work with no issues
+    + consider having a look to the commit history, on <i class="fa-brands fa-github"></i>
+
+19. Students will be asked to _pull_ the changes from the remote
+    + this should work with no issues
+
+---
+
+## Take-away 
+
+### Simple protocol for cooperation
+
+1. **Pull** before starting your working session
+
+2. Make your __commits__ locally 
+
+3. **Push** your changes to the remote, _as frequently as possible_
+    + _before_ pushing:
+        1. **pull** the changes from the remote
+        2. __resolve__ conflicts, if any
+        3. __commit__ the changes
+        4. finally, _push_
+
+4. Make sure to __push__ before your working session ends
+
+<!-- --- -->
+
+<!-- dont write-here "shared-slides/git/branching-merging.md" -->
 
 <!-- end-write -->
 
----
+<!-- --- -->
 
-<!-- write-here "shared-slides/git/tagging-basics.md" -->
-
-<!-- end-write -->
-
----
-
-<!-- write-here "shared-slides/git/branch-deletion.md" -->
+<!-- dont write-here "shared-slides/git/tagging-basics.md" -->
 
 <!-- end-write -->
 
----
+<!-- --- -->
+
+<!-- dont write-here "shared-slides/git/branch-deletion.md" -->
+
+<!-- dont end-write -->
+
+<!-- ---
 
 ## Best practices
 
@@ -2488,8 +1811,12 @@ The push suceeds now!
 * Prepare an *attribute file*
 * *Pull* before pushing
 
----
+--- -->
 
-<!-- write-here "shared-slides/git/workflows-flow-fork.md" -->
+<!-- dont write-here "shared-slides/git/workflows-flow-fork.md" -->
 
 <!-- end-write -->
+
+---
+
+# To be continued...

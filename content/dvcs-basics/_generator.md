@@ -1779,6 +1779,117 @@ Changes made on the branch that is being merged in.
 
 4. Make sure to __push__ before your working session ends
 
+--- 
+
+# Branching
+
+---
+
+## Why branching?
+
+* Most commonly, while _releasing_ version `N`, development teams are already working to version `N+1`
+
+* Most commonly, the development team is working on _multiple_ __features__ at the same time
+
+* To support many (different) development activities to occur _simultaneously_, developers exploit _branches_
+
+> A __branch__ is a coherent _development line_
+
+* technically, a branch is a __sequence of__ contiguous commits, with a __name__ 
+    + the name acts as a __pointer__ to the last commit
+
+---
+
+## Example: the Git Flow (pt. 1)
+
+(cf. <https://nvie.com/posts/a-successful-git-branching-model/>)
+
+!["Git Flow representation as a graph"](gitflow-horizontal.png)
+
+---
+
+## Example: the Git Flow (pt. 2)
+
+- `master` (or `main`) branch contains commits describing the _stable_ ($\approx$ publicly available & working) versions of the code
+- `develop` branch contains commits where novel features under development are being integrated to create the next stable version
+    + these commits are eventually propagated to the `master` branch
+- `hotfix` branches (one per _hotfix_) are created whenever an urgent fix is needed on the stable version
+    + these commits are later propagated to the `develop` branch too
+- `feature` branches (one per _feature_) are created whenever a new feature is being developed
+    + these commits are later propagated to the `develop` branch, and eventually to the `master` branch
++ `release` branches (one per _release_) are created whenever a new version is being prepared for release
+    + these commits are later propagated to the `develop` and `master` branches
+
+---
+
+## Suggestion (pt. 1)
+
+### This branching workflow could be used for writing your final report too!
+
+1. `master` branch contains the _initial_ version of the report (which is equal to the template)
+
+2. you create a `develop` branch
+
+3. you create a `feature/section-N` branch for each section (`N` = 1, 2, ...`)  
+
+4. as soon as a section is completed, the corresponding `feature/section-N` branch is merged into `develop`
+    + the `feature/section-N` branch is deleted
+    + further commits are performed on `develop` to better integrate the section with the rest
+
+5. once satisfied with the _whole report_ you create a `release` branch, from `develop`
+    + you perform the final adjustments on the `release` branch (e.g. date and version number in the front page)
+
+6. once satisfied with the _whole report_ you merge the `release` branch into `master`
+    + the `release` branch is deleted
+
+7. if revisions are requested by the teacher, you may create a `hotfix` branch from `master`
+
+8. ... and so on
+
+---
+
+## Suggestion (pt. 2)
+
+### This branching workflow could be used for writing your final report too!
+
+```mermaid
+%%{init: { 'gitGraph': { 'mainBranchName': 'master'}} }%%
+gitGraph
+  commit tag: "initial" id: "use template"
+  commit id: "write title"
+  commit id: "write authors"
+  branch develop
+  commit id: "write abstract"
+  commit id: "write concept"
+  branch feature/02-requirements
+  commit id: "write requirements"
+  checkout develop
+  merge feature/02-requirements
+  commit id: "integrate requirements"
+  branch feature/03-design
+  commit id: "design class 1"
+  branch feature/05-validation
+  commit id: "test class 1"
+  checkout feature/03-design
+  commit id: "design class 2"
+  checkout feature/05-validation
+  merge feature/03-design
+  commit id: "test class 2"
+  branch feature/04-development
+  commit id: "implement class 1"
+  checkout develop
+  merge feature/04-development
+  commit id: "integrate sections"
+  commit
+  commit id: "..." type: HIGHLIGHT
+  commit
+  branch release
+  commit id: "final adjustments"
+  checkout master
+  merge release
+  commit id: "submittable" tag: "1.0"
+```
+
 <!-- --- -->
 
 <!-- dont write-here "shared-slides/git/branching-merging.md" -->

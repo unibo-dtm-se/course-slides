@@ -1830,7 +1830,7 @@ Changes made on the branch that is being merged in.
 
 2. you create a `develop` branch
 
-3. you create a `feature/section-N` branch for each section (`N` = 1, 2, ...`)  
+3. you create a `feature/section-N` branch for each section (`N` = 1, 2, ...)  
 
 4. as soon as a section is completed, the corresponding `feature/section-N` branch is merged into `develop`
     + the `feature/section-N` branch is deleted
@@ -1852,7 +1852,7 @@ Changes made on the branch that is being merged in.
 
 ### This branching workflow could be used for writing your final report too!
 
-```mermaid
+<!-- ```mermaid
 %%{init: { 'gitGraph': { 'mainBranchName': 'master'}} }%%
 gitGraph
   commit tag: "initial" id: "use template"
@@ -1888,7 +1888,127 @@ gitGraph
   checkout master
   merge release
   commit id: "submittable" tag: "1.0"
-```
+``` -->
+
+![](workflow-example.svg)
+
+---
+
+## Relevant commands related to branching in Git
+
+- _Visualising_ branches 
+    * `git branch` -- list the branches
+        + `git branch -a` -- list all the branches, including the remote ones
+        + `git branch -d branch-name` -- delete the branch `branch-name`
+
+- _Switching_ among branches
+    * `git checkout BRANCH_NAME` -- switches to branch `BRANCH_NAME`
+        + `git checkout -b BRANCH_NAME` -- creates a new branch `BRANCH_NAME` and switches to it
+
+- _Mering_ two branches
+    * `git merge BRANCH_NAME` -- merges the branch `BRANCH_NAME` into the current branch
+
+- _Pushing_ a branch to the remote
+    * `git push` -- pushes the _current_ branch to the `origin` remote
+        + requires configuring the _upstream_ branch
+
+- _Pulling_ a branch from the remote ($\approx$ download + __merge__)
+    * `git pull` -- pulls the _current_ branch from the `origin` remote
+        + requires configuring the _upstream_ branch
+
+---
+
+# Exercise (pt. 6)
+
+20. The _teacher_ will select 12 volounteers
+
+21. Each volounteer will be asked to create a new branch, named `feature/section-N` (`N` = 1, 2, ..., 12)  
+
+22. Each volounteer will be asked to _edit_ the file `sections/N-concept/index.md` and _push_ the changes
+    + please _invent_ some content for those sections, possibly, _deleting_ some prior content
+
+23. The _teacher_ will _pull_ the changes from the remote and _merge_ them all into the `develop` branch
+    0. download edits from the remote: `git fetch`
+    1. move on the `feature/section-N` branch: `git checkout feature/section-N`
+    2. pull the changes from the remote: `git pull`
+    3. move on the `develop` branch: `git checkout develop`
+    4. merge the changes from the `feature/section-N` branch: `git merge feature/section-N`
+
+24. The _teacher_ will merge the `develop` branch into the `master` branch (and delete the feature branches)
+    + `git checkout master`
+    + `git merge develop`
+    + `git branch -d feature/section-N` + deletion on GitHub
+
+
+---
+
+## GitHub facilities
+
+Doing all the above via the CLI is fine,
+but GitHub provides a _nice_ UI to _visualise_, and __track__ cooperative work.
+
+Here are a bunch of _GitHub_ features that are _useful_ for _cooperative_ work (cf. [`numpy`'s repository](https://github.com/numpy/numpy)) 
+
+- [Forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks): 
+create a personal copy of someone else's project
+    + e.g. to _propose_ changes to the original project
+    + e.g. to use the original project as a _starting point_ for a new idea
+
+- [Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues): 
+keep track of _bugs_, enhancement _proposals_, and _tasks_ to do, etc.
+    + often created by users (or by project managers), and _assigned_ to developers
+    + this is where technical discussions about the project happen
+
+- [Pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests): 
+a proposal to _merge_ changes from one branch to another, or from another fork
+    + often created by developers, and __reviewed__ by other developers _before_ merging 
+    + often _linked_ to issues and to source / destination _branches_
+    + the recipient of the request decides if/when to accept
+
+- [Wikis](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis): 
+(one per repository, made up by several pages) a place to _document_ the project
+    + often written by developers to teach how to use the software to the community
+
+- [Organizations](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations): 
+groups of users, with _shared_ repositories, _teams_, and _projects_
+    + often used by companies, universities, and other organizations
+    + 1 product $\rightarrow$ 1 organization with several repositories 
+
+---
+
+# \[New\] Exercise (pt. 1)
+
+##  Let's now simulate a real project work
+
+1. Choose a name for your project (e.g. `calculator`)
+
+2. Create the `unibo-dtm-se-ACADEMIC_YEAR-calculator` _free_ __organization__ on <i class="fa-brands fa-github"></i>
+    + where `ACADEMIC_YEAR` is the academic year (e.g. `22-23`, `23-24`)
+    + invite the _teacher_ to be a member of the organization, as well as your colleagues
+        * here we'll need a few volounteers again
+
+3. Instantiate the [`template-project-work`](https://github.com/unibo-dtm-se/template-project-work) __template__ to create the `report` __repository__ inside the organization
+
+4. Inside the `report` repository, create a `develop` __branch__, from GitHub's UI
+
+5. Create a new __issue__, e.g. for the _abstract_, and create a __branch__  (say `feature/abstract`) from it
+    + *assign* the feature to a volounteer
+    + branch creation too can be done from GitHub's UI
+
+---
+
+# Exercise (pt. 2)
+
+##  Let's now simulate a real project work
+
+6. The volounteer should commit & push the new abstract on the `feature/abstract`
+
+7. The volounteer should now create a new __pull request__ to merge the `feature/abstract` into `develop`
+    + asking the teacher to review the changes
+
+8. The teacher will review the changes and merge the `feature/abstract` into `develop`
+    + and remove the feature branch via the UI
+
 
 <!-- --- -->
 
@@ -1927,7 +2047,3 @@ gitGraph
 <!-- dont write-here "shared-slides/git/workflows-flow-fork.md" -->
 
 <!-- end-write -->
-
----
-
-# To be continued...

@@ -1264,10 +1264,10 @@ The `remote` subcommand is used to inspect and manage remotes:
 3. Create a new remote in the local repository, let's call it `origin`
     + `git remote add origin https://somesite.com/repo.git`
 
-4. Set the _upstream_ for the current branch
+4. Set the _upstream_ for the current branch, while __publishing__ it to the remote
     + i.e. declare how the local branch will be named on the remote (better to use the same name)
     + e.g. if the current branch is `master`: 
-        * `git branch --set-upstream-to=origin/master`
+        * `git push -u origin master`
 
 ---
 
@@ -1331,16 +1331,16 @@ The `remote` subcommand is used to inspect and manage remotes:
 25. Add the remote `origin` to your local repository
     + `git remote add origin https://github.com/YOUR_USERNAME/modular-calculator.git`
 
-26. Set the upstream for the `master` branch
-    + `git branch --set-upstream-to=origin/master`
-
-27. Push the local repository to the remote
-    + `git push`
+26. Push the local repository to the remote, while simultaneously _setting the upstream_
+    + `git push -u origin master`
     + you may be asked to authenticate with your _username_ and the _personal access token_ (as password)
 
-28. Check the status of the repository on <i class="fa-brands fa-github"></i> via your browser
+27. Check the status of the repository on <i class="fa-brands fa-github"></i> via your browser
 
-29. Do some more commit locally and push them to the remote
+28. Do some more _commits_, locally...
+
+29. ... and __push__ them to the remote
+    + just `git push` is sufficient from now on
 
 ---
 

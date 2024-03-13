@@ -36,15 +36,52 @@
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="quality-assurance">Quality assurance</h2>
-<p>As any engineered product, software should be <em>subject to quality assurance control</em>.</p>
+<p>Would you drive a car that has <em>not</em> been succefully passed its <em>quality control</em>?</p>
+<br>
+<p>As any engineered product, software should be <em>subject to <strong>quality assurance</strong> control</em>.</p>
+<br>
+<blockquote>
+<p><strong>Quality assurance</strong> (in SE) is the set of activities and practices aimed at ensuring that a software product <em>works</em> and it is <em>of good quality</em>.</p>
+</blockquote>
 <ul>
-<li>Would you drive a car that has not been succefully passed its <em>quality control</em>?</li>
-<li>What does it mean that a car <strong>passed</strong> its <em>quality control checks</em>?
+<li>what does <em>“works”</em> mean for software?</li>
+<li>what does <em>“good quality”</em> mean for software?</li>
+</ul>
+</section><section>
+<h2 id="quality-assurance-works">Quality assurance: “works”</h2>
+<h3 id="what-does-_works_-mean-for-software">What does <em>“works”</em> mean for software?</h3>
+<blockquote>
+<p>Insight: software works when it <em>meets the requirements</em></p>
+</blockquote>
 <ul>
-<li>What does it mean for a bridge?</li>
-<li>What does it mean for a chair?</li>
-<li>What does it mean for a robot?</li>
-<li>What does it mean for a medical software?</li>
+<li>Recall that software requirements should come with clear <em>acceptance criteria</em>
+<ul>
+<li><strong>testing</strong> as the activity of <em>verifying</em> that the software meets the acceptance criteria</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="quality-assurance-good-quality">Quality assurance: “good quality”</h2>
+<h3 id="what-does-_good-quality_-mean-for-software">What does <em>“good quality”</em> mean for software?</h3>
+<blockquote>
+<p>Insight: software is good when it is</p>
+<p><em>easy for developers to evolve or maintain it</em></p>
+</blockquote>
+<ul>
+<li>
+<p>Recall that good software should have many <em>quality attributes</em></p>
+<ul>
+<li><strong>reproducible</strong> $\approx$ repeatable, with <em>predictable</em> outcomes</li>
+<li><strong>sustainable</strong> $\approx$ it’s possible to <em>timely</em> satisfy requirements with <em>controllable</em> costs and efforts</li>
+<li><strong>evolvable</strong> $\approx$ it’s possible to <em>adapt</em> the product to <em>new</em> requirements in a sustainable way</li>
+<li><strong>maintainable</strong> $\approx$ it’s possible to <em>fix</em>, <em>improve</em>, or just keep the product <em>alive</em> in a sustainable way</li>
+<li><strong>scalable</strong> $\approx$ it’s possible to <em>grow</em> the product in terms of <em>size</em>, <em>complexity</em>, and <em>features</em> in a sustainable way</li>
+</ul>
+</li>
+<li>
+<p>How to translate these attributes into <em>quality assurance</em> practices?</p>
+<ul>
+<li>as we will see, <strong>testing</strong> may also serve this purpose</li>
 </ul>
 </li>
 </ul>
@@ -78,59 +115,433 @@
 <ul>
 <li>Done <strong>without a plan</strong></li>
 </ul>
+<br>
 <p>If there is a plan that can be followed step-by-step, then <em>there is a program that can do it for you</em></p>
 <ul>
 <li>If a program can do it for you, the it <em>should</em> do it for you</li>
 </ul>
 </section><section>
-<h2 id="testing-scope">Testing scope</h2>
-<p>As any engineering product, software can be tested at different levels of abstraction.</p>
+<h2 id="testing-scope-pt-1">Testing scope (pt. 1)</h2>
+<p>As any engineering product, software can be tested at different levels of abstraction</p>
 <ul>
-<li><strong>Unit</strong> testing: test <em>single software components</em>
+<li>
+<p><strong>Unit</strong> testing: test <em>single software components</em></p>
 <ul>
-<li>Is this <code>class</code> behavior the expected one?</li>
-<li>Is this <em>suspension spring</em> behavior the expected one?</li>
-<li>Is this <em>steel rod</em> mechanical properties the expected ones?</li>
-</ul>
-</li>
-<li><strong>Integration</strong> testing: test <em>an entire subsystem</em>, with <em>multiple components</em>
+<li>Is this <code>class</code> (or <code>function</code> or <code>module</code>) behavior the expected one?</li>
+<li>For a car: is the <em>tire</em> working correctly?
 <ul>
-<li>Is this <em>OCR server</em> behavior the expected ones?</li>
-<li>Is this <em>engine</em>  working as expected?</li>
-<li>Is this <em>span of a bridge</em> working correctly?</li>
-</ul>
-</li>
-<li><strong>End-to-end</strong> (or <strong>acceptance</strong>) testing: test <em>an entire system</em>
-<ul>
-<li>Is this whole application functional?</li>
-<li>Is the car lapping under 2 minutes?</li>
-<li>Does the bridge work nominally with high traffic and strong wind?</li>
+<li>e.g. are shape, pression, etc. as expected?</li>
 </ul>
 </li>
 </ul>
-<p>A well-maintained engineering product must have tests at all granularity levels</p>
+</li>
+<li>
+<p><strong>Integration</strong> testing: test <em>an entire subsystem</em>, i.e. the interplay among <em>multiple components</em></p>
+<ul>
+<li>Class <code>A</code> uses class <code>B</code> and <code>C</code>. Are they working together as expected?</li>
+<li>For a car: if we attach the <em>wheels</em> to the <em>engine</em> via the <em>transmission</em>, does it work as expected?
+<ul>
+<li>e.g. we <em>turn on</em> the engine, does the wheel <em>spin</em>?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>End-to-end</strong> (or <strong>acceptance</strong>) testing: test <em>an entire system</em> (may involve <em>aesthetics</em>/<em>usability</em> criteria)</p>
+<ul>
+<li>Is this whole <strong>application</strong> functional, when used from the <strong>UI</strong>?
+<ul>
+<li>implies that <em>all</em> components are correctly integrated</li>
+</ul>
+</li>
+<li>For a car: is it usable by a person to drive in the real world?
+<ul>
+<li>e.g. we <em>turn on</em> the engine, does the car <em>move</em>?</li>
+<li>e.g. can the user <em>change direction</em> via the <em>steering wheel</em>?</li>
+<li>e.g. is the <em>speed indicator</em> reactive to the actual spees? is the <em>unit of measure</em> what the user expects?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="testing-scope-pt-2">Testing scope (pt. 2)</h2>
+<blockquote>
+<p>A well-maintained engineering product <em>must</em> have tests at <strong>all granularity levels</strong></p>
+</blockquote>
+<ul>
+<li>But why?
+<ul>
+<li>after all, if the <em>end-to-end</em> test passes…</li>
+<li>… then all the <em>unit</em> and <em>integration</em> tests should pass as well, right?</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>Yes, but:
+<ul>
+<li>tests are not only about <em>verifying</em> that the software works</li>
+<li>they are particularly useful to <em>understand</em> <strong>why</strong> it <em>doesn’t</em> work</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="automated-tests-as-sentinels">Automated tests as sentinels</h2>
+<ul>
+<li>
+<p>Creating <em>automated</em> test procedures makes the activity of <em>testing</em> very <strong>cheap</strong> (in terms of effort)</p>
+<ul>
+<li>this allows developers to <em>test</em> the software <em>often</em> and <em>early</em></li>
+</ul>
+</li>
+<li>
+<p>Being cheap, automated tests can serve as <a href="https://en.wikipedia.org/wiki/Sentinel_species">canaries in cold mines</a></p>
+<ul>
+<li>i.e. <strong>sentinels</strong> for the (early) detection of <em>problems</em></li>
+</ul>
+</li>
+<li>
+<p>Test <strong>failures</strong> are <em>precious</em> during development</p>
+<ul>
+<li>they help in localising the <em>source</em> of the problem</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>The more granular the tests, the easier it is to spot and fix problems</p>
+</blockquote>
 </section><section>
 <h2 id="reproducibility">Reproducibility</h2>
+<blockquote>
+<p>Would you be comfortable with a car that passes the crash test <code>99.9%</code> of time, but on the <code>0.1%</code> of the cases fails <em>unexplicably</em>?</p>
+</blockquote>
 <p><strong>Reproducibility</strong> is <strong>central</strong> for testing</p>
 <p>(true for any engineering, but in particular for software)</p>
 <ul>
-<li><em>Tests should always provide the same results</em>
+<li><em>Tests should always provide the same results</em> when run on the same system
 <ul>
-<li>Tests that work sometimets but sometimes not are called <em>flaky tests</em></li>
+<li>tests that <em>“work sometimes but sometimes not”</em> are called <strong>flaky tests</strong></li>
+<li>of course, running the same test procude on <em>different</em> systems may produce different results
+<ul>
+<li>as well as different <em>versions</em> of the <em>same</em> system</li>
 </ul>
 </li>
-<li>Tests should be <em>self-contained</em> (they should not depend on the results of previous tests)</li>
-<li><em>Random</em> events can be tested by <em>seeding</em> the random generators</li>
 </ul>
-<p>Would you be comfortable with a car that passes the crash test 99.9% of time, but on the 0.1% of the cases fails unexplicably?</p>
+</li>
+<li>Tests should be <strong>self-contained</strong> (they should not depend on the results of previous tests)</li>
+<li>Testing procedures should be <strong>deterministic</strong> ($\approx$ no randomness)
+<ul>
+<li><em>unpredicable</em> events / scenarios (e.g. user inputs, lack of Internet connection) should be <strong>simulated</strong>
+<ul>
+<li>one cannot predict <em>when</em> events will occur, but one must predict <em>what sorts</em> of events / scenarios <em>may</em> occur</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="technicalities-of-writing-tests">Technicalities of writing tests</h2>
+<p>(we will focus on Python, but the concepts are general)</p>
+<ol>
+<li>
+<p>the <em>source code</em> can now be conceinved as composed by <em>two parts</em>:</p>
+<ul>
+<li>the <strong>main</strong> code: where the actual software is implemented</li>
+<li>the <strong>test</strong> code: where the tests for the actual software are implemented</li>
+</ul>
+</li>
+<li>
+<p>the <strong>test</strong> code is usually placed in a separate folder, and it is usually named <code>tests/</code> (or <code>test/</code>)</p>
+</li>
+<li>
+<p>the <em>dependencies</em> of the project are now of <em>two sorts</em>:</p>
+<ul>
+<li>the <strong>main</strong> dependencies: the libraries required by the main code</li>
+<li>the <strong>development</strong> (<em>“dev”</em>) dependencies: the libraries required by the quality assurance procedures
+<ul>
+<li>there exist several libraries which support testing, e.g. <a href="https://docs.python.org/3/library/unittest.html"><code>unittest</code></a> (included in Python), or <a href="https://docs.pytest.org/en/stable/"><code>pytest</code></a> (third-party)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>developers may now want to <em>launch</em> not only the software, but also <em>the tests</em></p>
+<ul>
+<li>ad-hoc <em>terminal commands</em> or <em>IDE plugins</em> are available for this purpose</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="updated-project-structure">Updated project structure</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root_directory/
+</span></span><span style="display:flex;"><span>├── main_package/               <span style="color:#8f5902;font-style:italic"># main package (i.e. directory for the main code)</span>
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub_module.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── sub_package/ 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     ├── __init__.py 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     └── sub_sub_module.py 
+</span></span><span style="display:flex;"><span>├── tests/                      <span style="color:#8f5902;font-style:italic"># directory for the test code</span>
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── test_module_1.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── ...
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── test_module_N.py 
+</span></span><span style="display:flex;"><span>├── .python-version
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>├── requirements-dev.txt        <span style="color:#8f5902;font-style:italic"># file to list *development* dependencies</span>
+</span></span><span style="display:flex;"><span>└── requirements.txt            <span style="color:#8f5902;font-style:italic"># file to list *main* dependencies</span>
+</span></span></code></pre></div><br>
+<p>Important conventions:</p>
+<ol>
+<li>
+<p><strong>all</strong> the <em>test code</em> should be placed in a directory named <code>tests/</code> (or <code>test/</code>)</p>
+</li>
+<li>
+<p>the test code should be put into <code>.py</code> files whose name <em>starts with</em> <code>test_</code></p>
+</li>
+<li>
+<p><code>requirements.txt</code> is for the <em>main</em> dependencies, <code>requirements-dev.txt</code> is for the <em>dev</em> dependencies</p>
+</li>
+</ol>
+<div class="container w-100 m-0 p-0">
+    <div class="row ">
+<div class="col "><p><code>requirements.txt</code> example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>Kivy&gt;=2.3.0
+</span></span></code></pre></div></div>
+<div class="col "><p><code>requirements-dev.txt</code> example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>-r requirements.txt
+</span></span><span style="display:flex;"><span>pytest&gt;=8.1.0
+</span></span></code></pre></div></div>
+</div>
+</div>
+</section><section>
+<h2 id="nomenclature-about-testing">Nomenclature about testing</h2>
+<ul>
+<li>
+<p><strong>System under test</strong> (<em>SUT</em>): the component of the software that is being tested</p>
+<ul>
+<li>e.g. a <code>class</code>, a <code>function</code>, a <code>module</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Test case</strong>: a <em>class</em> that contains the <em>test functions</em> for a specific <em>SUT</em></p>
+<ul>
+<li>each test case corresponds to <em>one or more</em> testing procedures for the <em>same SUT</em></li>
+<li>in case of multiple procedures, all must <em>share</em> the same <strong>set up</strong> or <strong>tear down</strong> activities
+<ul>
+<li>i.e. activities to before or after <em>each</em> testing procedure from the same test case</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Test suite</strong>: a <em>collection</em> of <em>test cases</em>, commonly related to similar SUTs</p>
+<ul>
+<li>it commonly consists of a module, e.g. a <code>test_*.py</code> file</li>
+</ul>
+</li>
+<li>
+<p><strong>Assertion</strong>: a <em>boolean</em> (i.e. either <code>True</code> or <code>False</code>) <em>check</em> about the SUT</p>
+<ul>
+<li>if the assertion is <code>True</code>, the assertion <strong>passes</strong>, and the test <em>proceeds</em></li>
+<li>if the assertion is <code>False</code>, the test <strong>fails</strong>, and it is <em>interrupted</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Test procedure</strong>: a sequence of <em>actions</em> and <em>assertions</em> about some SUT</p>
+<ul>
+<li>it <em>succeeds</em> if <em>all</em> the assertions are <code>True</code> <strong>and no <em>unexpected</em> error occurs</strong></li>
+<li>it <em>fails</em> otherwise</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="writing-tests-in-python">Writing tests in Python</h2>
+<p>We adopt <a href="https://docs.python.org/3/library/unittest.html"><code>unittest</code></a>, a <em>built-in</em> library for writing tests in Python</p>
+<ul>
+<li>it is <em>inspired</em> by the <a href="https://junit.org"><code>JUnit</code></a> library for Java</li>
+<li>it is <em>not</em> the only one: <a href="https://docs.pytest.org/en/stable/"><code>pytest</code></a> is a popular alternative (but it needs to be installed)</li>
+</ul>
+<h3 id="anatomy-of-a-test-suite-in-unittest">Anatomy of a test suite in <code>unittest</code></h3>
+<p>Let’s assume this is the <code>test_my_system.py</code> test suite (full code <a href="https://gist.github.com/gciatto/151182ff015df80df21e5d0a8a5e88b1">here</a>):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># first test case</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestMySystemUnderOrdinaryConditions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># initialization activities (most commonly, just initialises the SUT)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">setUp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>    
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># activities to be performed BEFORE EACH test procedure</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">MySystem</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># sut instantiation</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># test procedure 1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_initial_condition</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEquals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">my_attribute</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">123</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># assertion (my_attribute is initially 123)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEquals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">other_attribute</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">"foo"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># assertion (other_attribute is initially "foo")</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertTrue</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">is_ready</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># assertion (function is_ready returns True)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># test procedure 2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_do_something</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">do_something</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># legitimate action</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEquals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">my_attribute</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">124</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># assertion (my_attribute is 124 after do_something)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEquals</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">other_attribute</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">"bar"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># assertion (other_attribute is "bar" after do_something)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertFalse</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">is_ready</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># assertion (function is_ready returns False after do_something)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># test procedure 3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_do_something_bad</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertRaises</span><span style="color:#000;font-weight:bold">(</span><span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># assertion (do_something_base raises ValueError)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">do_something_bad</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># illegitimate action</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># you can put as many test procedures as you want</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># cleaning up activities (most commonly omitted, i.e. nothing to do)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">tearDown</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#8f5902;font-style:italic"># activities to be performed AFTER EACH test procedure</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">shutdown</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># legitimate action</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># second test case</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestMySystemUnderSpecialConditions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># put other test proceedures here</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># you can put as many test cases as you want</span>
+</span></span></code></pre></div></section><section>
+<h2 id="technicalities-of-unittest-tests-suites">Technicalities of <code>unittest</code> tests suites</h2>
+<ul>
+<li>
+<p>Many <em>assertion functions</em>, cf.: <a href="https://docs.python.org/3/library/unittest.html#assert-methods">https://docs.python.org/3/library/unittest.html#assert-methods</a></p>
+</li>
+<li>
+<p>Many many options to customise / parametrise your test suites, cf. <a href="https://docs.python.org/3/library/unittest.html">https://docs.python.org/3/library/unittest.html</a></p>
+</li>
+<li>
+<p>How to run tests:</p>
+<ul>
+<li>from the terminal: <code>python -m unittest discover -v -s tests</code>
+<ul>
+<li>where <code>-v</code> stands for <em>verbose</em> (i.e. more detailed output)</li>
+<li>where <code>-s</code> stands for <em>start directory</em> (i.e. the directory where the tests are, in this case <code>tests</code>)</li>
+</ul>
+</li>
+<li>from an IDE: usually there is a dedicated button</li>
+<li>from <em>VS Code</em>: there is a <a href="https://code.visualstudio.com/docs/python/testing#_configure-tests">dedicated section</a> which requires configuration</li>
+</ul>
+</li>
+<li>
+<p>Effect of running all tests with subcommand <code>discover</code>:</p>
+<ul>
+<li>all the <code>test_*.py</code> <strong>files</strong> in the <code>tests/</code> directory (and its sub-directories) are <strong>loaded</strong>
+<ul>
+<li>all <em>sub</em>-<strong>classes</strong> of <code>unittest.TestCase</code> from those files are <strong>instantiated</strong>
+<ul>
+<li>all the <strong>functions</strong> from those classes that start with <code>test_</code> are <strong>executed</strong>
+<ol>
+<li>the <code>setUp</code> function is <strong>executed</strong> <em>before each</em> test function</li>
+<li>the <code>tearDown</code> function is <strong>executed</strong> <em>after each</em> test function</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="hands-on-pt-1">Hands-on (pt. 1)</h1>
+<h2 id="playing-a-bit-with-unittest">Playing a bit with <code>unittest</code></h2>
+<h3 id="restoring-dev-dependencies">Restoring dev dependencies</h3>
+<ol>
+<li>
+<p><strong>Fork</strong> the following repository: <a href="https://github.com/unibo-dtm-se/testable-calculator">https://github.com/unibo-dtm-se/testable-calculator</a></p>
+</li>
+<li>
+<p><strong>Clone</strong> the forked repository on your machine</p>
+<ul>
+<li>`git clone <a href="https://github.com/YOUR_GITHUB_USERNAME/testable-calculator">https://github.com/YOUR_GITHUB_USERNAME/testable-calculator</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Open VS Code</strong> into the <code>testable-calculator</code> directory</p>
+<ul>
+<li>let’s use VS Code’s <em>integrated terminal</em> from now on</li>
+</ul>
+</li>
+<li>
+<p><strong>Restore</strong> both dependencies and dev-dependencies</p>
+<ul>
+<li><code>pip install -r requirements-dev.txt</code></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h1 id="hands-on-pt-2">Hands-on (pt. 2)</h1>
+<h2 id="playing-a-bit-with-unittest-1">Playing a bit with <code>unittest</code></h2>
+<h3 id="running-tests-via-the-terminal">Running tests via the terminal</h3>
+<ol start="5">
+<li><strong>Run</strong> the tests via the terminal
+<ul>
+<li>
+<p>Minimalistic: <code>python -m unittest discover -s tests</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>..............
+</span></span><span style="display:flex;"><span>---------------------------------------------------------------------- 
+</span></span><span style="display:flex;"><span>Ran 14 tests in 0.478s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>OK
+</span></span></code></pre></div><p>(each dot represents a successful test procedure… not really clear, right?)</p>
+</li>
+<li>
+<p>Verbose: <code>python -m unittest discover -v -s tests</code> (notice option <code>-v</code>)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>test_cli_with_invalid_expression (test_cli.TestCalculatorCli.test_cli_with_invalid_expression) ... ok
+</span></span><span style="display:flex;"><span>test_cli_with_single_expression (test_cli.TestCalculatorCli.test_cli_with_single_expression) ... ok
+</span></span><span style="display:flex;"><span>test_cli_with_sliced_expression (test_cli.TestCalculatorCli.test_cli_with_sliced_expression) ... ok
+</span></span><span style="display:flex;"><span>[...]
+</span></span><span style="display:flex;"><span>test_expression_insertion (test_model.TestCalculatorUsage.test_expression_insertion) ... ok
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>----------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>Ran 14 tests in 0.447s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>OK
+</span></span></code></pre></div><p>(one test per line: clearer)</p>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h1 id="hands-on-pt-3">Hands-on (pt. 3)</h1>
+<h2 id="playing-a-bit-with-unittest-2">Playing a bit with <code>unittest</code></h2>
+<h3 id="running-tests-via-vs-code">Running tests via VS Code</h3>
+<div class="container w-100 m-0 p-0">
+    <div class="row ">
+<div class="col "><p>Before:</p>
+<p><img src="vs-code-tests-pre.png" alt="VS Code before"></p>
+</div>
+<div class="col "><p>After:</p>
+<p><img src="vs-code-tests-post.png" alt="VS Code after"></p>
+</div>
+</div>
+</div>
+
+</section>
 </section><section>
 <h2 id="test-plan">Test plan</h2>
-<p>Testing should be <em>planned for in advance</em>.</p>
-<p>A good test plan can guide the development, and should be ready <em>early</em> in the project.</p>
+<ul>
+<li>
+<p>Testing should be <em>planned for in advance</em></p>
+</li>
+<li>
+<p>A good test plan can guide the development, and should be ready <em>early</em> in the project</p>
+</li>
+</ul>
+<blockquote>
 <p>When designing cars,
 the crash testing procedure,
 the engine test bench,
 and so on are prepared well before the car prototype is ready!</p>
+</blockquote>
 </section><section>
 <h2 id="test-driven-development-tdd">Test-Driven Development (TDD)</h2>
 <p>The practice of:</p>
@@ -392,9 +803,9 @@ but how to <strong>run</strong> them if <em>the components surrounding the teste
 <h3 id="do-it-yourself">Do it yourself!</h3>
 <ol>
 <li>Based on the project structure of the examplar, prepare a <code>complex.py</code> implementing a complex number</li>
-<li>The class should support methods for adding, subtracting, multiplying, and dividing complex numbers. Create the number and implement them with <code>pass</code></li>
+<li>The class should support functions for adding, subtracting, multiplying, and dividing complex numbers. Create the number and implement them with <code>pass</code></li>
 <li>Prepare the test cases to verify that the behaviour is the intended one</li>
-<li>Implement the methods!</li>
+<li>Implement the functions!</li>
 </ol>
 <p><strong>Notes</strong>:</p>
 <ul>

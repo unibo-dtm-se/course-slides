@@ -14,14 +14,49 @@ outputs = ["Reveal"]
 
 ## Quality assurance
 
-As any engineered product, software should be *subject to quality assurance control*.
+Would you drive a car that has _not_ been succefully passed its *quality control*?
 
-* Would you drive a car that has not been succefully passed its *quality control*?
-* What does it mean that a car **passed** its *quality control checks*?
-  * What does it mean for a bridge?
-  * What does it mean for a chair?
-  * What does it mean for a robot?
-  * What does it mean for a medical software?
+<br>
+
+As any engineered product, software should be *subject to __quality assurance__ control*.
+
+<br>
+
+> __Quality assurance__ (in SE) is the set of activities and practices aimed at ensuring that a software product _works_ and it is _of good quality_.
+
++ what does _"works"_ mean for software?
++ what does _"good quality"_ mean for software?
+
+---
+
+## Quality assurance: "works"
+
+### What does _"works"_ mean for software?
+
+> Insight: software works when it _meets the requirements_
+
+- Recall that software requirements should come with clear _acceptance criteria_
+    + __testing__ as the activity of _verifying_ that the software meets the acceptance criteria 
+
+---
+
+## Quality assurance: "good quality"
+
+### What does _"good quality"_ mean for software?
+
+> Insight: software is good when it is
+>
+> _easy for developers to evolve or maintain it_
+
+- Recall that good software should have many _quality attributes_
+    + __reproducible__ $\approx$ repeatable, with _predictable_ outcomes
+    + __sustainable__ $\approx$ it's possible to _timely_ satisfy requirements with _controllable_ costs and efforts
+    + __evolvable__ $\approx$ it's possible to _adapt_ the product to _new_ requirements in a sustainable way
+    + __maintainable__ $\approx$ it's possible to _fix_, _improve_, or just keep the product _alive_ in a sustainable way
+    + __scalable__ $\approx$ it's possible to _grow_ the product in terms of _size_, _complexity_, and _features_ in a sustainable way
+
+- How to translate these attributes into _quality assurance_ practices?
+    + as we will see, __testing__ may also serve this purpose
 
 ---
 
@@ -44,56 +79,348 @@ Verify that the software meets quality criteria.
 Running an application manually is a form of testing: *exploratory testing*.
 * Done **without a plan**
 
+<br>
+
 If there is a plan that can be followed step-by-step, then *there is a program that can do it for you*
 * If a program can do it for you, the it *should* do it for you
 
 ---
 
-## Testing scope
+## Testing scope (pt. 1)
 
-As any engineering product, software can be tested at different levels of abstraction.
+As any engineering product, software can be tested at different levels of abstraction
+
 * **Unit** testing: test *single software components*
-  * Is this `class` behavior the expected one?
-  * Is this *suspension spring* behavior the expected one?
-  * Is this *steel rod* mechanical properties the expected ones?
-* **Integration** testing: test *an entire subsystem*, with *multiple components*
-  * Is this *OCR server* behavior the expected ones?
-  * Is this *engine*  working as expected?
-  * Is this *span of a bridge* working correctly?
-* **End-to-end** (or **acceptance**) testing: test *an entire system*
-  * Is this whole application functional?
-  * Is the car lapping under 2 minutes?
-  * Does the bridge work nominally with high traffic and strong wind?
+  * Is this `class` (or `function` or `module`) behavior the expected one?
+  * For a car: is the *tire* working correctly?
+    * e.g. are shape, pression, etc. as expected?
 
-A well-maintained engineering product must have tests at all granularity levels
+* **Integration** testing: test *an entire subsystem*, i.e. the interplay among *multiple components*
+  * Class `A` uses class `B` and `C`. Are they working together as expected?
+  * For a car: if we attach the *wheels* to the *engine* via the *transmission*, does it work as expected?
+    * e.g. we _turn on_ the engine, does the wheel _spin_?
+
+* **End-to-end** (or **acceptance**) testing: test *an entire system* (may involve _aesthetics_/_usability_ criteria)
+  * Is this whole __application__ functional, when used from the __UI__?
+    * implies that _all_ components are correctly integrated
+  * For a car: is it usable by a person to drive in the real world?
+    * e.g. we _turn on_ the engine, does the car _move_?
+    * e.g. can the user _change direction_ via the _steering wheel_?
+    * e.g. is the _speed indicator_ reactive to the actual spees? is the _unit of measure_ what the user expects?
+
+---
+
+## Testing scope (pt. 2)
+
+> A well-maintained engineering product _must_ have tests at __all granularity levels__
+
+* But why?
+  - after all, if the _end-to-end_ test passes...
+  - ... then all the _unit_ and _integration_ tests should pass as well, right?
+
+<br>
+
+* Yes, but:
+  - tests are not only about _verifying_ that the software works
+  - they are particularly useful to _understand_ __why__ it _doesn't_ work
+
+---
+
+## Automated tests as sentinels
+
+- Creating _automated_ test procedures makes the activity of _testing_ very __cheap__ (in terms of effort)
+    - this allows developers to _test_ the software _often_ and _early_
+
+- Being cheap, automated tests can serve as [canaries in cold mines](https://en.wikipedia.org/wiki/Sentinel_species)
+    - i.e. __sentinels__ for the (early) detection of _problems_
+
+- Test __failures__ are _precious_ during development
+    - they help in localising the _source_ of the problem
+
+> The more granular the tests, the easier it is to spot and fix problems
 
 ---
 
 ## Reproducibility
 
+> Would you be comfortable with a car that passes the crash test `99.9%` of time, but on the `0.1%` of the cases fails _unexplicably_?
+
 **Reproducibility** is **central** for testing
 
 (true for any engineering, but in particular for software)
 
-* *Tests should always provide the same results*
-  * Tests that work sometimets but sometimes not are called *flaky tests*
-* Tests should be *self-contained* (they should not depend on the results of previous tests)
-* *Random* events can be tested by *seeding* the random generators
+* *Tests should always provide the same results* when run on the same system
+  * tests that *"work sometimes but sometimes not"* are called **flaky tests**
+  * of course, running the same test procude on _different_ systems may produce different results
+    * as well as different _versions_ of the _same_ system
+* Tests should be **self-contained** (they should not depend on the results of previous tests)
+* Testing procedures should be **deterministic** ($\approx$ no randomness)
+  * _unpredicable_ events / scenarios (e.g. user inputs, lack of Internet connection) should be __simulated__
+    * one cannot predict _when_ events will occur, but one must predict _what sorts_ of events / scenarios _may_ occur
 
-Would you be comfortable with a car that passes the crash test 99.9% of time, but on the 0.1% of the cases fails unexplicably?
+---
+
+{{% section %}}
+
+## Technicalities of writing tests
+
+(we will focus on Python, but the concepts are general)
+
+1. the _source code_ can now be conceinved as composed by _two parts_:
+    * the __main__ code: where the actual software is implemented
+    * the __test__ code: where the tests for the actual software are implemented
+
+2. the __test__ code is usually placed in a separate folder, and it is usually named `tests/` (or `test/`)
+
+3. the _dependencies_ of the project are now of _two sorts_:
+    * the __main__ dependencies: the libraries required by the main code
+    * the __development__ (_"dev"_) dependencies: the libraries required by the quality assurance procedures 
+        - there exist several libraries which support testing, e.g. [`unittest`](https://docs.python.org/3/library/unittest.html) (included in Python), or [`pytest`](https://docs.pytest.org/en/stable/) (third-party)
+
+4. developers may now want to _launch_ not only the software, but also _the tests_
+    * ad-hoc _terminal commands_ or _IDE plugins_ are available for this purpose 
+
+---
+
+## Updated project structure
+
+```bash
+root_directory/
+├── main_package/               # main package (i.e. directory for the main code)
+│   ├── __init__.py
+│   ├── sub_module.py
+│   └── sub_package/ 
+│       ├── __init__.py 
+│       └── sub_sub_module.py 
+├── tests/                      # directory for the test code
+│   ├── test_module_1.py
+│   ├── ...
+│   └── test_module_N.py 
+├── .python-version
+├── README.md
+├── requirements-dev.txt        # file to list *development* dependencies
+└── requirements.txt            # file to list *main* dependencies
+```
+
+<br>
+
+Important conventions:
+
+1. __all__ the _test code_ should be placed in a directory named `tests/` (or `test/`)
+
+2. the test code should be put into `.py` files whose name _starts with_ `test_`
+
+3. `requirements.txt` is for the _main_ dependencies, `requirements-dev.txt` is for the _dev_ dependencies 
+
+{{<multicol>}}
+{{%col%}}
+`requirements.txt` example:
+```txt
+Kivy>=2.3.0
+```
+{{%/col%}}
+{{%col%}}
+`requirements-dev.txt` example:
+```txt
+-r requirements.txt
+pytest>=8.1.0
+```
+{{%/col%}}
+{{</multicol>}}
+
+---
+
+## Nomenclature about testing
+
+- __System under test__ (_SUT_): the component of the software that is being tested
+    - e.g. a `class`, a `function`, a `module`
+
+- __Test case__: a _class_ that contains the _test functions_ for a specific _SUT_
+    - each test case corresponds to _one or more_ testing procedures for the _same SUT_
+    - in case of multiple procedures, all must _share_ the same __set up__ or __tear down__ activities
+        - i.e. activities to before or after _each_ testing procedure from the same test case
+
+- __Test suite__: a _collection_ of _test cases_, commonly related to similar SUTs
+    - it commonly consists of a module, e.g. a `test_*.py` file
+
+- __Assertion__: a _boolean_ (i.e. either `True` or `False`) _check_ about the SUT
+    - if the assertion is `True`, the assertion __passes__, and the test _proceeds_
+    - if the assertion is `False`, the test __fails__, and it is _interrupted_
+
+- __Test procedure__: a sequence of _actions_ and _assertions_ about some SUT
+    - it _succeeds_ if _all_ the assertions are `True` __and no *unexpected* error occurs__
+    - it _fails_ otherwise
+
+---
+
+## Writing tests in Python
+
+We adopt [`unittest`](https://docs.python.org/3/library/unittest.html), a _built-in_ library for writing tests in Python
+- it is _inspired_ by the [`JUnit`](https://junit.org) library for Java
+- it is _not_ the only one: [`pytest`](https://docs.pytest.org/en/stable/) is a popular alternative (but it needs to be installed)
+
+### Anatomy of a test suite in `unittest`
+
+Let's assume this is the `test_my_system.py` test suite (full code [here](https://gist.github.com/gciatto/151182ff015df80df21e5d0a8a5e88b1)):
+```python
+import unittest
+
+
+# first test case
+class TestMySystemUnderOrdinaryConditions(unittest.TestCase):
+    # initialization activities (most commonly, just initialises the SUT)
+    def setUp(self):    
+        # activities to be performed BEFORE EACH test procedure
+        self.sut = MySystem() # sut instantiation
+
+    # test procedure 1
+    def test_initial_condition(self):
+        self.assertEquals(self.sut.my_attribute, 123) # assertion (my_attribute is initially 123)
+        self.assertEquals(self.sut.other_attribute, "foo") # assertion (other_attribute is initially "foo")
+        self.assertTrue(self.sut.is_ready()) # assertion (function is_ready returns True)
+
+    # test procedure 2
+    def test_do_something(self):
+        self.sut.do_something() # legitimate action
+        self.assertEquals(self.sut.my_attribute, 124) # assertion (my_attribute is 124 after do_something)
+        self.assertEquals(self.sut.other_attribute, "bar") # assertion (other_attribute is "bar" after do_something)
+        self.assertFalse(self.sut.is_ready()) # assertion (function is_ready returns False after do_something)
+
+    # test procedure 3
+    def test_do_something_bad(self):
+        with self.assertRaises(ValueError): # assertion (do_something_base raises ValueError)
+            self.sut.do_something_bad() # illegitimate action
+
+    # you can put as many test procedures as you want
+
+    # cleaning up activities (most commonly omitted, i.e. nothing to do)
+    def tearDown(self):
+      # activities to be performed AFTER EACH test procedure
+      self.sut.shutdown() # legitimate action
+
+
+# second test case
+class TestMySystemUnderSpecialConditions(unittest.TestCase):
+    # put other test proceedures here
+
+
+# you can put as many test cases as you want
+```
+
+---
+
+## Technicalities of `unittest` tests suites
+
+- Many _assertion functions_, cf.: <https://docs.python.org/3/library/unittest.html#assert-methods>
+
+- Many many options to customise / parametrise your test suites, cf. <https://docs.python.org/3/library/unittest.html>
+
+- How to run tests:
+    - from the terminal: `python -m unittest discover -v -s tests`
+        - where `-v` stands for _verbose_ (i.e. more detailed output)
+        - where `-s` stands for _start directory_ (i.e. the directory where the tests are, in this case `tests`)
+    - from an IDE: usually there is a dedicated button
+    - from _VS Code_: there is a [dedicated section](https://code.visualstudio.com/docs/python/testing#_configure-tests) which requires configuration
+
+- Effect of running all tests with subcommand `discover`:
+    - all the `test_*.py` __files__ in the `tests/` directory (and its sub-directories) are __loaded__
+        + all _sub_-__classes__ of `unittest.TestCase` from those files are __instantiated__
+            + all the __functions__ from those classes that start with `test_` are __executed__
+                1. the `setUp` function is __executed__ *before each* test function
+                2. the `tearDown` function is __executed__ *after each* test function
+
+---
+
+# Hands-on (pt. 1)
+
+## Playing a bit with `unittest`
+
+### Restoring dev dependencies
+
+1. __Fork__ the following repository: https://github.com/unibo-dtm-se/testable-calculator
+
+2. __Clone__ the forked repository on your machine
+    + `git clone https://github.com/YOUR_GITHUB_USERNAME/testable-calculator
+
+3. __Open VS Code__ into the `testable-calculator` directory
+    + let's use VS Code's _integrated terminal_ from now on 
+
+4. __Restore__ both dependencies and dev-dependencies
+    + `pip install -r requirements-dev.txt`
+
+---
+
+# Hands-on (pt. 2)
+
+## Playing a bit with `unittest`
+
+### Running tests via the terminal
+
+5. __Run__ the tests via the terminal
+    + Minimalistic: `python -m unittest discover -s tests`
+
+        ```text
+        ..............
+        ---------------------------------------------------------------------- 
+        Ran 14 tests in 0.478s
+
+        OK
+        ```
+
+        (each dot represents a successful test procedure... not really clear, right?)
+
+    + Verbose: `python -m unittest discover -v -s tests` (notice option `-v`)
+
+        ```text
+        test_cli_with_invalid_expression (test_cli.TestCalculatorCli.test_cli_with_invalid_expression) ... ok
+        test_cli_with_single_expression (test_cli.TestCalculatorCli.test_cli_with_single_expression) ... ok
+        test_cli_with_sliced_expression (test_cli.TestCalculatorCli.test_cli_with_sliced_expression) ... ok
+        [...]
+        test_expression_insertion (test_model.TestCalculatorUsage.test_expression_insertion) ... ok
+
+        ----------------------------------------------------------------------
+        Ran 14 tests in 0.447s
+
+        OK
+        ```
+
+        (one test per line: clearer)
+
+---
+
+# Hands-on (pt. 3)
+
+## Playing a bit with `unittest`
+
+### Running tests via VS Code
+
+{{<multicol>}}
+{{%col%}}
+Before:
+
+![VS Code before](vs-code-tests-pre.png)
+{{%/col%}}
+{{%col%}}
+After:
+
+![VS Code after](vs-code-tests-post.png)
+{{%/col%}}
+{{</multicol>}}
+
+{{% /section %}}
 
 ---
 
 ## Test plan
 
-Testing should be *planned for in advance*.
+- Testing should be *planned for in advance*
 
-A good test plan can guide the development, and should be ready *early* in the project.
+- A good test plan can guide the development, and should be ready *early* in the project
 
-When designing cars,
-the crash testing procedure,
-the engine test bench,
-and so on are prepared well before the car prototype is ready!
+> When designing cars,
+> the crash testing procedure,
+> the engine test bench,
+> and so on are prepared well before the car prototype is ready!
 
 ---
 
@@ -355,9 +682,9 @@ Try the following:
 
 ### Do it yourself!
 1. Based on the project structure of the examplar, prepare a `complex.py` implementing a complex number
-2. The class should support methods for adding, subtracting, multiplying, and dividing complex numbers. Create the number and implement them with `pass`
+2. The class should support functions for adding, subtracting, multiplying, and dividing complex numbers. Create the number and implement them with `pass`
 3. Prepare the test cases to verify that the behaviour is the intended one
-4. Implement the methods!
+4. Implement the functions!
 
 **Notes**:
 * A complex number can be modelled as a couple of real numbers, one for the real part, one for the imaginary part.

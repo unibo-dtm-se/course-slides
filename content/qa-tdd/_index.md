@@ -261,13 +261,19 @@ We adopt [`unittest`](https://docs.python.org/3/library/unittest.html), a _built
 
 ### Anatomy of a test suite in `unittest`
 
-Let's assume this is the `test_my_system.py` test suite (full code [here](https://gist.github.com/gciatto/151182ff015df80df21e5d0a8a5e88b1)):
+Let's assume this is the `test_my_system.py` test suite (full code [here](https://gist.github.com/gciatto/151182ff015df80df21e5d0a8a5e88b1))
+
+⬇️
+
+---
+
 ```python
 import unittest
 
 
 # first test case
 class TestMySystemUnderOrdinaryConditions(unittest.TestCase):
+
     # initialization activities (most commonly, just initialises the SUT)
     def setUp(self):    
         # activities to be performed BEFORE EACH test procedure
@@ -416,7 +422,12 @@ After:
 ### Inspecting a real unit test
 
 6. Have a look to the [`tests/test_model.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_model.py) file and listen to the teacher explanation
-    + it contains a test suite for the `Calculator` class
+    + it contains a test suite for the [`Calculator` class](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/__init__.py#L4)
+    
+    
+⬇️
+
+---
 
 ```python
 import unittest
@@ -513,7 +524,270 @@ class TestCalculatorUsage(unittest.TestCase):
 9. Run the tests again: many tests should now fail
     + notice how the tests failure is _reported_ in the terminal and in VS Code
     + try to spot the _source_ of the problem, from the error _reports_
-  
+
+
+---
+
+# Hands-on (pt. 5)
+
+## Playing a bit with `unittest`
+
+### Testing the GUI (+ integration with model)
+
+6. Have a look to the [`tests/test_gui.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py) file and listen to the teacher explanation:
+  + it contains a test suite for the [`CalculatorApp` class](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/ui/gui.py#L23)
+
+7. Notice that tests are based on __custom__ _base class _([namely `CalculatorGUITestCase`](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/tests/test_gui.py#L6)),
+which adds 
+    - custom action (e.g. `press_button(button_name)`)
+    - custom assertions (e.g. `assert_display(expected_text)`)
+    - custom setup and teardown activities (showing / closing the GUI)
+
+⬇️
+
+---
+
+```python
+import unittest
+from calculator.ui.gui import CalculatorApp
+
+# this is not a test case! 
+# it is a way to add custom actions, assertions, initialisation/clean-up activities to other test cases
+class CalculatorGUITestCase(unittest.TestCase):
+
+    # default initialization activity (create & start the GUI, i.e. our SUT)
+    def setUp(self):
+        self.app = CalculatorApp()  # create the GUI
+        self.app._run_prepare()     # start the GUI
+
+    # re-usable action: presses a button on the GUI, given the button's text
+    def press_button(self, button_text):
+        self.app.find_button_by(button_text).trigger_action()
+
+    # re-usable assertion: checks the text displayed on the GUI is equal to the provided one
+    def assert_display(self, expected_text):
+        self.assertEqual(self.app.display.text, expected_text)   
+
+    # default cleaning-up activity (stop the GUI)
+    def tearDown(self):
+        self.app.stop()
+```
+
+---
+
+# Hands-on (pt. 5)
+
+## Playing a bit with `unittest`
+
+### Testing the GUI (+ integration with model)
+
+6. Have a look to the [`tests/test_gui.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py) file and listen to the teacher explanation:
+  + it contains a test suite for the [`CalculatorApp` class](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/ui/gui.py#L23)
+
+7. Notice that tests are based on __custom__ _base class _([namely `CalculatorGUITestCase`](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/tests/test_gui.py#L6)),
+which adds 
+    - custom action (e.g. `press_button(button_name)`)
+    - custom assertions (e.g. `assert_display(expected_text)`)
+    - custom setup and teardown activities (showing / closing the GUI)
+
+8. In particular, have a look to the [`TestExpressions`](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/tests/test_gui.py#L21) 
+test case, and listen to the teacher explanation
+
+⬇️
+
+---
+
+```python
+# this is a test case! (based upon the aforementioned base class)
+class TestExpressions(CalculatorGUITestCase):
+
+    # test procedure: inserting and evaluating a simple integer expression
+    def test_integer_expression(self):
+        # insert symbols "1", "+", "2"
+        self.press_button("1")
+        self.press_button("+")
+        self.press_button("2")
+        # check the display shows "1+2"
+        self.assert_display("1+2")
+        # press the "=" button
+        self.press_button("=")
+        # check the display shows "3"
+        self.assert_display("3")
+
+    # test procedure: inserting and evaluating a simple float expression
+    def test_float_expression(self):
+        self.press_button("1")
+        self.press_button(".")
+        self.press_button("2")
+        self.press_button("+")
+        self.press_button("2")
+        self.assert_display("1.2+2")
+        self.press_button("=")
+        self.assert_display("3.2")
+```
+
+---
+
+##  Interesting things to notice (pt. 1)
+
+- To enable testing the GUI, the `CalculatorApp` class's __public API__ has been extended with further functionalities:
+    - `find_button_by(text)`: a function returning the button widget _with the given text_
+    - `display`: an attribute referencing the _display_ widget (it's now public)
+
+
+{{<multicol>}}
+{{%col%}}
+Before:
+{{<plantuml>}}
+class CalculatorApp {
+    - _calc: Calculator
+    - _display: Label
+    + build(): BoxLayout
+    + on_button_press(button: Button)
+}
+{{</plantuml>}}
+{{%/col%}}
+{{%col%}}
+After:
+{{<plantuml>}}
+class CalculatorApp {
+    - _calc: Calculator
+    + display: Label
+    + build(): BoxLayout
+    + on_button_press(button: Button)
+    + find_button_by(text: str): Button
+    - _browse_children(container): Iterable[Widget]
+}
+{{</plantuml>}}
+{{%/col%}}
+{{</multicol>}}
+
+### New entries
+
+- `find_button_by(text: str)`: is necessary to make _simulate_ buttons pressure in the tests
+- `_browse_children(container)`: is a _private_ functionality, necessary to implement `find_button_by`
+- `display`: is necessary to make _assertions_ about the _displayed text_ in the tests
+
+---
+
+##  Interesting things to notice (pt. 2)
+
+How these novel functionalities are implemented in practice is not that relevant, but here it is:
+
+```python
+class CalculatorApp(App):
+    # returns a sort of list of all the widgets directly or indirectly contained in the given container
+    def _browse_children(self, container):
+        yield container
+        if hasattr(container, 'children'):
+            for child in container.children:
+                yield from self._browse_children(child)
+    
+    # returns the first widget in the GUI which 1. is a button and 2. whose text is equal to the given one
+    def find_button_by(self, text) -> Button:
+        for widget in self._browse_children(self.root):
+            if isinstance(widget, Button) and widget.text == text:
+                return widget
+            
+    def build(self):
+        # ... (unchanged)
+        self.display = Label(text="0", font_size=24, size_hint=(3, 1))
+        # ... (unchanged)
+
+    # the rest of the class is unchanged
+```
+
+---
+
+##  Interesting things to notice (pt. 3)
+
+> __Take-away__: when writing _post-hoc_ tests (i.e., after the main code has been already written), 
+> it is often necessary to _extend_ the __public API__ of the _SUT_ to make its internal state and functioning
+> _observable_ and _controllable_ from the outside, and therefore __testable__
+
+- to avoid this situation, it's paramount to __write tests *before* the main code__ is written
+    + we'll see how
+
+---
+
+##  Interesting things to notice (pt. 4)
+
+If you read them at the adequate abstraction level, each test case is __telling a story__ about the SUT
+
+- e.g. `TestCalculatorMethods` is telling the story of the `Calculator` class
+    + it's telling the story of how a `Calculator` object looks like when it is _freshly instantiated_
+    + it's telling the story of how a `Calculator` object behaves when it is _used_ to _build_ an _expression_
+    + it's telling the story of how a `Calculator` object behaves when it is _used_ to _evaluate_ an _expression_
+
+- e.g. `TestExpressions` is telling the story of the `CalculatorApp` class (i.e. the _GUI_)
+    + it's telling the story of how the GUI looks like when it is _freshly instantiated_
+    + it's telling the story of how the GUI behaves when it is _used_ to _build_ an _expression_
+    + it's telling the story of how the GUI behaves when it is _used_ to _evaluate_ an _expression_
+
+> __Take-away__: the story you can picture in your mind when reading a test is a way to describe the _test plan_,
+> the designer of the test suite was envisioning when writing the tests
+
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+# Exercise
+
+## Write your own test suite
+
+1. Focus on the `test_gui.py` file
+
+2. Add one more test case for the GUI, say `TestLayout`, which ensures that:
+    - the GUI has a display, and its initial text is `0`
+    - the GUI contains all the buttons for the digits, the operations, and the special commands
+        + namely: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `+`, `-`, `*`, `/`, `=`, `C`, `.`
+
+3. __Hints__:
+    - you may want to _reuse_ the `CalculatorGUITestCase` class and its functionalities
+    - you may want to add one more _custom assertion_, say `assert_button_exists`, to `CalculatorGUITestCase`
+        + in order to check that a button with a given text is present in the GUI
+
+<br>
+
+_One possible solution is in the next slide_
+
+⬇️ (please __resist the temptation__, and try to solve the exercise before looking at the solution) ⬇️
+
+---
+
+## One possible solution
+
+```python
+class CalculatorGUITestCase(unittest.TestCase):
+    # rest of the class is unchanged 
+
+    def assert_button_exists(self, button_text):
+        self.assertIsNotNone(self.app.find_button_by(button_text))
+
+
+class TestLayout(CalculatorGUITestCase):
+    buttons_to_test = {
+        'C',
+        '7', '8', '9', '/',
+        '4', '5', '6', '*',
+        '1', '2', '3', '-',
+        '.', '0', '=', '+',
+    }
+
+    def test_initial_display(self):
+        self.assert_display("0")
+
+    def test_buttons(self):
+        for button_text in self.buttons_to_test:
+            with self.subTest(button=button_text):
+                self.assert_button_exists(button_text)
+```
+
+- what's the purpose of `subTest`?
+    + it easies the _debugging_ of the test suite, in case of _multiple_ failures
 
 {{% /section %}}
 
@@ -521,14 +795,22 @@ class TestCalculatorUsage(unittest.TestCase):
 
 ## Test plan
 
-- Testing should be *planned for in advance*
+- Testing should be **planned for in advance**
 
-- A good test plan can guide the development, and should be ready *early* in the project
+- A good test plan can _guide the development_, and should be ready *early* in the project
 
-> When designing cars,
-> the crash testing procedure,
-> the engine test bench,
-> and so on are prepared well before the car prototype is ready!
+- To plan a test, one might try to convert the _requirements_'s acceptance criteria into _test cases_
+    + this is mostly true for __system__ and, to some extent, _integration_ tests
+
+- To plan _unit_ tests, one might try to create _test cases_ covering __each aspect of the public API__ of the _SUT_
+    + e.g. for each _public_ class, a test case may cover all _public_ functions and attributes of that class
+
+<br>
+
+> When designing _cars_,
+> the __crash testing__ procedure,
+> the _engine test_ bench,
+> and so on are prepared _well before_ the car prototype is ready!
 
 ---
 
@@ -536,9 +818,11 @@ class TestCalculatorUsage(unittest.TestCase):
 
 The practice of:
 * converting *requirements to (executable) test* cases
-* preparing tests *before* development
-* define the *expected behavior* via test cases
+* __preparing tests *before* development__
+* __define the *expected behavior* via test cases__
 * track all development by *always testing all cases*
+
+> __Key-point__: in TDD, tests are not only a form of validation, but also a form of __specification__
 
 ---
 
@@ -547,7 +831,7 @@ The practice of:
 1. *Capture* a requirement into an executable *test*
 2. Run the test suite, the _new test should **fail**_
 3. Fix the code so that the new test passes
-4. Re-run the whole test suite, all tests should pass
+4. Re-run the whole test suite, _all tests should pass_
 5. Improve the quality as needed (refactor, style, duplication...)
 
 ---

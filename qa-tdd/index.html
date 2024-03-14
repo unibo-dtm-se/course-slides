@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2024-03-13 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-03-14 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="quality-assurance">Quality assurance</h2>
@@ -415,7 +415,7 @@
 <p>Many <em>assertion functions</em>, cf.: <a href="https://docs.python.org/3/library/unittest.html#assert-methods">https://docs.python.org/3/library/unittest.html#assert-methods</a></p>
 </li>
 <li>
-<p>Many many options to customise / parametrise your test suites, cf. <a href="https://docs.python.org/3/library/unittest.html">https://docs.python.org/3/library/unittest.html</a></p>
+<p>Many options to <em>customise</em>/parametrise your test suites, cf. <a href="https://docs.python.org/3/library/unittest.html">https://docs.python.org/3/library/unittest.html</a></p>
 </li>
 <li>
 <p>How to run tests:</p>
@@ -524,6 +524,119 @@
 </div>
 </div>
 </div>
+</section><section>
+<h1 id="hands-on-pt-4">Hands-on (pt. 4)</h1>
+<h2 id="playing-a-bit-with-unittest-3">Playing a bit with <code>unittest</code></h2>
+<h3 id="inspecting-a-real-unit-test">Inspecting a real unit test</h3>
+<ol start="6">
+<li>Have a look to the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_model.py"><code>tests/test_model.py</code></a> file and listen to the teacher explanation
+<ul>
+<li>it contains a test suite for the <code>Calculator</code> class</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Calculator</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># test case testing what the effect of each method of the Calculator class is</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># when executed on a fresh new Calculator instance</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestCalculatorMethods</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">setUp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we create one "virgin" instance of the Calculator class (our SUT)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_initial_expression_is_empty</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we ensure the expression of a virgin Calculator is empty </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">""</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we ensure that the digit method effectively appends one digit to the Calculator expression</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_plus</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we ensure that the plus method effectively appends one "+" symbol to the Calculator expression</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"+"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_minus</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we ensure that the minus method effectively appends one "-" symbol to the Calculator expression</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">minus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"-"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_multiply</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we ensure that the multiply method effectively appends one "*" symbol to the Calculator expression</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">multiply</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"*"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_divide</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we ensure that the divide method effectively appends one "/" symbol to the Calculator expression</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">divide</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"/"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># test case testing the usage of the Calculator class</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestCalculatorUsage</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">setUp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we create one "virgin" instance of the Calculator class (our SUT)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_expression_insertion</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we simulate the insertion of a simple expression, one symbol at a time...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># ... and we ensure the expression is as expected</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1+2"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_compute_result</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we simulate the insertion of an expression "as a whole", </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># by setting the expression attribute of a virgin Calculator</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">"1+2"</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># ... and we ansure the compute_result method evaluates the expression as expected</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_compute_result_with_invalid_expression</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># here we simulate the insertion of an invalid expression "as a whole"...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">"1+"</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertRaises</span><span style="color:#000;font-weight:bold">(</span><span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">context</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic"># ... and we ensure the compute_result method raises a ValueError in such situation</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic"># ... and we also ensure that the exception message carries useful information</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Invalid expression: 1+"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">context</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">exception</span><span style="color:#000;font-weight:bold">))</span>
+</span></span></code></pre></div></section><section>
+<h1 id="hands-on-pt-4-1">Hands-on (pt. 4)</h1>
+<h2 id="playing-a-bit-with-unittest-4">Playing a bit with <code>unittest</code></h2>
+<h3 id="failing-tests">Failing tests</h3>
+<ol start="7">
+<li>
+<p>Try to run tests via the terminal and via VS Code</p>
+<ul>
+<li>notice that in VS Code you can run tests <em>selectively</em></li>
+</ul>
+</li>
+<li>
+<p>Let’s now simulate the scenario where tests are <strong>failing</strong> (e.g. due to <em>buggy</em> code)</p>
+<ul>
+<li>edit the <code>Calculator</code> in file <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/__init__.py"><code>calculator/__init__.py</code></a> to introduce a bug
+<ul>
+<li>e.g. change the <code>__init__</code> function as follows:
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">"0"</span> <span style="color:#8f5902;font-style:italic"># bug: the expression is not initially empty</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Run the tests again: many tests should now fail</p>
+<ul>
+<li>notice how the tests failure is <em>reported</em> in the terminal and in VS Code</li>
+<li>try to spot the <em>source</em> of the problem, from the error <em>reports</em></li>
+</ul>
+</li>
+</ol>
 
 </section>
 </section><section>

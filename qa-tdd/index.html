@@ -365,12 +365,15 @@
 <li>it is <em>not</em> the only one: <a href="https://docs.pytest.org/en/stable/"><code>pytest</code></a> is a popular alternative (but it needs to be installed)</li>
 </ul>
 <h3 id="anatomy-of-a-test-suite-in-unittest">Anatomy of a test suite in <code>unittest</code></h3>
-<p>Let’s assume this is the <code>test_my_system.py</code> test suite (full code <a href="https://gist.github.com/gciatto/151182ff015df80df21e5d0a8a5e88b1">here</a>):</p>
+<p>Let’s assume this is the <code>test_my_system.py</code> test suite (full code <a href="https://gist.github.com/gciatto/151182ff015df80df21e5d0a8a5e88b1">here</a>)</p>
+<p>⬇️</p>
+</section><section>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># first test case</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestMySystemUnderOrdinaryConditions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># initialization activities (most commonly, just initialises the SUT)</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">setUp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>    
 </span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># activities to be performed BEFORE EACH test procedure</span>
@@ -531,10 +534,12 @@
 <ol start="6">
 <li>Have a look to the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_model.py"><code>tests/test_model.py</code></a> file and listen to the teacher explanation
 <ul>
-<li>it contains a test suite for the <code>Calculator</code> class</li>
+<li>it contains a test suite for the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/__init__.py#L4"><code>Calculator</code> class</a></li>
 </ul>
 </li>
 </ol>
+<p>⬇️</p>
+</section><section>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Calculator</span>
 </span></span><span style="display:flex;"><span>
@@ -637,40 +642,334 @@
 </ul>
 </li>
 </ol>
+</section><section>
+<h1 id="hands-on-pt-5">Hands-on (pt. 5)</h1>
+<h2 id="playing-a-bit-with-unittest-5">Playing a bit with <code>unittest</code></h2>
+<h3 id="testing-the-gui--integration-with-model">Testing the GUI (+ integration with model)</h3>
+<ol start="6">
+<li>Have a look to the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py"><code>tests/test_gui.py</code></a> file and listen to the teacher explanation:</li>
+</ol>
+<ul>
+<li>it contains a test suite for the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/ui/gui.py#L23"><code>CalculatorApp</code> class</a></li>
+</ul>
+<ol start="7">
+<li>Notice that tests are based on <strong>custom</strong> _base class _(<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/tests/test_gui.py#L6">namely <code>CalculatorGUITestCase</code></a>),
+which adds
+<ul>
+<li>custom action (e.g. <code>press_button(button_name)</code>)</li>
+<li>custom assertions (e.g. <code>assert_display(expected_text)</code>)</li>
+<li>custom setup and teardown activities (showing / closing the GUI)</li>
+</ul>
+</li>
+</ol>
+<p>⬇️</p>
+</section><section>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator.ui.gui</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">CalculatorApp</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># this is not a test case! </span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># it is a way to add custom actions, assertions, initialisation/clean-up activities to other test cases</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># default initialization activity (create &amp; start the GUI, i.e. our SUT)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">setUp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">app</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">CalculatorApp</span><span style="color:#000;font-weight:bold">()</span>  <span style="color:#8f5902;font-style:italic"># create the GUI</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_run_prepare</span><span style="color:#000;font-weight:bold">()</span>     <span style="color:#8f5902;font-style:italic"># start the GUI</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># re-usable action: presses a button on the GUI, given the button's text</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">button_text</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">find_button_by</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">button_text</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">trigger_action</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># re-usable assertion: checks the text displayed on the GUI is equal to the provided one</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">expected_text</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">expected_text</span><span style="color:#000;font-weight:bold">)</span>   
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># default cleaning-up activity (stop the GUI)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">tearDown</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">stop</span><span style="color:#000;font-weight:bold">()</span>
+</span></span></code></pre></div></section><section>
+<h1 id="hands-on-pt-5-1">Hands-on (pt. 5)</h1>
+<h2 id="playing-a-bit-with-unittest-6">Playing a bit with <code>unittest</code></h2>
+<h3 id="testing-the-gui--integration-with-model-1">Testing the GUI (+ integration with model)</h3>
+<ol start="6">
+<li>Have a look to the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py"><code>tests/test_gui.py</code></a> file and listen to the teacher explanation:</li>
+</ol>
+<ul>
+<li>it contains a test suite for the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/ui/gui.py#L23"><code>CalculatorApp</code> class</a></li>
+</ul>
+<ol start="7">
+<li>
+<p>Notice that tests are based on <strong>custom</strong> _base class _(<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/tests/test_gui.py#L6">namely <code>CalculatorGUITestCase</code></a>),
+which adds</p>
+<ul>
+<li>custom action (e.g. <code>press_button(button_name)</code>)</li>
+<li>custom assertions (e.g. <code>assert_display(expected_text)</code>)</li>
+<li>custom setup and teardown activities (showing / closing the GUI)</li>
+</ul>
+</li>
+<li>
+<p>In particular, have a look to the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/tests/test_gui.py#L21"><code>TestExpressions</code></a>
+test case, and listen to the teacher explanation</p>
+</li>
+</ol>
+<p>⬇️</p>
+</section><section>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># this is a test case! (based upon the aforementioned base class)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestExpressions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># test procedure: inserting and evaluating a simple integer expression</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_integer_expression</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># insert symbols "1", "+", "2"</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"+"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"2"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># check the display shows "1+2"</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1+2"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># press the "=" button</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"="</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># check the display shows "3"</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"3"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># test procedure: inserting and evaluating a simple float expression</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_float_expression</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"."</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"2"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"+"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"2"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1.2+2"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"="</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"3.2"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div></section><section>
+<h2 id="interesting-things-to-notice-pt-1">Interesting things to notice (pt. 1)</h2>
+<ul>
+<li>To enable testing the GUI, the <code>CalculatorApp</code> class’s <strong>public API</strong> has been extended with further functionalities:
+<ul>
+<li><code>find_button_by(text)</code>: a function returning the button widget <em>with the given text</em></li>
+<li><code>display</code>: an attribute referencing the <em>display</em> widget (it’s now public)</li>
+</ul>
+</li>
+</ul>
+<div class="container w-100 m-0 p-0">
+    <div class="row ">
+<div class="col "><p>Before:</p>
+<figure id="plantuml-figure-1710430941823268710" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<p>class CalculatorApp {
+- _calc: Calculator
+- _display: Label
++ build(): BoxLayout
++ on_button_press(button: Button)
+}</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1710430941823268710");
+</script>
+</div>
+<div class="col "><p>After:</p>
+<figure id="plantuml-figure-1710430941823335295" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<p>class CalculatorApp {
+- _calc: Calculator
++ display: Label
++ build(): BoxLayout
++ on_button_press(button: Button)
++ find_button_by(text: str): Button
+- _browse_children(container): Iterable[Widget]
+}</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1710430941823335295");
+</script>
+</div>
+</div>
+</div>
+<h3 id="new-entries">New entries</h3>
+<ul>
+<li><code>find_button_by(text: str)</code>: is necessary to make <em>simulate</em> buttons pressure in the tests</li>
+<li><code>_browse_children(container)</code>: is a <em>private</em> functionality, necessary to implement <code>find_button_by</code></li>
+<li><code>display</code>: is necessary to make <em>assertions</em> about the <em>displayed text</em> in the tests</li>
+</ul>
+</section><section>
+<h2 id="interesting-things-to-notice-pt-2">Interesting things to notice (pt. 2)</h2>
+<p>How these novel functionalities are implemented in practice is not that relevant, but here it is:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorApp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">App</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># returns a sort of list of all the widgets directly or indirectly contained in the given container</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">_browse_children</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">container</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">yield</span> <span style="color:#000">container</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">hasattr</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">container</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'children'</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">child</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">container</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">children</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#204a87;font-weight:bold">yield from</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_browse_children</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">child</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># returns the first widget in the GUI which 1. is a button and 2. whose text is equal to the given one</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">find_button_by</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">text</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Button</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">widget</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_browse_children</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">root</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">widget</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Button</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#000">widget</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">text</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">widget</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">build</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># ... (unchanged)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">display</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Label</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">text</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"0"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">font_size</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">24</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">size_hint</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># ... (unchanged)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># the rest of the class is unchanged</span>
+</span></span></code></pre></div></section><section>
+<h2 id="interesting-things-to-notice-pt-3">Interesting things to notice (pt. 3)</h2>
+<blockquote>
+<p><strong>Take-away</strong>: when writing <em>post-hoc</em> tests (i.e., after the main code has been already written),
+it is often necessary to <em>extend</em> the <strong>public API</strong> of the <em>SUT</em> to make its internal state and functioning
+<em>observable</em> and <em>controllable</em> from the outside, and therefore <strong>testable</strong></p>
+</blockquote>
+<ul>
+<li>to avoid this situation, it’s paramount to <strong>write tests <em>before</em> the main code</strong> is written
+<ul>
+<li>we’ll see how</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="interesting-things-to-notice-pt-4">Interesting things to notice (pt. 4)</h2>
+<p>If you read them at the adequate abstraction level, each test case is <strong>telling a story</strong> about the SUT</p>
+<ul>
+<li>
+<p>e.g. <code>TestCalculatorMethods</code> is telling the story of the <code>Calculator</code> class</p>
+<ul>
+<li>it’s telling the story of how a <code>Calculator</code> object looks like when it is <em>freshly instantiated</em></li>
+<li>it’s telling the story of how a <code>Calculator</code> object behaves when it is <em>used</em> to <em>build</em> an <em>expression</em></li>
+<li>it’s telling the story of how a <code>Calculator</code> object behaves when it is <em>used</em> to <em>evaluate</em> an <em>expression</em></li>
+</ul>
+</li>
+<li>
+<p>e.g. <code>TestExpressions</code> is telling the story of the <code>CalculatorApp</code> class (i.e. the <em>GUI</em>)</p>
+<ul>
+<li>it’s telling the story of how the GUI looks like when it is <em>freshly instantiated</em></li>
+<li>it’s telling the story of how the GUI behaves when it is <em>used</em> to <em>build</em> an <em>expression</em></li>
+<li>it’s telling the story of how the GUI behaves when it is <em>used</em> to <em>evaluate</em> an <em>expression</em></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Take-away</strong>: the story you can picture in your mind when reading a test is a way to describe the <em>test plan</em>,
+the designer of the test suite was envisioning when writing the tests</p>
+</blockquote>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h1 id="exercise">Exercise</h1>
+<h2 id="write-your-own-test-suite">Write your own test suite</h2>
+<ol>
+<li>
+<p>Focus on the <code>test_gui.py</code> file</p>
+</li>
+<li>
+<p>Add one more test case for the GUI, say <code>TestLayout</code>, which ensures that:</p>
+<ul>
+<li>the GUI has a display, and its initial text is <code>0</code></li>
+<li>the GUI contains all the buttons for the digits, the operations, and the special commands
+<ul>
+<li>namely: <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code>, <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>=</code>, <code>C</code>, <code>.</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Hints</strong>:</p>
+<ul>
+<li>you may want to <em>reuse</em> the <code>CalculatorGUITestCase</code> class and its functionalities</li>
+<li>you may want to add one more <em>custom assertion</em>, say <code>assert_button_exists</code>, to <code>CalculatorGUITestCase</code>
+<ul>
+<li>in order to check that a button with a given text is present in the GUI</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<br>
+<p><em>One possible solution is in the next slide</em></p>
+<p>⬇️ (please <strong>resist the temptation</strong>, and try to solve the exercise before looking at the solution) ⬇️</p>
+</section><section>
+<h2 id="one-possible-solution">One possible solution</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># rest of the class is unchanged </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">assert_button_exists</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">button_text</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertIsNotNone</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">find_button_by</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">button_text</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestLayout</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">buttons_to_test</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#4e9a06">'C'</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#4e9a06">'7'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'8'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'9'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'/'</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#4e9a06">'4'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'5'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'6'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'*'</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#4e9a06">'1'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'2'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'3'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'-'</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#4e9a06">'.'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'0'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'='</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'+'</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_initial_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"0"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_buttons</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">button_text</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">buttons_to_test</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">subTest</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">button</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">button_text</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_button_exists</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">button_text</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div><ul>
+<li>what’s the purpose of <code>subTest</code>?
+<ul>
+<li>it easies the <em>debugging</em> of the test suite, in case of <em>multiple</em> failures</li>
+</ul>
+</li>
+</ul>
 
 </section>
 </section><section>
 <h2 id="test-plan">Test plan</h2>
 <ul>
 <li>
-<p>Testing should be <em>planned for in advance</em></p>
+<p>Testing should be <strong>planned for in advance</strong></p>
 </li>
 <li>
-<p>A good test plan can guide the development, and should be ready <em>early</em> in the project</p>
+<p>A good test plan can <em>guide the development</em>, and should be ready <em>early</em> in the project</p>
+</li>
+<li>
+<p>To plan a test, one might try to convert the <em>requirements</em>’s acceptance criteria into <em>test cases</em></p>
+<ul>
+<li>this is mostly true for <strong>system</strong> and, to some extent, <em>integration</em> tests</li>
+</ul>
+</li>
+<li>
+<p>To plan <em>unit</em> tests, one might try to create <em>test cases</em> covering <strong>each aspect of the public API</strong> of the <em>SUT</em></p>
+<ul>
+<li>e.g. for each <em>public</em> class, a test case may cover all <em>public</em> functions and attributes of that class</li>
+</ul>
 </li>
 </ul>
+<br>
 <blockquote>
-<p>When designing cars,
-the crash testing procedure,
-the engine test bench,
-and so on are prepared well before the car prototype is ready!</p>
+<p>When designing <em>cars</em>,
+the <strong>crash testing</strong> procedure,
+the <em>engine test</em> bench,
+and so on are prepared <em>well before</em> the car prototype is ready!</p>
 </blockquote>
 </section><section>
 <h2 id="test-driven-development-tdd">Test-Driven Development (TDD)</h2>
 <p>The practice of:</p>
 <ul>
 <li>converting <em>requirements to (executable) test</em> cases</li>
-<li>preparing tests <em>before</em> development</li>
-<li>define the <em>expected behavior</em> via test cases</li>
+<li><strong>preparing tests <em>before</em> development</strong></li>
+<li><strong>define the <em>expected behavior</em> via test cases</strong></li>
 <li>track all development by <em>always testing all cases</em></li>
 </ul>
+<blockquote>
+<p><strong>Key-point</strong>: in TDD, tests are not only a form of validation, but also a form of <strong>specification</strong></p>
+</blockquote>
 </section><section>
 <h2 id="development-cycle-in-tdd">Development cycle in TDD</h2>
 <ol>
 <li><em>Capture</em> a requirement into an executable <em>test</em></li>
 <li>Run the test suite, the <em>new test should <strong>fail</strong></em></li>
 <li>Fix the code so that the new test passes</li>
-<li>Re-run the whole test suite, all tests should pass</li>
+<li>Re-run the whole test suite, <em>all tests should pass</em></li>
 <li>Improve the quality as needed (refactor, style, duplication…)</li>
 </ol>
 </section><section>

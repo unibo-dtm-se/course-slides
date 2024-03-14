@@ -313,7 +313,7 @@ class TestMySystemUnderSpecialConditions(unittest.TestCase):
 
 - Many _assertion functions_, cf.: <https://docs.python.org/3/library/unittest.html#assert-methods>
 
-- Many many options to customise / parametrise your test suites, cf. <https://docs.python.org/3/library/unittest.html>
+- Many options to _customise_/parametrise your test suites, cf. <https://docs.python.org/3/library/unittest.html>
 
 - How to run tests:
     - from the terminal: `python -m unittest discover -v -s tests`
@@ -406,6 +406,114 @@ After:
 ![VS Code after](vs-code-tests-post.png)
 {{%/col%}}
 {{</multicol>}}
+
+---
+
+# Hands-on (pt. 4)
+
+## Playing a bit with `unittest`
+
+### Inspecting a real unit test
+
+6. Have a look to the [`tests/test_model.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_model.py) file and listen to the teacher explanation
+    + it contains a test suite for the `Calculator` class
+
+```python
+import unittest
+from calculator import Calculator
+
+
+# test case testing what the effect of each method of the Calculator class is
+# when executed on a fresh new Calculator instance
+class TestCalculatorMethods(unittest.TestCase):
+    def setUp(self):
+        # here we create one "virgin" instance of the Calculator class (our SUT)
+        self.calculator = Calculator()
+
+    def test_initial_expression_is_empty(self):
+        # here we ensure the expression of a virgin Calculator is empty 
+        self.assertEqual("", self.calculator.expression)
+
+    def test_digit(self):
+        # here we ensure that the digit method effectively appends one digit to the Calculator expression
+        self.calculator.digit(1)
+        self.assertEqual("1", self.calculator.expression)
+
+    def test_plus(self):
+        # here we ensure that the plus method effectively appends one "+" symbol to the Calculator expression
+        self.calculator.plus()
+        self.assertEqual("+", self.calculator.expression)
+
+    def test_minus(self):
+        # here we ensure that the minus method effectively appends one "-" symbol to the Calculator expression
+        self.calculator.minus()
+        self.assertEqual("-", self.calculator.expression)
+    
+    def test_multiply(self):
+        # here we ensure that the multiply method effectively appends one "*" symbol to the Calculator expression
+        self.calculator.multiply()
+        self.assertEqual("*", self.calculator.expression)
+    
+    def test_divide(self):
+        # here we ensure that the divide method effectively appends one "/" symbol to the Calculator expression
+        self.calculator.divide()
+        self.assertEqual("/", self.calculator.expression)
+
+
+# test case testing the usage of the Calculator class
+class TestCalculatorUsage(unittest.TestCase):
+    def setUp(self):
+        # here we create one "virgin" instance of the Calculator class (our SUT)
+        self.calculator = Calculator()
+
+    def test_expression_insertion(self):
+        # here we simulate the insertion of a simple expression, one symbol at a time...
+        self.calculator.digit(1)
+        self.calculator.plus()
+        self.calculator.digit(2)
+        # ... and we ensure the expression is as expected
+        self.assertEqual("1+2", self.calculator.expression)
+
+    def test_compute_result(self):
+        # here we simulate the insertion of an expression "as a whole", 
+        # by setting the expression attribute of a virgin Calculator
+        self.calculator.expression = "1+2"
+        # ... and we ansure the compute_result method evaluates the expression as expected
+        self.assertEqual(3, self.calculator.compute_result())
+
+    def test_compute_result_with_invalid_expression(self):
+        # here we simulate the insertion of an invalid expression "as a whole"...
+        self.calculator.expression = "1+"
+        with self.assertRaises(ValueError) as context:
+            # ... and we ensure the compute_result method raises a ValueError in such situation
+            self.calculator.compute_result()
+            # ... and we also ensure that the exception message carries useful information
+            self.assertEqual("Invalid expression: 1+", str(context.exception))
+```
+
+---
+
+# Hands-on (pt. 4)
+
+## Playing a bit with `unittest`
+
+### Failing tests
+
+7. Try to run tests via the terminal and via VS Code
+    + notice that in VS Code you can run tests _selectively_
+
+8. Let's now simulate the scenario where tests are __failing__ (e.g. due to _buggy_ code)
+    + edit the `Calculator` in file [`calculator/__init__.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/__init__.py) to introduce a bug
+        * e.g. change the `__init__` function as follows:
+            ```python
+            def __init__(self):
+                self.expression = "0" # bug: the expression is not initially empty
+            ```
+
+9. Run the tests again: many tests should now fail
+    + notice how the tests failure is _reported_ in the terminal and in VS Code
+    + try to spot the _source_ of the problem, from the error _reports_
+  
 
 {{% /section %}}
 

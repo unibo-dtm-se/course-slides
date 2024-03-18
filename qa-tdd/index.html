@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2024-03-14 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-03-18 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="quality-assurance">Quality assurance</h2>
@@ -534,7 +534,7 @@
 <ol start="6">
 <li>Have a look to the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_model.py"><code>tests/test_model.py</code></a> file and listen to the teacher explanation
 <ul>
-<li>it contains a test suite for the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/__init__.py#L4"><code>Calculator</code> class</a></li>
+<li>it contains a test suite for the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/__init__.py#L4"><code>Calculator</code> class</a></li>
 </ul>
 </li>
 </ol>
@@ -608,8 +608,8 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertRaises</span><span style="color:#000;font-weight:bold">(</span><span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">context</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic"># ... and we ensure the compute_result method raises a ValueError in such situation</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic"># ... and we also ensure that the exception message carries useful information</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Invalid expression: 1+"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">context</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">exception</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># ... and we also ensure that the exception message carries useful information</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Invalid expression: 1+"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">context</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">exception</span><span style="color:#000;font-weight:bold">))</span>
 </span></span></code></pre></div></section><section>
 <h1 id="hands-on-pt-4-1">Hands-on (pt. 4)</h1>
 <h2 id="playing-a-bit-with-unittest-4">Playing a bit with <code>unittest</code></h2>
@@ -650,10 +650,10 @@
 <li>Have a look to the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py"><code>tests/test_gui.py</code></a> file and listen to the teacher explanation:</li>
 </ol>
 <ul>
-<li>it contains a test suite for the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/ui/gui.py#L23"><code>CalculatorApp</code> class</a></li>
+<li>it contains a test suite for the <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/ui/gui.py#L23"><code>CalculatorApp</code> class</a></li>
 </ul>
 <ol start="7">
-<li>Notice that tests are based on <strong>custom</strong> _base class _(<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/tests/test_gui.py#L6">namely <code>CalculatorGUITestCase</code></a>),
+<li>Notice that tests are based on <strong>custom</strong> _base class _(<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py#L6">namely <code>CalculatorGUITestCase</code></a>),
 which adds
 <ul>
 <li>custom action (e.g. <code>press_button(button_name)</code>)</li>
@@ -753,7 +753,7 @@ test case, and listen to the teacher explanation</p>
 <div class="container w-100 m-0 p-0">
     <div class="row ">
 <div class="col "><p>Before:</p>
-<figure id="plantuml-figure-1710430941823268710" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1710788241650473956" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class CalculatorApp {
 - _calc: Calculator
 - _display: Label
@@ -762,11 +762,11 @@ test case, and listen to the teacher explanation</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1710430941823268710");
+    handlePlantumlFigureByID("plantuml-figure-1710788241650473956");
 </script>
 </div>
 <div class="col "><p>After:</p>
-<figure id="plantuml-figure-1710430941823335295" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1710788241650754700" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class CalculatorApp {
 - _calc: Calculator
 + display: Label
@@ -777,7 +777,7 @@ test case, and listen to the teacher explanation</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1710430941823335295");
+    handlePlantumlFigureByID("plantuml-figure-1710788241650754700");
 </script>
 </div>
 </div>
@@ -890,6 +890,7 @@ the designer of the test suite was envisioning when writing the tests</p>
 <p>⬇️ (please <strong>resist the temptation</strong>, and try to solve the exercise before looking at the solution) ⬇️</p>
 </section><section>
 <h2 id="one-possible-solution">One possible solution</h2>
+<p>(also available on [branch <code>exercises/01-test-layout</code> of the <code>testable-calculator</code>] repository(<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/01-test-layout/tests/test_gui.py#L44">https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/01-test-layout/tests/test_gui.py#L44</a>))</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># rest of the class is unchanged </span>
 </span></span><span style="display:flex;"><span>
@@ -916,7 +917,11 @@ the designer of the test suite was envisioning when writing the tests</p>
 </span></span></code></pre></div><ul>
 <li>what’s the purpose of <code>subTest</code>?
 <ul>
-<li>it easies the <em>debugging</em> of the test suite, in case of <em>multiple</em> failures</li>
+<li>it easies the <em>debugging</em> of the test suite, in case of <em>multiple</em> failures
+<ul>
+<li>try launching tests from VS Code’s UI</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -973,6 +978,146 @@ and so on are prepared <em>well before</em> the car prototype is ready!</p>
 <li>Improve the quality as needed (refactor, style, duplication…)</li>
 </ol>
 </section><section>
+
+
+<section data-shortcode-section="">
+<h1 id="exercise">Exercise</h1>
+<h2 id="adding-features-to-the-calculator-via-tdd">Adding features to the Calculator via TDD</h2>
+<blockquote>
+<p>Customers ask for new features in the calculator:</p>
+<ol>
+<li>possibility to write expressions with <em>parentheses</em> (e.g. <code>(1+2)*3</code>)</li>
+<li>possibility to write expressions with the <em>square root</em> function (e.g. <code>sqrt(4)</code>)</li>
+<li>possibility to write expressions with the <em>power</em> function (e.g. <code>2**3</code>)</li>
+</ol>
+</blockquote>
+<ol>
+<li>
+<p>Extend the model’s test suite (i.e. file
+<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_model.py"><code>test_model.py</code></a>
+which aims at testing the
+<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/__init__.py#L4"><code>Calculator</code> class</a>)</p>
+<ul>
+<li>this implies extensions for the <code>Calculator</code> class’s <em>public API</em> should be <strong>envisioned</strong> (<em>not realised</em>)</li>
+<li>use your imagination to <em>invent</em> reasonable extensions</li>
+</ul>
+</li>
+<li>
+<p>Extend the GUI’s test suite (i.e. file
+<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py"><code>test_gui.py</code></a>
+which aims at testing the
+<a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/ui/gui.py#L16"><code>CalculatorApp</code> class</a>, i.e. the GUI)</p>
+<ul>
+<li>this implies novel <em>buttons</em> and <em>actions</em> should be <strong>envisioned</strong> (<em>not realised</em>) for the <em>GUI</em></li>
+<li>use your imagination to <em>invent</em> reasonable buttons and their effects</li>
+</ul>
+</li>
+<li>
+<p><em>Launch your tests</em>: <strong>it’s OK if</strong> novel <strong>tests fail at this stage</strong></p>
+<ul>
+<li>let’s just ensure they fail for the correct reasons (missing methods, or missing buttons)</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="one-possible-solution">One possible solution</h2>
+<p>(also available on <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9b62a434a032677fba449324379fe07b2ac72f30">branch <code>exercises/02-tdd-before-impl</code> of the <code>testable-calculator</code>repository</a>)</p>
+<p>Test suite for the model (i.e. <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/02-tdd-before-impl/tests/test_model.py#L54"><code>test_model.py</code></a>)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># other test cases are unchanged</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestComplexExpressions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">setUp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_expression_with_parentheses</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">open_parenthesis</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">close_parenthesis</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">multiply</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"(1+2)*3"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">9</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_expression_with_sqrt</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">square_root</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">open_parenthesis</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">minus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">close_parenthesis</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1+sqrt(11-2)"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_expression_with_pow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">open_parenthesis</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plus</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">close_parenthesis</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">power</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"(1+1)**3"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assertEqual</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">8</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">calculator</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">())</span>
+</span></span></code></pre></div></section><section>
+<h2 id="one-possible-solution-1">One possible solution</h2>
+<p>(also available on <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9b62a434a032677fba449324379fe07b2ac72f30">branch <code>exercises/02-tdd-before-impl</code> of the <code>testable-calculator</code>repository</a>)</p>
+<p>Test suite for the GUI (i.e. <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/02-tdd-before-impl/tests/test_gui.py#L40"><code>test_gui.py</code></a>)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestExpressions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># other test methods are unchanged</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_expression_with_parentheses</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"("</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"+"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"2"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">")"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"*"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"3"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"(1+2)*3"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"="</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"9"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_expression_wit_sqrt</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"sqrt"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"4"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">")"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"sqrt(4)"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"="</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"2.0"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_expression_with_pow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"2"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"**"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"3"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"2**3"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"="</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assert_display</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"8"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div>
+</section>
+</section><section>
+<h1 id="exercise-continued">Exercise (continued)</h1>
+<ol start="4">
+<li>
+<p>Now it’s time to implement the new features</p>
+<ul>
+<li>Goal: make the <strong>all</strong> tests pass</li>
+</ul>
+</li>
+<li>
+<p>One possible solution is on the <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9cce0dc19f572a31567294085c8168951de75bd2"><code>exercises/02-tdd-after-impl</code> branch of the <code>testable-calculator</code> repository</a></p>
+<ul>
+<li>feel free to inspect it, after you attempted to produce your own solution</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h1 id="old-material-from-now-on">OLD MATERIAL FROM NOW ON</h1>
+</section><section>
 <h2 id="injecting-tests-into-projects-started-without-tests">Injecting tests into projects started without tests</h2>
 <p>Developing without testing is <em>unsustainable</em></p>
 <p>Yet many software projects have no or minimal tests, as:</p>
@@ -1022,18 +1167,21 @@ but how to <strong>run</strong> them if <em>the components surrounding the teste
 <p>How to test a new suspension system if the “surrounding” car is not ready (not even fully designed) yet?</p>
 <p>How to test that our new rocket engine works as expected with no rocket?</p>
 <p>How to test that our multi-engine rocket works as expected without payload?</p>
-</section><section>
+<!-- ---
+
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/QMcj58TbsyU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="" title="YouTube Video"></iframe>
+  <iframe src="https://www.youtube.com/embed/QMcj58TbsyU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-</section><section>
+
+---
+
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/kchq9AGXsyA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="" title="YouTube Video"></iframe>
+  <iframe src="https://www.youtube.com/embed/kchq9AGXsyA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
-
+ -->
 </section><section>
 <h2 id="testing-software-before-it-is-ready-test-doubles">Testing software before it is ready: test doubles</h2>
 <p>The trick: <em>simulate components that are not ready yet</em>!</p>

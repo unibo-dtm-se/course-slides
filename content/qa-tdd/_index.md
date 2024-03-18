@@ -422,7 +422,7 @@ After:
 ### Inspecting a real unit test
 
 6. Have a look to the [`tests/test_model.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_model.py) file and listen to the teacher explanation
-    + it contains a test suite for the [`Calculator` class](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/__init__.py#L4)
+    + it contains a test suite for the [`Calculator` class](https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/__init__.py#L4)
     
     
 ⬇️
@@ -498,8 +498,8 @@ class TestCalculatorUsage(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             # ... and we ensure the compute_result method raises a ValueError in such situation
             self.calculator.compute_result()
-            # ... and we also ensure that the exception message carries useful information
-            self.assertEqual("Invalid expression: 1+", str(context.exception))
+        # ... and we also ensure that the exception message carries useful information
+        self.assertEqual("Invalid expression: 1+", str(context.exception))
 ```
 
 ---
@@ -535,9 +535,9 @@ class TestCalculatorUsage(unittest.TestCase):
 ### Testing the GUI (+ integration with model)
 
 6. Have a look to the [`tests/test_gui.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py) file and listen to the teacher explanation:
-  + it contains a test suite for the [`CalculatorApp` class](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/calculator/ui/gui.py#L23)
+  + it contains a test suite for the [`CalculatorApp` class](https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/ui/gui.py#L23)
 
-7. Notice that tests are based on __custom__ _base class _([namely `CalculatorGUITestCase`](https://github.com/unibo-dtm-se/testable-calculator/blob/9b3c7270696d1eae10b130120c53fb7eaa5342c5/tests/test_gui.py#L6)),
+7. Notice that tests are based on __custom__ _base class _([namely `CalculatorGUITestCase`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py#L6)),
 which adds 
     - custom action (e.g. `press_button(button_name)`)
     - custom assertions (e.g. `assert_display(expected_text)`)
@@ -760,6 +760,8 @@ _One possible solution is in the next slide_
 
 ## One possible solution
 
+(also available on [branch `exercises/01-test-layout` of the `testable-calculator`] repository(https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/01-test-layout/tests/test_gui.py#L44))
+
 ```python
 class CalculatorGUITestCase(unittest.TestCase):
     # rest of the class is unchanged 
@@ -788,6 +790,7 @@ class TestLayout(CalculatorGUITestCase):
 
 - what's the purpose of `subTest`?
     + it easies the _debugging_ of the test suite, in case of _multiple_ failures
+        * try launching tests from VS Code's UI
 
 {{% /section %}}
 
@@ -833,6 +836,144 @@ The practice of:
 3. Fix the code so that the new test passes
 4. Re-run the whole test suite, _all tests should pass_
 5. Improve the quality as needed (refactor, style, duplication...)
+
+---
+
+{{% section %}}
+
+# Exercise
+
+## Adding features to the Calculator via TDD
+
+> Customers ask for new features in the calculator:
+> 1. possibility to write expressions with _parentheses_ (e.g. `(1+2)*3`)
+> 2. possibility to write expressions with the _square root_ function (e.g. `sqrt(4)`)
+> 3. possibility to write expressions with the _power_ function (e.g. `2**3`)
+
+1. Extend the model's test suite (i.e. file
+[`test_model.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_model.py)
+which aims at testing the
+[`Calculator` class](https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/__init__.py#L4))
+    + this implies extensions for the `Calculator` class's _public API_ should be __envisioned__ (_not realised_)
+    + use your imagination to _invent_ reasonable extensions
+
+2. Extend the GUI's test suite (i.e. file
+[`test_gui.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/master/tests/test_gui.py)
+which aims at testing the
+[`CalculatorApp` class](https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/ui/gui.py#L16), i.e. the GUI)
+    + this implies novel _buttons_ and _actions_ should be __envisioned__ (_not realised_) for the _GUI_
+    + use your imagination to _invent_ reasonable buttons and their effects
+
+3. _Launch your tests_: __it's OK if__ novel __tests fail at this stage__
+    + let's just ensure they fail for the correct reasons (missing methods, or missing buttons)
+
+---
+
+## One possible solution
+
+(also available on [branch `exercises/02-tdd-before-impl` of the `testable-calculator`repository](https://github.com/unibo-dtm-se/testable-calculator/commit/9b62a434a032677fba449324379fe07b2ac72f30))
+
+Test suite for the model (i.e. [`test_model.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/02-tdd-before-impl/tests/test_model.py#L54))
+```python
+# other test cases are unchanged
+
+class TestComplexExpressions(unittest.TestCase):
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_expression_with_parentheses(self):
+        self.calculator.open_parenthesis()
+        self.calculator.digit(1)
+        self.calculator.plus()
+        self.calculator.digit(2)
+        self.calculator.close_parenthesis()
+        self.calculator.multiply()
+        self.calculator.digit(3)
+        self.assertEqual("(1+2)*3", self.calculator.expression)
+        self.assertEqual(9, self.calculator.compute_result())
+
+    def test_expression_with_sqrt(self):
+        self.calculator.digit(1)
+        self.calculator.plus()
+        self.calculator.square_root()
+        self.calculator.open_parenthesis()
+        self.calculator.digit(1)
+        self.calculator.digit(1)
+        self.calculator.minus()
+        self.calculator.digit(2)
+        self.calculator.close_parenthesis()
+        self.assertEqual("1+sqrt(11-2)", self.calculator.expression)
+        self.assertEqual(4, self.calculator.compute_result())
+
+    def test_expression_with_pow(self):
+        self.calculator.open_parenthesis()
+        self.calculator.digit(1)
+        self.calculator.plus()
+        self.calculator.digit(1)
+        self.calculator.close_parenthesis()
+        self.calculator.power()
+        self.calculator.digit(3)
+        self.assertEqual("(1+1)**3", self.calculator.expression)
+        self.assertEqual(8, self.calculator.compute_result())
+```
+
+---
+
+## One possible solution
+
+(also available on [branch `exercises/02-tdd-before-impl` of the `testable-calculator`repository](https://github.com/unibo-dtm-se/testable-calculator/commit/9b62a434a032677fba449324379fe07b2ac72f30))
+
+Test suite for the GUI (i.e. [`test_gui.py`](https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/02-tdd-before-impl/tests/test_gui.py#L40))
+
+```python
+class TestExpressions(CalculatorGUITestCase):
+    # other test methods are unchanged
+
+    def test_expression_with_parentheses(self):
+        self.press_button("(")
+        self.press_button("1")
+        self.press_button("+")
+        self.press_button("2")
+        self.press_button(")")
+        self.press_button("*")
+        self.press_button("3")
+        self.assert_display("(1+2)*3")
+        self.press_button("=")
+        self.assert_display("9")
+
+    def test_expression_wit_sqrt(self):
+        self.press_button("sqrt")
+        self.press_button("4")
+        self.press_button(")")
+        self.assert_display("sqrt(4)")
+        self.press_button("=")
+        self.assert_display("2.0")
+
+    def test_expression_with_pow(self):
+        self.press_button("2")
+        self.press_button("**")
+        self.press_button("3")
+        self.assert_display("2**3")
+        self.press_button("=")
+        self.assert_display("8")
+```
+
+{{% /section %}}
+
+---
+
+# Exercise (continued)
+
+4. Now it's time to implement the new features
+    + Goal: make the __all__ tests pass
+
+
+5. One possible solution is on the [`exercises/02-tdd-after-impl` branch of the `testable-calculator` repository](https://github.com/unibo-dtm-se/testable-calculator/commit/9cce0dc19f572a31567294085c8168951de75bd2)
+    + feel free to inspect it, after you attempted to produce your own solution
+
+---
+
+# OLD MATERIAL FROM NOW ON
 
 ---
 
@@ -903,13 +1044,13 @@ How to test that our new rocket engine works as expected with no rocket?
 
 How to test that our multi-engine rocket works as expected without payload?
 
----
+<!-- ---
 
 {{< youtube "QMcj58TbsyU" >}}
 
 ---
 
-{{< youtube "kchq9AGXsyA" >}}
+{{< youtube "kchq9AGXsyA" >}} -->
 
 ---
 

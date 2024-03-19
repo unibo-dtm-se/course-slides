@@ -973,28 +973,59 @@ class TestExpressions(CalculatorGUITestCase):
 
 ---
 
-# OLD MATERIAL FROM NOW ON
-
----
-
-## Injecting tests into projects started without tests
+## On the cost of testing
 
 Developing without testing is *unsustainable*
 
+<br>
+
 Yet many software projects have no or minimal tests, as:
 
-> We do not have time (or money) for testing
+> __Common misconception__: We do not have time (or money) for testing 
+
+<br>
 
 Beware: **testing saves times in the long run**, not testing is a *cost*!
 * Untested software components are likely sources of *technical debt*
 
 ---
 
-## A much better quotation
+## Important notion
+
+> [Technical debt](https://en.wikipedia.org/wiki/Technical_debt) is a concept in software development that reflects the _implied_ __cost__ of additional rework caused by choosing an _easy_ (limited) _solution now_ __instead of__ using a _better approach_ that would take _longer_.
+
+- Not writing tests on _ASAP_, greatly increases the technical debt
+    + editing the code becomes harder and harder, as the codebase grows
+        + because any new change may break something else, and without tests that break would go unnoticed
+
+- Development is _never_ really __finished__ in real software projects
+    + (_short-sighted_) management will unlikely allocate time for _improving_ the code, or _writing tests_
+        * because that has no __immediate__ _visible return_ for the customer
+
+- TDD practices help in keeping the technical debt under control
+
+---
+
+## What happens when there's too many technical debt?
 
 > we never have the money to do it *right* but somehow we always have the fucking money to do it *twice*
 
 $---$ UserInputSucks (@UserInputSucks) [May 27, 2019](https://twitter.com/UserInputSucks/status/1132904286415929345)
+
+---
+
+## What if a project is not using TDD since the very beginning?
+
+Decreasing preference order:
+
+1. __Ideal situation__: always writing tests during design, _before_ implementation
+
+2. __Common situation__: design and implement, then _write_ tests
+
+3. __Barely tolerable situation__: design and implement, _only_ add tests upon bugs
+    + (see next slide)
+
+4. __Very bad situation__: _never_ write tests
 
 ---
 
@@ -1010,39 +1041,41 @@ A more **robust approach**:
 1. Reproduce the issue in a *minimal context*
 2. Create a new *test case* that *correctly fails*
 3. *Fix* the issue, and make sure that the test now *passes*
+4. Ensure that _all other tests_ still pass
 
-Writing the test *after* the fix is much less effective.
-
-See this [example interaction](https://github.com/AlchemistSimulator/Alchemist/issues/1002) of a reasonable way to tackle bugs.
+> Motivations:
+> - the new test case will __prevent__ the issue from being _mistakenly re-introduced_ in the future
+> - develop the test case _before_ the fix will help the __debugging__ process
 
 ---
 
 ## Testing software before it is ready: boundaries
 
-Problem: how is it possible to test code that *does not exist*?
+> __Problem__: how is it possible to test code that *does not exist*?
+- More in general: how to design a testbed for an engineering product that is not prototypied yet?
 
-More in general: how to design a testbed for an engineering product that is not prototypied yet?
+<br>
 
-**clean boundaries**: the component must have a well-defined interface with the rest of the world.
-In software, it means that the component has a *well-defined Application Programming Interface* (API).
-Our artifact must be **modularized** correctly
-(this also helps with development, simplicity and maintenance)
+- **Clean boundaries**: the component must have a well-defined interface with the rest of the world.
+    + in software, it means that the component has a *well-defined Application Programming Interface* (API).
+    + our artifact must be **modularized** correctly
+        * (this also helps with development, simplicity and maintenance)
 
-**clear scope**: well engineered (software) components usually *do one thing well*.
-Test plans are conceived to test that the one thing is performed correctly.
+- **Clear scope**: well engineered (software) components usually *do one thing well*.
+    + test plans are conceived to test that the one thing is performed correctly.
 
 ---
 
 ## Testing software before it is ready: missing components
 
-We can now *design our tests*,
-but how to **run** them if *the components surrounding the tested one are not ready*?
+- We can now *design our tests*,
+    + but how to **run** them if *the components surrounding the tested one are not ready*?
 
-How to test a new suspension system if the "surrounding" car is not ready (not even fully designed) yet?
++ How to test a new suspension system if the "surrounding" car is not ready (not even fully designed) yet?
 
-How to test that our new rocket engine works as expected with no rocket?
++ How to test that our new rocket engine works as expected with no rocket?
 
-How to test that our multi-engine rocket works as expected without payload?
++ How to test that our multi-engine rocket works as expected without payload?
 
 <!-- ---
 
@@ -1065,12 +1098,16 @@ The simulated component are called *test doubles*
 
 * *dummy*: a (usually unimplemented) placeholder (e.g., unused mandatory argument)
   * a weight put on the suspension
+
 * *stub*: partly implemented dummy
   * a system applying variable weight to the suspension
+
 * *spy*: a stub that tracks information of the way it is being used
   * a dynamometer recording the suspension behavior under different conditions
+
 * *mock*: a spy that expects to be used in a certain way, and fails if the expectation is unmet
   * a smart dynamometer that interrupts testing if the suspension behavior is not nominal
+
 * *fake*: a fully implemented version of the component unsuitable for production
   * a car prototype
 
@@ -1080,10 +1117,16 @@ The simulated component are called *test doubles*
 
 > Why should the team "waste" time creating doubles instead of just writing the thing?
 
-doubles are **cheaper**: dedicated libraries make doubles *implementation extremely quick*
-* In Python, [`unittest.mock`](https://docs.python.org/3/library/unittest.mock.html) is included in the distribution, and [Doubles](https://doubles.readthedocs.io/en/latest/) is a valid alternative.
+- doubles are **cheaper**: dedicated libraries make doubles *implementation extremely quick*
+    * In Python, [`unittest.mock`](https://docs.python.org/3/library/unittest.mock.html) is included in the distribution, and [Doubles](https://doubles.readthedocs.io/en/latest/) is a valid alternative.
 
-doubles are **simpler**: only encode the behavior required to check some part of the behaviour. The probability of them being bugged is lower. *Debugging is easier*.
+- doubles are **simpler**: only encode the behavior required to check some part of the behaviour. 
+    * The probability of them being bugged is lower. 
+    * *Debugging is easier*.
+
+--- 
+
+# OLD MATERIAL FROM NOW ON
 
 ---
 

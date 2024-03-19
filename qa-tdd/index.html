@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2024-03-18 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-03-19 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="quality-assurance">Quality assurance</h2>
@@ -753,7 +753,7 @@ test case, and listen to the teacher explanation</p>
 <div class="container w-100 m-0 p-0">
     <div class="row ">
 <div class="col "><p>Before:</p>
-<figure id="plantuml-figure-1710788241650473956" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1710869830192345000" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class CalculatorApp {
 - _calc: Calculator
 - _display: Label
@@ -762,11 +762,11 @@ test case, and listen to the teacher explanation</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1710788241650473956");
+    handlePlantumlFigureByID("plantuml-figure-1710869830192345000");
 </script>
 </div>
 <div class="col "><p>After:</p>
-<figure id="plantuml-figure-1710788241650754700" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1710869830192403338" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class CalculatorApp {
 - _calc: Calculator
 + display: Label
@@ -777,7 +777,7 @@ test case, and listen to the teacher explanation</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1710788241650754700");
+    handlePlantumlFigureByID("plantuml-figure-1710869830192403338");
 </script>
 </div>
 </div>
@@ -1116,24 +1116,74 @@ which aims at testing the
 </li>
 </ol>
 </section><section>
-<h1 id="old-material-from-now-on">OLD MATERIAL FROM NOW ON</h1>
-</section><section>
-<h2 id="injecting-tests-into-projects-started-without-tests">Injecting tests into projects started without tests</h2>
+<h2 id="on-the-cost-of-testing">On the cost of testing</h2>
 <p>Developing without testing is <em>unsustainable</em></p>
+<br>
 <p>Yet many software projects have no or minimal tests, as:</p>
 <blockquote>
-<p>We do not have time (or money) for testing</p>
+<p><strong>Common misconception</strong>: We do not have time (or money) for testing</p>
 </blockquote>
+<br>
 <p>Beware: <strong>testing saves times in the long run</strong>, not testing is a <em>cost</em>!</p>
 <ul>
 <li>Untested software components are likely sources of <em>technical debt</em></li>
 </ul>
 </section><section>
-<h2 id="a-much-better-quotation">A much better quotation</h2>
+<h2 id="important-notion">Important notion</h2>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Technical_debt">Technical debt</a> is a concept in software development that reflects the <em>implied</em> <strong>cost</strong> of additional rework caused by choosing an <em>easy</em> (limited) <em>solution now</em> <strong>instead of</strong> using a <em>better approach</em> that would take <em>longer</em>.</p>
+</blockquote>
+<ul>
+<li>
+<p>Not writing tests on <em>ASAP</em>, greatly increases the technical debt</p>
+<ul>
+<li>editing the code becomes harder and harder, as the codebase grows
+<ul>
+<li>because any new change may break something else, and without tests that break would go unnoticed</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Development is <em>never</em> really <strong>finished</strong> in real software projects</p>
+<ul>
+<li>(<em>short-sighted</em>) management will unlikely allocate time for <em>improving</em> the code, or <em>writing tests</em>
+<ul>
+<li>because that has no <strong>immediate</strong> <em>visible return</em> for the customer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>TDD practices help in keeping the technical debt under control</p>
+</li>
+</ul>
+</section><section>
+<h2 id="what-happens-when-theres-too-many-technical-debt">What happens when there’s too many technical debt?</h2>
 <blockquote>
 <p>we never have the money to do it <em>right</em> but somehow we always have the fucking money to do it <em>twice</em></p>
 </blockquote>
 <p>$—$ UserInputSucks (@UserInputSucks) <a href="https://twitter.com/UserInputSucks/status/1132904286415929345">May 27, 2019</a></p>
+</section><section>
+<p>##&nbsp;What if a project is not using TDD since the very beginning?</p>
+<p>Decreasing preference order:</p>
+<ol>
+<li>
+<p><strong>Ideal situation</strong>: always writing tests during design, <em>before</em> implementation</p>
+</li>
+<li>
+<p><strong>Common situation</strong>: design and implement, then <em>write</em> tests</p>
+</li>
+<li>
+<p><strong>Barely tolerable situation</strong>: design and implement, <em>only</em> add tests upon bugs</p>
+<ul>
+<li>(see next slide)</li>
+</ul>
+</li>
+<li>
+<p><strong>Very bad situation</strong>: <em>never</em> write tests</p>
+</li>
+</ol>
 </section><section>
 <h2 id="tackling-bugs-and-regressions">Tackling bugs and regressions</h2>
 <p>When a new <strong>bug</strong> (or a <strong>regression</strong>, namely, a feature that was working and it is now compromised) is discovered,
@@ -1147,26 +1197,63 @@ which aims at testing the
 <li>Reproduce the issue in a <em>minimal context</em></li>
 <li>Create a new <em>test case</em> that <em>correctly fails</em></li>
 <li><em>Fix</em> the issue, and make sure that the test now <em>passes</em></li>
+<li>Ensure that <em>all other tests</em> still pass</li>
 </ol>
-<p>Writing the test <em>after</em> the fix is much less effective.</p>
-<p>See this <a href="https://github.com/AlchemistSimulator/Alchemist/issues/1002">example interaction</a> of a reasonable way to tackle bugs.</p>
+<blockquote>
+<p>Motivations:</p>
+<ul>
+<li>the new test case will <strong>prevent</strong> the issue from being <em>mistakenly re-introduced</em> in the future</li>
+<li>develop the test case <em>before</em> the fix will help the <strong>debugging</strong> process</li>
+</ul>
+</blockquote>
 </section><section>
 <h2 id="testing-software-before-it-is-ready-boundaries">Testing software before it is ready: boundaries</h2>
-<p>Problem: how is it possible to test code that <em>does not exist</em>?</p>
-<p>More in general: how to design a testbed for an engineering product that is not prototypied yet?</p>
-<p><strong>clean boundaries</strong>: the component must have a well-defined interface with the rest of the world.
-In software, it means that the component has a <em>well-defined Application Programming Interface</em> (API).
-Our artifact must be <strong>modularized</strong> correctly
-(this also helps with development, simplicity and maintenance)</p>
-<p><strong>clear scope</strong>: well engineered (software) components usually <em>do one thing well</em>.
-Test plans are conceived to test that the one thing is performed correctly.</p>
+<blockquote>
+<p><strong>Problem</strong>: how is it possible to test code that <em>does not exist</em>?</p>
+</blockquote>
+<ul>
+<li>More in general: how to design a testbed for an engineering product that is not prototypied yet?</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><strong>Clean boundaries</strong>: the component must have a well-defined interface with the rest of the world.</p>
+<ul>
+<li>in software, it means that the component has a <em>well-defined Application Programming Interface</em> (API).</li>
+<li>our artifact must be <strong>modularized</strong> correctly
+<ul>
+<li>(this also helps with development, simplicity and maintenance)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Clear scope</strong>: well engineered (software) components usually <em>do one thing well</em>.</p>
+<ul>
+<li>test plans are conceived to test that the one thing is performed correctly.</li>
+</ul>
+</li>
+</ul>
 </section><section>
 <h2 id="testing-software-before-it-is-ready-missing-components">Testing software before it is ready: missing components</h2>
-<p>We can now <em>design our tests</em>,
-but how to <strong>run</strong> them if <em>the components surrounding the tested one are not ready</em>?</p>
+<ul>
+<li>We can now <em>design our tests</em>,
+<ul>
+<li>but how to <strong>run</strong> them if <em>the components surrounding the tested one are not ready</em>?</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
 <p>How to test a new suspension system if the “surrounding” car is not ready (not even fully designed) yet?</p>
+</li>
+<li>
 <p>How to test that our new rocket engine works as expected with no rocket?</p>
+</li>
+<li>
 <p>How to test that our multi-engine rocket works as expected without payload?</p>
+</li>
+</ul>
 <!-- ---
 
 
@@ -1189,27 +1276,32 @@ but how to <strong>run</strong> them if <em>the components surrounding the teste
 <strong>if their API has been clearly defined</strong></p>
 <p>The simulated component are called <em>test doubles</em></p>
 <ul>
-<li><em>dummy</em>: a (usually unimplemented) placeholder (e.g., unused mandatory argument)
+<li>
+<p><em>dummy</em>: a (usually unimplemented) placeholder (e.g., unused mandatory argument)</p>
 <ul>
 <li>a weight put on the suspension</li>
 </ul>
 </li>
-<li><em>stub</em>: partly implemented dummy
+<li>
+<p><em>stub</em>: partly implemented dummy</p>
 <ul>
 <li>a system applying variable weight to the suspension</li>
 </ul>
 </li>
-<li><em>spy</em>: a stub that tracks information of the way it is being used
+<li>
+<p><em>spy</em>: a stub that tracks information of the way it is being used</p>
 <ul>
 <li>a dynamometer recording the suspension behavior under different conditions</li>
 </ul>
 </li>
-<li><em>mock</em>: a spy that expects to be used in a certain way, and fails if the expectation is unmet
+<li>
+<p><em>mock</em>: a spy that expects to be used in a certain way, and fails if the expectation is unmet</p>
 <ul>
 <li>a smart dynamometer that interrupts testing if the suspension behavior is not nominal</li>
 </ul>
 </li>
-<li><em>fake</em>: a fully implemented version of the component unsuitable for production
+<li>
+<p><em>fake</em>: a fully implemented version of the component unsuitable for production</p>
 <ul>
 <li>a car prototype</li>
 </ul>
@@ -1220,11 +1312,23 @@ but how to <strong>run</strong> them if <em>the components surrounding the teste
 <blockquote>
 <p>Why should the team “waste” time creating doubles instead of just writing the thing?</p>
 </blockquote>
+<ul>
+<li>
 <p>doubles are <strong>cheaper</strong>: dedicated libraries make doubles <em>implementation extremely quick</em></p>
 <ul>
 <li>In Python, <a href="https://docs.python.org/3/library/unittest.mock.html"><code>unittest.mock</code></a> is included in the distribution, and <a href="https://doubles.readthedocs.io/en/latest/">Doubles</a> is a valid alternative.</li>
 </ul>
-<p>doubles are <strong>simpler</strong>: only encode the behavior required to check some part of the behaviour. The probability of them being bugged is lower. <em>Debugging is easier</em>.</p>
+</li>
+<li>
+<p>doubles are <strong>simpler</strong>: only encode the behavior required to check some part of the behaviour.</p>
+<ul>
+<li>The probability of them being bugged is lower.</li>
+<li><em>Debugging is easier</em>.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="old-material-from-now-on">OLD MATERIAL FROM NOW ON</h1>
 </section><section>
 <h2 id="checking-untested-components-coverage">Checking (<strong>un</strong>)tested components: coverage</h2>
 <p><em>Code coverage</em> is a set of <strong>metrics</strong> that measure how much of the source code of a program has been executed when testing.</p>

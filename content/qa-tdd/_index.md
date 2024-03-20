@@ -413,6 +413,50 @@ After:
 {{%/col%}}
 {{</multicol>}}
 
+(if you cannot find the _Test_ section, look at the next slide)
+
+---
+
+## What if you cannot find the _Test_ section? (pt. 1)
+
+![Missing Test section in VS Code](./test-explorer-missing.png)
+
+You probably have and _old version_ of VS Code, and you should __update__ it
+
+<br>
+
+⬇️ Meanwhile, you can follow this workaround ⬇️
+
+---
+
+## What if you cannot find the _Test_ section? (pt. 2)
+
+1. Go to the _Extensions_ section of VS Code
+    + you can do this by clicking on the _Extensions_ icon in the _Activity Bar_ on the side of the window
+
+2. In the search bar of the _Extensions_ section, type `python tests`
+    + the first result should be the __Python__ extension by _Microsoft_
+    + the second result should be the __Python Test Explorer__ extension by _Little Fox Team_
+
+        ![Extensions to install in VS Code](test-explorer-install-before.png)
+
+---
+
+## What if you cannot find the _Test_ section? (pt. 3)
+
+3. Click on the __Install__ button of both extensions
+    + while installing, VS Code may look like this
+
+        ![Installing required extensions in VS Code](./test-explorer-installing.png)
+
+---
+
+## What if you cannot find the _Test_ section? (pt. 4)
+
+4. Once the installation is complete, you should see the _Test_ section in the _Activity Bar_ on the side of the window
+
+    ![Test section in VS Code](./test-explorer-installed.png)
+
 ---
 
 # Hands-on (pt. 4)
@@ -967,9 +1011,10 @@ class TestExpressions(CalculatorGUITestCase):
 4. Now it's time to implement the new features
     + Goal: make the __all__ tests pass
 
+5. In any case, __once you are done__, commit & push
 
-5. One possible solution is on the [`exercises/02-tdd-after-impl` branch of the `testable-calculator` repository](https://github.com/unibo-dtm-se/testable-calculator/commit/9cce0dc19f572a31567294085c8168951de75bd2)
-    + feel free to inspect it, after you attempted to produce your own solution
+> One possible solution is on the [`exercises/02-tdd-after-impl` branch of the `testable-calculator` repository](https://github.com/unibo-dtm-se/testable-calculator/commit/9cce0dc19f572a31567294085c8168951de75bd2)
++ feel free to inspect it, after you attempted to produce your own solution
 
 ---
 
@@ -1006,7 +1051,7 @@ Beware: **testing saves times in the long run**, not testing is a *cost*!
 
 ---
 
-## What happens when there's too many technical debt?
+## What happens when there's too much technical debt?
 
 > we never have the money to do it *right* but somehow we always have the fucking money to do it *twice*
 
@@ -1014,7 +1059,7 @@ $---$ UserInputSucks (@UserInputSucks) [May 27, 2019](https://twitter.com/UserIn
 
 ---
 
-## What if a project is not using TDD since the very beginning?
+## What if a project is not using TDD since the very beginning?
 
 Decreasing preference order:
 
@@ -1044,12 +1089,12 @@ A more **robust approach**:
 4. Ensure that _all other tests_ still pass
 
 > Motivations:
-> - the new test case will __prevent__ the issue from being _mistakenly re-introduced_ in the future
+> - the new test case __prevents__ the issue from being _mistakenly re-introduced_ __again__
 > - develop the test case _before_ the fix will help the __debugging__ process
 
 ---
 
-## Testing software before it is ready: boundaries
+## Testing software before it is ready: _boundaries_
 
 > __Problem__: how is it possible to test code that *does not exist*?
 - More in general: how to design a testbed for an engineering product that is not prototypied yet?
@@ -1066,7 +1111,7 @@ A more **robust approach**:
 
 ---
 
-## Testing software before it is ready: missing components
+## Testing software before it is ready: _missing_ components
 
 - We can now *design our tests*,
     + but how to **run** them if *the components surrounding the tested one are not ready*?
@@ -1087,7 +1132,7 @@ A more **robust approach**:
 
 ---
 
-## Testing software before it is ready: test doubles
+## Testing software before it is ready: _test doubles_
 
 The trick: *simulate components that are not ready yet*!
 
@@ -1126,11 +1171,27 @@ The simulated component are called *test doubles*
 
 --- 
 
-# OLD MATERIAL FROM NOW ON
+## Takeaways
+
+- **Test-driven development** is a practice that can help in keeping the technical debt under control
+    + the idea is "design the testing procedure before development"
+
+- Tests act as a form of _validation_ (ex-post), _specification_ (ex-ante), and as _sentinels_ (along the way)
+
+- Designing and implementing tests is a __project-in-the-project__
+    + it requires _time_ and _effort_, it is a _cost_, it adds _value_ __on the long run__
+        * but making / keeping development __sustainable__
+
+- Patterns and strategies exists to design / implement tests, e.g. _test doubles_
+    + __QA engineers__ / specialists are often dedicated to this task
+
+- __Time__ for testing should be _allocated_ in the project plan
+    + designing the test plans, and implementing the tests cases may take __30-50%__ of the software development __time__
+        + cf. [Time estimation for software testing](https://devm.io/testing/time-estimation-for-software-testing-128078)
 
 ---
 
-## Checking (**un**)tested components: coverage
+## Checking (**un**)tested components: coverage (pt. 1)
 
 *Code coverage* is a set of **metrics** that measure how much of the source code of a program has been executed when testing.
 
@@ -1140,16 +1201,108 @@ Common metrics:
 * *line-of-code coverage*: did the flow control get through this line during tests?
   * *most common*, usually combined with *branch coverage*
 
-[Example coverage report](https://app.codecov.io/gh/AlchemistSimulator/Alchemist)
+---
 
-{{% fragment %}}
-**WARNING**
+{{% section %}}
+
+# Exercise (pt. 1)
+
+## Compute test coverage in Python
+
+0. Notice the `coverage` (dev) dependency in the `requirements-dev.txt` file
+    + it is a tool that measures _line-of-code coverage_ in Python, [documentation here](https://coverage.readthedocs.io/en/latest/) 
+    + you should have restored dependencies already, if not `pip install -r requirements-dev.txt`
+
+1. Runs the tests _while measuring coverage_: `coverage run -m unittest discover -v -s tests/` 
+    + same command as for running tests, but with `coverage run` instead of `python`
+    + if not working, try `python -m coverage run -m unittest discover -v -s tests/`
+
+2. Check the coverage report _in the terminal_ `coverage report -m`
+    + the output should be similar to the one below:
+        ```
+        Name                     Stmts   Miss  Cover   Missing
+        ------------------------------------------------------
+        calculator\__init__.py      38      3    92%   13, 39, 48
+        calculator\ui\cli.py        21      3    86%   16-17, 27
+        calculator\ui\gui.py        57      8    86%   55-57, 61, 63, 65, 69, 76     
+        tests\test_cli.py           15      0   100%
+        tests\test_gui.py           30      0   100%
+        tests\test_model.py         38      0   100%
+        ------------------------------------------------------
+        TOTAL                      199     14    93%
+        ```
+    
+        pretty _obscure_, isn't it?
+
+---
+
+# Exercise (pt. 2)
+
+## Compute test coverage in Python
+
+3. Let's try to create a more pleasant report, in HTML format: `coverage html`
+    + this command will create a `htmlcov` folder in the current directory
+    + the `htmlcov/index.html` file is a static Web page, reporting the coverage of your project
+
+4. Open the `htmlcov/index.html` file in your browser (any of the following may work)
+    + <i class="fab fa-windows"></i> `start .\htmlcov\index.html`
+    + <i class="fab fa-apple"></i> `open htmlcov/index.html`
+    + <i class="fab fa-linux"></i> `xdg-open htmlcov/index.html`
+    + _double click_ on the `htmlcov/index.html` file in your 
+    Explorer <i class="fab fa-windows"></i> / 
+    Finder <i class="fab fa-apple"></i> / 
+    Dolphin or Nautilus etc <i class="fab fa-linux"></i>
+
+---
+
+# Exercise (pt. 4)
+
+## Compute test coverage in Python
+
+5. You should see an overview similar to the terminal one
+
+    ![HTML coverage report, overview](./coverage-report-overview.png)
+
+---
+
+# Exercise (pt. 5)
+
+## Compute test coverage in Python
+
+6. If you click on a file, you may get a _line-by-line_ report of __test coverage__
+
+    ![HTML coverage report, line-by-line details](./coverage-report-detail.png)
+
+{{% /section %}}
+
+---
+
+# BEWARE
+
+## About test coverage
 
 * the actual information coverage provides is which code is **partly tested** or **untested**!
-* we *know nothing of the testing quality* on the covered part, but that control flow goes through.
+
+* we *know nothing of the testing quality* on the covered part, but that control flow goes through
+
 * *Useful* metric, but it cannot be the *only* metric to evaluate testing
-  * Dramatically high coverage requirements may induce *metric-chasing*!
-{{% /fragment  %}}
+  * you may have 100% coverage and still have a very bad test suite (few requirements covered)
+  * you may have 80% coverage and still have a good test suite (all requirements covered)
+  * for sure, the lower the coverage the worst the test suite
+
+* Use coverage as a _hint_ for reasoning about what to test next
+
+---
+
+# Exercise
+
+1. Use coverage to spot the _untested_ parts of the `testable-calculator` project
+    
+2. Add tests which cover the _untested_ parts
+
+3. After your reach __100%__ coverage (or close) as your-self:
+    - did I cover _all_ the requirements?
+    - are there any _edge cases_ I did not cover?
 
 ---
 
@@ -1161,13 +1314,14 @@ Common metrics:
 
 * Software quality should be *continuously assessed*
 * The assessment should *automatic* whenever possible
-* **QA should be integrated in the build system!**
-  * It is fine to *fail the build* if quality criteria are not met
+* **QA should be integrated in the _workflow_!**
+  * Quality violations should be considered as __errors__
 
 ---
 
 ## Quality Assurance: levels
 
+* **Syntactical correctness**
 * *Style* and *coherence*
 * *Flawed programming* patterns
 * Violations of the *DRY* principle
@@ -1175,7 +1329,56 @@ Common metrics:
 
 ---
 
-## Quality Assurance: static analysis
+{{% section %}}
+
+## Quality Assurance: _syntactical correctness_
+
+> __Syntactical correctness__ is the _first_ level of quality assurance:
+>
+> "Is the code __well-formed__, i.e. _readable_ for a computer?
+
+* In _compiled_ languages, the compiler checks for _syntactical correctness_
+    - raising an error if the code is __not__ _syntactically correct_
+    - most commonly _linking errors_ are detected too by the compiler
+        + e.g. calling a function which is not correctly imported
+
+* Python is an _interpreted_ language, so there is _no compiler_
+    - but the CPython interpreter (the most frequently used) supports __translation__ into _bytecode_
+    - similarly to compiled languages, translation into bytecode implies _syntax_ and _linking_ checks
+
+* Syntactical correctness can be checked in Python by means of: 
+    - the [`compileall`](https://docs.python.org/3/library/compileall.html) _standard_ ($\approx$ included in Python by default) module
+        + triggered by `python -m compileall CODE_DIRECTORY_1 CODE_DIRECTORY_2 ...`
+
+---
+
+# Example 
+
+## Checking for syntactical correctness in Python
+
+1. In the `testable-calculator` project, run `python -m compileall calculator tests`
+    + you may notice an output similar to the following one:
+        ```text
+        Listing 'calculator'...
+        Listing 'calculator\\ui'...
+        Listing 'tests'...
+        ```
+        which means that all `.py` files in those directories were checked, and they are _syntactically correct_
+            
+        + if there were any errors, they would be listed here
+
+2. Try to artificially add some syntax error in some Python file
+    + e.g. remove a closing parenthesis, or a colon
+
+3. Run `python -m compileall calculator tests` again
+    + this time, the log should make you aware of where the error is
+
+
+{{% /section %}}
+
+---
+
+## Quality Assurance: _static analysis_
 
 Code analysis without execution is called *static analysis*.
 
@@ -1190,16 +1393,9 @@ Static analysis tools are often referred to as *linters*
 * simplifies *code reviews*
 * improves *security*
 
-In *Python*:
-* [Mypy](http://mypy-lang.org/): static analysis for bug detection (requires [annotations](https://www.python.org/dev/peps/pep-0484/))
-* [Pyflakes](https://github.com/PyCQA/pyflakes): effective programming, excluding style
-* [Pylint](https://pylint.org/): reverse engineering via [Pyreverse](https://www.logilab.org/blogentry/6883), style (enforces [PEP8](https://www.python.org/dev/peps/pep-0008/)), and effective programming
-* [Bandit](https://github.com/PyCQA/bandit): security scanner
-* [Prospector](https://prospector.landscape.io/en/master): tool collection. Includes Pylint and Pyflakes, adds [PEP27](https://www.python.org/dev/peps/pep-0257/)-compliance checks for comments, complexity, packaging (via [pyroma](https://github.com/regebro/pyroma)), secrets leaking (via [dodgy](https://github.com/landscapeio/dodgy)), and unused code (via [vulture](https://github.com/jendrikseipp/vulture)) checks.
-
 ---
 
-## Quality Assurance: flawed programming patterns
+## _Static analysis_: flawed programming patterns
 
 Identification and reporting of *patterns* known to be *problematic*
 
@@ -1211,16 +1407,93 @@ Identification and reporting of *patterns* known to be *problematic*
 
 ---
 
+## Quality Assurance: _static analysis_ in __Python__
+
+* [Mypy](http://mypy-lang.org/): static analysis for bug detection (requires [annotations](https://www.python.org/dev/peps/pep-0484/))
+* [Pyflakes](https://github.com/PyCQA/pyflakes): effective programming, excluding style
+* [Pylint](https://pylint.org/): reverse engineering via [Pyreverse](https://www.logilab.org/blogentry/6883), style (enforces [PEP8](https://www.python.org/dev/peps/pep-0008/)), and effective programming
+* [Bandit](https://github.com/PyCQA/bandit): security scanner
+* [Prospector](https://prospector.landscape.io/en/master): tool collection. Includes Pylint and Pyflakes, adds [PEP27](https://www.python.org/dev/peps/pep-0257/)-compliance checks for comments, complexity, packaging (via [pyroma](https://github.com/regebro/pyroma)), secrets leaking (via [dodgy](https://github.com/landscapeio/dodgy)), and unused code (via [vulture](https://github.com/jendrikseipp/vulture)) checks.
+
+---
+
+{{% section %}}
+
+# Example (pt. 1)
+
+## Static analysis in Python with `mypy`
+
+1. Notice the `mypy` (dev) dependency in the `requirements-dev.txt` file
+    + it is a static analysis tool for Python, [documentation here](http://mypy-lang.org/)
+    + you should have restored dependencies already, if not `pip install -r requirements-dev.txt`
+
+2. Run `mypy` on the `testable-calculator` project
+    + `mypy calculator tests`
+    + you may notice an output similar to the following one:
+        ```text
+        calculator\__init__.py:13: error: Unsupported operand types for + ("str" and "int")  [operator]
+        calculator\__init__.py:44: error: Parameterized generics cannot be used with class or instance checks  [misc]
+        calculator\__init__.py:44: error: Argument 2 to "isinstance" has incompatible type "<typing special form>"; expected "_ClassInfo"  [arg-type]
+        calculator\__init__.py:46: error: Returning Any from function declared to return "int | float"  [no-any-return]
+        Found 4 errors in 1 file (checked 6 source files)
+        ```
+
+--- 
+
+# Example (pt. 2)
+
+## Static analysis in Python with `mypy`
+
+3. What are those errors?
+    + the calculator works, and it passes tests, so they are not errors in the usual sense
+    + they are _flawed programming patterns_, i.e. _potential bugs_
+        * or at least potential sources of headaches
+
+4. Listen to the teacher explanation about the meaning of those errors
+    + and how to fix them
+
+{{% /section %}}
+
+---
+
 ## Quality Assurance: violations of the DRY principle
 
-Code *replicated* rather than *reused*
+> __DRY__: *D*on't *R*epeat *Y*ourself 
 
-* improves *understandandability*
-* Reduces *maintenance cost*
-* simplifies *code reviews*
+- General advice: **never copy-paste** your code
+    * if you need to copy-paste something, you probably need to *refactor* something
 
-General advice: **never copy/paste** your code
-* If you need to copy something, you probably need to *refactor* something
+- Instead of _copy-pasting_ code, write a _parametric_ function/class/module which can be re-used
+    * improves *understandandability*
+    * reduces *maintenance cost*
+    * simplifies *code reviews*
+
+{{<multicol>}}
+{{%col%}}
+Before (reliance on copy-paste):
+```python
+def test_my_gui(self):
+    self.sut.find_button_by("1").trigger_action()
+    self.sut.find_button_by("2").trigger_action()
+    self.sut.find_button_by("3").trigger_action()
+    self.sut.find_button_by("4").trigger_action()
+    self.sut.find_button_by("5").trigger_action()
+```
+{{%/col%}}
+{{%col%}}
+After refactor (no more duplication):
+```python
+def press_button(self, text):
+    self.sut.find_button_by(text).trigger_action()
+
+def test_my_gui(self):
+    for i in range(1, 6):
+        self.press_button(str(i))
+```
+{{%/col%}}
+{{</multicol>}}
+
+<br>
 
 Multi-language tool: [Copy/Paste Detector (CPD)](https://pmd.github.io/latest/pmd_userdocs_cpd.html) (part of PMD)
 
@@ -1235,33 +1508,14 @@ Non-exhaustive list:
     * Code coverage
     * Supports Jacoco XML reports
     * Nice data reporting system
+
 * [Sonarcloud](https://sonarcloud.io/)
     * Multiple measures, covering reliability, security, maintainability, duplication, complexity...
+
 * [Codacy](https://www.codacy.com/)
     * Automated software QA for several languages
+
 * [Code Factor](https://www.codefactor.io/)
     * Automated software QA
 
----
 
-## Unit testing in Python
-
-An example repository: [https://github.com/DanySK/python-testing-101/tree/master/example-py-unittest](https://github.com/DanySK/python-testing-101/tree/master/example-py-unittest)
-
-Try the following:
-1. Clone the repository
-2. Move into `example-py-unittest` folder
-3. Run the tests with `python -m unittest discover` (option `-m` runs a module as script, `discover` is an option that instructs `unittest` to find and run all tests), observe the results
-4. Introduce a bug in `calc.py` and re-run the tests. Observe the behavior
-
----
-
-### Do it yourself!
-1. Based on the project structure of the examplar, prepare a `complex.py` implementing a complex number
-2. The class should support functions for adding, subtracting, multiplying, and dividing complex numbers. Create the number and implement them with `pass`
-3. Prepare the test cases to verify that the behaviour is the intended one
-4. Implement the functions!
-
-**Notes**:
-* A complex number can be modelled as a couple of real numbers, one for the real part, one for the imaginary part.
-* Try to emulate the behavior of a number via [operator overloading](https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types)!

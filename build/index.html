@@ -36,86 +36,93 @@
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h1 id="the-build-life-cycle">The build “life cycle”</h1>
-<h4 id="not-to-be-confused-with-the-system-development-life-cycle-sdlc">(Not to be confused with the system development life cycle (SDLC))</h4>
+<p>(Not to be confused with the system development life cycle (SDLC))</p>
+<blockquote>
 <p>The process of creating <em>tested deployable software artifacts</em>
 <br>
 from <em>source</em> code</p>
+</blockquote>
 <p>May include, depending on the system specifics:</p>
-<ul>
+<ol>
 <li><em>Source code manipulation</em> and generation</li>
 <li>Source code <em>quality assurance</em></li>
-<li><em>Dependency management</em></li>
+<li><strong>Dependency management</strong></li>
 <li><em>Compilation</em>, linking</li>
 <li><em>Binary manipulation</em></li>
 <li><em>Test execution</em></li>
 <li>Test <em>quality assurance</em> (e.g., coverage)</li>
 <li>API <em>documentation</em></li>
-<li><em>Packaging</em></li>
-<li><em>Delivery</em></li>
-</ul>
-</section><section>
-<h1 id="lifecycle-styles">Lifecycle styles</h1>
-<ul>
-<li>
-<p><strong>Custom</strong>: select some phases that the product needs and perform them.</p>
-<ul>
-<li><em>Flexible and configurable</em>: tailored on each project’s needs</li>
-<li><em>Hard to adapt and port</em></li>
-</ul>
-</li>
-<li>
-<p><strong>Standard</strong>: run a sequence of pre-defined actions/phases.</p>
-<ul>
-<li><em>Portable and easy to understand</em>: replicated on every product</li>
-<li><em>Limited configuration options</em></li>
-</ul>
-</li>
-</ul>
+<li><strong>Packaging</strong></li>
+<li><strong>Delivery</strong></li>
+</ol>
+<!-- ---
+
+# Lifecycle styles
+
+* **Custom**: select some phases that the product needs and perform them.
+    * *Flexible and configurable*: tailored on each project's needs
+    * *Hard to adapt and port*
+
+* **Standard**: run a sequence of pre-defined actions/phases.
+    * *Portable and easy to understand*: replicated on every product
+    * *Limited configuration options* -->
 </section><section>
 <h1 id="build-automation">Build automation</h1>
 <p>Automation of the build lifecycle</p>
 <ul>
 <li>In principle, the lifecycle could be executed manually</li>
-<li>In reality <em>time is precious</em> and <em>repetitivy is boring</em></li>
+<li>In reality <em>time is precious</em> and <em>repetitivy is boring</em> (and <strong>error-prone</strong>)</li>
 </ul>
+<blockquote>
 <p>$\Rightarrow$ Create software that automates the building of some software!</p>
+</blockquote>
 <ul>
-<li>All those concerns that hold for sofware creation hold for build systems creation…</li>
+<li>All those concerns that hold for software creation hold for build systems creation…</li>
 </ul>
 </section><section>
-<h2 id="build-automation-basics-and-styles">Build automation: basics and styles</h2>
-<p>Different lifecycle types generate different build automation <strong>styles</strong></p>
-<p><strong>Imperative</strong>: write a script that tells the system what to do to get
-from code to artifacts</p>
+<!-- ## Build automation: basics and styles
+
+Different lifecycle types generate different build automation **styles**
+
+**Imperative**: write a script that tells the system what to do to get
+from code to artifacts
+* *Examples*: make, cmake, Apache Ant
+* *Abstraction gap*: verbose, repetitive
+* Configuration (*declarative*) and actionable (*imperative*) logics *mixed* together
+* Highly *configurable*
+
+**Declarative**: adhere to some convention, customizing some settings
+* *Examples*: Apache Maven
+* Separation between *what* to do and *how* to do it
+  * The build system decides how to do the stuff
+* *Configuration limited* by the provided options -->
+<h2 id="__declarative__-build-automation-systems"><strong>Declarative</strong> build automation systems</h2>
+<p>Modern build automation systems are <strong>declarative</strong></p>
+<blockquote>
+<p><strong>Declarative</strong> software $\approx$ the program describes <em>what</em> to do, not <em>how</em> to do it
+<br>
+(as opposed to <em>imperative</em> software $\approx$ the program describes <em>how</em> to do it,
+<br>
+e.g. Python)</p>
+</blockquote>
+<p>In other words:</p>
 <ul>
-<li><em>Examples</em>: make, cmake, Apache Ant</li>
-<li><em>Abstraction gap</em>: verbose, repetitive</li>
-<li>Configuration (<em>declarative</em>) and actionable (<em>imperative</em>) logics <em>mixed</em> together</li>
-<li>Highly <em>configurable</em></li>
+<li>they rely on <em>conventions</em> and <em>defaults</em></li>
+<li>as long as developers follow them, the configuration is <em>minimal</em></li>
+<li>good look if you try to deviate from conventions :)</li>
 </ul>
-<p><strong>Declarative</strong>: adhere to some convention, customizing some settings</p>
-<ul>
-<li><em>Examples</em>: Apache Maven</li>
-<li>Separation between <em>what</em> to do and <em>how</em> to do it
-<ul>
-<li>The build system decides how to do the stuff</li>
-</ul>
-</li>
-<li><em>Configuration limited</em> by the provided options</li>
-</ul>
-</section><section>
-<h2 id="hybrid-automators">Hybrid automators</h2>
-<p>Create a <em>declarative infrastructure</em> upon an <em>imperative basis</em>, and
-<em>allow easy access to the underlying machinery</em></p>
-<p><strong>Domain-Specific Languages</strong> are helpful in this context: they can “hide” imperativity without ruling it out</p>
-<p>Still, many challenges remain open:</p>
-<ul>
-<li>How to reuse the build logic?
-<ul>
-<li>within a project, and among projects</li>
-</ul>
-</li>
-</ul>
+<!-- ---
+
+## Hybrid automators
+
+Create a *declarative infrastructure* upon an *imperative basis*, and
+*allow easy access to the underlying machinery*
+
+**Domain-Specific Languages** are helpful in this context: they can "hide" imperativity without ruling it out
+
+Still, many challenges remain open:
+* How to reuse the build logic?
+    * within a project, and among projects -->
 </section><section>
 <p>Many modern languages (such as Rust) come with a <em>build automator</em> as <em>part of their distribution</em>.</p>
 <h2 id="in-python">In Python</h2>
@@ -165,377 +172,172 @@ from code to artifacts</p>
 <li>They are meant to solve different problems!</li>
 </ul>
 </section><section>
-<h2 id="a-simple-financial-application">A simple financial application</h2>
-<p>Build an application that performs a simple graphical MACD analysis of a financial product:</p>
-<p><img src="app.png" alt="app screenshot"></p>
-<ul>
-<li>How many Non-Comment Lines of Code (NCLoC)?</li>
-</ul>
-</section><section>
-<div style="position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;">
-    <iframe sandbox="allow-scripts allow-same-origin" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/embed/12dc23978d6774050055d681b9cd72c9/ddac3c5150cf" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
-    </iframe>
-</div>
-</section><section>
-<h2 id="a-possible-solution">A possible solution</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">matplotlib</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">matplotlib.pyplot</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">plt</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">pandas_ta</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">ta</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">sys</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">yfinance</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">yf</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">matplotlib.backends.qt_compat</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">QtWidgets</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">matplotlib.backends.backend_qtagg</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">FigureCanvas</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">NavigationToolbar2QT</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">NavigationToolbar</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">matplotlib.figure</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Figure</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">ApplicationWindow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">QtWidgets</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">QMainWindow</span><span style="color:#000;font-weight:bold">):</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">figure</span><span style="color:#000;font-weight:bold">):</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#204a87">super</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_main</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">QtWidgets</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">QWidget</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">setCentralWidget</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_main</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">layout</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">QtWidgets</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">QVBoxLayout</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_main</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">static_canvas</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">FigureCanvas</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">figure</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">layout</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">addWidget</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">NavigationToolbar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">static_canvas</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">))</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">layout</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">addWidget</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">static_canvas</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">__name__</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">"__main__"</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">arguments</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">iter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sys</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">argv</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#204a87">next</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">arguments</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ticker</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">next</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">arguments</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'BTC-USD'</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">period</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">next</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">arguments</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'1y'</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">data</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">yf</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Ticker</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">ticker</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">history</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">period</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">period</span><span style="color:#000;font-weight:bold">)[[</span><span style="color:#4e9a06">'Close'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'Open'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'High'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'Volume'</span><span style="color:#000;font-weight:bold">]]</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">macd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">ta</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">macd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">close</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">data</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">'Close'</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">fast</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">12</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">slow</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">26</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">signal</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">9</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">append</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">True</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">fig</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">plt</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">figure</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ax</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">add_subplot</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">title</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">'MACD Analysis of </span><span style="color:#4e9a06">{</span><span style="color:#000">ticker</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> in </span><span style="color:#4e9a06">{</span><span style="color:#000">period</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">'</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ax</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">set_title</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">title</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ax</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">set_ylabel</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'Price ($)'</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ax</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">set_xlabel</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'Time'</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ax</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plot</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">data</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">'Close'</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">color</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">'black'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">linewidth</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ax2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">ax</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">twinx</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ax2</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plot</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">macd</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">ax2</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">legend</span><span style="color:#000;font-weight:bold">([</span><span style="color:#4e9a06">'MACD_12_26_9'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'MACDh_12_26_9'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'MACDs_12_26_9'</span><span style="color:#000;font-weight:bold">])</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">fig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">tight_layout</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">qapp</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">QtWidgets</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">QApplication</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">instance</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#000">qapp</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">qapp</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">QtWidgets</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">QApplication</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">app</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">ApplicationWindow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fig</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">windowTitle</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">title</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">show</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">activateWindow</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">raise_</span><span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">qapp</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">exec</span><span style="color:#000;font-weight:bold">()</span>
-</span></span></code></pre></div>
-<p><a href="https://github.com/DanySK/python-finance-plot">about 45 NCLoC</a></p>
-</section><section>
-<h2 id="the-trick-using-a-few-libraries">The trick: using a few libraries</h2>
-<ul>
-<li><strong>yfinance</strong>
-<ul>
-<li>Financial data from Yahoo! Finance</li>
-</ul>
-</li>
-<li><strong>Pandas</strong>
-<ul>
-<li>Data in tabular format</li>
-</ul>
-</li>
-<li><strong>Pandas-TA</strong>
-<ul>
-<li>Pandas technical analysis enhancement</li>
-</ul>
-</li>
-<li><strong>PyQt5</strong>
-<ul>
-<li>Graphical interface</li>
-</ul>
-</li>
-</ul>
-</section><section>
-<h2 id="actual-dependency-tree">Actual dependency tree</h2>
-<pre tabindex="0"><code>matplotlib==3.5.1
-  cycler==0.11.0
-  fonttools==4.30.0
-  kiwisolver==1.3.2
-  numpy==1.22.3
-  packaging==21.3
-    pyparsing==3.0.7
-  Pillow==9.0.1
-  pyparsing==3.0.7
-  python-dateutil==2.8.2
-    six==1.16.0
-pandas-ta==0.3.14b0
-  pandas==1.4.1
-    numpy==1.22.3
-    python-dateutil==2.8.2
-      six==1.16.0
-    pytz==2021.3
-PyQt5==5.15.6
-  PyQt5-Qt5==5.15.2
-  PyQt5-sip==12.9.1
-yfinance==0.1.70
-  lxml==4.8.0
-  multitasking==0.0.10
-  numpy==1.22.3
-  pandas==1.4.1
-    numpy==1.22.3
-    python-dateutil==2.8.2
-      six==1.16.0
-    pytz==2021.3
-  requests==2.27.1
-    certifi==2021.10.8
-    charset-normalizer==2.0.12
-    idna==3.3
-    urllib3==1.26.8
-</code></pre><ul>
-<li>4 <em>direct</em> dependencies</li>
-<li>21 <em>transitive</em> dependencies</li>
-</ul>
-<p>In large projects, <em>transitive</em> dependencies often dominate</p>
-</section><section>
-<h2 id="towards-a-dependency-hell">Towards a <strong>dependency hell</strong></h2>
-<ul>
-<li>It’s common for non-toy projects to get past 50 dependencies</li>
-<li><em>Searching</em>, <em>downloading</em> and <em>verifying compatibility</em> by hand is unbearable</li>
-<li><strong>Version conflicts</strong> arise soon
-<ul>
-<li>one of your direct dependencies uses library A at version 1</li>
-<li>another uses library A at version 2</li>
-<li>$\Rightarrow$  <em>transitive dependency conflict</em> on A</li>
-</ul>
-</li>
-<li><strong>Upgrading</strong> by hand requires, <em>time</em>, <em>effort</em> and <em>tons of testing</em></li>
-</ul>
-</section><section>
-<h2 id="dealing-with-dependencies">Dealing with dependencies</h2>
-<p><strong>Source import</strong></p>
-<p>Duplication, more library code than business code, updates almost impossible, inconsistencies, unmaintainable</p>
-<p><strong>Binary import</strong></p>
-<p>Hard to update, <a href="https://bitbucket.org/danysk/exploded-repository-example">toxic for the Version Control System</a></p>
-<p><strong>Desiderata</strong></p>
-<ul>
-<li><em>Declarative</em> specification of libraries and versions</li>
-<li><em>Automatic retrieval</em></li>
-<li>Automatic <em>resolution of transitive dependencies</em></li>
-<li>Dependency <strong>scopes</strong>
-<ul>
-<li>In general, you may need <em>compile-only</em>, <em>test-only</em>, and <em>runtime-only</em> dependencies</li>
-<li>not specifically in Python and other interpreted languages</li>
-</ul>
-</li>
-<li>Customizable software <em>sources</em></li>
-</ul>
-</section><section>
-<h2 id="reproducibility">Reproducibility</h2>
-<p>We want that something that works <em>for us</em> works <em>for everyone</em></p>
-<p>We do not want to depend on the <em>system configuration</em></p>
-<p>We want to <em>declare</em> our requirements and have a <strong>machine</strong> figure out how to configure the system</p>
-<p>We want everyone to be able to rebuild the <em>exact same environment</em></p>
-</section><section>
-<h2 id="python-pip">Python <code>pip</code></h2>
-<p><a href="https://pip.pypa.io/en/stable/"><code>pip</code></a> is the package installer for Python</p>
-<p>By default, fetches packages on the <a href="https://pypi.org/">Python Package Index (PyPI)</a></p>
-<ul>
-<li>It is the <em>standard package repository for Python</em></li>
-</ul>
-<p>Pip is <em>shipped with most Python distributions</em></p>
-</section><section>
-<h2 id="using-pip">Using <code>pip</code></h2>
-<ul>
-<li><code>pip install package_name</code>
-<ul>
-<li>Installs <code>package_name</code> <em>for the current user</em></li>
-<li>Running with <code>sudo</code> installs the packages <em>system-wide</em></li>
-<li>In any case, the installation is <strong>global</strong></li>
-</ul>
-</li>
-<li><code>pip install -r requirements.txt</code>
-<ul>
-<li>Reads the contents of the provided <em>text file</em></li>
-<li>It flattens them and runs a normal <code>pip install</code></li>
-<li>The file name is arbitrary, but it is <em>customary</em> to use <code>requirements.txt</code>
-<ul>
-<li>(also helps with automation)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="example-requirementstxt">Example <code>requirements.txt</code></h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>matplotlib ==3.7.1
-</span></span><span style="display:flex;"><span>pandas_ta ==0.3.14.b
-</span></span><span style="display:flex;"><span>pip ==23.1
-</span></span><span style="display:flex;"><span>pyqt5 ==5.15.9
-</span></span><span style="display:flex;"><span>yfinance ==0.2.18
-</span></span></code></pre></div>
-</section><section>
-<h2 id="the-problem-with-global-installations">The problem with global installations</h2>
-<p>What if, for two different projects, you need <em>two different versions of the same library</em>?</p>
-<ul>
-<li>We need <strong>isolated environments</strong>!</li>
-<li><code>pip</code> does not support them!</li>
-</ul>
-<p>Workarounds, anyone?</p>
-</section><section>
-<h2 id="virtualenv-and-venv">Virtualenv and venv</h2>
-<ul>
-<li>Tell <code>pip</code> to <em>install</em> into a specific folder (e.g., <code>foo/bar</code>)
-<ul>
-<li>there exist an option in recent versions of <code>pip</code>: <code>--target=foo/bar</code></li>
-</ul>
-</li>
-<li>Tell <code>python</code> to <em>search</em> libraries in <code>foo/bar</code>
-<ul>
-<li>by default, the interpreter looks into the paths listed in the <em>environment variable</em> <code>PYTHONPATH</code></li>
-</ul>
-</li>
-</ul>
-<p><strong>Cumbersome if done manually!</strong></p>
-<p><code>venv</code> and <code>virtualenv</code> deal with <em>isolation of multiple python library installations</em></p>
-<p>a.k.a. <strong>virtual envelopes</strong></p>
-<ul>
-<li><code>venv</code> is in the standard library</li>
-<li><code>virtualenv</code> is not, but has some <em>additional features</em></li>
-<li>They are <em>almost completely interchangeable</em></li>
-</ul>
-</section><section>
-<h2 id="venvhttpsdocspythonorg3libraryvenvhtml"><a href="https://docs.python.org/3/library/venv.html"><code>venv</code></a></h2>
-<ul>
-<li>
-<ol>
-<li>Tell Python where to <strong>initialize</strong> the virtual environment:</li>
-</ol>
-<ul>
-<li><code>python3 -m venv /path/to/new/virtual/environment</code></li>
-<li>Commonly: <code>python3 -m venv .venv</code></li>
-<li>From Python 3.9, it can update <code>pip</code> with <code>--upgrade-deps</code></li>
-<li>inside the target folder, the script copies or symlinks the Python binaries</li>
-</ul>
-</li>
-<li>
-<ol start="2">
-<li><strong>Activate</strong> the virtual environment</li>
-</ol>
-<ul>
-<li>Bash/Zsh: <code>source .venv/bin/activate</code></li>
-<li>Powershell: <code>.venv\Scripts\Activate.ps1</code></li>
-<li>it <a href="https://stackoverflow.com/questions/2116142/what-is-a-shim">shims</a> the terminal commands to run <em>inside the virtual envelop</em></li>
-</ul>
-</li>
-<li>
-<ol start="3">
-<li><strong>Install</strong> all your dependencies</li>
-</ol>
-<ul>
-<li><code>pip install -r requirements.txt</code></li>
-</ul>
-</li>
-<li>
-<ol start="4">
-<li>Once done, <strong>deactivate</strong> the virtual environment</li>
-</ol>
-<ul>
-<li><code>deactivate</code></li>
-<li>The command is added upon activation and restores the “normal” shell behavior</li>
-</ul>
-</li>
-</ul>
-</section><section>
-<h2 id="exercise">Exercise:</h2>
-<ol>
-<li>Create a new virtual environment, activate it, and deactivate it</li>
-<li>From the <code>master</code> branch of the <a href="https://github.com/DanySK/python-finance-plot">finance-plot</a> example,
-run the application using the virtual environment, then deactivate it.</li>
-</ol>
-</section><section>
 <h2 id="pythons-conflicting-standards">Python’s conflicting standards</h2>
 <p><img src="https://imgs.xkcd.com/comics/python_environment.png" alt="xkcd"></p>
 <p>Since there were no standard management systems originally,
 multiple tools <em>proliferated</em></p>
 <ul>
-<li>The Python Packaging Authority (PyPA) is inconsistent in its suggestions:
+<li>
+<p>The Python Packaging Authority (PyPA) is inconsistent in its suggestions:</p>
 <ul>
-<li><a href="https://archive.ph/aNQGe">Recommends <code>venv</code></a></li>
-<li>Also <a href="https://archive.ph/H2xeN">recommends Pipenv, which uses <code>virtualenv</code></a></li>
-<li>Also <a href="https://archive.ph/H2xeN">endorses Poetry</a></li>
+<li>Recommends <a href="https://docs.python.org/3/library/venv.html"><code>venv</code></a></li>
+<li>Also recommends <a href="https://pipenv.pypa.io/en/latest/">Pipenv</a> , which uses <a href="https://virtualenv.pypa.io/en/latest/"><code>virtualenv</code></a></li>
+<li>Also endorses <a href="https://python-poetry.org/">Poetry</a></li>
 </ul>
+</li>
+<li>
+<p>Many Python developers also exploit <a href="https://github.com/pyenv/pyenv">PyEnv</a></p>
+</li>
+<li>
+<p>Many data scientists use <a href="https://www.anaconda.com/">Anaconda</a></p>
 </li>
 </ul>
 </section><section>
-<h2 id="interpreter-as-dependency">Interpreter as dependency</h2>
-<p>If you designed your software for Python 3.0, it might not work in Python 3.10</p>
+
+
+<section data-shortcode-section="">
+<h2 id="what-are-all-these-tools-pt-1">What are all these tools? (pt. 1)</h2>
+<ol>
+<li>
+<p>By default, Python is installed <em>system-wide</em></p>
 <ul>
-<li>indeed, it is very likely that if you designed it for Python 2.x it won’t work in Python 3.x</li>
+<li>i.e. there should be <em>one</em> (and <strong>only</strong> one) Python interpreter on the system</li>
 </ul>
-<p>In languages that require a runtime (Python, Javascript, Java…)
-<strong>the runtime is a dependency as well</strong>!</p>
-<p>And again: multiple projects may require <em>different versions</em></p>
+</li>
+<li>
+<p>All Python installations come with <code>pip</code>, the <em>package installer</em> for Python</p>
+</li>
+<li>
+<p>So, one may <strong>install</strong> Python packages <em>system-wide</em> with <code>pip</code></p>
 <ul>
-<li>We need something to manage <em>multiple Python versions</em> on the <em>same system</em> at the <em>same time</em></li>
-<li>How to port them across different installations?</li>
+<li><code>pip install package_name</code></li>
 </ul>
-</section><section>
-<h2 id="pyenv">Pyenv</h2>
+</li>
+</ol>
+<blockquote>
+<p><strong>One problem, many implications</strong>: <br> the same package can be installed <em>only once</em> on the same Python installation</p>
 <ul>
-<li>Neither <code>venv</code> nor <code>virtualenv</code> deal perfectly with the interpreter isolation</li>
-<li>Ideally, we would like to write the interpreter version somewhere, and have it downloaded</li>
-<li>Additional tools exist for this scope, e.g., <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a>
+<li><strong>(a)</strong> what if two projects on the same system require <em>different versions</em> of the <em>same package</em> as dependencies?
 <ul>
-<li>Allows multiple installations of Python <em>per-user</em></li>
-<li>They are reused per-project</li>
-<li>Controlled by a simple <code>.pythonversion</code> file in the project root</li>
+<li>say, <strong>project A</strong> requires <code>Kivy==2.3</code> and <strong>project B</strong> requires <code>Kivy==1.4</code></li>
+</ul>
+</li>
+<li><strong>(b)</strong> what if two projects on the same system require <em>different versions of Python</em>?
+<ul>
+<li>say, <strong>project A</strong> requires Python <code>3.8</code> and <strong>project B</strong> requires Python <code>3.10</code></li>
 </ul>
 </li>
 </ul>
-<p>We still have consistency issues:</p>
-<ul>
-<li><code>venv</code>/<code>virtualenv</code> do not isolate the <em>interpreter</em> versions</li>
-<li><code>pyenv</code> does not create virtual envelopes <em>per-project</em></li>
-</ul>
-<p>We need these tools to communicate to achieve <strong>per-project</strong> <em>virtual envelopes with embedded python</em></p>
-<ul>
-<li>A <a href="https://github.com/pyenv/pyenv-virtualenv">plugin of pyenv</a> for using virtualenv exists</li>
-<li>…but the situation is getting rather complicated…</li>
-</ul>
+</blockquote>
 </section><section>
-<h2 id="poetryhttpspython-poetryorg"><a href="https://python-poetry.org/">Poetry</a></h2>
-<p>Integrated management of dependencies in Python</p>
+<h2 id="what-are-all-these-tools-pt-2">What are all these tools? (pt. 2)</h2>
+<p>(consider reading this page for further details <a href="https://stackoverflow.com/a/41573588">https://stackoverflow.com/a/41573588</a>)</p>
+<ol start="4">
+<li>
+<p><code>virtualenv</code> and <code>venv</code> are tools to create <em>virtual</em> Python installations <em>on the same system</em></p>
 <ul>
-<li>Very <em>recent</em> (first release in 2018)</li>
-<li><em>Declarative</em> configuration via <a href="https://github.com/toml-lang/toml">TOML</a></li>
-<li>Manages both the <em>interpreter</em> and the library <em>dependencies</em>
+<li><code>virtualenv</code> is a <em>third-party</em> tool, <code>venv</code> is <em>built-in</em> in Python 3.3 and later</li>
+<li>let’s say you have Python <code>v. XXX</code> installed on your system…
 <ul>
-<li>For the interpreter, it requires pyenv</li>
-</ul>
-</li>
-<li>Simplifies <em>packaging</em></li>
-<li>Relies on <strong>convention over configuration</strong>
+<li>… these tools let you create other <em>lightweight</em> <strong>copies</strong> of Python <code>v. XXX</code> in other folders
 <ul>
-<li>Pre-configured overridable <em>sensible defaults</em></li>
-<li>or: if the project is <em>set up as expected</em>, then there is <em>almost no configuration</em> necessary</li>
+<li>the copies are <strong>fresh</strong>, i.e. they <em>no package</em> installed</li>
+<li>but one may install <em>different</em> packages in <em>each</em> copy, via <code>pip</code></li>
 </ul>
 </li>
 </ul>
+</li>
+<li>now you can solve problem <strong>(a)</strong></li>
+</ul>
+</li>
+<li>
+<p><code>PyEnv</code> is a tool to manage <em>multiple</em> Python <strong>installations</strong> <em>on the same system</em></p>
+<ul>
+<li>each installation may use a <em>different version</em> of Python</li>
+<li>now you can solve problem <strong>(b)</strong></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>New problem</strong>: many Python installations on the same system,
+<br> each one with a different version of Python, and different packages installed</p>
+</blockquote>
+<p>recall all the issues we had in previous lectures?</p>
 </section><section>
-<h2 id="conventional-directory-structure">Conventional directory structure</h2>
-<p>Library:</p>
-<pre tabindex="0"><code>project-name
-├── pyproject.toml
-├── README.md
-├── project_name
-│   └── __init__.py
-└── tests
-    ├── __init__.py
-    └── test_project_name.py
-</code></pre><p>Module:</p>
-<pre tabindex="0"><code>project-name
-├── pyproject.toml
-├── README.md
-├── project_name.py
-└── tests
-    ├── __init__.py
-    └── test_project_name.py
-</code></pre></section><section>
+<h2 id="what-are-all-these-tools-pt-3">What are all these tools? (pt. 3)</h2>
+<ol start="6">
+<li>
+<p>Smart and adequate <strong>convention</strong> to work with Python projects: <strong>1-project-1-Python-env</strong></p>
+<ul>
+<li>each Python project has its <em>own</em> Python environment …
+<ul>
+<li>be it virtual or not, as far as it uses the <em>same</em> Python version required by that project</li>
+</ul>
+</li>
+<li>… the environment <em>only</em> contains the packages required by that project</li>
+</ul>
+</li>
+<li>
+<p>Achieving this requires developers to be <em>disciplined</em> and <em>meticulous</em></p>
+<ul>
+<li>other than being proficient with the tools above</li>
+</ul>
+</li>
+<li>
+<p><code>Poetry</code> is a tool that aims to <em>automate</em> this process</p>
+</li>
+</ol>
+
+</section>
+</section><section>
+<h2 id="from-now-on-lets-use-poetry">From now on, let’s use Poetry</h2>
+<blockquote>
+<p>Poetry is a <em>declarative</em> tool for <strong>dependency management</strong>, <strong>packaging</strong>, and <strong>release</strong> in Python</p>
+</blockquote>
+<ul>
+<li>
+<p>It handles both <em>dependencies</em> and <em>dev-dependencies</em></p>
+<ul>
+<li><em>replacing</em> <code>requirements.txt</code> and <code>requirements-dev.txt</code></li>
+</ul>
+</li>
+<li>
+<p>It <em>automates</em> the <strong>1-project-1-Python-env</strong> convention</p>
+</li>
+<li>
+<p>It simplifies the <em>packaging</em> process for the project</p>
+</li>
+<li>
+<p>It simplifies the <em>publication</em> process on PyPI (or other software repositories)</p>
+</li>
+</ul>
+</section><section>
+<h2 id="poetrys-canonical-project-structure">Poetry’s canonical project structure</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root-directory/
+</span></span><span style="display:flex;"><span>├── main_package/
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub_module.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── sub_package/ 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     ├── __init__.py 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     └── sub_sub_module.py 
+</span></span><span style="display:flex;"><span>├── test/
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── test_something.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── test_something_else.py/ 
+</span></span><span style="display:flex;"><span>├── pyproject.toml              <span style="color:#8f5902;font-style:italic"># File where project configuration (metadata, dependencies, etc.) is stored</span>
+</span></span><span style="display:flex;"><span>├── poetry.toml                 <span style="color:#8f5902;font-style:italic"># File where Poetry configuration is stored</span>
+</span></span><span style="display:flex;"><span>├── poetry.lock                 <span style="color:#8f5902;font-style:italic"># File where Poetry locks the dependencies</span>
+</span></span><span style="display:flex;"><span>└── README.md
+</span></span></code></pre></div><p>Notice that, w.r.t. the canonical project structure we have been using so far:</p>
+<ul>
+<li>the files <code>requirements.txt</code> and <code>requirements-dev.txt</code> are <strong>not</strong> present any more</li>
+<li>the files <code>pyproject.toml</code>, <code>poetry.toml</code>, and <code>poetry.lock</code> are <strong>new entries</strong></li>
+<li>the <code>poetry.lock</code> file is generated <em>automatically</em> by Poetry, and you should not edit it</li>
+</ul>
+</section><section>
+<h1 id="example">Example</h1>
+<h2 id="the-calculator-repositoryhttpsgithubcomunibo-dtm-secalculator">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
+<p>TBD</p>
+</section><section>
 <h2 id="dependency-ranges-and-locking">Dependency ranges and locking</h2>
 <ul>
 <li>A project can depend on a specific version of a library or on a <em>range</em> of versions</li>

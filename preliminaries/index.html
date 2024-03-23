@@ -1646,7 +1646,7 @@ or they may have a subset of the mechanisms available in Python</p>
 
 
 <div class="col "><p>Class diagram:</p>
-<figure id="plantuml-figure-1711207786466577037" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1711214076672008712" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class Calculator {
 + expression: str
 - _ensure_is_digit(value: int | str) → int
@@ -1661,7 +1661,7 @@ or they may have a subset of the mechanisms available in Python</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1711207786466577037");
+    handlePlantumlFigureByID("plantuml-figure-1711214076672008712");
 </script>
 </div>
 
@@ -1776,7 +1776,7 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span></code></pre></div></section><section>
 <h2 id="overview-on-code-organization-pt-1">Overview on code organization (pt. 1)</h2>
 
-<figure id="plantuml-figure-1711207786470003230" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1711214076672881241" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package calculator {
@@ -1818,13 +1818,13 @@ package calculator {
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1711207786470003230");
+    handlePlantumlFigureByID("plantuml-figure-1711214076672881241");
 </script>
 </section><section>
 <h2 id="overview-on-code-organization-pt-2">Overview on code organization (pt. 2)</h2>
 <p>(including dependencies from Python and Kivy)</p>
 
-<figure id="plantuml-figure-1711207786470123195" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1711214076672923811" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package "Python Standard Library" as Python {
@@ -1898,7 +1898,7 @@ calculator .left.&gt; Python: uses extensively
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1711207786470123195");
+    handlePlantumlFigureByID("plantuml-figure-1711214076672923811");
 </script>
 </section><section>
 <h2 id="many-hidden-concepts-in-this-example-1">Many hidden concepts in this example</h2>
@@ -1955,12 +1955,12 @@ calculator .left.&gt; Python: uses extensively
 <li>
 <p>… for the time being, let’s stick to the following project structure:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root-directory/
-</span></span><span style="display:flex;"><span>├── main-package/
+</span></span><span style="display:flex;"><span>├── main_package/
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py
-</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub-module.py
-</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── sub-package/ 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub_module.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── sub_package/ 
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     ├── __init__.py 
-</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     └── sub-sub-module.py 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     └── sub_sub_module.py 
 </span></span><span style="display:flex;"><span>├── .python-version
 </span></span><span style="display:flex;"><span>├── README.md
 </span></span><span style="display:flex;"><span>└── requirements.txt

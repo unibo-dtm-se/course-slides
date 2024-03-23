@@ -804,7 +804,7 @@ _One possible solution is in the next slide_
 
 ## One possible solution
 
-(also available on [branch `exercises/01-test-layout` of the `testable-calculator`] repository(https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/01-test-layout/tests/test_gui.py#L44))
+(also available on [branch `exercises/01-test-layout` of the `testable-calculator` repository](https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/01-test-layout/tests/test_gui.py#L44))
 
 ```python
 class CalculatorGUITestCase(unittest.TestCase):

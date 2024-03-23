@@ -1432,12 +1432,12 @@ calculator .left.> Python: uses extensively
 
     ```bash
     root-directory/
-    ├── main-package/
+    ├── main_package/
     │   ├── __init__.py
-    │   ├── sub-module.py
-    │   └── sub-package/ 
+    │   ├── sub_module.py
+    │   └── sub_package/ 
     │       ├── __init__.py 
-    │       └── sub-sub-module.py 
+    │       └── sub_sub_module.py 
     ├── .python-version
     ├── README.md
     └── requirements.txt

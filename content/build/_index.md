@@ -13,25 +13,26 @@ outputs = ["Reveal"]
 ---
 
 # The build "life cycle"
-#### (Not to be confused with the system development life cycle (SDLC))
 
-The process of creating *tested deployable software artifacts*
-<br/>
-from *source* code
+(Not to be confused with the system development life cycle (SDLC))
+
+> The process of creating *tested deployable software artifacts*
+> <br/>
+> from *source* code
 
 May include, depending on the system specifics:
-* *Source code manipulation* and generation
-* Source code *quality assurance*
-* *Dependency management*
-* *Compilation*, linking
-* *Binary manipulation*
-* *Test execution*
-* Test *quality assurance* (e.g., coverage)
-* API *documentation*
-* *Packaging*
-* *Delivery*
+1. *Source code manipulation* and generation
+1. Source code *quality assurance*
+1. __Dependency management__
+1. *Compilation*, linking
+1. *Binary manipulation*
+1. *Test execution*
+1. Test *quality assurance* (e.g., coverage)
+1. API *documentation*
+1. __Packaging__
+1. __Delivery__
 
----
+<!-- ---
 
 # Lifecycle styles
 
@@ -41,7 +42,7 @@ May include, depending on the system specifics:
 
 * **Standard**: run a sequence of pre-defined actions/phases.
     * *Portable and easy to understand*: replicated on every product
-    * *Limited configuration options*
+    * *Limited configuration options* -->
 
 ---
 
@@ -50,15 +51,15 @@ May include, depending on the system specifics:
 Automation of the build lifecycle
 
 * In principle, the lifecycle could be executed manually
-* In reality *time is precious* and *repetitivy is boring*
+* In reality *time is precious* and *repetitivy is boring* (and __error-prone__)
 
-$\Rightarrow$ Create software that automates the building of some software!
+> $\Rightarrow$ Create software that automates the building of some software!
 
-* All those concerns that hold for sofware creation hold for build systems creation...
+* All those concerns that hold for software creation hold for build systems creation...
 
 ---
 
-## Build automation: basics and styles
+<!-- ## Build automation: basics and styles
 
 Different lifecycle types generate different build automation **styles**
 
@@ -73,9 +74,24 @@ from code to artifacts
 * *Examples*: Apache Maven
 * Separation between *what* to do and *how* to do it
   * The build system decides how to do the stuff
-* *Configuration limited* by the provided options
+* *Configuration limited* by the provided options -->
 
----
+## __Declarative__ build automation systems
+
+Modern build automation systems are __declarative__
+
+> __Declarative__ software $\approx$ the program describes *what* to do, not *how* to do it
+> <br>
+> (as opposed to _imperative_ software $\approx$ the program describes *how* to do it, 
+> <br>
+> e.g. Python)
+
+In other words:
+- they rely on *conventions* and *defaults*
+- as long as developers follow them, the configuration is _minimal_
+- good look if you try to deviate from conventions :)
+
+<!-- ---
 
 ## Hybrid automators
 
@@ -86,7 +102,7 @@ Create a *declarative infrastructure* upon an *imperative basis*, and
 
 Still, many challenges remain open:
 * How to reuse the build logic?
-    * within a project, and among projects
+    * within a project, and among projects -->
 
 ---
 
@@ -114,222 +130,6 @@ The need for build systems in Python emerged with more complex use cases
 
 ---
 
-## A simple financial application
-
-Build an application that performs a simple graphical MACD analysis of a financial product:
-
-![app screenshot](app.png)
-
-* How many Non-Comment Lines of Code (NCLoC)?
-
----
-
-{{< mentimeter "12dc23978d6774050055d681b9cd72c9/ddac3c5150cf" >}}
-
----
-
-## A possible solution
-
-{{< github repo="python-finance-plot" path="macd.py" >}}
-
-[about 45 NCLoC](https://github.com/DanySK/python-finance-plot)
-
----
-
-## The trick: using a few libraries
-
-* **yfinance**
-    * Financial data from Yahoo! Finance
-* **Pandas**
-    * Data in tabular format
-* **Pandas-TA**
-    * Pandas technical analysis enhancement
-* **PyQt5**
-    * Graphical interface
-
----
-
-## Actual dependency tree
-
-```
-matplotlib==3.5.1
-  cycler==0.11.0
-  fonttools==4.30.0
-  kiwisolver==1.3.2
-  numpy==1.22.3
-  packaging==21.3
-    pyparsing==3.0.7
-  Pillow==9.0.1
-  pyparsing==3.0.7
-  python-dateutil==2.8.2
-    six==1.16.0
-pandas-ta==0.3.14b0
-  pandas==1.4.1
-    numpy==1.22.3
-    python-dateutil==2.8.2
-      six==1.16.0
-    pytz==2021.3
-PyQt5==5.15.6
-  PyQt5-Qt5==5.15.2
-  PyQt5-sip==12.9.1
-yfinance==0.1.70
-  lxml==4.8.0
-  multitasking==0.0.10
-  numpy==1.22.3
-  pandas==1.4.1
-    numpy==1.22.3
-    python-dateutil==2.8.2
-      six==1.16.0
-    pytz==2021.3
-  requests==2.27.1
-    certifi==2021.10.8
-    charset-normalizer==2.0.12
-    idna==3.3
-    urllib3==1.26.8
-```
-
-* 4 *direct* dependencies
-* 21 *transitive* dependencies
-
-In large projects, *transitive* dependencies often dominate
-
----
-
-
-## Towards a **dependency hell**
-
-* It's common for non-toy projects to get past 50 dependencies
-* *Searching*, *downloading* and *verifying compatibility* by hand is unbearable
-* **Version conflicts** arise soon
-  * one of your direct dependencies uses library A at version 1
-  * another uses library A at version 2
-  * $\Rightarrow$  *transitive dependency conflict* on A
-* **Upgrading** by hand requires, *time*, *effort* and *tons of testing*
-
----
-
-## Dealing with dependencies
-
-**Source import**
-
-Duplication, more library code than business code, updates almost impossible, inconsistencies, unmaintainable
-
-**Binary import**
-
-Hard to update, [toxic for the Version Control System](https://bitbucket.org/danysk/exploded-repository-example)
-
-**Desiderata**
-
-* *Declarative* specification of libraries and versions
-* *Automatic retrieval*
-* Automatic *resolution of transitive dependencies*
-* Dependency **scopes**
-  * In general, you may need *compile-only*, *test-only*, and *runtime-only* dependencies
-  * not specifically in Python and other interpreted languages
-* Customizable software *sources*
-
----
-
-## Reproducibility
-
-We want that something that works *for us* works *for everyone*
-
-We do not want to depend on the *system configuration*
-
-We want to *declare* our requirements and have a **machine** figure out how to configure the system
-
-We want everyone to be able to rebuild the *exact same environment*
-
----
-
-## Python `pip`
-
-[`pip`](https://pip.pypa.io/en/stable/) is the package installer for Python
-
-By default, fetches packages on the [Python Package Index (PyPI)](https://pypi.org/)
-* It is the *standard package repository for Python*
-
-Pip is *shipped with most Python distributions*
-
----
-
-## Using `pip`
-
-* `pip install package_name`
-    * Installs `package_name` *for the current user*
-    * Running with `sudo` installs the packages *system-wide*
-    * In any case, the installation is **global**
-* `pip install -r requirements.txt`
-    * Reads the contents of the provided *text file*
-    * It flattens them and runs a normal `pip install`
-    * The file name is arbitrary, but it is *customary* to use `requirements.txt`
-        * (also helps with automation)
-
-#### Example `requirements.txt`
-
-{{< github repo="python-finance-plot" path="requirements.txt" >}}
-
----
-
-## The problem with global installations
-
-What if, for two different projects, you need *two different versions of the same library*?
-
-* We need **isolated environments**!
-* `pip` does not support them!
-
-Workarounds, anyone?
-
----
-
-## Virtualenv and venv
-
-* Tell `pip` to *install* into a specific folder (e.g., `foo/bar`)
-    * there exist an option in recent versions of `pip`: `--target=foo/bar`
-* Tell `python` to *search* libraries in `foo/bar`
-    * by default, the interpreter looks into the paths listed in the *environment variable* `PYTHONPATH`
-
-**Cumbersome if done manually!**
-
-`venv` and `virtualenv` deal with *isolation of multiple python library installations*
-
-a.k.a. **virtual envelopes**
-
-* `venv` is in the standard library
-* `virtualenv` is not, but has some *additional features*
-* They are *almost completely interchangeable*
-
----
-
-## [`venv`](https://docs.python.org/3/library/venv.html)
-
-* 1. Tell Python where to **initialize** the virtual environment:
-  * `python3 -m venv /path/to/new/virtual/environment`
-  * Commonly: `python3 -m venv .venv`
-  * From Python 3.9, it can update `pip` with `--upgrade-deps`
-  * inside the target folder, the script copies or symlinks the Python binaries
-
-* 2. **Activate** the virtual environment
-  * Bash/Zsh: `source .venv/bin/activate`
-  * Powershell: `.venv\Scripts\Activate.ps1`
-  * it [shims](https://stackoverflow.com/questions/2116142/what-is-a-shim) the terminal commands to run *inside the virtual envelop*
-
-* 3. **Install** all your dependencies
-  * `pip install -r requirements.txt`
-* 4. Once done, **deactivate** the virtual environment
-  * `deactivate`
-  * The command is added upon activation and restores the "normal" shell behavior
-
----
-
-## Exercise:
-
-1. Create a new virtual environment, activate it, and deactivate it
-2. From the `master` branch of the [finance-plot](https://github.com/DanySK/python-finance-plot) example,
-run the application using the virtual environment, then deactivate it.
-
----
-
 ## Python's conflicting standards
 
 ![xkcd](https://imgs.xkcd.com/comics/python_environment.png)
@@ -338,85 +138,122 @@ Since there were no standard management systems originally,
 multiple tools *proliferated*
 
 * The Python Packaging Authority (PyPA) is inconsistent in its suggestions:
-    * [Recommends `venv`](https://archive.ph/aNQGe)
-    * Also [recommends Pipenv, which uses `virtualenv`](https://archive.ph/H2xeN)
-    * Also [endorses Poetry](https://archive.ph/H2xeN)
+    * Recommends [`venv`](https://docs.python.org/3/library/venv.html)
+    * Also recommends [Pipenv](https://pipenv.pypa.io/en/latest/) , which uses [`virtualenv`](https://virtualenv.pypa.io/en/latest/)
+    * Also endorses [Poetry](https://python-poetry.org/)
+
+* Many Python developers also exploit [PyEnv](https://github.com/pyenv/pyenv)
+
+* Many data scientists use [Anaconda](https://www.anaconda.com/)
 
 ---
 
-## Interpreter as dependency
+{{% section %}}
 
-If you designed your software for Python 3.0, it might not work in Python 3.10
-* indeed, it is very likely that if you designed it for Python 2.x it won't work in Python 3.x
+## What are all these tools? (pt. 1)
 
-In languages that require a runtime (Python, Javascript, Java...)
-**the runtime is a dependency as well**!
+1. By default, Python is installed _system-wide_
+    + i.e. there should be _one_ (and __only__ one) Python interpreter on the system
 
-And again: multiple projects may require *different versions*
-* We need something to manage *multiple Python versions* on the *same system* at the *same time*
-* How to port them across different installations?
+2. All Python installations come with `pip`, the _package installer_ for Python
 
----
+3. So, one may __install__ Python packages _system-wide_ with `pip`
+    + `pip install package_name`
 
-## Pyenv
-
-* Neither `venv` nor `virtualenv` deal perfectly with the interpreter isolation
-* Ideally, we would like to write the interpreter version somewhere, and have it downloaded
-* Additional tools exist for this scope, e.g., [`pyenv`](https://github.com/pyenv/pyenv)
-    * Allows multiple installations of Python *per-user*
-    * They are reused per-project
-    * Controlled by a simple `.pythonversion` file in the project root
-
-We still have consistency issues:
-* `venv`/`virtualenv` do not isolate the *interpreter* versions
-* `pyenv` does not create virtual envelopes *per-project*
-
-We need these tools to communicate to achieve **per-project** *virtual envelopes with embedded python*
-* A [plugin of pyenv](https://github.com/pyenv/pyenv-virtualenv) for using virtualenv exists
-* ...but the situation is getting rather complicated...
+> __One problem, many implications__: <br> the same package can be installed _only once_ on the same Python installation
+> + __(a)__ what if two projects on the same system require _different versions_ of the _same package_ as dependencies?
+>     - say, __project A__ requires `Kivy==2.3` and __project B__ requires `Kivy==1.4`
+> + __(b)__ what if two projects on the same system require _different versions of Python_?
+>     - say, __project A__ requires Python `3.8` and __project B__ requires Python `3.10`
 
 ---
 
-## [Poetry](https://python-poetry.org/)
+## What are all these tools? (pt. 2)
 
-Integrated management of dependencies in Python
-* Very *recent* (first release in 2018)
-* *Declarative* configuration via [TOML](https://github.com/toml-lang/toml)
-* Manages both the *interpreter* and the library *dependencies*
-  * For the interpreter, it requires pyenv
-* Simplifies *packaging*
-* Relies on **convention over configuration**
-  * Pre-configured overridable *sensible defaults*
-  * or: if the project is *set up as expected*, then there is *almost no configuration* necessary
+(consider reading this page for further details <https://stackoverflow.com/a/41573588>)
+
+4. `virtualenv` and `venv` are tools to create _virtual_ Python installations _on the same system_
+    + `virtualenv` is a _third-party_ tool, `venv` is _built-in_ in Python 3.3 and later
+    + let's say you have Python `v. XXX` installed on your system... 
+        - ... these tools let you create other _lightweight_ __copies__ of Python `v. XXX` in other folders
+            * the copies are __fresh__, i.e. they _no package_ installed
+            * but one may install _different_ packages in _each_ copy, via `pip`
+    + now you can solve problem __(a)__
+
+5. `PyEnv` is a tool to manage _multiple_ Python __installations__ _on the same system_
+    + each installation may use a _different version_ of Python
+    + now you can solve problem __(b)__
+
+
+> __New problem__: many Python installations on the same system, 
+> <br> each one with a different version of Python, and different packages installed 
+
+recall all the issues we had in previous lectures?
+
+--- 
+
+## What are all these tools? (pt. 3)
+
+6. Smart and adequate __convention__ to work with Python projects: __1-project-1-Python-env__
+    + each Python project has its _own_ Python environment ...
+        - be it virtual or not, as far as it uses the _same_ Python version required by that project
+    + ... the environment _only_ contains the packages required by that project
+
+7. Achieving this requires developers to be _disciplined_ and _meticulous_
+    + other than being proficient with the tools above
+
+8. `Poetry` is a tool that aims to _automate_ this process
+
+{{% /section %}}
 
 ---
 
-## Conventional directory structure
+## From now on, let's use Poetry
 
-Library:
+> Poetry is a _declarative_ tool for __dependency management__, __packaging__, and __release__ in Python
 
-```
-project-name
-├── pyproject.toml
-├── README.md
-├── project_name
-│   └── __init__.py
-└── tests
-    ├── __init__.py
-    └── test_project_name.py
+- It handles both *dependencies* and *dev-dependencies* 
+    * _replacing_ `requirements.txt` and `requirements-dev.txt`
+
+- It _automates_ the __1-project-1-Python-env__ convention
+
+- It simplifies the _packaging_ process for the project
+
+- It simplifies the _publication_ process on PyPI (or other software repositories)
+
+---
+
+## Poetry's canonical project structure
+
+```bash
+root-directory/
+├── main_package/
+│   ├── __init__.py
+│   ├── sub_module.py
+│   └── sub_package/ 
+│       ├── __init__.py 
+│       └── sub_sub_module.py 
+├── test/
+│   ├── test_something.py
+│   └── test_something_else.py/ 
+├── pyproject.toml              # File where project configuration (metadata, dependencies, etc.) is stored
+├── poetry.toml                 # File where Poetry configuration is stored
+├── poetry.lock                 # File where Poetry locks the dependencies
+└── README.md
 ```
 
-Module:
+Notice that, w.r.t. the canonical project structure we have been using so far:
+  - the files `requirements.txt` and `requirements-dev.txt` are __not__ present any more
+  - the files `pyproject.toml`, `poetry.toml`, and `poetry.lock` are __new entries__
+  - the `poetry.lock` file is generated _automatically_ by Poetry, and you should not edit it
 
-```
-project-name
-├── pyproject.toml
-├── README.md
-├── project_name.py
-└── tests
-    ├── __init__.py
-    └── test_project_name.py
-```
+---
+
+# Example
+
+## The [`calculator` repository](https://github.com/unibo-dtm-se/calculator)
+
+TBD
 
 ---
 

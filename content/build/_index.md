@@ -249,11 +249,87 @@ Notice that, w.r.t. the canonical project structure we have been using so far:
 
 ---
 
-# Example
+# Example (pt. 1)
 
 ## The [`calculator` repository](https://github.com/unibo-dtm-se/calculator)
 
-TBD
+1. Look at the `pyproject.toml` file
+    ```toml
+    [tool.poetry]
+    # name of the package to be published
+    name = "unibo-dtm-se-calculator"
+
+    # files to included for publication
+    packages = [
+        { include = "calculator" },
+    ]
+
+    # various metadata for publication
+    version = "0.1.1"
+    description = "A simple calculator toolkit written in Python, with several UIs. It is part of the Software Engineering course at the University of Bologna."
+    authors = ["Giovanni Ciatto <giovanni.ciatto@unibo.it>"]
+    license = "Apache 2.0"
+    readme = "README.md"
+
+    # dependencies (notice that Python is considered a dependency)
+    [tool.poetry.dependencies]
+    python = "^3.10.0"
+    Kivy = "^2.3.0"
+
+    # development dependencies
+    [tool.poetry.group.dev.dependencies]
+    poetry = "^1.7.0"
+    pytest = "^8.1.0"
+    coverage = "^7.4.0"
+    mypy = "^1.9.0"
+
+    # executable commands that will be created then installing this package
+    [tool.poetry.scripts]
+    calculator-gui = "calculator.ui.gui:start_app"
+    calculator = "calculator.ui.cli:start_app"
+
+    # where to download the dependencies from
+    [[tool.poetry.source]]
+    name = "PyPI"
+    priority = "primary"
+
+    # packaging dependencies
+    [build-system]
+    requires = ["poetry-core"]
+    build-backend = "poetry.core.masonry.api"
+
+    # mypy configuration
+    [tool.mypy]
+    ignore_missing_imports = true
+    ```
+
+    * learn how to specify dependencies here <https://python-poetry.org/docs/dependency-specification/>
+
+---
+
+# Example (pt. 2)
+
+## The [`calculator` repository](https://github.com/unibo-dtm-se/calculator)
+
+2. Look at the `poetry.toml` file
+
+    ```toml
+    # the project-specific environment will be created in the local .venv folder
+    [virtualenvs]
+    in-project = true 
+
+    # packages produced by poetry may be published on the pypi-test repository
+    [repositories.pypi-test]
+    url = "https://test.pypi.org/legacy/"
+
+    # another implicit repository is always available, namely PyPI
+    # at https://pypi.org/
+    ```
+
+3. Look at the published version of [this package on PyPI](https://pypi.org/project/unibo-dtm-se-calculator/)
+    + try to install it in a virgin Python environment
+        1. open a shell
+        2. 
 
 ---
 

@@ -1,12 +1,12 @@
  +++
 
-title = "Software dependencies, Build automation"
+title = "Build automation, packaging, and release"
 description = "Introduction to agile and DevOps, a case from the literature, SCRUM"
 outputs = ["Reveal"]
 
 +++
 
-# Software dependencies, Build automation
+# Build automation, packaging, and release
 
 {{% import path="reusable/header-dp.md" %}}
 
@@ -258,7 +258,7 @@ Notice that, w.r.t. the canonical project structure we have been using so far:
     # name of the package to be published
     name = "unibo-dtm-se-calculator"
 
-    # files to included for publication
+    # files to be included for publication
     packages = [
         { include = "calculator" },
     ]

@@ -157,10 +157,9 @@ multiple tools *proliferated*
 
 2. All Python installations come with `pip`, the _package installer_ for Python
 
-3. So, one may __install__ Python packages _system-wide_ with `pip`
-    + `pip install package_name`
+3. So, one may __install__ Python packages _system-wide_ with `pip install PACKAGE_NAME`
 
-> __One problem, many implications__: <br> the same package can be installed _only once_ on the same Python installation
+> __One problem, many implications__: the same package can be installed _only once_ on the same Python installation
 > + __(a)__ what if two projects on the same system require _different versions_ of the _same package_ as dependencies?
 >     - say, __project A__ requires `Kivy==2.3` and __project B__ requires `Kivy==1.4`
 > + __(b)__ what if two projects on the same system require _different versions of Python_?
@@ -253,7 +252,7 @@ Notice that, w.r.t. the canonical project structure we have been using so far:
 
 ## The [`calculator` repository](https://github.com/unibo-dtm-se/calculator)
 
-1. Look at the `pyproject.toml` file
+1. Look at the [`pyproject.toml` file](https://github.com/unibo-dtm-se/calculator/blob/master/pyproject.toml)
     ```toml
     [tool.poetry]
     # name of the package to be published
@@ -311,7 +310,7 @@ Notice that, w.r.t. the canonical project structure we have been using so far:
 
 ## The [`calculator` repository](https://github.com/unibo-dtm-se/calculator)
 
-2. Look at the `poetry.toml` file
+2. Look at the [`poetry.toml` file](https://github.com/unibo-dtm-se/calculator/blob/master/poetry.toml)
 
     ```toml
     # the project-specific environment will be created in the local .venv folder
@@ -326,10 +325,27 @@ Notice that, w.r.t. the canonical project structure we have been using so far:
     # at https://pypi.org/
     ```
 
-3. Look at the published version of [this package on PyPI](https://pypi.org/project/unibo-dtm-se-calculator/)
-    + try to install it in a virgin Python environment
-        1. open a shell
-        2. 
+---
+
+# Exercise (pt. 1)
+
+## The [`calculator` repository](https://github.com/unibo-dtm-se/calculator)
+
+1. Ensure you have Poetry installed on your system
+    + <https://python-poetry.org/docs/#installing-with-the-official-installer>
+    + run `poetry --version` to check
+
+2. _Fork_ the repository  
+
+3. _Clone_ the repository on your system
+    + `git clone https://github.com/unibo-dtm-se/calculator.git`
+    + then, open the `calculator` folder into VS code
+
+4. Run `poetry install` in the terminal. This shall:
+    - create a _virtual environment_ in the `.venv` directory
+        + please ensure that a `.venv` directory __exists__ in your project directory, after running this command
+    - _install_ the _dependencies_ declared in the `pyproject.toml` file
+    - _lock_ the dependencies in the `poetry.lock` file
 
 ---
 
@@ -338,7 +354,7 @@ Notice that, w.r.t. the canonical project structure we have been using so far:
 * A project can depend on a specific version of a library or on a *range* of versions
 * We want to be able to specify ranges, but *retain the ability to use an exact version*
 
-> This software is compatible with `library` version 2.x. For our examples, we used version 2.6.87
+> This software is compatible with `library` version 2.3. For our examples, we used version 2.3._10_
 
 Expressing something like this is done via **dependency locking**:
 * Configure the build file with the range of supported versions
@@ -351,37 +367,163 @@ Expressing something like this is done via **dependency locking**:
 
 ---
 
-## Example configuration file
+# Exercise (pt. 2)
 
-{{< github repo="python-finance-plot" path="pyproject.toml" branch="poetry" >}}
+## The [`calculator` repository](https://github.com/unibo-dtm-se/calculator)
+
+5. Let's use a shell in the virtual environment created by Poetry
+    + run `poetry shell`
+    + if this operation was fine, you should be able to run the command `calculator 1+1` to produce `2` as output
+        + if you get an error, please let us know
+
+6. Make sure that _VS Code_ is using the _same_ environment as the one created by Poetry.
+    - Open the Command Palette (on <i class="fab fa-linux"></i>/<i class="fab fa-windows"></i> press <kbd>Ctrl</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, use <kbd>⌘</kbd> instead of <kbd>Ctrl</kbd> on <i class="fab fa-apple"></i> )
+    - Type `Python: Select Interpreter`
+    - Choose the local environment, i.e. the one having path `./.venv/bin/python` 
+
+7. This is an ordinary project, where you can operate _as usual_
+    - run `python -m unittest discover -v -s tests` in the terminal
+    - try to run tests in the UI, too
+
+---
+
+## Useful hints
+
+1. So many Python environments in the shell... how to avoid mistakes?
+
+    > If you want to be 100% you're running commands in the _right_ environment, you can prefix them with `poetry run`:
+    > ```bash
+    > poetry run python -m unittest discover -v -s tests
+    > ```
+
+
+2. Ok but what about VS Code's environments?
+    
+    > Get the habit of configuring the VS Code environment _manually_ when working with Python projects
+---
+
+# What's the value added of Poetry?
+
+It supports publishing.
+
+> Consider the following Web Page:
+> <br> <https://pypi.org/project/unibo-dtm-se-calculator>
+
+- This is the _PyPI_ page of the `unibo-dtm-se-calculator` package
+    + which we published by means of Poetry
+
+- After the project is made available on PyPI, it can be installed by anyone 
+    + by running `pip install unibo-dtm-se-calculator`
 
 ---
 
-### Poetry: initialization
+# Exercise
 
-Poetry provides a built-in tool to initialize a repository
-* `poetry new project-name`
-  * Initializes the directory structure
-  * Creates a stub TOML configuration
-  * Alternatively, for existing projects, a `poetry init` interactive process is available for migration
+## Installing a published package in a virgin environment
+
+Let's first create a new Python environment, and then install the `unibo-dtm-se-calculator` package in it
+
+1. Create a new Python environment (to simulate the _initially empty_ environment of a _new_ developer/user)
+    1. open a fresh new terminal
+    2. create the fresh new environment `python -m venv virgin-env`
+    3. activate the environment 
+      - on on <i class="fab fa-linux"></i>/<i class="fab fa-apple"></i> run `source virgin-env/bin/activate` 
+      - on <i class="fab fa-windows"></i> use `.\virgin-env\Scripts\Activate`
+    3. if you run commands `calculator` or `calculator-gui` they _should fail_
+
+2. Install the `unibo-dtm-se-calculator` package `pip install unibo-dtm-se-calculator`
+
+3. Try now to run the calculator in the shell
+    + `calculator 1+1` should produce `2` as output
+    + `calculao-gui` should open a GUI calculator
+
+---
+
+## How to publish Python packages on PyPI
+
+### Prerequisites
+
+- Have an account on [PyPI](https://pypi.org/)
+     + generate an [API token](https://pypi.org/manage/account/) for your account
+
+- Have an account on [Test-PyPI](https://test.pypi.org/)
+    + generate an [API token](https://test.pypi.org/manage/account/) for your account
+
+### Conceptual steps  
+
+1. Publish on Test-Pypi, to ensure the procedure works
+
+2. Publish on PyPI
+
+3. Profit
 
 ---
 
-### Poetry: virtual environments
+## How to publish Python packages on Test-PyPI with Poetry
 
-Similar to `venv`, Poetry creates virtual environments (embedding the interpreter, too)
-* `poetry shell`
-  * activates the environment
-  * the environment can be deactivated with `exit`
-* `poetry env info`
-  * prints information about the currently activated virtual environment
-* `poetry env list`
-  * lists all the virtual environments associated with the current project
-* `poetry use` is the subcommand to determine which enviroment to use
-  * `poetry use system` picks the python version from the `PATH`
-  * `poetry use /path/to/python` selects an *existing* version of python
+1. Build the project, i.e. produce *installable package* __(only do this after all Q/A checks pass)__
+    * `poetry build`
+    * this will create a `.whl` file and a `.tar.gz` file in the `dist/` directory
+
+2. Upload installable packages on Test-PyPI
+    * `poetry publish --repository pypi-test --username __token__ --password TEST_PYPI_API_TOKEN`
+        + [the username is _literally_ `__token__`](https://pypi.org/help/#apitoken)
+        + the password is the API token you generated on Test-PyPI
+    * this will upload the package to Test-PyPI
+
+3. That's it!
+    * visit the page of your package on Test-PyPI
+    * try to install it in a virgin environment via `pip install -i https://test.pypi.org/simple/ unibo-dtm-se-calculator`
 
 ---
+
+## Problems that you may encounter
+
+- Building may fail if your `pyproject.toml` is not properly configured, or missing data
+
+- Upload may fail:
+    + if your credentials are wrong, for some reason
+    + if the package name is already taken
+    + if the package version is already taken
+
+- Installation may fail:
+    + because your package has a dependency that is not available on Test-PyPI
+
+---
+
+## How to publish Python packages on PyPI with Poetry
+
+1. Build the project, i.e. produce *installable package* __(only do this after all Q/A checks pass)__
+    * `poetry build`
+    * this will create a `.whl` file and a `.tar.gz` file in the `dist/` directory
+
+2. Upload installable packages on PyPI
+    * `poetry publish --repository pypi-test --username __token__ --password PYPI_API_TOKEN`
+        + [the username is _literally_ `__token__`](https://pypi.org/help/#apitoken)
+        + the password is the API token you generated on PyPI
+    * this will upload the package to PyPI
+
+3. That's it!
+    * visit the page of your package on PyPI
+    * try to install it in a virgin environment via `pip install unibo-dtm-se-calculator`
+
+---
+
+## Problems that you may encounter
+
+- Building may fail if your `pyproject.toml` is not properly configured, or missing data
+    + but you should already have fixed this when publishing on Test-PyPI
+
+- Upload may fail:
+    + if your credentials are wrong, for some reason
+    + if the package name is already taken
+    + if the package version is already taken
+
+- Installation may fail, but in this case there must be an issue in the package itself
+
+<!-- --- -->
+
+<!-- ---
 
 # Lessons learned
 
@@ -394,4 +536,4 @@ Similar to `venv`, Poetry creates virtual environments (embedding the interprete
 * Automatic configuration is desirable
 * The Python build ecosystem is fragmented
   * Poetry is a modern take on Python dependency management and packaging
-  * PyEnv can be used to let multiple Python versions live together
+  * PyEnv can be used to let multiple Python versions live together -->

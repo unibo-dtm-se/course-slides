@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2024-03-23 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2024-03-25 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h1 id="the-build-life-cycle">The build “life cycle”</h1>
@@ -208,14 +208,11 @@ multiple tools <em>proliferated</em></p>
 <p>All Python installations come with <code>pip</code>, the <em>package installer</em> for Python</p>
 </li>
 <li>
-<p>So, one may <strong>install</strong> Python packages <em>system-wide</em> with <code>pip</code></p>
-<ul>
-<li><code>pip install package_name</code></li>
-</ul>
+<p>So, one may <strong>install</strong> Python packages <em>system-wide</em> with <code>pip install PACKAGE_NAME</code></p>
 </li>
 </ol>
 <blockquote>
-<p><strong>One problem, many implications</strong>: <br> the same package can be installed <em>only once</em> on the same Python installation</p>
+<p><strong>One problem, many implications</strong>: the same package can be installed <em>only once</em> on the same Python installation</p>
 <ul>
 <li><strong>(a)</strong> what if two projects on the same system require <em>different versions</em> of the <em>same package</em> as dependencies?
 <ul>
@@ -334,9 +331,39 @@ multiple tools <em>proliferated</em></p>
 <li>the <code>poetry.lock</code> file is generated <em>automatically</em> by Poetry, and you should not edit it</li>
 </ul>
 </section><section>
-<h1 id="example">Example</h1>
+<h1 id="exercise-pt-1">Exercise (pt. 1)</h1>
 <h2 id="the-calculator-repositoryhttpsgithubcomunibo-dtm-secalculator">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
-<p>TBD</p>
+<ol>
+<li>
+<p>Ensure you have Poetry installed on your system</p>
+<ul>
+<li><a href="https://python-poetry.org/docs/#installing-with-the-official-installer">https://python-poetry.org/docs/#installing-with-the-official-installer</a></li>
+<li>run <code>poetry --version</code> to check</li>
+</ul>
+</li>
+<li>
+<p><em>Fork</em> the repository</p>
+</li>
+<li>
+<p><em>Clone</em> the repository on your system</p>
+<ul>
+<li><code>git clone https://github.com/unibo-dtm-se/calculator.git</code></li>
+<li>then, open the <code>calculator</code> folder into VS code</li>
+</ul>
+</li>
+<li>
+<p>Run <code>poetry install</code> in the terminal. This shall:</p>
+<ul>
+<li>create a <em>virtual environment</em> in the <code>.venv</code> directory
+<ul>
+<li>please ensure that a <code>.venv</code> directory <strong>exists</strong> in your project directory, after running this command</li>
+</ul>
+</li>
+<li><em>install</em> the <em>dependencies</em> declared in the <code>pyproject.toml</code> file</li>
+<li><em>lock</em> the dependencies in the <code>poetry.lock</code> file</li>
+</ul>
+</li>
+</ol>
 </section><section>
 <h2 id="dependency-ranges-and-locking">Dependency ranges and locking</h2>
 <ul>
@@ -344,7 +371,7 @@ multiple tools <em>proliferated</em></p>
 <li>We want to be able to specify ranges, but <em>retain the ability to use an exact version</em></li>
 </ul>
 <blockquote>
-<p>This software is compatible with <code>library</code> version 2.x. For our examples, we used version 2.6.87</p>
+<p>This software is compatible with <code>library</code> version 2.3. For our examples, we used version 2.3.<em>10</em></p>
 </blockquote>
 <p>Expressing something like this is done via <strong>dependency locking</strong>:</p>
 <ul>
@@ -362,90 +389,251 @@ multiple tools <em>proliferated</em></p>
 </ul>
 <p><a href="https://python-poetry.org/docs/dependency-specification/">Poetry allows range specifications and locks automatically</a></p>
 </section><section>
-<h2 id="example-configuration-file">Example configuration file</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tool</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">poetry</span><span style="color:#000;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># Packaging information</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">name</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"python-finance-plot"</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">version</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"0.1.0"</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">description</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"Sample application of financial plotting with Python"</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">authors</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">"Danilo Pianini &lt;danilo.pianini@unibo.it&gt;"</span><span style="color:#000;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">license</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"MIT"</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tool</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">poetry</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">dependencies</span><span style="color:#000;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># Dependencies</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">python</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"^3.9.0"</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">matplotlib</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"3.5.1"</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">pandas_ta</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"0.3.14.b"</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">pip</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"22.0.4"</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">pyqt5</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"5.15.6"</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">yfinance</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"0.1.70"</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tool</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">poetry</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">dev-dependencies</span><span style="color:#000;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">build-system</span><span style="color:#000;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># Implementation details</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">requires</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">"poetry-core&gt;=1.0.0"</span><span style="color:#000;font-weight:bold">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">build-backend</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"poetry.core.masonry.api"</span>
-</span></span></code></pre></div>
+<h1 id="exercise-pt-2">Exercise (pt. 2)</h1>
+<h2 id="the-calculator-repositoryhttpsgithubcomunibo-dtm-secalculator-1">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
+<ol start="5">
+<li>
+<p>Let’s use a shell in the virtual environment created by Poetry</p>
+<ul>
+<li>run <code>poetry shell</code></li>
+<li>if this operation was fine, you should be able to run the command <code>calculator 1+1</code> to produce <code>2</code> as output
+<ul>
+<li>if you get an error, please let us know</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Make sure that <em>VS Code</em> is using the <em>same</em> environment as the one created by Poetry.</p>
+<ul>
+<li>Open the Command Palette (on <i class="fab fa-linux"></i>/<i class="fab fa-windows"></i> press <kbd>Ctrl</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, use <kbd>⌘</kbd> instead of <kbd>Ctrl</kbd> on <i class="fab fa-apple"></i> )</li>
+<li>Type <code>Python: Select Interpreter</code></li>
+<li>Choose the local environment, i.e. the one having path <code>./.venv/bin/python</code></li>
+</ul>
+</li>
+<li>
+<p>This is an ordinary project, where you can operate <em>as usual</em></p>
+<ul>
+<li>run <code>python -m unittest discover -v -s tests</code> in the terminal</li>
+<li>try to run tests in the UI, too</li>
+</ul>
+</li>
+</ol>
 </section><section>
-<h3 id="poetry-initialization">Poetry: initialization</h3>
-<p>Poetry provides a built-in tool to initialize a repository</p>
+<h2 id="useful-hints">Useful hints</h2>
+<ol>
+<li>
+<p>So many Python environments in the shell… how to avoid mistakes?</p>
+<blockquote>
+<p>If you want to be 100% you’re running commands in the <em>right</em> environment, you can prefix them with <code>poetry run</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>poetry run python -m unittest discover -v -s tests
+</span></span></code></pre></div></blockquote>
+</li>
+<li>
+<p>Ok but what about VS Code’s environments?</p>
+<blockquote>
+<p>Get the habit of configuring the VS Code environment <em>manually</em> when working with Python projects</p>
+</blockquote>
+</li>
+</ol>
+</section><section>
+<h1 id="whats-the-value-added-of-poetry">What’s the value added of Poetry?</h1>
+<p>It supports publishing.</p>
+<blockquote>
+<p>Consider the following Web Page:
+<br> <a href="https://pypi.org/project/unibo-dtm-se-calculator">https://pypi.org/project/unibo-dtm-se-calculator</a></p>
+</blockquote>
 <ul>
-<li><code>poetry new project-name</code>
+<li>
+<p>This is the <em>PyPI</em> page of the <code>unibo-dtm-se-calculator</code> package</p>
 <ul>
-<li>Initializes the directory structure</li>
-<li>Creates a stub TOML configuration</li>
-<li>Alternatively, for existing projects, a <code>poetry init</code> interactive process is available for migration</li>
+<li>which we published by means of Poetry</li>
+</ul>
+</li>
+<li>
+<p>After the project is made available on PyPI, it can be installed by anyone</p>
+<ul>
+<li>by running <code>pip install unibo-dtm-se-calculator</code></li>
 </ul>
 </li>
 </ul>
 </section><section>
-<h3 id="poetry-virtual-environments">Poetry: virtual environments</h3>
-<p>Similar to <code>venv</code>, Poetry creates virtual environments (embedding the interpreter, too)</p>
+<h1 id="exercise">Exercise</h1>
+<h2 id="installing-a-published-package-in-a-virgin-environment">Installing a published package in a virgin environment</h2>
+<p>Let’s first create a new Python environment, and then install the <code>unibo-dtm-se-calculator</code> package in it</p>
+<ol>
+<li>
+<p>Create a new Python environment (to simulate the <em>initially empty</em> environment of a <em>new</em> developer/user)</p>
+<ol>
+<li>open a fresh new terminal</li>
+<li>create the fresh new environment <code>python -m venv virgin-env</code></li>
+<li>activate the environment</li>
+</ol>
 <ul>
-<li><code>poetry shell</code>
+<li>on on <i class="fab fa-linux"></i>/<i class="fab fa-apple"></i> run <code>source virgin-env/bin/activate</code></li>
+<li>on <i class="fab fa-windows"></i> use <code>.\virgin-env\Scripts\Activate</code></li>
+</ul>
+<ol start="3">
+<li>if you run commands <code>calculator</code> or <code>calculator-gui</code> they <em>should fail</em></li>
+</ol>
+</li>
+<li>
+<p>Install the <code>unibo-dtm-se-calculator</code> package <code>pip install unibo-dtm-se-calculator</code></p>
+</li>
+<li>
+<p>Try now to run the calculator in the shell</p>
 <ul>
-<li>activates the environment</li>
-<li>the environment can be deactivated with <code>exit</code></li>
+<li><code>calculator 1+1</code> should produce <code>2</code> as output</li>
+<li><code>calculao-gui</code> should open a GUI calculator</li>
 </ul>
 </li>
-<li><code>poetry env info</code>
+</ol>
+</section><section>
+<h2 id="how-to-publish-python-packages-on-pypi">How to publish Python packages on PyPI</h2>
+<h3 id="prerequisites">Prerequisites</h3>
 <ul>
-<li>prints information about the currently activated virtual environment</li>
+<li>
+<p>Have an account on <a href="https://pypi.org/">PyPI</a></p>
+<ul>
+<li>generate an <a href="https://pypi.org/manage/account/">API token</a> for your account</li>
 </ul>
 </li>
-<li><code>poetry env list</code>
+<li>
+<p>Have an account on <a href="https://test.pypi.org/">Test-PyPI</a></p>
 <ul>
-<li>lists all the virtual environments associated with the current project</li>
+<li>generate an <a href="https://test.pypi.org/manage/account/">API token</a> for your account</li>
 </ul>
 </li>
-<li><code>poetry use</code> is the subcommand to determine which enviroment to use
+</ul>
+<h3 id="conceptual-steps">Conceptual steps</h3>
+<ol>
+<li>
+<p>Publish on Test-Pypi, to ensure the procedure works</p>
+</li>
+<li>
+<p>Publish on PyPI</p>
+</li>
+<li>
+<p>Profit</p>
+</li>
+</ol>
+</section><section>
+<h2 id="how-to-publish-python-packages-on-test-pypi-with-poetry">How to publish Python packages on Test-PyPI with Poetry</h2>
+<ol>
+<li>
+<p>Build the project, i.e. produce <em>installable package</em> <strong>(only do this after all Q/A checks pass)</strong></p>
 <ul>
-<li><code>poetry use system</code> picks the python version from the <code>PATH</code></li>
-<li><code>poetry use /path/to/python</code> selects an <em>existing</em> version of python</li>
+<li><code>poetry build</code></li>
+<li>this will create a <code>.whl</code> file and a <code>.tar.gz</code> file in the <code>dist/</code> directory</li>
+</ul>
+</li>
+<li>
+<p>Upload installable packages on Test-PyPI</p>
+<ul>
+<li><code>poetry publish --repository pypi-test --username __token__ --password TEST_PYPI_API_TOKEN</code>
+<ul>
+<li><a href="https://pypi.org/help/#apitoken">the username is <em>literally</em> <code>__token__</code></a></li>
+<li>the password is the API token you generated on Test-PyPI</li>
+</ul>
+</li>
+<li>this will upload the package to Test-PyPI</li>
+</ul>
+</li>
+<li>
+<p>That’s it!</p>
+<ul>
+<li>visit the page of your package on Test-PyPI</li>
+<li>try to install it in a virgin environment via <code>pip install -i https://test.pypi.org/simple/ unibo-dtm-se-calculator</code></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="problems-that-you-may-encounter">Problems that you may encounter</h2>
+<ul>
+<li>
+<p>Building may fail if your <code>pyproject.toml</code> is not properly configured, or missing data</p>
+</li>
+<li>
+<p>Upload may fail:</p>
+<ul>
+<li>if your credentials are wrong, for some reason</li>
+<li>if the package name is already taken</li>
+<li>if the package version is already taken</li>
+</ul>
+</li>
+<li>
+<p>Installation may fail:</p>
+<ul>
+<li>because your package has a dependency that is not available on Test-PyPI</li>
 </ul>
 </li>
 </ul>
 </section><section>
-<h1 id="lessons-learned">Lessons learned</h1>
+<h2 id="how-to-publish-python-packages-on-pypi-with-poetry">How to publish Python packages on PyPI with Poetry</h2>
+<ol>
+<li>
+<p>Build the project, i.e. produce <em>installable package</em> <strong>(only do this after all Q/A checks pass)</strong></p>
 <ul>
-<li>Building a piece of software is not just writing code</li>
-<li>Software requires dependencies</li>
-<li>Dependency management is difficult</li>
-<li>All components of a runtime are part of the dependencies
-<ul>
-<li>Including interpreters</li>
+<li><code>poetry build</code></li>
+<li>this will create a <code>.whl</code> file and a <code>.tar.gz</code> file in the <code>dist/</code> directory</li>
 </ul>
 </li>
-<li>Build Reproducibility is paramount</li>
-<li>Automatic configuration is desirable</li>
-<li>The Python build ecosystem is fragmented
+<li>
+<p>Upload installable packages on PyPI</p>
 <ul>
-<li>Poetry is a modern take on Python dependency management and packaging</li>
-<li>PyEnv can be used to let multiple Python versions live together</li>
+<li><code>poetry publish --repository pypi-test --username __token__ --password PYPI_API_TOKEN</code>
+<ul>
+<li><a href="https://pypi.org/help/#apitoken">the username is <em>literally</em> <code>__token__</code></a></li>
+<li>the password is the API token you generated on PyPI</li>
 </ul>
 </li>
+<li>this will upload the package to PyPI</li>
 </ul>
+</li>
+<li>
+<p>That’s it!</p>
+<ul>
+<li>visit the page of your package on PyPI</li>
+<li>try to install it in a virgin environment via <code>pip install unibo-dtm-se-calculator</code></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="problems-that-you-may-encounter-1">Problems that you may encounter</h2>
+<ul>
+<li>
+<p>Building may fail if your <code>pyproject.toml</code> is not properly configured, or missing data</p>
+<ul>
+<li>but you should already have fixed this when publishing on Test-PyPI</li>
+</ul>
+</li>
+<li>
+<p>Upload may fail:</p>
+<ul>
+<li>if your credentials are wrong, for some reason</li>
+<li>if the package name is already taken</li>
+<li>if the package version is already taken</li>
+</ul>
+</li>
+<li>
+<p>Installation may fail, but in this case there must be an issue in the package itself</p>
+</li>
+</ul>
+<!-- --- -->
+<!-- ---
+
+# Lessons learned
+
+* Building a piece of software is not just writing code
+* Software requires dependencies
+* Dependency management is difficult
+* All components of a runtime are part of the dependencies
+  * Including interpreters
+* Build Reproducibility is paramount
+* Automatic configuration is desirable
+* The Python build ecosystem is fragmented
+  * Poetry is a modern take on Python dependency management and packaging
+  * PyEnv can be used to let multiple Python versions live together -->
 </section>
 
   
@@ -523,8 +711,6 @@ multiple tools <em>proliferated</em></p>
   
 
   
-    
-  
 
   
 
@@ -541,30 +727,6 @@ multiple tools <em>proliferated</em></p>
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
     <script>
     MathJax = {

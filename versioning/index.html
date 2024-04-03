@@ -1,0 +1,823 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Picking version numbers</title>
+<meta name="description" content="Assigning meaning to revisions">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.e98e7d09f955f316ccf66388b4c5eb8b89dfdb0a57cb72bf0fc9f3f33860984c.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides/plantuml.js"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="versioning-conventional-commit">Versioning, Conventional Commit</h1>
+<br>
+<h2 id="hahahugoshortcode1s0hbhb">Software Engineering</h2>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h3 id="module-principles-and-methods">Module “Principles and Methods”</h3>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2023/2024</h4>
+<h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
+<br>
+<br>
+<p>Compiled on: 2024-04-03 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
+</section><section>
+<h1 id="software-versioning">Software versioning</h1>
+<blockquote>
+<p><strong>Versioning</strong>: the process of assigning a <strong>unique identifier</strong> to a <strong>unique state</strong> of some software</p>
+</blockquote>
+<ul>
+<li>Used to <em>distinguish</em> different software states</li>
+<li>Used to <em>refer</em> to different states of the same software</li>
+<li>The identifier is normally a sequence of alfanumeric characters spaced by dots, slashes, and dashes</li>
+<li>Assigning IDs in a <em>predictable</em> way could help gathering <em>information</em> on the software itself</li>
+</ul>
+</section><section>
+<h1 id="versioning-levels">Versioning levels</h1>
+<p>Versioning can happen at different levels, for instance:</p>
+<ul>
+<li><em>Code (DVCS)</em>
+<ul>
+<li>Fine grained</li>
+<li>Automatic</li>
+<li>Non-progressive</li>
+<li>Non-linear (i.e., versions can’t be sorted)</li>
+</ul>
+</li>
+<li><em>Subproject / feature version</em>
+<ul>
+<li>Often leveraging <strong>code-naming</strong></li>
+<li>Non-linear</li>
+<li>e.g., Java JSRs, Kotlin KEEPs, <a href="https://peps.python.org/">Python Enhancement Proposals (PEPs)</a>.</li>
+</ul>
+</li>
+<li><em>Software release</em>
+<ul>
+<li>Usually manual</li>
+<li>Usually linear</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="versioning-scopes">Versioning scopes</h1>
+<p>W.r.t. the administrative boundaries (e.g. the organization, the department, the team) versioning can be:</p>
+<ul>
+<li><strong>Internal</strong>
+<ul>
+<li>Identifies a point in development</li>
+<li>Changes do not impact the “outer world”</li>
+</ul>
+</li>
+<li><strong>External</strong>
+<ul>
+<li>A publicly visible release of the software</li>
+<li>Changes are disruptive</li>
+</ul>
+</li>
+</ul>
+<p>Often for <em>open source</em> projects, internal and external versioning <em>coincide</em></p>
+</section><section>
+<h1 id="versioning-approaches">Versioning approaches</h1>
+<h2 id="code-naming">Code naming</h2>
+<blockquote>
+<p>The version is represented by a (usually pronounceable) <em>word</em>, <em>short phrase</em> or <em>acronym</em></p>
+</blockquote>
+<p>Examples: macOS <strong>Sierra</strong>, Windows <strong>Vista</strong>, Ubuntu <strong>Bionic Beaver</strong></p>
+<ul>
+<li>With few exceptions, <em>does not provide any direct information on the project</em> (often by purpose)</li>
+<li>Very frequently used internally to refer to new <em>feature sets</em></li>
+<li>Often used to “protect” the corporation from information leaking</li>
+<li>Often <em>changed to purposely create confusion</em></li>
+<li>Used to separate pre-release versions from final releases
+<ul>
+<li>e.g., <a href="https://en.wikipedia.org/wiki/Development_of_Windows_Vista">Project Longhorn only became Windows Vista at release time</a></li>
+</ul>
+</li>
+<li>Often associated for <em>commercial reasons</em> to other version numbers
+<ul>
+<li>e.g. Ubuntu <code>18.04</code> <em>Bionic Beaver</em> or MacOS X <code>10.13.5</code> <em>Sierra</em></li>
+</ul>
+</li>
+<li>Reasons for code-names are often <em>political and commercial</em> rather than technical</li>
+</ul>
+</section><section>
+<h1 id="versioning-approaches-1">Versioning approaches</h1>
+<h2 id="date-based-versioning">Date based versioning</h2>
+<blockquote>
+<p>The version is represented by <strong>a string representing the release date</strong></p>
+</blockquote>
+<p>Example: Ubuntu <code>18.04</code>, Windows <code>2000</code>, Office <code>2007</code>, Visual Studio <code>2022</code></p>
+<ul>
+<li>
+<p>Dates <em>don’t always match development rate</em></p>
+<ul>
+<li>A project may change more in a week than in a year</li>
+</ul>
+</li>
+<li>
+<p>Useful for projects that are <em>fast-paced</em> (multiple releases per week)</p>
+</li>
+<li>
+<p>Useful as a <em>companion</em> for other versioning schemes</p>
+</li>
+<li>
+<p>Useful at the <em>commercial level</em> for clearly indicating the novelty (and the age) of a project</p>
+<ul>
+<li>e.g. Windows 98, Office 2003</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="versioning-approaches-2">Versioning approaches</h1>
+<h2 id="unary-numbering">Unary numbering</h2>
+<blockquote>
+<p>The version is represented by a <strong>string whose length grows at each version</strong></p>
+</blockquote>
+<p>Example: $\TeX$ <code>3.1</code>, <code>3.14</code>, <code>3.141</code>, …, $\pi$</p>
+<ul>
+<li>
+<p>Only useful for project that reached <em>maturity</em></p>
+</li>
+<li>
+<p>Extremely <em>unlikely</em> in today’s software world</p>
+</li>
+<li>
+<p>May lead to <em>version length explosion</em></p>
+</li>
+</ul>
+</section><section>
+<h1 id="versioning-approaches-3">Versioning approaches</h1>
+<h2 id="degree-of-retro-compatibility">Degree of retro compatibility</h2>
+<blockquote>
+<p>The version is represented one or more <em>numbers</em>, separately incremented, that
+<br>
+<strong>reflect incrementally widespread changes in the product</strong></p>
+</blockquote>
+<p>Example: <code>1.0.1</code>, <code>1.1.0</code>, <code>2.0.0</code></p>
+<ul>
+<li>Often used <em>in conjunction with other techniques</em></li>
+<li>Often used <em>badly</em> (see the Linux kernel)</li>
+<li><em>Formal methodologies</em> for applying it exist</li>
+<li>Sometimes instead of indicating API-level changes, the version may indicate user-level perceivable changes
+<ul>
+<li>Very much depends on who are the clients/customers</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="versioning-in-the-real-world">Versioning in the real world</h1>
+<h2 id="microsoft-windows-versioninghttpsenwikipediaorgwikilist_of_microsoft_windows_versions"><a href="https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions">Microsoft Windows versioning</a></h2>
+<p>Combination of all the techniques:</p>
+<ul>
+<li>
+<p><em>Dates</em> (Windows 9x, 2001)</p>
+</li>
+<li>
+<p><em>Codenames</em> (NT, Vista, XP, Millenium Edition)</p>
+</li>
+<li>
+<p>Pre-release code-names (Longhorn)</p>
+</li>
+<li>
+<p>Dates for internal builds</p>
+</li>
+<li>
+<p>Incremental versions on <em>multiple levels</em></p>
+<ul>
+<li>e.g., Windows 95 is also MS-DOS 7.0 and Windows 4.00</li>
+</ul>
+</li>
+<li>
+<p><em>Separation</em> between “commercial” versions and “actual” “versions”</p>
+<ul>
+<li>e.g., Windows 7 is actually Windows 6.1, and Windows 10 is actually Windows 6.4</li>
+<li>One future Windows may actually become Windows 7.0, clashing with the “commercial” version of an older product</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>Proliferation of methodologies and inconsistencies leads to issues</strong></p>
+<ul>
+<li><a href="https://medium.com/@omogidavis/the-curious-case-of-windows-9-why-did-microsoft-skip-a-number-1430ef606ae3">Ever wondered why there is no Windows 9?</a></li>
+</ul>
+</section><section>
+<h1 id="versioning-in-the-real-world-1">Versioning in the real world</h1>
+<h2 id="macintosh-versioninghttpsenwikipediaorgwikilist_of_apple_operating_systemsmacintosh_computers"><a href="https://en.wikipedia.org/wiki/List_of_Apple_operating_systems#Macintosh_computers">Macintosh versioning</a></h2>
+<ul>
+<li>
+<p>Different versioning styles over time</p>
+</li>
+<li>
+<p>Version <code>1</code> to <code>9</code>: commercial names were linear</p>
+</li>
+<li>
+<p>Version <code>X</code> (<code>10</code> in Roman numerals) become part the commercial name</p>
+</li>
+<li>
+<p><strong>Mac OS X</strong> was a series of products, distinguished by a number of <em>big cats names</em> and <em>sub-numbers</em></p>
+<ul>
+<li>e.g. Mac OS X <code>10.0</code> (code name <strong>Cheetah</strong>) … Mac OS X <code>10.8</code> (code name <strong>Mountain Lion</strong>)</li>
+</ul>
+</li>
+<li>
+<p>Product name become simply <strong>macOS</strong> since version <code>10.12</code> (<strong>Sierra</strong>)</p>
+</li>
+<li>
+<p>Version <code>11</code> (<strong>Big Sur</strong>) is the first version of macOS to be numbered <code>11</code></p>
+</li>
+<li>
+<p>Current version is <code>14</code> (<strong>Sonoma</strong>)</p>
+</li>
+<li>
+<p>The <strong>Darwin</strong> (i.e. macOS’s Kernel) versioning schema is completely different from the commercial version number</p>
+<ul>
+<li>last version is <code>23.4.0</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h1 id="versioning-in-the-real-world">Versioning in the real world</h1>
+<h2 id="canonical-ubuntu-versioning">Canonical Ubuntu versioning</h2>
+<p>Association of a <em>date in format</em> <code>YY.MM</code> and a <em>two word code-name</em> in form of <code>Adjective AnimalName</code>. Both the words of the code-name begin with the
+same letter.</p>
+<ul>
+<li>
+<p>Version number <em>does not track changes</em></p>
+<ul>
+<li>The development is arguably linear</li>
+<li>But actually new versions may bring in substantial novelties, e.g. entirely new desktop environments</li>
+</ul>
+</li>
+<li>
+<p>“LTS” can be optionally appended to identify <em>“Long Term Support”</em> versions</p>
+</li>
+<li>
+<p>Two versions of Ubuntu can be compared by date but also by the first letter of their codename</p>
+<ul>
+<li>“Zesty Zapus” is newer than “Utopic Unicorn”</li>
+<li>Unfortunately, since there are a limited number of letters, “Bionic Beaver” is newer than “Xenial Xerus” and “Zesty Zapus”</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="support-of-software-products-pt-1">“Support” of software products (pt. 1)</h1>
+<p>What happens to a software product after a <strong>new version</strong> is released?</p>
+<ol>
+<li>
+<p>Let’s say product <code>X</code> is released under code name <code>Abstract Alfred</code> with version <code>1.0.0</code></p>
+</li>
+<li>
+<p>Developers keep working on the product, and release a new version <code>1.1.0</code> under code name <code>Boring Beatrix</code></p>
+</li>
+<li>
+<p>Some severe security issue is found in version <code>1.1.0</code> and a patch <code>1.1.1</code> is released</p>
+<ul>
+<li>version <code>1.1.1</code> is now released under <code>Boring Beatrix v2</code> code name</li>
+</ul>
+</li>
+<li>
+<p>The bug is still affecting <code>Abstract Alfred</code>, which still has a lot of active users</p>
+<ul>
+<li>a patch <code>1.0.1</code> is released for <code>Abstract Alfred</code>, containing the same fix of <code>1.1.1</code>, but <em>not</em> all the features of <code>1.1.0</code></li>
+<li>the patch is released under code name <code>Abstract Alfred v2</code></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Takeaways</strong>:</p>
+<ul>
+<li>one version does not stop to exist when the next one is released</li>
+<li>bug fixes are often back-ported to older versions</li>
+</ul>
+</blockquote>
+</section><section>
+<h1 id="support-of-software-products-pt-2">“Support” of software products (pt. 2)</h1>
+<ul>
+<li>
+<p>Big software companies often provide <strong>support</strong> for their products, for a given amount of time</p>
+<ul>
+<li>this is to give time to users/customers to migrate to newer versions</li>
+</ul>
+</li>
+<li>
+<p>When releasing a new version of a product, the company shall keep spending money to maintain the old one</p>
+<ul>
+<li>e.g. keep fixing bugs, keep providing security patches</li>
+<li>e.g. providing guides for how to migrate to the new versions</li>
+</ul>
+</li>
+<li>
+<p>The <strong>end of support</strong> is the date after which the company will not provide any more support for the product</p>
+<ul>
+<li>no more updates will be released</li>
+<li>no more help for users on how to migrate to newer versions</li>
+</ul>
+</li>
+<li>
+<p>Most commonly, the end of support is announced well <em>in advance</em></p>
+<ul>
+<li><em>upon release</em>, the company will announce the end of support date</li>
+</ul>
+</li>
+<li>
+<p>On the user side, it is important to know <em>when</em> the end of support is to <strong>plan the migration</strong> to newer versions</p>
+<ul>
+<li>most commonly, updates are very critical situations for development teams</li>
+<li>they may want to <em>assess</em> the new version before migrating to it, and <em>adjust issues</em> after migration</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="support-vs-long-term-support-lts">Support vs. Long-Term Support (LTS)</h1>
+<ul>
+<li>
+<p>Most commonly when release is <strong>periodic</strong> the default support time window is <em>relatively short</em></p>
+</li>
+<li>
+<p>Examples:</p>
+<ul>
+<li><em>Canonical</em> releases one new version of <em>Ubuntu</em> every <strong>6 months</strong></li>
+<li><em>OpenJDK</em> releases a new version of <em>Java</em> every <strong>6 months</strong></li>
+</ul>
+</li>
+<li>
+<p>Once every few years, a version is released with <strong>Long-Term Support</strong> (LTS)</p>
+<ul>
+<li>LTS versions are supported for a <em>much longer</em> period of time</li>
+<li>LTS versions are often preferred by <em>user</em> companies, as they provide a <em>stable</em> platform for a <em>longer time</em></li>
+</ul>
+</li>
+</ul>
+
+</section>
+</section><section>
+<h1 id="versioning-in-the-real-world-2">Versioning in the real world</h1>
+<h2 id="wine-versioning">Wine versioning</h2>
+<p>Formerly a <em>pure date</em>, in ISO format without hyphens, e.g. <code>20040505</code>.</p>
+<p>The project <em>switched to a classic versioning</em> in form of <code>major.minor</code></p>
+<ul>
+<li>The change may give some headaches to dependency managers, since <code>20040505</code> is bigger than <code>3.9</code> and other subsequent versions.</li>
+<li>A <code>0.Date</code> format for initial development releases would have been advisable with hindsight</li>
+</ul>
+</section><section>
+<h1 id="versioning-in-the-real-world-3">Versioning in the real world</h1>
+<h2 id="tex-versioning">$\TeX$ versioning</h2>
+<p><em>Purely unary numbering</em> converging to $\pi{}$</p>
+<ul>
+<li>Current version (released in February 2021) is <code>3.141592653</code></li>
+<li>Every time a new version is produced, a number from $\pi{}$ is added to the version string</li>
+<li>Sustainable just because $\TeX$ is now extremely stable, and development is almost frozen</li>
+</ul>
+<blockquote>
+<p>At the time of my death, it is my intention that the then-current versions of $\TeX$ […] be forever left unchanged,
+except that the final version numbers to be reported in the “banner” lines of the programs should become:
+<strong>TeX, Version $\pi $</strong> […].
+From that moment on, all “bugs” will be permanent “features”.
+<strong></strong></p><div style="text-align: right"><strong> Donald E. Knuth</strong><p></p>
+</div></blockquote>
+</section><section>
+<h1 id="versioning-in-the-real-world-4">Versioning in the real world</h1>
+<h2 id="python-enhancement-proposal-440-pep440httpswwwpythonorgdevpepspep-0440">Python Enhancement Proposal 440 (<a href="https://www.python.org/dev/peps/pep-0440/">PEP440</a>)</h2>
+<p>It is <em>the</em> way Python software should be versioned</p>
+<ul>
+<li>Flexible but complicated</li>
+<li>Order of release segments is mandated</li>
+</ul>
+<p>Format: <code>[N!]N(.N)*[{a|b|rc}N][.postN][.devN]</code></p>
+<ol>
+<li>Optional <em>epoch segment</em>: an integer number <code>N</code> followed by exclamation mark (e.g. <code>1!</code>)</li>
+<li><strong>Mandatory</strong> <em>release segment</em>: as many integer numbers <code>N1</code>, <code>N2</code>, …, separated by <code>.</code> (e.g. <code>1.2.3.4.5</code>)</li>
+<li>Optional <em>pre-release segment</em>: one of <code>a</code>, <code>b</code>, <code>rc</code> followed by an integer number <code>N</code> (e.g. <code>a1</code>, <code>b2</code>, <code>rc3</code>)</li>
+<li>Optional <em>post-release segment</em>: one <code>.</code> followed by <code>post</code> and an integer number <code>N</code> (e.g. <code>.post1</code>)</li>
+<li>Optional <em>development release segment</em>: one <code>.</code> followed by <code>dev</code> and an integer number <code>N</code> (e.g. <code>.dev1</code>)</li>
+</ol>
+</section><section>
+<h1 id="versioning-in-the-real-world-5">Versioning in the real world</h1>
+<h2 id="semantic-versioning-semverhttpssemverorg"><a href="https://semver.org/">Semantic Versioning (SemVer)</a></h2>
+<p>Encodes version numbers and their change to <em>convey meaning about the underlying code</em> and what has been modified from one version to the next.</p>
+<ul>
+<li>Written in RFC-style</li>
+<li>No-retract</li>
+<li>Versioned using Semantic versioning</li>
+<li>Format <code>X.Y.Z[-P][+B]</code>
+<ul>
+<li><code>X</code> $\Rightarrow$ <strong>mandatory</strong> Major (integer number)</li>
+<li><code>Y</code> $\Rightarrow$ <strong>mandatory</strong> Minor (integer number)</li>
+<li><code>Z</code> $\Rightarrow$ <strong>mandatory</strong> Patch (integer number)</li>
+<li><code>P</code> $\Rightarrow$ <em>optional</em> Pre-release (alphanumeric string, prepended by <code>-</code>)</li>
+<li><code>B</code> $\Rightarrow$ <em>optional</em> Build metadata (alphanumeric string, prepended by <code>+</code>)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="versioning-in-the-real-world-6">Versioning in the real world</h1>
+<h2 id="semantic-versioning-semverhttpssemverorg-overivew"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> overivew</h2>
+<ul>
+<li>Software using Semantic Versioning <strong>MUST</strong> <em>declare a public API</em>.
+This API could be declared in the code itself or exist strictly in documentation.
+However it is done, it <em>should be precise and comprehensive</em>.</li>
+<li>Once a versioned package has been released, the contents of that version <strong>MUST NOT</strong> <em>be modified</em>.
+Any modifications <strong>MUST</strong> <em>be released as a new version</em>.</li>
+<li>A normal version number MUST take the form <code>X.Y.Z</code> where <code>X</code>, <code>Y</code>, and <code>Z</code> are <em>non-negative integers</em>, and <strong>MUST NOT</strong> <em>contain leading zeroes</em>.</li>
+<li><code>X</code> is the major version, <code>Y</code> is the minor version, and <code>Z</code> is the patch version.
+Each element <strong>MUST</strong> <em>increase numerically</em>.</li>
+</ul>
+</section><section>
+<h1 id="versioning-in-the-real-world-7">Versioning in the real world</h1>
+<h2 id="semantic-versioning-semverhttpssemverorg-criteria"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> criteria</h2>
+<ul>
+<li>Patch version <code>Z</code> <strong>MUST</strong> be <em>incremented if only backwards compatible bug fixes are introduced</em>.
+A bug fix is defined as an internal change that fixes incorrect behavior.</li>
+<li>Minor version <code>Y</code> <strong>MUST</strong> be incremented if <em>new, backwards compatible functionality is introduced</em> to the public API.
+<ul>
+<li>It <strong>MUST</strong> be incremented if <em>any public API functionality is marked as deprecated</em>.</li>
+<li>It <strong>MAY</strong> be incremented if <em>substantial new functionality</em> or improvements are introduced within the private code.</li>
+<li>It <strong>MAY</strong> include patch level changes.</li>
+<li>Patch version <strong>MUST</strong> <em>be reset to 0</em> when minor version is incremented.</li>
+</ul>
+</li>
+<li>Major version <code>X</code> <strong>MUST</strong> be incremented if any <em>backwards incompatible changes</em> are introduced to the <em>public API</em>.
+<ul>
+<li>It <code>MAY</code> <em>include minor and patch level changes</em>.</li>
+<li>Patch and minor version <strong>MUST</strong> <em>be reset to 0</em> when major version is incremented.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="versioning-in-the-real-world-8">Versioning in the real world</h1>
+<h2 id="semantic-versioning-semverhttpssemverorg-details"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> details</h2>
+<ul>
+<li>
+<p>Version number <code>0.1.0</code> is the <strong>minimum</strong> (i.e. first) one</p>
+</li>
+<li>
+<p>Major version zero (<code>0.y.z</code>) is for <em>initial development</em>: <strong>anything may change at any time</strong></p>
+<ul>
+<li>the public API should <em>not</em> be considered stable</li>
+</ul>
+</li>
+<li>
+<p>Version <code>1.0.0</code> <strong>defines the public API</strong> (or at least its first version)</p>
+<ul>
+<li>the way in which the version number is incremented after this release is dependent on how the public API changes</li>
+</ul>
+</li>
+<li>
+<p>A <em>pre-release</em> version <strong>MAY</strong> be denoted by <em>appending a hyphen and a series of dot separated identifiers</em> immediately following the patch version</p>
+<ul>
+<li>identifiers <strong>MUST</strong> comprise <em>only ASCII alphanumerics</em> and <em>hyphen</em> <code>[0-9A-Za-z-]</code>.</li>
+<li>this may be used to mark <em>alpha</em> releases, <em>beta</em> releases, or <em>release candidates</em></li>
+</ul>
+</li>
+<li>
+<p><em>Build metadata</em> <strong>MAY</strong> be denoted by <em>appending a plus sign</em> and a series of dot separated identifiers immediately following the patch or pre-release version</p>
+<ul>
+<li>identifiers <strong>MUST</strong> comprise <em>only ASCII alphanumerics and hyphen</em> <code>[0-9A-Za-z-]</code>.</li>
+<li>this may be used to keep track of from which commit the version was built</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="versioning-in-the-real-world-9">Versioning in the real world</h1>
+<ul>
+<li>
+<p>E.g. <a href="https://pypi.org/project/numpy/#history">NumPy</a></p>
+<ul>
+<li>notice Git tags: <a href="https://github.com/numpy/numpy/tags">https://github.com/numpy/numpy/tags</a></li>
+</ul>
+</li>
+<li>
+<p>E.g. <a href="https://pypi.org/project/Kivy/#history">Kivy</a></p>
+<ul>
+<li>notice Git tags: <a href="https://github.com/kivy/kivy/tags">https://github.com/kivy/kivy/tags</a></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="the-importance-of-a-versioning-methodology">The importance of a versioning methodology</h2>
+<p><strong>Think</strong> <em>before</em> choosing a versioning schema, and then <strong>be consistent</strong></p>
+<ul>
+<li>
+<p><em>Semantic versioning is warmly recommended</em></p>
+<ul>
+<li>Can be <em>integrated with the DVCS</em>!</li>
+<li>Dates can be added (e.g. in the pre-release or build-metadata sections)</li>
+</ul>
+</li>
+<li>
+<p><em>Codenames</em> can be used informally</p>
+<ul>
+<li>For internal subprojects</li>
+<li>As part of product promotion or for commercial activities</li>
+</ul>
+</li>
+<li>
+<p><em>Dates</em> may make sense for projects with fast and steady development</p>
+<ul>
+<li>Possibly as part of a Semantic Versioned project</li>
+<li>Dates are useful as part of a <em>better versioned</em> system</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="dvcs-based-versioning">DVCS-based versioning</h2>
+<ul>
+<li>
+<p>The underlying state of the <em>DVCS</em> can be used to assign version numbers to the software</p>
+</li>
+<li>
+<p>The practice can change, but consider for instance a case in which:</p>
+<ul>
+<li>Manually added <strong>tags</strong> <em>identify versions</em>
+<ul>
+<li>And are in <code>X.Y.Z</code> format</li>
+</ul>
+</li>
+<li>An automated system searches for the <em>closest</em> past tag <code>T</code>
+<ul>
+<li>if no tag is found, then <code>T=0.1.0</code></li>
+<li>If the current commit is tagged, then the version is <code>T</code></li>
+<li>Otherwise, if C is the count of intermediate commits and <code>H</code> the current hash, it is <code>T-C+H</code></li>
+</ul>
+</li>
+<li><em>Automatically generates a SemVer compatible version!</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="commit-message-based-versioning">Commit message-based versioning</h2>
+<p>What do we need commit messages for?</p>
+
+
+<span class="fragment ">
+  <p>Identify what is <em>different between changes</em></p>
+
+</span>
+
+
+
+<span class="fragment ">
+  <p>But isn’t this essentially what <em>DVCS</em> is about?</p>
+
+</span>
+
+
+
+<span class="fragment ">
+  <h3 id="idea">Idea</h3>
+<p>find a way to write <em>conventional</em> commit messages such that some <em>automatic tool</em> can understand whether a new version should be released</p>
+
+</span>
+
+
+
+<span class="fragment ">
+  <p>Put humans and sentiments out of the loop</p>
+
+</span>
+
+</section><section>
+<h2 id="conventional-commits">Conventional commits</h2>
+<p>One of the possible ways to write standardized commits – <a href="https://www.conventionalcommits.org/">https://www.conventionalcommits.org/</a></p>
+<p>Heavily inspired by <em>the Angular convention</em>: <a href="https://bit.ly/3VnAp4T">https://bit.ly/3VnAp4T</a></p>
+<p>Format (optional parts in <code>[</code>square brackets<code>]</code>):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>type[(scope)][!]: description
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[body]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[BREAKING CHANGE: &lt;breaking change description&gt;]
+</span></span></code></pre></div><ul>
+<li><code>type</code>: <em>what the commit introduces</em>
+<ul>
+<li>Can differ among projects</li>
+<li><code>fix</code> (bug fix, no API change) and <code>feat</code> (new feature) always present</li>
+<li>common optional types: <code>build</code>, <code>chore</code>, <code>ci</code>, <code>docs</code>, <code>style</code>, <code>refactor</code>, <code>perf</code>, <code>test</code></li>
+</ul>
+</li>
+<li>Optionally, the <code>scope</code> identifies the <em>module</em> of the software that was changed</li>
+<li><strong>Breaking changes</strong> are identified by a <code>!</code> before the <code>:</code> and/or by a description in the footer of the commit after <code>BREAKING CHANGE: </code></li>
+</ul>
+</section><section>
+<h2 id="semantic-release">Semantic release</h2>
+<h3 id="idea">Idea</h3>
+<p>Assuming a conventional way to commit, use the information to understand <em>when</em> and <em>how</em> to release</p>
+<h3 id="practice">Practice</h3>
+<ol>
+<li>Decide <em>which branch</em> should be looked at for triggering releases</li>
+<li>Define which <em>kind of release should be associated with which kind of commit</em>
+<ul>
+<li>Rules can be custom per-project, as far as they are consistent</li>
+<li>e.g., <code>fix</code> and <code>docs</code> are <code>PATCH</code>, <code>feat</code> are <code>MINOR</code>, <strong>Breaking changes</strong> are <code>MAJOR</code></li>
+<li>Usually the commit <em>type</em> is relied upon, but the <em>scope</em> may be used as well</li>
+</ul>
+</li>
+<li>Scan all commits from the <em>last tag</em>, searching for the “largest” version change</li>
+<li>If <em>at least one</em> version change was found, and this is still the <em>last commit</em> on the branch triggering releases,
+create a release tag and perform the release procedure</li>
+</ol>
+</section><section>
+<h2 id="automatic-semantic-release-with-semantic-release">Automatic Semantic Release with <code>semantic-release</code></h2>
+<p>An implementation of Semantic release: <a href="https://github.com/semantic-release/semantic-release">https://github.com/semantic-release/semantic-release</a></p>
+<ul>
+<li>Automatically <strong>computes</strong> the <em>version number</em> after commit &amp; push</li>
+<li>Automatically <strong>generates</strong> commit-based <em>release notes</em></li>
+<li>Automatically <strong>runs</strong> the <em>publishing commands</em></li>
+</ul>
+<h3 id="example-of-projects-using-semantic-release">Example of projects using <code>semantic-release</code></h3>
+<ul>
+<li><a href="https://github.com/AlchemistSimulator/Alchemist">Alchemist</a></li>
+<li><a href="https://github.com/tuProlog/2p-kt">2P-Kt</a></li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

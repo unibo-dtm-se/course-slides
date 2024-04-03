@@ -391,7 +391,7 @@ held by Prof. {{<gc>}}
 0. [Decentralized version control (with git) and team organization](dvcs-basics)
 0. [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)
 0. [Build automation, packaging, and release (examples with Poetry)](build)
-0. [Versioning, semantic release](https://unibo-spe.github.io/05-version-selection)
+0. [Versioning, Conventional Commit](versioning)
 0. [Licensing](https://unibo-spe.github.io/06-licenses/) (if we got time)
 
 ## Extras

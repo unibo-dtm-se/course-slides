@@ -1,13 +1,13 @@
  
 +++
 
-title = "Continuous Integration and Containerization"
+title = "Continuous Integration"
 description = "Make things work, keep them working, move fast"
 outputs = ["Reveal"]
 
 +++
 
-# Continuous Integration and Containerization
+# Continuous Integration
 
 {{% import path="reusable/header-dp.md" %}}
 
@@ -60,7 +60,7 @@ Traditionally, **protoduction** is jargon for a *prototype that ends up in produ
         * *unpolished*,
         * *badly designed*
     * Very common, unfortunately
-* This si different in a continuously integrated environment
+* This is different in a continuously integrated environment
     * *Incrementality* is fostered
     * Partial features are *up to date* with the mainline
 
@@ -82,9 +82,16 @@ Traditionally, **protoduction** is jargon for a *prototype that ends up in produ
 
 ---
 
+## Continuous integration concept
+
+![](./concept.png)
+
+---
+
 ## Continuous integration software
 
-Software that promotes CI practices should:
+### Software that promotes CI practices should:
+
 * Provide *clean environments* for compilation/testing
 * Provide a *wide range* of environments
     * Matching the relevant specifications of the actual targets
@@ -93,11 +100,24 @@ Software that promotes CI practices should:
 * A *notification system* to alert about failures or issues
 * Support for *authentication* and deployment to external services
 
-**Plenty** of integrators on the market
+---
 
-Circle CI, Travis CI, Werker, done.io, Codefresh, Codeship, Bitbucket Pipelines, GitHub Actions, GitLab CI/CD Pipelines, JetBrains TeamCity...
+## Continuous integration software
 
-We will use GitHub actions: GitHub integration, free for FOSS, multi-os OSs supported
+**Plenty** of technologies on the market
+
+- [Circle CI](https://circleci.com/)
+- [Travis CI](https://travis-ci.com/)
+- [Werker](https://wercker.com/)
+- [done.io](https://done.io/)
+- [Codefresh](https://codefresh.io/)
+- [Codeship](https://codeship.com/)
+- [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines)
+- [GitHub Actions](https://github.com/features/actions)
+- [GitLab CI/CD Pipelines](https://docs.gitlab.com/ee/ci/pipelines/)
+- [JetBrains TeamCity](https://www.jetbrains.com/teamcity)
+
+> We will use __GitHub Actions__: GitHub integration, _free for FOSS_, multi-os OSs supported
 
 ---
 
@@ -108,7 +128,7 @@ Naming and organization is variable across platforms, but *in general*:
 * One or more **pipelines** can be associated to **events**
   * For instance, a *new commit*, an update to a *pull request*, or a *timeout*
 * Every pipeline is composed of a **sequence** of **operations**
-* Every **operation** could be composed of sequential or parallel **sub-operations**
+* Every **operation** could be composed of _sequential_ or _parallel_ **sub-operations**
 * How many hierarchical levels are available depends on the specific platform
   * GitHub Actions: *workflow* $\Rightarrow$ *job* $\Rightarrow$ *step* 
   * Travis CI: *build* $\Rightarrow$ *stage* $\Rightarrow$ *job*  $\Rightarrow$ *phase*
@@ -141,6 +161,14 @@ Configuration can grow complex, and is usually stored in a YAML file
 
 ---
 
+## Pipeline design (abstract example)
+
+![](./abstract-workflow.svg)
+
+- Rectangles represent *operations*
+
+---
+
 ## GitHub Actions: Structure
 
 * **Workflows** react to events, launching *jobs*
@@ -154,28 +182,41 @@ Configuration can grow complex, and is usually stored in a YAML file
 
 ---
 
+## GitHub Actions (practical example)
+
+![](./actual-workflow.svg)
+
+- Small rectangles represent *steps*
+- Azure boxes represent *jobs*
+- The whole is a *workflow*
+
+---
+
 ## GitHub Actions: Configuration
 
-Workflows are configured in YAML files located in the default branch of the repository in the `.github/workflows` folder.
+- Workflows are configured in [YAML files]() located in the _default branch_ of the repository 
+  + in the `.github/workflows/` folder.
 
-One configuration file $\Rightarrow$ one workflow
+- One configuration file $\Rightarrow$ one workflow
 
-For security reasons,
+- For security reasons,
 workflows may need to get manually activated in the *Actions* tab of the GitHub web interface.
 
 ---
 
 ## GitHub Actions: Runners
 
-Executors of GitHub actions are called *runners*: virtual machines
-(hosted by GitHub)
-with the GitHub Actions runner application installed.
+- Executors of GitHub actions are called *runners* 
+  + virtual machines (hosted by GitHub)
+    * with the GitHub Actions runner application installed.
 
-**Note**: the GitHub Actions application is open source and can be installed locally,
-creating "*self-hosted runners*". Self-hosted and GitHub-hosted runners can work together.
+> **Note**: the GitHub Actions application is open source and can be installed locally,
+> creating "*self-hosted runners*". Self-hosted and GitHub-hosted runners can work together.
 
-Upon their creation, runners have a default environment, which depends on their *operating system*
-* Documentation available at [https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#preinstalled-software](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#preinstalled-software)
+- Upon their creation, runners have a default environment
+  + which depends on their *operating system*
+
+- Documentation available at [https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#preinstalled-software](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#preinstalled-software)
 
 ---
 
@@ -183,16 +224,13 @@ Upon their creation, runners have a default environment, which depends on their 
 
 Several CI systems inherit the "*convention over configuration*" principle.
 
-For instance, by default (with an empty configuration file) Travis CI builds a Ruby project using `rake`.
+> GitHub actions **does not** adhere to the principle:
+> if left unconfigured, the runner does nothing
+> (it does not even clone the repository locally).
 
-GitHub actions **does not** adhere to the principle:
-if left unconfigured, the runner does nothing
-(it does not even clone the repository locally).
-
-Probable reason: Actions is an *all-round* repository automation system for GitHub,
-not just a "plain" CI/CD pipeline
-
-$\Rightarrow$ It can react to many different events, not just changes to the git repository history
+- __Probable reason__: Actions is an *all-round* repository automation system for GitHub,
+  + not just a "plain" CI/CD pipeline
+  + $\Rightarrow$ it can react to many different events, not just changes to the git repository history
 
 ---
 
@@ -218,74 +256,105 @@ jobs: # Jobs composing the workflow, each one will run on a different runner
 
 ---
 
-### DRY with YAML
+## Workflow minimal example
 
-We discussed that automation / integration pipelines **are** part of the software
-* They are subject to the same (or even higher) quality standards
-* All the good engineering principles apply!
-
-YAML is often used by CI integrators as preferred configuration language as it enables some form of DRY:
-1. Anchors (`&` / `*`)
-2. Merge keys (`<<:`)
+[Consider `check.yml` file on the `calculator` repository](https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check.yml):
 
 ```yaml
-hey: &ref
-  look: at
-  me: [ "I'm", 'dancing' ]
-merged:
-  foo: *ref
-  <<: *ref
-  look: to
+name: CI/CD
+on:
+  push:
+    paths-ignore:
+      - '.gitignore'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
+      - 'README.md'
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - '3.10'
+          - '3.11'
+          - '3.12'
+    runs-on: ${{ matrix.os }}
+    name: Test on Python ${{ matrix.python-version }}, on ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install poetry
+        run: pip install poetry
+      
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Restore Python dependencies
+        run: poetry install
+
+      - name: Test
+        shell: bash
+        run: poetry run python -m unittest discover -v -s tests
+
+  release:
+    needs: test
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    name: Release on PyPI and GitHub
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Restore Python dependencies
+        run: poetry install
+
+      - name: Bump version
+        shell: bash
+        run: poetry run python bump_version.py --apply | tee CHANGELOG.md
+
+      - name: Commit version change
+        shell: bash
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"  
+          git add pyproject.toml
+          git commit -m "chore(release): v.$(poetry version --short) [skip ci]"
+
+      - name: Build Python Package
+        run: poetry build
+
+      - name: Push changes
+        run: git push
+
+      - name: Publish on TestPyPI
+        run: poetry publish --repository pypi-test --username __token__ --password ${{ secrets.TEST_PYPI_TOKEN }}
+
+      - name: Create GitHub Release
+        shell: bash
+        run: |
+          RELEASE_TAG=$(poetry version --short)
+          gh release create $RELEASE_TAG dist/* -t v$RELEASE_TAG -F CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
-
-Same as:
-
-```yaml
-hey: { look: at, me: [ "I'm", 'dancing' ] }
-merged: { foo: { look: at, me: [ "I'm", 'dancing' ] }, look: to, me: [ "I'm", 'dancing' ] }
-```
-
----
-
-## GitHub Actions' actions
-
-GHA's YAML parser *does not support standard YAML anchors and merge keys*
-
-(it is a well-known limit with [an issue report open since ages](https://github.com/actions/runner/issues/1182))
-
-GHA achieves reuse via:
-* "**actions**": *reusable parameterizable **steps***
-    * *JavaScript* (working on any OS)
-    * *Docker container*-based (linux only)
-    * *Composite* (assemblage of other actions)
-* "**reusable workflows**": *reusable and parameterizable **jobs***
-
-Many actions are provided by GitHub directly,
-and many are developed by the community.
-
----
-
-## Workflow minimal example
-
-{{< github repo="Tutorial-GitHub-Actions-Minimal" path=".github/workflows/workflow-example.yml" to=20 >}}
-
----
-
-## Workflow minimal example
-
-{{< github repo="Tutorial-GitHub-Actions-Minimal" path=".github/workflows/workflow-example.yml" from=22 to=39 >}}
-
----
-
-## Workflow minimal example
-
-{{< github repo="Tutorial-GitHub-Actions-Minimal" path=".github/workflows/workflow-example.yml" from=40 to=60 >}}
-
----
-
-## Workflow minimal example
-
-{{< github repo="Tutorial-GitHub-Actions-Minimal" path=".github/workflows/workflow-example.yml" from=61 >}}
 
 ---
 
@@ -477,247 +546,3 @@ They are usually integrated with the repository hosting provider
 * Dependabot (Multiple)
 * Gemnasium (Ruby)
 * Greenkeeper (NPM)
-
----
-
-# Containers
-
-{{< gravizo >}}
-digraph structs {
-    rankdir=LR
-    graph [fontname="helvetica", layout=neato]
-    edge [fontname="helvetica"]
-    node [fontname="helvetica", shape=record, style="rounded, filled", fontcolor=white, fixedsize=true, width=3];
-    "Bare metal" [shape=plaintext, style="", fontcolor=black fontsize=20, pos="0,0!", layout=neato]
-    Physical [fillcolor=black, pos="0,0.5!"]
-    "Operating System" [fillcolor=gray, pos="0,1.1!"]
-    Runtime [fillcolor=green, pos="0,1.7!"]
-    App1 [fillcolor=red, width=0.95, pos="-1.025,2.3!"]
-    App2 [fillcolor=red, width=0.95, pos="0,2.3!"]
-    App3 [fillcolor=red, width=0.95, pos="1.025,2.3!"]
-
-    "Virtual Machine" [shape=plaintext, style="", fontcolor=black fontsize=20, pos="3.5,0!"]
-    VM_Phy [label=Physical, fillcolor=black, pos="3.5,0.5!"]
-    "Host Operating System" [fillcolor=gray, pos="3.5,1.1!"]
-    Hypervisor [fillcolor=orange, pos="3.5,1.7!", fontcolor=black]
-    GuestOS1 [fillcolor=gray, width=0.95, pos="2.475,2.3!"]
-    GuestOS2 [fillcolor=gray, width=0.95, pos="3.5,2.3!"]
-    GuestOS3 [fillcolor=gray, width=0.95, pos="4.525,2.3!"]
-    Runtime1 [fillcolor=green, width=0.95, pos="2.475,2.9!"]
-    Runtime2 [fillcolor=green, width=0.95, pos="3.5,2.9!"]
-    Runtime3 [fillcolor=green, width=0.95, pos="4.525,2.9!"]
-    VM_App1 [label=App1, fillcolor=red, width=0.95, pos="2.475,3.5!"]
-    VM_App2 [label=App2, fillcolor=red, width=0.95, pos="3.5,3.5!"]
-    VM_App3 [label=App3, fillcolor=red, width=0.95, pos="4.525,3.5!"]
-
-    "Container" [shape=plaintext, style="", fontcolor=black fontsize=20, pos="7,0!"]
-    C_Phy [label=Physical, fillcolor=black, pos="7,0.5!"]
-    C_K [label="Operating System", fillcolor=gray, pos="7,1.1!"]
-    "Container Service" [fillcolor=blue, pos="7,1.7!"]
-    C_Rt1 [label=Runtime1, fillcolor=green, width=0.95, pos="5.975,2.3!"]
-    C_Rt2 [label=Runtime2, fillcolor=green, width=0.95, pos="7,2.3!"]
-    C_Rt3 [label=Runtime3, fillcolor=green, width=0.95, pos="8.025,2.3!"]
-    C_App1 [label=App1, fillcolor=red, width=0.95, pos="5.975,2.9!"]
-    C_App2 [label=App2, fillcolor=red, width=0.95, pos="7,2.9!"]
-    C_App3 [label=App3, fillcolor=red, width=0.95, pos="8.025,2.9!"]
-}
-{{< /gravizo >}}
-
-Runtime **isolation** without operating system **replication**
-
----
-
-# Why containers?
-
-{{< image src="memes/works-on-my-machine.jpeg" width="23">}}
-{{< image src="memes/docker-born.jpeg" width="20.8">}}
-
----
-
-## Lightweight virtual machines?
-
-{{< image src="memes/lightweight-container.jpg" >}}
-
----
-
-## More similar to well-confined processes
-
-{{< image src="memes/chroot.jpeg" height="60" >}}
-
----
-
-# Docker
-
-Docker is a containerization platform
-
-*Standard de-facto* in industry
-
-**Base concepts**
-- *Image*
-  * a *read-only template* with instructions for creating a Docker container
-  * images can get built upon other images
-  * images are made of a stack of *layers*
-- *Container*
-  * a *runnable instance* of an image
-  * namely, a "writable layer" atop an image
-- *Service*
-  * A software component in charge of running one or multiple containers
-
----
-
-# Docker architecture
-
-- *Registry*: repository of images
-- *Daemon*: service pulling images from registries and instancing containers
-- *Client*: interface towards the daemon
-
-![](architecture.svg)
-
----
-
-# Running docker containers
-
-1. Install docker
-2. Add your user to the `docker` group
-3. Enable the docker service (on most Linux distributions `systemctl start docker`)
-4. Pull an image: `docker pull adoptopenjdk`
-5. Run a container! `docker run adoptopenjdk`
-
-Every container provides a *default command*, running without options runs such default in a *non-interactive* terminal.
-
-Running in interactive mode can be achieved with the `-i` option
-
-Running a custom command can be achieved with writing the command after the image name
-* e.g., `docker run -i adoptopenjdk bash`
-* parameters for the custom command can follow
-* use the `t` option to run in a *pseudo-tty*
-* use the `--rm` to remove the container after use
-
----
-
-# Interaction with the outside world
-
-A docker container runs *in isolation*.
-
-Environment variables, network ports, and file system folders are **not** shared.
-
-Sharing must be explicit and requires options to be specified
-
-* Passing environment variables: `-e <name>=<value>`
-* Mounting volumes: `-v <host>:<guest>:<options>`
-  * `<host>` is the path on the host system
-  * `<guest>` is the location where it will be mounted on the guest
-  * `<options>` can be optionally specified as mount options (e.g., `rw`, `ro`)
-* Publishing ports: `-p <host>:<guest>`
-  * `<host>` is the port on the host system
-  * `<guest>` is the corresponding port on the container
-
----
-
-# Managing images
-
-Every image has a unique **ID**, and may have an associated **tag**
-
-The subcommand `images` lists the pulled images and their associated information
-
-The subcommand `image` allows for running maintenance tasks, e.g.
-* `docker image ls` -- same as `docker images`
-* `docker image prune` -- removes unused images
-* `docker image rm` -- removes images by name
-* `docker image tag` -- associates a tag to an image
-
----
-
-# Creating docker images
-
-Docker images are written in a *Dockerfile*
-
-Every command inside a Dockerfile generates a new *layer*
-
-The final stack of layers creates the final *image*
-
-The `docker build` command interprets the Dockerfile commands to produce a sequence of layers
-
-Changes to a layer do not invalidate previous layers
-
----
-
-# Dockerfile syntax
-
-```dockerfile
-# Pulls an image from docker hub with this name. Alternatively, "scratch" can be used for an empty container
-FROM manjarolinux/base 
-# Runs a command
-RUN pacman -Sy --noconfirm gnupg archlinux-keyring manjaro-keyring
-# Copies a file from the local folder into the image
-COPY makepkg.conf /etc/makepkg.conf
-# Adds a new environment variable
-ENV GEM_HOME=/rubygems/bin
-# Configures the default command to execute
-CMD bash
-```
-
----
-
-# Naming images
-
-Image naming is done via *tags*
-
-The easiest way to do so is assigning tags at *build time* with the `-t` options of `docker build`
-
-The option can be repeated multiple times to make multiple tags
-
-```bash
-docker build -t "myImage:latest" -t "myImage:0.1.0"
-```
-
-`latest` is usually used to identify the most recent version of some image
-
----
-
-# Publishing docker images
-
-Images get published in *registries* 
-
-The most famous, free for publicly available images, is *Docker Hub*
-
-By default, Docker uses Docker Hub as registry (both for `pull` and `push` operations)
-
-Docker Hub requires registration and CLI login:
-* `docker login docker.io`
-
-Once done, publication is performed via `push`:
-* `docker push <image name>`
-
----
-
-# Building docker images in CI
-
-Of course, as any other software, *custom docker images should get built in CI*
-
-Several integrators use containers as build environments: it is possible to *build a container using a container*
-
-More in general, there is *no inherent limit to nesting containers*
-
----
-
-# Exercise
-
-* Pick the python testing repository that we used in the previous lab:
-  * [https://github.com/DanySK/python-testing-101/](https://github.com/DanySK/python-testing-101/)
-* **fork** it (if you have not already)
-* Clone your fork locally
-* Make sure that you enabled actions by looking at the "Actions" tab on your GitHub repository fork
-
-### Then:
-
-1. Configure a minimal test CI: at each `push`, it must print `Hello, World`
-2. Improve: create a two-lines script that
-  1. Changes directory to `example-py-unittest`
-  2. Runs the tests
-    (if you do not recall the command, it is in [the slides about build systems](../build/))
-3. Improve further: before running tests, install Python 3.10.2 using [this action](https://github.com/actions/setup-python)
-
-<br/>
-
-* You may start from [this base example](https://github.com/DanySK/Tutorial-GitHub-Actions-Minimal/blob/master/.github/workflows/workflow-example.yml)

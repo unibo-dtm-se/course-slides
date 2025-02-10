@@ -1,0 +1,825 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Object-Oriented Programming</title>
+<meta name="description" content="Crash course on object-oriented programming in Python">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.6aab2a58b3721f38ca11bb13ca57a68f6bcafd5754c1704a12dc68db37ed44fa.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides//plantuml.js"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="object-oriented-programming-oop">Object-Oriented Programming (OOP)</h1>
+<br>
+<h2 id="hahahugoshortcode1s0hbhb">Software Engineering</h2>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h3 id="module-principles-and-methods">Module “Principles and Methods”</h3>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2023/2024</h4>
+<h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
+<br>
+<br>
+<p>Compiled on: 2025-02-10 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
+</section><section>
+<h2 id="many-programming-paradigms">Many programming paradigms</h2>
+<p>(cf. <a href="https://en.wikipedia.org/wiki/Programming_paradigm">https://en.wikipedia.org/wiki/Programming_paradigm</a>)</p>
+<ul>
+<li><strong>Imperative programming</strong>: programs are made by <strong>instructions</strong> that change the state of the program.</li>
+<li><strong>Procedural programming</strong>: programs are made by <strong>blocks</strong> of code that can be reused.</li>
+<li><strong>Functional programming</strong>: programs are made by <strong>functions</strong> that transform data.</li>
+<li><strong>Logic programming</strong>: programs are made by <strong>rules</strong> that define relationships between data.</li>
+<li><strong>Object-oriented programming</strong>: programs are made by <strong>objects</strong> that interact with each other.</li>
+</ul>
+
+
+<span class="fragment ">
+  <blockquote>
+<p>Mainstream programming languages are actually <em>blending</em> multiple paradigms</p></blockquote>
+<ul>
+<li>e.g., Python is considered imperative, functional, and object-oriented</li>
+</ul>
+
+</span>
+
+</section><section>
+<h2 id="why-object-oriented-programming">Why object-oriented programming?</h2>
+<p>(cf. <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">https://en.wikipedia.org/wiki/Object-oriented_programming</a>)</p>
+<ul>
+<li><strong>By far</strong> the <em>most used</em> programming paradigm nowadays, both in industry and academia</li>
+<li><strong>Fundamental</strong> for understanding <em>modern</em> programming languages, and their <em>libraries</em></li>
+<li>Most commonly, the <strong>design</strong> phase of SE involves designing <em>objects</em>, and their <em>behaviours</em>, and their <em>interactions</em></li>
+</ul>
+</section><section>
+<h2 id="three-dimensions-of-software-design">Three dimensions of software design</h2>
+<ul>
+<li><strong>Structure</strong>: how is the software <em>organised</em>? how is <em>information</em> organized?</li>
+<li><strong>Behaviour</strong>: what does the software <em>do</em>? how does it transform <em>data</em>?</li>
+<li><strong>Interaction</strong>: how/when do different pieces of software <em>communicate</em> to <em>cooperate</em>?</li>
+</ul>
+
+
+<span class="fragment ">
+  <blockquote>
+<p>OOP nicely addresses all three dimensions</p></blockquote>
+
+</span>
+
+</section><section>
+<h2 id="key-principles-of-oop">Key principles of OOP</h2>
+<ul>
+<li>
+<p><strong>Everything</strong> is an <em>object</em></p>
+</li>
+<li>
+<p>A <strong>program</strong> is a <em>bunch of objects</em> telling each other what to do by <strong>sending messages</strong></p>
+</li>
+<li>
+<p>Every object can have its own <strong>memory</strong> (state) composed by other objects</p>
+</li>
+<li>
+<p>Every object is an <em>instance</em> of a <strong>class</strong></p>
+</li>
+<li>
+<p>Every object has an <strong>interface</strong>, which defines what messages it can receive</p>
+<ul>
+<li>and so what the <strong>type</strong> of the object is</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="key-principles-of-oop-in-practice">Key principles of OOP, in practice</h2>
+<ul>
+<li>
+<p>An object is a <em>container</em> of <strong>attributes</strong>. These can be of 3 sorts:</p>
+<ul>
+<li><strong>fields</strong>, i.e. <em>variables</em> that store object-specific <em>data</em>
+<ul>
+<li>(these constitute the aforementioned memory/state)</li>
+</ul>
+</li>
+<li><strong>methods</strong>, i.e. <em>functions</em> that can read/write the other members of the object
+<ul>
+<li>(these constitute the aforementioned “messages that can be received” by the object)</li>
+</ul>
+</li>
+<li><strong>properties</strong>, i.e. methods that can be accessed <em>as if</em> they were fields</li>
+</ul>
+</li>
+<li>
+<p>Classes are <em>blueprints</em> for objects</p>
+<ul>
+<li>they describe what <em>attributes</em> an object will have</li>
+<li>each <strong>member</strong> of a class defines an <em>attribute</em> that <em>all</em> objects of that class will have</li>
+</ul>
+</li>
+<li>
+<p>Objects are <strong>created</strong> as <em>instances</em> of classes</p>
+<ul>
+<li>each class has a <em>constructor</em>, i.e. a magic function which creates an <em>instance</em> of the class</li>
+<li>the constructor is in charge of <em>initializing</em> the object’s <em>attributes</em></li>
+</ul>
+</li>
+<li>
+<p>Objects can <strong>use</strong> <em>other objects</em>, by <em>calling</em> their methods or <em>accessing</em> their fields or properties</p>
+<ul>
+<li>(this is what the aforementioned “sending messages” is about)</li>
+<li>the <em>data</em> stored in objects’ fields are indeed <em>other objects</em></li>
+<li>the <em>methods</em> of an object are functions which can accept as <em>arguments</em>, and return them as <em>results</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="example-the-light-class">Example: the <code>Light</code> class</h2>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><h3 id="class-definition">Class definition</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Light</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">initially_on</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">initially_on</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">is_off</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@is_off.setter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">is_off</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#000">value</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">switch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"Light(state=</span><span style="color:#4e9a06">{</span><span style="color:#4e9a06">'on'</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#4e9a06">'off'</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)"</span>
+</span></span></code></pre></div><h3 id="usage">Usage</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Light</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">True</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># Light(state=on)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">switch</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># Light(state=off)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">True</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># Light(state=on)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">is_off</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">True</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># Light(state=off)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">is_off</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># True</span>
+</span></span></code></pre></div></div>
+<div class="col "><h3 id="aspects-to-notice">Aspects to notice</h3>
+<p>Object of type <code>Light</code> have:</p>
+<ul>
+<li>
+<p>a <strong>field</strong> <code>state</code> <em>storing</em> a <em>boolean</em></p>
+<ul>
+<li>which is <code>True</code> if that light is on, <code>False</code> otherwise</li>
+</ul>
+</li>
+<li>
+<p>a <em>settable</em> <strong>property</strong> <code>is_off</code> corresponding to the opposite of <code>state</code></p>
+</li>
+<li>
+<p>a <strong>method</strong> <code>switch</code> that toggles the <code>state</code> of the light</p>
+</li>
+<li>
+<p>a constructor <code>__init__</code> that initializes the <code>state</code> of the light to its initial value (<code>initially_on</code>)</p>
+<ul>
+<li>this is invoked via the name of the class, e.g. <code>Light)</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="what-is-self">What is <code>self</code>?</h2>
+<ul>
+<li>
+<p>You can think about a class as group of functions, which all have an <em>implicit</em> first argument, <code>self</code></p>
+<ul>
+<li>this is a reference to the <em>instance</em> of the class that is being manipulated</li>
+<li>it is <em>not</em> passed explicitly when calling the method</li>
+</ul>
+</li>
+<li>
+<p>Via <code>self</code>, you can access the <em>other attributes</em> of an object, from within a method of that object</p>
+<ul>
+<li>e.g., <code>self.state</code> in the <code>switch</code> method of the <code>Light</code> class</li>
+</ul>
+</li>
+<li>
+<p>The name <code>self</code> is a convention, but you can use any name you want</p>
+<ul>
+<li>but it is <em>strongly</em> recommended to stick to <code>self</code> for readability</li>
+<li>the following class is equivalent to the <code>Light</code> class above, by simply renaming <code>self</code> to <code>this</code>:
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Light</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">this</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">initially_on</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">initially_on</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">is_off</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">this</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#000">this</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">state</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># etc.</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>You can imagine that variable self is <em>automatically</em> passed to the method when it is called</p>
+<ul>
+<li>e.g., <code>l.switch()</code> is equivalent to <code>Light.switch(l)</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="examples-of-entities-which-can-be-modelled">Examples of entities which can be modelled</h2>
+<ul>
+<li>A memory cell
+<ul>
+<li>Example method: “assign the current value to value X”</li>
+</ul>
+</li>
+<li>A counter
+<ul>
+<li>Example method: “increment”</li>
+</ul>
+</li>
+<li>A calculator
+<ul>
+<li>Example methods: “input digit X”, “calculate”, “store”</li>
+</ul>
+</li>
+<li>A geometric figure in a CAD program
+<ul>
+<li>Example method: “translate in the XY plane by (dx, dy)”</li>
+</ul>
+</li>
+<li>A button
+<ul>
+<li>Example method: “press”</li>
+</ul>
+</li>
+<li>A database
+<ul>
+<li>Example method: “insert a new record R”</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="example-1-memory-cell">Example 1: Memory Cell</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MemoryCell</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">initial_value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">assign</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">initial_value</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">assign</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">256</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Value must in the [0, 255] range"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">value</span>
+</span></span></code></pre></div></section><section>
+<h2 id="example-2-counter">Example 2: Counter</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Counter</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">initial_value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">initial_value</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">increment</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">delta</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">delta</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">decrement</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">delta</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">increment</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">delta</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div></section><section>
+<h2 id="example-3-calculator">Example 3: Calculator</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">""</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__ensure_is_digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">|</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">value</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">10</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Value must a digit in [0, 9]: "</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">value</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">|</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__ensure_is_digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">symbol</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">symbol</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">clear</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">""</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">|</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">math</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">sqrt</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">cos</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">sin</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Number</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">result</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Result is not a number: "</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">result</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">Exception</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">""</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Invalid expression: "</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">e</span>
+</span></span></code></pre></div>
+</section>
+</section><section>
+<h2 id="encapsulation-and-information-hiding">Encapsulation and Information Hiding</h2>
+<h3 id="what-encapsulationhttpsenwikipediaorgwikiencapsulation_computer_programming">What: <a href="https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)">Encapsulation</a></h3>
+<blockquote>
+<p>The idea of presenting a <em>consistent interface</em> [of an object, to its users] that is <strong>independent</strong> of its <em>internal implementation</em></p></blockquote>
+<h3 id="how-information-hidinghttpsenwikipediaorgwikiinformation_hiding">How: <a href="https://en.wikipedia.org/wiki/Information_hiding">Information Hiding</a></h3>
+<blockquote>
+<p>A means to achieve encapsulation, by <strong>restricting/controlling</strong> access to the <em>internal</em> details of an object</p></blockquote>
+<ul>
+<li>
+<p>Commonly achieved by separating how an object is <strong>used</strong> from how it is <em>implemented</em></p>
+<ul>
+<li>e.g., by providing a <em>public</em> interface, and <em>private</em> implementation details</li>
+</ul>
+</li>
+<li>
+<p>Commonly involves enforcing some <strong>invariants</strong> on the object’s state</p>
+<ul>
+<li>e.g., by ensuring that some attributes are <em>always</em> in a certain range…</li>
+<li>… or that some attributes are <em>always</em> consistent with each other</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="why-encapsulation-matters">Why Encapsulation Matters?</h2>
+<h3 id="encapsulation-helps-to">Encapsulation helps to</h3>
+<ul>
+<li>protect data from accidental modification</li>
+<li>ensure controlled access through defined methods</li>
+<li>improve maintainability by allowing internal implementation changes without affecting external usage</li>
+<li>create modular, reusable, and scalable code</li>
+</ul>
+<h3 id="example-in-real-life">Example in real life</h3>
+<ul>
+<li>a car’s accelerator pedal: you control speed without directly modifying the engine parameters</li>
+</ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="example-encapsulation-in-the-light-class">Example: Encapsulation in the <code>Light</code> class</h2>
+<p>Let’s suppose that</p>
+<ul>
+<li>the intensity of the light bulb must be implemented as a <strong>byte</strong> (<code>0</code> to <code>255</code>) where:
+<ul>
+<li>0 means the light is off</li>
+<li>255 means the light is at its maximum intensity</li>
+</ul>
+</li>
+<li>yet we may want the intensity to be <em>perceived</em> as a <strong>percentage</strong> (<code>0.0</code> to <code>100.0</code>) by the user</li>
+<li>the user may also want to have a <em>read-only</em> <strong>property</strong> to know if the light <em>is on</em> (intensity &gt; 0)</li>
+<li>the user should <strong>not</strong> be able to go <em>beyond</em> the <code>0—100%</code> range when setting the intensity</li>
+<li>switching the light on/off should work as follows:
+<ol>
+<li>if the intensity is &gt; 0, it should be set to 0</li>
+<li>if the intensity is 0, it should be set to the last value it had before being switched off</li>
+<li>the first time the light is switched on, intensity should be set to <code>100%</code></li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h2 id="example-encapsulation-in-the-light-class-1">Example: Encapsulation in the <code>Light</code> class</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Light</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">initially_on</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">initially_on</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#0000cf;font-weight:bold">255</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__last_intensity</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">255</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">is_on</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">intensity</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">255</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#0000cf;font-weight:bold">100</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@intensity.setter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">intensity</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#0000cf;font-weight:bold">100</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Intensity must be in the [0, 100] range"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">100</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#0000cf;font-weight:bold">255</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">switch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__last_intensity</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__last_intensity</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"Light(intensity=</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)"</span>
+</span></span></code></pre></div><h3 id="usage">Usage</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Light</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">initially_on</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">False</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># Light(intensity=0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">intensity</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">50</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># Light(intensity=127)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">switch</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># Light(intensity=0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">is_on</span><span style="color:#000;font-weight:bold">)</span>       <span style="color:#8f5902;font-style:italic"># False</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">intensity</span><span style="color:#000;font-weight:bold">)</span>   <span style="color:#8f5902;font-style:italic"># 0.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">switch</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_string</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># Light(intensity=127)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">intensity</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">150</span>    <span style="color:#8f5902;font-style:italic"># ValueError: Intensity must be in the [0, 100] range</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__intensity</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># AttributeError: 'Light' object has no attribute '__intensity'</span>
+</span></span></code></pre></div></section><section>
+<h2 id="aspects-to-notice">Aspects to notice</h2>
+<ul>
+<li>
+<p>The <code>intensity</code> and <code>last_intensity</code> attributes are <em>private</em> (i.e., their names start with <code>__</code>)</p>
+<ul>
+<li>this means that they are <em>not</em> accessible from outside the class</li>
+<li>this is a way to enforce <em>information hiding</em></li>
+</ul>
+</li>
+<li>
+<p>The technical detail “intensity is represented as a byte” is <em>hidden</em> from the user</p>
+<ul>
+<li>the user only sees the intensity as a percentage</li>
+</ul>
+</li>
+<li>
+<p>The invariant “intensity must be in the [0, 100] range” is <em>enforced</em> by the setter of the <code>intensity</code> property</p>
+<ul>
+<li>if the user tries to set an intensity outside this range, a <code>ValueError</code> is raised</li>
+<li>as that’s the <em>only</em> way to set the intensity, the invariant is <em>always</em> respected</li>
+</ul>
+</li>
+</ul>
+
+</section>
+</section><section>
+<h2 id="identity-and-equality">Identity and Equality</h2>
+<h3 id="identity">Identity</h3>
+<ul>
+<li>
+<p>Two objects are <em>identical</em> if they are the <em>same</em> object in memory</p>
+<ul>
+<li>i.e., if they have the <em>same</em> memory address</li>
+</ul>
+</li>
+<li>
+<p>This is checked using the <code>is</code> operator</p>
+<ul>
+<li>e.g., <code>a is b</code> returns <code>True</code> if <code>a</code> and <code>b</code> are the <em>same</em> object</li>
+</ul>
+</li>
+</ul>
+<h3 id="equality">Equality</h3>
+<ul>
+<li>
+<p>Two objects are <em>equal</em> if they have the <em>same</em> <em>value</em></p>
+<ul>
+<li>i.e., if their attributes are <em>recursively equal</em></li>
+</ul>
+</li>
+<li>
+<p>This is checked using the <code>==</code> operator</p>
+<ul>
+<li>yet, the operator only works if the object’s class has a <code>__eq__</code> method which defines what equality means for that class</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="example-complex-numbers">Example: Complex Numbers</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">real</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">imag</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">real</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">imag</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__eq__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">other</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87;font-weight:bold">None</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#204a87">hasattr</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'re'</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#204a87">hasattr</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'im'</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span>
+</span></span></code></pre></div><h3 id="usage">Usage</h3>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (1 + i * 2)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">a</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (1 + i * 2)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">d</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (2 + i * 1)</span>
+</span></span></code></pre></div></div>
+<div class="col "><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># True</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># True</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># False</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># False</span>
+</span></span></code></pre></div></div>
+<div class="col "><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># True</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># True</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># True</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># False</span>
+</span></span></code></pre></div></div>    
+</div>
+</div>
+</section><section>
+<h2 id="how-to-write-good-__eq__-methods">How to write good <code>__eq__</code> methods</h2>
+<ol>
+<li>
+<p>No object is equal to <code>None</code>: <code>x == None</code> should always return <code>False</code></p>
+<ul>
+<li>always check if the other object is <code>None</code>, returning <code>False</code> if it is
+<ul>
+<li>this is to avoid <code>NoneType</code> errors</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Check whether the <em>other</em> object is an instance of the same class of the current object</p>
+<ul>
+<li>this is to avoid <code>AttributeError</code> errors</li>
+<li>e.g., <code>isinstance(other, CurrentClass)</code> or <code>type(other) == type(self)</code> or <code>isinstance(other, type(self))</code></li>
+</ul>
+</li>
+<li>
+<p>Alternatively, check whether the <em>other</em> has the same attributes as the current object</p>
+<ul>
+<li>this is to avoid <code>AttributeError</code> errors</li>
+<li>e.g., <code>hasattr(other, 'attribute')</code> for each attribute of the current object that you want to compare</li>
+</ul>
+</li>
+<li>
+<p>Compare the attributes of the <em>other</em> object with the attributes of the current object</p>
+<ul>
+<li>this is to define what equality means for the class</li>
+<li>e.g., <code>self.attribute == other.attribute</code> for each attribute of the current object that you want to compare</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="example-sets-of-complex-numbers">Example: Sets of Complex Numbers</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (1 + i * 2)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">a</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (1 + i * 2)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">d</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (2 + i * 1)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#8f5902;font-style:italic"># TypeError: unhashable type: 'Complex'</span>
+</span></span></code></pre></div></section><section>
+<h2 id="hashable-objects">Hashable objects</h2>
+<p>(cf. <a href="https://www.pythonmorsels.com/what-are-hashable-objects/">https://www.pythonmorsels.com/what-are-hashable-objects/</a>)</p>
+<ul>
+<li>
+<p>Long and complex discussion</p>
+</li>
+<li>
+<p>Put simply, you need objects to be <strong>hashable</strong> in order for them to be used within a <code>set</code> or a <code>dict</code></p>
+</li>
+<li>
+<p>An object is hashable if it has a <code>__hash__</code> method that returns a <em>semi-unique</em> hash value for that object</p>
+<ul>
+<li>a <strong>hash value</strong> is an integer that is used to quickly compare objects</li>
+<li>if two objects are equal, their hash values <em>must</em> be the same</li>
+<li>if two objects are <em>not</em> equal, their hash values <em>should</em> be different (but <strong>collisions</strong> may occur)</li>
+</ul>
+</li>
+</ul>
+<h3 id="rules-of-thumb-for-implementing-the-__hash__-method">Rules of thumb for implementing the <code>__hash__</code> method</h3>
+<ul>
+<li>Always implement the <code>__hash__</code> method if you implement the <code>__eq__</code> method (and <em>vice versa</em>)</li>
+<li>To compute some hash value, pass a <strong>tuple</strong> to the <code>hash()</code> function, containing all and only the attributes that you compared in the <code>__eq__</code> method
+<ul>
+<li>e.g., <code>hash((self.attribute1, self.attribute2))</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="example-hashable-complex-numbers">Example: Hashable Complex Numbers</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">real</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">imag</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">real</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">imag</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__eq__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">other</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87;font-weight:bold">None</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#204a87">hasattr</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'re'</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#204a87">hasattr</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'im'</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__hash__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">hash</span><span style="color:#000;font-weight:bold">((</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">))</span>
+</span></span></code></pre></div><h3 id="usage-1">Usage</h3>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (1 + i * 2)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">a</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (1 + i * 2)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">d</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># (2 + i * 1)</span>
+</span></span></code></pre></div></div>
+<div class="col "><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#8f5902;font-style:italic"># 2</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># {&lt;__main__.Complex object at 0x78d202e09520&gt;, &lt;__main__.Complex object at 0x78d202e09580&gt;}</span>
+</span></span></code></pre></div></div>    
+</div>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+    
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

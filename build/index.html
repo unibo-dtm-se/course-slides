@@ -2,19 +2,19 @@
     <meta charset="utf-8">
 <title>Build automation, packaging, and release</title>
 <meta name="description" content="Introduction to agile and DevOps, a case from the literature, SCRUM">
-<meta name="author" content="Danilo Pianini">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.e98e7d09f955f316ccf66388b4c5eb8b89dfdb0a57cb72bf0fc9f3f33860984c.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.6aab2a58b3721f38ca11bb13ca57a68f6bcafd5754c1704a12dc68db37ed44fa.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
-<script src="https://unibo-dtm-se.github.io/course-slides/plantuml.js"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides//plantuml.js"></script>
 
   </head>
   <body>
@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2024-05-07 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-02-10 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h1 id="the-build-life-cycle">The build “life cycle”</h1>
@@ -40,8 +40,7 @@
 <blockquote>
 <p>The process of creating <em>tested deployable software artifacts</em>
 <br>
-from <em>source</em> code</p>
-</blockquote>
+from <em>source</em> code</p></blockquote>
 <p>May include, depending on the system specifics:</p>
 <ol>
 <li><em>Source code manipulation</em> and generation</li>
@@ -74,8 +73,7 @@ from <em>source</em> code</p>
 <li>In reality <em>time is precious</em> and <em>repetitivy is boring</em> (and <strong>error-prone</strong>)</li>
 </ul>
 <blockquote>
-<p>$\Rightarrow$ Create software that automates the building of some software!</p>
-</blockquote>
+<p>$\Rightarrow$ Create software that automates the building of some software!</p></blockquote>
 <ul>
 <li>All those concerns that hold for software creation hold for build systems creation…</li>
 </ul>
@@ -103,8 +101,7 @@ from code to artifacts
 <br>
 (as opposed to <em>imperative</em> software $\approx$ the program describes <em>how</em> to do it,
 <br>
-e.g. Python)</p>
-</blockquote>
+e.g. Python)</p></blockquote>
 <p>In other words:</p>
 <ul>
 <li>they rely on <em>conventions</em> and <em>defaults</em></li>
@@ -138,34 +135,34 @@ Still, many challenges remain open:
 <li>Since there were none, now there are several tools that do build-related jobs:</li>
 </ul>
 <table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://www.anaconda.com/">Anaconda</a></td>
-<td><a href="https://docs.conda.io/en/latest/index.html">Conda</a></td>
-<td><a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a></td>
-<td><a href="https://pypi.org/project/pip/">pip</a></td>
-</tr>
-<tr>
-<td><a href="https://python-poetry.org/">Poetry</a></td>
-<td><a href="https://pybuilder.io/">PyBuilder</a></td>
-<td><a href="https://github.com/pyenv/pyenv">PyEnv</a></td>
-<td><a href="https://virtualenv.pypa.io/en/latest/#">virtualenv</a></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="https://www.anaconda.com/">Anaconda</a></td>
+          <td><a href="https://docs.conda.io/en/latest/index.html">Conda</a></td>
+          <td><a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a></td>
+          <td><a href="https://pypi.org/project/pip/">pip</a></td>
+      </tr>
+      <tr>
+          <td><a href="https://python-poetry.org/">Poetry</a></td>
+          <td><a href="https://pybuilder.io/">PyBuilder</a></td>
+          <td><a href="https://github.com/pyenv/pyenv">PyEnv</a></td>
+          <td><a href="https://virtualenv.pypa.io/en/latest/#">virtualenv</a></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
 </table>
 <ul>
 <li>The feature set varies wildly</li>
@@ -224,8 +221,7 @@ multiple tools <em>proliferated</em></p>
 <li>say, <strong>project A</strong> requires Python <code>3.8</code> and <strong>project B</strong> requires Python <code>3.10</code></li>
 </ul>
 </li>
-</ul>
-</blockquote>
+</ul></blockquote>
 </section><section>
 <h2 id="what-are-all-these-tools-pt-2">What are all these tools? (pt. 2)</h2>
 <p>(consider reading this page for further details <a href="https://stackoverflow.com/a/41573588">https://stackoverflow.com/a/41573588</a>)</p>
@@ -257,8 +253,7 @@ multiple tools <em>proliferated</em></p>
 </ol>
 <blockquote>
 <p><strong>New problem</strong>: many Python installations on the same system,
-<br> each one with a different version of Python, and different packages installed</p>
-</blockquote>
+<br> each one with a different version of Python, and different packages installed</p></blockquote>
 <p>recall all the issues we had in previous lectures?</p>
 </section><section>
 <h2 id="what-are-all-these-tools-pt-3">What are all these tools? (pt. 3)</h2>
@@ -289,8 +284,7 @@ multiple tools <em>proliferated</em></p>
 </section><section>
 <h2 id="from-now-on-lets-use-poetry">From now on, let’s use Poetry</h2>
 <blockquote>
-<p>Poetry is a <em>declarative</em> tool for <strong>dependency management</strong>, <strong>packaging</strong>, and <strong>release</strong> in Python</p>
-</blockquote>
+<p>Poetry is a <em>declarative</em> tool for <strong>dependency management</strong>, <strong>packaging</strong>, and <strong>release</strong> in Python</p></blockquote>
 <ul>
 <li>
 <p>It handles both <em>dependencies</em> and <em>dev-dependencies</em></p>
@@ -446,8 +440,7 @@ multiple tools <em>proliferated</em></p>
 <li>We want to be able to specify ranges, but <em>retain the ability to use an exact version</em></li>
 </ul>
 <blockquote>
-<p>This software is compatible with <code>library</code> version 2.3. For our examples, we used version 2.3.<em>10</em></p>
-</blockquote>
+<p>This software is compatible with <code>library</code> version 2.3. For our examples, we used version 2.3.<em>10</em></p></blockquote>
 <p>Expressing something like this is done via <strong>dependency locking</strong>:</p>
 <ul>
 <li>Configure the build file with the range of supported versions</li>
@@ -507,8 +500,7 @@ multiple tools <em>proliferated</em></p>
 <li>
 <p>Ok but what about VS Code’s environments?</p>
 <blockquote>
-<p>Get the habit of configuring the VS Code environment <em>manually</em> when working with Python projects</p>
-</blockquote>
+<p>Get the habit of configuring the VS Code environment <em>manually</em> when working with Python projects</p></blockquote>
 </li>
 </ol>
 </section><section>
@@ -516,8 +508,7 @@ multiple tools <em>proliferated</em></p>
 <p>It supports publishing.</p>
 <blockquote>
 <p>Consider the following Web Page:
-<br> <a href="https://pypi.org/project/unibo-dtm-se-calculator">https://pypi.org/project/unibo-dtm-se-calculator</a></p>
-</blockquote>
+<br> <a href="https://pypi.org/project/unibo-dtm-se-calculator">https://pypi.org/project/unibo-dtm-se-calculator</a></p></blockquote>
 <ul>
 <li>
 <p>This is the <em>PyPI</em> page of the <code>unibo-dtm-se-calculator</code> package</p>
@@ -762,7 +753,7 @@ multiple tools <em>proliferated</em></p>
 
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
 
-  var revealHugoPlugins = { 
+  var revealHugoPlugins = {
     plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
    };
   var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
@@ -781,27 +772,41 @@ multiple tools <em>proliferated</em></p>
 
 
 
+
+  
   
 
   
-
   
 
   
-
   
 
   
-
   
 
   
-
   
 
   
+  
 
   
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
 
 
 

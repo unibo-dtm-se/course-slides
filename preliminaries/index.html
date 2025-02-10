@@ -2,19 +2,19 @@
     <meta charset="utf-8">
 <title>Preliminary notions for Software Development</title>
 <meta name="description" content="Quick recap of notions and technical skills for the course">
-<meta name="author" content="Danilo Pianini">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.e98e7d09f955f316ccf66388b4c5eb8b89dfdb0a57cb72bf0fc9f3f33860984c.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.6aab2a58b3721f38ca11bb13ca57a68f6bcafd5754c1704a12dc68db37ed44fa.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
-<script src="https://unibo-dtm-se.github.io/course-slides/plantuml.js"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides//plantuml.js"></script>
 
   </head>
   <body>
@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2024-05-07 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-02-10 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="motivation-and-goals">Motivation and goals</h2>
@@ -70,8 +70,7 @@
 </ol>
 <blockquote>
 <p>The terminal is a text-based interface to the operative system (OS).
-Each terminal application is executing a <strong>shell</strong> program</p>
-</blockquote>
+Each terminal application is executing a <strong>shell</strong> program</p></blockquote>
 <blockquote>
 <p>The shell is a program that has a simple job: <strong>REPL</strong> (Read, Evaluate, Print, Loop)</p>
 <ol>
@@ -79,8 +78,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <li>it <strong>evaluates</strong> the command</li>
 <li>it <strong>prints</strong> the result</li>
 <li>it <strong>loops</strong> back to step 1, unless the user explicitly asks to <strong>exit</strong></li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <ol start="2">
 <li>Write a few simple commands and observe the effect
 <ul>
@@ -111,17 +109,14 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <ul>
 <li><strong>interactively</strong>, from the user</li>
 <li>from a <strong>script</strong>, which is a file containing commands to be executed by a shell</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 </section><section>
 <h2 id="developers-are-inherently-lazy">Developers are inherently lazy</h2>
 <p>Developers’ mindset:</p>
 <blockquote>
-<p>If a <strong>person</strong> can do it <em>manually</em> via the shell, then a <strong>script</strong> can do it <em>automatically</em></p>
-</blockquote>
+<p>If a <strong>person</strong> can do it <em>manually</em> via the shell, then a <strong>script</strong> can do it <em>automatically</em></p></blockquote>
 <blockquote>
-<p>If a <strong>script</strong> can do it <em>automatically</em>, then that’s the way of doing it</p>
-</blockquote>
+<p>If a <strong>script</strong> can do it <em>automatically</em>, then that’s the way of doing it</p></blockquote>
 <ul>
 <li>these are the basic principles behind <strong>automation</strong></li>
 <li>a part from <em>time-saving</em> and <em>precision</em> in execution, automation enables <strong>reproducibility</strong> of the process
@@ -198,8 +193,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <li><code>bash</code> if are using the Windows Subsystem for Linux (WSL) or Git Bash</li>
 </ul>
 </li>
-</ol>
-</blockquote>
+</ol></blockquote>
 </section><section>
 <h2 id="stuff-you-need-to-know-about-the-shell-pt-2">Stuff you need to know about the shell (pt. 2)</h2>
 <ul>
@@ -234,8 +228,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <p>A <strong>path</strong> is a string that represents the location of a file or a directory in the <strong>file system</strong></p>
 <blockquote>
 <p><strong>Beware</strong>: path-separator is different among Windows (<code>\</code>) and other OS (<code>/</code>),</p>
-<p>and <strong>we only use <code>/</code> in the slides</strong></p>
-</blockquote>
+<p>and <strong>we only use <code>/</code> in the slides</strong></p></blockquote>
 <ul>
 <li>
 <p>A <strong>relative path</strong> is a path that is relative to the CWD</p>
@@ -267,60 +260,60 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <!-- this file includes generated content. Do not edit. Edit content/preliminaries/_generator.md, instead. -->
 <h2 id="terminal-cheat-sheet">Terminal cheat sheet</h2>
 <table>
-<thead>
-<tr>
-<th>Operation</th>
-<th><i class="fab fa-linux"></i> <i class="fab fa-apple"></i> *nix</th>
-<th><i class="fab fa-windows"></i> win</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Print the current directory location</td>
-<td><code>pwd</code></td>
-<td><code>echo %cd%</code></td>
-</tr>
-<tr>
-<td>Remove the file <code>foo</code> (does not work with directories)</td>
-<td><code>rm foo</code></td>
-<td><code>del foo</code></td>
-</tr>
-<tr>
-<td>Remove directory <code>bar</code></td>
-<td><code>rm -r bar</code></td>
-<td><code>del bar</code></td>
-</tr>
-<tr>
-<td>Change disk (e.g., switch to <code>D:</code>)</td>
-<td>n.a., single root (<code>/</code>)</td>
-<td><code>D:</code></td>
-</tr>
-<tr>
-<td>Move to the subdirectory <code>baz</code></td>
-<td><code>cd baz</code></td>
-<td><code>cd baz</code></td>
-</tr>
-<tr>
-<td>Move to the parent directory</td>
-<td><code>cd ..</code></td>
-<td><code>cd..</code></td>
-</tr>
-<tr>
-<td>Move (rename) file <code>foo</code> to <code>baz</code></td>
-<td><code>mv foo baz</code></td>
-<td><code>move foo baz</code></td>
-</tr>
-<tr>
-<td>Copy file <code>foo</code> to <code>baz</code></td>
-<td><code>cp foo baz</code></td>
-<td><code>copy foo baz</code></td>
-</tr>
-<tr>
-<td>Create a directory named <code>bar</code></td>
-<td><code>mkdir bar</code></td>
-<td><code>md bar</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Operation</th>
+          <th><i class="fab fa-linux"></i> <i class="fab fa-apple"></i> *nix</th>
+          <th><i class="fab fa-windows"></i> win</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Print the current directory location</td>
+          <td><code>pwd</code></td>
+          <td><code>echo %cd%</code></td>
+      </tr>
+      <tr>
+          <td>Remove the file <code>foo</code> (does not work with directories)</td>
+          <td><code>rm foo</code></td>
+          <td><code>del foo</code></td>
+      </tr>
+      <tr>
+          <td>Remove directory <code>bar</code></td>
+          <td><code>rm -r bar</code></td>
+          <td><code>del bar</code></td>
+      </tr>
+      <tr>
+          <td>Change disk (e.g., switch to <code>D:</code>)</td>
+          <td>n.a., single root (<code>/</code>)</td>
+          <td><code>D:</code></td>
+      </tr>
+      <tr>
+          <td>Move to the subdirectory <code>baz</code></td>
+          <td><code>cd baz</code></td>
+          <td><code>cd baz</code></td>
+      </tr>
+      <tr>
+          <td>Move to the parent directory</td>
+          <td><code>cd ..</code></td>
+          <td><code>cd..</code></td>
+      </tr>
+      <tr>
+          <td>Move (rename) file <code>foo</code> to <code>baz</code></td>
+          <td><code>mv foo baz</code></td>
+          <td><code>move foo baz</code></td>
+      </tr>
+      <tr>
+          <td>Copy file <code>foo</code> to <code>baz</code></td>
+          <td><code>cp foo baz</code></td>
+          <td><code>copy foo baz</code></td>
+      </tr>
+      <tr>
+          <td>Create a directory named <code>bar</code></td>
+          <td><code>mkdir bar</code></td>
+          <td><code>md bar</code></td>
+      </tr>
+  </tbody>
 </table>
 </section><section>
 <h2 id="stuff-you-need-to-know-about-the-shell-pt-4">Stuff you need to know about the shell (pt. 4)</h2>
@@ -385,8 +378,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 </li>
 </ul>
 <blockquote>
-<p>Do not waste your memory, learn how to look up the documentation instead</p>
-</blockquote>
+<p>Do not waste your memory, learn how to look up the documentation instead</p></blockquote>
 </section><section>
 <h2 id="about-interactive-commands-pt-1">About interactive commands (pt. 1)</h2>
 <ul>
@@ -470,8 +462,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 </li>
 </ul>
 <blockquote>
-<p>a <strong>stream</strong> is an <em>unlimited</em> sequence of <em>bytes</em> (or <em>characters</em>)</p>
-</blockquote>
+<p>a <strong>stream</strong> is an <em>unlimited</em> sequence of <em>bytes</em> (or <em>characters</em>)</p></blockquote>
 <ul>
 <li>this may represent <strong>anything</strong> having a digital representation (e.g. a file, a network connection, a device, etc.)</li>
 </ul>
@@ -500,8 +491,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <h2 id="about-interactive-processes-pt-3">About interactive processes (pt. 3)</h2>
 <h3 id="example-the-nano-command">Example: the <code>nano</code> command</h3>
 <blockquote>
-<p><code>nano</code> is a simple, interactive, text editor for the terminal</p>
-</blockquote>
+<p><code>nano</code> is a simple, interactive, text editor for the terminal</p></blockquote>
 <ol>
 <li>
 <p>Open a shell, and run the following command</p>
@@ -856,8 +846,7 @@ ModuleNotFoundError: No module named 'kivy'
 </li>
 </ul>
 <blockquote>
-<p>Don’t reinvent the wheel</p>
-</blockquote>
+<p>Don’t reinvent the wheel</p></blockquote>
 <ul>
 <li>
 <p>SE is essentially about how to write <em>good</em> code, which works well, and <strong>can be reused in the future</strong></p>
@@ -935,8 +924,7 @@ ModuleNotFoundError: No module named 'kivy'
 </li>
 </ul>
 <blockquote>
-<p><strong>Runtime</strong> of a program $\approx$ jargon for “the <em>set of</em> <strong>libraries</strong> actually available for that program at run-time”</p>
-</blockquote>
+<p><strong>Runtime</strong> of a program $\approx$ jargon for “the <em>set of</em> <strong>libraries</strong> actually available for that program at run-time”</p></blockquote>
 <ul>
 <li>this commonly includes:
 <ol>
@@ -974,8 +962,7 @@ ModuleNotFoundError: No module named 'kivy'
 <br>
 <blockquote>
 <p>A <strong>dependency</strong> among some <em>software</em> <strong>$S$</strong> and some <em>other software</em> <strong>$L$</strong></p>
-<p>occurs when <strong>$S$</strong> <em>requires</em> <strong>$L$</strong> to <em>work</em></p>
-</blockquote>
+<p>occurs when <strong>$S$</strong> <em>requires</em> <strong>$L$</strong> to <em>work</em></p></blockquote>
 <ul>
 <li><strong>requires</strong> $\approx$ <strong>$S$</strong> needs <strong>$L$</strong> to be part of its runtime to be <em>executed</em></li>
 <li>this is commonly the result of the reasoning above</li>
@@ -985,16 +972,14 @@ ModuleNotFoundError: No module named 'kivy'
 <h2 id="dependencies-pt-2">Dependencies (pt. 2)</h2>
 <p>Some definitions related to the notion of <strong>dependency</strong>:</p>
 <blockquote>
-<p><strong>Transitive dependency</strong>: if <strong>$S$</strong> depends on <strong>$L$</strong>, and <strong>$L$</strong> depends on <strong>$M$</strong>, then <strong>$S$</strong> <em>transitively</em> depends on <strong>$M$</strong></p>
-</blockquote>
+<p><strong>Transitive dependency</strong>: if <strong>$S$</strong> depends on <strong>$L$</strong>, and <strong>$L$</strong> depends on <strong>$M$</strong>, then <strong>$S$</strong> <em>transitively</em> depends on <strong>$M$</strong></p></blockquote>
 <ul>
 <li>non-transitive dependencies are called <strong>direct</strong> dependencies</li>
 </ul>
 </section><section>
 <h2 id="dependencies-pt-3">Dependencies (pt. 3)</h2>
 <blockquote>
-<p><strong>Dependency graph</strong> of a software <strong>$S$</strong>: the graph spawned by all the dependencies (direct or transitive) depedencies of <strong>$S$</strong></p>
-</blockquote>
+<p><strong>Dependency graph</strong> of a software <strong>$S$</strong>: the graph spawned by all the dependencies (direct or transitive) depedencies of <strong>$S$</strong></p></blockquote>
 <ul>
 <li>e.g. the dependency graph of our <em>calculator</em> application includes <em>Kivy</em> and <em>Python 3.11</em> standard library, and all transitive depedencies of <em>Kivy</em>:
 <pre tabindex="0"><code>calculator.py
@@ -1464,8 +1449,7 @@ ModuleNotFoundError: No module named 'kivy'
 <blockquote>
 <p><strong>Beware</strong>: Other programming languages may have similar mechanisms, but with different names,
 or they may have different mechanisms to achieve the same goals,
-or they may have a subset of the mechanisms available in Python</p>
-</blockquote>
+or they may have a subset of the mechanisms available in Python</p></blockquote>
 </section><section>
 <h2 id="about-code-organization">About code organization</h2>
 <p>As code is decomposed into smaller and smaller units…</p>
@@ -1646,7 +1630,7 @@ or they may have a subset of the mechanisms available in Python</p>
 
 
 <div class="col "><p>Class diagram:</p>
-<figure id="plantuml-figure-1715075150345929897" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1739177885189620151" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class Calculator {
 + expression: str
 - _ensure_is_digit(value: int | str) → int
@@ -1661,7 +1645,7 @@ or they may have a subset of the mechanisms available in Python</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1715075150345929897");
+    handlePlantumlFigureByID("plantuml-figure-1739177885189620151");
 </script>
 </div>
 
@@ -1776,7 +1760,7 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span></code></pre></div></section><section>
 <h2 id="overview-on-code-organization-pt-1">Overview on code organization (pt. 1)</h2>
 
-<figure id="plantuml-figure-1715075150347650848" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1739177885191132106" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package calculator {
@@ -1818,13 +1802,13 @@ package calculator {
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1715075150347650848");
+    handlePlantumlFigureByID("plantuml-figure-1739177885191132106");
 </script>
 </section><section>
 <h2 id="overview-on-code-organization-pt-2">Overview on code organization (pt. 2)</h2>
 <p>(including dependencies from Python and Kivy)</p>
 
-<figure id="plantuml-figure-1715075150347709509" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1739177885191162312" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package "Python Standard Library" as Python {
@@ -1898,7 +1882,7 @@ calculator .left.&gt; Python: uses extensively
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1715075150347709509");
+    handlePlantumlFigureByID("plantuml-figure-1739177885191162312");
 </script>
 </section><section>
 <h2 id="many-hidden-concepts-in-this-example-1">Many hidden concepts in this example</h2>
@@ -2015,8 +1999,7 @@ calculator .left.&gt; Python: uses extensively
 <p>Disclaimer:</p>
 <blockquote>
 <p>While <strong>UI</strong> is very <em>important</em>, and <em>engineering UI</em> <strong>is part</strong> <em>of SE</em>, it is <em>not</em> the <em>only</em> part of SE.
-It is far <em>more important</em> in SE to take care about the <strong>API</strong></p>
-</blockquote>
+It is far <em>more important</em> in SE to take care about the <strong>API</strong></p></blockquote>
 <br>
 <p>The rationale is as follows:</p>
 <ul>
@@ -2036,8 +2019,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <li>the <em>formal parameters</em> it accepts as <em>input</em></li>
 <li>the <em>return values</em> or <em>effects</em> it produces as <em>outcome</em></li>
 <li>the <em>pre-conditions</em> and <em>post-conditions</em> it satisfies/establishes</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 </section><section>
 <h2 id="about-application-programming-interfaces-pt-2">About application programming interfaces (pt. 2)</h2>
 <p>Recall that software is often <em>built</em> on top of <em>other</em> software, in a <strong>layered</strong> way:
@@ -2096,8 +2078,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 </ul>
 </li>
 <li>the opposite of “public” is “<strong>private</strong>”</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 </section><section>
 <h2 id="application-programming-interfaces-in-practice-pt-2">Application programming interfaces in practice (pt. 2)</h2>
 <ul>
@@ -2128,8 +2109,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <br>
 <p>Another way to think about <em>private</em> stuff in a software project is:</p>
 <blockquote>
-<p><em>private</em> stuff may change <strong>without notice</strong>, in any moment</p>
-</blockquote>
+<p><em>private</em> stuff may change <strong>without notice</strong>, in any moment</p></blockquote>
 </section><section>
 <h2 id="application-programming-interfaces-in-practice-pt-3">Application programming interfaces in practice (pt. 3)</h2>
 <ul>
@@ -2161,8 +2141,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <li><em>draw</em> class diagrams for your software projects</li>
 <li><em>read</em> class diagrams of other software projects</li>
 <li>reverse-engineer (or just imagine) the class diagrams of software projects you use</li>
-</ol>
-</blockquote>
+</ol></blockquote>
 </section><section>
 <h1 id="exercise">Exercise</h1>
 <ol>
@@ -2417,8 +2396,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <h2 id="exercise-1">Exercise 1</h2>
 <h3 id="the-impact-of-modularity-on-bug-detection--fixing">The impact of modularity on bug detection / fixing</h3>
 <blockquote>
-<p>The calculator has a <em>bug</em>: <strong>it does not properly handle division by zero</strong></p>
-</blockquote>
+<p>The calculator has a <em>bug</em>: <strong>it does not properly handle division by zero</strong></p></blockquote>
 <p>Is this a <em>presentation</em>, a <em>modelling</em>, or an <em>implementation</em> issue?</p>
 <ul>
 <li>do the software presents information poorly, or misinterprets inputs?</li>
@@ -2443,8 +2421,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <h2 id="exercise-2">Exercise 2</h2>
 <h3 id="new-feature-request">New feature request</h3>
 <blockquote>
-<p>The calculator GUI is missing a feature: <strong>it gives no way to the user to clear the current expression</strong></p>
-</blockquote>
+<p>The calculator GUI is missing a feature: <strong>it gives no way to the user to clear the current expression</strong></p></blockquote>
 <p>We totally missed that functionality when designing the <em>model</em> and the <em>GUI</em></p>
 <ul>
 <li>what is missing in the model?</li>
@@ -2510,7 +2487,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
 
-  var revealHugoPlugins = { 
+  var revealHugoPlugins = {
     plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
    };
   var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
@@ -2529,33 +2506,45 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 
 
 
+
+  
   
 
   
+  
 
+  
   
 
   
     
   
-
   
 
   
-
   
 
   
-
   
 
   
+  
 
+  
+  
+
+  
+  
+
+  
+  
+
+  
   
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
 
@@ -2578,6 +2567,8 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
     Reveal.on('slidechanged', render);
     Reveal.on('ready', render);
   </script>
+
+
 
     <script>
     MathJax = {

@@ -2,19 +2,19 @@
     <meta charset="utf-8">
 <title>QA, reproducibility, TDD</title>
 <meta name="description" content="QA, reproducibility, TDD">
-<meta name="author" content="Danilo Pianini">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.e98e7d09f955f316ccf66388b4c5eb8b89dfdb0a57cb72bf0fc9f3f33860984c.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.6aab2a58b3721f38ca11bb13ca57a68f6bcafd5754c1704a12dc68db37ed44fa.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
-<script src="https://unibo-dtm-se.github.io/course-slides/plantuml.js"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides//plantuml.js"></script>
 
   </head>
   <body>
@@ -32,7 +32,7 @@
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2024-05-07 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-02-10 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="quality-assurance">Quality assurance</h2>
@@ -41,8 +41,7 @@
 <p>As any engineered product, software should be <em>subject to <strong>quality assurance</strong> control</em>.</p>
 <br>
 <blockquote>
-<p><strong>Quality assurance</strong> (in SE) is the set of activities and practices aimed at ensuring that a software product <em>works</em> and it is <em>of good quality</em>.</p>
-</blockquote>
+<p><strong>Quality assurance</strong> (in SE) is the set of activities and practices aimed at ensuring that a software product <em>works</em> and it is <em>of good quality</em>.</p></blockquote>
 <ul>
 <li>what does <em>“works”</em> mean for software?</li>
 <li>what does <em>“good quality”</em> mean for software?</li>
@@ -51,8 +50,7 @@
 <h2 id="quality-assurance-works">Quality assurance: “works”</h2>
 <h3 id="what-does-_works_-mean-for-software">What does <em>“works”</em> mean for software?</h3>
 <blockquote>
-<p>Insight: software works when it <em>meets the requirements</em></p>
-</blockquote>
+<p>Insight: software works when it <em>meets the requirements</em></p></blockquote>
 <ul>
 <li>Recall that software requirements should come with clear <em>acceptance criteria</em>
 <ul>
@@ -65,8 +63,7 @@
 <h3 id="what-does-_good-quality_-mean-for-software">What does <em>“good quality”</em> mean for software?</h3>
 <blockquote>
 <p>Insight: software is good when it is</p>
-<p><em>easy for developers to evolve or maintain it</em></p>
-</blockquote>
+<p><em>easy for developers to evolve or maintain it</em></p></blockquote>
 <ul>
 <li>
 <p>Recall that good software should have many <em>quality attributes</em></p>
@@ -167,8 +164,7 @@
 </section><section>
 <h2 id="testing-scope-pt-2">Testing scope (pt. 2)</h2>
 <blockquote>
-<p>A well-maintained engineering product <em>must</em> have tests at <strong>all granularity levels</strong></p>
-</blockquote>
+<p>A well-maintained engineering product <em>must</em> have tests at <strong>all granularity levels</strong></p></blockquote>
 <ul>
 <li>But why?
 <ul>
@@ -209,13 +205,11 @@
 </li>
 </ul>
 <blockquote>
-<p>The more granular the tests, the easier it is to spot and fix problems</p>
-</blockquote>
+<p>The more granular the tests, the easier it is to spot and fix problems</p></blockquote>
 </section><section>
 <h2 id="reproducibility">Reproducibility</h2>
 <blockquote>
-<p>Would you be comfortable with a car that passes the crash test <code>99.9%</code> of time, but on the <code>0.1%</code> of the cases fails <em>unexplicably</em>?</p>
-</blockquote>
+<p>Would you be comfortable with a car that passes the crash test <code>99.9%</code> of time, but on the <code>0.1%</code> of the cases fails <em>unexplicably</em>?</p></blockquote>
 <p><strong>Reproducibility</strong> is <strong>central</strong> for testing</p>
 <p>(true for any engineering, but in particular for software)</p>
 <ul>
@@ -802,7 +796,7 @@ test case, and listen to the teacher explanation</p>
 <div class="container w-100 m-0 p-0">
     <div class="row ">
 <div class="col "><p>Before:</p>
-<figure id="plantuml-figure-1715075150323807849" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1739177885165116083" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class CalculatorApp {
 - _calc: Calculator
 - _display: Label
@@ -811,11 +805,11 @@ test case, and listen to the teacher explanation</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1715075150323807849");
+    handlePlantumlFigureByID("plantuml-figure-1739177885165116083");
 </script>
 </div>
 <div class="col "><p>After:</p>
-<figure id="plantuml-figure-1715075150323912195" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1739177885165275970" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class CalculatorApp {
 - _calc: Calculator
 + display: Label
@@ -826,7 +820,7 @@ test case, and listen to the teacher explanation</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1715075150323912195");
+    handlePlantumlFigureByID("plantuml-figure-1739177885165275970");
 </script>
 </div>
 </div>
@@ -865,8 +859,7 @@ test case, and listen to the teacher explanation</p>
 <blockquote>
 <p><strong>Take-away</strong>: when writing <em>post-hoc</em> tests (i.e., after the main code has been already written),
 it is often necessary to <em>extend</em> the <strong>public API</strong> of the <em>SUT</em> to make its internal state and functioning
-<em>observable</em> and <em>controllable</em> from the outside, and therefore <strong>testable</strong></p>
-</blockquote>
+<em>observable</em> and <em>controllable</em> from the outside, and therefore <strong>testable</strong></p></blockquote>
 <ul>
 <li>to avoid this situation, it’s paramount to <strong>write tests <em>before</em> the main code</strong> is written
 <ul>
@@ -897,8 +890,7 @@ it is often necessary to <em>extend</em> the <strong>public API</strong> of the 
 </ul>
 <blockquote>
 <p><strong>Take-away</strong>: the story you can picture in your mind when reading a test is a way to describe the <em>test plan</em>,
-the designer of the test suite was envisioning when writing the tests</p>
-</blockquote>
+the designer of the test suite was envisioning when writing the tests</p></blockquote>
 
 </section>
 </section><section>
@@ -1003,8 +995,7 @@ the designer of the test suite was envisioning when writing the tests</p>
 <p>When designing <em>cars</em>,
 the <strong>crash testing</strong> procedure,
 the <em>engine test</em> bench,
-and so on are prepared <em>well before</em> the car prototype is ready!</p>
-</blockquote>
+and so on are prepared <em>well before</em> the car prototype is ready!</p></blockquote>
 </section><section>
 <h2 id="test-driven-development-tdd">Test-Driven Development (TDD)</h2>
 <p>The practice of:</p>
@@ -1015,8 +1006,7 @@ and so on are prepared <em>well before</em> the car prototype is ready!</p>
 <li>track all development by <em>always testing all cases</em></li>
 </ul>
 <blockquote>
-<p><strong>Key-point</strong>: in TDD, tests are not only a form of validation, but also a form of <strong>specification</strong></p>
-</blockquote>
+<p><strong>Key-point</strong>: in TDD, tests are not only a form of validation, but also a form of <strong>specification</strong></p></blockquote>
 </section><section>
 <h2 id="development-cycle-in-tdd">Development cycle in TDD</h2>
 <ol>
@@ -1038,8 +1028,7 @@ and so on are prepared <em>well before</em> the car prototype is ready!</p>
 <li>possibility to write expressions with <em>parentheses</em> (e.g. <code>(1+2)*3</code>)</li>
 <li>possibility to write expressions with the <em>square root</em> function (e.g. <code>sqrt(4)</code>)</li>
 <li>possibility to write expressions with the <em>power</em> function (e.g. <code>2**3</code>)</li>
-</ol>
-</blockquote>
+</ol></blockquote>
 <ol>
 <li>
 <p>Extend the model’s test suite (i.e. file
@@ -1162,8 +1151,7 @@ which aims at testing the
 </li>
 </ol>
 <blockquote>
-<p>One possible solution is on the <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9cce0dc19f572a31567294085c8168951de75bd2"><code>exercises/02-tdd-after-impl</code> branch of the <code>testable-calculator</code> repository</a></p>
-</blockquote>
+<p>One possible solution is on the <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9cce0dc19f572a31567294085c8168951de75bd2"><code>exercises/02-tdd-after-impl</code> branch of the <code>testable-calculator</code> repository</a></p></blockquote>
 <ul>
 <li>feel free to inspect it, after you attempted to produce your own solution</li>
 </ul>
@@ -1173,8 +1161,7 @@ which aims at testing the
 <br>
 <p>Yet many software projects have no or minimal tests, as:</p>
 <blockquote>
-<p><strong>Common misconception</strong>: We do not have time (or money) for testing</p>
-</blockquote>
+<p><strong>Common misconception</strong>: We do not have time (or money) for testing</p></blockquote>
 <br>
 <p>Beware: <strong>testing saves times in the long run</strong>, not testing is a <em>cost</em>!</p>
 <ul>
@@ -1183,8 +1170,7 @@ which aims at testing the
 </section><section>
 <h2 id="important-notion">Important notion</h2>
 <blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Technical_debt">Technical debt</a> is a concept in software development that reflects the <em>implied</em> <strong>cost</strong> of additional rework caused by choosing an <em>easy</em> (limited) <em>solution now</em> <strong>instead of</strong> using a <em>better approach</em> that would take <em>longer</em>.</p>
-</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Technical_debt">Technical debt</a> is a concept in software development that reflects the <em>implied</em> <strong>cost</strong> of additional rework caused by choosing an <em>easy</em> (limited) <em>solution now</em> <strong>instead of</strong> using a <em>better approach</em> that would take <em>longer</em>.</p></blockquote>
 <ul>
 <li>
 <p>Not writing tests on <em>ASAP</em>, greatly increases the technical debt</p>
@@ -1213,8 +1199,7 @@ which aims at testing the
 </section><section>
 <h2 id="what-happens-when-theres-too-much-technical-debt">What happens when there’s too much technical debt?</h2>
 <blockquote>
-<p>we never have the money to do it <em>right</em> but somehow we always have the fucking money to do it <em>twice</em></p>
-</blockquote>
+<p>we never have the money to do it <em>right</em> but somehow we always have the fucking money to do it <em>twice</em></p></blockquote>
 <p>$—$ UserInputSucks (@UserInputSucks) <a href="https://twitter.com/UserInputSucks/status/1132904286415929345">May 27, 2019</a></p>
 </section><section>
 <h2 id="what-if-a-project-is-not-using-tdd-since-the-very-beginning">What if a project is not using TDD since the very beginning?</h2>
@@ -1256,13 +1241,11 @@ which aims at testing the
 <ul>
 <li>the new test case <strong>prevents</strong> the issue from being <em>mistakenly re-introduced</em> <strong>again</strong></li>
 <li>develop the test case <em>before</em> the fix will help the <strong>debugging</strong> process</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 </section><section>
 <h2 id="testing-software-before-it-is-ready-_boundaries_">Testing software before it is ready: <em>boundaries</em></h2>
 <blockquote>
-<p><strong>Problem</strong>: how is it possible to test code that <em>does not exist</em>?</p>
-</blockquote>
+<p><strong>Problem</strong>: how is it possible to test code that <em>does not exist</em>?</p></blockquote>
 <ul>
 <li>More in general: how to design a testbed for an engineering product that is not prototypied yet?</li>
 </ul>
@@ -1308,18 +1291,16 @@ which aims at testing the
 </ul>
 <!-- ---
 
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/QMcj58TbsyU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/QMcj58TbsyU?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 
 ---
 
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/kchq9AGXsyA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kchq9AGXsyA?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
  -->
 </section><section>
 <h2 id="testing-software-before-it-is-ready-_test-doubles_">Testing software before it is ready: <em>test doubles</em></h2>
@@ -1362,8 +1343,7 @@ which aims at testing the
 </section><section>
 <h2 id="test-doubles-and-development-cost">Test doubles and development cost</h2>
 <blockquote>
-<p>Why should the team “waste” time creating doubles instead of just writing the thing?</p>
-</blockquote>
+<p>Why should the team “waste” time creating doubles instead of just writing the thing?</p></blockquote>
 <ul>
 <li>
 <p>doubles are <strong>cheaper</strong>: dedicated libraries make doubles <em>implementation extremely quick</em></p>
@@ -1584,8 +1564,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 <h2 id="quality-assurance-_syntactical-correctness_">Quality Assurance: <em>syntactical correctness</em></h2>
 <blockquote>
 <p><strong>Syntactical correctness</strong> is the <em>first</em> level of quality assurance:</p>
-<p>“Is the code <strong>well-formed</strong>, i.e. <em>readable</em> for a computer?</p>
-</blockquote>
+<p>“Is the code <strong>well-formed</strong>, i.e. <em>readable</em> for a computer?</p></blockquote>
 <ul>
 <li>
 <p>In <em>compiled</em> languages, the compiler checks for <em>syntactical correctness</em></p>
@@ -1738,8 +1717,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 </section><section>
 <h2 id="quality-assurance-violations-of-the-dry-principle">Quality Assurance: violations of the DRY principle</h2>
 <blockquote>
-<p><strong>DRY</strong>: <em>D</em>on’t <em>R</em>epeat <em>Y</em>ourself</p>
-</blockquote>
+<p><strong>DRY</strong>: <em>D</em>on’t <em>R</em>epeat <em>Y</em>ourself</p></blockquote>
 <ul>
 <li>
 <p>General advice: <strong>never copy-paste</strong> your code</p>
@@ -1868,7 +1846,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
 
-  var revealHugoPlugins = { 
+  var revealHugoPlugins = {
     plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
    };
   var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
@@ -1887,33 +1865,45 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 
 
 
+
+  
   
 
   
+  
 
+  
   
 
   
     
   
-
   
 
   
-
   
 
   
-
   
 
   
+  
 
+  
+  
+
+  
+  
+
+  
+  
+
+  
   
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
 
@@ -1936,6 +1926,8 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
     Reveal.on('slidechanged', render);
     Reveal.on('ready', render);
   </script>
+
+
 
     <script>
     MathJax = {

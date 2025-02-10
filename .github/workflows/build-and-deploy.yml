@@ -102,7 +102,7 @@ jobs:
           ref: gh-pages
       - name: Create version
         id: version-compute
-        run: echo "version=$(date +"%Y.%m.%d")" >> "$GITHUB_OUTPUT"
+        run: echo "version=$(date +'%Y.%m.%d-%H-%M')" >> "$GITHUB_OUTPUT"
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1.218.0
         with:

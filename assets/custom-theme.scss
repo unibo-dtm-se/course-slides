@@ -9,29 +9,30 @@
 // @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Ubuntu');
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans');
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans');
 
 // Serif
-@import url('https://fonts.googleapis.com/css2?family=Cinzel');
+// @import url('https://fonts.googleapis.com/css2?family=Cinzel');
 
 // Handwriting
 
 // @import url('https://fonts.googleapis.com/css2?family=Dancing+Script');
-@import url('https://fonts.googleapis.com/css2?family=Satisfy');
+// @import url('https://fonts.googleapis.com/css2?family=Satisfy');
 
 // Display
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One');
+// @import url('https://fonts.googleapis.com/css2?family=Fredoka+One');
 
 // Monospace
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono');
+// @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono');
 
 $backgroundColor: #fff;
-$mainColor: #000;
-$headingColor: #111;
 
-$mainFontSize: 2.5em;
+// $mainColor: #000;
+// $headingColor: #111;
+
+$mainFontSize: 2em;
 // $mainFont: 'Roboto', sans-serif;
 // $headingFont: 'Roboto', sans-serif;
 // $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
@@ -42,11 +43,14 @@ $mainFont: 'Signika Negative';
 $headingFont: 'Signika Negative';
 // $mainFont: 'Open Sans';
 // $headingFont: 'Open Sans';
+
 $headingLetterSpacing: normal;
 $headingFontWeight: 600;
 $linkColor: #2690e7;
 $linkColorHover: lighten( $linkColor, 25% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
+$detailBackgroundColor: #dae5e9;
+$logo: url("../example-background-neg.svg");
 
 $heading1Size: 2.5em;
 $heading2Size: 1.6em;
@@ -55,12 +59,14 @@ $heading4Size: 1.0em;
 
 @import "reveal-js/dist/theme/template/theme";
 
-// section.has-light-background {
-// 	&, h1, h2, h3, h4, h5, h6 {
-// 		color: #222;
-// 	}
-// }
+section.has-light-background {
+	$detailBackgroundColor: #bd2b0b !global;
+	$logo: url("../example-background.svg") !global;
 
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #222;
+	}
+}
 .reveal pre {
 	margin: 1em auto;
 }
@@ -68,16 +74,12 @@ $heading4Size: 1.0em;
 .reveal strong,
 .reveal b {
 	font-weight: bold;
-	color: #b81f0b
+	color: #0616cc
 }
 
 .reveal em {
 	font-style: italic;
 	color: #039418
-}
-
-.reveal p {
-	margin: .2em 0 .2em 0;
 }
 
 .reveal section img {
@@ -89,13 +91,9 @@ $heading4Size: 1.0em;
 	object-fit: contain;
 }
 
-.reveal pre code {
-	max-height: 45vh;
-}
-
 .reveal code {
 	color: rgb(209, 28, 124);
-	font-family: "Inconsolata", "JetBrains Mono", "Oxygen Mono", "Roboto Mono", "Ubuntu Mono", "Courier New", Courier, monospace;
+	font-family: "JetBrains Mono", "Oxygen Mono", "Roboto Mono", "Ubuntu Mono", "Courier New", Courier, monospace;
 	font-weight: bold;
 }
 
@@ -103,18 +101,38 @@ $heading4Size: 1.0em;
 	color: black;
 }
 
-.reveal h2 {
-	color: navy;
+// HEADERS
+
+.reveal h1 {
 	text-transform: none;
+}
+
+.reveal h2 {
+	text-transform: none;
+	margin-bottom: 1em;
 }
 
 .reveal h3 {
+	text-transform: none;
 	margin: .5em 0 0;
+}
+
+.reveal h4 {
 	text-transform: none;
 }
 
+// LISTS
+
 .reveal ul {
 	margin: .2em .2em .2em;
+}
+
+.reveal li li {
+	font-size: 80%;
+}
+
+.gist-it-gist .gist-file .gist-data pre, .gister-gist .gist-file .gist-data pre {
+	box-shadow: none !important;
 }
 
 // Nice blockquote and cite
@@ -122,25 +140,25 @@ $heading4Size: 1.0em;
 .reveal blockquote {
 	width:90%;
 	margin:0.3em auto;
-	font-family: 'Dancing Script';
+	font-family: 'Satisfy';
 	font-style: normal;
 	font-size: 1.2em;
-	color: #333333;
+	color: #303030;
 	padding:0.1em 0.1em 0.1em 0.1em;
-	border-color: #039418;
+	border-color: #757575;
 	border-style: solid;
 	border-width: 0.1em;
 	border-radius: 1em;
-	border-left:0.7em solid #039418 ;
+	border-left:0.7em solid #757575 ;
 	line-height: 1.2em;
 	position: relative;
-	background:#FAFAFA;
+	background:#EDEDED;
 	text-align: center;
 }
 
 .reveal blockquote::before{
 	font-family:Arial;
-	content: "\201C";
+	// content: "\201C";
 	color:#039418;
 	font-size: 4em;
 	position: absolute;
@@ -150,12 +168,12 @@ $heading4Size: 1.0em;
 
 .reveal blockquote p::before{
 	content: "";
-	padding-left: 2em;
+	padding-left: 1em;
 }
 
 .reveal blockquote::after{
 	font-family:Arial;
-	content: "\201D";
+	// content: "\201D";
 	color:#039418;
 	font-size: 4em;
 	position: absolute;
@@ -177,6 +195,10 @@ $heading4Size: 1.0em;
 	font-size: 0.7em;
 }
 
+.gist-it-gist .gist-file .gist-data pre, .gister-gist .gist-file .gist-data pre {
+	box-shadow: none !important;
+}
+
 // Mermaid graph resizing
 
 .mermaid svg {
@@ -184,45 +206,157 @@ $heading4Size: 1.0em;
 	max-height: 45vh !important;
 	height: 20%;
 	width: 100vw;
-	// transition: transform 0.3s ease;
-	// border-width: 0.1em;
-	// border-style: none;
+	transition: transform 0.3s ease;
+	font-weight: bold;
+	border-width: 0.1em;
+	border-style: none;
 }
 
-// Mermaid flowcharts as git graphs
 
-.mermaid .cluster.repo > rect {
-	stroke-width: 0.2em !important;
-	fill: ghostwhite !important;
-	stroke: gray !important;
-}
-.mermaid .remote > path {
-	stroke-width: 0.2em !important;
-	fill: rgb(253, 189, 253) !important;
-	stroke: rgb(170, 0, 255) !important;
-}
+// Keyboard keys
 
-.mermaid .head > polygon {
-	fill:#ff7274 !important;
-	stroke:#aa1d1f !important;
-	stroke-width: 0.2em !important;
-}
-
-.mermaid .branch > rect {
-	stroke-width: 0.2em !important;
-	fill: greenyellow !important;
-	stroke: green !important;
+kbd {
+  display: inline-block;
+  min-width: 1em;
+  text-align: center;
+  padding: 0.1em 0.4em;
+  font-size: 0.8em;
+  margin-left: 0.1em;
+  margin-right: 0.2em;
+  color: $mainColor;
+  background-color: $backgroundColor;
+  border-radius: 0.2em;
+  border-style: solid;
+  border-width: 0.1em;
+  box-shadow: 0 0 0.1em $mainColor, 0.1em 0.1em 0em $mainColor;
+  font-family: 'Inconsolata';
+  font-weight: normal;
 }
 
-.mermaid .commit > rect {
-	fill: white !important;
-	stroke:#333 !important;
-	stroke-width: 0.2em !important;
+.green {
+	color: rgb(0, 255, 0);
 }
 
-.mermaid .tag > polygon {
-	fill: cyan !important;
-	stroke: blue !important;
-	stroke-width: 0.2em !important;
+.red {
+	color: red;
 }
 
+.white {
+	color: white;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+}
+
+.hint {
+	font-size: 0.4em;
+	color: gray;
+}
+
+.reveal .slide-background {
+	background-color: $backgroundColor;
+	background-image: $logo;
+	background-repeat: no-repeat;
+	background-position: 0.45% 99.2%;
+	background-size: 15%;
+	background-clip: border-box;
+	// border-radius: 30px;
+	// border-style: solid;
+	// border-color: $detailBackgroundColor;
+	// border-width: 0.3em;
+}
+
+.reveal .slide-background:after {
+	content: "G. Ciatto — \"Software Engineering @ DTM\"";
+	position: absolute;
+	bottom: 2.5%;
+	right: 6%;
+	z-index: -1;
+	color: $detailBackgroundColor;
+	font-size: .4em;
+  }
+
+
+// Multicolumn styling
+
+.reveal div.col {
+	// draw a red border
+	// border: 1px solid red;
+	text-align: left;
+	// border: .2em dashed $detailBackgroundColor;
+	// border-style: double;
+	// border-radius: 1em;
+	padding: 0.5em;
+}
+
+.reveal div.container {
+	// border: 1px solid red;
+	align-self: center;
+	min-width: 90%;
+	margin-right: 5%;
+	margin-left: 5%;
+	margin-top: 1em;
+}
+
+@-webkit-keyframes blur-animation {
+  0% {
+    -webkit-filter: blur(0px) ;
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+
+  }
+  100% {
+    -webkit-filter: blur(4px) saturate(.5) brightness(.8);
+    -moz-filter: blur(5px) saturate(.7) brightness(.9);
+    -o-filter: blur(5px) saturate(.7) brightness(.9);
+    -ms-filter: blur(5px)saturate(.7) brightness(.9);
+    filter: blur(6px) saturate(1) brightness(.2);
+  }
+}
+
+html.blur-animation .backgrounds {
+   -webkit-animation-name: blur-animation;
+   -webkit-animation-duration: 1s;
+   -webkit-animation-iteration-count: 1;
+   -webkit-animation-direction: alternate;
+   -webkit-animation-timing-function: ease-out;
+   -webkit-animation-fill-mode: forwards;
+   -webkit-animation-delay: 0s;
+ }
+
+ @-webkit-keyframes blur-animation-light {
+  0% {
+    -webkit-filter: blur(0px) ;
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+
+  }
+  100% {
+    -webkit-filter: blur(6px) contrast(0.5) saturate(3) brightness(2) contrast(0.5) brightness(1.3) ;
+    -moz-filter: blur(6px) contrast(0.5) saturate(3) brightness(2) contrast(0.5) brightness(1.3) ;
+    -o-filter: blur(6px) contrast(0.5) saturate(3) brightness(2) contrast(0.5) brightness(1.3) ;
+    -ms-filter: blur(6px) contrast(0.5) saturate(3) brightness(2) contrast(0.5) brightness(1.3) ;
+    filter: blur(6px) contrast(0.5) saturate(3) brightness(2) contrast(0.5) brightness(1.3) ;
+  }
+}
+
+html.blur-animation-light .backgrounds {
+	color: #039418;
+   -webkit-animation-name: blur-animation-light;
+   -webkit-animation-duration: 1s;
+   -webkit-animation-iteration-count: 1;
+   -webkit-animation-direction: alternate;
+   -webkit-animation-timing-function: ease-out;
+   -webkit-animation-fill-mode: forwards;
+   -webkit-animation-delay: 0s;
+ }

@@ -963,8 +963,332 @@ print(c.compute_result()) # 4.0 + i6.0
 
 # Advanced OOP Topics
 
+- __Operator Overloading__ to support _arithmetic_ and _comparison_ operations
+- __Static__ vs. __Class__ vs. __Instance__ methods (vs. __Module__ functions)
 - __Inheritance__ to support _re-use_ and _specialization_ of classes
 - __Polymorphism__ to support _flexibility_ and _encapsulation_
+
+---
+
+## Operator Overloading
+
+- When creating _your own data types_ (i.e. classes, in Python), you can define how they _behave_ with __arithmetic operators__
+    + e.g., you already did that, by defining the `__eq__` method for the `Complex` class to support the `==` operator
+
+- Redefining the behavior of an operator for a class is called __operator overloading__
+    + e.g., you can define the `+` operator for the `Complex` class to support the addition of two complex numbers
+
+- Notice that you _cannot_ add _new_ operators to the language, but just __redefine__ the behavior of the _existing_ operators
+
+- Not all programming languages support operator overloading, and the ones who do it, do it with different _syntaxes_, yet the idea is similar
+    + in Python, operator overloading is supported by _magic methods_ to be implemented in the class definition
+
+> __Beware__: when reading code in a language which supports operator overloading, you should _not_ assume that you know what an operator does, unless you know the _types_ of the operands, and have __read the documentation__ of those types
+
+---
+
+## Operator Overloading in Python (pt. 1)
+
+Python supports operator overloading via _magic methods_
+<br> (complete specification here: <https://docs.python.org/3/reference/datamodel.html#special-method-names>)
+
+{{% multicol %}}
+{{% col %}}
+- `+` $\leftrightarrow$ `def __add__(self, other)`
+    * `a + b` $\leftrightarrow$ `a.__add__(b)`
+
+- `-` $\leftrightarrow$ `def __sub__(self, other)`
+    * `a - b` $\leftrightarrow$ `a.__sub__(b)`
+
+- `*` $\leftrightarrow$ `def __mul__(self, other)`
+    * `a * b` $\leftrightarrow$ `a.__mul__(b)`
+
+- `/` $\leftrightarrow$ `def __truediv__(self, other)`
+    * `a / b` $\leftrightarrow$ `a.__truediv__(b)`
+
+- `//` $\leftrightarrow$ `def __floordiv__(self, other)`
+    * `a // b` $\leftrightarrow$ `a.__floordiv__(b)`
+
+- `%` $\leftrightarrow$ `def __mod__(self, other)`
+    * `a % b` $\leftrightarrow$ `a.__mod__(b)`
+{{% /col %}}
+{{% col %}}
+- `==` $\leftrightarrow$ `def __eq__(self, other)`
+    * `a == b` $\leftrightarrow$ `a.__eq__(b)`
+
+- `!=` $\leftrightarrow$ `def __ne__(self, other)`
+    * `a != b` $\leftrightarrow$ `a.__ne__(b)`
+
+- `<` $\leftrightarrow$ `def __lt__(self, other)`
+    * `a < b` $\leftrightarrow$ `a.__lt__(b)`
+
+- `<=` $\leftrightarrow$ `def __le__(self, other)`
+    * `a <= b` $\leftrightarrow$ `a.__le__(b)`
+
+- `>` $\leftrightarrow$ `def __gt__(self, other)`
+    * `a > b` $\leftrightarrow$ `a.__gt__(b)`
+
+- `>=` $\leftrightarrow$ `def __ge__(self, other)`
+    * `a >= b` $\leftrightarrow$ `a.__ge__(b)`
+
+- `**` $\leftrightarrow$ `def __pow__(self, other)`
+    * `a ** b` $\leftrightarrow$ `a.__pow__(b)`
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Operator Overloading in Python (pt. 2)
+
+Python supports operator overloading via _magic methods_
+<br> (complete specification here: <https://docs.python.org/3/reference/datamodel.html#special-method-names>)
+
+
+{{% multicol %}}
+{{% col %}}
+- `&` $\leftrightarrow$ `def __and__(self, other)`
+    * `a & b` $\leftrightarrow$ `a.__and__(b)`
+
+- `|` $\leftrightarrow$ `def __or__(self, other)`
+    * `a | b` $\leftrightarrow$ `a.__or__(b)`
+
+- `^` $\leftrightarrow$ `def __xor__(self, other)`
+    * `a ^ b` $\leftrightarrow$ `a.__xor__(b)`
+
+- `<<` $\leftrightarrow$ `def __lshift__(self, other)`
+    * `a << b` $\leftrightarrow$ `a.__lshift__(b)`
+
+- `>>` $\leftrightarrow$ `def __rshift__(self, other)`
+    * `a >> b` $\leftrightarrow$ `a.__rshift__(b)`
+
+- `~` $\leftrightarrow$ `def __invert__(self)`
+    * `~a` $\leftrightarrow$ `a.__invert__()`
+
+{{% /col %}}
+{{% col %}}
+- Get item $\leftrightarrow$ `def __getitem__(self, i)`
+    * `a[i]` $\leftrightarrow$ `a.__getitem__(i)`
+
+- Set item $\leftrightarrow$ `def __setitem__(self, i, x)`
+    * `a[i] = x` $\leftrightarrow$ `a.__setitem__(i, x)`
+
+- Del item $\leftrightarrow$ `def __delitem__(self, i)`
+    * `del a[i]` $\leftrightarrow$ `a.__delitem__(i)`
+
+- Length $\leftrightarrow$ `def __len__(self)`
+    * `len(a)` $\leftrightarrow$ `a.__len__()`
+
+- Contains $\leftrightarrow$ `def __contains__(self, x)`
+    * `x in a` $\leftrightarrow$ `a.__contains__(x)`
+
+- Unary `-` $\leftrightarrow$ `def __neg__(self)`
+    * `-a` $\leftrightarrow$ `a.__neg__()`
+
+- Unary `+` $\leftrightarrow$ `def __pos__(self)`
+    * `+a` $\leftrightarrow$ `a.__pos__()`
+{{% /col %}}
+
+{{% /multicol %}}
+
+---
+
+## Example: 2D Points in Python
+
+```python
+class Point2D:
+    def __init__(self, x, y):
+        self.x = float(x)
+        self.y = float(y)
+        
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+    
+    def __repr__(self):
+        return f"Point2D({self.x}, {self.y})"
+    
+    def __eq__(self, other):  # equality: p1 == p2
+        return other is not None and all(hasattr(a, other) for a in ['x', 'y']) and self.x == other.x and self.y == other.y
+    
+    def __hash__(self):
+        return hash((self.x, self.y))
+
+    def __abs__(self): # magnitude: abs(p)
+        return math.sqrt(self.x ** 2 + self.y ** 2)
+
+    def __neg__(self): # negation: -p
+        return Point2D(-self.x, -self.y)
+    
+    def __add__(self, other) -> 'Point2D': # addition: p1 + p2
+        if not isinstance(other, Point2D):
+            other = Point2D(other, other) # if other is a scalar, convert it to a point of equal coordinates
+        return Point2D(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other) -> 'Point2D': # subtraction: p1 - p2
+        return self + (-other) # implemented via addition and negation
+    
+    def __mul__(self, other): # multiplication: p1 * p2 or p1 * s
+        if isinstance(other, Point2D):
+            return self.x * other.x + self.y * other.y # dot product
+        return Point2D(self.x * other, self.y * other) # scalar product
+    
+    def __truediv__(self, other: float) -> 'Point2D': # division: p1 / s
+        return self * (1 / other) # implemented via multiplication
+
+    def distance(self, other: 'Point2D') -> float:
+        return abs(self - other) # implemented via subtraction and magnitude
+    
+    def angle(self, other: 'Point2D') -> float:
+        diff = other - self
+        return math.atan2(diff.y, diff.x) # requires import math
+```
+
+### Usage
+
+```python
+p1 = Point2D(1, 2)
+p2 = Point2D(3, 4)
+
+print(p1 + p2)         # (4.0, 6.0)
+print(p1 - p2)         # (-2.0, -2.0)
+print(p1 * p2)         # 11.0
+print(p1 * 2)          # (2.0, 4.0)
+print(p1 / 2)          # (0.5, 1.0)
+print(p1.distance(p2)) # 2.8284271247461903
+print(p1.angle(p2))    # 0.7853981633974483
+```
+
+---
+
+## Static vs. Class vs. Instance Methods vs. Module Functions (pt. 1)
+
+- So far, functions written inside classes were related to the _instances_ of the class
+    + they are called "instance" methods are they are called on and for the instances, and they had the `self` parameter
+
+        ```python
+        class MyClass:
+            def instance_method(self, formal_arg):
+                ...
+        
+        obj = MyClass()
+        obj.instance_method("actual arg")
+        # notice that the function is called on **an instance** of the class
+        ```
+
+- One may also define __static__ methods, which are _not_ related to the _instances_ of the class
+    + they are called "static" methods as they work the same for all instances, 
+    + they are tagged by the `@staticmethod` decorator
+    + they do _not_ have the `self` parameter
+
+        ```python
+        class MyClass:
+            @staticmethod
+            def static_method(formal_arg): # notice the lack of the `self` parameter
+                ...
+        
+        MyClass.static_method("actual arg")
+        # notice that the function is called on **the class itself**
+        ```
+
+---
+
+## Static vs. Class vs. Instance Methods vs. Module Functions (pt. 2)
+
+- One may also define __class__ methods, which are like static methods, but they have a reference to the class itself
+    + they are tagged by the `@classmethod` decorator
+    + they have the `cls` parameter, which is a reference to the class itself
+
+        ```python
+        class MyClass:
+            @classmethod
+            def class_method_1(cls, formal_arg): # notice the `cls` parameter
+                ...
+            
+            @classmethod
+            def class_method_2(cls, formal_arg): # notice the `cls` parameter
+                return cls.class_method_1(formal_arg) # the cls parameter is usefull to call other class methods
+        
+        MyClass.class_method_2("actual arg")
+        # notice that the function is called on **the class itself**, as if it were a static method
+        ```
+
+- One may also define __module__ functions, which are _not_ related to any class
+    + they are just functions defined in a module, _not_ inside a class
+    + they are called "module" functions as they are defined at the module level
+
+        ```python
+        class MyClass:
+            ...
+
+        def module_function(arg: MyClass):
+            ...
+        
+        module_function(MyClass())
+        # notice that the function is called with no prefix
+        # notice that the function can still use classes defined above them as data types
+        ```
+
+--- 
+
+## Where to put the function/method?
+
+1. If a function operates at the _instance_ level, and it is generally potentially useful for each instance, it should be an _instance_ method
+    + this is automatically true if the functionality can be provided by some magic method
+        * e.g. string conversion, equality, hashing, arithmetic operations, etc.
+
+2. If the function involves a _variable amount of instances_ of a class _at once_, it should be a _static_ method
+    + e.g. getting the center of a bunch of points, or the average of a bunch of complex number, etc.
+
+3. If the function could be static, but it needs to use other class methods, it should be a _class_ method
+    + e.g. a class method that calls another class method, or a class method that creates an instance of the class, etc.
+
+4. If the function uses the class to do something which is not general, but application specific, it could be a _module_ function
+    + e.g. a function accepts $N$ points to create a polygon
+    + in this case, you may also consider to design another class to encapsulate the functionality
+
+---
+
+## Example: Ordering 2D Points Anti-Clockwise w.r.t. their Centroid (pt. 1)
+
+![](./centroid.svg)
+
+This can be supported via 2 class functions:
+- `Point2D.centroid(points: list[Point2D]) -> Point2D`: computes the centroid of a list of points
+- `Point2D.sort_anti_clockwise(points: list[Point2D]) -> list[Point2D]`: orders a list of points anti-clockwise w.r.t. their centroid
+
+---
+
+## Example: Ordering 2D Points Anti-Clockwise w.r.t. their Centroid (pt. 2)
+
+```python
+class Point2D:
+    # rest of the class is unchanged
+
+    @staticmethod
+    def centroid(points: list['Point2D']) -> 'Point2D':
+        return sum(points, Point2D(0, 0)) / len(points)
+
+    @classmethod
+    def sort_anti_clockwise(cls, points: list['Point2D']) -> list['Point2D']:
+        centroid = cls.centroid(points)
+        def angle_wrt_center(p):
+            return (p - centroid).angle(Point2D(1, 0))
+        points = list(points)
+        points.sort(key=angle_wrt_center)
+        return points
+```
+
+### Usage
+
+```python
+triangle = [Point2D(1, -1), Point2D(-1, -1), Point2D(0, 1)]
+print(Point2D.centroid(triangle))             # (0.0, -0.3333333333333333)
+print(Point2D.sort_anti_clockwise(triangle))  # [Point2D(0.0, 1.0), Point2D(-1.0, -1.0), Point2D(1.0, -1.0)]
+
+rectangle = [Point2D(-2, 1), Point2D(2, 1)]
+rectangle = rectangle + [-p for p in rectangle]
+print(Point2D.centroid(rectangle))            # (0.0, 0.0)
+print(Point2D.sort_anti_clockwise(rectangle)) # [Point2D(2.0, 1.0), Point2D(-2.0, 1.0), Point2D(-2.0, -1.0), Point2D(2.0, -1.0)]
+```
 
 ---
 
@@ -1156,7 +1480,6 @@ class Crocodile(Animal):
 
 ## Dummy Example: The `Animal` Class Hierarchy (v. 3)
 
-
 ```python
 class Animal:
     def __init__(self, name: str, sound: str):
@@ -1208,3 +1531,11 @@ class Crocodile(Animal):
 
 ---
 
+{{% section %}}
+
+## Another example: The `Shape` Class Hierarchy (pt. 1)
+
+- 
+
+
+{{% /section %}}

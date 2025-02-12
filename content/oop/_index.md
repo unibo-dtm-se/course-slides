@@ -41,12 +41,12 @@ outputs = ["Reveal"]
 
 ## Three dimensions of software design
 
-- **Structure**: how is the software _organised_? how is _information_ organized?
-- **Behaviour**: what does the software _do_? how does it transform _data_?
-- **Interaction**: how/when do different pieces of software _communicate_ to _cooperate_? 
+- **Structure**: how is the software _organised_ (decomposed) into _components_? how is _information_ encoded into _data_?
+- **Behaviour**: what does each component _do_? how does it transform _data_ (from input to output)?
+- **Interaction**: how/when do the many software components _communicate_ or _cooperate_ to form a system? 
 
 {{% fragment %}}
-> OOP nicely addresses all three dimensions
+> OOP nicely addresses all three dimensions for non-distributed systems
 {{% /fragment %}}
 
 ---
@@ -1535,7 +1535,536 @@ class Crocodile(Animal):
 
 ## Another example: The `Shape` Class Hierarchy (pt. 1)
 
-- 
+- A `Shape` is a geometric figure, characterized by its _surface_ and _perimeter_
+    * both _surface_ and _perimeter_ are __scalar values__ (i.e. `float`), but how to compute them depends on the _shape_ itself
 
+- A `Circle` is a particular case of `Shape` characterized by its _center_ and _radius_
+    * the _center_ is a `Point2D`, the _radius_ is a `float`
+    * the _surface_ of a circle is $\pi r^2$, the _perimeter_ is $2 \pi r$
+
+- A `Polygon` is a particular case of `Shape` characterized by its _vertices_
+    * the vertices are a _list_ of `Point2D` instances, in _anti-clockwise_ order
+
+- A `Triangle` is a particular case of `Polygon` characterized by having _3 vertices_
+    * we may name the edges as `a`, `b`, `c`
+    * the _surface_ of a triangle is computed via the [Heron's formula](https://en.wikipedia.org/wiki/Heron%27s_formula)
+    * the _perimeter_ of a triangle is the _sum_ of the _lengths_ of its sides
+
+- A `Rectangle` is a particular case of `Polygon` characterized by having _4 vertices_ which are _pairwise aligned_
+    * the vertices can be labelled as: `bottom_left`, `bottom_right`, `top_left`, `top_right`
+    * a rectangle would also have a `width` and a `height`, which can be computed from the vertices
+    * the _surface_ of a rectangle is the _product_ of its `width` and `height`
+    * the _perimeter_ of a rectangle is twice the _sum_ of its `width` and `height`
+
+- A `Square` is a particular case of `Rectangle` characterized by having _equal_ `width` and `height`
+    * _surface_ and _perimeter_ are computed the same way as for a `Rectangle`
+
+---
+
+## Another example: The `Shape` Class Hierarchy (pt. 2)
+
+```python
+class Shape:
+    def surface(self) -> float:
+        raise NotImplementedError()
+
+    def perimeter(self) -> float:
+        raise NotImplementedError()
+    
+
+class Circle(Shape):
+    def __init__(self, center: Point2D, radius: float):
+        self.center = center
+        self.radius = float(radius)
+        
+    def surface(self) -> float:
+        return math.pi * self.radius ** 2
+    
+    def perimeter(self) -> float:
+        return 2 * math.pi * self.radius
+    
+    def __repr__(self):
+        return f"Circle(center={self.center}, radius={self.radius})"
+    
+    def __eq__(self, other):
+        return isinstance(other, Circle) and self.center == other.center and self.radius == other.radius
+
+    def __hash__(self):
+        return hash((self.center, self.radius))
+    
+
+class Polygon(Shape):
+    def __init__(self, points: list):
+        self.vertices = tuple(point if isinstance(point, Point2D) else Point2D(*point) for point in points)
+        if len(self.vertices) < 3:
+            raise ValueError("A polygon must have at least 3 vertices")
+    
+    def __repr__(self):
+        return f"Polygon(vertices=[{', '.join(str(p) for p in self.vertices)}])"
+    
+    def __eq__(self, other):
+        return isinstance(other, Polygon) and self.vertices == other.vertices
+    
+    def __hash__(self):
+        return hash(self.vertices)
+    
+
+class Triangle(Polygon):
+    def __init__(self, fst: Point2D, snd: Point2D, trd: Point2D):
+        super().__init__(Point2D.sort_anti_clockwise([fst, snd, trd]))
+
+    @property
+    def a(self):
+        fst, snd = self.vertices[:2]
+        return fst.distance(snd)
+    
+    @property
+    def b(self):
+        snd, trd = self.vertices[1:]
+        return snd.distance(trd)
+    
+    @property
+    def c(self):
+        fst, trd = self.vertices[::2]
+        return fst.distance(trd)
+        
+    def __repr__(self):
+        return super().__repr__().replace("Polygon", "Triangle")
+    
+    def perimeter(self):
+        return self.a + self.b + self.c
+    
+    def surface(self):
+        # cf. https://en.wikipedia.org/wiki/Heron%27s_formula
+        p = self.perimeter() / 2
+        return math.sqrt(p * (p - self.a) * (p - self.b) * (p - self.c))
+
+
+class Rectangle(Polygon):
+    def __init__(self, a: Point2D, b: Point2D):
+        bl = Point2D(min(a.x, b.x), min(a.y, b.y))
+        tr = Point2D(max(a.x, b.x), max(a.y, b.y))
+        super().__init__([bl, Point2D(tr.x, bl.y), tr, Point2D(bl.x, tr.y)])
+
+    @property
+    def bottom_left(self):
+        return self.vertices[0]
+    
+    @property
+    def bottom_right(self):
+        return self.vertices[1]
+    
+    @property
+    def top_right(self):
+        return self.vertices[2]
+    
+    @property
+    def top_left(self):
+        return self.vertices[3]
+    
+    @property
+    def width(self):
+        return self.top_right.x - self.bottom_left.x
+    
+    @property
+    def height(self):
+        return self.top_right.y - self.bottom_left.y
+    
+    def __repr__(self):
+        return f"Rectangle(bottom_left={self.bottom_left}, top_right={self.top_right})"
+    
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+    
+    def surface(self):
+        return self.width * self.height
+    
+
+class Square(Rectangle):
+    def __init__(self, corner: Point2D, side: float):
+        super().__init__(corner, corner + side)
+    
+    def __repr__(self):
+        return f"Square(bottom_left={self.bottom_left}, top_right={self.top_right})"
+
+    @property
+    def side(self):
+        return self.width
+```
+
+### Usage
+
+```python
+c = Circle(Point2D(1, 1), 2)
+print(c, c.surface(), c.perimeter()) 
+# should print: Circle(center=(1.0, 1.0), radius=2.0) 12.566370614359172 12.566370614359172
+
+t = Triangle(Point2D(1, -1), Point2D(-1, -1), Point2D(0, 1))
+print(t, t.surface(), t.perimeter()) 
+# should print: Triangle(vertices=[(0.0, 1.0), (-1.0, -1.0), (1.0, -1.0)]) 2.0 6.47213595499958
+
+r = Rectangle(Point2D(2, -1), Point2D(-2, 1))
+print(r, r.surface(), r.perimeter()) 
+# should print: Rectangle(bottom_left=(-2.0, -1.0), top_right=(2.0, 1.0)) 8.0 12.0
+
+s = Square(Point2D(-1, -1), 2)
+print(s, s.surface(), s.perimeter()) 
+# should print: Square(bottom_left=(-1.0, -1.0), top_right=(1.0, 1.0)) 4.0 8.0
+```
+
+---
+
+## Another example: The `Shape` Class Hierarchy (pt. 3)
+
+- We may write even less code:
+    * there exist a formula to compute the _surface_ of a `Polygon` given its _vertices_ (cf. [Shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula))
+    * there exist a formula to compute the _perimeter_ of a `Polygon` given its _vertices_ (just sum up the lengths of the edges) 
+
+- We may implement the `surface` and `perimeter` methods in the `Polygon` class
+    + so that they do not need to be re-implemented in each sub-class
+
+```python
+class Shape: # unchanged
+
+class Circle(Shape): # unchanged
+
+class Polygon(Shape):
+    # rest of the class is unchanged
+
+    def perimeter(self) -> float:
+        result = self.vertices[-1].distance(self.vertices[0])
+        for i in range(1, len(self.vertices)):
+            result += self.vertices[i - 1].distance(self.vertices[i])
+        return result
+    
+    def surface(self) -> float:
+        result = 0
+        for i in range(len(self.vertices)):
+            current = self.vertices[i]
+            next = self.vertices[(i + 1) % len(self.vertices)]
+            result += abs(current.y + next.y) * abs(current.x - next.x)
+        return result / 2
+
+class Triangle(Polygon): 
+    # no need to re-implement the surface and perimeter methods
+
+class Rectangle(Polygon):
+    # no need to re-implement the surface and perimeter methods
+
+class Square(Rectangle):
+    # no need to re-implement the surface and perimeter methods
+```
+
+(the usage example should work exactly as in the previous slide)
 
 {{% /section %}}
+
+---
+
+## Polymorphism 
+
+(cf. <https://en.wikipedia.org/wiki/Polymorphism_(computer_science)>)
+
+> [In programming languages __theory__] The use of _one_ symbol to represent multiple different types
+
+> [In __OOP__] The provisioning of a single _interface_ to for using different _data types_ in the same way
+- this allows to clearly __separate__ _interfaces_ ("what" the software should do) from _implementations_ ("how" how to do it)
+   * which is useful, because there are often _multiple_ ways to do the same thing, which may be _better suited_ for different contexts
+- this is yet another way by which OOP supports _information hiding_
+- this technically builds on top of _inheritance_
+
+---
+
+## Why do we need to separate _interfaces_ from _implementations_?
+
+> Put simply, _interfaces_ are _abstract_, _general_, and __stable__; 
+> <br> whereas _implementations_ are _concrete_, use-case _specific_, and subject to _change_
+
+### Examples
+
+- The _steering wheel_, _accelerator_, and _brake_ are the same in both _gasoline_ and _electric_ cars, but the engine is different
+- Complex numbers may come in the _polar_ or _Cartesian_ form, but the _arithmetic operations_ available are the _same_
+- There are hundreds of _network hardware_/software devices, but most developers only need to study a few _networking protocols_ (e.g. TCP)
+- There are many ways to sort a list, but you only need to know the `sort` method of the `list` class
+    + the day one new super-quick algorithm is invented, Python implementers will change the `sort` method, but your code will still work
+
+---
+
+{{% section %}}
+
+## Example: Separating the _interface_ from the _implementation_ (pt.1)
+
+### Interface
+
+```python
+class Complex:
+    @property
+    def re(self) -> float: ... # a read-only property to get the real part
+
+    @property
+    def im(self) -> float: ... # a read-only property to get the imaginary part
+
+    @property
+    def modulus(self) -> float: ... # a read-only property to get the modulus
+
+    @property
+    def phase(self) -> float: ... # a read-only property to get the phase
+
+    def to_polar(self) -> "Complex": ... # a method to convert to polar form
+    
+    def to_cartesian(self) -> "Complex": ... # a method to convert to Cartesian form
+    
+    def conjugate(self) -> "Complex": ... # a method to get the conjugate
+
+    def __add__(self, other: "Complex") -> "Complex":  ... # addition
+    
+    def __neg__(self) -> "Complex": ... # negation
+    
+    def __sub__(self, other: "Complex") -> "Complex": ... # subtraction
+
+    def __mul__(self, other: "Complex") -> "Complex": ... # multiplication
+    
+    def __truediv__(self, other: "Complex") -> "Complex": ... # division
+    
+    def __abs__(self) -> float: # magnitude
+    
+    @classmethod
+    def polar(cls, modulus: float, phase: float) -> "Complex": ... # class method to create a polar complex number
+
+    @classmethod
+    def cartesian(cls, modulus: float, phase: float) -> "Complex": ... # class method to create a Cartesian complex number
+    
+    def __eq__(self, other): ... # equality
+
+    def __hash__(self): ... # hashing
+    
+    def __repr__(self): ... # string representation
+```
+
+### The interface is all we need to know how to use the type
+
+```python
+z = Complex.polar(2, math.pi / 4)
+print(z)                 # 2.0 * e^i0.7853981633974483
+print(z.modulus)         # 2.0
+print(z.phase)           # 0.7853981633974483
+print(z.to_cartesian())  # 1.4142135623730951 + i1.4142135623730951
+print(z.re)              # 1.4142135623730951
+print(z.im)              # 1.4142135623730951
+print(z is z.to_polar()) # True
+print(z.conjugate())     # 1.4142135623730951 - i1.4142135623730951
+print(z + z)             # 2.8284271247461903 + i2.8284271247461903
+print(z - z)             # 0.0
+print(z * z)             # 4.0 * e^i1.5707963267948966
+print(z / z)             # 1.0
+print(abs(z))            # 2.0
+print(z + z == z * Complex.cartesian(2, 0)) # True
+```
+
+---
+
+## Example: Separating the _interface_ from the _implementation_ (pt.2)
+
+### Implementation (Base Class)
+
+```python
+class Complex:
+    def __init__(self, fst: float, snd: float):  # constructor accepts two scalar coordinates...
+        self.__coords = (float(fst), float(snd)) # ... to be memorized in the __coords field
+
+    @property
+    def re(self) -> float: # read-only property to get the first coordinate
+        return self.__coords[0] # (good for Cartesian class, to be overridden in the Polar class)
+
+    @property
+    def im(self) -> float: # read-only property to get the second coordinate
+        return self.__coords[1] # (good for Cartesian class, to be overridden in the Polar class)
+
+    @property
+    def modulus(self) -> float: # read-only property to get the modulus
+        return self.__coords[0] # (good for Polar class, to be overridden in the Cartesian class)
+
+    @property
+    def phase(self) -> float: # read-only property to get the phase
+        return self.__coords[1] # (good for Polar class, to be overridden in the Cartesian class)
+
+    def to_polar(self) -> "Complex": 
+        return self # (good for Polar class, to be overridden in the Cartesian class)
+    
+    def to_cartesian(self) -> "Complex": 
+        return self # (good for Cartesian class, to be overridden in the Polar class)
+
+    # subsequent methods are good for both implementations and can be inherited with no change
+    
+    def conjugate(self) -> "Complex": 
+        return self.cartesian(self.re, -self.im)
+
+    def __add__(self, other: "Complex") -> "Complex": 
+        return self.cartesian(self.re + other.re, self.im + other.im)
+    
+    def __neg__(self) -> "Complex": 
+        return self.cartesian(-self.re, -self.im)
+    
+    def __sub__(self, other: "Complex") -> "Complex": 
+        return self + (-other)
+
+    def __mul__(self, other: "Complex") -> "Complex": 
+        return self.polar(self.modulus * other.modulus, self.phase + other.phase)
+    
+    def __truediv__(self, other: "Complex") -> "Complex": 
+        return self.polar(self.modulus / other.modulus, self.phase - other.phase)
+    
+    def __abs__(self) -> float: 
+        return self.modulus
+    
+    @classmethod
+    def polar(cls, modulus: float, phase: float) -> "Complex":
+        return PolarComplex(modulus, phase)
+
+    @classmethod
+    def cartesian(cls, modulus: float, phase: float) -> "Complex": 
+        return CartesianComplex(modulus, phase)
+    
+    def __eq__(self, other):
+        return isinstance(other, Complex) and \
+            ((self.re == other.re and self.im == other.im) or \
+            (self.modulus == other.modulus and self.phase == other.phase))
+
+    def __hash__(self):
+        return hash(self.__coords)
+    
+    def __repr__(self): # represents as string which reports the name of the base class and the coordinates
+        return f"{type(self).__name__}({', '.join(str(c) for c in self.__coords)})"
+```
+
+### Implementation (Derived Classes)
+
+{{% multicol %}}
+{{% col class="col-6" %}}
+```python
+class CartesianComplex(Complex):
+    def __init__(self, re: float, im: float): # constructor accepts two scalar coordinates...
+        super().__init__(re, im)              # ... to be interpreted as Cartesian coordinates
+
+    @property
+    def modulus(self) -> float: # overrides the modulus property
+        return math.hypot(self.re, self.im) # computes the modulus from the coordinates
+
+    @property
+    def phase(self) -> float: # overrides the phase property
+        return math.atan2(self.im, self.re) # computes the phase from the coordinates
+    
+    def to_polar(self):
+        self.polar(self.modulus, self.phase) # converts to polar form
+
+    def __str__(self): # represents as string in the Cartesian form
+        sign = '+' if self.im >= 0.0 else '-'
+        im = abs(self.im)
+        im = str(im) if im != 1.0 else ""
+        return f"{self.re} {sign} i{im}" if self.im != 0.0 else str(self.re)
+```
+{{% /col %}}
+{{% col class="col-6" %}}
+```python
+class PolarComplex(Complex):
+    @staticmethod
+    def __normalize_angle(angle: float) -> float: # normalizes the angle to the [-pi, pi] range
+        return (angle + math.pi) % (2 * math.pi) - math.pi
+
+    def __init__(self, modulus: float, phase: float): # constructor accepts two scalar coordinates...
+        phase = PolarComplex.__normalize_angle(phase)
+        super().__init__(modulus, phase)              # ... to be interpreted as polar coordinates
+
+    @property
+    def re(self) -> float: # overrides the re property
+        return self.modulus * math.cos(self.phase) # computes the real part from the coordinates
+
+    @property
+    def im(self) -> float: # overrides the im property
+        return self.modulus * math.cos(self.phase) # computes the imaginary part from the coordinates
+    
+    def to_cartesian(self):
+        return self.cartesian(self.re, self.im) # converts to Cartesian form
+    
+    def __str__(self): # represents as string in exponential notation
+        sign = '' if self.phase >= 0.0 else '-'
+        return f"{self.modulus} * e^{sign}i{abs(self.phase)}" if self.phase != 0.0 else str(self.modulus)
+```
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Example: Separating the _interface_ from the _implementation_ (pt.3)
+
+### Rationale
+
+> __Interface__ $\approx$ type _name_ + _public attributes_' signatures (i.e. _names_ + _types_ or formal arguments) 
+
+1. We first design an _interface_ that is good for _all_ relevant _use cases_
+    + here we put all _common attributes_ that we can foresee will be shared by _all_ implementations
+    + just focus on their _name_, _purpose_, and _type_
+    + e.g.: `Complex` has 
+        1. `re`, `im`, `modulus`, `phase` read-only _properties_
+        2. _arithmetic operations_, supported via magic methods (`+`, `-`, `*`, `/`, etc.), plus the `conjugate` one
+        3. equality, hashing, and string representation 
+        4. methods to _convert_ back and forth between _Cartesian_ and _polar_ forms (`to_polar()` and `to_cartesian()`)
+        5. class methods to _create_ instances from _Cartesian_ and _polar_ coordinates (`Complex.polar()` and `Complex.cartesian()`)
+
+2. We then identify all potential implementations:
+    1. `PolarComplex`: which implements the _polar_ form of a complex number
+        - it is good for _multiplications_ and _divisions_
+        - it only memorizes the _modulus_ and the _phase_ of the complex number (computing the _real_ and _imaginary_ parts on-the-fly)
+        - represents the complex number in _exponential_ notation ($z = m \cdot e^{i \phi}$)
+    2. `CartesianComplex`: which implements the _Cartesian_ form of a complex number
+        - it is good for _additions_, _subtractions_, and _conjugations_
+        - it only memorizes the _real_ and _imaginary_ parts of the complex number (computing the _modulus_ and the _phase_ on-the-fly)
+        - represents the complex number in the _rectangular_ form ($z = x + i y$)
+
+3. We define a _base_ class, _partially_ implementing the aforementioned interface with _shared_ code
+
+4. We define _derived_ classes, _completing_ the implementation of the interface with _specific_ code
+
+{{% /section %}}
+
+--- 
+
+## [TODO] Exercise: 2D Matrix Library
+
+- Design and implement a _Python module_ for performing __2D matrix computations__
+
+- In particular the module should provide a `Matrix` class with the following _interface_:
+    + a _constructor_ that accepts _either_ the number of rows and columns, _or_ a list of lists of _float_ numbers
+    + a _property_ `shape` returning a tuple with the number of rows and columns
+    + a _method_ `transpose` that returns the _transpose_ of the matrix
+    + a _property_ `is_square` returning `True` has the same amount of rows and columns, `False` otherwise
+    + magic methods for _addition_, _subtraction_, and _multiplication_
+    + magic methods for _equality_ and _hashing_
+    + magic methods for _string representation_
+    + magic methods for getting and setting the _element_ at a given row and column
+    + a method for getting _a slice_ of the matrix (given the row and column ranges)
+
+- Further __sub-classes__ should be defined for _specific_ types of matrices, such as:
+    + _sparse_ matrices (where _most_ elements are zero) and _only_ non-zero elements are stored (e.g. in a dictionary)
+    + _dense_ matrices, where _all_ elements are stored in a list of lists
+    + _symmetric_ matrices, where the _transpose_ is the same as the matrix itself, so that only the _upper_ or _lower_ triangle is stored
+    + _diagonal_ matrices, where only the _diagonal_ elements are stored
+
+---
+
+## Test your understanding with Further readings
+
+### Built-In Data Structures
+
+- [Python's Official Documentation — Data Structures](https://docs.python.org/3/tutorial/datastructures.html)
+- [Lists vs Tuples in Python](https://realpython.com/python-lists-tuples/)
+- [Sets in Python](https://realpython.com/python-sets/)
+- [Dictionaries in Python](https://realpython.com/python-dicts/)
+- [Iterators and Iterables in Python: Run Efficient Iterations](https://realpython.com/python-iterators-iterables/)
+- [How to Use Generators and yield in Python](https://realpython.com/introduction-to-python-generators/)
+
+### Design Patterns
+
+- [Design Patterns](https://refactoring.guru/design-patterns/what-is-pattern) (and subsequent pages)
+- [Python Design Patterns](https://python-patterns.guide/)
+- [A collection of design patterns and idioms in Python](https://github.com/faif/python-patterns)

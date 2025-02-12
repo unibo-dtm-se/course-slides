@@ -96,21 +96,6 @@ class Polygon(Shape):
         if len(self.vertices) < 3:
             raise ValueError("A polygon must have at least 3 vertices")
     
-    def perimeter(self) -> float:
-        result = self.vertices[-1].distance(self.vertices[0])
-        for i in range(1, len(self.vertices)):
-            result += self.vertices[i - 1].distance(self.vertices[i])
-        return result
-    
-    def surface(self) -> float:
-        # cf. https://en.wikipedia.org/wiki/Shoelace_formula
-        result = 0
-        for i in range(len(self.vertices)):
-            current = self.vertices[i]
-            next = self.vertices[(i + 1) % len(self.vertices)]
-            result += abs(current.y + next.y) * abs(current.x - next.x)
-        return 0.5 * result
-    
     def __repr__(self):
         return f"Polygon(vertices=[{', '.join(str(p) for p in self.vertices)}])"
     
@@ -142,6 +127,14 @@ class Triangle(Polygon):
         
     def __repr__(self):
         return super().__repr__().replace("Polygon", "Triangle")
+    
+    def perimeter(self):
+        return self.a + self.b + self.c
+    
+    def surface(self):
+        # cf. https://en.wikipedia.org/wiki/Heron%27s_formula
+        p = self.perimeter() / 2
+        return math.sqrt(p * (p - self.a) * (p - self.b) * (p - self.c))
 
 
 class Rectangle(Polygon):
@@ -177,6 +170,12 @@ class Rectangle(Polygon):
     def __repr__(self):
         return f"Rectangle(bottom_left={self.bottom_left}, top_right={self.top_right})"
     
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+    
+    def surface(self):
+        return self.width * self.height
+    
 
 class Square(Rectangle):
     def __init__(self, corner: Point2D, side: float):
@@ -188,7 +187,6 @@ class Square(Rectangle):
     @property
     def side(self):
         return self.width
-
         
         
 if __name__ == "__main__":

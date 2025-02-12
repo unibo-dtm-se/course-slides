@@ -25,14 +25,14 @@
 
     <section><h1 id="object-oriented-programming-oop">Object-Oriented Programming (OOP)</h1>
 <br>
-<h2 id="hahahugoshortcode3s0hbhb">Software Engineering</h2>
+<h2 id="hahahugoshortcode1s0hbhb">Software Engineering</h2>
 <h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
 <h3 id="module-principles-and-methods">Module “Principles and Methods”</h3>
-<h4 id="hahahugoshortcode3s1hbhb">A.Y. 2023/2024</h4>
-<h5 id="hahahugoshortcode3s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2023/2024</h4>
+<h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2025-02-11 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-02-12 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="many-programming-paradigms">Many programming paradigms</h2>
@@ -66,15 +66,15 @@
 </section><section>
 <h2 id="three-dimensions-of-software-design">Three dimensions of software design</h2>
 <ul>
-<li><strong>Structure</strong>: how is the software <em>organised</em>? how is <em>information</em> organized?</li>
-<li><strong>Behaviour</strong>: what does the software <em>do</em>? how does it transform <em>data</em>?</li>
-<li><strong>Interaction</strong>: how/when do different pieces of software <em>communicate</em> to <em>cooperate</em>?</li>
+<li><strong>Structure</strong>: how is the software <em>organised</em> (decomposed) into <em>components</em>? how is <em>information</em> encoded into <em>data</em>?</li>
+<li><strong>Behaviour</strong>: what does each component <em>do</em>? how does it transform <em>data</em> (from input to output)?</li>
+<li><strong>Interaction</strong>: how/when do the many software components <em>communicate</em> or <em>cooperate</em> to form a system?</li>
 </ul>
 
 
 <span class="fragment ">
   <blockquote>
-<p>OOP nicely addresses all three dimensions</p></blockquote>
+<p>OOP nicely addresses all three dimensions for non-distributed systems</p></blockquote>
 
 </span>
 
@@ -1055,10 +1055,434 @@
 </span></span></code></pre></div></section><section>
 <h1 id="advanced-oop-topics">Advanced OOP Topics</h1>
 <ul>
+<li><strong>Operator Overloading</strong> to support <em>arithmetic</em> and <em>comparison</em> operations</li>
+<li><strong>Static</strong> vs. <strong>Class</strong> vs. <strong>Instance</strong> methods (vs. <strong>Module</strong> functions)</li>
 <li><strong>Inheritance</strong> to support <em>re-use</em> and <em>specialization</em> of classes</li>
 <li><strong>Polymorphism</strong> to support <em>flexibility</em> and <em>encapsulation</em></li>
 </ul>
 </section><section>
+<h2 id="operator-overloading">Operator Overloading</h2>
+<ul>
+<li>
+<p>When creating <em>your own data types</em> (i.e. classes, in Python), you can define how they <em>behave</em> with <strong>arithmetic operators</strong></p>
+<ul>
+<li>e.g., you already did that, by defining the <code>__eq__</code> method for the <code>Complex</code> class to support the <code>==</code> operator</li>
+</ul>
+</li>
+<li>
+<p>Redefining the behavior of an operator for a class is called <strong>operator overloading</strong></p>
+<ul>
+<li>e.g., you can define the <code>+</code> operator for the <code>Complex</code> class to support the addition of two complex numbers</li>
+</ul>
+</li>
+<li>
+<p>Notice that you <em>cannot</em> add <em>new</em> operators to the language, but just <strong>redefine</strong> the behavior of the <em>existing</em> operators</p>
+</li>
+<li>
+<p>Not all programming languages support operator overloading, and the ones who do it, do it with different <em>syntaxes</em>, yet the idea is similar</p>
+<ul>
+<li>in Python, operator overloading is supported by <em>magic methods</em> to be implemented in the class definition</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Beware</strong>: when reading code in a language which supports operator overloading, you should <em>not</em> assume that you know what an operator does, unless you know the <em>types</em> of the operands, and have <strong>read the documentation</strong> of those types</p></blockquote>
+</section><section>
+<h2 id="operator-overloading-in-python-pt-1">Operator Overloading in Python (pt. 1)</h2>
+<p>Python supports operator overloading via <em>magic methods</em>
+<br> (complete specification here: <a href="https://docs.python.org/3/reference/datamodel.html#special-method-names">https://docs.python.org/3/reference/datamodel.html#special-method-names</a>)</p>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><ul>
+<li>
+<p><code>+</code> $\leftrightarrow$ <code>def __add__(self, other)</code></p>
+<ul>
+<li><code>a + b</code> $\leftrightarrow$ <code>a.__add__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>-</code> $\leftrightarrow$ <code>def __sub__(self, other)</code></p>
+<ul>
+<li><code>a - b</code> $\leftrightarrow$ <code>a.__sub__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>*</code> $\leftrightarrow$ <code>def __mul__(self, other)</code></p>
+<ul>
+<li><code>a * b</code> $\leftrightarrow$ <code>a.__mul__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>/</code> $\leftrightarrow$ <code>def __truediv__(self, other)</code></p>
+<ul>
+<li><code>a / b</code> $\leftrightarrow$ <code>a.__truediv__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>//</code> $\leftrightarrow$ <code>def __floordiv__(self, other)</code></p>
+<ul>
+<li><code>a // b</code> $\leftrightarrow$ <code>a.__floordiv__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>%</code> $\leftrightarrow$ <code>def __mod__(self, other)</code></p>
+<ul>
+<li><code>a % b</code> $\leftrightarrow$ <code>a.__mod__(b)</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="col "><ul>
+<li>
+<p><code>==</code> $\leftrightarrow$ <code>def __eq__(self, other)</code></p>
+<ul>
+<li><code>a == b</code> $\leftrightarrow$ <code>a.__eq__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>!=</code> $\leftrightarrow$ <code>def __ne__(self, other)</code></p>
+<ul>
+<li><code>a != b</code> $\leftrightarrow$ <code>a.__ne__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>&lt;</code> $\leftrightarrow$ <code>def __lt__(self, other)</code></p>
+<ul>
+<li><code>a &lt; b</code> $\leftrightarrow$ <code>a.__lt__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>&lt;=</code> $\leftrightarrow$ <code>def __le__(self, other)</code></p>
+<ul>
+<li><code>a &lt;= b</code> $\leftrightarrow$ <code>a.__le__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>&gt;</code> $\leftrightarrow$ <code>def __gt__(self, other)</code></p>
+<ul>
+<li><code>a &gt; b</code> $\leftrightarrow$ <code>a.__gt__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>&gt;=</code> $\leftrightarrow$ <code>def __ge__(self, other)</code></p>
+<ul>
+<li><code>a &gt;= b</code> $\leftrightarrow$ <code>a.__ge__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>**</code> $\leftrightarrow$ <code>def __pow__(self, other)</code></p>
+<ul>
+<li><code>a ** b</code> $\leftrightarrow$ <code>a.__pow__(b)</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="operator-overloading-in-python-pt-2">Operator Overloading in Python (pt. 2)</h2>
+<p>Python supports operator overloading via <em>magic methods</em>
+<br> (complete specification here: <a href="https://docs.python.org/3/reference/datamodel.html#special-method-names">https://docs.python.org/3/reference/datamodel.html#special-method-names</a>)</p>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><ul>
+<li>
+<p><code>&amp;</code> $\leftrightarrow$ <code>def __and__(self, other)</code></p>
+<ul>
+<li><code>a &amp; b</code> $\leftrightarrow$ <code>a.__and__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>|</code> $\leftrightarrow$ <code>def __or__(self, other)</code></p>
+<ul>
+<li><code>a | b</code> $\leftrightarrow$ <code>a.__or__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>^</code> $\leftrightarrow$ <code>def __xor__(self, other)</code></p>
+<ul>
+<li><code>a ^ b</code> $\leftrightarrow$ <code>a.__xor__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>&lt;&lt;</code> $\leftrightarrow$ <code>def __lshift__(self, other)</code></p>
+<ul>
+<li><code>a &lt;&lt; b</code> $\leftrightarrow$ <code>a.__lshift__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>&gt;&gt;</code> $\leftrightarrow$ <code>def __rshift__(self, other)</code></p>
+<ul>
+<li><code>a &gt;&gt; b</code> $\leftrightarrow$ <code>a.__rshift__(b)</code></li>
+</ul>
+</li>
+<li>
+<p><code>~</code> $\leftrightarrow$ <code>def __invert__(self)</code></p>
+<ul>
+<li><code>~a</code> $\leftrightarrow$ <code>a.__invert__()</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="col "><ul>
+<li>
+<p>Get item $\leftrightarrow$ <code>def __getitem__(self, i)</code></p>
+<ul>
+<li><code>a[i]</code> $\leftrightarrow$ <code>a.__getitem__(i)</code></li>
+</ul>
+</li>
+<li>
+<p>Set item $\leftrightarrow$ <code>def __setitem__(self, i, x)</code></p>
+<ul>
+<li><code>a[i] = x</code> $\leftrightarrow$ <code>a.__setitem__(i, x)</code></li>
+</ul>
+</li>
+<li>
+<p>Del item $\leftrightarrow$ <code>def __delitem__(self, i)</code></p>
+<ul>
+<li><code>del a[i]</code> $\leftrightarrow$ <code>a.__delitem__(i)</code></li>
+</ul>
+</li>
+<li>
+<p>Length $\leftrightarrow$ <code>def __len__(self)</code></p>
+<ul>
+<li><code>len(a)</code> $\leftrightarrow$ <code>a.__len__()</code></li>
+</ul>
+</li>
+<li>
+<p>Contains $\leftrightarrow$ <code>def __contains__(self, x)</code></p>
+<ul>
+<li><code>x in a</code> $\leftrightarrow$ <code>a.__contains__(x)</code></li>
+</ul>
+</li>
+<li>
+<p>Unary <code>-</code> $\leftrightarrow$ <code>def __neg__(self)</code></p>
+<ul>
+<li><code>-a</code> $\leftrightarrow$ <code>a.__neg__()</code></li>
+</ul>
+</li>
+<li>
+<p>Unary <code>+</code> $\leftrightarrow$ <code>def __pos__(self)</code></p>
+<ul>
+<li><code>+a</code> $\leftrightarrow$ <code>a.__pos__()</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="example-2d-points-in-python">Example: 2D Points in Python</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__str__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"(</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">, </span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)"</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"Point2D(</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">, </span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)"</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__eq__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">):</span>  <span style="color:#8f5902;font-style:italic"># equality: p1 == p2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">other</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87;font-weight:bold">None</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#204a87">all</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">hasattr</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">'x'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'y'</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__hash__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">hash</span><span style="color:#000;font-weight:bold">((</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__abs__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># magnitude: abs(p)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sqrt</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">**</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">**</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__neg__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># negation: -p</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__add__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># addition: p1 + p2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">other</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># if other is a scalar, convert it to a point of equal coordinates</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__sub__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># subtraction: p1 - p2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># implemented via addition and negation</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__mul__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># multiplication: p1 * p2 or p1 * s</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#8f5902;font-style:italic"># dot product</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># scalar product</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__truediv__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># division: p1 / s</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># implemented via multiplication</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">distance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">abs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># implemented via subtraction and magnitude</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">angle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">diff</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">other</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#3465a4">self</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">atan2</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">diff</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">diff</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># requires import math</span>
+</span></span></code></pre></div><h3 id="usage-7">Usage</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">p1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">p2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p1</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">p2</span><span style="color:#000;font-weight:bold">)</span>         <span style="color:#8f5902;font-style:italic"># (4.0, 6.0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p1</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">p2</span><span style="color:#000;font-weight:bold">)</span>         <span style="color:#8f5902;font-style:italic"># (-2.0, -2.0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p1</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">p2</span><span style="color:#000;font-weight:bold">)</span>         <span style="color:#8f5902;font-style:italic"># 11.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p1</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>          <span style="color:#8f5902;font-style:italic"># (2.0, 4.0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p1</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>          <span style="color:#8f5902;font-style:italic"># (0.5, 1.0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p1</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">distance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p2</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#8f5902;font-style:italic"># 2.8284271247461903</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p1</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">angle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p2</span><span style="color:#000;font-weight:bold">))</span>    <span style="color:#8f5902;font-style:italic"># 0.7853981633974483</span>
+</span></span></code></pre></div></section><section>
+<h2 id="static-vs-class-vs-instance-methods-vs-module-functions-pt-1">Static vs. Class vs. Instance Methods vs. Module Functions (pt. 1)</h2>
+<ul>
+<li>
+<p>So far, functions written inside classes were related to the <em>instances</em> of the class</p>
+<ul>
+<li>
+<p>they are called “instance” methods are they are called on and for the instances, and they had the <code>self</code> parameter</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">instance_method</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">formal_arg</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">obj</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">obj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">instance_method</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"actual arg"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># notice that the function is called on **an instance** of the class</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>One may also define <strong>static</strong> methods, which are <em>not</em> related to the <em>instances</em> of the class</p>
+<ul>
+<li>
+<p>they are called “static” methods as they work the same for all instances,</p>
+</li>
+<li>
+<p>they are tagged by the <code>@staticmethod</code> decorator</p>
+</li>
+<li>
+<p>they do <em>not</em> have the <code>self</code> parameter</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@staticmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">static_method</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">formal_arg</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># notice the lack of the `self` parameter</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">MyClass</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">static_method</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"actual arg"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># notice that the function is called on **the class itself**</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="static-vs-class-vs-instance-methods-vs-module-functions-pt-2">Static vs. Class vs. Instance Methods vs. Module Functions (pt. 2)</h2>
+<ul>
+<li>
+<p>One may also define <strong>class</strong> methods, which are like static methods, but they have a reference to the class itself</p>
+<ul>
+<li>
+<p>they are tagged by the <code>@classmethod</code> decorator</p>
+</li>
+<li>
+<p>they have the <code>cls</code> parameter, which is a reference to the class itself</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">class_method_1</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">formal_arg</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># notice the `cls` parameter</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">class_method_2</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">formal_arg</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># notice the `cls` parameter</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">class_method_1</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">formal_arg</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># the cls parameter is usefull to call other class methods</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">MyClass</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">class_method_2</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"actual arg"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># notice that the function is called on **the class itself**, as if it were a static method</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>One may also define <strong>module</strong> functions, which are <em>not</em> related to any class</p>
+<ul>
+<li>
+<p>they are just functions defined in a module, <em>not</em> inside a class</p>
+</li>
+<li>
+<p>they are called “module” functions as they are defined at the module level</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">module_function</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">arg</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">module_function</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">())</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># notice that the function is called with no prefix</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># notice that the function can still use classes defined above them as data types</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="where-to-put-the-functionmethod">Where to put the function/method?</h2>
+<ol>
+<li>
+<p>If a function operates at the <em>instance</em> level, and it is generally potentially useful for each instance, it should be an <em>instance</em> method</p>
+<ul>
+<li>this is automatically true if the functionality can be provided by some magic method
+<ul>
+<li>e.g. string conversion, equality, hashing, arithmetic operations, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>If the function involves a <em>variable amount of instances</em> of a class <em>at once</em>, it should be a <em>static</em> method</p>
+<ul>
+<li>e.g. getting the center of a bunch of points, or the average of a bunch of complex number, etc.</li>
+</ul>
+</li>
+<li>
+<p>If the function could be static, but it needs to use other class methods, it should be a <em>class</em> method</p>
+<ul>
+<li>e.g. a class method that calls another class method, or a class method that creates an instance of the class, etc.</li>
+</ul>
+</li>
+<li>
+<p>If the function uses the class to do something which is not general, but application specific, it could be a <em>module</em> function</p>
+<ul>
+<li>e.g. a function accepts $N$ points to create a polygon</li>
+<li>in this case, you may also consider to design another class to encapsulate the functionality</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="example-ordering-2d-points-anti-clockwise-wrt-their-centroid-pt-1">Example: Ordering 2D Points Anti-Clockwise w.r.t. their Centroid (pt. 1)</h2>
+<p><img src="./centroid.svg" alt=""></p>
+<p>This can be supported via 2 class functions:</p>
+<ul>
+<li><code>Point2D.centroid(points: list[Point2D]) -&gt; Point2D</code>: computes the centroid of a list of points</li>
+<li><code>Point2D.sort_anti_clockwise(points: list[Point2D]) -&gt; list[Point2D]</code>: orders a list of points anti-clockwise w.r.t. their centroid</li>
+</ul>
+</section><section>
+<h2 id="example-ordering-2d-points-anti-clockwise-wrt-their-centroid-pt-2">Example: Ordering 2D Points Anti-Clockwise w.r.t. their Centroid (pt. 2)</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># rest of the class is unchanged</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@staticmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">centroid</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">points</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">list</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">sum</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">points</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">points</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">sort_anti_clockwise</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">points</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">list</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">list</span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">'Point2D'</span><span style="color:#000;font-weight:bold">]:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">centroid</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">cls</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">centroid</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">points</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">angle_wrt_center</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">centroid</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">angle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">points</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">list</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">points</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">points</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sort</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">key</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">angle_wrt_center</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">points</span>
+</span></span></code></pre></div><h3 id="usage-8">Usage</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">triangle</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">centroid</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">triangle</span><span style="color:#000;font-weight:bold">))</span>             <span style="color:#8f5902;font-style:italic"># (0.0, -0.3333333333333333)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sort_anti_clockwise</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">triangle</span><span style="color:#000;font-weight:bold">))</span>  <span style="color:#8f5902;font-style:italic"># [Point2D(0.0, 1.0), Point2D(-1.0, -1.0), Point2D(1.0, -1.0)]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">rectangle</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">rectangle</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">rectangle</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">p</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">p</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">rectangle</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">centroid</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">rectangle</span><span style="color:#000;font-weight:bold">))</span>            <span style="color:#8f5902;font-style:italic"># (0.0, 0.0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sort_anti_clockwise</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">rectangle</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#8f5902;font-style:italic"># [Point2D(2.0, 1.0), Point2D(-2.0, 1.0), Point2D(-2.0, -1.0), Point2D(2.0, -1.0)]</span>
+</span></span></code></pre></div></section><section>
 <h2 id="the-__inheritance__-mechanism">The <strong>Inheritance</strong> Mechanism</h2>
 <ul>
 <li>
@@ -1311,6 +1735,559 @@
 <li>derived classes’ overridden <em>constructors</em> call the <em>base</em> class’ <em>constructor</em> using <code>super()</code></li>
 </ul>
 </section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="another-example-the-shape-class-hierarchy-pt-1">Another example: The <code>Shape</code> Class Hierarchy (pt. 1)</h2>
+<ul>
+<li>
+<p>A <code>Shape</code> is a geometric figure, characterized by its <em>surface</em> and <em>perimeter</em></p>
+<ul>
+<li>both <em>surface</em> and <em>perimeter</em> are <strong>scalar values</strong> (i.e. <code>float</code>), but how to compute them depends on the <em>shape</em> itself</li>
+</ul>
+</li>
+<li>
+<p>A <code>Circle</code> is a particular case of <code>Shape</code> characterized by its <em>center</em> and <em>radius</em></p>
+<ul>
+<li>the <em>center</em> is a <code>Point2D</code>, the <em>radius</em> is a <code>float</code></li>
+<li>the <em>surface</em> of a circle is $\pi r^2$, the <em>perimeter</em> is $2 \pi r$</li>
+</ul>
+</li>
+<li>
+<p>A <code>Polygon</code> is a particular case of <code>Shape</code> characterized by its <em>vertices</em></p>
+<ul>
+<li>the vertices are a <em>list</em> of <code>Point2D</code> instances, in <em>anti-clockwise</em> order</li>
+</ul>
+</li>
+<li>
+<p>A <code>Triangle</code> is a particular case of <code>Polygon</code> characterized by having <em>3 vertices</em></p>
+<ul>
+<li>we may name the edges as <code>a</code>, <code>b</code>, <code>c</code></li>
+<li>the <em>surface</em> of a triangle is computed via the <a href="https://en.wikipedia.org/wiki/Heron%27s_formula">Heron’s formula</a></li>
+<li>the <em>perimeter</em> of a triangle is the <em>sum</em> of the <em>lengths</em> of its sides</li>
+</ul>
+</li>
+<li>
+<p>A <code>Rectangle</code> is a particular case of <code>Polygon</code> characterized by having <em>4 vertices</em> which are <em>pairwise aligned</em></p>
+<ul>
+<li>the vertices can be labelled as: <code>bottom_left</code>, <code>bottom_right</code>, <code>top_left</code>, <code>top_right</code></li>
+<li>a rectangle would also have a <code>width</code> and a <code>height</code>, which can be computed from the vertices</li>
+<li>the <em>surface</em> of a rectangle is the <em>product</em> of its <code>width</code> and <code>height</code></li>
+<li>the <em>perimeter</em> of a rectangle is twice the <em>sum</em> of its <code>width</code> and <code>height</code></li>
+</ul>
+</li>
+<li>
+<p>A <code>Square</code> is a particular case of <code>Rectangle</code> characterized by having <em>equal</em> <code>width</code> and <code>height</code></p>
+<ul>
+<li><em>surface</em> and <em>perimeter</em> are computed the same way as for a <code>Rectangle</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="another-example-the-shape-class-hierarchy-pt-2">Another example: The <code>Shape</code> Class Hierarchy (pt. 2)</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Shape</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">NotImplementedError</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">NotImplementedError</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Circle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Shape</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">center</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">radius</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">center</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">center</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">radius</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">radius</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pi</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">radius</span> <span style="color:#ce5c00;font-weight:bold">**</span> <span style="color:#0000cf;font-weight:bold">2</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pi</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">radius</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"Circle(center=</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">center</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">, radius=</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">radius</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)"</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__eq__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Circle</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">center</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">center</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">radius</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">radius</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__hash__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">hash</span><span style="color:#000;font-weight:bold">((</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">center</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">radius</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Polygon</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Shape</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">points</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">list</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">tuple</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">point</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">point</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">point</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">point</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">points</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"A polygon must have at least 3 vertices"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"Polygon(vertices=[</span><span style="color:#4e9a06">{</span><span style="color:#4e9a06">', '</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">join</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">p</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">)</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">])"</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__eq__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Polygon</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__hash__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">hash</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Triangle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Polygon</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">fst</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">snd</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">trd</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87">super</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sort_anti_clockwise</span><span style="color:#000;font-weight:bold">([</span><span style="color:#000">fst</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">snd</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">trd</span><span style="color:#000;font-weight:bold">]))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">fst</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">snd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[:</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">fst</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">distance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">snd</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">snd</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">trd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">:]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">snd</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">distance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">trd</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">fst</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">trd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[::</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">fst</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">distance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">trd</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">super</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">replace</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"Polygon"</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">"Triangle"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">c</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8f5902;font-style:italic"># cf. https://en.wikipedia.org/wiki/Heron%27s_formula</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sqrt</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">c</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Rectangle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Polygon</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">bl</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">min</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#204a87">min</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">tr</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">max</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#204a87">max</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87">super</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">([</span><span style="color:#000">bl</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">tr</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">bl</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">tr</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">bl</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">tr</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">)])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">bottom_left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">bottom_right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">top_right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">top_left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">width</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">top_right</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">bottom_left</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">height</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">top_right</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">bottom_left</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"Rectangle(bottom_left=</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">bottom_left</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">, top_right=</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">top_right</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)"</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">width</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">height</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">width</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">height</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Square</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Rectangle</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">corner</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">side</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87">super</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">corner</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">corner</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">side</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"Square(bottom_left=</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">bottom_left</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">, top_right=</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">top_right</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)"</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">side</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">width</span>
+</span></span></code></pre></div><h3 id="usage">Usage</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Circle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">c</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">c</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(),</span> <span style="color:#000">c</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">())</span> 
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># should print: Circle(center=(1.0, 1.0), radius=2.0) 12.566370614359172 12.566370614359172</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Triangle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(),</span> <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">())</span> 
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># should print: Triangle(vertices=[(0.0, 1.0), (-1.0, -1.0), (1.0, -1.0)]) 2.0 6.47213595499958</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">r</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Rectangle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">r</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">r</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(),</span> <span style="color:#000">r</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">())</span> 
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># should print: Rectangle(bottom_left=(-2.0, -1.0), top_right=(2.0, 1.0)) 8.0 12.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Square</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Point2D</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(),</span> <span style="color:#000">s</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">())</span> 
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># should print: Square(bottom_left=(-1.0, -1.0), top_right=(1.0, 1.0)) 4.0 8.0</span>
+</span></span></code></pre></div></section><section>
+<h2 id="another-example-the-shape-class-hierarchy-pt-3">Another example: The <code>Shape</code> Class Hierarchy (pt. 3)</h2>
+<ul>
+<li>
+<p>We may write even less code:</p>
+<ul>
+<li>there exist a formula to compute the <em>surface</em> of a <code>Polygon</code> given its <em>vertices</em> (cf. <a href="https://en.wikipedia.org/wiki/Shoelace_formula">Shoelace formula</a>)</li>
+<li>there exist a formula to compute the <em>perimeter</em> of a <code>Polygon</code> given its <em>vertices</em> (just sum up the lengths of the edges)</li>
+</ul>
+</li>
+<li>
+<p>We may implement the <code>surface</code> and <code>perimeter</code> methods in the <code>Polygon</code> class</p>
+<ul>
+<li>so that they do not need to be re-implemented in each sub-class</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Shape</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># unchanged</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Circle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Shape</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># unchanged</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Polygon</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Shape</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># rest of the class is unchanged</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">perimeter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">distance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">)):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">distance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">])</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">result</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">surface</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">)):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">current</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">[(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">vertices</span><span style="color:#000;font-weight:bold">)]</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#204a87">abs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">current</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#204a87">next</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#204a87">abs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">current</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#204a87">next</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Triangle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Polygon</span><span style="color:#000;font-weight:bold">):</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># no need to re-implement the surface and perimeter methods</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Rectangle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Polygon</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># no need to re-implement the surface and perimeter methods</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Square</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Rectangle</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># no need to re-implement the surface and perimeter methods</span>
+</span></span></code></pre></div><p>(the usage example should work exactly as in the previous slide)</p>
+
+</section>
+</section><section>
+<h2 id="polymorphism">Polymorphism</h2>
+<p>(cf. <a href="https://en.wikipedia.org/wiki/Polymorphism_(computer_science)">https://en.wikipedia.org/wiki/Polymorphism_(computer_science)</a>)</p>
+<blockquote>
+<p>[In programming languages <strong>theory</strong>] The use of <em>one</em> symbol to represent multiple different types</p></blockquote>
+<blockquote>
+<p>[In <strong>OOP</strong>] The provisioning of a single <em>interface</em> to for using different <em>data types</em> in the same way</p></blockquote>
+<ul>
+<li>this allows to clearly <strong>separate</strong> <em>interfaces</em> (“what” the software should do) from <em>implementations</em> (“how” how to do it)
+<ul>
+<li>which is useful, because there are often <em>multiple</em> ways to do the same thing, which may be <em>better suited</em> for different contexts</li>
+</ul>
+</li>
+<li>this is yet another way by which OOP supports <em>information hiding</em></li>
+<li>this technically builds on top of <em>inheritance</em></li>
+</ul>
+</section><section>
+<h2 id="why-do-we-need-to-separate-_interfaces_-from-_implementations_">Why do we need to separate <em>interfaces</em> from <em>implementations</em>?</h2>
+<blockquote>
+<p>Put simply, <em>interfaces</em> are <em>abstract</em>, <em>general</em>, and <strong>stable</strong>;
+<br> whereas <em>implementations</em> are <em>concrete</em>, use-case <em>specific</em>, and subject to <em>change</em></p></blockquote>
+<h3 id="examples-1">Examples</h3>
+<ul>
+<li>The <em>steering wheel</em>, <em>accelerator</em>, and <em>brake</em> are the same in both <em>gasoline</em> and <em>electric</em> cars, but the engine is different</li>
+<li>Complex numbers may come in the <em>polar</em> or <em>Cartesian</em> form, but the <em>arithmetic operations</em> available are the <em>same</em></li>
+<li>There are hundreds of <em>network hardware</em>/software devices, but most developers only need to study a few <em>networking protocols</em> (e.g. TCP)</li>
+<li>There are many ways to sort a list, but you only need to know the <code>sort</code> method of the <code>list</code> class
+<ul>
+<li>the day one new super-quick algorithm is invented, Python implementers will change the <code>sort</code> method, but your code will still work</li>
+</ul>
+</li>
+</ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="example-separating-the-_interface_-from-the-_implementation_-pt1">Example: Separating the <em>interface</em> from the <em>implementation</em> (pt.1)</h2>
+<h3 id="interface">Interface</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">re</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># a read-only property to get the real part</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">im</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># a read-only property to get the imaginary part</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># a read-only property to get the modulus</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># a read-only property to get the phase</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">to_polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># a method to convert to polar form</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">to_cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># a method to convert to Cartesian form</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">conjugate</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># a method to get the conjugate</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__add__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span>  <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># addition</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__neg__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># negation</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__sub__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># subtraction</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__mul__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># multiplication</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__truediv__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># division</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__abs__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># magnitude</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># class method to create a polar complex number</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># class method to create a Cartesian complex number</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__eq__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># equality</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__hash__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># hashing</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic"># string representation</span>
+</span></span></code></pre></div><h3 id="the-interface-is-all-we-need-to-know-how-to-use-the-type">The interface is all we need to know how to use the type</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">z</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Complex</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pi</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span><span style="color:#000;font-weight:bold">)</span>                 <span style="color:#8f5902;font-style:italic"># 2.0 * e^i0.7853981633974483</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">)</span>         <span style="color:#8f5902;font-style:italic"># 2.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span>           <span style="color:#8f5902;font-style:italic"># 0.7853981633974483</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_cartesian</span><span style="color:#000;font-weight:bold">())</span>  <span style="color:#8f5902;font-style:italic"># 1.4142135623730951 + i1.4142135623730951</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">)</span>              <span style="color:#8f5902;font-style:italic"># 1.4142135623730951</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span>              <span style="color:#8f5902;font-style:italic"># 1.4142135623730951</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#000">z</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">to_polar</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#8f5902;font-style:italic"># True</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">conjugate</span><span style="color:#000;font-weight:bold">())</span>     <span style="color:#8f5902;font-style:italic"># 1.4142135623730951 - i1.4142135623730951</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">z</span><span style="color:#000;font-weight:bold">)</span>             <span style="color:#8f5902;font-style:italic"># 2.8284271247461903 + i2.8284271247461903</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">z</span><span style="color:#000;font-weight:bold">)</span>             <span style="color:#8f5902;font-style:italic"># 0.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">z</span><span style="color:#000;font-weight:bold">)</span>             <span style="color:#8f5902;font-style:italic"># 4.0 * e^i1.5707963267948966</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#000">z</span><span style="color:#000;font-weight:bold">)</span>             <span style="color:#8f5902;font-style:italic"># 1.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">abs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span><span style="color:#000;font-weight:bold">))</span>            <span style="color:#8f5902;font-style:italic"># 2.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">z</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">z</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">z</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">Complex</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#8f5902;font-style:italic"># True</span>
+</span></span></code></pre></div></section><section>
+<h2 id="example-separating-the-_interface_-from-the-_implementation_-pt2">Example: Separating the <em>interface</em> from the <em>implementation</em> (pt.2)</h2>
+<h3 id="implementation-base-class">Implementation (Base Class)</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">fst</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">snd</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">):</span>  <span style="color:#8f5902;font-style:italic"># constructor accepts two scalar coordinates...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__coords</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">fst</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">snd</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#8f5902;font-style:italic"># ... to be memorized in the __coords field</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">re</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># read-only property to get the first coordinate</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__coords</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#8f5902;font-style:italic"># (good for Cartesian class, to be overridden in the Polar class)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">im</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># read-only property to get the second coordinate</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__coords</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#8f5902;font-style:italic"># (good for Cartesian class, to be overridden in the Polar class)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># read-only property to get the modulus</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__coords</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#8f5902;font-style:italic"># (good for Polar class, to be overridden in the Cartesian class)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># read-only property to get the phase</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__coords</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#8f5902;font-style:italic"># (good for Polar class, to be overridden in the Cartesian class)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">to_polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span> <span style="color:#8f5902;font-style:italic"># (good for Polar class, to be overridden in the Cartesian class)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">to_cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span> <span style="color:#8f5902;font-style:italic"># (good for Cartesian class, to be overridden in the Polar class)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># subsequent methods are good for both implementations and can be inherited with no change</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">conjugate</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__add__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__neg__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__sub__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__mul__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__truediv__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__abs__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">PolarComplex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">cls</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#4e9a06">"Complex"</span><span style="color:#000;font-weight:bold">:</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">CartesianComplex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__eq__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">other</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">isinstance</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">other</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> \
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">((</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">or</span> \
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">other</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__hash__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">hash</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__coords</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__repr__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># represents as string which reports the name of the base class and the coordinates</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"</span><span style="color:#4e9a06">{</span><span style="color:#204a87">type</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__name__</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">(</span><span style="color:#4e9a06">{</span><span style="color:#4e9a06">', '</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">join</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">c</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">c</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__coords</span><span style="color:#000;font-weight:bold">)</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">)"</span>
+</span></span></code></pre></div><h3 id="implementation-derived-classes">Implementation (Derived Classes)</h3>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col col-6"><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CartesianComplex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">re</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">im</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># constructor accepts two scalar coordinates...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87">super</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span>              <span style="color:#8f5902;font-style:italic"># ... to be interpreted as Cartesian coordinates</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># overrides the modulus property</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">hypot</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># computes the modulus from the coordinates</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># overrides the phase property</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">atan2</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># computes the phase from the coordinates</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">to_polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">polar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># converts to polar form</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__str__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># represents as string in the Cartesian form</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">sign</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">'+'</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#0000cf;font-weight:bold">0.0</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#4e9a06">'-'</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">abs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#0000cf;font-weight:bold">1.0</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#4e9a06">""</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> </span><span style="color:#4e9a06">{</span><span style="color:#000">sign</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> i</span><span style="color:#4e9a06">{</span><span style="color:#000">im</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">"</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#0000cf;font-weight:bold">0.0</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div></div>
+<div class="col col-6"><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">PolarComplex</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Complex</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@staticmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__normalize_angle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">angle</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># normalizes the angle to the [-pi, pi] range</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">angle</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pi</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pi</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># constructor accepts two scalar coordinates...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">phase</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">PolarComplex</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__normalize_angle</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87">super</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span>              <span style="color:#8f5902;font-style:italic"># ... to be interpreted as polar coordinates</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">re</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># overrides the re property</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">cos</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># computes the real part from the coordinates</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#5c35cc;font-weight:bold">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">im</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#8f5902;font-style:italic"># overrides the im property</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">math</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">cos</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># computes the imaginary part from the coordinates</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">to_cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">cartesian</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">re</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># converts to Cartesian form</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__str__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span> <span style="color:#8f5902;font-style:italic"># represents as string in exponential notation</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">sign</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">''</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#0000cf;font-weight:bold">0.0</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#4e9a06">'-'</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">f</span><span style="color:#4e9a06">"</span><span style="color:#4e9a06">{</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> * e^</span><span style="color:#4e9a06">{</span><span style="color:#000">sign</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">i</span><span style="color:#4e9a06">{</span><span style="color:#204a87">abs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span><span style="color:#000;font-weight:bold">)</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">"</span> <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">phase</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#0000cf;font-weight:bold">0.0</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">modulus</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div></div>
+</div>
+</div>
+</section><section>
+<h2 id="example-separating-the-_interface_-from-the-_implementation_-pt3">Example: Separating the <em>interface</em> from the <em>implementation</em> (pt.3)</h2>
+<h3 id="rationale">Rationale</h3>
+<blockquote>
+<p><strong>Interface</strong> $\approx$ type <em>name</em> + <em>public attributes</em>’ signatures (i.e. <em>names</em> + <em>types</em> or formal arguments)</p></blockquote>
+<ol>
+<li>
+<p>We first design an <em>interface</em> that is good for <em>all</em> relevant <em>use cases</em></p>
+<ul>
+<li>here we put all <em>common attributes</em> that we can foresee will be shared by <em>all</em> implementations</li>
+<li>just focus on their <em>name</em>, <em>purpose</em>, and <em>type</em></li>
+<li>e.g.: <code>Complex</code> has
+<ol>
+<li><code>re</code>, <code>im</code>, <code>modulus</code>, <code>phase</code> read-only <em>properties</em></li>
+<li><em>arithmetic operations</em>, supported via magic methods (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, etc.), plus the <code>conjugate</code> one</li>
+<li>equality, hashing, and string representation</li>
+<li>methods to <em>convert</em> back and forth between <em>Cartesian</em> and <em>polar</em> forms (<code>to_polar()</code> and <code>to_cartesian()</code>)</li>
+<li>class methods to <em>create</em> instances from <em>Cartesian</em> and <em>polar</em> coordinates (<code>Complex.polar()</code> and <code>Complex.cartesian()</code>)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>We then identify all potential implementations:</p>
+<ol>
+<li><code>PolarComplex</code>: which implements the <em>polar</em> form of a complex number
+<ul>
+<li>it is good for <em>multiplications</em> and <em>divisions</em></li>
+<li>it only memorizes the <em>modulus</em> and the <em>phase</em> of the complex number (computing the <em>real</em> and <em>imaginary</em> parts on-the-fly)</li>
+<li>represents the complex number in <em>exponential</em> notation ($z = m \cdot e^{i \phi}$)</li>
+</ul>
+</li>
+<li><code>CartesianComplex</code>: which implements the <em>Cartesian</em> form of a complex number
+<ul>
+<li>it is good for <em>additions</em>, <em>subtractions</em>, and <em>conjugations</em></li>
+<li>it only memorizes the <em>real</em> and <em>imaginary</em> parts of the complex number (computing the <em>modulus</em> and the <em>phase</em> on-the-fly)</li>
+<li>represents the complex number in the <em>rectangular</em> form ($z = x + i y$)</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>We define a <em>base</em> class, <em>partially</em> implementing the aforementioned interface with <em>shared</em> code</p>
+</li>
+<li>
+<p>We define <em>derived</em> classes, <em>completing</em> the implementation of the interface with <em>specific</em> code</p>
+</li>
+</ol>
+
+</section>
+</section><section>
+<h2 id="todo-exercise-2d-matrix-library">[TODO] Exercise: 2D Matrix Library</h2>
+<ul>
+<li>
+<p>Design and implement a <em>Python module</em> for performing <strong>2D matrix computations</strong></p>
+</li>
+<li>
+<p>In particular the module should provide a <code>Matrix</code> class with the following <em>interface</em>:</p>
+<ul>
+<li>a <em>constructor</em> that accepts <em>either</em> the number of rows and columns, <em>or</em> a list of lists of <em>float</em> numbers</li>
+<li>a <em>property</em> <code>shape</code> returning a tuple with the number of rows and columns</li>
+<li>a <em>method</em> <code>transpose</code> that returns the <em>transpose</em> of the matrix</li>
+<li>a <em>property</em> <code>is_square</code> returning <code>True</code> has the same amount of rows and columns, <code>False</code> otherwise</li>
+<li>magic methods for <em>addition</em>, <em>subtraction</em>, and <em>multiplication</em></li>
+<li>magic methods for <em>equality</em> and <em>hashing</em></li>
+<li>magic methods for <em>string representation</em></li>
+<li>magic methods for getting and setting the <em>element</em> at a given row and column</li>
+<li>a method for getting <em>a slice</em> of the matrix (given the row and column ranges)</li>
+</ul>
+</li>
+<li>
+<p>Further <strong>sub-classes</strong> should be defined for <em>specific</em> types of matrices, such as:</p>
+<ul>
+<li><em>sparse</em> matrices (where <em>most</em> elements are zero) and <em>only</em> non-zero elements are stored (e.g. in a dictionary)</li>
+<li><em>dense</em> matrices, where <em>all</em> elements are stored in a list of lists</li>
+<li><em>symmetric</em> matrices, where the <em>transpose</em> is the same as the matrix itself, so that only the <em>upper</em> or <em>lower</em> triangle is stored</li>
+<li><em>diagonal</em> matrices, where only the <em>diagonal</em> elements are stored</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="test-your-understanding-with-further-readings">Test your understanding with Further readings</h2>
+<h3 id="built-in-data-structures">Built-In Data Structures</h3>
+<ul>
+<li><a href="https://docs.python.org/3/tutorial/datastructures.html">Python’s Official Documentation — Data Structures</a></li>
+<li><a href="https://realpython.com/python-lists-tuples/">Lists vs Tuples in Python</a></li>
+<li><a href="https://realpython.com/python-sets/">Sets in Python</a></li>
+<li><a href="https://realpython.com/python-dicts/">Dictionaries in Python</a></li>
+<li><a href="https://realpython.com/python-iterators-iterables/">Iterators and Iterables in Python: Run Efficient Iterations</a></li>
+<li><a href="https://realpython.com/introduction-to-python-generators/">How to Use Generators and yield in Python</a></li>
+</ul>
+<h3 id="design-patterns">Design Patterns</h3>
+<ul>
+<li><a href="https://refactoring.guru/design-patterns/what-is-pattern">Design Patterns</a> (and subsequent pages)</li>
+<li><a href="https://python-patterns.guide/">Python Design Patterns</a></li>
+<li><a href="https://github.com/faif/python-patterns">A collection of design patterns and idioms in Python</a></li>
+</ul>
 </section>
 
   

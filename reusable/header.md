@@ -1,9 +1,8 @@
 <br>
 
-## {{<course_name>}}
-### **(for Intelligent Distributed Systems)**
+<h2 style="margin-bottom: 0;">{{<course_name>}}</h2>
 
-### Module "Principles and Methods"
+### **(for Intelligent Distributed Systems)**
 
 ####  {{<academic_year>}}
 
@@ -16,4 +15,4 @@
 
 Compiled on: {{< today >}} --- [<i class="fa fa-print" aria-hidden="true"></i> printable version](?print-pdf&pdfSeparateFragments=false)
 
-[<i class="fa fa-undo" aria-hidden="true"></i> back](..)
+[<i class="fa fa-undo" aria-hidden="true"></i> back](../#/toc)

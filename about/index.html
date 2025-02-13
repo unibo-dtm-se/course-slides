@@ -1,0 +1,771 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>About the course: 'Software Engineering'</title>
+<meta name="description" content="Introduction to the course">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides//plantuml.js"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="about-the-course">About the course</h1>
+<br>
+<h2 style="margin-bottom: 0;">Software Engineering</h2>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
+<br>
+<br>
+<p>Compiled on: 2025-02-13 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
+</section><section>
+<h2 id="teacher">Teacher</h2>
+<ul>
+<li>
+<p><strong>teacher:</strong> <a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a>, Junior assistant professor (RTD-A)</p>
+</li>
+<li>
+<p><strong>email:</strong> <a href="mailto:giovanni.ciatto@unibo.it"><code>giovanni.ciatto@unibo.it</code></a></p>
+</li>
+<li>
+<p><strong>home page</strong>: <a href="https://www.unibo.it/sitoweb/giovanni.ciatto/en">https://www.unibo.it/sitoweb/giovanni.ciatto/en</a></p>
+</li>
+<li>
+<p><strong>office hours:</strong> dynamic, send an email to the teacher for an appointment</p>
+</li>
+</ul>
+</section><section>
+<h2 id="virtuale">Virtuale</h2>
+<h3 id="hahahugoshortcode4s3hbhb"><a href="https://virtuale.unibo.it/course/view.php?id=63902">
+https://virtuale.unibo.it/course/view.php?id=63902
+</a></h3>
+<p>Students <em>must</em> enroll</p>
+<ul>
+<li>listen for announcements on the <a href="https://virtuale.unibo.it/mod/forum/view.php?id=1885623">News forum</a></li>
+<li>ask for help or provide feeback on the <a href="https://virtuale.unibo.it/mod/forum/view.php?id=1885625">General forum</a></li>
+</ul>
+</section><section>
+<h2 id="organization">Organization</h2>
+<ul>
+<li>
+<p><strong>Tuesdays</strong> (<em>14:30-17:30</em>) in lab 4.2</p>
+<ul>
+<li>you may use the PCs in the lab, or bring your laptops</li>
+</ul>
+</li>
+<li>
+<p><strong>Thursdays</strong> (<em>11:00-13:00</em>) in lab 3.1</p>
+<ul>
+<li>you may use the PCs in the lab, or bring your laptops</li>
+</ul>
+</li>
+<li>
+<p><a href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_N2ZmOTA5OWQtODlmYi00OThiLWE4NzYtZDQyNGNlMTA3ZGE3%40thread.v2/0?context=%7b%22Tid%22%3a%22e99647dc-1b08-454a-bf8c-699181b389ab%22%2c%22Oid%22%3a%220994ea56-e36d-4ebf-8631-b5c703034c66%22%7d">Virtual room on Teams</a> is <strong>just for the chat</strong></p>
+<ul>
+<li>lectures will be held <em>in person</em></li>
+<li><strong>no</strong> blended lectures <em>by default</em></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>I will do my best follow the Italian convention “<em>quarto d’ora accademico</em>”
+<br> (i.e., starting <em>15 minutes after</em> the scheduled time to allow people to accommodate)</p></blockquote>
+<ul>
+<li>please try to enter the room <em>on time</em></li>
+</ul>
+</section><section>
+<h2 id="what-is-the-course-about-pt-1">What is the course about? (pt. 1)</h2>
+<p>(Only insights here, there will be a <a href="../se-intro">dedicated lecture</a> on this topic)</p>
+<ul>
+<li>
+<p>Put it simply, <em>software engineering</em> is about <strong>producing working software products</strong></p>
+<ul>
+<li>not only writing code, but also
+<ol>
+<li><em>understanding</em> the <em>requirements</em>,</li>
+<li><em>designing</em> the <em>product</em>,</li>
+<li><em>testing</em> it,</li>
+<li><em>deploying</em> it,</li>
+<li>and <em>maintaining</em> it</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>In particular, nowadays, software engineering must also deal with:</p>
+<ul>
+<li><strong>distribution</strong>, i.e. multiple software components interconnected over the <em>Internet</em></li>
+<li><strong>artificial intelligence</strong>, i.e. software components that may exhibit <em>human-like</em> capabilities to some extent
+<ul>
+<li>e.g. understanding natural language, recognizing objects, making decisions, learning from data, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="what-is-the-course-about-pt-2">What is the course about? (pt. 2)</h2>
+<ul>
+<li>
+<p>At the end of the course…</p>
+<ul>
+<li>… you shall have a clear understanding on the <strong>whole process</strong> of software engineering</li>
+<li>… you should be able to <em>set up</em> and <em>design</em> a <strong>software project</strong></li>
+<li>… you should be able to <em>reason</em> about the <strong>quality</strong> of a software project</li>
+<li>… you should have a clear understanding of brings <strong>cost</strong> or <strong>value</strong> in a software project</li>
+<li>… you will <em>not</em> be required to be an <strong>expert developer</strong></li>
+</ul>
+</li>
+<li>
+<p>To reach that goal, we shall follow a <strong>learn-by-doing</strong> approach</p>
+</li>
+</ul>
+</section><section>
+<h2 id="exam-overview">Exam (overview)</h2>
+<ul>
+<li>
+<p>The exam consists of: <strong>written test</strong> and a (<em>optionally</em>) a <strong>project work</strong></p>
+<ul>
+<li>the written test is <em>mandatory</em> and the maximum score is <code>27/30</code></li>
+<li>the project work is <em>optional</em> and the maximum score is <code>6/30</code>
+<ul>
+<li>students can choose to <em>skip</em> this part, but they will <em>not</em> be able to reach the maximum score (<code>30/30</code>)</li>
+</ul>
+</li>
+<li>the final score is the <strong>sum</strong> of the two scores, <strong>capped to <code>30/30</code></strong></li>
+</ul>
+</li>
+<li>
+<p>The rationale is as follows:</p>
+<ol>
+<li>the written test is aimed at <em>assessing</em> the <strong>theoretical</strong> knowledge of the student</li>
+<li>the project work is aimed at <em>assessing</em> the <strong>practical</strong> knowledge of the student</li>
+</ol>
+</li>
+<li>
+<p>The <strong>written test</strong> consists of a <em>closed-book</em> exam with <em>open-ended</em> questions</p>
+<ul>
+<li>exam is <em>in presence</em>, with <em>no internet connection</em>, and with a <em>time limit</em></li>
+<li>there will be <em>6 opportunities</em> to take the exam along the year, roughly <em>4 in the summer</em> session and <em>2 in the winter</em> session</li>
+</ul>
+</li>
+<li>
+<p>The <strong>project work</strong> consists of an <em>individual</em> or <em>group</em> effort where</p>
+<ol>
+<li>the student(s) develop a <em>software artifact</em> and write a <em>report</em> on the development process</li>
+<li>and finally they will <em>present</em> and <em>discuss</em> the project work with the teacher in an <em>oral</em> discussion
+<ul>
+<li>the <em>oral</em> discussion will be held <em>upon appointment</em> with the teacher, possibly <em>remotely</em></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<!-- - In the project work __report is more important than the source code__
+    + the code could be a simple, pissibly incomplete, prototype or stub
+
+- The project work can be done _individually_ or in _groups_ of __up to 4 students__
+    + we _recommend_ doing it in _groups_, to practice with teamwork
+    + individual contributions will be assessed via DVCS
+
+- Students are encouraged to __propose__ project works themes/topics/concepts
+    + we may help in refining initial proposals
+
+- We incentivise students to _complete_ their project work __as soon as possible__ 
+    + better if within _the next exam session_
+    + possibly within _the same academic year_ -->
+</section><section>
+<h2 id="details-about-the-__written-test__-pt-1">Details about the <strong>written test</strong> (pt. 1)</h2>
+<ul>
+<li>
+<p>There will be <strong>6 calls</strong> for the written tests along the academic year</p>
+<ul>
+<li>roughly in June, July, August, September, January, and February</li>
+</ul>
+</li>
+<li>
+<p>The exact <em>dates</em> and <em>locations</em> of the exams will be made available on <a href="https://almaesami.unibo.it">AlmaEsami</a>, where you will be able to <em>register</em> for exam calls</p>
+<ul>
+<li>registration is <em>strictly necessary</em> for participation (no registration, no exam)</li>
+<li>dates are <strong>not negotiable</strong>, so please plan your presence accordingly</li>
+<li>the amount of seats for each exam call is <strong>limited</strong> (by the capacity of the room)
+<ul>
+<li>so, please register to the exam call <em>only if</em> you are <em>sure</em> you will attend</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The written test will be <em>in presence</em>, <strong>no exception</strong></p>
+<ul>
+<li>if you are not available for one of the exam calls, you will have to wait for the next one</li>
+</ul>
+</li>
+<li>
+<p>The written test should be conducted on the University’s <strong>computers</strong>, but may fall back on <strong>paper</strong> in case of technical issues</p>
+<ul>
+<li>the day of the exam you <strong>must</strong> bring:
+<ol>
+<li>your <strong>ID card</strong> or <strong>passport</strong> to prove your identity</li>
+<li>a <strong>pen</strong> (possibly black or blue)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="details-about-the-__written-test__-pt-2">Details about the <strong>written test</strong> (pt. 2)</h2>
+<ul>
+<li>
+<p>The written test is <em>closed-book</em>, with <em>open-ended</em> questions</p>
+<ul>
+<li>any attempt to cheat will result in the <strong>immediate failure</strong> of the exam</li>
+</ul>
+</li>
+<li>
+<p>The teacher will provide the list of <em>possible questions</em> in advance</p>
+<ul>
+<li>the exam will consist of a <em>random selection</em> of them</li>
+<li>expect 1-2 potential questions <em>for each topic</em> of the course</li>
+</ul>
+</li>
+<li>
+<p>During the exam, you will be subject to the following <strong>restrictions</strong>:</p>
+<ul>
+<li>no <em>communication</em> with other people, no <em>internet</em> connection, no <em>phone</em> usage, no access to <em>notes</em> or <em>books</em></li>
+<li>no <em>leaving</em> the room before the end of the exam</li>
+<li>you can <strong>renounce</strong> to the exam at any time (implies that your test will <em>not</em> be evaluated)</li>
+</ul>
+</li>
+<li>
+<p>Results will be available on <a href="https://almaesami.unibo.it">AlmaEsami</a> within a <em>few days</em> from the exam</p>
+<ul>
+<li>in case of <em>failure</em> or <em>unsatisfying results</em>, you will be able to <strong>retry</strong> in the next call</li>
+<li><em>concluding</em> the test <em>without renouncing</em> implies that any prior exam result will be <strong>overwritten</strong></li>
+</ul>
+</li>
+<li>
+<p>Students should <em>inform</em> the teacher of any <strong>provable</strong> <em>special needs</em> or <em>disabilities</em> that may require <em>special arrangements</em> for the exam</p>
+<ul>
+<li>please don’t do this at the last moment</li>
+</ul>
+</li>
+<li>
+<p>Upon reaching a successful result ($\geq$ <code>18/30</code>), it is up the student to:</p>
+<ol>
+<li><em>inform</em> the teacher that they intend to <em>skip</em> the project work and <em>accept</em> the result, hence <strong>finalizing</strong> the exam</li>
+<li>or just <em>keep working</em> on the project work, hence <strong>postponing</strong> the finalization of the exam</li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h2 id="details-about-the-__project-work__">Details about the <strong>project work</strong></h2>
+<ul>
+<li>
+<p>The project work is <em>optional</em>, but it is <em>strongly recommended</em></p>
+<ul>
+<li>it is a <em>great opportunity</em> to <em>apply</em> the concepts learned during the course</li>
+<li>it is a <em>great opportunity</em> to <em>practice</em> with <em>teamwork</em></li>
+</ul>
+</li>
+<li>
+<p>The project work can be done either <em>individually</em> or in <em>groups</em> of <strong>up to 3 students</strong></p>
+<ul>
+<li>groups shall be <em>declared</em> on <a href="https://virtuale.unibo.it/course/view.php?id=63902">Virtuale</a> by the students <em>before</em> starting the project work</li>
+<li>the groups shall be <em>stable</em> and <em>unchangeable</em> during the project work
+<ul>
+<li>group member <strong>cannot</strong> be <em>added/removed</em> after the group’s project idea has been <em>approved</em></li>
+</ul>
+</li>
+<li>the members of the group shall present their project work <em>together</em></li>
+</ul>
+</li>
+<li>
+<p>The evaluation of the project work will focus <em>not only</em> on the <em>outcome</em> (the software artifact) but also on the <em>process</em> (the report)</p>
+<ul>
+<li>the software artifact can be small and simple…</li>
+<li>… yet the report should describe <em>all the aspects</em> of the <em>software engineering</em> process presented in the course</li>
+<li>the report should be written in <em>English</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="project-works-activity-flow">Project work’s activity flow</h2>
+<p>(Starting after passing the written test is <em>recommended</em> by not <em>mandatory</em>)</p>
+<ol>
+<li>
+<p><strong>Proposal</strong>: students <em>propose</em> a project theme/topic/concept on the <a href="https://virtuale.unibo.it/mod/forum/view.php?id=1885626">Project work forum</a></p>
+<ul>
+<li>in case of group project, the group members should be <em>declared</em> here (names + <strong>emails</strong>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Approval</strong>: the teacher may provide feedback, suggest changes/strategies, or set requirements, and eventually <em>approve</em> the proposal</p>
+</li>
+<li>
+<p><strong>Repositories creation</strong>: students <em>create a GitHub organization</em> and <em>grant the teacher access</em> to it</p>
+<ul>
+<li>granting <em>admin</em> access to the teacher’s GitHub account (username: <a href="https://github.com/gciatto"><code>gciatto</code></a>)</li>
+<li>the organization should be named <code>unibo-dtm-se-2425-YOUR_PROJECT_NAME</code></li>
+<li>the organization should contain (at least) <em>one repository</em> for the software artifact and <em>another</em> for the report</li>
+</ul>
+</li>
+<li>
+<p><strong>Development</strong>: students <em>develop</em> the software artifact and <em>write</em> the report</p>
+<ul>
+<li>the report should be written in <a href="https://www.markdownguide.org/">Markdown</a> and match <a href="https://github.com/unibo-dtm-se/template-project-work">this template</a></li>
+<li>the report should be written in <em>English</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Submission</strong>: students <em>submit</em> their GitHub organization URL on the <a href="https://virtuale.unibo.it/mod/forum/view.php?id=1885626">Project work forum</a> and ask an <em>appointment</em> for the discussion</p>
+<ul>
+<li>submission is <em>not retractable</em></li>
+<li>appointments may be scheduled in any moment of the academic year…</li>
+<li>… of course taking the teachers’ availability into account</li>
+</ul>
+</li>
+<li>
+<p><strong>Discussion</strong>: students <em>present</em> and <em>discuss</em> their project work with the teacher</p>
+<ul>
+<li>the discussion will be held <em>in English</em></li>
+<li>remote discussion may be possible via <a href="https://teams.microsoft.com/">Microsoft Teams</a>, in case of well-justified needs</li>
+<li>the discussion will include <em>all the members</em> of the group</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="details-about-the-__software-artifact__">Details about the <strong>software artifact</strong></h2>
+<blockquote>
+<p>If you decide to do the project work, you will have to <em>develop</em> a <em>software artifact</em> to prove your capability to carry out a software project</p></blockquote>
+<ul>
+<li>
+<p>The software to be developed can range from <em>simple</em> to <em>complex</em>, depending on your familiarity with development</p>
+<ul>
+<li>proposing an idea that you’re able to <em>complete</em> is part of the game
+<ul>
+<li>so do not over-promise!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Simple or complex, the point of the software artifact is to <em>demonstrate</em> your <em>understanding</em> of the <em>software engineering</em> process</p>
+<ul>
+<li>so, you should <em>encompass</em> and <em>document</em> all the <em>phases</em> of the <em>software development</em> process
+<ul>
+<li>e.g. the <em>requirements analysis</em>, the <em>design</em>, the <em>implementation</em>, the <em>testing</em>, the <em>deployment</em>, and the <em>maintenance</em> of the software artifact</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The software artifact can be developed in <em>any programming language</em> of choice</p>
+<ul>
+<li>we <em>recommend</em> using <strong>Python</strong></li>
+</ul>
+</li>
+<li>
+<p>Exploitation of <em>Git</em>, <em>GitHub</em>, and version control is <strong>important</strong> and will be evaluated</p>
+</li>
+<li>
+<p>Templates and guidelines for the source code will be provided on the <a href="https://github.com/unibo-dtm-se">GitHub organization</a> of the course</p>
+</li>
+</ul>
+</section><section>
+<h2 id="details-about-the-software-artifacts-__report__-pt-1">Details about the software artifact’s <strong>report</strong> (pt. 1)</h2>
+<blockquote>
+<p>The <em>report</em> (documenting the process) is <em>as important as</em> the code it describes (the outcome)</p></blockquote>
+<ul>
+<li>
+<p>The report must be a document describing the <strong>design</strong> and <strong>development processes</strong> of the software artifact</p>
+<ul>
+<li>possibly speculating on the aspects of development which have not been completed</li>
+</ul>
+</li>
+<li>
+<p>The report is the <em>entry point for evaluating</em> the project work</p>
+<ul>
+<li>it should detail <em>what has been done</em> and <em>what has not been done</em> (and <em>why</em>) …</li>
+<li>… w.r.t. <strong>all the aspects</strong> of <strong>software engineering</strong> presented in the course</li>
+</ul>
+</li>
+<li>
+<p>Technically speaking, the report should be written in <em>Markdown</em> and should match <a href="https://github.com/unibo-dtm-se/template-project-work">this template</a></p>
+<ul>
+<li>so that it can be rendered as a static Web page, via <a href="https://pages.github.com/">GitHub Pages</a> (example <a href="https://unibo-dtm-se.github.io/template-project-work/">here</a>)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="details-about-the-software-artifacts-__report__-pt-2">Details about the software artifact’s <strong>report</strong> (pt. 2)</h2>
+<h3 id="recommended-table-of-contents">Recommended Table of Contents</h3>
+<ol start="0">
+<li><strong>Title</strong> + <strong>Authors List</strong> + <strong>Abstract</strong></li>
+<li>[opt] <strong>Disclaimers</strong> (e.g., conflicts of interests, usage of AI, etc.)</li>
+<li><strong>Concept</strong>: short description of the idea behind the software being developed</li>
+<li><strong>Requirements</strong>: requirements + user stories + use cases + acceptance criteria</li>
+<li><strong>Design</strong>: overall architecture, structure, interaction, behaviour, etc.</li>
+<li><strong>Development</strong>: conventions on the usage of DVCS, other relevant implementation details</li>
+<li><strong>Validation</strong>: description of the testing activities, including unit tests, integration tests, etc.</li>
+<li><strong>Release</strong>: how to build, package, and release the software + details about licenses</li>
+<li><strong>Deployment</strong>: how to deploy the software and/or how to install and run it</li>
+<li><strong>CI/CD</strong>: description of the CI/CD pipelines, if any</li>
+<li><strong>User guide</strong>: how to use the software</li>
+<li><strong>Developer guide</strong>: how to contribute to the software</li>
+<li><strong>Self-evaluation</strong>: what went well, what went wrong, what could be improved (<em>1 section per group member</em>)</li>
+<li><strong>Future works</strong>: what could be done in the future to improve the software</li>
+</ol>
+</section><section>
+<h2 id="scoring-and-grading">Scoring and Grading</h2>
+<ul>
+<li>
+<p>The <em>written test</em> is <em>evaluated</em> <strong>numerically</strong>, after the written test is over:</p>
+<ul>
+<li>each question is assigned a <em>maximum score</em></li>
+<li>each student’s answers is given a score from <code>0</code> to the maximum</li>
+<li>the <em>resulting score</em> is the <em>sum</em> of the scores of all the answers, <strong>normalized to <code>27</code></strong></li>
+</ul>
+</li>
+<li>
+<p>Project work is <em>evaluated</em> <strong>once per group</strong></p>
+<ol>
+<li>an <em>overall score</em> is assigned to the project work, hence to the group</li>
+<li><em>individual score</em> are then adjusted based on the <strong>individual contributions</strong> to the project work</li>
+<li>each <em>individual score</em> is then <strong>normalized to <code>6</code></strong></li>
+</ol>
+</li>
+<li>
+<p>Assessing a <strong>software project</strong> is <em>not trivial</em>, and <em>subjectivity</em> is <em>unavoidable</em></p>
+<ul>
+<li>the teacher will do his best to be <em>fair</em> and <em>consistent</em></li>
+<li>the teacher will provide <em>feedback</em> on the project work, and <em>justify</em> the assigned score</li>
+<li>to make the process as <em>fair and transparent</em> as possible, here’s a <a href="https://github.com/unibo-dtm-se/resources/blob/main/project-work-checklist.md">check-list of technical aspects the teacher will consider</a></li>
+</ul>
+</li>
+<li>
+<p>The <em>final score</em> is the <strong>sum</strong> of the <em>normalized</em> scores of the <em>written test</em> and the <em>project work</em></p>
+<ul>
+<li>as the <em>maximum</em> final score is <code>33/30</code>, the <em>final mark</em> is <em>capped</em> to <code>30/30</code></li>
+<li>if <em>no</em> project work is done, and the <em>maximum final mark</em> is <code>27/30</code></li>
+<li>if the project work is <em>perfect</em> (i.e., <code>6/6</code>), <em>any</em> written test score $\geq$ <code>24/30</code> will result in a <em>final mark</em> of <code>30/30</code></li>
+<li>the final mark <code>30L</code> (<em>cum laude</em>) is assigned when the <em>final mark</em> (before capping) is <strong>above</strong> <code>30/30</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="technical-requirements">Technical Requirements</h2>
+<ul>
+<li>
+<p>An account on <a href="https://github.com">GitHub</a> (create one if missing)</p>
+<ul>
+<li>possibly, <strong>based on your university email address</strong>
+<ul>
+<li>if you already have a GitHub account, please add it as the secondary email address</li>
+</ul>
+</li>
+<li>optionally, <strong>with a profile picture</strong> showing your face or a recognizable avatar</li>
+<li>possibly, with a <strong>professional username</strong> (e.g., <code>john-doe</code> instead of <code>johnny-the-king</code>)</li>
+</ul>
+</li>
+<li>
+<p>A working installation of <a href="https://www.python.org/">Python</a></p>
+<ul>
+<li>possibly version <code>3.11.x</code></li>
+</ul>
+</li>
+<li>
+<p>A working installation of <a href="https://git-scm.com/">Git</a></p>
+<ul>
+<li>if you need a GUI, you may choose
+<ol>
+<li><a href="https://desktop.github.com/">GitHub Desktop</a></li>
+<li><a href="https://www.sourcetreeapp.com/">SourceTree</a></li>
+<li><a href="https://www.gitkraken.com/">GitKraken</a></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>A working installation of <a href="https://code.visualstudio.com/">Visual Studio Code</a></p>
+</li>
+<li>
+<p>[Useful] A working installation of <a href="https://www.jetbrains.com/pycharm/">PyCharm</a></p>
+<ul>
+<li>the community edition is free, and it’s enough</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="about-recordings">About recordings</h2>
+<ul>
+<li>
+<p>Lectures are <strong>recorded by default</strong></p>
+<ul>
+<li>recordings will be available on <a href="https://virtuale.unibo.it/course/view.php?id=63902">Virtuale</a>, in the <strong>Panopto</strong> section</li>
+</ul>
+</li>
+<li>
+<p>During the course, access to <strong>recordings</strong> is by-request only (send an email to the teacher)</p>
+<ul>
+<li>only <em>well motivated</em> requests will be accepted (health issues, family issues, transport issues, etc.)</li>
+</ul>
+</li>
+<li>
+<p>At the <em>end of the course</em>, the recordings will be <strong>made available to all students</strong></p>
+</li>
+<li>
+<p>Recordings are <em>not</em> a <em>substitute</em> for <em>attending</em> the <em>lectures</em></p>
+<ul>
+<li>they are a <em>complementary</em> tool to <em>support</em> the <em>learning</em> process</li>
+</ul>
+</li>
+<li>
+<p>Recordings will be made following a <strong>best-effort</strong> approach</p>
+<ul>
+<li>technical issues may arise, and some lectures may not be recorded</li>
+<li>recordings may be incomplete, or contain defects</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="about-the-slides">About the slides</h2>
+<ul>
+<li>
+<p>Slides and other materials are available on <a href="https://virtuale.unibo.it/course/view.php?id=63902">Virtuale</a> and <a href="https://unibo-dtm-se.github.io/course-slides/">GitHub</a></p>
+<ul>
+<li>they are produced along the way, so they may not be available in advance, or change abruptly overnight</li>
+<li>also, please re-download / re-load them before each class</li>
+</ul>
+</li>
+<li>
+<p>The <a href="https://unibo-dtm-se.github.io/course-slides/">online version of the slides</a> is <em>updated automatically</em></p>
+<ul>
+<li>you will always see the latest version when you load the page</li>
+</ul>
+</li>
+<li>
+<p>If you need to <em>print</em> the slides, please use the <em>printable version</em> of the slides, which is commonly available in the <em>first slide</em> of each lecture</p>
+<ul>
+<li>pre-cooked PDFs are available on at <a href="https://github.com/unibo-dtm-se/course-slides/releases/latest">https://github.com/unibo-dtm-se/course-slides/releases/latest</a></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="about-the-exploitation-of-generative-ai-in-the-course">About the exploitation of Generative AI in the course</h2>
+<ul>
+<li>
+<p>If you use <strong>Generative AI</strong> tool (e.g. ChatGPT, Copilot, etc.) in writing your <em>code</em> or <em>report</em>, this is <strong>fine</strong></p>
+<ul>
+<li>notice that as UniBo students, you may request a <em>free</em> license to GitHub Pro, which includes GitHub Copilot, at <a href="https://education.github.com/pack">https://education.github.com/pack</a></li>
+</ul>
+</li>
+<li>
+<p>But you <strong>must</strong> be <em>transparent</em> about <em>what</em> AI tool you used and <em>why</em></p>
+<ul>
+<li>
+<p>you <em>must</em> declare that by means of a <strong>disclaimer</strong> at the beginning of your report, e.g.:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>“During the preparation of this work the author(s) used [NAME TOOL / SERVICE] in order to [REASON]. 
+</span></span><span style="display:flex;"><span>After using this tool/service, 
+</span></span><span style="display:flex;"><span>the author(s) reviewed and edited the content as needed 
+</span></span><span style="display:flex;"><span>and take(s) full responsibility for the content of the final report/artifact.” 
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>If the disclaimer is <em>not present</em> in your report, this will be interpreted as <strong>“no Generative AI was used at all”</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>If I have the impression that some student has <em>blindly copy-pasted</em> content (from either AI chat, or the slides, or some book) <em>without understanding it</em>, I will set up an <em>oral examination</em> and ask <em>further questions</em> to investigate whether the student has actually understood what they wrote or not</p></blockquote>
+</section><section>
+<h1 id="lecture-is-over">Lecture is Over</h1>
+<br>
+<p>Compiled on: 2025-02-13 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

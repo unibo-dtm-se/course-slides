@@ -1,0 +1,533 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Software Modelling with UML</title>
+<meta name="description" content="Crash course on software modelling via UML">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides//plantuml.js"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="software-modelling-with-uml">Software Modelling with UML</h1>
+<br>
+<h2 style="margin-bottom: 0;">Software Engineering</h2>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
+<br>
+<br>
+<p>Compiled on: 2025-02-14 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
+</section><section>
+<h2 id="modelling-in-engineering">Modelling in Engineering</h2>
+<p><em>Architects</em> and <em>civil engineers</em> create <strong>models</strong> of the things they are going to build</p>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><p><img src="./model-bridge.jpg" alt="">
+Model of a Bridge</p>
+</div>
+<div class="col "><p><img src="./model-building.webp" alt=""></p>
+<p>Model of a Building</p>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="model-in-statistics--machine-learning">Model in Statistics / Machine Learning</h2>
+<p>In <em>statistics</em> (and <em>machine learning</em>) a <strong>model</strong> is a <em>mathematical representation</em> of a real-world process
+<br> (commonly attained by <em>fitting</em> a parametric <em>function</em> over a <em>sample</em> of <em>data</em> describing the process)</p>
+<p><img src="./model-statistics.webp" alt=""></p>
+<p>e.g.: <strong>$f(x) = \beta_0 + \beta_1 x $</strong> where <strong>$f$</strong> is the amount of minutes played, and <strong>$x$</strong> is the age</p>
+</section><section>
+<h2 id="what-is-a-model">What is a model?</h2>
+<p>(cf. <a href="https://plato.stanford.edu/entries/models-science/">https://plato.stanford.edu/entries/models-science/</a>)</p>
+<blockquote>
+<p>A <strong>model</strong> is a <em>simplified</em> <em>representation</em> of something complex</p></blockquote>
+<h3 id="what-are-models-useful-for">What are models useful for?</h3>
+<ul>
+<li>
+<p><strong>Understanding</strong> of the real world, via <em>simplification</em> and <em>abstraction</em> (i.e., by removing details)</p>
+<ul>
+<li>think about the many <a href="https://en.wikipedia.org/wiki/History_of_atomic_theory">models of the atom</a> (Bohr, Rutherford, etc.), or the wooden miniature of a bridge</li>
+</ul>
+</li>
+<li>
+<p><strong>Explain</strong> a <em>phenomenon</em> by fitting the model onto the <em>observed</em> data, to reconstruct the process</p>
+<ul>
+<li>think about the <a href="https://en.wikipedia.org/wiki/Attachment_theory">attachment theory</a> in psychology</li>
+</ul>
+</li>
+<li>
+<p><strong>Predicting</strong> the <em>dynamic</em> behaviour of a system (possibly, before/without building the system)</p>
+<ul>
+<li>think about the <a href="https://en.wikipedia.org/wiki/Weather_forecasting">weather forecast</a>, or, again, the wooden miniature of a bridge</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="models-are-simplifications">Models are simplifications</h2>
+<p>(cf. <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">https://en.wikipedia.org/wiki/All_models_are_wrong</a>)</p>
+<blockquote>
+<p>“<em>All</em> models are <strong>wrong</strong>, but <em>some</em> are <strong>useful</strong>” — George Box</p></blockquote>
+<ul>
+<li>Each model is <em>stressing some aspects</em> of the real world, and <em>ignoring others</em></li>
+<li>Focus on the <em>purpose</em> and the <em>context</em> of a model:
+<ul>
+<li>if the goal is <strong>understanding</strong>, the model should be <em>simple</em> and <em>intuitive</em></li>
+<li>if the goal is <strong>prediction</strong>, the model should be <em>accurate</em> and <em>precise</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="example">Example</h3>
+<ul>
+<li><strong>Newton’s Laws</strong>: they are not fully correct (Einstein’s relativity refined them)
+<ul>
+<li>but they are still useful for <em>engineering</em> and <em>daily</em> physics</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="why-do-engineers-model-systems">Why do engineers model systems?</h2>
+<ul>
+<li>
+<p>Models allow engineers to <em>design</em> and <em>study</em> a system <strong>before</strong> building it</p>
+</li>
+<li>
+<p>Building is commonly more <em>expensive</em> and <em>time-consuming</em> than <em>modelling</em></p>
+</li>
+<li>
+<p>Models can <strong>verify</strong> (to some extent) the system they want to create, <em>before</em> fully building it</p>
+</li>
+<li>
+<p>Models allow designers to <strong>take design decisions</strong> <em>early</em>, and <em>cheaply</em></p>
+</li>
+<li>
+<p>Models can be used to <strong>represent</strong> and <strong>communicate</strong> the design of a system</p>
+<ul>
+<li>useful for <em>collaboration</em> and <em>documentation</em>…</li>
+<li>… which in turn allow new people to <em>join</em> the project</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="what-about-_software_">What about <em>software</em>?</h2>
+<ul>
+<li>
+<p>Writing <em>software</em> <em>implies</em> <strong>modelling</strong> the world and <strong>representing</strong> it in a formal way</p>
+<ul>
+<li>so, in a sense, the <em>source code</em> is a <em>model</em> of the <em>world</em> (or, at least, of the <em>problem</em>)</li>
+</ul>
+</li>
+<li>
+<p>Yet, the <em>source code</em> of a project can easily grow in <strong>complexity</strong></p>
+<ul>
+<li>think about <em>large projects</em> with <strong>millions of LoC</strong>:
+<ol>
+<li>how can a person keep them <em>all</em> in their <em>mind</em>?</li>
+<li>how could that person <em>transfer</em> all that <em>knowledge</em> to <em>others</em>?</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Indeed, as software projects tend to grow complex, the aforementioned motivations for modelling apply to <em>software</em> as well</p>
+<ul>
+<li>we need <em>more abstract</em> (than code) and <em>visual</em> ways to <strong>represent</strong> <em>software systems</em></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Software systems are commonly modelled using the <strong>Unified Modelling Language</strong> (UML)</p></blockquote>
+</section><section>
+<h2 id="the-unified-modelling-language-uml">The Unified Modelling Language (UML)</h2>
+<p>(cf. <a href="https://en.wikipedia.org/wiki/Unified_Modeling_Language">https://en.wikipedia.org/wiki/Unified_Modeling_Language</a>)</p>
+<ul>
+<li>
+<p><strong>General-purpose</strong>, <em>graphical</em>, modeling <em>language</em> in the field of software engineering</p>
+<ul>
+<li>intended to provide a <em>(semi)-formal</em> way to <em>visualize</em> the design of a software system</li>
+</ul>
+</li>
+<li>
+<p>UML is a <strong>standard</strong> (<a href="https://www.iso.org/standard/32620.html">ISO/IEC 19501:2005</a>) managed by the <a href="https://www.omg.org/">Object Management Group</a> (OMG) since 1997</p>
+</li>
+<li>
+<p>Actually, nowadays, most practitioners do <em>not</em> properly use UML, but instead produce <em>informal diagrams</em></p>
+<ul>
+<li>more or less inspired by UML, but <strong>not</strong> <em>strictly</em> <em>following</em> the <em>standard</em></li>
+</ul>
+</li>
+<li>
+<p>In any case, the focus is on giving a <strong>graphical</strong> language to represent various aspects of a software system</p>
+</li>
+</ul>
+</section><section>
+<h2 id="what-can-uml-represent">What can UML represent?</h2>
+<ul>
+<li>UML can represent <em>many</em> aspects of a software system, via as many <em>sorts</em> of <strong>diagrams</strong>
+<ul>
+<li>broadly categorized in <strong>structural</strong> and <strong>behavioural</strong> diagrams</li>
+</ul>
+</li>
+</ul>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><p><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/UML_diagrams_overview.svg" alt=""></p>
+</div>
+<div class="col "><ul>
+<li><strong>Class</strong> Diagrams: overview on the <em>classes</em> and their <em>relationships</em></li>
+<li><strong>Sequence</strong> Diagrams: <em>interactions</em> between <em>objects</em> in a <em>time sequence</em></li>
+<li><strong>Activity</strong> Diagrams: <em>flow</em> of <em>control</em> in a <em>process</em></li>
+<li><strong>State</strong> Diagrams: <em>transitions</em> between <em>states</em> of an <em>object</em></li>
+<li><strong>Component</strong> Diagrams: architectural <em>components</em> and their <em>relationships</em></li>
+<li><strong>Deployment</strong> Diagrams: <em>physical</em> <em>deployment</em> of <em>artifacts</em> on <em>nodes</em></li>
+<li><strong>Use Case</strong> Diagrams: <em>actors</em> and <em>use cases</em> they <em>interact</em> with</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h1 id="class-diagrams">Class Diagrams</h1>
+</section><section>
+<h2 id="class-diagrams-overview">Class Diagrams Overview</h2>
+
+<figure id="plantuml-figure-1739555887681920293" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+    
+@startuml
+class Class {
+    - __another_private_field
+    # _overridden_protected_method
+    + public_field: int
+    + property: str
+    + method(arg)
+}
+
+abstract AbstractClass {
+    - __private_field: dict
+    # _protected_field: set
+    + {abstract} abstract_method()
+}
+
+interface Interface {
+   + method(arg)
+   + concrete_method()
+}
+
+class SubClass {
+    +overridden_method()
+    +additional_method()
+}
+
+enum Enum {
+    +OPTION_ONE
+    +OPTION_TWO
+    +OPTION_THREE
+}
+
+class Container {
+    - __items
+    + add(item)
+    + remove(item)
+    + clear()
+}
+
+class Item
+
+class Composed {
+    + component1
+    + component2
+}
+
+class Component
+
+class Related {
+    + method(Associated)
+}
+
+class Associated {
+    + method() -&gt; Related
+}
+
+AbstractClass &lt;|-- Class: extends
+Class &lt;|-- SubClass: extends
+Interface &lt;|.. Class: implements
+Container "1" o-- "0..*" Item: aggregation
+Composed "1" *-- "2" Component: composition
+Related "1" -- "1..*" Associated : relation / association
+@enduml
+
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1739555887681920293");
+</script>
+</section><section>
+<h2 id="class-diagram-example">Class Diagram Example</h2>
+<p>TODO review: this is generated, need to review</p>
+
+<figure id="plantuml-figure-1739555887681970166" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+    
+@startuml
+' Abstract class for library items
+abstract class LibraryItem {
+    - __id: str
+    + title: str
+    + author: str
+    + {abstract} get_info() -&gt; str
+}
+
+' Interface for borrowable items
+interface Borrowable {
+    + borrow(member: Member) -&gt; bool
+    + return_item() -&gt; bool
+}
+
+' Concrete classes
+class Book extends LibraryItem {
+    - __isbn: str
+    + genre: str
+    + get_info() -&gt; str
+}
+
+class Magazine extends LibraryItem {
+    - __issue_number: int
+    + category: str
+    + get_info() -&gt; str
+}
+
+' Library should also be borrowable
+Library &lt;|.. Borrowable
+Book &lt;|.. Borrowable
+
+' Container class for library items
+class Library {
+    - __items: list[LibraryItem]
+    + add_item(item: LibraryItem) -&gt; None
+    + remove_item(item: LibraryItem) -&gt; None
+    + find_item(title: str) -&gt; LibraryItem
+}
+
+' Association: Shelf contains books &amp; magazines but can be empty
+class Shelf {
+    + section: str
+}
+Shelf "1" -- "0..*" LibraryItem : stores
+
+' Library aggregates library items
+Library "1" o-- "0..*" LibraryItem : manages
+
+' Member class
+class Member {
+    - __member_id: str
+    + name: str
+    + borrow(item: Borrowable) -&gt; bool
+    + return_item(item: Borrowable) -&gt; bool
+}
+
+' Loan relationship
+class Loan {
+    + due_date: str
+    + renew() -&gt; bool
+}
+
+Member "1" -- "0..*" Loan : borrows
+Loan "1" -- "1" LibraryItem : for item
+
+' Composition: A library item is composed of front and back pages
+class Page {
+    + content: str
+}
+LibraryItem "1" *-- "2" Page : has pages
+@enduml
+
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1739555887681970166");
+</script>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

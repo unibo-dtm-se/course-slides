@@ -1777,3 +1777,7 @@ While minimising changes in the code:
 1. extend the _model_ to support the "clearing the current expression" _functionality_
 2. extend the _layout_ of the GUI to support one more _button_
 3. _attach_ the new button to the new functionality from the model
+
+---
+
+{{% import path="reusable/back.md" %}}

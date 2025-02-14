@@ -479,3 +479,7 @@ Attempts to mitigate the consequnet risk of _low-quality_ code.
 
 
 __Rationale__: grasping conceptual aspects is easier when you have a _clear_ idea of the underlying _technical_ aspects
+
+---
+
+{{% import path="reusable/back.md" %}}

@@ -537,3 +537,7 @@ Let's first create a new Python environment, and then install the `unibo-dtm-se-
 * The Python build ecosystem is fragmented
   * Poetry is a modern take on Python dependency management and packaging
   * PyEnv can be used to let multiple Python versions live together -->
+
+---
+
+{{% import path="reusable/back.md" %}}

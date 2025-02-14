@@ -489,3 +489,7 @@ An implementation of Semantic release: <https://github.com/semantic-release/sema
 
 * [Alchemist](https://github.com/AlchemistSimulator/Alchemist)
 * [2P-Kt](https://github.com/tuProlog/2p-kt)
+
+---
+
+{{% import path="reusable/back.md" %}}

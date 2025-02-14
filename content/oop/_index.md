@@ -2068,3 +2068,7 @@ class PolarComplex(Complex):
 - [Design Patterns](https://refactoring.guru/design-patterns/what-is-pattern) (and subsequent pages)
 - [Python Design Patterns](https://python-patterns.guide/)
 - [A collection of design patterns and idioms in Python](https://github.com/faif/python-patterns)
+
+---
+
+{{% import path="reusable/back.md" %}}

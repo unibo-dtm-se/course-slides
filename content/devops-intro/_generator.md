@@ -582,3 +582,7 @@ In the literature, Scrum and agile show mixed evidence of efficacy
 * Enforce excellence by *strict QA* processes
 * Beware of *scoring individuals*, as they will likely begin to *chase the metrics* in response
 * Development is a *creative work*, excessive *management pressure* is likely to make things worse
+
+---
+
+{{% import path="reusable/back.md" %}}

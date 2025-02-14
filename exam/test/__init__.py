@@ -15,9 +15,10 @@ def log(*args):
 def create_arg_parser():
     parser = argparse.ArgumentParser(description='Test Generator')
     parser.add_argument("--questions-file", "-q", type=str, help='Path to questions .csv file', default=DEFAULT_QUESTIONS_FILE)
-    parser.add_argument("--total-weight", "-w", type=int, help='Total weight of the test', default=27)
+    parser.add_argument("--total-weight", "-w", type=int, help='Total weight of the test', default=9)
     parser.add_argument("--categories", "-c", type=str, nargs='+', help='Categories to include in the test', action='append')
-    parser.add_argument("--completely-different-tests", "-d", action='store_true', help='Generate completely different tests (no repeated questions)')
+    parser.add_argument("--completely-different", "-d", action='store_true', help='Generate completely different tests (no repeated questions)')
+    parser.add_argument("--max-grade", "-g", type=int, help='Maximum grade for the test', default=27)
     parser.add_argument("--verbose", "-v", action='store_true', help='Verbose mode')
     return parser
 
@@ -29,7 +30,7 @@ def parse_args(args = sys.argv[1:]):
 
 class TestGenerator:
     def __init__(self, db: QuestionsStore, total_weight: int, target_categories: set[Category],
-                 completely_different_tests: bool = False):
+                 completely_different: bool = False):
         self.__db = db
         self.__total_weight = int(total_weight)
         self.__target_categories = target_categories
@@ -38,7 +39,7 @@ class TestGenerator:
             assert self.__db.category_size(category) > 0, f"Category {category} is empty"
             assert self.__db.category_weight(category) > 0, f"Category {category} has no weight"
         self.__problem, self.__variables = self.__configure_problem()
-        self.__completely_different_tests = completely_different_tests
+        self.__completely_different = completely_different
 
     def __configure_problem(self):
         solver = Solver()
@@ -65,8 +66,8 @@ class TestGenerator:
             yield (solution := self.__solution_to_questions())
             variables = self.__variables
             current_solution = {variables[q.id]: 1 for q in solution.questions}
-            constraint = And if self.__completely_different_tests else Or
-            constraint_name = ' and ' if self.__completely_different_tests else ' or '
+            constraint = And if self.__completely_different else Or
+            constraint_name = ' and ' if self.__completely_different else ' or '
             self.__problem.add(constraint([x != y for x, y in current_solution.items()]))
             log("add constraint:", constraint_name.join([f'{q.id} != 1' for q in solution.questions]))
 

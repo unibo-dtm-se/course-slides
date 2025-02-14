@@ -18,10 +18,11 @@ if not args.categories:
     args.categories = {categories_by_index[i] for i in indexes}
 
 etest.VERBOSE = args.verbose
-generator = etest.TestGenerator(questions, args.total_weight, args.categories, args.completely_different_tests)
+generator = etest.TestGenerator(questions, args.total_weight, args.categories, args.completely_different)
 etest.log("generating test for topics", [c.name for c in args.categories])
 print("---")
 for test in generator.solutions:
+    test.total_weight = args.max_grade
     print(test)
     print("---")
     try:

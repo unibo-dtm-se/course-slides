@@ -32,6 +32,9 @@ class Category:
     def __post_init__(self):
         self.name = self.name.strip().replace(" ", "")
 
+    def copy(self):
+        return Category(self.name)
+
     def to_xml(self, root: xml.Element):
         if root is None:
             root = xml.Element("question")
@@ -62,6 +65,16 @@ class Question:
             self.id = DEFAULT_ID_GENERATOR.id_for(self.category.name)
         self.weight = float(self.weight)
         self.max_lines = int(self.max_lines)
+
+    def copy(self):
+        return Question(
+            category=self.category.copy(),
+            text=self.text,
+            type=self.type,
+            weight=self.weight,
+            max_lines=self.max_lines,
+            id=self.id,
+        )
 
     def to_xml(self, root: xml.Element):
         if root is None:
@@ -107,6 +120,7 @@ class QuestionsStore:
     def __init__(self, questions=DEFAULT_QUESTIONS_FILE):
         if isinstance(questions, Path) or isinstance(questions, str):
             questions = load_questions_from_csv(questions)
+        questions = [q.copy() for q in questions]
         self.__questions_by_category = group_by_category(questions)
         self.__questions_by_id = {q.id: q for question_list in self.__questions_by_category.values() for q in question_list}
         self.__categories = tuple(sorted(self.__questions_by_category.keys(), key=lambda x: x.name))
@@ -146,9 +160,21 @@ class QuestionsStore:
     def __len__(self):
         return len(self.questions)
     
+    def __total_weight(self):
+        return sum(q.weight for q in self.__questions_by_id.values())
+    
     @property
     def total_weight(self):
-        return sum(q.weight for q in self.__questions_by_id.values())
+        return self.__total_weight()
+    
+    @total_weight.setter
+    def total_weight(self, value):
+        old_weight = self.__total_weight()
+        if value == old_weight:
+            return
+        factor = value / old_weight
+        for question in self.questions:
+            question.weight *= factor
     
     def to_xml(self, rootname="quiz"):
         quiz = xml.Element(rootname)
@@ -160,11 +186,11 @@ class QuestionsStore:
     
     def __str__(self):
         result = StringIO()
-        print(f"# {len(self)} questions, total weight: {self.total_weight}", file=result)
+        print(f"# {len(self)} questions, total weight: {self.total_weight:.2f}", file=result)
         for category in self.categories:
-            print(f"## {category.name} ({self.category_size(category)} questions, total weight: {self.category_weight(category)})", file=result)
+            print(f"## {category.name} ({self.category_size(category)} questions, total weight: {self.category_weight(category):.2f})", file=result)
             for question in self.questions_in_category(category):
-                print(f"- {question.id} ({question.weight}): {question.text}", file=result)
+                print(f"- {question.id} ({question.weight:.2f}): {question.text}", file=result)
         return result.getvalue()
     
     def __repr__(self):

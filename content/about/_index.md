@@ -110,20 +110,6 @@ Students _must_ enroll
     2. and finally they will _present_ and _discuss_ the project work with the teacher in an _oral_ discussion
         * the _oral_ discussion will be held _upon appointment_ with the teacher, possibly _remotely_
 
-<!-- - In the project work __report is more important than the source code__
-    + the code could be a simple, pissibly incomplete, prototype or stub
-
-- The project work can be done _individually_ or in _groups_ of __up to 4 students__
-    + we _recommend_ doing it in _groups_, to practice with teamwork
-    + individual contributions will be assessed via DVCS
-
-- Students are encouraged to __propose__ project works themes/topics/concepts
-    + we may help in refining initial proposals
-
-- We incentivise students to _complete_ their project work __as soon as possible__ 
-    + better if within _the next exam session_
-    + possibly within _the same academic year_ -->
-
 ---
 
 ## Details about the __written test__ (pt. 1)
@@ -152,9 +138,8 @@ Students _must_ enroll
 - The written test is _closed-book_, with _open-ended_ questions
     + any attempt to cheat will result in the __immediate failure__ of the exam
 
-- The teacher will provide the list of _possible questions_ in advance
-    + the exam will consist of a _random selection_ of them
-    + expect 1-2 potential questions _for each topic_ of the course
+- The list of __potential questions__ that the written test may contain is available [here](../questions.csv)
+    + further questions may be appended during the course
 
 - During the exam, you will be subject to the following __restrictions__:
     * no _communication_ with other people, no _internet_ connection, no _phone_ usage, no access to _notes_ or _books_

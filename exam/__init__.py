@@ -2,6 +2,12 @@ import csv
 import xml
 from dataclasses import dataclass
 import xml.etree.ElementTree as xml
+from pathlib import Path
+from io import StringIO
+
+
+DIR_ROOT = Path(__file__).parent.parent
+DEFAULT_QUESTIONS_FILE = DIR_ROOT / "static" / "questions.csv" 
 
 
 class IdGenerator:
@@ -97,20 +103,70 @@ def group_by_category(questions):
     return questions_by_category
 
 
-if __name__ == "__main__":
-    import sys
+class QuestionsStore:
+    def __init__(self, questions=DEFAULT_QUESTIONS_FILE):
+        if isinstance(questions, Path) or isinstance(questions, str):
+            questions = load_questions_from_csv(questions)
+        self.__questions_by_category = group_by_category(questions)
+        self.__questions_by_id = {q.id: q for question_list in self.__questions_by_category.values() for q in question_list}
+        self.__categories = tuple(sorted(self.__questions_by_category.keys(), key=lambda x: x.name))
 
-    if len(sys.argv) < 2:
-        print(f"Usage: {sys.argv[0]} path/to/file.csv")
-        sys.exit(1)
-
-    questions = load_questions_from_csv(sys.argv[1])
-    questions_by_category = group_by_category(questions)
-    categories = sorted(questions_by_category.keys(), key=lambda x: x.name)
-    quiz = xml.Element("quiz")
-    for category in categories:
-        category.to_xml(quiz)
-        for question in questions_by_category[category]:
-            question.to_xml(quiz)
-    tree = xml.ElementTree(quiz)
-    tree.write(sys.stdout, encoding="unicode", xml_declaration=True)
+    @property
+    def categories(self):
+        return sorted(self.__categories, key=lambda x: x.name)
+    
+    @property
+    def questions(self):
+        return sorted(self.__questions_by_id.values(), key=lambda x: x.id)
+    
+    def category(self, category):
+        if not isinstance(category, Category):
+            category = Category(category)
+        if category not in self.__categories:
+            raise KeyError(f"Category {category} not found")
+        return category
+    
+    def question(self, id):
+        if id not in self.__questions_by_id:
+            raise KeyError(f"Question {id} not found")
+        return self.__questions_by_id[id]
+    
+    def questions_in_category(self, category):
+        category = self.category(category)
+        return sorted(self.__questions_by_category.get(category, []), key=lambda x: x.id)
+    
+    def category_size(self, category):
+        category = self.category(category)
+        return len(self.__questions_by_category.get(category, []))
+    
+    def category_weight(self, category):
+        category = self.category(category)
+        return sum(q.weight for q in self.__questions_by_category.get(category, []))
+    
+    def __len__(self):
+        return len(self.questions)
+    
+    @property
+    def total_weight(self):
+        return sum(q.weight for q in self.__questions_by_id.values())
+    
+    def to_xml(self, rootname="quiz"):
+        quiz = xml.Element(rootname)
+        for category in self.categories:
+            category.to_xml(quiz)
+            for question in self.questions_in_category(category):
+                question.to_xml(quiz)
+        return xml.ElementTree(quiz)
+    
+    def __str__(self):
+        result = StringIO()
+        print(f"# {len(self)} questions, total weight: {self.total_weight}", file=result)
+        for category in self.categories:
+            print(f"## {category.name} ({self.category_size(category)} questions, total weight: {self.category_weight(category)})", file=result)
+            for question in self.questions_in_category(category):
+                print(f"- {question.id} ({question.weight}): {question.text}", file=result)
+        return result.getvalue()
+    
+    def __repr__(self):
+        return f"QuestionsStore({self.questions})"
+    

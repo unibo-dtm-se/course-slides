@@ -170,3 +170,11 @@ class QuestionsStore:
     def __repr__(self):
         return f"QuestionsStore({self.questions})"
     
+    def __eq__(self, value):
+        if not isinstance(value, QuestionsStore):
+            return False
+        return self.questions == value.questions
+    
+    def __hash__(self):
+        return hash(self.questions)
+    

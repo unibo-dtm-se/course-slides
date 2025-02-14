@@ -18,10 +18,14 @@ if not args.categories:
     args.categories = {categories_by_index[i] for i in indexes}
 
 etest.VERBOSE = args.verbose
-generator = etest.TestGenerator(questions, args.total_weight, args.categories)
+generator = etest.TestGenerator(questions, args.total_weight, args.categories, args.completely_different_tests)
 etest.log("generating test for topics", [c.name for c in args.categories])
+print("---")
 for test in generator.solutions:
     print(test)
     print("---")
-    input("Press enter for next test")
+    try:
+        input("Press enter for next test")
+    except (EOFError, KeyboardInterrupt):
+        exit(0)
 print("No more tests")

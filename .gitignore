@@ -6,3 +6,4 @@ _gen/
 *.hprof
 *build.lock
 .DS_Store
+*.xml

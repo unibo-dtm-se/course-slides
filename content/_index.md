@@ -17,7 +17,7 @@ aliases = [
 
 # Table of contents
 
-1. [About the course](about)
+1. [About the course (and the exam)](about)
 0. [Introduction to software engineering](se-intro)
 0. [Preliminary notions for Software Development](preliminaries)
 0. [Decentralized version control (with git) and team organization](dvcs-basics)

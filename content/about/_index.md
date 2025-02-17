@@ -291,7 +291,48 @@ Students _must_ enroll
 
 ---
 
-## Technical Requirements
+## What project work may you choose? (pt. 1)
+
+- A __video game__, e.g. a remake of classical games such as Pong, Arkanoid, Pacman, Snake, Tetris, etc., as well as _board_ or _card_ games
+    + easier if you use a game engine, e.g. [PyGame](https://www.pygame.org)
+    + offline, and single player _much easier_ than online, and multiplayer 
+    + turn-based _much easier_ than real-time
+    + 2D _much easier_ than 3D
+
+- A __web application__ providing some useful functionality to multiple users
+    + e.g. a _to-do list_, a _chat_, a _forum_, a _blog_, a _social network_, etc.
+    + it is totally OK to take inspiration from existing services / Web apps
+    + better to use ad-hoc frameworks for the _backend_ (e.g. [Flask](https://flask.palletsprojects.com/), [Django](https://www.djangoproject.com/), etc.)
+    + as well as ad-hoc frameworks for the _frontend_ (e.g. [React](https://reactjs.org/), [Vue](https://vuejs.org/), etc.)
+
+- A __desktop application__ providing some useful functionality to a single user
+    + e.g. a _function visualizer_, a _notebook_, a _music player_, a _photo editor_, etc.
+    + better to use ad-hoc frameworks for the _GUI_ (e.g. [Kivy](https://kivy.org/), [PyQt](https://www.riverbankcomputing.com/software/pyqt/intro), etc.)
+
+- A __command-line application__ providing some useful functionality to developers
+    + e.g. a _clone_ of tool such as [`jq`](https://en.wikipedia.org/wiki/Jq_(programming_language)), [`curl`](https://curl.se/)
+    + e.g. a tool for generating the text of an exam given a pool of questions in CSV
+
+- A __library__ for doing something useful
+    + e.g. drawing fractals, matrix computations, etc.
+    + e.g. a clone of (a subset of) relevant Python libraries (e.g. [NumPy](https://numpy.org/), [SciPy](https://scipy.org/), [Pandas](https://pandas.pydata.org/), [Matplotlib](https://matplotlib.org/))
+
+---
+
+## What project work may you choose? (pt. 2)
+
+### Examples
+
+- Take inspiration from the ["Object Oriented Programming" course](https://www.unibo.it/en/study/phd-professional-masters-specialisation-schools-and-other-programmes/course-unit-catalogue/course-unit/2023/378219)
+    + <https://unibo-oop.github.io/showcase/>
+    + <vhttps://github.com/orgs/unibo-oop-projects/repositories>
+
+- Take inspiration from the ["Distributed Systems" course](https://www.unibo.it/en/study/phd-professional-masters-specialisation-schools-and-other-programmes/course-unit-catalogue/course-unit/2024/493397)
+    + <https://apice.unibo.it/xwiki/bin/view/Courses/Series/Ds/Projects>
+
+---
+
+## Technical Requirements for the Course
 
 - An account on [GitHub](https://github.com) (create one if missing)
     + possibly, __based on your university email address__

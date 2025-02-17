@@ -151,9 +151,14 @@ e.g.: __$f(x) = \beta_0 + \beta_1 x $__ where __$f$__ is the amount of minutes p
 
 # Class Diagrams
 
+- Modelling the _structure_ of a system
+- Focus on _classes_ and their _relationships_
+
 ---
 
 ## Class Diagrams Overview
+
+(cf. <https://en.wikipedia.org/wiki/Class_diagram>)
 
 {{< plantuml >}}
 @startuml
@@ -224,16 +229,26 @@ Related "1" -- "1..*" Associated : relation / association
 
 ## Class Diagram Example
 
-TODO review: this is generated, need to review
+(Remark: this is not a "good" diagram from a real system, but just an example to show the graphical syntax)
 
 {{< plantuml >}}
 @startuml
+enum Status {
+  + MISSING
+  + AVAILABLE
+  + BORROWED
+  + LATE
+}
+
 ' Abstract class for library items
 abstract class LibraryItem {
     - __id: str
     + title: str
     + author: str
+    + state: Status
     + {abstract} get_info() -> str
+    + front: Page
+    + back: Page
 }
 
 ' Interface for borrowable items
@@ -255,9 +270,7 @@ class Magazine extends LibraryItem {
     + get_info() -> str
 }
 
-' Library should also be borrowable
-Library <|.. Borrowable
-Book <|.. Borrowable
+Borrowable <|-- LibraryItem
 
 ' Container class for library items
 class Library {
@@ -267,36 +280,407 @@ class Library {
     + find_item(title: str) -> LibraryItem
 }
 
-' Association: Shelf contains books & magazines but can be empty
-class Shelf {
-    + section: str
-}
-Shelf "1" -- "0..*" LibraryItem : stores
-
 ' Library aggregates library items
 Library "1" o-- "0..*" LibraryItem : manages
 
-' Member class
-class Member {
-    - __member_id: str
-    + name: str
-    + borrow(item: Borrowable) -> bool
-    + return_item(item: Borrowable) -> bool
-}
-
 ' Loan relationship
 class Loan {
+    + item: LibraryItem
     + due_date: str
     + renew() -> bool
 }
 
-Member "1" -- "0..*" Loan : borrows
-Loan "1" -- "1" LibraryItem : for item
+
+Loan "1" -- "1" LibraryItem
 
 ' Composition: A library item is composed of front and back pages
 class Page {
     + content: str
 }
-LibraryItem "1" *-- "2" Page : has pages
+LibraryItem "1" *-r- "2" Page
+
+LibraryItem -l- Status
 @enduml
 {{< /plantuml >}}
+
+---
+
+## Class Diagram Explained (pt. 1)
+
+1. Focus on __classes__ (here intended as _data types_)
+    + report class _names_
+    + report _sort_ of classes (e.g. `abstract`, `interface`, `enum`, `class`)
+        ![](https://www.plantuml.com/plantuml/svg/Iyv9B2vMS0QHN5o9ISKbHOd99GeGKKSe5ogRcLUIMfIMc9ogu0bZSN6bvfNcAhW22IukPx0ctQBeZCoKbDIyM5rK0m00)    
+        + `enum`s are types whose values are _fixed_ and _enumerated_
+
+2. Focus on __relationships__ among classes
+    - _inheritance_ a.k.a. "extends" (solid line with a triangle) 
+        ![](https://www.plantuml.com/plantuml/svg/Iyv9B2vM22ujI2ro1ZEvO299O3uN5vASJOrkaIwIL6PUIMfHMc9oAiI0aCg2L1In9B085rmIOG281m00)
+    - _implementation_ a.k.a. "implements" (dashed line with a triangle)
+        ![](https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuSf9JIjHACbNACfCpoXHICaiIaqkoSpFuqhEIImkLd06aLoPUIMfHMc9oQaAdZ0M5vobO5EZfmTLw92Qbm8q5000)
+    - _aggregation_ (solid line with a white diamond): the container may exist without items
+        ![](https://www.plantuml.com/plantuml/svg/oqbDAr4eoLSeoapFA55moInAJIx9pC_ZuahEIImkLd3Epoj9pCnBBOBoFKjISxcuuA8AIWeAXaeA-RgwkWfA1jfAO7a0)
+    - _composition_ (solid line with a filled diamond): the composed entity cannot exist without the component
+        ![](https://www.plantuml.com/plantuml/svg/JOqn2W8m34NtdEAJKUdG6nJq8gMDMcWJQUBzTH4wFjw3LppgZi-QDEKH2CCUprVWFhQq6AP4RLPtt6ozpQMVgA91z3TW83CkAILmllBH5D7-Utm1)
+    - _association_ (solid line, with or without arrow): any other relevant sort of symmetric (no arrow) or asymmetric (with arrow) relation
+        ![](https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuSf9JIjHACbNACfCpoXHSCaiIaqkoSpFu-9ApaaiBbPmpibCpIk1Se9JYyfIYxYu888AkhfsK24hXUJ4d9nYBeVKl1IWeG00)
+
+---
+
+## Class Diagram Explained (pt. 2)
+
+![](https://www.plantuml.com/plantuml/svg/TOv12i8m44NtdcB0ZIBf9Jn8cKv634HQcj5DoTqD5KF39viaF2PldaHEYUxxkPs872rh-B3f-0WQVI7dGcPJCVMLtMXvJp581SEm_zsIiGN9zBj7SE44kd6ctULSq_bIUyx-ScrJApxMLjOFHYasuv9-DYujFfwIhIoMwV_gEd4KlFaB)
+
+3. Focus on the __attributes__ of each class
+    - _private_ attributes (beginning with a `-`, or red square)
+    - _protected_ attributes (beginning with a `#`, or yellow diamond)
+    - _public_ attributes (beginning with a `+`, or green square)
+    - _abstract_ attributes (italics)
+    - _static_ or _class_ attributes (underline)
+    - _fields_ or _properties_, i.e. attributes without parentheses (beginning with a unfilled symbol) 
+    - _methods_ or _functions_, i.e. attributes with parentheses (beginning with a filled symbol)
+
+
+---
+
+## Class Diagram Explained (pt. 3)
+
+### Common questions
+
+- should you include _type_ information in attributes? $\Rightarrow$ __not mandatory__, _but recommended_
+- should you include _visibility_ information in attributes? $\Rightarrow$ __yes__
+- should you include Python's _underscore prefixes_ for visibility (`_` or `__`)in the diagram $\Rightarrow$ __as you like__
+- should you include _all_ attributes?
+    + if you're willing to provide a _complete model_ of the code's _structure_ $\Rightarrow$ __yes__
+    + if you're willing to provide an _overview_ of the _public API_ $\Rightarrow$ __public attributes only__
+    + if you're willing to an _overview_ of the types $\Rightarrow$ __no__
+
+---
+
+# Sequence Diagrams
+
+- Modelling the _interaction_ among the components of a system
+- Focus on _objects_ / _components_ and their _interactions_ over _time_
+    * i.e., _who_'s sending _which message_ to _whom_, _when_
+
+---
+
+## Sequence Diagrams Overview
+
+{{% multicol %}}
+{{% col class="col-4" %}}
+(cf. <https://en.wikipedia.org/wiki/Sequence_diagram>)
+{{< plantuml >}}
+@startuml
+hide footbox
+
+actor Actor
+participant Participant
+database Database
+
+activate Actor
+Actor -> Participant: request
+activate Participant
+
+Participant -> Database: query
+activate Database
+
+note right of Actor
+vertical bars represent 
+participants's control flow,
+which are synchronous
+end note
+
+Database -> Database: internal\nprocedure
+activate Database
+deactivate Database
+
+Database --> Participant: results
+deactivate Database
+
+Participant --> Actor: response
+deactivate Participant
+
+== New situation ==
+
+alt response is ok
+    Actor -> Participant: another request
+    activate Participant
+
+    Participant -> Participant: stateless\nprocedure
+    Participant -> Actor: another response
+    deactivate Participant 
+
+else response has error
+    Actor --> Participant: shut down
+    destroy Participant
+    create participant "Another Participant" as Participant2
+    Actor --> Participant2: start another participant
+end
+@enduml
+{{< /plantuml >}}
+
+{{% /col %}}
+{{% col %}}
+- The diagram is _vertical_, each column corresponds to the __life-line__ of a _participant_ 
+
+- The vertical axis corresponds to __time__, the lower, the later
+
+- __Participants__ can be objects or entities of any sort (e.g. OOP objects, infrastructural components, etc.)
+    + special icons may be used for special participants, such as _actors_ or _databases_
+    + participants are assumed to be _already_ __up and running__ at the beginning of the sequence
+        - yet they can be created and destroyed during the sequence
+
+- Horizontal arrows represent __messages__ sent from one participant to another
+    + the _label_ of the arrow is the _message_ itself
+        * an informal description of the _message_ can be used too, but formal is better
+    + straight line is for _requests_, dashed line is for _responses_
+
+- White vertical bars on a participant's life-line represent the __control flows__
+    + i.e., the participant is _active_ during that time
+        * this is way to stress the _duration_ of activities
+    + participants get _activated_ starting to __process__ some received message, _deactivated_ when done
+
+- _Branching_ (if) or _loops_ are represented via ad-hoc __frames__
+
+- Double horizontal lines may be used to denote a __new__ interaction sequence
+
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Sequence Diagram Example in OOP (pt. 1)
+### Visualising the [Iterator Pattern](https://refactoring.guru/design-patterns/iterator) (compliant to Python's [iterator protocol](https://realpython.com/python-iterators-iterables/))
+
+{{% multicol %}}
+{{% col %}}
+#### Classes
+```python
+class MyIterator:
+    def __init__(self, items):
+        self.__items = items
+        self.__index = 0
+
+    def __next__(self):
+        if self.__index >= len(self.__items):
+            raise StopIteration
+        current_item = self.__items[self.__index]
+        self.__index += 1
+        return current_item
+```
+
+```python
+class MyCollection:
+    def __init__(self):
+        self.items = []
+    
+    def add(self, item):
+        self.items.append(item)
+    
+    def __iter__(self):
+        return MyIterator(self.items)
+```
+
+#### Sequence described in the diagram
+
+```python
+collection = MyCollection()
+collection.add("A")
+collection.add("B")
+collection.add("C")
+
+iterator = iter(collection)
+while True:
+    try:
+        item = next(iterator)
+        print(item)
+    except StopIteration:
+        break
+```
+{{% /col %}}
+{{% col %}}
+{{< plantuml >}}
+@startuml
+hide footbox
+
+participant "Client" as Client
+participant "MyCollection" as Collection
+participant "MyIterator" as Iterator
+
+== Initialization ==
+activate Client
+Client -> Collection: add("A")
+Client -> Collection: add("B")
+Client -> Collection: add("C")
+
+== Retrieving the Iterator ==
+Client -> Collection: iter()
+activate Collection
+create Iterator
+Collection -> Iterator: Create Instance
+Collection --> Client: return Instance
+deactivate Collection
+
+== Iterating Over Elements ==
+loop
+    Client -> Iterator: next()
+    activate Iterator
+    Iterator -> Iterator: Check if more elements
+    alt More Elements Available
+        Iterator --> Client: return Current Item
+    else No More Elements
+        Iterator --> Client: raise StopIteration
+        deactivate Iterator
+    end
+end
+destroy Iterator
+
+@enduml
+{{< /plantuml >}}
+{{% /col %}}
+{{% /multicol %}}
+
+---
+## Sequence Diagram Example in OOP (pt. 2)
+
+- Participants are __named__ after _classes_, yet they refer to _instances_ of those classes
+
+- Arrows are __named__ after _method calls_ when possible
+
+- The following pieces of code are completely equivalent in Python:
+
+{{% multicol %}}
+{{% col %}}
+```python
+iterator = iter(collection)
+while True:
+    try:
+        item = next(iterator)
+        print(item)
+    except StopIteration:
+        break
+```
+{{% /col %}}
+{{% col %}}
+```python
+for item in collection:
+    print(item)
+```
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Sequence Diagram Example in Distributed Systems
+
+{{< plantuml >}}
+@startuml
+hide footbox
+
+actor User
+participant "Web Browser" as Browser
+participant "Web Server" as Server
+database "Database" as DB
+actor Admin
+participant "Email Service" as EmailService
+
+activate User
+User -> Browser: Request Page
+activate Browser
+Browser -> Server: HTTP GET /homepage
+activate Server
+Server -> DB: Query User Data
+activate DB
+DB --> Server: User Data Response
+deactivate DB
+Server --> Browser: HTML Content
+deactivate Server
+Browser -> User: Render Page
+deactivate Browser
+
+== User Authentication Flow ==
+User -> Browser: Enter Credentials
+activate Browser
+Browser -> Server: POST /login
+activate Server
+alt Valid Credentials
+    Server -> DB: Validate User
+    activate DB
+    DB --> Server: Success
+    deactivate DB
+    Server --> Browser: Set Auth Token
+else Invalid Credentials
+    Server --> Browser: Authentication Error
+end
+deactivate Server
+Browser -> User: Show Login Result
+deactivate Browser
+
+== Additional Features ==
+User -> Browser: Perform an Action
+activate Browser
+Browser -> Server: Request Action
+activate Server
+par Parallel Processing
+    Server -> DB: Write Logs
+    activate DB
+    Server -> DB: Process Request
+    deactivate DB
+end
+Server --> Browser: Action Success
+deactivate Server
+Browser -> User: Display Confirmation
+deactivate Browser
+
+== Object Creation & Deletion ==
+create EmailService
+EmailService <- Admin: deploy
+User -> Browser: Create New Account
+activate Browser
+Browser -> Server: Register User
+activate Server
+Server -> DB: Insert New User
+activate DB
+DB --> Server: Confirmation
+deactivate DB
+Server -> EmailService: Send Welcome Email
+activate EmailService
+Server --> Browser: Registration Successful
+deactivate Server
+Browser -> User: Show Confirmation
+deactivate Browser
+
+EmailService --> User: Welcome Email
+deactivate EmailService
+
+@enduml
+{{< /plantuml >}}
+
+---
+
+# State Diagram
+
+TBD
+
+---
+
+# Activity Diagram
+
+TBD
+
+---
+
+# Components Diagram
+
+TBD
+
+---
+
+# PlantUML
+
+TBD
+
+---
+
+{{% import path="reusable/back.md" %}}

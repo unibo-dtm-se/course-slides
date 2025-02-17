@@ -202,10 +202,15 @@ Model of a Bridge</p>
 </div>
 </section><section>
 <h1 id="class-diagrams">Class Diagrams</h1>
+<ul>
+<li>Modelling the <em>structure</em> of a system</li>
+<li>Focus on <em>classes</em> and their <em>relationships</em></li>
+</ul>
 </section><section>
 <h2 id="class-diagrams-overview">Class Diagrams Overview</h2>
+<p>(cf. <a href="https://en.wikipedia.org/wiki/Class_diagram">https://en.wikipedia.org/wiki/Class_diagram</a>)</p>
 
-<figure id="plantuml-figure-1739786970478921853" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1739810905088231087" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 @startuml
 class Class {
@@ -272,21 +277,31 @@ Related "1" -- "1..*" Associated : relation / association
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1739786970478921853");
+    handlePlantumlFigureByID("plantuml-figure-1739810905088231087");
 </script>
 </section><section>
 <h2 id="class-diagram-example">Class Diagram Example</h2>
-<p>TODO review: this is generated, need to review</p>
+<p>(Remark: this is not a “good” diagram from a real system, but just an example to show the graphical syntax)</p>
 
-<figure id="plantuml-figure-1739786970479010909" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1739810905088369728" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 @startuml
+enum Status {
+  + MISSING
+  + AVAILABLE
+  + BORROWED
+  + LATE
+}
+
 ' Abstract class for library items
 abstract class LibraryItem {
     - __id: str
     + title: str
     + author: str
+    + state: Status
     + {abstract} get_info() -&gt; str
+    + front: Page
+    + back: Page
 }
 
 ' Interface for borrowable items
@@ -308,9 +323,7 @@ class Magazine extends LibraryItem {
     + get_info() -&gt; str
 }
 
-' Library should also be borrowable
-Library &lt;|.. Borrowable
-Book &lt;|.. Borrowable
+Borrowable &lt;|-- LibraryItem
 
 ' Container class for library items
 class Library {
@@ -320,43 +333,416 @@ class Library {
     + find_item(title: str) -&gt; LibraryItem
 }
 
-' Association: Shelf contains books &amp; magazines but can be empty
-class Shelf {
-    + section: str
-}
-Shelf "1" -- "0..*" LibraryItem : stores
-
 ' Library aggregates library items
 Library "1" o-- "0..*" LibraryItem : manages
 
-' Member class
-class Member {
-    - __member_id: str
-    + name: str
-    + borrow(item: Borrowable) -&gt; bool
-    + return_item(item: Borrowable) -&gt; bool
-}
-
 ' Loan relationship
 class Loan {
+    + item: LibraryItem
     + due_date: str
     + renew() -&gt; bool
 }
 
-Member "1" -- "0..*" Loan : borrows
-Loan "1" -- "1" LibraryItem : for item
+
+Loan "1" -- "1" LibraryItem
 
 ' Composition: A library item is composed of front and back pages
 class Page {
     + content: str
 }
-LibraryItem "1" *-- "2" Page : has pages
+LibraryItem "1" *-r- "2" Page
+
+LibraryItem -l- Status
 @enduml
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1739786970479010909");
+    handlePlantumlFigureByID("plantuml-figure-1739810905088369728");
 </script>
+</section><section>
+<h2 id="class-diagram-explained-pt-1">Class Diagram Explained (pt. 1)</h2>
+<ol>
+<li>
+<p>Focus on <strong>classes</strong> (here intended as <em>data types</em>)</p>
+<ul>
+<li>report class <em>names</em></li>
+<li>report <em>sort</em> of classes (e.g. <code>abstract</code>, <code>interface</code>, <code>enum</code>, <code>class</code>)
+<img src="https://www.plantuml.com/plantuml/svg/Iyv9B2vMS0QHN5o9ISKbHOd99GeGKKSe5ogRcLUIMfIMc9ogu0bZSN6bvfNcAhW22IukPx0ctQBeZCoKbDIyM5rK0m00" alt="">
+<ul>
+<li><code>enum</code>s are types whose values are <em>fixed</em> and <em>enumerated</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Focus on <strong>relationships</strong> among classes</p>
+<ul>
+<li><em>inheritance</em> a.k.a. “extends” (solid line with a triangle)
+<img src="https://www.plantuml.com/plantuml/svg/Iyv9B2vM22ujI2ro1ZEvO299O3uN5vASJOrkaIwIL6PUIMfHMc9oAiI0aCg2L1In9B085rmIOG281m00" alt=""></li>
+<li><em>implementation</em> a.k.a. “implements” (dashed line with a triangle)
+<img src="https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuSf9JIjHACbNACfCpoXHICaiIaqkoSpFuqhEIImkLd06aLoPUIMfHMc9oQaAdZ0M5vobO5EZfmTLw92Qbm8q5000" alt=""></li>
+<li><em>aggregation</em> (solid line with a white diamond): the container may exist without items
+<img src="https://www.plantuml.com/plantuml/svg/oqbDAr4eoLSeoapFA55moInAJIx9pC_ZuahEIImkLd3Epoj9pCnBBOBoFKjISxcuuA8AIWeAXaeA-RgwkWfA1jfAO7a0" alt=""></li>
+<li><em>composition</em> (solid line with a filled diamond): the composed entity cannot exist without the component
+<img src="https://www.plantuml.com/plantuml/svg/JOqn2W8m34NtdEAJKUdG6nJq8gMDMcWJQUBzTH4wFjw3LppgZi-QDEKH2CCUprVWFhQq6AP4RLPtt6ozpQMVgA91z3TW83CkAILmllBH5D7-Utm1" alt=""></li>
+<li><em>association</em> (solid line, with or without arrow): any other relevant sort of symmetric (no arrow) or asymmetric (with arrow) relation
+<img src="https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuSf9JIjHACbNACfCpoXHSCaiIaqkoSpFu-9ApaaiBbPmpibCpIk1Se9JYyfIYxYu888AkhfsK24hXUJ4d9nYBeVKl1IWeG00" alt=""></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="class-diagram-explained-pt-2">Class Diagram Explained (pt. 2)</h2>
+<p><img src="https://www.plantuml.com/plantuml/svg/TOv12i8m44NtdcB0ZIBf9Jn8cKv634HQcj5DoTqD5KF39viaF2PldaHEYUxxkPs872rh-B3f-0WQVI7dGcPJCVMLtMXvJp581SEm_zsIiGN9zBj7SE44kd6ctULSq_bIUyx-ScrJApxMLjOFHYasuv9-DYujFfwIhIoMwV_gEd4KlFaB" alt=""></p>
+<ol start="3">
+<li>Focus on the <strong>attributes</strong> of each class
+<ul>
+<li><em>private</em> attributes (beginning with a <code>-</code>, or red square)</li>
+<li><em>protected</em> attributes (beginning with a <code>#</code>, or yellow diamond)</li>
+<li><em>public</em> attributes (beginning with a <code>+</code>, or green square)</li>
+<li><em>abstract</em> attributes (italics)</li>
+<li><em>static</em> or <em>class</em> attributes (underline)</li>
+<li><em>fields</em> or <em>properties</em>, i.e. attributes without parentheses (beginning with a unfilled symbol)</li>
+<li><em>methods</em> or <em>functions</em>, i.e. attributes with parentheses (beginning with a filled symbol)</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="class-diagram-explained-pt-3">Class Diagram Explained (pt. 3)</h2>
+<h3 id="common-questions">Common questions</h3>
+<ul>
+<li>should you include <em>type</em> information in attributes? $\Rightarrow$ <strong>not mandatory</strong>, <em>but recommended</em></li>
+<li>should you include <em>visibility</em> information in attributes? $\Rightarrow$ <strong>yes</strong></li>
+<li>should you include Python’s <em>underscore prefixes</em> for visibility (<code>_</code> or <code>__</code>)in the diagram $\Rightarrow$ <strong>as you like</strong></li>
+<li>should you include <em>all</em> attributes?
+<ul>
+<li>if you’re willing to provide a <em>complete model</em> of the code’s <em>structure</em> $\Rightarrow$ <strong>yes</strong></li>
+<li>if you’re willing to provide an <em>overview</em> of the <em>public API</em> $\Rightarrow$ <strong>public attributes only</strong></li>
+<li>if you’re willing to an <em>overview</em> of the types $\Rightarrow$ <strong>no</strong></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="sequence-diagrams">Sequence Diagrams</h1>
+<ul>
+<li>Modelling the <em>interaction</em> among the components of a system</li>
+<li>Focus on <em>objects</em> / <em>components</em> and their <em>interactions</em> over <em>time</em>
+<ul>
+<li>i.e., <em>who</em>’s sending <em>which message</em> to <em>whom</em>, <em>when</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="sequence-diagrams-overview">Sequence Diagrams Overview</h2>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col col-4"><p>(cf. <a href="https://en.wikipedia.org/wiki/Sequence_diagram">https://en.wikipedia.org/wiki/Sequence_diagram</a>)</p>
+<figure id="plantuml-figure-1739810905088399525" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<p>@startuml
+hide footbox</p>
+<p>actor Actor
+participant Participant
+database Database</p>
+<p>activate Actor
+Actor -&gt; Participant: request
+activate Participant</p>
+<p>Participant -&gt; Database: query
+activate Database</p>
+<p>note right of Actor
+vertical bars represent
+participants’s control flow,
+which are synchronous
+end note</p>
+<p>Database -&gt; Database: internal\nprocedure
+activate Database
+deactivate Database</p>
+<p>Database –&gt; Participant: results
+deactivate Database</p>
+<p>Participant –&gt; Actor: response
+deactivate Participant</p>
+<p>== New situation ==</p>
+<p>alt response is ok
+Actor -&gt; Participant: another request
+activate Participant</p>
+<pre><code>Participant -&gt; Participant: stateless\nprocedure
+Participant -&gt; Actor: another response
+deactivate Participant 
+</code></pre>
+<p>else response has error
+Actor –&gt; Participant: shut down
+destroy Participant
+create participant “Another Participant” as Participant2
+Actor –&gt; Participant2: start another participant
+end
+@enduml</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1739810905088399525");
+</script>
+</div>
+<div class="col "><ul>
+<li>
+<p>The diagram is <em>vertical</em>, each column corresponds to the <strong>life-line</strong> of a <em>participant</em></p>
+</li>
+<li>
+<p>The vertical axis corresponds to <strong>time</strong>, the lower, the later</p>
+</li>
+<li>
+<p><strong>Participants</strong> can be objects or entities of any sort (e.g. OOP objects, infrastructural components, etc.)</p>
+<ul>
+<li>special icons may be used for special participants, such as <em>actors</em> or <em>databases</em></li>
+<li>participants are assumed to be <em>already</em> <strong>up and running</strong> at the beginning of the sequence
+<ul>
+<li>yet they can be created and destroyed during the sequence</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Horizontal arrows represent <strong>messages</strong> sent from one participant to another</p>
+<ul>
+<li>the <em>label</em> of the arrow is the <em>message</em> itself
+<ul>
+<li>an informal description of the <em>message</em> can be used too, but formal is better</li>
+</ul>
+</li>
+<li>straight line is for <em>requests</em>, dashed line is for <em>responses</em></li>
+</ul>
+</li>
+<li>
+<p>White vertical bars on a participant’s life-line represent the <strong>control flows</strong></p>
+<ul>
+<li>i.e., the participant is <em>active</em> during that time
+<ul>
+<li>this is way to stress the <em>duration</em> of activities</li>
+</ul>
+</li>
+<li>participants get <em>activated</em> starting to <strong>process</strong> some received message, <em>deactivated</em> when done</li>
+</ul>
+</li>
+<li>
+<p><em>Branching</em> (if) or <em>loops</em> are represented via ad-hoc <strong>frames</strong></p>
+</li>
+<li>
+<p>Double horizontal lines may be used to denote a <strong>new</strong> interaction sequence</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="sequence-diagram-example-in-oop-pt-1">Sequence Diagram Example in OOP (pt. 1)</h2>
+<h3 id="visualising-the-iterator-patternhttpsrefactoringgurudesign-patternsiterator-compliant-to-pythons-iterator-protocolhttpsrealpythoncompython-iterators-iterables">Visualising the <a href="https://refactoring.guru/design-patterns/iterator">Iterator Pattern</a> (compliant to Python’s <a href="https://realpython.com/python-iterators-iterables/">iterator protocol</a>)</h3>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><h4 id="classes">Classes</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyIterator</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">items</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__items</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">items</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__index</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__next__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__index</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__items</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">StopIteration</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">current_item</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__items</span><span style="color:#000;font-weight:bold">[</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__index</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__index</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#0000cf;font-weight:bold">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">current_item</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyCollection</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">items</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">item</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">items</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">item</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__iter__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">MyIterator</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">items</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div><h4 id="sequence-described-in-the-diagram">Sequence described in the diagram</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">collection</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">MyCollection</span><span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">collection</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"A"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">collection</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"B"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">collection</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"C"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">iterator</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">iter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">collection</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87;font-weight:bold">True</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">item</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">next</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">iterator</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">item</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">StopIteration</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">break</span>
+</span></span></code></pre></div></div>
+<div class="col "><figure id="plantuml-figure-1739810905096305117" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<p>@startuml
+hide footbox</p>
+<p>participant “Client” as Client
+participant “MyCollection” as Collection
+participant “MyIterator” as Iterator</p>
+<p>== Initialization ==
+activate Client
+Client -&gt; Collection: add(“A”)
+Client -&gt; Collection: add(“B”)
+Client -&gt; Collection: add(“C”)</p>
+<p>== Retrieving the Iterator ==
+Client -&gt; Collection: iter()
+activate Collection
+create Iterator
+Collection -&gt; Iterator: Create Instance
+Collection –&gt; Client: return Instance
+deactivate Collection</p>
+<p>== Iterating Over Elements ==
+loop
+Client -&gt; Iterator: next()
+activate Iterator
+Iterator -&gt; Iterator: Check if more elements
+alt More Elements Available
+Iterator –&gt; Client: return Current Item
+else No More Elements
+Iterator –&gt; Client: raise StopIteration
+deactivate Iterator
+end
+end
+destroy Iterator</p>
+<p>@enduml</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1739810905096305117");
+</script>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="sequence-diagram-example-in-oop-pt-2">Sequence Diagram Example in OOP (pt. 2)</h2>
+<ul>
+<li>
+<p>Participants are <strong>named</strong> after <em>classes</em>, yet they refer to <em>instances</em> of those classes</p>
+</li>
+<li>
+<p>Arrows are <strong>named</strong> after <em>method calls</em> when possible</p>
+</li>
+<li>
+<p>The following pieces of code are completely equivalent in Python:</p>
+</li>
+</ul>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">iterator</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">iter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">collection</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87;font-weight:bold">True</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">item</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">next</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">iterator</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">item</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">StopIteration</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">break</span>
+</span></span></code></pre></div></div>
+<div class="col "><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">item</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">collection</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">item</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div></div>
+</div>
+</div>
+</section><section>
+<h2 id="sequence-diagram-example-in-distributed-systems">Sequence Diagram Example in Distributed Systems</h2>
+
+<figure id="plantuml-figure-1739810905097970972" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+    
+@startuml
+hide footbox
+
+actor User
+participant "Web Browser" as Browser
+participant "Web Server" as Server
+database "Database" as DB
+actor Admin
+participant "Email Service" as EmailService
+
+activate User
+User -&gt; Browser: Request Page
+activate Browser
+Browser -&gt; Server: HTTP GET /homepage
+activate Server
+Server -&gt; DB: Query User Data
+activate DB
+DB --&gt; Server: User Data Response
+deactivate DB
+Server --&gt; Browser: HTML Content
+deactivate Server
+Browser -&gt; User: Render Page
+deactivate Browser
+
+== User Authentication Flow ==
+User -&gt; Browser: Enter Credentials
+activate Browser
+Browser -&gt; Server: POST /login
+activate Server
+alt Valid Credentials
+    Server -&gt; DB: Validate User
+    activate DB
+    DB --&gt; Server: Success
+    deactivate DB
+    Server --&gt; Browser: Set Auth Token
+else Invalid Credentials
+    Server --&gt; Browser: Authentication Error
+end
+deactivate Server
+Browser -&gt; User: Show Login Result
+deactivate Browser
+
+== Additional Features ==
+User -&gt; Browser: Perform an Action
+activate Browser
+Browser -&gt; Server: Request Action
+activate Server
+par Parallel Processing
+    Server -&gt; DB: Write Logs
+    activate DB
+    Server -&gt; DB: Process Request
+    deactivate DB
+end
+Server --&gt; Browser: Action Success
+deactivate Server
+Browser -&gt; User: Display Confirmation
+deactivate Browser
+
+== Object Creation &amp; Deletion ==
+create EmailService
+EmailService &lt;- Admin: deploy
+User -&gt; Browser: Create New Account
+activate Browser
+Browser -&gt; Server: Register User
+activate Server
+Server -&gt; DB: Insert New User
+activate DB
+DB --&gt; Server: Confirmation
+deactivate DB
+Server -&gt; EmailService: Send Welcome Email
+activate EmailService
+Server --&gt; Browser: Registration Successful
+deactivate Server
+Browser -&gt; User: Show Confirmation
+deactivate Browser
+
+EmailService --&gt; User: Welcome Email
+deactivate EmailService
+
+@enduml
+
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1739810905097970972");
+</script>
+</section><section>
+<h1 id="state-diagram">State Diagram</h1>
+<p>TBD</p>
+</section><section>
+<h1 id="activity-diagram">Activity Diagram</h1>
+<p>TBD</p>
+</section><section>
+<h1 id="components-diagram">Components Diagram</h1>
+<p>TBD</p>
+</section><section>
+<h1 id="plantuml">PlantUML</h1>
+<p>TBD</p>
+</section><section>
+<h1 id="lecture-is-over">Lecture is Over</h1>
+<br>
+<p>Compiled on: 2025-02-17 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 
   

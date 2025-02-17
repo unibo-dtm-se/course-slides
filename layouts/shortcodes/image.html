@@ -1,7 +1,12 @@
-<img src="{{ .Get "src" }}" style='
-    {{ with .Get "width" }}width: {{.}}vw;{{ end }}
-    {{ with .Get "height" }}height: {{.}}vh;{{ end }}
-    max-width: {{ with .Get "max-w" }}{{.}}{{ else }}95{{ end }}vw;
-    max-height: {{ with .Get "max-h" }}{{.}}{{ else }}80{{end}}vh;
-    object-fit: contain;
-'>
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $maxw := .Get "max-w" | default "95vw"}}
+{{ $maxh := .Get "max-h" | default "80vh"}}
+{{ $morestyle := .Get "morestyle" }}
+{{ with .Get "link" }}
+<a href='{{ . }}'>
+{{ end }}
+<img src='{{ $src }}' alt='{{ $alt }}' style='{{ with .Get "width" }}width: {{.}}; {{ end }}{{ with .Get "height" }}height: {{.}}; {{ end }}max-width: {{ $maxw }}; max-height: {{ $maxh }}; object-fit: contain; {{ $morestyle }}'>
+{{ with .Get "link" }}
+</a>
+{{ end }}

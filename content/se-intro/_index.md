@@ -192,6 +192,13 @@ outputs = ["Reveal"]
 
 ## What is software engineering essentially about (pt. 1)
 
+
+
+{{% multicol %}}
+{{% col %}}
+![](./se.png)
+{{% /col %}}
+{{% col %}}
 - Studying how to __realise__ software _products_ which meets _customers' requirements_
     + __customers__ $\approx$ the _stakeholders_ seeking for automatic solutions to problems
     + __requirements__ $\approx$ description about _what_ problems should be solved + constraints about _how_
@@ -203,8 +210,10 @@ outputs = ["Reveal"]
         * from requirements specification to implementation, _and beyond_
             <!-- ![Concept of software engineering phases](./se.png) -->
             - there including validation, and __maintenance__
+{{% /col %}}
+{{% /multicol %}}
 
-{{<image height="20" src="./se.png">}}
+<!-- {{<image height="20vh" src="./se.png">}} -->
 
 ---
 

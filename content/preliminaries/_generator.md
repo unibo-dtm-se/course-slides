@@ -296,7 +296,7 @@ Most commonly, for __interactive__ processes, the situation is as follows:
 
 <!-- ![Default streams of each processes are connected to the terminal by default](./process-terminal.png) -->
 
-{{<image height="30" src="./process-terminal.png">}}
+{{<image max-h="40vh" src="./process-terminal.png">}}
 
 + all three streams are connected to the terminal by default
     + so the process _reads_ input from the keyboard
@@ -575,7 +575,7 @@ The source code for such application is available here:
 - The __runtime__ is the __environment__ in which a _piece_ of software is _executed_
     + not to be confused with __run-time__, which is the _time_ when the _software_ is _executed_
     
-    {{<image height="10" src="./fuck-logic.png">}}
+    {{<image max-h="10vh" src="./fuck-logic.png">}}
 
 > __Runtime__ of a program $\approx$ jargon for "the _set of_ __libraries__ actually available for that program at run-time" 
 + this commonly includes:
@@ -820,7 +820,7 @@ if __name__ == '__main__':
 
 <!-- ![The system is what the user sees](./view-only.svg) -->
 
-{{<image src="./view-only.svg" height="40">}}
+{{<image src="./view-only.svg" max-h="40vh">}}
 
 <br>
 
@@ -857,7 +857,7 @@ if __name__ == '__main__':
 
 ## A good way to decompose code (pt. 1)
 
-{{<image src="./view-model.svg" height="40">}}
+{{<image src="./view-model.svg" max-h="40vh">}}
 
 - A good way to decompose code is to follow the [__Model-View-Controller__](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (__MVC__) pattern
 
@@ -1282,7 +1282,7 @@ if __name__ == '__main__':
 
 ## Overview on code organization (pt. 1)
 
-{{<plantuml>}}
+{{<plantuml  height="70vh" >}}
 
 package calculator {
     class Calculator {

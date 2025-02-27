@@ -310,11 +310,11 @@ LibraryItem -l- Status
 1. Focus on __classes__ (here intended as _data types_)
     + report class _names_
     + report _sort_ of classes (e.g. `abstract`, `interface`, `enum`, `class`)
-        ![](https://www.plantuml.com/plantuml/svg/Iyv9B2vMS0QHN5o9ISKbHOd99GeGKKSe5ogRcLUIMfIMc9ogu0bZSN6bvfNcAhW22IukPx0ctQBeZCoKbDIyM5rK0m00)    
+        ![](https://www.plantuml.com/plantuml/svg/Iyv9B2vMS0QHN5o9ISKbHOd99GeGKKSe5ogRcLUIMfIMc9ogu0bZSN6bvfNcAhW22IukPx0ctQBeZCoKbDIyM5rK0m00)
         + `enum`s are types whose values are _fixed_ and _enumerated_
 
 2. Focus on __relationships__ among classes
-    - _inheritance_ a.k.a. "extends" (solid line with a triangle) 
+    - _inheritance_ a.k.a. "extends" (solid line with a triangle)
         ![](https://www.plantuml.com/plantuml/svg/Iyv9B2vM22ujI2ro1ZEvO299O3uN5vASJOrkaIwIL6PUIMfHMc9oAiI0aCg2L1In9B085rmIOG281m00)
     - _implementation_ a.k.a. "implements" (dashed line with a triangle)
         ![](https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuSf9JIjHACbNACfCpoXHICaiIaqkoSpFuqhEIImkLd06aLoPUIMfHMc9oQaAdZ0M5vobO5EZfmTLw92Qbm8q5000)
@@ -337,7 +337,7 @@ LibraryItem -l- Status
     - _public_ attributes (beginning with a `+`, or green square)
     - _abstract_ attributes (italics)
     - _static_ or _class_ attributes (underline)
-    - _fields_ or _properties_, i.e. attributes without parentheses (beginning with a unfilled symbol) 
+    - _fields_ or _properties_, i.e. attributes without parentheses (beginning with a unfilled symbol)
     - _methods_ or _functions_, i.e. attributes with parentheses (beginning with a filled symbol)
 
 
@@ -386,7 +386,7 @@ Participant -> Database: query
 activate Database
 
 note right of Actor
-vertical bars represent 
+vertical bars represent
 participants's control flow,
 which are synchronous
 end note
@@ -409,7 +409,7 @@ alt response is ok
 
     Participant -> Participant: stateless\nprocedure
     Participant -> Actor: another response
-    deactivate Participant 
+    deactivate Participant
 
 else response has error
     Actor --> Participant: shut down
@@ -422,7 +422,7 @@ end
 
 {{% /col %}}
 {{% col %}}
-- The diagram is _vertical_, each column corresponds to the __life-line__ of a _participant_ 
+- The diagram is _vertical_, each column corresponds to the __life-line__ of a _participant_
 
 - The vertical axis corresponds to __time__, the lower, the later
 
@@ -474,10 +474,10 @@ class MyIterator:
 class MyCollection:
     def __init__(self):
         self.items = []
-    
+
     def add(self, item):
         self.items.append(item)
-    
+
     def __iter__(self):
         return MyIterator(self.items)
 ```
@@ -596,7 +596,7 @@ DB --> Server: User Data Response
 deactivate DB
 Server --> Browser: HTML Content
 deactivate Server
-Browser -> User: Render Page
+Browser --> User: Render Page
 deactivate Browser
 
 == User Authentication Flow ==
@@ -614,7 +614,7 @@ else Invalid Credentials
     Server --> Browser: Authentication Error
 end
 deactivate Server
-Browser -> User: Show Login Result
+Browser --> User: Show Login Result
 deactivate Browser
 
 == Additional Features ==
@@ -623,14 +623,14 @@ activate Browser
 Browser -> Server: Request Action
 activate Server
 par Parallel Processing
-    Server -> DB: Write Logs
+    Server --> DB: Write Logs
     activate DB
-    Server -> DB: Process Request
+    Server --> DB: Process Request
     deactivate DB
 end
 Server --> Browser: Action Success
 deactivate Server
-Browser -> User: Display Confirmation
+Browser --> User: Display Confirmation
 deactivate Browser
 
 == Object Creation & Deletion ==
@@ -648,7 +648,7 @@ Server -> EmailService: Send Welcome Email
 activate EmailService
 Server --> Browser: Registration Successful
 deactivate Server
-Browser -> User: Show Confirmation
+Browser --> User: Show Confirmation
 deactivate Browser
 
 EmailService --> User: Welcome Email
@@ -661,7 +661,21 @@ deactivate EmailService
 
 # State Diagram
 
-TBD
+- Modelling the _state_ of an _object_ and the _transitions_ among them
+- Focus on _classes_ and how method calls affect their _fields_/_properties_
+
+---
+
+## State Diagram Overview
+
+{{% multicol %}}
+{{% col %}}
+{{< image width="100%" src="https://www.plantuml.com/plantuml/svg/NP6zRiCm38HtFSKXIt-GPCYOeKZ7pXth3e9DsqGTqf3P57txC8uCnmOqYAVlI94y3HQJ_PwxyDHHRJ15ugOrL9oeD5O9mH4ZR3w4ZME7prkuGHnmKt24jJp0JyH8phnHEbF57isc-yrTKTHQIalFUnPN-264hzTlx7PlKqtEdw4BYOKmgluyPP_qCNpqQT_hm4Q5h8bSoHbBKPnXbNNYm_plGXwn_Be0EzKUpxod_JPNGv_qeZyiJI6YkFTSjb4QUbday6QFg5dc1aKT7JUazJIJVxBb5BVXZws5A2eQoiIziGhOZmMI2ivIEFdDztq5" >}}
+{{% /col %}}
+{{% col %}}
+
+{{% /col %}}
+{{% /multicol %}}
 
 ---
 

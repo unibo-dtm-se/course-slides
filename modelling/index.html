@@ -210,7 +210,7 @@ Model of a Bridge</p>
 <h2 id="class-diagrams-overview">Class Diagrams Overview</h2>
 <p>(cf. <a href="https://en.wikipedia.org/wiki/Class_diagram">https://en.wikipedia.org/wiki/Class_diagram</a>)</p>
 
-<figure id="plantuml-figure-1740645354990985789" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1740650084859134762" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 @startuml
 class Class {
@@ -277,13 +277,13 @@ Related "1" -- "1..*" Associated : relation / association
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1740645354990985789");
+    handlePlantumlFigureByID("plantuml-figure-1740650084859134762");
 </script>
 </section><section>
 <h2 id="class-diagram-example">Class Diagram Example</h2>
 <p>(Remark: this is not a “good” diagram from a real system, but just an example to show the graphical syntax)</p>
 
-<figure id="plantuml-figure-1740645354991062864" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1740650084859203470" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 @startuml
 enum Status {
@@ -357,7 +357,7 @@ LibraryItem -l- Status
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1740645354991062864");
+    handlePlantumlFigureByID("plantuml-figure-1740650084859203470");
 </script>
 </section><section>
 <h2 id="class-diagram-explained-pt-1">Class Diagram Explained (pt. 1)</h2>
@@ -436,7 +436,7 @@ LibraryItem -l- Status
 
 <div class="container w-100 m-0 p-0">
     <div class="row "><div class="col col-4"><p>(cf. <a href="https://en.wikipedia.org/wiki/Sequence_diagram">https://en.wikipedia.org/wiki/Sequence_diagram</a>)</p>
-<figure id="plantuml-figure-1740645354991117857" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1740650084859229939" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>@startuml
 hide footbox</p>
 <p>actor Actor
@@ -465,7 +465,7 @@ Actor -&gt; Participant: another request
 activate Participant</p>
 <pre><code>Participant -&gt; Participant: stateless\nprocedure
 Participant -&gt; Actor: another response
-deactivate Participant 
+deactivate Participant
 </code></pre>
 <p>else response has error
 Actor –&gt; Participant: shut down
@@ -476,7 +476,7 @@ end
 @enduml</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1740645354991117857");
+    handlePlantumlFigureByID("plantuml-figure-1740650084859229939");
 </script>
 </div>
 <div class="col "><ul>
@@ -549,10 +549,10 @@ end
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyCollection</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">items</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">item</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">items</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">item</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__iter__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">MyIterator</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">items</span><span style="color:#000;font-weight:bold">)</span>
 </span></span></code></pre></div><h4 id="sequence-described-in-the-diagram">Sequence described in the diagram</h4>
@@ -569,7 +569,7 @@ end
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">StopIteration</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">break</span>
 </span></span></code></pre></div></div>
-<div class="col "><figure id="plantuml-figure-1740645355003141117" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<div class="col "><figure id="plantuml-figure-1740650084867289900" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>@startuml
 hide footbox</p>
 <p>participant “Client” as Client
@@ -603,7 +603,7 @@ destroy Iterator</p>
 <p>@enduml</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1740645355003141117");
+    handlePlantumlFigureByID("plantuml-figure-1740650084867289900");
 </script>
 </div>
 </div>
@@ -639,7 +639,7 @@ destroy Iterator</p>
 </section><section>
 <h2 id="sequence-diagram-example-in-distributed-systems">Sequence Diagram Example in Distributed Systems</h2>
 
-<figure id="plantuml-figure-1740645355005748436" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1740650084869052046" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 @startuml
 hide footbox
@@ -662,7 +662,7 @@ DB --&gt; Server: User Data Response
 deactivate DB
 Server --&gt; Browser: HTML Content
 deactivate Server
-Browser -&gt; User: Render Page
+Browser --&gt; User: Render Page
 deactivate Browser
 
 == User Authentication Flow ==
@@ -680,7 +680,7 @@ else Invalid Credentials
     Server --&gt; Browser: Authentication Error
 end
 deactivate Server
-Browser -&gt; User: Show Login Result
+Browser --&gt; User: Show Login Result
 deactivate Browser
 
 == Additional Features ==
@@ -689,14 +689,14 @@ activate Browser
 Browser -&gt; Server: Request Action
 activate Server
 par Parallel Processing
-    Server -&gt; DB: Write Logs
+    Server --&gt; DB: Write Logs
     activate DB
-    Server -&gt; DB: Process Request
+    Server --&gt; DB: Process Request
     deactivate DB
 end
 Server --&gt; Browser: Action Success
 deactivate Server
-Browser -&gt; User: Display Confirmation
+Browser --&gt; User: Display Confirmation
 deactivate Browser
 
 == Object Creation &amp; Deletion ==
@@ -714,7 +714,7 @@ Server -&gt; EmailService: Send Welcome Email
 activate EmailService
 Server --&gt; Browser: Registration Successful
 deactivate Server
-Browser -&gt; User: Show Confirmation
+Browser --&gt; User: Show Confirmation
 deactivate Browser
 
 EmailService --&gt; User: Welcome Email
@@ -724,11 +724,23 @@ deactivate EmailService
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1740645355005748436");
+    handlePlantumlFigureByID("plantuml-figure-1740650084869052046");
 </script>
 </section><section>
 <h1 id="state-diagram">State Diagram</h1>
-<p>TBD</p>
+<ul>
+<li>Modelling the <em>state</em> of an <em>object</em> and the <em>transitions</em> among them</li>
+<li>Focus on <em>classes</em> and how method calls affect their <em>fields</em>/<em>properties</em></li>
+</ul>
+</section><section>
+<h2 id="state-diagram-overview">State Diagram Overview</h2>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><img src="https://www.plantuml.com/plantuml/svg/NP6zRiCm38HtFSKXIt-GPCYOeKZ7pXth3e9DsqGTqf3P57txC8uCnmOqYAVlI94y3HQJ_PwxyDHHRJ15ugOrL9oeD5O9mH4ZR3w4ZME7prkuGHnmKt24jJp0JyH8phnHEbF57isc-yrTKTHQIalFUnPN-264hzTlx7PlKqtEdw4BYOKmgluyPP_qCNpqQT_hm4Q5h8bSoHbBKPnXbNNYm_plGXwn_Be0EzKUpxod_JPNGv_qeZyiJI6YkFTSjb4QUbday6QFg5dc1aKT7JUazJIJVxBb5BVXZws5A2eQoiIziGhOZmMI2ivIEFdDztq5" alt="" style="width: 100%; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</div>
+<div class="col "></div>
+</div>
+</div>
 </section><section>
 <h1 id="activity-diagram">Activity Diagram</h1>
 <p>TBD</p>
@@ -829,8 +841,6 @@ deactivate EmailService
   
 
   
-    
-  
   
 
   
@@ -861,30 +871,6 @@ deactivate EmailService
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 

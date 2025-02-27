@@ -103,7 +103,7 @@ Beware, 'cause scripts are __software__ too, and they require engineering:
 
 <br>
 
-- There is an implict __trade-off__ between 
+- There is an implict __trade-off__ between
     1. the time _spent_ to automate a task (i.e. __coding__)
     2. and the time _saved_ w.r.t. doing the task __manually__
 
@@ -165,11 +165,11 @@ This is not really the case of everyday programming tasks, but let's keep this i
 
 A __path__ is a string that represents the location of a file or a directory in the __file system__
 
-> __Beware__: path-separator is different among Windows (`\`) and other OS (`/`), 
+> __Beware__: path-separator is different among Windows (`\`) and other OS (`/`),
 >
 > and __we only use `/` in the slides__
 
-- A __relative path__ is a path that is relative to the CWD 
+- A __relative path__ is a path that is relative to the CWD
     - e.g., `./file.txt` refers to a file named `file.txt` in the CWD
     - e.g., `../file.txt` refers to a file named `file.txt` in the __parent directory__ of the CWD
     - e.g., `./dir/file.txt` refers to a file named `file.txt` in a sub-directory of CWD, named `dir`
@@ -245,12 +245,12 @@ You should not.
 
 + There is _no difference_ among __interactive__ and __non__-_interactive_ processes, _for the shell_
     1. a command is used to _start_ the process
-    2. the command will _stay alive_, 
+    2. the command will _stay alive_,
         + and possibly consume the user's _input_
         + and possibly produce some _output_
     3. for some reason, the process may eventually __terminate__
         + e.g., because of some input from the user, some error, or some condition met
-    4. when that the case, __control__ is returned to _the shell_ 
+    4. when that the case, __control__ is returned to _the shell_
         + which will ask for more commands, as usual
 
 ---
@@ -456,7 +456,7 @@ The source code for such application is available here:
 5. the notion of __compilation__
     + i.e. the _process_ of _translating_ a _source code_ into a _machine code_ that can be _executed_
 
---- 
+---
 
 ## Compilation vs. Interpretation of Programs
 
@@ -482,14 +482,14 @@ The source code for such application is available here:
 - The result is the same (the program is executed, i.e. the computer follows the instructions)
     + but the _implications_ are different
 
---- 
+---
 
 ## Compilation vs. Interpretation of Programs (pt. 2)
-    
+
 - Compilation implies:
     1. a __compiler__ should be created _for each_ target platform
     2. each software project should be __compiled__, _for each_ target platform, _before_ being executed
-    3. execution is potentially _faster_, as the _machine code_ is _optimised_ for the target CPU  
+    3. execution is potentially _faster_, as the _machine code_ is _optimised_ for the target CPU
         * but higher speed is not guaranteed, and it may be _negligible_ in many cases
         * but many application do not require high-speed execution
     4. the compiler may spot some _errors_ in the program __before__ it is executed
@@ -506,9 +506,9 @@ The source code for such application is available here:
     + C, C++, Rust, Go, etc. are _compiled_ languages
     + Ruby, JavaScript, etc. are _interpreted_ languages
 
---- 
+---
 
-## Compilation vs. Interpretation of Programs (pt. 3)    
+## Compilation vs. Interpretation of Programs (pt. 3)
 
 - Nowadays, the _distinction_ is _blurred_
     + many languages are _both_ compiled and interpreted, there including _Python_, and _Java_
@@ -555,7 +555,7 @@ The source code for such application is available here:
         + BTW, Python has one of the _richest_ standard libraries among programming languages
     + most commonly, _any two versions_ of a programming language would have a _different_ standard library
         + the syntax of the language may not even change
-    
+
 - ... plus some mechanism to _install_ and _import_ __third-party__ libraries
     + e.g., in Python, the `pip` command is used to install third-party libraries
     + e.g., in Python, the `import` statement is used to import libraries in the script
@@ -568,18 +568,18 @@ The source code for such application is available here:
     + how can one write a library that can be reused by others?
         + why should one do that?
 
---- 
+---
 
 ## Runtime (pt. 1)
 
 - The __runtime__ is the __environment__ in which a _piece_ of software is _executed_
     + not to be confused with __run-time__, which is the _time_ when the _software_ is _executed_
-    
+
     {{<image max-h="10vh" src="./fuck-logic.png">}}
 
-> __Runtime__ of a program $\approx$ jargon for "the _set of_ __libraries__ actually available for that program at run-time" 
+> __Runtime__ of a program $\approx$ jargon for "the _set of_ __libraries__ actually available for that program at run-time"
 + this commonly includes:
-    1. the _standard library_ of the interpreter executing the 
+    1. the _standard library_ of the interpreter executing the
         + e.g. __Python 3.11__'s standard library for our _calculator_ application
     2. any _third-party_ library installed onto that interpreter
         + e.g. __Kivy__ for our _calculator_ application
@@ -600,7 +600,7 @@ The source code for such application is available here:
 
 <br>
 
-> A __dependency__ among some _software_ **$S$** and some _other software_ **$L$** 
+> A __dependency__ among some _software_ **$S$** and some _other software_ **$L$**
 >
 > occurs when **$S$** _requires_ **$L$** to _work_
 
@@ -608,16 +608,16 @@ The source code for such application is available here:
 - this is commonly the result of the reasoning above
 - for instance, the _calculator_ application __depends on__ the _Kivy_ library, and on the _Python 3.11_ standard library
 
---- 
+---
 
 ## Dependencies (pt. 2)
 
 Some definitions related to the notion of __dependency__:
 
 > __Transitive dependency__: if **$S$** depends on **$L$**, and **$L$** depends on **$M$**, then **$S$** _transitively_ depends on **$M$**
-+ non-transitive dependencies are called __direct__ dependencies 
++ non-transitive dependencies are called __direct__ dependencies
 
---- 
+---
 
 ## Dependencies (pt. 3)
 
@@ -708,12 +708,12 @@ Some definitions related to the notion of __dependency__:
 
 - On Windows, one can use _chocolatey_ or _scoop_ as package managers (not shipped with the OS)
 
---- 
+---
 
 ## About release and deployment
 
 - Notice that private companies may have their own _private_ package repositories
-    
+
 - Also notice that some private companies may want to _publish_ their _software_ to _public_ repositories
     + e.g. the _Play store_ or the _App store_ for mobile applications
 
@@ -788,7 +788,7 @@ class CalculatorApp(App):
         if button.text == '=':
             # Try to...
             try:
-                # ... evaluate the expresion *as a Python expression*, convert the result to a string, 
+                # ... evaluate the expresion *as a Python expression*, convert the result to a string,
                 # and show that string on the calculator display
                 self._display.text = str(eval(self.expression))
             # If an error occurs in doing the above (e.g. wrong expression)
@@ -832,7 +832,7 @@ if __name__ == '__main__':
     + the __controller__ $\approx$ the _glue_ between the _view_ and the _model_
         - dictating how _changes_ in the _view_ are _reflected_ in the _model_
 
---- 
+---
 
 ## The issue with the current version of the code (pt. 2)
 
@@ -897,7 +897,7 @@ if __name__ == '__main__':
     + the idea is design a software system as a _collection_ of _composable_ __modules__
         * a.k.a. _components_, _units_, _pieces_, etc.
 
-- Each module should have 
+- Each module should have
     1. a single __purspose__, and clear _responsibilities_
     2. a _well-defined_ __interface__ to the _outside world_ (i.e. users and other modules)
     3. a number of __formal parameters__ which make the module _adaptable_ to many different instances of the same problem
@@ -922,7 +922,7 @@ if __name__ == '__main__':
     ```
 
 2. __Classes__ are a way to _encapsulate_ both _data_ and _functions_ into a single _unit_
-    + syntactically, think of classes as _groups of related functions_, possibly operating on _shared variables_ 
+    + syntactically, think of classes as _groups of related functions_, possibly operating on _shared variables_
     + semantically, classes are _templates_ for __objects__ (cf. [Object Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming))
 
     ```python
@@ -962,7 +962,7 @@ if __name__ == '__main__':
     ```python
     # another Python file in the same root directory
     from path.to.pair import p1, p2
-    
+
     x1 = p1.sum() # 3
     x2 = p2.sum() # 7
     ```
@@ -984,7 +984,7 @@ As code is decomposed into smaller and smaller units...
 - It is important to _organize_ the code in a _meaningful_ way
     + so that it is _easy_ to _find_ functionalities, hence easing their _reuse_
 
-- Recall that code is meant to be read by humans, and that 
+- Recall that code is meant to be read by humans, and that
     + development teams may change
     + external developers using your code need to understand it
 
@@ -997,7 +997,7 @@ As code is decomposed into smaller and smaller units...
 
 ## Running example (pt. 5)
 
-Let's decompose the _calculator_ application in such a way that 
+Let's decompose the _calculator_ application in such a way that
 - it has __two__ _user interfaces_ (UI) ...
     + namely, a _GUI_, and a __command-line interface__ (_CLI_)
 - ... both _attached_ to the __same__ _model_
@@ -1102,26 +1102,26 @@ class Calculator:
 
     def _append(self, value):
         self.expression += str(value)
-    
+
     def digit(self, value: int | str):
         value = self._ensure_is_digit(value)
         self._append(value)
-    
+
     def plus(self):
         self._append("+")
 
     def minus(self):
         self._append("-")
-    
+
     def multiply(self):
         self._append("*")
-    
+
     def divide(self):
         self._append("/")
 
     def dot(self):
         self._append(".")
-    
+
     def compute_result(self) -> Number:
         try:
             result = eval(self.expression)
@@ -1178,7 +1178,7 @@ print(c.expression) # ""
 
 ---
 
-## The calculator GUI 
+## The calculator GUI
 
 Code from `calculator/ui/gui.py`:
 ```python
@@ -1400,7 +1400,7 @@ calculator .left.> Python: uses extensively
 
 {{</plantuml>}}
 
---- 
+---
 
 ## Many hidden concepts in this example
 
@@ -1435,9 +1435,9 @@ calculator .left.> Python: uses extensively
     ├── main_package/
     │   ├── __init__.py
     │   ├── sub_module.py
-    │   └── sub_package/ 
-    │       ├── __init__.py 
-    │       └── sub_sub_module.py 
+    │   └── sub_package/
+    │       ├── __init__.py
+    │       └── sub_sub_module.py
     ├── .python-version
     ├── README.md
     └── requirements.txt
@@ -1547,7 +1547,7 @@ The _API_ of a _Python project_ consists of
 
 - In Python, everything is _public_ by convention
     + except for the _names_ starting with one or more _underscores_ (`_`)
-    + yet, names wrapped by _double_ underscores (`__example__`) are [magic methods](https://realpython.com/python-magic-methods/) 
+    + yet, names wrapped by _double_ underscores (`__example__`) are [magic methods](https://realpython.com/python-magic-methods/)
         * they __alter__ the _behaviour_ of the _classes_ / _modules_ they belong to...
         * ... hence, you should consider them as _public_ too
 
@@ -1629,8 +1629,8 @@ Another way to think about _private_ stuff in a software project is:
         * a __mobile application__ exposes a _GUI_ (which is tailored for small screens, touch, and gestures)
         * a __web application__ exposes a _GUI_ (which is tailored for web browsers, and the Web)
             - most commonly, this works both on desktop and mobile devices
-        * a __command-line application__ exposes a 
-            1. a _CLI_ (which is tailored for terminals, and shells) 
+        * a __command-line application__ exposes a
+            1. a _CLI_ (which is tailored for terminals, and shells)
             2. an _API_ (which is tailored for shell scripts)
 
 - Further categories may appear along the way in the course:
@@ -1657,7 +1657,7 @@ Another way to think about _private_ stuff in a software project is:
 
 ## About software design (pt. 1)
 
-### Just to give you an insight 
+### Just to give you an insight
 
 1. After understanding the __requirements__, and the __domain__ at hand...
 
@@ -1666,12 +1666,12 @@ Another way to think about _private_ stuff in a software project is:
     + how should those concepts be _related_ to each other?
 
 3. the _result_ of such reasoning is a __model__ of the software
-    1. __classes__ / __functions__ are envisioned to _represent_ each _concept_ 
+    1. __classes__ / __functions__ are envisioned to _represent_ each _concept_
         + possibly __reusing__ existing stuff from _standard_, or _third-party_ libraries
     2. __relationships__ between classes / functions are described
         + e.g. _sub-typing_, _composition_, _aggregation_, _inheritance_, etc.
     3. the __behaviour__ of each class / function is described
-        + e.g. _pre-conditions_, _post-conditions_, _invariants_, _state-transition_, etc. 
+        + e.g. _pre-conditions_, _post-conditions_, _invariants_, _state-transition_, etc.
     4. the __interactions__ between classes / functions are described
         + e.g. who calls what, when, and why
 
@@ -1687,7 +1687,7 @@ Another way to think about _private_ stuff in a software project is:
     + e.g. classes / functions for __persistence__, and their attachment to the _model_
         * do the software need to __store__ or __retrieve__ data? _which_ data? _where_? _how_?
     + e.g. classes / functions for __communication__ (over the _network_), and their attachment to the _model_
-        * does the software need to __talk__ to other software, located __elsewhere__? 
+        * does the software need to __talk__ to other software, located __elsewhere__?
         * _where_ is "elsewhere"? what network? (Web? Internet? Bluetooth?)
         * are _intermetiary_ components involved? (e.g. _servers_, _message brokers_, etc.)
     + e.g. classes / functions for __authentication__ and __authorization__, and their attachment to the _model_
@@ -1718,7 +1718,7 @@ Let's consider the _calculator_ application
 ## About software design (pt. 3)
 
 ### Example (continued)
-    
+
 2. How should those concepts be _related_ to each other?
     + each `Calculator` object is composed by one (and only one) `Expression` object
         + the latter evolves over time
@@ -1739,7 +1739,7 @@ All exercises involve either analysing or editing the code of the (modular) _cal
 
 ---
 
-## Exercise 1 
+## Exercise 1
 
 ### The impact of modularity on bug detection / fixing
 
@@ -1757,7 +1757,7 @@ Is this a _presentation_, a _modelling_, or an _implementation_ issue?
     + try to reproduce the bug in both the GUI and the CLI
     + try to understand the root cause of the bug
 
-2. solve the bug (by doing some _minimal_ change in the code) 
+2. solve the bug (by doing some _minimal_ change in the code)
 
 ---
 
@@ -1777,6 +1777,109 @@ While minimising changes in the code:
 1. extend the _model_ to support the "clearing the current expression" _functionality_
 2. extend the _layout_ of the GUI to support one more _button_
 3. _attach_ the new button to the new functionality from the model
+
+---
+
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- Difference among shell, terminal, REPL
+- What are the benefits of command-line interfaces over graphical ones?
+- In the context of software engineering, what is a script?
+- Pros and cons of automating activities via scripts
+- In a *nix system shell, how would you inspect the content of a directory?
+- In a *nix system shell, how would you to print the current directory location?
+- In a *nix system shell, how would you to remove the file foo?
+- In a *nix system shell, how would you to remove directory bar?
+- In a *nix system shell, how would you to change disk?
+- In a *nix system shell, how would you to move into some directory?
+- In a *nix system shell, how would you to move to the parent directory?
+- In a *nix system shell, how would you to move a file to another directory?
+- In a *nix system shell, how would you to rename a file?
+- In a *nix system shell, how would you to copy a file into another directory?
+- In a *nix system shell, how would you to create a directory?
+
+---
+
+## Check your understanding (pt. 2)
+
+- In a Windows system shell, how would you inspect the content of a directory?
+- In a Windows system shell, how would you to print the current directory location?
+- In a Windows system shell, how would you to remove the file foo?
+- In a Windows system shell, how would you to remove directory bar?
+- In a Windows system shell, how would you to change disk?
+- In a Windows system shell, how would you to move into some directory?
+- In a Windows system shell, how would you to move to the parent directory?
+- In a Windows system shell, how would you to move a file to another directory?
+- In a Windows system shell, how would you to rename a file?
+- In a Windows system shell, how would you to copy a file into another directory?
+- In a Windows system shell, how would you to create a directory?
+- In the context of operative systems' shells, what is a directory?
+- In the context of operative systems' shells, what is a path?
+
+---
+
+## Check your understanding (pt. 3)
+
+- What would you do if you don't remember how to use a terminal's command?
+- What makes a shell's command interactive?
+- What is the exit code of a command-line program?
+- In the context of operative systems, what is a process?
+- In the context of software, what is a stream?
+- In the context of operative systems, what are the default streams of a process?
+- Should you edit a textual file via the terminal, what would you do?
+
+---
+
+## Check your understanding (pt. 4)
+
+- What is Python?
+- In which and how many ways can the python command be invoked?
+- In a Python project, what is the purpose of the requirements.txt file?
+- In a Python project, what is the purpose of the .python-version file?
+- In the context of the Python programming language, what is pip?
+- In the context of the Python programming language, what is Kivy?
+- In the context of the Python programming language, what is the compilation cache?
+- What is a software library?
+- What is a dependency of a software project?
+- What is a transitive dependency of a software project?
+- What is the dependency graph of a software project?
+- What is a cyclic dependency in a software project?
+- What is the runtime of a software?
+
+---
+
+## Check your understanding (pt. 5)
+
+- In the context of programming languages, what is a package manager?
+- What is the difference between compiled and interpreted programming languages?
+- What is the Von Neuman architecture?
+- What are the most common instruction set architectures?
+- Is Python a compiled or interpreted programming language?
+- What is the standard library of a programming language?
+- In the context of programming languages, what is the difference between standard and third-party libraries?
+- In the context of programming languages, what is a package repository?
+- In the context of the Python programming language, what is PyPI?
+- What are the main software platforms you are aware of?
+- What are the main package managers and repositories of the main software platforms?
+
+---
+
+## Check your understanding (pt. 6)
+
+- In a software application involving a UI, what is the difference among the model, the view, and the controller?
+- In the context of programming, what is the purpose of code decomposition and modularity?
+- In the context of programming, what is encapsulation?
+- In the context of programming, what is information hiding?
+- What mechanisms does Python provide to support code decompositon?
+- What is the interface of a software?
+- What is the API of a software?
+- Describe the overall functioning of UI
+- In the context of software interfaces, what is the difference among public and private?
+- When, how, and why should you differentiate among public and private members in Pythons?
+
+{{% /section %}}
 
 ---
 

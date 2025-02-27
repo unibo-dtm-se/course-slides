@@ -26,6 +26,9 @@ aliases = [
 0. [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)
 0. [Build automation, packaging, and release (examples with Poetry)](build)
 0. [Versioning, Conventional Commit](versioning)
+0. [TODO] Overview on Distributed Systems Engineering
+0. [TODO] WebServices and RESTful APIs
+0. [TODO] Domain Driven Design
 0. [Continuous integration (examples with GitHub Actions)](ci)
 0. [Licensing](https://unibo-spe.github.io/06-licenses/)
 

@@ -670,10 +670,180 @@ deactivate EmailService
 
 {{% multicol %}}
 {{% col %}}
-{{< image width="100%" src="https://www.plantuml.com/plantuml/svg/NP6zRiCm38HtFSKXIt-GPCYOeKZ7pXth3e9DsqGTqf3P57txC8uCnmOqYAVlI94y3HQJ_PwxyDHHRJ15ugOrL9oeD5O9mH4ZR3w4ZME7prkuGHnmKt24jJp0JyH8phnHEbF57isc-yrTKTHQIalFUnPN-264hzTlx7PlKqtEdw4BYOKmgluyPP_qCNpqQT_hm4Q5h8bSoHbBKPnXbNNYm_plGXwn_Be0EzKUpxod_JPNGv_qeZyiJI6YkFTSjb4QUbday6QFg5dc1aKT7JUazJIJVxBb5BVXZws5A2eQoiIziGhOZmMI2ivIEFdDztq5" >}}
+{{< image width="100%" src="https://www.plantuml.com/plantuml/svg/NP4zRuD038Rt-nMlilH3IOQC6QfqgPIvO-bm0WDMYOtkt5Jzzx48Y81q4lvuNXlRfsmnsU-b2qyTrGPJ96vQGyM9IcEL41mnmkQ3KpPycZiRn8opiE48Qpd3NyJ0JVHPZDA5AdPl5jqjLqLHQoajDUzZS8KVGlXw_SPkzpRrPFzmx41N4WjXY7fwgZx51_THftslcOqAMHDZ9sSiHN66LTQ53_D_5_A8ZTa5sAdsUEOzxRTZD_H9h_h3qXGYYllCPHkbePT53H_sY9fb7b3KqU4-Mayx-ITRRd4R_jXQYAAYN2RkZLN0_YoGL72Mmiajl_OD" >}}
 {{% /col %}}
 {{% col %}}
+- State diagrams only make sense for _mutable_ entities
+    + i.e., entities whose _state_ can change over _time_
+- Essentially, they represent [finite state machines](https://en.wikipedia.org/wiki/Finite-state_machine) (FSM)
+    + a.k.a. finite state _automata_ (FSA)
+- Boxes represent the _different_ __states__ the modelled system can be in
+    + further _descriptions_ can be written inside the boxes
+- Arrows represent the _transitions_ among the states
+    + most commonly caused by __events__
+- __Initial state__ is marked by a _black_ dot
+    + mandatory, unique
+- __Final state__ is marked by a _circle_ with a _black_ dot inside
+    + optional (systems may also not terminate!), unique
+- __Loops__: relevant _events_ leaving the _state unchanged_
+- Arrows are __labelled__ with the _event_ causing the _transition_
+    + [optional] plus the _condition_ for the transition to happen
+    + [optional] plus the _action_ to be performed when the transition happens
+- State __descriptions__ may include _entry_ and _exit_ actions
+    + and/or _permanence_ conditions for that state
+{{% /col %}}
+{{% /multicol %}}
 
+---
+
+{{% section %}}
+
+## State Diagrams can be arbitrarily abstract / complex (pt. 1)
+
+{{< image width="80%" max-h="70vh" src="https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuSf9JIjHACbNACfCpoXHICaiIaqkoSpFuuhMYbNGrRLJS2zAJStZ0fDWVcHgJav-kOALGc9QIMgHmhaf9O-Q6haWec05GQafgB9DN40XX5ceairS3gbvAK270000" >}}
+
+- Just shows the _states_ and the _timed transitions_ among them
+- __No__ explicit names of events
+
+---
+
+## State Diagrams can be arbitrarily abstract / complex (pt. 2)
+
+{{< image width="80%" max-h="70vh" src="https://www.plantuml.com/plantuml/svg/SoWkIImgAStDuSf9JIjHACbNACfCpoXHICaiIaqkoSpFu-82gYX9LN0lIatDKx1II2ajIWI9AvoRKlAegH4g6vcQavDVZY7T19KEIat1a6lcuehMYbNGrRM3cCq59a5yX6bvgHKb2bmGBaW6P11Kc0l8H6Y62JgavgK0FGC0" >}}
+
+- Explicit _name of event_ triggering the state transition (e.g. `next`)
+- Explicit _permanence conditions_ for each state (e.g. maximum time in a state)
+
+---
+
+## State Diagrams can be arbitrarily abstract / complex (pt. 3)
+
+{{< image width="80%" max-h="50vh" src="https://www.plantuml.com/plantuml/svg/TO_1IWCn48RlynHp4zJ5ojuAAJtfKV0cwc4nisqWcK0wYrwjFeBFvKFu94xMaSAsUmdC_Dy_V5dlf2iof0XdaNf1oLZ2PYleGw4N2Pa15172sqB4k4G_bAxkyVjBVlRlbZvGZFdrADvRV1ExtJRmPWRxm2ji3RqdVvH_MdRNzpDTU3n_ngPP_Md2-DRv8CRq9WWsrcJYPCGJ8xl59IRNmeHeLYONUcLSYnrxvTnYgQMn3PeVBFvFJkvKm7wIzTLkQjmrrCr9hSoZr8Koi2RsGug_" >}}
+
+- More complex diagram, also modelling the _flashing_ of the yellow light (via 2 more states)
+- Assumes that integer _variables_ are available to count how many times the light has flashed
+- Arrows contain not only events but also _conditions_ and _actions_ to be performed
+
+---
+
+## State Diagrams can be arbitrarily abstract / complex (pt. 4)
+
+{{< image width="80%" max-h="70vh" src="https://www.plantuml.com/plantuml/svg/VP51IiH044NtTOg_5iO3p49cvr9m9-9Yj2inqEcIjeA2k72yWkVo49x4D6LFfwAu2RzUVf57PVUe-wpJ62bofr117lfxHHWot-aWYMXkAECyCoUy471zSeFDvip8wKKY7EEITnssKEdxo8G6tMfhl88eYJ9kHLL6I6Sb2bFU5mzyVkZNuOqu1PHYzRhY6EN9YHaoisDsRxnRewxqbvtAGr6poihjyCljaeCJcsUpij2OzwcehVntfr9PcRmlJDpVel9SdW9R97vMa8trap-OvjYMAznn2jCOlm40" >}}
+
+- Each state has its own __internal state machine__:
+    + outer states are _states_ of the traffic light's _colour_
+    + inner states regulate whether the _light_ is on or off (to support the flashing)
+
+- Each inner state machine has its __own__ _initial_ state
+    + meaning that switching the next colour $\implies$ implicitly turn on the light
+
+---
+
+## State Diagrams can be arbitrarily abstract / complex (pt. 5)
+
+{{< image width="80%" max-h="70vh" src="https://www.plantuml.com/plantuml/svg/XPAzIWH13CVxF4MuHX1EK3iBkSvEmKx4Od4owyAOWRaS2cBX-We-bm_XapYpGuXHvAhDno_v9zdPR6KeidjCa2WAIiOoZG-2OIfqBrDcW4e8uKKXOdm1HCxLNOLT6LeUFp_aQtvRuR35osF03XvTCQxNv-h4Y6SeUHmJ0Lhm9y96lAhc3QMKdnRHRcfRzNnVYpg8ZVbd-hbFVsBArnIQRFkgPZEze8OilL_glKkTDgc3JlI3vzXQrDWllaQ8mq82t1xUkPk16dyMPdeMi4FxesdU2cm3d_FhMMLdtImkvV-jrMs8Gtritm00" >}}
+
+- More _precise_ design: switching the colour __keeps__ the on/off state of the light __unchanged__
+
+{{% /section %}}
+
+---
+
+## State Diagram Example in OOP
+
+{{% multicol %}}
+{{% col %}}
+#### Enum for admissible colours
+```python
+from enum import Enum
+
+class Color(Enum):
+    GREEN = 0
+    YELLOW = 1
+    RED = 2
+
+    def next(self):
+        return Color((self.value + 1) % 3)
+```
+
+#### State Machine for a Traffic Light
+```python
+class Semaphore:
+    def __init__(self):
+        self.__color = Color.GREEN
+        self.__on = True
+
+    def next(self):
+        self.__color = self.__color.next()
+
+    def toggle(self):
+        self.__on = not self.__on
+
+    def __str__(self):
+        return f'{self.__color} {"on" if self.__on else "off"}'
+```
+{{% /col %}}
+{{% col %}}
+#### Time-related code
+```python
+from time import sleep
+from datetime import timedelta, datetime
+
+T1 = timedelta(seconds=10)
+T2 = timedelta(seconds=5)
+T3 = timedelta(seconds=15)
+T_flash = timedelta(seconds=1)
+
+semaphore = Semaphore()
+instant_init = datetime.now()
+while True:
+    for T in [T1, T2, T3]:
+        instant_start_period = datetime.now()
+        print(datetime.now() - instant_init, semaphore)
+        while datetime.now() - instant_start_period < T:
+            sleep(T_flash.total_seconds())
+            semaphore.toggle()
+            print(datetime.now() - instant_init, semaphore)
+        semaphore.next()
+```
+
+#### Output
+
+```text
+0:00:00.000006 Color.GREEN on
+0:00:01.005111 Color.GREEN off
+0:00:02.010381 Color.GREEN on
+0:00:03.011538 Color.GREEN off
+0:00:04.013307 Color.GREEN on
+0:00:05.033300 Color.GREEN off
+0:00:06.038391 Color.GREEN on
+0:00:07.043062 Color.GREEN off
+0:00:08.048151 Color.GREEN on
+0:00:09.051959 Color.GREEN off
+0:00:10.057036 Color.GREEN on
+0:00:10.057134 Color.YELLOW on
+0:00:11.062204 Color.YELLOW off
+0:00:12.065133 Color.YELLOW on
+0:00:13.069653 Color.YELLOW off
+0:00:14.074754 Color.YELLOW on
+0:00:15.077038 Color.YELLOW off
+0:00:15.077119 Color.RED off
+0:00:16.080739 Color.RED on
+0:00:17.085859 Color.RED off
+0:00:18.090981 Color.RED on
+0:00:19.096069 Color.RED off
+0:00:20.099124 Color.RED on
+0:00:21.104888 Color.RED off
+0:00:22.106639 Color.RED on
+0:00:23.111723 Color.RED off
+0:00:24.116843 Color.RED on
+0:00:25.118087 Color.RED off
+0:00:26.123146 Color.RED on
+0:00:27.126476 Color.RED off
+0:00:28.128466 Color.RED on
+0:00:29.133614 Color.RED off
+0:00:30.138698 Color.RED on
+```
 {{% /col %}}
 {{% /multicol %}}
 
@@ -681,7 +851,7 @@ deactivate EmailService
 
 # Activity Diagram
 
-TBD
+
 
 ---
 

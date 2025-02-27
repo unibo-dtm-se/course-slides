@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2025-02-25 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-02-27 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="motivation-and-goals">Motivation and goals</h2>
@@ -256,64 +256,8 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 </li>
 </ul>
 </section><section>
-<!-- this file includes generated content. Do not edit. Edit content/preliminaries/_generator.md, instead. -->
-<h2 id="terminal-cheat-sheet">Terminal cheat sheet</h2>
-<table>
-  <thead>
-      <tr>
-          <th>Operation</th>
-          <th><i class="fab fa-linux"></i> <i class="fab fa-apple"></i> *nix</th>
-          <th><i class="fab fa-windows"></i> win</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Print the current directory location</td>
-          <td><code>pwd</code></td>
-          <td><code>echo %cd%</code></td>
-      </tr>
-      <tr>
-          <td>Remove the file <code>foo</code> (does not work with directories)</td>
-          <td><code>rm foo</code></td>
-          <td><code>del foo</code></td>
-      </tr>
-      <tr>
-          <td>Remove directory <code>bar</code></td>
-          <td><code>rm -r bar</code></td>
-          <td><code>del bar</code></td>
-      </tr>
-      <tr>
-          <td>Change disk (e.g., switch to <code>D:</code>)</td>
-          <td>n.a., single root (<code>/</code>)</td>
-          <td><code>D:</code></td>
-      </tr>
-      <tr>
-          <td>Move to the subdirectory <code>baz</code></td>
-          <td><code>cd baz</code></td>
-          <td><code>cd baz</code></td>
-      </tr>
-      <tr>
-          <td>Move to the parent directory</td>
-          <td><code>cd ..</code></td>
-          <td><code>cd..</code></td>
-      </tr>
-      <tr>
-          <td>Move (rename) file <code>foo</code> to <code>baz</code></td>
-          <td><code>mv foo baz</code></td>
-          <td><code>move foo baz</code></td>
-      </tr>
-      <tr>
-          <td>Copy file <code>foo</code> to <code>baz</code></td>
-          <td><code>cp foo baz</code></td>
-          <td><code>copy foo baz</code></td>
-      </tr>
-      <tr>
-          <td>Create a directory named <code>bar</code></td>
-          <td><code>mkdir bar</code></td>
-          <td><code>md bar</code></td>
-      </tr>
-  </tbody>
-</table>
+<!-- write-here "shared-slides/terminal-cheatsheet.md" -->
+<!-- end-write -->
 </section><section>
 <h2 id="stuff-you-need-to-know-about-the-shell-pt-4">Stuff you need to know about the shell (pt. 4)</h2>
 <ul>
@@ -1194,7 +1138,7 @@ ModuleNotFoundError: No module named 'kivy'
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">button</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">'='</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic"># Try to...</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#8f5902;font-style:italic"># ... evaluate the expresion *as a Python expression*, convert the result to a string, </span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8f5902;font-style:italic"># ... evaluate the expresion *as a Python expression*, convert the result to a string,</span>
 </span></span><span style="display:flex;"><span>                <span style="color:#8f5902;font-style:italic">#&nbsp;and show that string on the calculator display</span>
 </span></span><span style="display:flex;"><span>                <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_display</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">text</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">))</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic">#&nbsp;If an error occurs in doing the above (e.g. wrong expression)</span>
@@ -1589,26 +1533,26 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">|</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_ensure_is_digit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">plus</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"+"</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">minus</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"-"</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">multiply</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"*"</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">divide</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"/"</span><span style="color:#000;font-weight:bold">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">dot</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">_append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"."</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">compute_result</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Number</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#000">result</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">eval</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span><span style="color:#000;font-weight:bold">)</span>
@@ -1629,7 +1573,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 
 
 <div class="col "><p>Class diagram:</p>
-<figure id="plantuml-figure-1740490280709561245" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1740644849051962868" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class Calculator {
 + expression: str
 - _ensure_is_digit(value: int | str) → int
@@ -1644,7 +1588,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1740490280709561245");
+    handlePlantumlFigureByID("plantuml-figure-1740644849051962868");
 </script>
 </div>
 
@@ -1759,7 +1703,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 </span></span></code></pre></div></section><section>
 <h2 id="overview-on-code-organization-pt-1">Overview on code organization (pt. 1)</h2>
 
-<figure id="plantuml-figure-1740490280710960559" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1740644849053815725" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
     
 
 package calculator {
@@ -1801,13 +1745,13 @@ package calculator {
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1740490280710960559");
+    handlePlantumlFigureByID("plantuml-figure-1740644849053815725");
 </script>
 </section><section>
 <h2 id="overview-on-code-organization-pt-2">Overview on code organization (pt. 2)</h2>
 <p>(including dependencies from Python and Kivy)</p>
 
-<figure id="plantuml-figure-1740490280710993771" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1740644849053852163" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package "Python Standard Library" as Python {
@@ -1881,7 +1825,7 @@ calculator .left.&gt; Python: uses extensively
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1740490280710993771");
+    handlePlantumlFigureByID("plantuml-figure-1740644849053852163");
 </script>
 </section><section>
 <h2 id="many-hidden-concepts-in-this-example-1">Many hidden concepts in this example</h2>
@@ -1941,9 +1885,9 @@ calculator .left.&gt; Python: uses extensively
 </span></span><span style="display:flex;"><span>├── main_package/
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub_module.py
-</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── sub_package/ 
-</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     ├── __init__.py 
-</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     └── sub_sub_module.py 
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── sub_package/
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     ├── __init__.py
+</span></span><span style="display:flex;"><span>│&nbsp;&nbsp;     └── sub_sub_module.py
 </span></span><span style="display:flex;"><span>├── .python-version
 </span></span><span style="display:flex;"><span>├── README.md
 </span></span><span style="display:flex;"><span>└── requirements.txt
@@ -2434,9 +2378,107 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <li><em>attach</em> the new button to the new functionality from the model</li>
 </ol>
 </section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="check-your-understanding-pt-1">Check your understanding (pt. 1)</h2>
+<ul>
+<li>Difference among shell, terminal, REPL</li>
+<li>What are the benefits of command-line interfaces over graphical ones?</li>
+<li>In the context of software engineering, what is a script?</li>
+<li>Pros and cons of automating activities via scripts</li>
+<li>In a *nix system shell, how would you inspect the content of a directory?</li>
+<li>In a *nix system shell, how would you to print the current directory location?</li>
+<li>In a *nix system shell, how would you to remove the file foo?</li>
+<li>In a *nix system shell, how would you to remove directory bar?</li>
+<li>In a *nix system shell, how would you to change disk?</li>
+<li>In a *nix system shell, how would you to move into some directory?</li>
+<li>In a *nix system shell, how would you to move to the parent directory?</li>
+<li>In a *nix system shell, how would you to move a file to another directory?</li>
+<li>In a *nix system shell, how would you to rename a file?</li>
+<li>In a *nix system shell, how would you to copy a file into another directory?</li>
+<li>In a *nix system shell, how would you to create a directory?</li>
+</ul>
+</section><section>
+<h2 id="check-your-understanding-pt-2">Check your understanding (pt. 2)</h2>
+<ul>
+<li>In a Windows system shell, how would you inspect the content of a directory?</li>
+<li>In a Windows system shell, how would you to print the current directory location?</li>
+<li>In a Windows system shell, how would you to remove the file foo?</li>
+<li>In a Windows system shell, how would you to remove directory bar?</li>
+<li>In a Windows system shell, how would you to change disk?</li>
+<li>In a Windows system shell, how would you to move into some directory?</li>
+<li>In a Windows system shell, how would you to move to the parent directory?</li>
+<li>In a Windows system shell, how would you to move a file to another directory?</li>
+<li>In a Windows system shell, how would you to rename a file?</li>
+<li>In a Windows system shell, how would you to copy a file into another directory?</li>
+<li>In a Windows system shell, how would you to create a directory?</li>
+<li>In the context of operative systems’ shells, what is a directory?</li>
+<li>In the context of operative systems’ shells, what is a path?</li>
+</ul>
+</section><section>
+<h2 id="check-your-understanding-pt-3">Check your understanding (pt. 3)</h2>
+<ul>
+<li>What would you do if you don’t remember how to use a terminal’s command?</li>
+<li>What makes a shell’s command interactive?</li>
+<li>What is the exit code of a command-line program?</li>
+<li>In the context of operative systems, what is a process?</li>
+<li>In the context of software, what is a stream?</li>
+<li>In the context of operative systems, what are the default streams of a process?</li>
+<li>Should you edit a textual file via the terminal, what would you do?</li>
+</ul>
+</section><section>
+<h2 id="check-your-understanding-pt-4">Check your understanding (pt. 4)</h2>
+<ul>
+<li>What is Python?</li>
+<li>In which and how many ways can the python command be invoked?</li>
+<li>In a Python project, what is the purpose of the requirements.txt file?</li>
+<li>In a Python project, what is the purpose of the .python-version file?</li>
+<li>In the context of the Python programming language, what is pip?</li>
+<li>In the context of the Python programming language, what is Kivy?</li>
+<li>In the context of the Python programming language, what is the compilation cache?</li>
+<li>What is a software library?</li>
+<li>What is a dependency of a software project?</li>
+<li>What is a transitive dependency of a software project?</li>
+<li>What is the dependency graph of a software project?</li>
+<li>What is a cyclic dependency in a software project?</li>
+<li>What is the runtime of a software?</li>
+</ul>
+</section><section>
+<h2 id="check-your-understanding-pt-5">Check your understanding (pt. 5)</h2>
+<ul>
+<li>In the context of programming languages, what is a package manager?</li>
+<li>What is the difference between compiled and interpreted programming languages?</li>
+<li>What is the Von Neuman architecture?</li>
+<li>What are the most common instruction set architectures?</li>
+<li>Is Python a compiled or interpreted programming language?</li>
+<li>What is the standard library of a programming language?</li>
+<li>In the context of programming languages, what is the difference between standard and third-party libraries?</li>
+<li>In the context of programming languages, what is a package repository?</li>
+<li>In the context of the Python programming language, what is PyPI?</li>
+<li>What are the main software platforms you are aware of?</li>
+<li>What are the main package managers and repositories of the main software platforms?</li>
+</ul>
+</section><section>
+<h2 id="check-your-understanding-pt-6">Check your understanding (pt. 6)</h2>
+<ul>
+<li>In a software application involving a UI, what is the difference among the model, the view, and the controller?</li>
+<li>In the context of programming, what is the purpose of code decomposition and modularity?</li>
+<li>In the context of programming, what is encapsulation?</li>
+<li>In the context of programming, what is information hiding?</li>
+<li>What mechanisms does Python provide to support code decompositon?</li>
+<li>What is the interface of a software?</li>
+<li>What is the API of a software?</li>
+<li>Describe the overall functioning of UI</li>
+<li>In the context of software interfaces, what is the difference among public and private?</li>
+<li>When, how, and why should you differentiate among public and private members in Pythons?</li>
+</ul>
+
+</section>
+</section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-02-25 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-02-27 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

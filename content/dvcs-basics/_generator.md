@@ -251,7 +251,7 @@ Reconciling diverging developments is usually referred to as **merge**
 ## DVCS concepts and terminology: *Repository*
 
 Project **meta-data**. Includes the whole project history
-* information on how to *roll back* changes 
+* information on how to *roll back* changes
 * *authors* of changes
 * *dates*
 * *differences* between different points in time
@@ -909,7 +909,7 @@ Git provides a dedicated sub-command:
 ```text
 * d114802 (HEAD -> master, origin/master, origin/HEAD) moar contribution
 | * edb658b (origin/renovate/gohugoio-hugo-0.94.x) ci(deps): update gohugoio/hugo action to v0.94.2
-|/  
+|/
 * 4ce3431 ci(deps): update gohugoio/hugo action to v0.94.1
 * 9efa88a ci(deps): update gohugoio/hugo action to v0.93.3
 * bf32a8b begin with build slides
@@ -1266,7 +1266,7 @@ The `remote` subcommand is used to inspect and manage remotes:
 
 4. Set the _upstream_ for the current branch, while __publishing__ it to the remote
     + i.e. declare how the local branch will be named on the remote (better to use the same name)
-    + e.g. if the current branch is `master`: 
+    + e.g. if the current branch is `master`:
         * `git push -u origin master`
 
 ---
@@ -1370,7 +1370,7 @@ Git provides a `clone` subcommand that copies *the whole history* of a repositor
 * `git clone user@sshserver.com:SomePath/SomeRepo.git`
   * creates a local folder called `SomeRepo` and copies the repository located at the specified `URL`
 
---- 
+---
 
 ## Cloning a repository (pt. 3)
 
@@ -1434,8 +1434,8 @@ class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8
 1. Clone the following repository: <https://github.com/unibo-dtm-se/repository-example>
   - `git clone https://github.com/unibo-dtm-se/repository-example.git`
 
-> Such repository is an instance of 
-> [`template-project-work`](https://github.com/unibo-dtm-se/template-project-work), i.e. a template for 
+> Such repository is an instance of
+> [`template-project-work`](https://github.com/unibo-dtm-se/template-project-work), i.e. a template for
 > your final reports. It consists of static Web-site, based on the [Jekyll](https://jekyllrb.com/) technology.
 > You write `.md` files, and Jekyll generates the HTML for you.
 > The site is then hosted on GitHub pages, i.e. [here](https://unibo-dtm-se.github.io/template-project-work).
@@ -1610,7 +1610,7 @@ class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8
 
 ### Solving the issue
 
-> __Beware__: in general, when creating the _merging_ commits, 
+> __Beware__: in general, when creating the _merging_ commits,
 >
 > __conflicts__ might arise _if the same files were edited_
 
@@ -1671,7 +1671,7 @@ class C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8
 
 The push succeeds now!
 
-#### The local and remote histories are now __aligned__ 
+#### The local and remote histories are now __aligned__
 
 (i.e., they are equal)
 
@@ -1680,7 +1680,7 @@ The push succeeds now!
 # Exercise (pt. 3)
 
 ## Divergent histories (continued)
- 
+
 10. The _teacher_ will __pull__ the changes from the remote
     + notice that a merge commit is created in the local history
         + `git log --oneline`
@@ -1762,13 +1762,13 @@ Changes made on the branch that is being merged in.
 
 ---
 
-## Take-away 
+## Take-away
 
 ### Simple protocol for cooperation
 
 1. **Pull** before starting your working session
 
-2. Make your __commits__ locally 
+2. Make your __commits__ locally
 
 3. **Push** your changes to the remote, _as frequently as possible_
     + _before_ pushing:
@@ -1779,7 +1779,7 @@ Changes made on the branch that is being merged in.
 
 4. Make sure to __push__ before your working session ends
 
---- 
+---
 
 # Branching
 
@@ -1795,7 +1795,7 @@ Changes made on the branch that is being merged in.
 
 > A __branch__ is a coherent _development line_
 
-* technically, a branch is a __sequence of__ contiguous commits, with a __name__ 
+* technically, a branch is a __sequence of__ contiguous commits, with a __name__
     + the name acts as a __pointer__ to the last commit
 
 ---
@@ -1830,7 +1830,7 @@ Changes made on the branch that is being merged in.
 
 2. you create a `develop` branch
 
-3. you create a `feature/section-N` branch for each section (`N` = 1, 2, ...)  
+3. you create a `feature/section-N` branch for each section (`N` = 1, 2, ...)
 
 4. as soon as a section is completed, the corresponding `feature/section-N` branch is merged into `develop`
     + the `feature/section-N` branch is deleted
@@ -1896,7 +1896,7 @@ gitGraph
 
 ## Relevant commands related to branching in Git
 
-- _Visualising_ branches 
+- _Visualising_ branches
     * `git branch` -- list the branches
         + `git branch -a` -- list all the branches, including the remote ones
         + `git branch -d branch-name` -- delete the branch `branch-name`
@@ -1922,7 +1922,7 @@ gitGraph
 
 20. The _teacher_ will select 12 volounteers
 
-21. Each volounteer will be asked to create a new branch, named `feature/section-N` (`N` = 1, 2, ..., 12)  
+21. Each volounteer will be asked to create a new branch, named `feature/section-N` (`N` = 1, 2, ..., 12)
 
 22. Each volounteer will be asked to _edit_ the file `sections/N-concept/index.md` and _push_ the changes
     + please _invent_ some content for those sections, possibly, _deleting_ some prior content
@@ -1947,32 +1947,32 @@ gitGraph
 Doing all the above via the CLI is fine,
 but GitHub provides a _nice_ UI to _visualise_, and __track__ cooperative work.
 
-Here are a bunch of _GitHub_ features that are _useful_ for _cooperative_ work (cf. [`numpy`'s repository](https://github.com/numpy/numpy)) 
+Here are a bunch of _GitHub_ features that are _useful_ for _cooperative_ work (cf. [`numpy`'s repository](https://github.com/numpy/numpy))
 
-- [Forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks): 
+- [Forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks):
 create a personal copy of someone else's project
     + e.g. to _propose_ changes to the original project
     + e.g. to use the original project as a _starting point_ for a new idea
 
-- [Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues): 
+- [Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues):
 keep track of _bugs_, enhancement _proposals_, and _tasks_ to do, etc.
     + often created by users (or by project managers), and _assigned_ to developers
     + this is where technical discussions about the project happen
 
-- [Pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests): 
+- [Pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests):
 a proposal to _merge_ changes from one branch to another, or from another fork
-    + often created by developers, and __reviewed__ by other developers _before_ merging 
+    + often created by developers, and __reviewed__ by other developers _before_ merging
     + often _linked_ to issues and to source / destination _branches_
     + the recipient of the request decides if/when to accept
 
-- [Wikis](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis): 
+- [Wikis](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis):
 (one per repository, made up by several pages) a place to _document_ the project
     + often written by developers to teach how to use the software to the community
 
-- [Organizations](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations): 
+- [Organizations](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations):
 groups of users, with _shared_ repositories, _teams_, and _projects_
     + often used by companies, universities, and other organizations
-    + 1 product $\rightarrow$ 1 organization with several repositories 
+    + 1 product $\rightarrow$ 1 organization with several repositories
 
 ---
 
@@ -2047,6 +2047,82 @@ groups of users, with _shared_ repositories, _teams_, and _projects_
 <!-- dont write-here "shared-slides/git/workflows-flow-fork.md" -->
 
 <!-- end-write -->
+
+---
+
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- What are the classic, inefficient ways of tracking changes in software projects? Why are they inadequate?
+- What are the functionalities provided by Distributed Version Control Systems?
+- In the context of DVCS, what is a repository?
+- In the context of DVCS, what is the working tree?
+- In the context of DVCS, what is a commit?
+- In the context of DVCS, what is a merge commit?
+- In the context of DVCS, what is a branch?
+- In the context of Git, what is a commit reference?
+- In the context of Git, what is the HEAD reference?
+- In the context of Git, what is the difference between relative and absolute commit references?
+- In the context of DVCS, what does the "checkout" operation mean and involve?
+- In the context of DVCS, what does the "branching" operation mean and involve?
+- In the context of DVCS, what does the "merging" operation mean and involve?
+- What is Git?
+
+---
+
+## Check your understanding (pt. 2)
+
+- What is the purpose of the command `git config --global user.name "Your Real Name"`?
+- What is the purpose of the command `git config --global user.email "your.email@address"`?
+- What is the purpose of the command `git config --global core.editor nano`?
+- What is the purpose of the command `git config --global init.defaultbranch master`?
+- What is the purose and the effect of the command `git init in directory my-project`?
+- What is the purpose of the command `git add .`?
+- What is the purpose of the command `git reset .`?
+- What is the purpose and the effect of the command `git commit`?
+- What is the purpose of the command `git status`?
+- What is the purpose and the effect of the command `git checkout -b NAME`?
+- What is the purpose and the effect of the command `git checkout NAME`?
+- What is the purpose and the effect of the command `git checkout XXX -- YYY`?
+- What is the purpose of the command `git log`?
+- What is the purpose and the effect of the command `git push`?
+- What is the purpose and the effect of the command `git pull`?
+- What is the purpose and the effect of the command `git merge`?
+
+---
+
+## Check your understanding (pt. 3)
+
+- In the context of Git, what is the stage?
+- In the context of Git, what is `HEAD`?
+- In the context of Git, what is the purpose of ignoring files? How do you do that?
+- In the context of Git, what is the purpose of the `.gitattributes` files?
+- In the context of operative systems, what is the line terminator?
+- In the context of operative systems, what are the most common line terminators, and what systems use which one?
+- Let's say you have a number of uncommitted changes in your working tree. What criteria would you adopt to decide which and how many commit to do?
+- In the context of Git, what does "detached head" mean?
+- What is the difference between Git and GitHub?
+- In the context of GitHub, what is a fork? What's its purpose?
+- In the context of GitHub, what is a pull request? What's its purpose?
+- In the context of GitHub, what is an issue? What's its purpose?
+
+---
+
+## Check your understanding (pt. 4)
+
+- Let's say you have an unpublished repository onto your computer. How can you publish it on GitHub? Specify the terminal commands.
+- Let's say you have access to a GitHub repository. How can you clone it? Specify the commands and their effects
+- In the context of Git, what is a remote?
+- In the context of Git, what is the upstream of a branch?
+- In the context of Git, what is the "divergent history" situation about? How can that happen? How to fix it?
+- In the context of Git, what are merge conflicts? How can they happen? How to fix them?
+- In the context of Git, what is a branching workflow?
+- In the context of Git, what is the GitFlow branching workflow? How does it work?
+- In the context of GitHub, what is an organization?
+- In the context of GitHub, what is a Wiki?
+
+{{% /section %}}
 
 ---
 

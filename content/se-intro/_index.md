@@ -14,7 +14,7 @@ outputs = ["Reveal"]
 
 ## Relevant nomenclature (pt. 1)
 
-> __Computer Science__ (CS) is the study of _computation_, 
+> __Computer Science__ (CS) is the study of _computation_,
 > i.e. the _automatic_ manipulation of _information_ via __algorithms__
 
 (intuitive definition provided by the teacher)
@@ -31,7 +31,7 @@ outputs = ["Reveal"]
 
 ## Relevant nomenclature (pt. 2)
 
-> A __problem__ is a _well-defined_ specification of an information to be produced 
+> A __problem__ is a _well-defined_ specification of an information to be produced
 > (_output_) starting from some _initial_ information or preconditions (_input_)
 
 (intuitive definition provided by the teacher)
@@ -123,14 +123,14 @@ outputs = ["Reveal"]
 - They care about __automating__ the _solutions_ to _problems_
     + most commonly quicker, more precise, less error-prone than humans
         * (when the problem is _repetitive_ and _structured_ enough)
-    
+
 - Hence, _computers_ are __enablers__ for _automation_
     + and algorithms are the strategies followed by computers to solve problems
 
 - However, _not_ all problems are as _simple_ as ordering an array
     + most real-world problems are _complex_, _multi-faceted_, and _ambiguous_
 
-- _Effort_ and _creativity_ is required to understand how to 
+- _Effort_ and _creativity_ is required to understand how to
     1. __decompose__ real-world _problems_ into simpler ones
     2. __select__ the right _algorithms_ to solve them
     3. __combine__ _algorithms_ to solve the original problem
@@ -142,7 +142,7 @@ outputs = ["Reveal"]
 
 (from [IEEE Standard Glossary](https://ieeexplore.ieee.org/document/159342))
 
-> __Software__: computer _programs_, _procedures_, and possibly associated _documentation_ and data 
+> __Software__: computer _programs_, _procedures_, and possibly associated _documentation_ and data
 > pertaining to the operation of a computer system
 
 - Software $\supset$ algorithms (software is _more general_ than algorithms)
@@ -158,8 +158,8 @@ outputs = ["Reveal"]
 
 > __Software Engineering__ (SE) definition:
 >
-> (1) The application of a _systematic_, disciplined, quantifiable approach to the _development_, operation, 
-> and maintenance of __software__; that is, the application of engineering to software. 
+> (1) The application of a _systematic_, disciplined, quantifiable approach to the _development_, operation,
+> and maintenance of __software__; that is, the application of engineering to software.
 >
 > (2) The study of approaches as in (1).
 
@@ -254,7 +254,7 @@ outputs = ["Reveal"]
 
 - Most cost entries are (directly or indirectly) _personnel_ costs
     + personnel must be creative, knowledgeable, disciplined, motivated, and _coordinated_
-        * performance is not really proportional to the amount of person-time spent  
+        * performance is not really proportional to the amount of person-time spent
 
 - Misunderstanding these aspects can lead to __software crises__
     + cf. [A Collection of Well-Known Software Failures](https://www.cse.psu.edu/~gxt29/bug/softwarebug.html)
@@ -323,7 +323,7 @@ Hopefully, you will have clear answers to these questions by the end of this cou
 
 > The focus is _not_ on coding skills
 
-Yet, you'll be exposed to _some_ coding exercises, 
+Yet, you'll be exposed to _some_ coding exercises,
 
 in order for you to experience _first-hand_ the _challenges_ of software development
 
@@ -336,7 +336,7 @@ in order for you to experience _first-hand_ the _challenges_ of software develop
 - being (in principle) able to _plan_ and _supervise_ a software project
 - understand technical jargon and _communicate_ with technical personnel
 
---- 
+---
 
 # Overview on software engineering phases
 
@@ -433,7 +433,7 @@ Still _sequential_, but with _interleaved verification_ phases
 
 ![Incremental model](./incremental.png)
 
-Starting from an _abstract design_, 
+Starting from an _abstract design_,
 a number of _iterations_ are perfomed, one per _module_
 
 ---
@@ -488,6 +488,55 @@ Attempts to mitigate the consequnet risk of _low-quality_ code.
 
 
 __Rationale__: grasping conceptual aspects is easier when you have a _clear_ idea of the underlying _technical_ aspects
+
+---
+
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- What is computer science?
+- What is an algorithm?
+- Difference among information, data, and representation
+- What is software?
+- What is software engineering?
+- What were software crises?
+- What makes software development costs rise?
+- What may delay software development?
+- Why could software miss requirements?
+- Why may software be inefficient?
+- What does it mean for software to be of low-quality?
+- What makes code (un)manageable or (un)maintainable?
+
+---
+
+## Check your understanding (pt. 2)
+
+- What are the main SE phases?
+- In the context of SE phases, what is the "Use case collection" phase about?
+- In the context of SE phases, what is the "Requirements analysis" phase about?
+- In the context of SE phases, what is the "Design" phase about?
+- In the context of SE phases, what is the "Implementation" phase about?
+- In the context of SE phases, what is the "Verification" phase about?
+- In the context of SE phases, what is the "Release" phase about?
+- In the context of SE phases, what is the "Deployment" phase about?
+- In the context of SE phases, what is the "Documentation" phase about?
+- In the context of SE phases, what is the "Maintenance" phase about?
+
+---
+
+## Check your understanding (pt. 3)
+
+- What are tha main SE Lifecycle Models?
+- In the context of SE Lifecycle, what is the Waterfall Model?
+- In the context of SE Lifecycle, what is the V-Model?
+- In the context of SE Lifecycle, what is the Incremental Model?
+- In the context of SE Lifecycle, what is the Iterative Model?
+- In the context of SE Lifecycle, what is the Spiral Model?
+- In the context of SE Lifecycle, what is the Scum Model?
+- In the context of SE Lifecycle, what is the Extreme Programming Model?
+
+{{% /section %}}
 
 ---
 

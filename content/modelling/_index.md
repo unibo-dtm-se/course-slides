@@ -687,8 +687,8 @@ deactivate EmailService
     + optional (systems may also not terminate!), unique
 - __Loops__: relevant _events_ leaving the _state unchanged_
 - Arrows are __labelled__ with the _event_ causing the _transition_
-    + [optional] plus the _condition_ for the transition to happen
-    + [optional] plus the _action_ to be performed when the transition happens
+    + [optional] + the _condition_ for the transition to happen
+    + [optional] + the _action_ to be performed upon transitioning
 - State __descriptions__ may include _entry_ and _exit_ actions
     + and/or _permanence_ conditions for that state
 {{% /col %}}
@@ -851,7 +851,39 @@ while True:
 
 # Activity Diagram
 
+- Modelling the _workflow_ of one or more _processes_
+- Like a [flow chart](https://en.wikipedia.org/wiki/Flowchart), but more _formal_ and _precise_, and supporting _parallelism_
 
+---
+
+## Overview on Activity Diagrams
+
+{{% multicol %}}
+{{% col %}}
+{{< image width="100%" src="https://www.plantuml.com/plantuml/svg/VL7DRlCm3BlxANZxsWBVOJ-d1HZw47i1fMOQOwuLs6g6OjYxpp5MDBtqP5CaBKhU5vDivrDqxUBUv61X3dR1KxS2pvqB0pO7JJvOqBI5ZKpOJ5egdebwdAKn3hZvNgIxnttd60knIJpA8-Th5TPcWniqVovCouT9iiJ8Y5NEnaPoGjNY0uLBpj8rA-Ge8JrweCu6P4uKkugYwhHKgyihYfveOqZ7FnLzlAmyNsE8lDjDA2k8KQClMxZ_xxWLlRAaVzR8kkZM0seZSmkcgOsFDi6tfClFLHEb67HYRZjpfkY9bfg-Hc7Yp8nTjUpWT82DH9yb7KOMIAypbtXU4pjNJ2UtP_Br_ty1" >}}
+{{% /col %}}
+{{% col %}}
+- Activity diagrams can represent _socio-technical_ __workflows__
+    + i.e. workflows involving _people_ and _machines_
+- They can represent _business_ __processes__
+    + e.g. _order processing_, _customer service_, _product development_
+- They can represent _software_ __processes__
+    + e.g. an algorithm, a _use case_, a _system operation_
+- Boxes represent __activities__, expressed in _natural language_
+- Several __control structures__ are supported:
+    + _sequence_ (straight arrows): one activity follows the other
+    + _choiches_ (diamonds): a branch in the workflow
+        * based on a condition
+    + _loops_ (back arrows): a cycle in the workflow
+    + _forks_ (black bars, opening): activities are started in parallel
+    + _joins_ (black bars, closing): activities are joined
+        * joining an activity $\equiv$ waiting for its termination
+- Two sort of joins:
+    + __AND__ join: _all_ activities must terminate
+    + __OR__ join: at least one (i.e. "_any_") activity must terminate
+- __Beginning__ and __termination__ $\leftrightarrow$ explicit _bullets_
+{{% /col %}}
+{{% /multicol %}}
 
 ---
 

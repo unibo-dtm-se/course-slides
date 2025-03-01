@@ -859,7 +859,7 @@ while True:
 
 {{% multicol %}}
 {{% col %}}
-{{< image width="100%" src="https://www.plantuml.com/plantuml/svg/VL7DRlCm3BlxANZxsWBVOJ-d1HZw47i1fMOQOwuLs6g6OjYxpp5MDBtqP5CaBKhU5vDivrDqxUBUv61X3dR1KxS2pvqB0pO7JJvOqBI5ZKpOJ5egdebwdAKn3hZvNgIxnttd60knIJpA8-Th5TPcWniqVovCouT9iiJ8Y5NEnaPoGjNY0uLBpj8rA-Ge8JrweCu6P4uKkugYwhHKgyihYfveOqZ7FnLzlAmyNsE8lDjDA2k8KQClMxZ_xxWLlRAaVzR8kkZM0seZSmkcgOsFDi6tfClFLHEb67HYRZjpfkY9bfg-Hc7Yp8nTjUpWT82DH9yb7KOMIAypbtXU4pjNJ2UtP_Br_ty1" >}}
+{{< image width="100%" max-h="60%" src="https://www.plantuml.com/plantuml/svg/VL7DRlCm3BlxANZxsWBVOJ-d1HZw47i1fMOQOwuLs6g6OjYxpp5MDBtqP5CaBKhU5vDivrDqxUBUv61X3dR1KxS2pvqB0pO7JJvOqBI5ZKpOJ5egdebwdAKn3hZvNgIxnttd60knIJpA8-Th5TPcWniqVovCouT9iiJ8Y5NEnaPoGjNY0uLBpj8rA-Ge8JrweCu6P4uKkugYwhHKgyihYfveOqZ7FnLzlAmyNsE8lDjDA2k8KQClMxZ_xxWLlRAaVzR8kkZM0seZSmkcgOsFDi6tfClFLHEb67HYRZjpfkY9bfg-Hc7Yp8nTjUpWT82DH9yb7KOMIAypbtXU4pjNJ2UtP_Br_ty1" >}}
 {{% /col %}}
 {{% col %}}
 - Activity diagrams can represent _socio-technical_ __workflows__
@@ -883,6 +883,82 @@ while True:
 - __Beginning__ and __termination__ $\leftrightarrow$ explicit _bullets_
 {{% /col %}}
 {{% /multicol %}}
+
+---
+
+## Example: Activity Diagram To Represent Algorithms
+
+{{% multicol %}}
+{{% col %}}
+{{< image width="100%" max-h="60%" src="https://www.plantuml.com/plantuml/svg/PL51JiCm4Bpx5QCzfQegaMj2KIMU03VKWo5RTKjm8dj3-doyJMj1sKioCvxnQBrBwgDENxsx_BZcUGZV71L4vqG47U3HIzBMDIziTC0MFOVgd5P4XPNCFXYEFB9NXpnNwNIJZ2loCd90PJUzdVPuWdtNzPve1JroCEarJfnnCIovinznjH71XowZOcxBOGwT72xetNzypZvsfHFMMzH_Is4-Ii-eJ7r4sDGRiIQIVlUu3v8IT1yYIyZ_2DT4rYa6f24gTxRTsxfRbtGOtIuNpq_o0m00" >}}
+{{% /col %}}
+{{% col %}}
+```python
+def bubble_sort(xs):
+    xs = list(xs)
+    n = len(xs)
+    for i in range(n):
+        for j in range(0, n - 1 - i):
+            if xs[j] > xs[j + 1]:
+                xs[j], xs[j + 1] = xs[j + 1], xs[j]
+    return xs
+```
+
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Example: Activity Diagram To Represent User Stories (pt. 1)
+
+### User Story: Creating & Shares a story on Instagram
+
+__As a:__ social media user,
+__I want to:__ create and share a temporary story on Instagram,
+__so that:__ I can share moments, updates, or engage with my followers in a fun and interactive way.
+
+#### Acceptance Criteria
+
+{{% multicol %}}
+{{% col %}}
+1.	Accessing the Story Feature
+    - _Given_ that I am logged into Instagram,
+    - _When_ I tap on my profile picture or the “+” icon at the top of my feed,
+    - _Then_ I should be taken to the story creation interface.
+2.	Capturing or Uploading Content
+    - _Given_ that I am on the story creation screen,
+    - _When_ I take a photo/video using the camera or upload media from my gallery,
+    - _Then_ the selected media should appear as a preview for editing.
+3.	Editing the Story
+    - _Given_ that I have added media to my story,
+    - _When_ I tap on editing options (stickers, text, drawings, filters, or music),
+    - _Then_ I should be able to customize my story before posting.
+{{% /col %}}
+{{% col %}}
+4.	Adding Interactive Elements
+    - _Given_ that I am editing my story,
+    - _When_ I choose elements like polls, Q&A, links, or mentions,
+    - _Then_ they should be added to my story for engagement.
+5.	Sharing the Story
+    - _Given_ that I have finalized my story,
+    - _When_ I tap on “Your Story” or “Close Friends,”
+    - _Then_ my story should be successfully shared and visible to my selected audience.
+6.	Viewing Story Engagement
+    - _Given_ that my story is live,
+    - _When_ I check my story views,
+    - _Then_ I should be able to see who has viewed and interacted with my story.
+7.	Deleting or Archiving the Story
+    - _Given_ that my story is posted,
+    - _When_ I tap on my story and select the delete or archive option,
+    - _Then_ I should be able to remove or save it before it expires.
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Example: Activity Diagram To Represent User Stories (pt. 2)
+
+{{< image width="100%" src="https://www.plantuml.com/plantuml/svg/ZLAnRjim4Dtr5GSFXOqQw1uFJL2WG9SKHT0X8qkUf4Ce7i4xIVNVzqmAZTjuY2Rg-DxZUu-y5tL5vobsNLrrTpy52t369F0jsMmeRZfjOtLPW1FamZr5X4nUvuB01NOVTq2Uaq4VtKA3KmHbU58kP_05dP8HnLPec8vws5V9rIML2zAxNBKIhZ1X8FVv03fYWlqpog43--w-coq3JbZSgKsgnaOLo2ChVree89ywZ8AmV-J35L8mebTf1q1VU8B1nOZbRFWKgE-wkwUHDmUM4nV2rVoke-Nztx9X5EIIqBoIN3jzo3cURO_y2nOvWk9lFK8eRgKqsB_LftM32qopa3zjl120acqvhxGWOCG9avfsvXWD_-F3mn4YfHTRsywbLJbKyyrY3TpzcrP6L-nOu7o1drhvru3TCy-btTNkHkrFniSM55RI4QmowCqFhrXaQ_gjw9V8DlzQoCp9ktHzPVIDOIb5hwwbmaWWioW6S2d0GaA_8e9oExNEvs1qZzkRDGok0fW6DzGgOLydnzUQMuCtdkJaaf6QmRVs_-Bzo2nO6G4Zwct6zhtcQDZGBhvLU4FH5J_Iyav9SGk6ArRJRWrkFPfExkxjPvxY7m00" >}}
 
 ---
 

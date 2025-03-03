@@ -752,6 +752,8 @@ deactivate EmailService
 
 {{% multicol %}}
 {{% col %}}
+{{< image width="80%" max-h="20vh" src="https://www.plantuml.com/plantuml/svg/XPAzIWH13CVxF4MuHX1EK3iBkSvEmKx4Od4owyAOWRaS2cBX-We-bm_XapYpGuXHvAhDno_v9zdPR6KeidjCa2WAIiOoZG-2OIfqBrDcW4e8uKKXOdm1HCxLNOLT6LeUFp_aQtvRuR35osF03XvTCQxNv-h4Y6SeUHmJ0Lhm9y96lAhc3QMKdnRHRcfRzNnVYpg8ZVbd-hbFVsBArnIQRFkgPZEze8OilL_glKkTDgc3JlI3vzXQrDWllaQ8mq82t1xUkPk16dyMPdeMi4FxesdU2cm3d_FhMMLdtImkvV-jrMs8Gtritm00" >}}
+
 #### Enum for admissible colours
 ```python
 from enum import Enum
@@ -909,6 +911,8 @@ def bubble_sort(xs):
 
 ---
 
+{{% section %}}
+
 ## Example: Activity Diagram To Represent User Stories (pt. 1)
 
 ### User Story: Creating & Shares a story on Instagram
@@ -960,11 +964,126 @@ __so that:__ I can share moments, updates, or engage with my followers in a fun 
 
 {{< image width="100%" src="https://www.plantuml.com/plantuml/svg/ZLAnRjim4Dtr5GSFXOqQw1uFJL2WG9SKHT0X8qkUf4Ce7i4xIVNVzqmAZTjuY2Rg-DxZUu-y5tL5vobsNLrrTpy52t369F0jsMmeRZfjOtLPW1FamZr5X4nUvuB01NOVTq2Uaq4VtKA3KmHbU58kP_05dP8HnLPec8vws5V9rIML2zAxNBKIhZ1X8FVv03fYWlqpog43--w-coq3JbZSgKsgnaOLo2ChVree89ywZ8AmV-J35L8mebTf1q1VU8B1nOZbRFWKgE-wkwUHDmUM4nV2rVoke-Nztx9X5EIIqBoIN3jzo3cURO_y2nOvWk9lFK8eRgKqsB_LftM32qopa3zjl120acqvhxGWOCG9avfsvXWD_-F3mn4YfHTRsywbLJbKyyrY3TpzcrP6L-nOu7o1drhvru3TCy-btTNkHkrFniSM55RI4QmowCqFhrXaQ_gjw9V8DlzQoCp9ktHzPVIDOIb5hwwbmaWWioW6S2d0GaA_8e9oExNEvs1qZzkRDGok0fW6DzGgOLydnzUQMuCtdkJaaf6QmRVs_-Bzo2nO6G4Zwct6zhtcQDZGBhvLU4FH5J_Iyav9SGk6ArRJRWrkFPfExkxjPvxY7m00" >}}
 
+{{% /section %}}
+
 ---
 
-# Components Diagram
+# Other relevant UML Diagrams by Example
 
-TBD
+---
+
+## Use Case Diagram
+
+Modelling the __actors__ interacting with a system and the __use cases__ they can perform
+
+{{% multicol %}}
+{{% col %}}
+{{< image src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Use_case_restaurant_model.svg" width="100%" >}}
+{{% /col %}}
+{{% col %}}
+(cf. <https://en.wikipedia.org/wiki/Use_case_diagram>)
+
+<br>
+
+- Stick figures represent the _actors_
+    + a.k.a. __the personas__ interacting with the system
+        * i.e. sorts of _users_ in the eyes of the system
+- Ovals represent the __use cases__
+    + i.e. the _functionalities_ the system provides
+- Lines __associate__ actors to use cases
+    + i.e. how actors contribute to each use case
+- Dashed arrows represent the __generalization__ relationship
+    + i.e. how a use case is a _specialization_ of another
+- The _system_ is represented as a __box__
+    + containing the use cases
+
+
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Deployment Diagram
+
+Modelling the _physical_ architecture (a.k.a. __infrastructure__) of a system
+
+{{% multicol %}}
+{{% col %}}
+{{< image src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Deployment_Diagram.PNG" width="100%" max-h="60vh" >}}
+{{% /col %}}
+{{% col %}}
+- Outer blocks represent the _nodes_ (a.k.a. __devices__) of the system
+    + e.g. _servers_, _PCs_, _smartphones_, _IoT devices_
+- Intermediate blocks represent the _software components_ of the systems
+    + e.g. _Web Server_, _Web Browser_, _DBMS technology_, etc.
+- Inner blocks represent the _components_ (a.k.a. __software artifacts__) of the system
+    + e.g. Jars for Java software, _Python modules_, etc.
+- Lines represent __communication paths__
+{{% /col %}}
+{{% /multicol %}}
+
+(cf. <https://sparxsystems.com/resources/tutorials/uml2/deployment-diagram.html>)
+
+---
+
+{{% section %}}
+
+## Package Diagram
+
+Model the _structure_ of a system in terms of _packages_ (a.k.a. __namespaces__)
+
+{{% multicol %}}
+{{% col %}}
+{{< image src="https://www.uml-diagrams.org/package-diagrams/package-diagram-elements.png" width="100%" max-h="60vh" >}}
+{{% /col %}}
+{{% col %}}
+- Packages represent __namespaces__ or _folders_ in the codebase
+    + possibly, containing the _classes_ or _objects_
+        * but also abstract concepts like "functionalities"
+- Lines represent the __dependencies__ among packages
+    + i.e. how a package _uses_ another
+
+- Useful to provide a _map_ about the code _organization_
+
+(cf. <https://www.lucidchart.com/pages/uml-package-diagram>)
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Mixing Class and Package Diagram
+
+{{< image src="http://www.plantuml.com/plantuml/svg/dLHBRjim4Dtp54GsaHie1z0YG1jaKS2B00Mw2G9X9D8E4Pea-35CDDhs03rYJr9IbcNIOXAWN5YQuPlHp9ldGJWSX1Jqhx2b-EhHsnSfy0yBWe0cUCqw3TfVOJ1uklk5OapFmHZCX4qiOtLYRRY4z9Opave_WJlweBKynkoeXIcBDsWubzG3xnq7AtNsvVjBTpmtc1wKfiOmAPgvd7Xgt59XdAOjCorXMsQhVIoWYItWjuXTuR-__ymTJK6W51LaYKq--Kws1A6uCrNgs35nwN7SCiLzbMVUCq9pbxIPtSkTSfQseUcGePfx24MS-H_6tnEXZYMCdPpRp5kY-QjI5uY98iACuk0Rl8QEyX8YZh19KYqmDxXpZ9DgrU1lyh06BvqjWAHeEsTjU8n3hev6Y1cVgonYGCktMLByisRlrz_BpOBUccQKybCOylD_TgkTgDulTtwzZeNMJo-C42gUIHsdD5_cnNwfwyJJZBgGXXBS-K94dELd4KFw9tnbUpyHSd91feSZWI5lKN27Wk8wUU3Ze8kZMCfWESRZ-ClXuzK7iJngjHYQgtWuSv7JLzTlTx7Vi6PSPxsYM6xGak6vZvpW0d3IyiUeiRWSbEp7MqutzlPkMjGDTeQQi15js7niJxb72Fq3" width="100%" max-h="60vh" >}}
+
+- Common practice, despite not official
+- Useful to show how _classes_ are _grouped_ in _packages_
+
+{{% /section %}}
+
+---
+
+## How much details should I put in a diagram?
+
+- __Enough__ to convey the _essential_ information
+    + but __not too much__ to make it _unreadable_
+
+- Think about the _reader_ and what they need to know
+    + e.g. a _developer_ needs more details than a _manager_
+
+- When __presenting__, consider following the [C4 approach](https://c4model.com/), which suggests _zooming-in_ from high-level to low-level details:
+    1. **Context**: high-level overview (e.g. via _use case_ diagram)
+    2. **Containers**: overview on the main containers (e.g. _deployment_ diagram)
+    3. **Components**: detailed view on the components (e.g. _package_ diagram, [components diagram](https://en.wikipedia.org/wiki/Component_diagram))
+    4. **Code**: the actual code (e.g. _class_ diagram)
+
+- When __designing__, you may proceed (this is highly subjective, find your way!):
+    * _outside-in_: deployment $\rightarrow$ package $\rightarrow$ class
+    * _inside-out_: class $\rightarrow$ package $\rightarrow$ deployment
+    * in either cases:
+        + start with _use cases_ to design the _functionalities_, and the _actors_ involved in the system
+        + use _sequence_ diagrams to design how components/classes _interact
+        + use _state_ diagrams to design how _stateful_ components/classes work
+        + use _activity_ diagrams to design the _workflow_ of the system
 
 ---
 

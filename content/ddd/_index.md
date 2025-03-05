@@ -353,27 +353,24 @@ outputs = ["Reveal"]
 
 {{< plantuml >}}
 interface Customer {
-    + CustomerID getID()
-    ..
-    + String getName()
-    + void **setName**(name: String)
-    + String getEmail()
-    + void **setEmail**(email: String)
+    + id: CustomerID **{readonly}**
+    + name: str
+    + email: str
 }
 note left: Entity
 
 interface CustomerID {
-    + Object getValue()
+    + value **{readonly}**
 }
 note right: Value Object
 
 interface TaxCode {
-    + String getValue()
+    + value: str
 }
 note left: Value Object
 
 interface VatNumber {
-    + long getValue()
+    + value: int
 }
 note right: Value Object
 
@@ -494,12 +491,12 @@ VatNumber -u-|> CustomerID
 TaxCode -u-|> CustomerID
 
 interface CustomerFactory {
-    + VatNumber computeVatNumber(String name, String surname, Date birthDate, String birthPlace)
+    + compute_vat_number(name: str, surname: str, birth_date: date, birth_place: str) -> VatNumber
     ..
-    + Customer newCustomerPerson(TaxCode code, String fullName, string email)
-    + Customer newCustomerPerson(String name, String surname, Date birthDate, String birthPlace, String email)
+    + new_customer_person(code: TaxCode, full_name: str, email: str) -> Customer
+    + new_customer_person(name: str, surname: str, birth_date: date, birth_place: str, email: str) -> Customer
     ..
-    + Customer newCustomerCompany(VatNumber code, String fullName, String email)
+    + new_costumer_company(code: VatNumber, full_name: str, email: str) -> Customer
 }
 note bottom of CustomerFactory
 - method for creating VAT numbers
@@ -572,15 +569,15 @@ interface Customer
 Customer "1" *-u- "1" CustomerID
 
 interface CustomerRegistry {
-    + Iterable<Customer> getAllCustomers()
+    + get_all_customers() -> Iterable[Customer]
     ..
-    + Customer findCustomerById(CustomerID id)
-    + Iterable<Customer> findCustomerByName(string name)
-    + Iterable<Customer> findCustomerByEmail(string email)
+    + find_customer_by_id(id: CustomerID) -> Customer
+    + find_customer_by_name(name: str) -> Iterable[Customer]
+    + find_customer_by_email(email: str) -> Iterable[Customer]
     ..
-    + void addNewCustomer(Customer customer)
-    + void updateCustomer(Customer customer)
-    + void removeCustomer(Customer customer)
+    + add_new_customer(customer: Customer)
+    + update_customer(customer: Customer)
+    + remove_customer(customer: Customer)
 }
 
 CustomerRegistry "1" o--> "N" Customer: contains
@@ -635,16 +632,14 @@ CustomerRegistry --> CustomerID: exploits
 
 {{< plantuml height="70vh" >}}
 interface OrderManagementService {
-    + void performOrder(Order order)
+    + perform_order(order: Order)
 }
 
 interface Order {
-    + OrderID getId()
-    + Customer getCustomer()
-    + void setCustomer(Customer customer)
-    + Date getTimestamp()
-    + void setTimestamp(Date timestamp)
-    + Map<Product, long> Amounts getAmounts()
+    + id: OrderID **{readonly}**
+    + customer: Customer
+    + timestamp: datetime
+    + amounts: dict[Product, long]
 }
 
 interface OrderID
@@ -721,7 +716,7 @@ OrderID -d[hidden]- Customer
     + e.g. a message broker, a message queue, etc.
 
 - \[Teacher's Suggestion\]: prefer _neutral_ names for event classes in the model
-    * e.g. `OrderEventArgs` instead of `OrderPerformedEventArgs`
+    * e.g. `OrderEvent` instead of `OrderPerformedEventArgs`
     * e.g. `OrderEvent` instead of `OrderPerformedEvent`
     * the reason: the same OOP type may be used to represent different events:
         + e.g. `orderIssued`, `orderConfirmed`, `orderCancelled`, etc.
@@ -732,16 +727,16 @@ OrderID -d[hidden]- Customer
 
 {{< plantuml >}}
 interface OrderManagementService {
-    + void performOrder(Order order)
+    + perform_order(order: Order)
     ..
-    + void **notifyOrderPerformed**(OrderEventArgs event)
+    + **notify_order_performed**(event: OrderEvent)
 }
 
-interface OrderEventArgs {
-    + OrderID getID()
-    + CustomerID getCustomer()
-    + Date **getTimestamp**()
-    + Dictionary<ProductID, long> getAmounts()
+interface OrderEvent {
+    + id: OrderID **{readonly}**
+    + customer: CustomerID **{readonly}**
+    + timestamp: datetime **{readonly}**
+    + amounts: dict[ProductID, float] **{readonly}**
 }
 
 interface OrderID
@@ -750,13 +745,13 @@ interface CustomerID
 
 interface ProductID
 
-OrderEventArgs "1" *-u- "1" OrderID
-OrderEventArgs "1" *-r- "1" CustomerID
-OrderEventArgs "1" *-d- "N" ProductID
+OrderEvent "1" *-u- "1" OrderID
+OrderEvent "1" *-r- "1" CustomerID
+OrderEvent "1" *-d- "N" ProductID
 
-OrderEventArgs .. OrderManagementService
+OrderEvent .. OrderManagementService
 
-note left of OrderEventArgs: domain event
+note left of OrderEvent: domain event
 note left of OrderID: value object
 note left of ProductID: value object
 note right of CustomerID: value object
@@ -1127,13 +1122,10 @@ product -u-|> mq
 
 Whenever users are willing to _perform an action_ into the system:
 1. they create a __command__ and forward it to the __write model__
-  - i.e. an object describing a _variation_ to be applied to some domain aspect
-
-<br>
+    - i.e. an object describing a _variation_ to be applied to some domain aspect
 
 2. the command is possibly _validated_ & __stored__ onto some database
-  - an ad-hoc __database__ is available in the model for storing commands
-
+    - an ad-hoc __database__ is available in the model for storing commands
 
 ---
 
@@ -1143,8 +1135,6 @@ Whenever users are willing to _inspect/observe the system_ at time $t$:
 1. they perform a __query__ on the __read model__
     - asking for the state of the system _at time $t$_
     - e.g. $t$ $\equiv$ now
-
-<br>
 
 2. commands up to time $t$ are assumed to be __reified__ when reading
     - a __snapshot__ of the system state _at time $t$_ is returned to users

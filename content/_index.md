@@ -28,7 +28,7 @@ aliases = [
 0. [Versioning, Conventional Commit](versioning)
 0. [Overview on Distributed Systems Engineering](ds)
 0. [TODO] WebServices and RESTful APIs
-0. [TODO] Domain Driven Design
+0. [WIP] [Domain Driven Design](ddd)
 0. [Continuous integration (examples with GitHub Actions)](ci)
 0. [Licensing](https://unibo-spe.github.io/06-licenses/)
 

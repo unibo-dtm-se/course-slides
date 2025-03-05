@@ -1,12 +1,12 @@
 +++
 
-title = "Distributed Systems (Engineering)"
-description = "Overview on Distributed Systems Engineering"
+title = "Software Modelling with UML"
+description = "Crash course on software modelling via UML"
 outputs = ["Reveal"]
 
 +++
 
-# Distributed Systems (Engineering)
+# Software Modelling with UML
 
 {{% import path="reusable/header.md" %}}
 

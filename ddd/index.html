@@ -1,0 +1,1657 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Domain Driven Design</title>
+<meta name="description" content="Crash course on Domain Driven Design">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides//plantuml.js"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="domain-driven-design">Domain Driven Design</h1>
+<br>
+<h2 style="margin-bottom: 0;">Software Engineering</h2>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
+<br>
+<br>
+<p>Compiled on: 2025-03-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
+</section><section>
+<h2 id="disclaimer">Disclaimer</h2>
+<ul>
+<li>
+<p>This is an opinionated synthesis and interpretation of the seminal book from Eric Evans</p>
+<ul>
+<li>PDF here: <a href="https://fabiofumarola.github.io/nosql/readingMaterial/Evans03.pdf">https://fabiofumarola.github.io/nosql/readingMaterial/Evans03.pdf</a></li>
+</ul>
+</li>
+<li>
+<p>A much quicker overview is from <a href="https://martinfowler.com/bliki/DomainDrivenDesign.html">Martin Flower</a></p>
+</li>
+<li>
+<p>The <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Wikipedia page</a> is also quite informative</p>
+</li>
+</ul>
+</section><section>
+<h1 id="motivation-and-context">Motivation and Context</h1>
+</section><section>
+<h2 id="why-a-structured-design-process">Why a structured design process?</h2>
+<ul>
+<li>
+<p>There exist many <em>programming languages</em>…</p>
+</li>
+<li>
+<p>There exist many object-oriented <em>design patterns</em>…</p>
+</li>
+<li>
+<p>There exist many <em>software engineering</em> best practices…</p>
+</li>
+</ul>
+<br>
+<blockquote>
+<p>What’s the <strong>criterion</strong> to choose <strong>if</strong> and <strong>when</strong> to adopt languages / patterns / best / practices?</p></blockquote>
+</section><section>
+<h2 id="recommended-workflow">Recommended workflow</h2>
+<h3 id="problem-xrightarrowcolorredanalysis-model-xrightarrowcolorreddesign-architecture-xrightarrowimplementation-solution">Problem $\xrightarrow{\color{red}analysis}$ <strong>Model</strong> $\xrightarrow{\color{red}design}$ Architecture $\xrightarrow{implementation}$ Solution</h3>
+<ul>
+<li>yet, how to derive the model?</li>
+</ul>
+</section><section>
+<h2 id="why-domain-driven-design">Why Domain Driven Design?</h2>
+<ul>
+<li>
+<p>Here we present <strong>domain-driven design</strong> (DDD)</p>
+<ul>
+<li>one of many approaches to software design</li>
+</ul>
+</li>
+<li>
+<p>It consists of principles, best practices, and patterns leading design</p>
+<ul>
+<li>unified under a common <em>philosophy</em></li>
+<li>focus is on the <em>design workflow</em>, other than the result</li>
+</ul>
+</li>
+<li>
+<p>Major benefits:</p>
+<ul>
+<li>it stresses <em>adherence</em> to the problem at hand</li>
+<li>it focuses on delivering a <em>business-tailored</em> model
+<ul>
+<li>and, therefore, a business-tailored solution</li>
+</ul>
+</li>
+<li>it harmonises <em>communication</em> among managers, technicians, and users</li>
+<li>it stresses the production of maintanable and <em>extensible</em> software</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="main-notions-of-ddd">Main notions of DDD</h1>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="what-is-the-domain">What is the domain?</h2>
+<ul>
+<li>
+<p>Definition of <strong>domain</strong>:</p>
+<ul>
+<li>a well-established <em>sphere of knowledge</em>, influence or activity</li>
+<li>the <em>subject area</em> to which the user applies the software</li>
+</ul>
+</li>
+<li>
+<p>Remarks:</p>
+<ul>
+<li>focus is on how <strong>users and experts perceive the domain</strong></li>
+<li>focus is <strong>not</strong> on how <strong>developers</strong> perceive the domain</li>
+</ul>
+</li>
+<li>
+<p>Examples of domains and the contexts composing them</p>
+<ul>
+<li>some university (department, faculty, HR, etc.)</li>
+<li>some given company (manufacturing, marketing, HR, etc.)</li>
+<li>linear algebra (matrices, complex numbers, polynoms, etc.)</li>
+<li>machine learning (classification, regression, feature selection, etc.)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="ddd-philosophy-pt-1">DDD Philosophy (pt. 1)</h2>
+<ul>
+<li>
+<p><em>Software</em> will represent a <em>solution</em> to a <em>problem</em> in some <strong>business domain</strong></p>
+<ul>
+<li>it should be <em>modelled</em> &amp; <em>implemented</em> to match that domain
+<ul>
+<li>i.e. modelling should elicit the key aspects of a domain, possibly by interacting with experts</li>
+<li>i.e. design and implementation should <em>mirror</em> the domain</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Words do not have meaning per se, but rather w.r.t. a domain</p>
+<ul>
+<li>i.e. the <em>same word</em> may have <em>different meanings</em> in different domains</li>
+<li>each domain comes with a particular language characterising it
+<ul>
+<li><em>software components</em> (interfaces, classes, etc.) should be <em>named after</em> that language</li>
+</ul>
+</li>
+<li><em>interaction with experts</em> is essential to identify a domain’s language</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="ddd-philosophy-pt-2">DDD Philosophy (pt. 2)</h2>
+<ul>
+<li>
+<p>Software should <em>stick</em> to the domain, at <em>any moment</em></p>
+<ul>
+<li>architecture and implementation should favor <em>adherence to the domain</em>
+<ul>
+<li>in spite of their evolution / modification</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Functionalities, structure, and UX should <strong>mirror the domain</strong> too</p>
+<ul>
+<li>using the libraries should be natural for developers</li>
+<li>UX should be natural for users</li>
+</ul>
+<p>as both developers and users are (supposed to be) immersed in the domain</p>
+</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="overview-of-main-notions">Overview of main notions</h2>
+<ul>
+<li>
+<p><strong>Domain</strong>: the reference area of knowledge</p>
+</li>
+<li>
+<p><strong>Context</strong>: a portion of the domain</p>
+</li>
+<li>
+<p><strong>Model</strong>: a reification of the domain in software</p>
+</li>
+<li>
+<p><strong>Ubiquitous Language</strong>: language used by domain experts and mirrored by the model</p>
+</li>
+</ul>
+</section><section>
+<h2 id="the-_domain_">The <em>Domain</em></h2>
+<blockquote>
+<p>A well established sphere of knowledge, influence or activity</p></blockquote>
+<ul>
+<li>e.g. some university (department, faculty, HR, etc.), linear algebra, etc.</li>
+</ul>
+</section><section>
+<h2 id="_contexts_"><em>Contexts</em></h2>
+<blockquote>
+<p>A <em>portion</em> of the domain with a clear <em>boundary</em>:
+<br> (i) relying on a sub-set of the concepts of the domain
+<br> (ii) where words/names have a unique, precise meaning
+<br> (iii) clearly distinguishable from other contexts</p></blockquote>
+<ul>
+<li>e.g. departments, divisions, complex numbers, etc.</li>
+</ul>
+</section><section>
+<h2 id="domain-_vs_-context">Domain <em>vs.</em> Context</h2>
+<p><img src="./domain.png" alt="Domain and context"></p>
+</section><section>
+<h2 id="the-domain-_model_">The domain <em>Model</em></h2>
+<blockquote>
+<p>Set of <strong>software</strong> abstractions mapping relevant <em>concepts</em> of the domain</p></blockquote>
+<ul>
+<li>e.g. Java/Kotlin/Scala projects, packages, interfaces, classes, records, methods, etc.</li>
+</ul>
+</section><section>
+<h2 id="the-_ubiquitous-language_">The <em>Ubiquitous Language</em></h2>
+<blockquote>
+<ul>
+<li>A <em>language</em> structured around the domain model
+<ul>
+<li><em>used by all people</em> involved into the domain</li>
+<li>which should be <em>used in the software</em></li>
+<li>in such a way that their <em>semantics is preserved</em></li>
+</ul>
+</li>
+</ul></blockquote>
+<ul>
+<li>
+<p>underlying assumption:</p>
+<ul>
+<li>different people call the same things differently</li>
+<li>especially when they come from different contexts</li>
+</ul>
+</li>
+<li>
+<p>commonly reified into a <strong>glossary</strong> of terms</p>
+</li>
+<li>
+<p><strong>used to name software components</strong></p>
+</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="conceptual-workflow">Conceptual Workflow</h2>
+<ol>
+<li>
+<p>Identify the <strong>domain</strong>, give a name to it</p>
+</li>
+<li>
+<p>Identify the <strong>main contexts</strong> within the domain, giving them names</p>
+<ul>
+<li>possibly, by interacting with experts</li>
+</ul>
+</li>
+<li>
+<p>Identify the actual meaning of <strong>relevant words</strong> from the domain, and track them into a <strong>glossary</strong></p>
+<ul>
+<li>
+<p>possibly, by interacting with experts</p>
+</li>
+<li>
+<p><em>without assuming you already know the meaning of words</em></p>
+<ul>
+<li>i.e. do <strong>not</strong> rely on (your) <strong>common sense</strong></li>
+</ul>
+</li>
+<li>
+<p>keep in mind that the meaning of words may vary among contexts</p>
+<ul>
+<li><strong>homonyms</strong>: similar names, different meanings</li>
+<li><strong>synonyms</strong>: different names, similar meanings</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Adhere to the language, use it, make it yours</p>
+<ul>
+<li>especially when talking about the domain / model / software</li>
+<li>design/sketch code mirroring the language</li>
+</ul>
+</li>
+<li>
+<p>Draw a <strong>context map</strong> tracking</p>
+<ul>
+<li>the main contexts and their junctions</li>
+<li>words whose meaning varies across contexts</li>
+</ul>
+</li>
+<li>
+<p>Model the software around the ubiquitous language</p>
+<ul>
+<li>rule of thumb: <strong>1 concept $\approx$ 1 interface</strong></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="example-of-context-map">Example of context map</h2>
+<p><img src="./context-map.jpg" alt="Context map"></p>
+
+</section>
+</section><section>
+<h1 id="ddd-building-blocks">DDD Building Blocks</h1>
+</section><section>
+<h2 id="towards-building-blocks">Towards building blocks</h2>
+<ul>
+<li>
+<p>Domain $\rightarrow$ Model</p>
+<ul>
+<li>Concept $\rightarrow$ Type
+<ul>
+<li>instance $\rightarrow$ object</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Each <em>concept</em> from each <strong>context</strong> shall become a <em>type</em> in the <strong>model</strong></p>
+<ul>
+<li>type $\approx$ class, interface, structure, ADT, etc.
+<ul>
+<li>depends on what the programming language has to offer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Use <em>building blocks</em> as <strong>archetypes</strong></p>
+<ul>
+<li>let them guide and constrain your design</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="workflow">Workflow</h2>
+<p>(continued)</p>
+<ol start="7">
+<li>
+<p><em>Chose</em> the most adequate <strong>building block</strong> for each concept</p>
+<ul>
+<li>depending on the nature of the concept</li>
+<li>… or the properties of its instances</li>
+</ul>
+</li>
+<li>
+<p>The building block dictates how to <strong>design the type</strong> corresponding to the concept</p>
+<ul>
+<li>objects in OOP are shaped by types</li>
+</ul>
+</li>
+<li>
+<p>The choice of building block may lead to the identification of <strong>other concepts / models</strong></p>
+<ul>
+<li>e.g. entities may need value objects as identifiers</li>
+<li>e.g. entities may need repositories to be stored</li>
+<li>e.g. entities may need factories to be created</li>
+<li>e.g. aggregates may be composed by entities or value objects</li>
+</ul>
+</li>
+</ol>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="building-blocks-overview">Building blocks (overview)</h2>
+<ul>
+<li>
+<p><strong>Entity</strong>: objects with an identifier</p>
+</li>
+<li>
+<p><strong>Value Object</strong>: objects without identity</p>
+</li>
+<li>
+<p><strong>Aggregate Root</strong>: compound objects</p>
+</li>
+<li>
+<p><strong>Domain Event</strong>: objects modelling relevant event (notifications)</p>
+</li>
+<li>
+<p><strong>Service</strong> objects: providing stateless functionalities</p>
+</li>
+<li>
+<p><strong>Repository</strong>: objects providing storage facilities</p>
+</li>
+<li>
+<p><strong>Factory</strong>: objects creating other objects</p>
+</li>
+</ul>
+</section><section>
+<h2 id="building-blocks-concept">Building blocks (concept)</h2>
+<p><img src="./building-blocks.png" alt="Building blocks graphical overview"></p>
+</section><section>
+<h2 id="entities-vs-value-objects">Entities vs. Value Objects</h2>
+<blockquote>
+<p>Genus-differentia definition:</p>
+<ul>
+<li><em>genus</em>: both can be used to model <strong>elementary</strong> concepts</li>
+<li><em>differentia</em>: entities have an explicit <strong>identity</strong>, value objects are <strong>interchangeable</strong></li>
+</ul></blockquote>
+<br>
+<h3 id="quick-modelling-examples">Quick modelling examples</h3>
+<h4 id="classroom">Classroom</h4>
+<ul>
+<li>
+<p>Seats in classroom may be modelled as value-objects</p>
+</li>
+<li>
+<p>Attendees of a class may be modelled as entities</p>
+</li>
+</ul>
+<h4 id="seats-on-a-plane">Seats on a plane</h4>
+<ul>
+<li>
+<p>Numbered seats $\rightarrow$ entities</p>
+</li>
+<li>
+<p>otherwise $\rightarrow$ value objects</p>
+</li>
+</ul>
+</section><section>
+<h2 id="entities-vs-value-objects-constraints">Entities vs. Value Objects (constraints)</h2>
+<h3 id="value-objects">Value Objects</h3>
+<ul>
+<li>Identified by their <em>attributes</em>
+<ul>
+<li>equality compares attributes alone</li>
+</ul>
+</li>
+<li>Must be <em>stateless</em> $\Rightarrow$ better to use <em>immutable</em> design
+<ul>
+<li>read-only properties</li>
+<li>lack of state-changing methods</li>
+</ul>
+</li>
+<li>May be implemented as
+<ul>
+<li>structures in .NET</li>
+<li><em>data classes</em> in Kotlin, Scala, Python</li>
+<li>records in Java</li>
+</ul>
+</li>
+<li><em>Must</em> implement <code>equals()</code> and <code>hashCode()</code> on JVM
+<ul>
+<li>implementation must compare the objects’ attributes</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="entities-vs-value-objects-constraints-1">Entities vs. Value Objects (constraints)</h2>
+<h3 id="entities">Entities</h3>
+<ul>
+<li>They have an inherent <em>identity</em>, which never changes during their lifespan
+<ul>
+<li>common modelling: <strong>identifier attribute</strong>, of some value type</li>
+<li>equality compares identity</li>
+</ul>
+</li>
+<li>Can be <em>stateful</em> $\Rightarrow$ may have a <em>mutable</em> design
+<ul>
+<li>modifiable properties</li>
+<li>state-changing methods</li>
+</ul>
+</li>
+<li>May be implemented via <em>classes</em> in most languages</li>
+<li>Must implement <code>equals()</code> and <code>hashCode()</code> on JVM
+<ul>
+<li>implementation must compare (at least) the objects’ identifiers</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="entities-vs-value-objects-example">Entities vs. Value Objects (example)</h2>
+<figure id="plantuml-figure-1741183382209192092" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<p>interface Customer {
++ CustomerID getID()
+..
++ String getName()
++ void <strong>setName</strong>(name: String)
++ String getEmail()
++ void <strong>setEmail</strong>(email: String)
+}
+note left: Entity</p>
+<p>interface CustomerID {
++ Object getValue()
+}
+note right: Value Object</p>
+<p>interface TaxCode {
++ String getValue()
+}
+note left: Value Object</p>
+<p>interface VatNumber {
++ long getValue()
+}
+note right: Value Object</p>
+<p>VatNumber -d-|&gt; CustomerID
+TaxCode -d-|&gt; CustomerID</p>
+<p>Customer *-r- CustomerID</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741183382209192092");
+</script>
+</section><section>
+<h2 id="aggregate-root">Aggregate Root</h2>
+<h3 id="definition">Definition</h3>
+<ul>
+<li>
+<p>A <em>composite</em> entity, <em>aggregating</em> related entities/value objects</p>
+</li>
+<li>
+<p>It <em>guarantees</em> the <em>consistency</em> of the objects it contains</p>
+</li>
+<li>
+<p>It <em>mediates</em> the usage of the composing objects from the outside</p>
+<ul>
+<li>acting as a <em>façade</em> (<a href="https://en.wikipedia.org/wiki/Facade_pattern">à la GOF</a>)</li>
+</ul>
+</li>
+<li>
+<p>Outside objects should <em>avoid</em> holding <em>references</em> to composing objects</p>
+</li>
+</ul>
+</section><section>
+<h2 id="aggregate-root-constraints">Aggregate Root (constraints)</h2>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><img src="./aggregate-references.png" alt="" style="width: 100%; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</div>
+<div class="col "><ul>
+<li>
+<p>They are usually <em>compound</em> entities</p>
+</li>
+<li>
+<p>They can be or exploit <em>collections</em> to contain composing items</p>
+<ul>
+<li>they may leverage on the <a href="https://en.wikipedia.org/wiki/Composite_pattern">composite pattern</a></li>
+</ul>
+</li>
+<li>
+<p>May be better implemented as <em>classes</em> in most programming languages</p>
+</li>
+<li>
+<p><em>Must</em> implement <code>equals()</code> and <code>hashCode()</code> on JVM (as any other entity)</p>
+<ul>
+<li>implementation may take <em>composing</em> items into account</li>
+</ul>
+</li>
+<li>
+<p>Components of an aggregate should <em>not</em> hold <strong>references</strong> to components of <em>other</em> aggregates</p>
+<ul>
+<li>that’s why they are called aggregate <em>roots</em></li>
+<li>notable exception: <em>references</em> to <em>identifiers</em> of other aggregates</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="aggregate-root-example">Aggregate Root (example)</h2>
+<p><img src="./aggregate-root.png" alt="Two aggregates with inter-dependencies"></p>
+<p>(notice the link between <code>Order</code> and <code>Buyer</code> implemented by letting the <code>Order</code> hold a reference to the <code>BuyerID</code>)</p>
+</section><section>
+<h2 id="factories-definition">Factories (definition)</h2>
+<blockquote>
+<p>Objects aimed at <strong>creating</strong> other objects</p></blockquote>
+<br>
+<p><img src="./factories.png" alt="Concept of factory"></p>
+</section><section>
+<h2 id="factories-details">Factories (details)</h2>
+<h3 id="purpose">Purpose</h3>
+<ul>
+<li>
+<p>Factories encapsulate the <em>creation logic</em> for <em>complex objects</em></p>
+<ul>
+<li>making it evolvable, interchangeable, replaceable</li>
+</ul>
+</li>
+<li>
+<p>They ease the enforcement of <em>invariants</em></p>
+</li>
+<li>
+<p>They support <em>dynamic selection</em> of the most adequate <em>implementation</em></p>
+<ul>
+<li>while <em>hiding</em> the actual implementation choice</li>
+</ul>
+</li>
+</ul>
+<h3 id="remarks">Remarks</h3>
+<ul>
+<li>DDD’s notion of factory is quite loose
+<ul>
+<li>DDD’s Factories $\supset$ GOF’s Factories $\cup$ Builders $\cup$ …</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="factories-constraints">Factories (constraints)</h2>
+<ul>
+<li>
+<p>They are usually <em>identity-less</em> and <em>state-less</em> objects</p>
+<ul>
+<li>recall the <a href="https://en.wikipedia.org/wiki/Abstract_factory_pattern">abstract factory pattern</a></li>
+</ul>
+</li>
+<li>
+<p>May be implemented as <em>classes</em> in most OOP languages</p>
+</li>
+<li>
+<p>Provide methods to <em>instantiate</em> entities or value objects</p>
+</li>
+<li>
+<p>Usually they require <em>no mutable</em> field/property</p>
+</li>
+<li>
+<p>No need to implement <code>equals()</code> and <code>hashCode()</code> on JVM</p>
+</li>
+</ul>
+</section><section>
+<h2 id="factories-example">Factories (example)</h2>
+<figure id="plantuml-figure-1741183382209956691" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<p>interface CustomerID</p>
+<p>interface TaxCode</p>
+<p>interface VatNumber</p>
+<p>interface Customer</p>
+<p>Customer “1” *– “1” CustomerID</p>
+<p>VatNumber -u-|&gt; CustomerID
+TaxCode -u-|&gt; CustomerID</p>
+<p>interface CustomerFactory {
++ VatNumber computeVatNumber(String name, String surname, Date birthDate, String birthPlace)
+..
++ Customer newCustomerPerson(TaxCode code, String fullName, string email)
++ Customer newCustomerPerson(String name, String surname, Date birthDate, String birthPlace, String email)
+..
++ Customer newCustomerCompany(VatNumber code, String fullName, String email)
+}
+note bottom of CustomerFactory</p>
+<ul>
+<li>method for creating VAT numbers</li>
+<li>methods for creating person customers</li>
+<li>methods for creating company customers
+end note</li>
+</ul>
+<p>CustomerFactory -r-&gt; VatNumber: creates
+CustomerFactory -u-&gt; Customer: creates</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741183382209956691");
+</script>
+</section><section>
+<h2 id="repositories-definition">Repositories (definition)</h2>
+<blockquote>
+<p>Objects mediating the <em>persistent</em> <strong>storage/retrieval</strong> of other objects</p></blockquote>
+<p><img src="./repositories.png" alt="Concept of repositories"></p>
+</section><section>
+<h2 id="repositories-details">Repositories (details)</h2>
+<h3 id="purpose-1">Purpose</h3>
+<ul>
+<li>Hiding (i.e. be backed by) some <em>database technology</em></li>
+<li>Possibly realising some sort of <a href="https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping">object-relational mapping (ORM)</a></li>
+<li><em>Storing</em> / <em>retrieving</em> aggregate roots as <em>wholes</em></li>
+<li>Supporting <em>CRUD</em> operations on aggregate roots
+<ul>
+<li>Create, Read, Update, Delete</li>
+</ul>
+</li>
+</ul>
+<h3 id="remarks-1">Remarks</h3>
+<ul>
+<li>They may exploit <em>factories</em> for turning retrieved data into objects</li>
+<li>If properly engineered, <em>avoids lock-in</em> effect for database technologies</li>
+<li>Design &amp; implementation may require thinking about:
+<ul>
+<li>the architecture,</li>
+<li>the infrastructure,</li>
+<li>the expected load,</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="repositories-constraints">Repositories (constraints)</h2>
+<ul>
+<li>
+<p>They are usually <em>identity-less</em>, <em>stateful</em>, and <em>composed</em> objects</p>
+<ul>
+<li>state may consist of the <em>stored objects</em></li>
+<li>state may consist of <em>DB connections</em></li>
+</ul>
+</li>
+<li>
+<p>May be implemented as <em>classes</em> in most OOP languages</p>
+</li>
+<li>
+<p>Provide methods to</p>
+<ul>
+<li><em>add</em>, <em>remove</em>, <em>update</em> aggregate root entities</li>
+<li><em>select</em> and return one or more entities, possibly in a <em>lazy</em> way
+<ul>
+<li>this should return <code>Iterable</code>, <code>Collection</code>, or <code>Stream</code> on JVM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Non-trivial</em> implementations should take care of</p>
+<ul>
+<li>enforcing <em>consistency</em>, in spite of <em>concurrent</em> access</li>
+<li>support complex <em>transactions</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="repositories-example">Repositories (example)</h2>
+<figure id="plantuml-figure-1741183382209980144" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<p>interface CustomerID</p>
+<p>interface Customer</p>
+<p>Customer “1” *-u- “1” CustomerID</p>
+<p>interface CustomerRegistry {
++ Iterable<customer> getAllCustomers()
+..
++ Customer findCustomerById(CustomerID id)
++ Iterable<customer> findCustomerByName(string name)
++ Iterable<customer> findCustomerByEmail(string email)
+..
++ void addNewCustomer(Customer customer)
++ void updateCustomer(Customer customer)
++ void removeCustomer(Customer customer)
+}</customer></customer></customer></p>
+<p>CustomerRegistry “1” o–&gt; “N” Customer: contains
+CustomerRegistry –&gt; CustomerID: exploits</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741183382209980144");
+</script>
+</section><section>
+<h2 id="services">Services</h2>
+<blockquote>
+<p><em>Functional</em> objects encapsulating the <em>business logic</em> of the software
+<br> e.g. operations spanning through <em>several</em> entities, objects, aggregates, etc.</p></blockquote>
+<h3 id="purpose-2">Purpose</h3>
+<ul>
+<li>Reifying <em>control-related</em> aspects of the software</li>
+<li><em>Wiring</em> aggregates, entities, and value objects <em>together</em></li>
+<li>Exposing <em>coarse-grained functionalities</em> to the users</li>
+<li>Providing a <em>façade</em> for the domain</li>
+<li>Make the business logic evolvable, interchangeable, replaceable</li>
+</ul>
+<h3 id="remarks-2">Remarks</h3>
+<ul>
+<li>Services may be <em>exposed</em> via ReSTful API</li>
+<li>Should be designed keeping <em>current uses cases</em> into account (i.e. design services to be <em>purpose-specific</em>)
+<ul>
+<li>entities/objects should support <em>future use cases</em>, too (i.e. design entities/objects to be <em>general purpose</em>)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="services-constraints">Services (constraints)</h2>
+<ul>
+<li>
+<p>They are usually <em>identity-less</em>, <em>stateless</em> objects</p>
+</li>
+<li>
+<p>May be implemented as classes in OOP languages</p>
+<ul>
+<li>or bare <em>functions</em> in functional languages</li>
+</ul>
+</li>
+<li>
+<p>Commonly provide <em>procedures</em> to do business-related stuff</p>
+<ul>
+<li>e.g. a particular operation…
+<ul>
+<li>… concerning some particular aggregate root</li>
+<li>… which does not support it directly through its methods</li>
+<li>… because the operation is use-case specific</li>
+</ul>
+</li>
+<li>e.g. proxying an external service</li>
+<li>e.g. a complex operation involving several aggregates, repositories, factories, etc.</li>
+</ul>
+</li>
+<li>
+<p>Non-trivial implementations should take care of</p>
+<ul>
+<li>supporting <em>concurrent access</em> to the service’s facilities</li>
+<li>exposing <em>domain events</em> to the external world</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="services-example">Services (example)</h2>
+<figure id="plantuml-figure-1741183382210008336" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<p>interface OrderManagementService {
++ void performOrder(Order order)
+}</p>
+<p>interface Order {
++ OrderID getId()
++ Customer getCustomer()
++ void setCustomer(Customer customer)
++ Date getTimestamp()
++ void setTimestamp(Date timestamp)
++ Map&lt;Product, long&gt; Amounts getAmounts()
+}</p>
+<p>interface OrderID</p>
+<p>interface Customer</p>
+<p>interface Product</p>
+<p>interface OrderStore</p>
+<p>Order “1” *-r- “1” OrderID
+Order “1” *-d- “1” Customer
+Order “1” *-u- “N” Product
+OrderStore “1” *– “N” Order</p>
+<p>OrderManagementService ..&gt; Order: handles
+OrderManagementService ..&gt; OrderStore: updates</p>
+<p>note bottom of OrderStore: repository
+note top of Order: entity
+note right of OrderID: value object
+note right of Product: entity
+note right of Customer: entity
+note top of OrderManagementService: service</p>
+<p>OrderID -u[hidden]- Product
+OrderID -d[hidden]- Customer</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741183382210008336");
+</script>
+</section><section>
+<h2 id="domain-events-definition">Domain Events (definition)</h2>
+<blockquote>
+<p>A value-like object capturing some domain-related <em>event</em>
+<br> (i.e., an observable <em>variation</em> in the domain, which is <em>relevant</em> to the software)</p></blockquote>
+<ul>
+<li>actually, only the event <em>notification</em>/description is reified to a type</li>
+</ul>
+<p><img src="./domain-events.png" alt="Concept of domain events"></p>
+</section><section>
+<h2 id="domain-events-details">Domain Events (details)</h2>
+<h3 id="purpose-3">Purpose</h3>
+<ul>
+<li><em>Propagate</em> changes among portions of the domain model (e.g. contexts, aggregates, entities, etc.)</li>
+<li><em>Record</em> changes concerning the domain</li>
+</ul>
+<h3 id="remarks-3">Remarks</h3>
+<ul>
+<li>
+<p>Strong relation with the <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer pattern</a> (i.e. publish-subscribe)</p>
+</li>
+<li>
+<p>Strong relation with the <em>event sourcing</em> approach (described later)</p>
+</li>
+<li>
+<p>Strong relation with the <em>CQRS pattern</em> (described later)</p>
+</li>
+</ul>
+</section><section>
+<h2 id="domain-events-constraints">Domain Events (constraints)</h2>
+<ul>
+<li>
+<p>They are usually <em>time-stamped</em> value objects</p>
+</li>
+<li>
+<p>May be implemented as <em>data-classes</em> or <em>records</em></p>
+</li>
+<li>
+<p>They represent a <em>relevant variation</em> in the domain</p>
+<ul>
+<li>e.g. a <em>change</em> in the <em>state</em> of some entity / repository</li>
+</ul>
+</li>
+<li>
+<p>Event sources &amp; listeners shall be identified too</p>
+<ul>
+<li>who is <em>generating</em> the event?</li>
+<li>who is <em>consuming</em> the event?</li>
+</ul>
+</li>
+<li>
+<p><em>Infrastructural components</em> may be devoted to <em>propagate</em> events across contexts</p>
+<ul>
+<li>e.g. a message broker, a message queue, etc.</li>
+</ul>
+</li>
+<li>
+<p>[Teacher’s Suggestion]: prefer <em>neutral</em> names for event classes in the model</p>
+<ul>
+<li>e.g. <code>OrderEventArgs</code> instead of <code>OrderPerformedEventArgs</code></li>
+<li>e.g. <code>OrderEvent</code> instead of <code>OrderPerformedEvent</code></li>
+<li>the reason: the same OOP type may be used to represent different events:
+<ul>
+<li>e.g. <code>orderIssued</code>, <code>orderConfirmed</code>, <code>orderCancelled</code>, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="domain-events-example">Domain Events (example)</h2>
+<figure id="plantuml-figure-1741183382210035487" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<p>interface OrderManagementService {
++ void performOrder(Order order)
+..
++ void <strong>notifyOrderPerformed</strong>(OrderEventArgs event)
+}</p>
+<p>interface OrderEventArgs {
++ OrderID getID()
++ CustomerID getCustomer()
++ Date <strong>getTimestamp</strong>()
++ Dictionary&lt;ProductID, long&gt; getAmounts()
+}</p>
+<p>interface OrderID</p>
+<p>interface CustomerID</p>
+<p>interface ProductID</p>
+<p>OrderEventArgs “1” *-u- “1” OrderID
+OrderEventArgs “1” *-r- “1” CustomerID
+OrderEventArgs “1” *-d- “N” ProductID</p>
+<p>OrderEventArgs .. OrderManagementService</p>
+<p>note left of OrderEventArgs: domain event
+note left of OrderID: value object
+note left of ProductID: value object
+note right of CustomerID: value object
+note right of OrderManagementService: service</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741183382210035487");
+</script>
+
+</section>
+</section><section>
+<h1 id="ddd-patterns">DDD Patterns</h1>
+</section><section>
+<h2 id="towards-ddd-patterns">Towards DDD patterns</h2>
+<h3 id="further-notions-involving-__contexts__">Further notions involving <strong>contexts</strong></h3>
+<ul>
+<li>
+<p><strong>Bounded Context</strong>: enforce a model’s <em>boundaries</em> &amp; make them explicit</p>
+</li>
+<li>
+<p><strong>Context Map</strong>: providing a <em>global view</em> on the domain and its contexts</p>
+</li>
+</ul>
+</section><section>
+<h2 id="actual-definitions">Actual definitions</h2>
+<h3 id="context-boundary">Context Boundary</h3>
+<blockquote>
+<p>The <em>boundary</em> of a context and its software model should be <strong>explicit</strong>.
+This is helpful from several perspectives:</p>
+<ul>
+<li>technical (e.g., <strong>dependencies</strong> among classes/interfaces)</li>
+<li>physical (e.g., common database, <strong>common facilities</strong>)</li>
+<li>organizational (e.g. <strong>people/teams</strong> maintaining/using the code)</li>
+</ul></blockquote>
+<br>
+<h3 id="context-map">Context Map</h3>
+<blockquote>
+<p>A <strong>map</strong> of <em>all</em> the <strong>contexts</strong> in a domain and their <strong>boundaries</strong></p>
+<ul>
+<li>and their <strong>points of contact</strong>
+<ul>
+<li>e.g. their dependencies, homonyms, false friends, etc.</li>
+</ul>
+</li>
+<li>providing the whole picture of the domain</li>
+</ul></blockquote>
+</section><section>
+<h2 id="example-of-bounded-context-map">Example of bounded context map</h2>
+<p><img src="./bounded-contexts.png" alt="Context map"></p>
+</section><section>
+<h2 id="bounded-contexts--context-maps-best-practices">Bounded Contexts &amp; Context Maps (best practices)</h2>
+<ul>
+<li>
+<p>Clearly <em>identify &amp; represent</em> <strong>boundaries</strong> among contexts</p>
+</li>
+<li>
+<p><em>Avoid</em> <strong>responsibility diffusion</strong> over a single context</p>
+<ul>
+<li>one responsible person / team for each context</li>
+</ul>
+</li>
+<li>
+<p><em>Avoid changes</em> in the model for <strong>problems</strong> arising <strong>outside</strong> the context</p>
+<ul>
+<li>rather, extend the domain by creating new contexts</li>
+</ul>
+</li>
+<li>
+<p>Enforce context’s <strong>cohesion</strong> via automated unit and integration <strong>testing</strong></p>
+<ul>
+<li>to be (re)executed as frequently as possible</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="model-integrity-problem">Model integrity problem</h2>
+<h3 id="how-to-preserve-the-integrity-of-the-model">How to preserve the integrity of the model?</h3>
+<ul>
+<li>
+<p>As the <strong>domain evolves</strong>, the software <em>model should evolve</em> with it</p>
+<ul>
+<li>in order to maintain the coupling</li>
+</ul>
+</li>
+<li>
+<p>Yet, the domain rarely changes as a whole</p>
+<ul>
+<li>more commonly, it changes in a <strong>context-specific</strong> way</li>
+</ul>
+</li>
+<li>
+<p>Contexts-are bounded, but <strong>not isolated</strong></p>
+<ul>
+<li>so are models, which may <em>depend</em> on each other</li>
+</ul>
+</li>
+<li>
+<p>Changes to a context, and its model may <strong>propagate</strong> to other context / models</p>
+</li>
+</ul>
+<blockquote>
+<p>Domain / model <strong>changes are critical</strong> and should be done carefully</p></blockquote>
+</section><section>
+<h2 id="model-integrity-patterns">Model integrity patterns</h2>
+<ul>
+<li><strong>Shared kernel</strong>: sharing a common model among contexts</li>
+<li><strong>Customer–supplier</strong>: the consumer model’s team requests changes in the supplier model</li>
+<li><strong>Conformist</strong>: one model’s team reacts to changes of some model they depend on</li>
+<li><strong>Anti-corruption layer</strong>: a model’s team isolates itself from another model</li>
+</ul>
+<h3 id="purposes">Purposes</h3>
+<ul>
+<li>
+<p><em>Preserve</em> the integrity of the model w.r.t. the domain</p>
+</li>
+<li>
+<p><em>Minimise</em> the potential <em>impact</em> / <em>reach</em> of changes</p>
+<ul>
+<li>each context should be as independent as possible</li>
+<li>each change affect as few contexts as possible</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="model-integrity-patterns-background-pt-1">Model integrity patterns (background, pt. 1)</h2>
+<p><img src="./context-map.jpg" alt="Context maps concept"></p>
+<ul>
+<li>Context maps highlight relations among contexts
+<ul>
+<li>yet, <em>not</em> <strong>all relations are equal</strong>, nor symmetric</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="model-integrity-patterns-background-pt-2">Model integrity patterns (background, pt. 2)</h2>
+<p><img src="./provider-consumer.jpg" alt="Upstream and downstream roles"></p>
+<p>Each relation among 2 contexts usually involves 2 ends/roles:</p>
+<ul>
+<li><strong>upstream</strong> end, i.e. the one <em>providing</em> functionalities</li>
+<li><strong>downstream</strong> end, i.e. the one <em>consuming</em> functionalities
+<ul>
+<li>the downstream <em>depends</em> upon the upstream, but <em>not</em> vice versa</li>
+</ul>
+</li>
+</ul>
+<br>
+<p><strong>Integration</strong> among <em>contexts</em> $\leftrightarrow$ <strong>interaction</strong> among <em>teams</em></p>
+<ul>
+<li>several strategies may be employed, depending on
+<ul>
+<li>mutual <em>trust</em>* among teams</li>
+<li>ease of <em>communication</em>/cooperation among teams</li>
+<li>technical / organizational / administrative / legal <em>constraints</em></li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<p>*trust $\approx$ willingness to collaborate + seek for stability</p>
+</section><section>
+<h2 id="shared-kernel">Shared Kernel</h2>
+<p><img src="./shared-kernel.jpg" alt="Shared kernel concept"></p>
+<ul>
+<li>
+<p>Best when: multiple contexts <em>share</em> the <strong>same team</strong> / organization / product</p>
+</li>
+<li>
+<p>Key idea: <strong>factorise</strong> common portions of the model into a shared kernel</p>
+</li>
+<li>
+<p>Upstream and downstream <strong>collaborate</strong> in designing / developing / maintaining the model</p>
+<ul>
+<li>they are <em>peers</em></li>
+</ul>
+</li>
+<li>
+<p>Keeping the <strong>kernel</strong> as <strong>small</strong> as possible is fundamental</p>
+</li>
+</ul>
+</section><section>
+<h2 id="customer--supplier">Customer–Supplier</h2>
+<p><img src="./customer-supplier.jpg" alt="Customer–supplier concept"></p>
+<ul>
+<li>
+<p>Best when:</p>
+<ul>
+<li>multiple teams</li>
+<li><strong>mutual trust</strong></li>
+<li>good communication</li>
+</ul>
+</li>
+<li>
+<p>Key idea:</p>
+<ul>
+<li><strong>upstream</strong> acts as <em>supplier</em>, <strong>downstream</strong> acts as <em>customer</em></li>
+<li>both sides collaborate to <strong>maximise integration</strong> among their models
+<ul>
+<li>and interoperability among their software</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Customers may <em>ask</em> for features, suppliers will do their best to <strong>provide</strong> them</p>
+</li>
+<li>
+<p>Suppliers shall <strong>warn</strong> before changing their model</p>
+</li>
+</ul>
+</section><section>
+<h2 id="conformist">Conformist</h2>
+<p><img src="./conformist.jpg" alt="Conformist concept"></p>
+<ul>
+<li>
+<p>Best when:</p>
+<ul>
+<li>multiple teams</li>
+<li>poor communication / different pace</li>
+<li>some trust</li>
+</ul>
+</li>
+<li>
+<p>Key idea: downstream must conform to the upstream, reactively</p>
+<ul>
+<li>adapting their model accordingly</li>
+<li>whenever the upstream’s one changes</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="anti-corruption-layer">Anti-corruption layer</h2>
+<p><img src="./anti-corruption-layer.jpg" alt="Anti-corruption layer concept"></p>
+<ul>
+<li>
+<p>Best when:</p>
+<ul>
+<li>multiple teams</li>
+<li>poor communication</li>
+<li>poor trust</li>
+</ul>
+</li>
+<li>
+<p>If upstream cannot be trusted, and interaction is pointless…</p>
+<ul>
+<li>e.g. legacy code, poorly maintained library, etc.</li>
+</ul>
+</li>
+<li>
+<p>… downstream must defend from unexpected / unanticipated change</p>
+</li>
+<li>
+<p>The upstream’s model is then reverse engineered &amp; <strong>adapted</strong></p>
+<ul>
+<li>e.g. often, repository types are anti-corruption layers for DB technologies</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="layered-architecture">Layered Architecture</h1>
+</section><section>
+<h2 id="layered-architecture-disclaimer">Layered Architecture (disclaimer)</h2>
+<ul>
+<li>
+<p>DDD does not enforce a particular architecture</p>
+</li>
+<li>
+<p>Any is fine as long the model is integer</p>
+</li>
+<li>
+<p>Layered architectures are well suited to preserve models’ integrity</p>
+</li>
+<li>
+<p>Here we focus on the <strong>hexagonal architecture</strong>, a particular case of layered architecture</p>
+<ul>
+<li>well suited to DDD</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="hexagonal-architecture-concept">Hexagonal architecture (concept)</h2>
+<p><img src="./layered-architecture.png" alt="Hexagonal architecture concept"></p>
+<ul>
+<li>outer layers depend on innermost ones
+<ul>
+<li>the vice versa is not true</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="hexagonal-architecture-explanation">Hexagonal architecture (explanation)</h2>
+<ol>
+<li>
+<p><strong>Domain layer</strong>: contains the domain model (entities, values, events, aggregates, etc.)</p>
+<ul>
+<li>must support a wide range of applications</li>
+<li>has no dependency from any other layer</li>
+</ul>
+</li>
+<li>
+<p><strong>Application layer</strong>: contains services providing business logic</p>
+<ul>
+<li>supports a particular use case via services</li>
+<li>depends on the domain layer</li>
+</ul>
+</li>
+<li>
+<p><strong>Presentation layer</strong>: provides conversion facilities to/from representation formats</p>
+<ul>
+<li>e.g. JSON, BSON, XML, YAML, XDR, Avro, HTML, etc.
+<ul>
+<li>depends on the domain layer (and, possibly, on the application layer)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Storage layer</strong>: supports persistent storage/retrieval of domain data</p>
+<ul>
+<li>this is where repositories are implemented</li>
+<li>may involve some DB technology</li>
+<li>depends on the domain layer (and, possibly, on the presentation layer)</li>
+</ul>
+</li>
+<li>
+<p><strong>Interface layers</strong> (e.g. ReST API, MOM, View): let external entities access the software</p>
+<ul>
+<li>via a GUI, or via some remote interface such as HTTP</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="enforcing-the-architecture-in-the-code">Enforcing the architecture in the code</h2>
+<ul>
+<li>
+<p>Layering may be enforced in the code</p>
+</li>
+<li>
+<p>By mapping layers into modules</p>
+<ul>
+<li>module $\approx$ packaging unit
+<ul>
+<li>e.g. Gradle sub-projects, Maven modules, .NET assemblies, etc.</li>
+</ul>
+</li>
+<li>each module having its own build dependencies</li>
+</ul>
+</li>
+</ul>
+
+<figure id="plantuml-figure-1741183382211964015" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+    
+top to bottom direction
+
+component ":domain" as domain
+component ":application" as application
+component ":presentation" as presentation
+component "third-party serialization library" as gson
+component "third-party DB client library" as db
+component ":storage" as storage
+component ":web-api" as server
+component ":message-queue" as mq 
+component ":command-line" as cli
+component product
+
+domain &lt;|-- application
+application &lt;|-- presentation
+presentation &lt;|-- server
+presentation &lt;|-- mq
+application &lt;|-- storage
+presentation -r-|&gt; gson
+presentation &lt;|-- cli
+db &lt;|-l- storage  
+product -u-|&gt; server
+product -u-|&gt; storage
+product -u-|&gt; mq    
+
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741183382211964015");
+</script>
+</section><section>
+<h1 id="advanced-aspects-of-ddd">Advanced aspects of DDD</h1>
+</section><section>
+<h2 id="event-sourcing-preliminaries">Event sourcing (preliminaries)</h2>
+<ul>
+<li>Whenever there is a <em>mutable</em> entity …</li>
+<li>… whose state evolution over time must be tracked …</li>
+<li>… state transitions can be memorised in 2 ways:
+<ul>
+<li>one may track the <strong>current state</strong></li>
+<li>or the <strong>flow</strong> of <strong>variations</strong></li>
+</ul>
+</li>
+</ul>
+<p><img src="./state-vs-flow.svg" alt="Flow vs. state representation"></p>
+</section><section>
+<h2 id="event-sourcing">Event sourcing</h2>
+<blockquote>
+<p>A pattern where <em>domain events</em> are reified into <em>time-stamped data</em> and the whole <em>evolution</em> of a system is persistently <em>stored</em></p></blockquote>
+<ul>
+<li>perfect match with DDD as domain events are first-class citizens</li>
+</ul>
+</section><section>
+<h2 id="event-sourcing-pros--cons">Event sourcing (pros &amp; cons)</h2>
+<h3 id="benefits">Benefits</h3>
+<ul>
+<li>
+<p>Historical data can be analysed, to serve several purposes</p>
+<ul>
+<li>e.g. predictive maintenance, optimization, analyse &amp; anticipate faults</li>
+</ul>
+</li>
+<li>
+<p>Past situations can be replayed</p>
+<ul>
+<li>e.g. which improves debugging, enables measurements</li>
+</ul>
+</li>
+<li>
+<p>Enables complex event detection &amp; reaction</p>
+</li>
+<li>
+<p>Enables CQRS (described later)</p>
+</li>
+</ul>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li>A lot of data is generated and must be stored, which costs <em>space</em></li>
+<li>Reconstructing the (current) state costs <em>time</em></li>
+</ul>
+</section><section>
+<h2 id="command--query-responsibility-segregation-__cqrs__">Command–Query Responsibility Segregation (<strong>CQRS</strong>)</h2>
+<ul>
+<li>
+<p>Advanced pattern for building <em>highly-scalable</em> applications</p>
+</li>
+<li>
+<p>It leverages upon <em>event sourcing</em> and <em>layered architecture</em>…</p>
+</li>
+<li>
+<p>… to deliver <strong>reactive</strong>, <strong>eventual-consistent</strong> solutions where:</p>
+<ul>
+<li>contexts boundaries can be easily enforced</li>
+<li>single responsibility principle is applied extensively</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="cqrs-definition">CQRS definition</h2>
+<blockquote>
+<p><strong>Split</strong> the <em>domain</em> and <em>application</em> layers to <em>segregate</em> <strong>read/write</strong> responsibilities</p></blockquote>
+<ul>
+<li>
+<p><strong>Read</strong> model (a.k.a. <em>view</em> or <em>query</em> model)</p>
+<ul>
+<li>accepts queries aimed at <strong>observing</strong> the state of the system</li>
+</ul>
+</li>
+<li>
+<p><strong>Write</strong> model (a.k.a. <em>command</em> model)</p>
+<ul>
+<li>accepts commands aimed at <strong>altering</strong> the state of the system</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="cqrs-concept">CQRS concept</h2>
+
+
+
+
+
+
+<img src="./cqrs.png" alt="" style="width: 100%; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+
+</section><section>
+<h2 id="cqrs-workflow-writing">CQRS workflow (writing)</h2>
+<p>Whenever users are willing to <em>perform an action</em> into the system:</p>
+<ol>
+<li>they create a <strong>command</strong> and forward it to the <strong>write model</strong></li>
+</ol>
+<ul>
+<li>i.e. an object describing a <em>variation</em> to be applied to some domain aspect</li>
+</ul>
+<br>
+<ol start="2">
+<li>the command is possibly <em>validated</em> &amp; <strong>stored</strong> onto some database</li>
+</ol>
+<ul>
+<li>an ad-hoc <strong>database</strong> is available in the model for storing commands</li>
+</ul>
+</section><section>
+<h2 id="cqrs-workflow-reading">CQRS workflow (reading)</h2>
+<p>Whenever users are willing to <em>inspect/observe the system</em> at time $t$:</p>
+<ol>
+<li>they perform a <strong>query</strong> on the <strong>read model</strong>
+<ul>
+<li>asking for the state of the system <em>at time $t$</em></li>
+<li>e.g. $t$ $\equiv$ now</li>
+</ul>
+</li>
+</ol>
+<br>
+<ol start="2">
+<li>commands up to time $t$ are assumed to be <strong>reified</strong> when reading
+<ul>
+<li>a <strong>snapshot</strong> of the system state <em>at time $t$</em> is returned to users</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="cqrs----when-are-commands-reified">CQRS – When are commands reified?</h2>
+<blockquote>
+<p><strong>Reification</strong>: is the process of computing the state of the system at time $t$ by applying of commands recorded up to time $t$
+<br></p></blockquote>
+<ul>
+<li>
+<p>If queries and commands are stored on different databases</p>
+<ul>
+<li>reification implies updating the query database</li>
+<li>the query database should be <strong>read-efficient</strong></li>
+<li>the commands database should be <strong>write-efficient</strong></li>
+</ul>
+</li>
+<li>
+<p>Several, non-mutually-exclusive strategies:</p>
+<ul>
+<li><strong>eager</strong>: commands are reified as soon as they are received</li>
+<li><strong>pull</strong>: commands are reified upon reading queries</li>
+<li><strong>push</strong>: commands are reified in background, periodically</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="lecture-is-over">Lecture is Over</h1>
+<br>
+<p>Compiled on: 2025-03-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

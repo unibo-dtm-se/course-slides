@@ -1,0 +1,1923 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Distributed Systems (Engineering)</title>
+<meta name="description" content="Overview on Distributed Systems Engineering">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+<link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script src="https://unibo-dtm-se.github.io/course-slides//plantuml.js"></script>
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="distributed-systems-engineering">Distributed Systems (Engineering)</h1>
+<br>
+<h2 style="margin-bottom: 0;">Software Engineering</h2>
+<h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
+<br>
+<br>
+<p>Compiled on: 2025-03-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h1 id="what-is-a-distributed-system">What is a Distributed System?</h1>
+</section><section>
+<h3 id="leslie-lamport-1987httpsenwikiquoteorgwikileslie_lamport"><a href="https://en.wikiquote.org/wiki/Leslie_Lamport">Leslie Lamport (1987)</a></h3>
+<blockquote>
+<p>A distributed system is one in which the failure of a computer you didn’t even know existed can render your own computer unusable</p></blockquote>
+<h3 id="__interpretation__"><strong>Interpretation</strong></h3>
+<ul>
+<li>hidden <em>interdependencies</em> between machines</li>
+<li>how a <em>failure</em> in one part of the system can have <em>unforeseen consequences</em> elsewhere</li>
+</ul>
+</section><section>
+<h3 id="distributed-systems-tannenbaum-and-van-steenhttpcsispaceedumarchesecs865lectureschap1chapter1ahtm-the-book-herehttpskomputasiwordpresscomwp-contentuploads201803mvsteen-distributed-systems-3rd-preliminary-version-3-01pre-2017-170215pdf"><a href="http://csis.pace.edu/~marchese/CS865/Lectures/Chap1/Chapter1a.htm">“Distributed Systems”, Tannenbaum and Van Steen</a> (the <a href="https://komputasi.wordpress.com/wp-content/uploads/2018/03/mvsteen-distributed-systems-3rd-preliminary-version-3-01pre-2017-170215.pdf">book here</a>)</h3>
+<blockquote>
+<p>A distributed system is a collection of independent computers that appears to its users as a single coherent system</p></blockquote>
+<h3 id="__interpretation__-1"><strong>Interpretation</strong></h3>
+<ul>
+<li><em>illusion</em> of a <em>unified</em> system…</li>
+<li>… despite the fact that it is made up of <em>multiple</em> independent machines</li>
+<li>the key idea is that users <em>may NOT be aware</em> that the system is <em>distributed</em></li>
+</ul>
+</section><section>
+<h3 id="distributed-systems--concepts-and-design-coulouris-et-alhttpsapipageplacedepreviewdt04009781447930174_a24570107preview-9781447930174_a24570107pdf"><a href="https://api.pageplace.de/preview/DT0400.9781447930174_A24570107/preview-9781447930174_A24570107.pdf">“Distributed Systems — Concepts and Design”, Coulouris et. al.</a></h3>
+<blockquote>
+<p>We define a distributed system as one in which hardware or software components
+located at networked computers communicate and coordinate their actions only by
+passing messages.</p></blockquote>
+<h3 id="__interpretation__-2"><strong>Interpretation</strong></h3>
+<ul>
+<li>reliance on <em>message passing</em> across a network for communication</li>
+</ul>
+</section><section>
+<h3 id="concepts-techniques-and-models-of-computer-programming-van-roy-and-haridihttpswebpersoinfouclacbepvrvanroyharidi2003-bookpdf"><a href="https://webperso.info.ucl.ac.be/~pvr/VanRoyHaridi2003-book.pdf">“Concepts, Techniques, and Models of Computer Programming”, Van Roy and Haridi</a></h3>
+<blockquote>
+<p>A distributed system is a set of computers that are linked together by a network</p></blockquote>
+<h3 id="__interpretation__-3"><strong>Interpretation</strong></h3>
+<ul>
+<li>very abstract definition focusing on how distribution should be interpreted</li>
+</ul>
+
+</section>
+</section><section>
+<h2 id="what-is-a-distributed-system">What is a Distributed System?</h2>
+<h3 id="wrap-up">Wrap up</h3>
+<p>These definitions cover the <em>essential characteristics</em> of distributed systems:</p>
+<ul>
+<li>independent components</li>
+<li>communication via messages</li>
+<li>challenge of presenting a unified system to the user…</li>
+<li>… despite failures or complexities within the system</li>
+</ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="why-would-you-make-your-system-distributed">Why would you make your system distributed?</h2>
+<p>Any or some of the following reasons:</p>
+<ul>
+<li><strong>Scalability</strong>: Handling large-scale systems efficiently</li>
+<li><strong>Fault Tolerance</strong> and <strong>Availability</strong>: Ensuring reliability despite failures</li>
+<li><strong>Low Latency</strong> and <strong>Geographical Distribution</strong>: Providing better user experience across the globe</li>
+<li><strong>Resource Sharing</strong>: Efficiently using computing power and storage</li>
+<li><strong>Handling Big Data</strong>: Processing data locally rather than moving it</li>
+<li><strong>Parallelism</strong>: Speeding up tasks through concurrent execution</li>
+<li><strong>Cost Efficiency</strong>: Reducing infrastructure costs through resource pooling</li>
+<li><strong>Collaboration</strong>: Enabling real-time updates and interactions across distances</li>
+<li><em>The functionality to be provided</em> by the system simply <strong>implies</strong> <em>distribution</em></li>
+</ul>
+</section><section>
+<h2 id="example-google-search">Example: Google Search</h2>
+<ul>
+<li><strong>Scalability</strong>: Google handles billions of searches every day</li>
+<li><strong>Fault Tolerance</strong> and <strong>Availability</strong>: A single server cannot handle such a massive amount of data</li>
+<li><strong>Low Latency</strong> and <strong>Geographical Distribution</strong>: By distributing the search process across thousands of servers worldwide, Google can deliver search results quickly and reliably</li>
+<li><strong>Parallelism</strong>: Processing multiple search queries concurrently</li>
+</ul>
+</section><section>
+<h2 id="example-social-networks-eg-instagram-or-messaging-apps-eg-whatsapp">Example: Social Networks (e.g., Instagram) or Messaging Apps (e.g., WhatsApp)</h2>
+<ul>
+<li><strong>Scalability</strong>: Millions of users are active at the same time</li>
+<li><strong>Fault Tolerance</strong> and <strong>Availability</strong>: A single server cannot handle such a massive amount of data</li>
+<li><strong>Low Latency</strong> : By distributing the service across multiple servers worldwide, the app can deliver messages quickly and reliably</li>
+<li><strong>Geographical Distribution</strong>: Users can communicate across the globe</li>
+<li><strong>Handling Big Data</strong>: Store users’ data within that user’s region (as per GDPR)</li>
+<li><strong>Parallelism</strong>: Processing multiple messages concurrently</li>
+<li><strong>Collaboration</strong>: Enabling real-time updates and interactions across distances</li>
+<li>The functionality is <strong>inherently distributed</strong></li>
+</ul>
+</section><section>
+<h2 id="example-online-shopping-eg-amazon">Example: Online Shopping (e.g., Amazon)</h2>
+<ul>
+<li><strong>Scalability</strong>: Millions of users are active at the same time</li>
+<li><strong>Fault Tolerance</strong> and <strong>Availability</strong>: A single server cannot handle such a massive amount of data</li>
+<li><strong>Low Latency</strong>: By distributing the service across multiple servers worldwide, the app can deliver messages quickly and reliably</li>
+<li><strong>Geographical Distribution</strong>: Comply to local regulations and regional preferences, e.g., language, currency, etc.</li>
+<li><strong>Parallelism</strong>: Processing multiple orders concurrently</li>
+<li><em>The functionality to be provided</em> by the system simply <strong>implies</strong> <em>distribution</em></li>
+</ul>
+</section><section>
+<h2 id="example-online-gaming-eg-lol-fortnite">Example: Online Gaming (e.g., LoL, Fortnite)</h2>
+<ul>
+<li><strong>Scalability</strong>: Millions of users are active at the same time</li>
+<li><strong>Fault Tolerance</strong> and <strong>Availability</strong>: A single server cannot handle such a massive amount of data</li>
+<li><strong>Low Latency</strong>: By distributing the service across multiple servers worldwide, the app can deliver messages quickly and reliably</li>
+<li><strong>Geographical Distribution</strong>: Users can play with others across the globe</li>
+<li><strong>Parallelism</strong>: Processing multiple games concurrently</li>
+<li><strong>Collaboration</strong>: Enabling real-time updates and interactions across distances</li>
+<li><em>The functionality to be provided</em> by the system simply <strong>implies</strong> <em>distribution</em></li>
+</ul>
+</section><section>
+<h2 id="example-google-docs-et-similia">Example: Google Docs (et. similia)</h2>
+<ul>
+<li><strong>Scalability</strong>: allows for different business models, e.g., subscription-based</li>
+<li><strong>Fault Tolerance</strong> and <strong>Availability</strong>: Allows for automatic, implicit updates / file saves / backups</li>
+<li><strong>Geographical Distribution</strong>: Simplified sharing and collaboration across the globe</li>
+<li><strong>Parallelism</strong> and <strong>Collaboration</strong>: Multiple users can edit the same document concurrently</li>
+</ul>
+</section><section>
+<h2 id="example-federated-learning-eg-googles-gboardhttpssupportgooglecomgboardanswer12373137hlen">Example: Federated Learning (e.g. <a href="https://support.google.com/gboard/answer/12373137?hl=en">Google’s Gboard</a>)</h2>
+<ul>
+<li><strong>Scalability</strong>: Improve learning for all users (while keeping their data private)</li>
+<li><strong>Geo-Distribution</strong>: Improve the functionality based on the data from different regions</li>
+<li><strong>Handling Big Data</strong>: Process data locally rather than moving it</li>
+<li><strong>Parallelism</strong>: Learning occurs on the user’s device, anywhere, at any time</li>
+<li><strong>Cost Efficiency</strong>: A single device would not be sufficient to process all the data</li>
+<li><strong>Resource Sharing</strong>: Efficiently using computing power and storage, while preserving privacy</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h1 id="how-does-the-se-workflow-change-for-distributed-systems">How does the SE workflow change for distributed systems?</h1>
+</section><section>
+<h2 id="recap-software-engineering-workflow">Recap: Software Engineering Workflow</h2>
+<ol>
+<li>
+<p><strong>Use case collection</strong>: <em>negotiate</em> expectations with customer(s) or stakeholders</p>
+</li>
+<li>
+<p><strong>Requirements analysis</strong>: produce a list of <em>requirements</em> the final product should satisfy</p>
+<ul>
+<li>with <em>acceptance criteria</em> for each requirement</li>
+</ul>
+</li>
+<li>
+<p><strong>Design</strong>: produce a <em>blueprint</em> of the software</p>
+<ul>
+<li><strong>modelling</strong>: what entities from the <em>real world</em> are represented in the software?
+<ul>
+<li>how do they <em>behave</em>? how do they <em>interact</em>?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Implementation</strong>: write the <em>code</em> that reifies the <em>design</em> into software</p>
+</li>
+<li>
+<p><strong>Verification</strong>: verify that the software <em>meets</em> the <em>requirements</em></p>
+<ul>
+<li><strong>automated</strong> <em>testing</em>: write more code to check whether the aforementioned implementation code works</li>
+<li><strong>acceptance</strong> <em>testing</em>: test the system with <em>real</em> data and <em>real</em> users</li>
+</ul>
+</li>
+<li>
+<p><strong>Release</strong>: make one particular <em>version</em> of the software <em>available</em> to the <em>customers</em></p>
+</li>
+<li>
+<p><strong>Deployment</strong>: install and activate the software for the software</p>
+</li>
+<li>
+<p><strong>Documentation</strong>: produce <em>manuals</em> and <em>guides</em> for the software</p>
+</li>
+<li>
+<p><strong>Maintenance</strong>: fix <em>bugs</em>, <em>improve</em> the software, <em>adapt</em> it to <em>new</em> requirements</p>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<p>(only additional steps are listed)</p>
+<ol>
+<li><strong>Use case collection</strong>:
+<ul>
+<li><em>where</em> are the users?</li>
+<li><em>when</em> and <em>how frequently</em> do they interact with the system?</li>
+<li><em>how</em> do they <em>interact</em> with the system? which <em>devices</em> are they using?</li>
+<li>does the system need to <em>store</em> user’s <strong>data</strong>? <em>which</em>? <em>where</em>?</li>
+<li>most likely, there will be <em>multiple</em> <strong>roles</strong></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_-1">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<ol start="2">
+<li><strong>Requirements analysis</strong>:
+<ul>
+<li>most likely, answers to the questions above imply <strong>technical constrains</strong> on the system
+<ul>
+<li>e.g. where to store data?
+<ul>
+<li>in case of multiple data centers, how to keep them consistent?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>will the system need to <em>scale</em>? how to handle <em>faults</em>? <em>how</em> to <em>recover</em> from failures?</li>
+<li><em>acceptance criteria</em> will for all such additional requirements/constraints</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_-2">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<ol start="3">
+<li><strong>Design</strong>:
+<ul>
+<li>are there <em>infrastructural components</em> that need to be introduced? <em>how many</em>?
+<ul>
+<li>e.g. <em>clients</em>, <em>servers</em>, <em>load balancers</em>, <em>caches</em>, <em>databases</em>, <em>message brokers</em>, <em>queues</em>, <em>workers</em>, <em>proxies</em>, <em>firewalls</em>, <em>CDNs</em>, <em>etc.</em></li>
+</ul>
+</li>
+<li>how do components	<em>distribute</em> over the network? <em>where</em>?
+<ul>
+<li>e.g. what are the IP addresses of the servers / brokers / databases / etc.?</li>
+</ul>
+</li>
+<li>how do <em>domain entities</em> <strong>map to</strong> <em>infrastructural components</em>?
+<ul>
+<li>e.g. state of a video game on central server, while inputs/representations on clients</li>
+<li>e.g. where to store messages in an IM app? for how long?</li>
+</ul>
+</li>
+<li>how do components <em>communicate</em>? <em>what</em>? <em>which</em> <strong>interaction patterns</strong> do they enact?</li>
+<li>do components need to store data? <em>what data</em>? <em>where</em>? <em>when</em>? <em>how many <strong>copies</strong></em>?
+<ul>
+<li>in case of network partition, should the system be <em>available</em> or <em>consistent</em>?</li>
+</ul>
+</li>
+<li>how do components <em>find</em> each other?
+<ul>
+<li>how to <em>name</em> components?</li>
+<li>e.g. <em>service discovery</em>, <em>load balancing</em>, <em>etc.</em></li>
+</ul>
+</li>
+<li><em>how</em> do components <em>recognize</em> each other?
+<ul>
+<li>e.g. <em>authentication</em>, <em>authorization</em>, <em>etc.</em></li>
+</ul>
+</li>
+<li>what should happen when a component <em>fails</em>? is it <em>really</em> a failure?
+<ul>
+<li>e.g. <em>retries</em>, <em>back-off</em>, <em>graceful degradation</em>, <em>etc.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_-3">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<ol start="4">
+<li><strong>Implementation</strong>:
+<ul>
+<li>which <strong>network protocols</strong> to use?
+<ul>
+<li>e.g. UDP, TCP, HTTP, WebSockets, gRPC, XMPP, AMQP, MQTT, etc.</li>
+</ul>
+</li>
+<li>how should <em>in-transit data</em> be <strong>represented</strong>?
+<ul>
+<li>e.g. JSON, XML, YAML, Protocol Buffers, etc.</li>
+</ul>
+</li>
+<li>how should <em>persistent data</em> be <strong>stored</strong>?
+<ul>
+<li>e.g. relations, documents, key-value, graph, etc.</li>
+</ul>
+</li>
+<li>how should <em>databases</em> be <strong>queried</strong>?
+<ul>
+<li>e.g. SQL, NoSQL, etc.</li>
+</ul>
+</li>
+<li>how should components be <em>authenticated</em>?
+<ul>
+<li>e.g. OAuth, JWT, etc.</li>
+</ul>
+</li>
+<li>how should components be <em>authorized</em>?
+<ul>
+<li>e.g. RBAC, ABAC, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_-4">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<ol start="5">
+<li><strong>Verification</strong>:
+<ul>
+<li>how to <strong><em>unit</em>-test</strong> distributed components?</li>
+<li>testing the <em>integration</em> among components is <em>paramount</em></li>
+<li>how to <strong><em>end-to-end</em>-test</strong> the system?
+<ul>
+<li>e.g. production vs. test environment</li>
+</ul>
+</li>
+<li><em>deployment</em> <strong>automation</strong> is commonly used to <em>test</em> the system in <em>production-like</em> environment</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_-5">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<ol start="6">
+<li><strong>Release</strong>:
+<ul>
+<li>components may (and should) have their <strong>own</strong> <em>release cycles</em> and <em>versions</em></li>
+<li>components should be <em>resilient</em> to the <strong>coexistence</strong> of <em>multiple</em> versions</li>
+<li><em>rolling</em> <strong>updates</strong> are <em>preferred</em> over <em>big bang</em> updates</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_-6">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<ol start="7">
+<li><strong>Deployment</strong>:
+<ul>
+<li><em>where</em> to deploy components?
+<ul>
+<li>e.g. <em>cloud</em>, <em>on-premises</em>, <em>hybrid</em>?</li>
+</ul>
+</li>
+<li><em>how</em> to deploy components?
+<ul>
+<li>e.g. <em>containers</em>, <em>VMs</em>, <em>bare metal</em>?</li>
+</ul>
+</li>
+<li><em>how</em> to <em>scale</em> components?
+<ul>
+<li>e.g. <em>horizontally</em>, <em>vertically</em>, <em>auto-scaling</em>?</li>
+</ul>
+</li>
+<li><em>how</em> to <em>monitor</em> components?
+<ul>
+<li>e.g. <em>logs</em>, <em>metrics</em>, <em>traces</em>?</li>
+</ul>
+</li>
+<li><em>how</em> to <em>secure</em> components?
+<ul>
+<li>e.g. <em>firewalls</em>, <em>encryption</em>, <em>certificates</em>, <em>etc.</em></li>
+</ul>
+</li>
+<li>all such aspects should be <em>automated</em>
+<ul>
+<li>tools and companies exist just for this!</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_-7">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<ol start="8">
+<li><strong>Documentation</strong>:
+<ul>
+<li>protocols and data formats should be <em>well-documented</em>
+<ul>
+<li>allowing for third-parties to create <em>compatible</em> components</li>
+</ul>
+</li>
+<li>e.g. <em>Web API</em> specification is public for most Web services</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="software-engineering-workflow-for-_distributed-systems_-8">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<ol start="9">
+<li><strong>Maintenance</strong>:
+<ul>
+<li>continuous <strong>monitoring</strong> of <em>performance</em> and <em>availability</em>
+<ul>
+<li>tools and companies exist just for this!</li>
+</ul>
+</li>
+<li><em>issues tracking</em> is non-trivial (may require ad-hoc sub-systems)</li>
+<li><em>sunsetting</em> old versions is <em>crucial</em> $\rightarrow$ <em>coexistence</em> of multiple versions
+<ul>
+<li><strong>End-of-Life</strong> should be <em>scheduled</em>, not <em>abrupt</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+</section>
+</section><section>
+<h1 id="nomenclature">Nomenclature</h1>
+</section><section>
+<h2 id="infrastructure">Infrastructure</h2>
+<blockquote>
+<p>The set of hardware, software, and networking facilities that allow the many pieces of a distributed system to communicate and inter-operate over a network</p></blockquote>
+<p>$\approx$ the set of <em>infrastructural components</em> composing the <em>backbone</em> of the distributed system</p>
+<ul>
+<li>Distributed systems may rely on similar infrastructures, regardless of the different functionalities they provide</li>
+<li>The infrastructure is <strong>transparent</strong> to the <em>end-users</em>, yet essential for the <em>system</em> to work</li>
+</ul>
+
+
+<span class="fragment ">
+  <h4 id="br-example"><br> Example</h4>
+<p>Consider your fancy social network of choice (e.g., Instagram, TikTok, Twitter, etc.)</p>
+<ul>
+<li>it looks like a dashboard on you phone / computer, but…
+<ul>
+<li>… where are the <em>data</em> stored?</li>
+<li>… where are the <em>messages</em> after they have been sent but before they reach your phone?</li>
+<li>… where does information <em>processing</em> happen?</li>
+</ul>
+</li>
+<li>different sorts of computations are performed on different <em>infrastructural components</em>, depending on their <em>role</em> in the system</li>
+</ul>
+
+</span>
+
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="infrastructural-components">Infrastructural Components</h2>
+<blockquote>
+<p>An infrastructural component consists of a <em>software unit</em>&nbsp;playing a precise role in the distributed system.
+The role depends on the purpose of the component in the system, and/or how it interacts.</p></blockquote>
+<p>software unit $\approx$ <strong>process</strong> (in the OS sense)</p>
+<h3 id="heading"></h3>
+<h3 id="examples">Examples</h3>
+<p>clients, servers, brokers, load balancers, caches, databases, queues, masters, workers, proxies, etc.</p>
+</section><section>
+<h2 id="synonyms">Synonyms</h2>
+<ul>
+<li>
+<p><strong>Node</strong> $\equiv$ an infrastructural component for which the <em>role</em> is <strong>not</strong> relevant</p>
+</li>
+<li>
+<p><strong>Peer</strong> $\equiv$ an infrastructural component for which the <em>role</em> is <strong>not</strong> specified</p>
+<ul>
+<li>because all components play the same role(s)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="clients-and-servers">Clients and servers</h2>
+<p><img src="./client-server.png" alt="Clients and server concept"></p>
+<ul>
+<li>
+<p><strong>Server</strong> $\equiv$ a component with a <em>well-known name</em>/address <em>responding</em> to <em>requests</em> coming from clients</p>
+<ul>
+<li>it’s the components that <em>listens</em> (waits) for remote requests</li>
+<li>commonly it exposes an <em>interface</em> ($\approx$ the requests it can answer to) to <em>clients</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Client</strong> $\equiv$ a component that sends <em>requests</em> to servers, waiting for <em>responses</em></p>
+<ul>
+<li>it’s the components that <em>initiates</em> the interaction</li>
+<li>it may expose an <em>interface</em> to <em>users</em> on how to <em>interact</em> with the server</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="proxy">Proxy</h2>
+<img src="./proxy.png" alt="" style="height: 50vh; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+<br>
+<ul>
+<li>
+<p><strong>Proxy</strong> $\equiv$ a server acting as a <em>gateway</em> towards another server</p>
+<ul>
+<li>it <em>intercepts</em> requests from clients and forwards them to the actual server</li>
+<li>it <em>intercepts</em> responses from the actual server and forwards them to the client</li>
+<li>it may <em>cache</em> responses to <em>reduce</em> the <em>load</em> on the server</li>
+</ul>
+</li>
+<li>
+<p>A <em>proxy</em> performing <em>caching</em> is called a <em>cache server</em> (or just <em>cache</em>)</p>
+</li>
+</ul>
+</section><section>
+<h2 id="load-balancer">Load Balancer</h2>
+<img src="./load-balancer.png" alt="Load Balancer concept" style="height: 60vh; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+<br>
+<ul>
+<li><strong>Load Balancer</strong> $\equiv$ a proxy <em>distributing</em> incoming requests among multiple servers
+<ul>
+<li>according to some <em>distribution policy</em>:
+<ul>
+<li><em>round-robin</em>,</li>
+<li><em>least connections</em>,</li>
+<li><em>least response time</em>,</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="broker">Broker</h2>
+<p><img src="./broker.png" alt="Broker concept"></p>
+<ul>
+<li>
+<p><strong>Broker</strong> $\equiv$ a server <em>mediating</em> the <em>communication</em> between <em>producers</em> and <em>consumers</em> of data (a.k.a. messages)</p>
+<ul>
+<li>it <em>receives</em> messages from producers and <em>forwards</em> them to (1 or more) consumers</li>
+<li>common assumption: consumers <em>declare</em> their interest in receiving messages</li>
+</ul>
+</li>
+<li>
+<p><strong>Producer</strong> $\equiv$ the component <em>sending</em> messages to <em>producer(s)</em> (via the broker)</p>
+</li>
+<li>
+<p><strong>Consumer</strong> $\equiv$ the component <em>receiving</em> messages from <em>consumer(s)</em> (via the broker)</p>
+</li>
+<li>
+<p>The same component can be simultaneously a <em>producer</em> and a <em>consumer</em></p>
+</li>
+</ul>
+</section><section>
+<h2 id="broker-with-queues">[Broker with] Queues</h2>
+<p><img src="./queue.jpg" alt="Queue concept"></p>
+<ul>
+<li><strong>Queue</strong> $\approx$ a data structure where messages are <em>stored</em> in a <em>FIFO</em> manner
+<ul>
+<li>FIFO $\rightarrow$ messages are consumed in the order they were produced</li>
+<li>storage $\rightarrow$ messages are <em>not</em> lost if consumers are <em>unavailable</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="message-oriented-middleware-mom">Message oriented middleware (MOM)</h2>
+<p><img src="./mom.png" alt="MOM concept"></p>
+<ul>
+<li>
+<p><strong>MOM</strong> $\approx$ a sort of broker having multiple channels for messages</p>
+<ul>
+<li>messages involving the same <em>topic</em> are sent to the same <em>channel</em></li>
+<li>consumers subscribe to <em>channels</em></li>
+</ul>
+</li>
+<li>
+<p><strong>Topic</strong> $\equiv$ a <em>label</em> for messages, allowing</p>
+<ul>
+<li>producers to control which <em>consumers</em> receive the message</li>
+<li>consumers to <em>filter</em> messages they are interested in</li>
+<li>the broker to <em>route</em> messages to the correct consumers</li>
+</ul>
+</li>
+<li>
+<p>Yes, most MOM technologies use queues to implement channels</p>
+</li>
+</ul>
+</section><section>
+<h2 id="database">Database</h2>
+<p><img src="./three-tier.webp" alt="Database concept"></p>
+<ul>
+<li><strong>Database</strong> $\equiv$ a server specialized in <em>storing</em> and <em>retrieving</em> data
+<ul>
+<li>in three-tier architectures, the database is the <em>third</em> tier
+<ul>
+<li>acting as a server for the server (which acts as a client w.r.t the database)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="masterworker-aka-masterslave-or-leaderfollower">Master—Worker (a.k.a. Master—Slave, or Leader—Follower)</h2>
+<p><img src="./master-worker.png" alt="Master—Worker concept"></p>
+<ul>
+<li>
+<p><strong>Master</strong> $\equiv$ a server <em>coordinating</em> the <em>work</em> of multiple workers</p>
+<ul>
+<li>it <em>distributes</em> the work among workers</li>
+<li>it <em>collects</em> the results from workers</li>
+</ul>
+</li>
+<li>
+<p><strong>Worker</strong> $\equiv$ a server <em>executing</em> the <em>work</em> assigned by the master</p>
+</li>
+<li>
+<p>Common use cases:</p>
+<ul>
+<li>[master—worker] <em>parallel</em> computation</li>
+<li>[master—slave] <em>replication</em> of data</li>
+</ul>
+</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="interaction-patterns">Interaction Patterns</h2>
+<blockquote>
+<p>An <strong>interaction pattern</strong> describes how different <em>components</em> (nodes, processes, etc.) <em>communicate</em> and <em>coordinate</em> their actions to achieve a common goal.
+These patterns define the <em>flow of messages</em>, <em>responsibilities</em> of <strong>participants</strong>, and the <em>timing</em> and <em>sequencing</em> of <strong>communications</strong>.</p></blockquote>
+<p>e.g. <em>request-response</em>, <em>publish-subscribe</em>, <em>auction</em>, _etc.</p>
+<h3 id="key-points">Key points</h3>
+<ul>
+<li><strong>Participants</strong>: we assume that there are <em>$N \geq 2$</em> participants</li>
+<li><strong>Roles</strong>: participants play <em>well-defined</em> roles, most commonly:
+<ul>
+<li><strong>initiator</strong>: the participant <em>initiating</em> the interaction</li>
+<li><strong>responder</strong>: the participant <em>waiting</em> for <em>some other participant</em> to initiate the interaction</li>
+</ul>
+</li>
+<li><strong>Messages</strong>: information <em>exchanged</em> among participants, most commonly containing at least:
+<ul>
+<li><strong>payload</strong>: the actual content of the message</li>
+<li><strong>metadata</strong>: information <em>about</em> the message, e.g. <em>source</em>, <em>destination</em>, <em>timestamp</em>, <em>conversation id</em>, etc.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="how-to-represent-interaction-patterns">How to represent Interaction Patterns?</h2>
+<ol>
+<li><strong>Sequence diagrams</strong>: <em>visual</em> representation of the <em>flow</em> of messages between participants
+<ul>
+<li><em>time</em> is <em>vertical</em>, <em>participants</em> are <em>horizontal</em></li>
+<li><em>arrows</em> represent <em>messages</em> sent from one participant to another</li>
+<li><em>lifelines</em> represent the <em>lifetime</em> of a participant</li>
+</ul>
+</li>
+</ol>
+<p><img src="./diagram-sequence.png" alt="Example of a Sequence Diagram"></p>
+<h3 id="hints">Hints</h3>
+<ul>
+<li>see explanation at <a href="https://www.uml-diagrams.org/sequence-diagrams.html">https://www.uml-diagrams.org/sequence-diagrams.html</a></li>
+<li>use <a href="https://plantuml.com/sequence-diagram">PlantUML</a> to <em>automatically</em> generate sequence diagrams from textual descriptions
+<ul>
+<li>many Web-based picture generators, e.g. <a href="http://www.plantuml.com/plantuml/uml/SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80">http://www.plantuml.com/plantuml</a></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="how-to-represent-interaction-patterns-1">How to represent Interaction Patterns?</h2>
+<ol start="2">
+<li><strong>Message flow graphs</strong>: <em>visual</em> representation of the <em>flow</em> of messages
+<ul>
+<li>each <em>node</em> represents a <strong>type</strong> of <em>message</em> (e.g. <em>request</em>, <em>response</em>, <em>notification</em>, etc.)</li>
+<li>each <em>directed edge</em> represents an admissible <em>reply</em> to a <em>message</em></li>
+<li>the graph may contain <em>cycles</em>, if the pattern allows for <em>repeated</em> interactions, or <em>resets</em></li>
+<li>nodes may be represented in different colours/shapes depending on which <em>role</em> sends/receives the message</li>
+</ul>
+</li>
+</ol>
+<a href="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3">
+<img src="./user-agent-protocol.svg" alt="" style="width: 65vw; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</a>
+<h3 id="hints-1">Hints</h3>
+<ul>
+<li>in <em>OO programming languages</em>, each message type can be represented as a <em>class</em></li>
+<li>you may use class diagrams (e.g. in <a href="https://plantuml.com/class-diagram">PlantUML</a>) to represent them</li>
+<li>you may also depict the graph otherwise, via graph-drawing tools (e.g. <a href="https://graphviz.org/">Graphviz</a> or <a href="https://www.yworks.com/products/yed">yEd</a>)</li>
+</ul>
+</section><section>
+<h2 id="how-to-represent-interaction-patterns-2">How to represent Interaction Patterns?</h2>
+<ol start="3">
+<li><strong>State diagrams (a.k.a. state machines)</strong>: <em>visual</em> representation of the <em>internal state transitions</em> of a participant
+<ul>
+<li>each <em>state</em> represents a <em>condition</em> of the participant (e.g. before/after a message is sent/received)</li>
+<li>each <em>transition</em> represents an <em>event</em> that <em>changes</em> the <em>state</em> of the participant
+<ul>
+<li>most commonly, a message <em>reception</em> or <em>sending</em></li>
+</ul>
+</li>
+<li><em>initial</em> and <em>final</em> states are <em>special</em> states representing the <em>start</em> and <em>end</em> of the interaction</li>
+<li>most commonly, there’s <em>one state diagram per participant</em></li>
+</ul>
+</li>
+</ol>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><a href="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3">
+<img src="./user-state-diagram.svg" alt="" style="width: 40vw; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</a>
+</div>
+<div class="col "><a href="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3">
+<img src="./agent-state-diagram.svg" alt="" style="width: 40vw; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</a>
+</div>
+</div>
+</div>
+<h3 id="hints-2">Hints</h3>
+<ul>
+<li>use <a href="https://plantuml.com/state-diagram">PlantUML</a> to <em>automatically</em> generate state diagrams from textual descriptions</li>
+</ul>
+</section><section>
+<h2 id="which-representation-to-use">Which representation to use?</h2>
+<ul>
+<li>The three representations are <em>complementary</em></li>
+<li>So you should use them <em>together</em> to <em>fully</em> describe an interaction pattern</li>
+</ul>
+<br>
+<h3 id="further-representations-may-be-welcome">Further representations may be welcome</h3>
+<ol>
+<li>FIPA’s <em>AUML</em> (Agent UML) for agent-based systems
+<ul>
+<li>see <a href="http://www.fipa.org/docs/input/f-in-00077/f-in-00077.pdf">http://www.fipa.org/docs/input/f-in-00077/f-in-00077.pdf</a></li>
+</ul>
+</li>
+<li><em>BPMN</em> (Business Process Model and Notation) for <em>business</em> processes
+<ul>
+<li>see <a href="https://en.wikipedia.org/wiki/Business_Process_Model_and_Notation">https://en.wikipedia.org/wiki/Business_Process_Model_and_Notation</a></li>
+</ul>
+</li>
+<li>UML’s <em>Activity Diagrams</em>
+<ul>
+<li>see <a href="https://www.uml-diagrams.org/activity-diagrams.html">https://www.uml-diagrams.org/activity-diagrams.html</a></li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="common-interaction-protocols-pt-1">Common Interaction Protocols (pt. 1)</h2>
+<h3 id="requestresponse">Request—Response</h3>
+<p>The most common and basic pattern for communication between two components</p>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1741180959569501486" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+    <p>hide footbox
+participant Client
+participant Server</p>
+<p>Client -&gt; Server: Request
+Server -&gt; Client: Response</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741180959569501486");
+</script>
+</div>
+<div class="col "><ul>
+<li>2 roles: <strong>client</strong> and <strong>server</strong></li>
+<li>2 sorts of messages: <strong>request</strong> and <strong>response</strong></li>
+<li><strong>each</strong> <em>request</em> is <em>followed</em> by <strong>one</strong> <em>response</em></li>
+<li><em>client</em> is the <strong>initiator</strong>, <em>server</em> is the <strong>responder</strong></li>
+<li><em>client</em> <strong>sends</strong> the <em>request</em>, <em>server</em> <strong>sends</strong> the <em>response</em></li>
+<li><em>client</em> <strong>waits</strong> for the <em>response</em>, <em>server</em> <strong>waits</strong> for the <em>request</em></li>
+<li>often used to realise:
+<ul>
+<li><em>remote procedure calls</em> (RPC)</li>
+<li><em>remote method invocations</em> (RMI)</li>
+<li>(web) <em>services</em></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="common-interaction-protocols-pt-2">Common Interaction Protocols (pt. 2)</h2>
+<h3 id="publishsubscribe">Publish—Subscribe</h3>
+<p>A simple pattern to spread information among multiple recipients</p>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1741180959569889321" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+    <p>hide footbox
+actor User
+participant Publisher
+participant Subscriber1
+participant Subscriber2</p>
+<p>== Subscription Phase ==
+Subscriber1 -&gt; Publisher: subscribe
+activate Publisher
+Publisher –&gt; Subscriber1: confirmation
+deactivate Publisher</p>
+<p>Subscriber2 -&gt; Publisher: subscribe
+activate Publisher
+Publisher –&gt; Subscriber2: confirmation
+deactivate Publisher</p>
+<p>== Notification Phase ==
+User –&gt; Publisher: Event
+activate Publisher
+Publisher -&gt; Subscriber1: notify Message
+Publisher -&gt; Subscriber2: notify Message
+deactivate Publisher</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741180959569889321");
+</script>
+</div>
+<div class="col "><ul>
+<li>2 roles: <strong>publisher</strong> and <strong>subscriber</strong></li>
+<li>2 sorts of messages: <strong>subscribe</strong> and <strong>notify</strong></li>
+<li>2 <em>phases</em> of interaction: <strong>subscription</strong> and <strong>notification</strong>
+<ol>
+<li><strong>Subscription</strong> phase: <em>subscribers</em> <strong>declare</strong> their <em>interest</em> in <em>receiving</em> message
+<ul>
+<li>subscribers are <em>initiators</em> here</li>
+</ul>
+</li>
+<li><strong>Notification</strong> phase: <em>publishers</em> <strong>send</strong> messages to <em>subscribers</em>
+<ul>
+<li>messages are <em>broadcasted</em> or <em>multicasted</em> depending on the implementation</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>messages of type <em>notify</em> carry <strong>messages</strong>, commonly representing events</li>
+<li>messages of type <em>subscribe</em> may carry <strong>topics</strong>, commonly representing the topic of interest (for the subscriber)</li>
+<li>notice that subscription is, essentially, a <em>request-response</em> pattern</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="common-interaction-protocols-pt-2-1">Common Interaction Protocols (pt. 2)</h2>
+<h3 id="publishsubscribe-with-broker">Publish—Subscribe with Broker</h3>
+<p>Notice that the publisher here is acting as a <strong>broker</strong></p>
+<ul>
+<li>one may re-design the pattern with <em>explicit</em> broker</li>
+<li>this is commonly useful to <em>decouple</em> the <em>publisher</em> from the <em>subscribers</em></li>
+<li>most commonly, brokers <em>store</em> messages until they are <em>consumed</em></li>
+</ul>
+<figure id="plantuml-figure-1741180959570251499" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+    <p>hide footbox
+actor User
+participant Publisher
+participant Broker
+participant Subscriber1
+participant Subscriber2
+participant Subscriber3</p>
+<p>== Subscription Phase ==
+Subscriber1 -&gt; Broker: subscribe TopicA
+activate Broker
+Broker –&gt; Subscriber1: confirmation
+deactivate Broker</p>
+<p>Subscriber2 -&gt; Broker: subscribe TopicA
+activate Broker
+Broker –&gt; Subscriber2: confirmation
+deactivate Broker</p>
+<p>Subscriber3 -&gt; Broker: subscribe TopicB
+activate Broker
+Broker –&gt; Subscriber3: confirmation
+deactivate Broker</p>
+<p>== Notification Phase ==
+User –&gt; Publisher: Event
+activate Publisher
+Publisher -&gt; Broker: publish Message\non TopicA
+deactivate Publisher
+activate Broker
+Broker -&gt; Subscriber1: notify Message
+Broker -&gt; Subscriber2: notify Message
+deactivate Broker</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741180959570251499");
+</script>
+</section><section>
+<h2 id="common-interaction-protocols-pt-2-2">Common Interaction Protocols (pt. 2)</h2>
+<h3 id="unicast-vs-broadcast-vs-multicast">Unicast vs. Broadcast vs. Multicast</h3>
+<img src="./cast.png" alt="Depiction of the three types of communication" style="width: 60vw; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+<br>
+<ul>
+<li><strong>Unicast</strong>: <em>one-to-one</em> communication</li>
+<li><strong>Broadcast</strong>: <em>one-to-all</em> communication</li>
+<li><strong>Multicast</strong>: <em>one-to-many</em> communication
+<ul>
+<li>implies a <em>selection criterion</em> for the <em>many</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="common-interaction-protocols-pt-3">Common Interaction Protocols (pt. 3)</h2>
+<h3 id="contractnet-protocol">ContractNet Protocol</h3>
+<p>A simple protocol for <em>auctions</em> and <em>negotiations</em></p>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1741180959570424032" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+    <p>hide footbox
+participant Initiator
+participant Contractor1
+participant Contractor2</p>
+<p>== Call for Proposals ==
+Initiator -&gt; Contractor1: Call for Proposal (CFP)
+activate Initiator
+Initiator -&gt; Contractor2: Call for Proposal (CFP)</p>
+<p>== Proposal Submission ==
+Contractor1 -&gt; Initiator: Submit Proposal
+Contractor2 -&gt; Initiator: Submit Proposal</p>
+<p>== Proposal Evaluation ==
+Initiator -&gt; Initiator: Evaluate Proposals, choosing the best one</p>
+<p>== Award Contract ==
+Initiator -&gt; Contractor1: Award Contract
+activate Contractor1
+Contractor1 -&gt; Initiator: Accept Contract</p>
+<p>== Contract Execution ==
+Contractor1 -&gt; Initiator: Return Result
+deactivate Contractor1
+deactivate Initiator</p>
+</figure>
+<script>
+    handlePlantumlFigureByID("plantuml-figure-1741180959570424032");
+</script>
+</div>
+<div class="col "><ul>
+<li>
+<p>2 roles: <strong>initiator</strong> and <strong>contractor</strong></p>
+</li>
+<li>
+<p>5 sorts of messages: <strong>CFP</strong>, <strong>proposal</strong>, <strong>award</strong>, <strong>accept</strong>, <strong>result</strong></p>
+</li>
+<li>
+<p>4 <em>phases</em> of interaction:</p>
+<ol>
+<li><strong>Call for Proposals</strong>: <em>initiator</em> broad- or multi-casts a <em>request</em> a CFP
+<ul>
+<li>commonly defining a <em>deadline</em> + <em>task request</em></li>
+</ul>
+</li>
+<li><strong>Proposal Submission</strong>: <em>contractors</em> <strong>submit</strong> proposals to <em>initiator</em>
+<ul>
+<li>commonly containing <em>estimated cost</em></li>
+</ul>
+</li>
+<li><strong>Proposal Evaluation</strong>: <em>initiator</em> <strong>evaluates</strong> proposals and <strong>chooses</strong> the best one</li>
+<li><strong>Award Contract</strong>: <em>initiator</em> <strong>awards</strong> the contract to the chosen contractor
+<ul>
+<li>the chosen contractor <strong>accepts</strong> the contract</li>
+</ul>
+</li>
+<li><strong>Contract Execution</strong>: <em>contractor</em> <strong>executes</strong> the contract and <strong>returns</strong> the result</li>
+</ol>
+</li>
+<li>
+<p>not shown in the picture:</p>
+<ol>
+<li>lack of proposals (i.e. no contractor)</li>
+<li>no proposal chosen</li>
+<li><em>contractor</em> may <em>reject</em> the contract</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="common-interaction-protocols-pt-4">Common Interaction Protocols (pt. 4)</h2>
+<h3 id="foundation-for-intelligent-physical-agents-fipa">Foundation for Intelligent Physical Agents (FIPA)</h3>
+<ul>
+<li>FIPA is a <em>standardization</em> body for <em>agent-based</em> systems</li>
+<li><strong>Very</strong> rough analogy: <em>agent</em> $\approx$ distributed <em>component</em> in a distributed system</li>
+<li>FIPA has <em>standardized</em> many <em>interaction protocols</em> for agents
+<ul>
+<li>e.g. <em>contract net</em>, <em>request-response</em>, <em>subscription</em>, <em>auction</em>, _etc.</li>
+</ul>
+</li>
+<li>See <a href="http://www.fipa.org/repository/ips.php3">http://www.fipa.org/repository/ips.php3</a></li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h1 id="architecture-and-architectural-styles">Architecture and Architectural Styles</h1>
+</section><section>
+<h2 id="recap-software-architecture-vs-architectural-style">Recap: Software Architecture vs. Architectural Style</h2>
+<ul>
+<li>Roy Fielding (2000):</li>
+</ul>
+<blockquote>
+<p>A <strong>software architecture</strong> is an abstraction of the run-time elements of a software system during some phase of its operation.
+[…]
+It is defined by a <em>configuration</em> of <strong>architectural elements</strong> constrained in their relationships in order to achieve a desired set of <em>architectural properties</em>.</p></blockquote>
+<ul>
+<li>Very roughly:</li>
+</ul>
+<blockquote>
+<p><strong>Architectural style</strong> $\approx$ <em>patterns</em> of architectures which are known to work in practice</p></blockquote>
+<h3 id="main-architectural-styles-for-distributed-systems">Main architectural styles for distributed systems</h3>
+<ul>
+<li><em>layered</em> architectures</li>
+<li><em>object-based</em> architectures</li>
+<li><em>event-based</em> architectures</li>
+<li><em>shared data-space</em> architectures</li>
+</ul>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-1">Architectural Styles in Practice (pt. 1)</h2>
+<h3 id="layered-architecture-concept">Layered Architecture (concept)</h3>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><img src="./architecture-layered.png" alt="Layered Architecture" style="max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</div>
+<div class="col "><ul>
+<li>
+<p>Which <strong>infrastructural components</strong>?</p>
+<ul>
+<li>Each layer is a <strong>server</strong> (or a <em>proxy</em>) for the layer(s) <em>above</em> it</li>
+<li>Each layer is a <strong>client</strong> for the layer(s) <em>below</em> it</li>
+</ul>
+</li>
+<li>
+<p>Which <strong>interaction patterns</strong>?</p>
+<ul>
+<li><em>Request—Response</em>: (a.k.a. remote procedure call, RPC)
+<ul>
+<li><em>upper</em> layers issue <strong>requests</strong> to <em>lower</em> layers</li>
+<li><em>lower</em> layers issue <strong>responses</strong> to <em>upper</em> layers</li>
+</ul>
+</li>
+<li>sometimes, <em>Publish—Subscribe</em>:
+<ul>
+<li><em>upper</em> layers <em>subscribe</em> to <em>lower</em> layers</li>
+<li><em>lower</em> layers <em>notify</em> <em>upper</em> layers</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Constraints:</p>
+<ul>
+<li><em>no cycles</em> among layers
+<ul>
+<li>i.e. <em>lower</em> layers_ should not contact <em>upper</em> layers</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Example: (Web Services)</p>
+<ul>
+<li><a href="https://www.skyscanner.net">Skyscanner</a> (looks for flights / hotels)
+<ul>
+<li>relying on the Web services of airlines / hotels</li>
+<li>relying on the <a href="https://www.booking.com">Booking</a> portal
+<ul>
+<li>all of which have their own <em>layered</em> architecture</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-1-1">Architectural Styles in Practice (pt. 1)</h2>
+<h3 id="layered-architecture-particular-cases">Layered Architecture (particular cases)</h3>
+<h4 id="three-tier-architecture">Three-Tier Architecture</h4>
+<img src="./three-tier.webp" alt="Classic three-tier application architecture" style="max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+<ul>
+<li><strong>Presentation Tier</strong>: responsible for <em>presenting</em> information to the <em>user</em>, and <em>accepting</em> user <em>input</em></li>
+<li><strong>Application Tier</strong>: responsible for <em>processing</em> user <em>requests</em>, and <em>executing</em> business <em>logic</em>, <strong>updating system state</strong></li>
+<li><strong>Data Tier</strong>: responsible for <em>storing</em> and <em>retrieving</em> data, and <em>managing</em> data <em>access</em>, <strong>persisting system state</strong></li>
+</ul>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-1-2">Architectural Styles in Practice (pt. 1)</h2>
+<h3 id="layered-architecture-particular-cases-1">Layered Architecture (particular cases)</h3>
+<h4 id="hexagoal-architecture">Hexagoal Architecture</h4>
+<img src="./architecture-hexagonal.png" alt="Hexagonal Architecture" style="max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+<p>cf. <a href="https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)">https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)</a></p>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-1-3">Architectural Styles in Practice (pt. 1)</h2>
+<h3 id="layered-architecture-analysis">Layered Architecture (analysis)</h3>
+<h4 id="pros">Pros</h4>
+<ol>
+<li>
+<p><strong>Separation of Concerns</strong>: each layer handles a specific responsibility, making the system easier to understand and maintain.</p>
+</li>
+<li>
+<p><strong>Modularity</strong>: layers are independent, allowing easier updates, testing, and replacement without affecting the entire system.</p>
+</li>
+<li>
+<p><strong>Reusability</strong>: common functionality in layers can be reused across different systems or projects.</p>
+</li>
+<li>
+<p><strong>Scalability</strong>: the system can scale by modifying or optimizing individual layers (e.g., scaling the database or network layer independently).</p>
+</li>
+<li>
+<p><strong>Maintainability</strong>: bugs or issues can be isolated to specific layers, making troubleshooting simpler.</p>
+</li>
+<li>
+<p><strong>Abstraction</strong>: layers provide clear abstractions, allowing higher layers to interact with the system without needing to know the internal details of lower layers.</p>
+</li>
+<li>
+<p><strong>Interoperability</strong>: a well-defined interface between layers promotes compatibility and enables the use of different technologies in each layer.</p>
+</li>
+</ol>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-1-4">Architectural Styles in Practice (pt. 1)</h2>
+<h3 id="layered-architecture-analysis-1">Layered Architecture (analysis)</h3>
+<h4 id="cons">Cons</h4>
+<ol>
+<li>
+<p><strong>Performance Overhead</strong>: multiple layers can introduce latency, especially if there are excessive data transformations or processing between layers.</p>
+</li>
+<li>
+<p><strong>Complexity in Design</strong>: designing and managing multiple layers can increase overall system complexity, particularly in very large systems.</p>
+</li>
+<li>
+<p><strong>Rigid Structure</strong>: strict layer separation can limit flexibility, making it harder to implement cross-cutting concerns (e.g., logging, security) efficiently.</p>
+</li>
+<li>
+<p><strong>Duplication of Functionality</strong>: if layers are not carefully defined, functionality can be duplicated across layers, leading to inefficiencies.</p>
+</li>
+<li>
+<p><strong>Potential for Over-Engineering</strong>: in smaller or simpler systems, using a layered architecture might introduce unnecessary complexity when simpler architectures would suffice.</p>
+</li>
+<li>
+<p><strong>Difficulty in Layer Communication</strong>: strict adherence to layer boundaries might make certain interactions cumbersome, requiring unnecessary intermediate steps.</p>
+</li>
+</ol>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-1-5">Architectural Styles in Practice (pt. 1)</h2>
+<h3 id="layered-architecture-analysis-2">Layered Architecture (analysis)</h3>
+<h4 id="personal-opinion-of-the-teacher">Personal Opinion of the Teacher</h4>
+<ul>
+<li><em>Layered</em> architectures are <em>simple</em> and <em>easy</em> to <em>understand</em></li>
+<li>It works well in most cases, you can consider it the <em>default</em> choice</li>
+<li>Prefer:
+<ol>
+<li><em>two-tier</em> (3-tier with no real DBMS) architectures for <em>quick and dirty</em> systems</li>
+<li><em>three-tier</em> architectures for if <em>flexibility</em> is not a primary concern</li>
+<li><em>hexagonal</em> architectures for systems that may need to <em>scale</em> in <em>complexity</em></li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-2">Architectural Styles in Practice (pt. 2)</h2>
+<h3 id="object-based-architecture-concept">Object-Based Architecture (concept)</h3>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><img src="./architecture-objectbased.png" alt="Object-Based Architecture" style="max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</div>
+<div class="col "><ul>
+<li>
+<p>Which <strong>infrastructural components</strong>?</p>
+<ul>
+<li>each is object simultaneously a <strong>client</strong> and a <strong>server</strong> for other objects</li>
+</ul>
+</li>
+<li>
+<p>Which <strong>interaction patterns</strong>?</p>
+<ul>
+<li><em>Request—Response</em>: (a.k.a. remote method invocation, RMI)
+<ul>
+<li><em>objects</em> issue <strong>requests</strong> to <em>other objects</em></li>
+<li><em>other objects</em> <strong>respond</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Constraints:</p>
+<ul>
+<li>basically none</li>
+</ul>
+</li>
+<li>
+<p>Examples:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Component_Object_Model">Microsoft Component Object Model</a> COM</li>
+<li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/rmi/hello/hello-world.html">Java RMI</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">Common Object Request Broker Architecture</a> (CORBA)</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-2-1">Architectural Styles in Practice (pt. 2)</h2>
+<h3 id="object-based-architecture-analysis">Object-Based Architecture (analysis)</h3>
+<h4 id="pros-1">Pros</h4>
+<ol>
+<li>
+<p><strong>Encapsulation</strong>: objects encapsulate data and behaviour, making the system more modular and easier to maintain.</p>
+</li>
+<li>
+<p><strong>Reusability</strong>: objects can be reused across different parts of the system or in different applications, reducing duplication of code.</p>
+</li>
+<li>
+<p><strong>Modularity</strong>: components are independent and self-contained, allowing easier upgrades, testing, and maintenance.</p>
+</li>
+<li>
+<p><strong>Clear Interface Definition</strong>: objects interact through well-defined interfaces, making it easier to manage dependencies and interactions between components.</p>
+</li>
+<li>
+<p><strong>Flexibility</strong>: objects can be distributed across different nodes, enabling flexibility in deployment and scalability in a distributed system.</p>
+</li>
+<li>
+<p><strong>Language Agnosticism</strong> (e.g., CORBA): some object-based systems (like CORBA) support multi-language environments, allowing developers to use the best language for each component while maintaining system integration.</p>
+</li>
+<li>
+<p><strong>Dynamic Behaviour</strong>: objects can be created, modified, or destroyed dynamically, allowing more flexible and adaptive systems.</p>
+</li>
+</ol>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-2-2">Architectural Styles in Practice (pt. 2)</h2>
+<h3 id="object-based-architecture-analysis-1">Object-Based Architecture (analysis)</h3>
+<h4 id="cons-1">Cons</h4>
+<ol>
+<li>
+<p><strong>Performance Overhead</strong>: the communication between distributed objects, especially over a network, can introduce significant latency and performance overhead.</p>
+</li>
+<li>
+<p><strong>Complexity in Management</strong>: managing the lifecycle and communication of distributed objects can add complexity, particularly in handling object references, synchronization, and failure recovery.</p>
+</li>
+<li>
+<p><strong>Difficulty in Debugging</strong>: debugging distributed objects is more complex due to the separation between client and server objects, especially when communication spans across different networks or systems.</p>
+</li>
+<li>
+<p><strong>Scalability Limitations</strong>: while object-based systems are modular, they may not scale efficiently in very large systems due to the overhead of managing object communication and state.</p>
+</li>
+<li>
+<p><strong>Security Concerns</strong>: distributed objects expose interfaces that can be exploited if not secured properly, making security management more challenging.</p>
+</li>
+<li>
+<p><strong>Tight Coupling through Interfaces</strong>: objects often rely on specific interfaces, which can lead to tight coupling between components, reducing flexibility in modifying or replacing objects.</p>
+</li>
+<li>
+<p><strong>State Management</strong>: maintaining the state of distributed objects can be complex, especially in cases of network failures or when objects need to be synchronized across multiple nodes.</p>
+</li>
+</ol>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-2-3">Architectural Styles in Practice (pt. 2)</h2>
+<h3 id="object-based-architecture-analysis-2">Object-Based Architecture (analysis)</h3>
+<h4 id="personal-opinion-of-the-teacher-1">Personal Opinion of the Teacher</h4>
+<ul>
+<li><em>Object-based</em> architectures were a thing in the 90s and early 2000s</li>
+<li>They never really took off, and are now mostly <em>legacy</em></li>
+<li>OOP is good for developing individual <em>components</em>, where objects share the same <em>address space</em></li>
+<li>Inter-object <em>interactions</em> are so <em>fine-grained</em> and <em>intertwined</em> in OOP that adding network in between makes it <strong>unmanageable</strong></li>
+<li>Just <strong>don’t</strong> use this when designing a new system</li>
+</ul>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-3">Architectural Styles in Practice (pt. 3)</h2>
+<h3 id="event-based-architecture-concept">Event-Based Architecture (concept)</h3>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><img src="./architecture-eventbased.png" alt="Event-Based Architecture" style="max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</div>
+<div class="col "><ul>
+<li>
+<p>Which <strong>infrastructural components</strong>?</p>
+<ul>
+<li><strong>event bus</strong> $\approx$ a <em>broker</em> for <em>events</em> OR a set of <em>brokers</em> with a <em>routing</em> mechanism</li>
+<li><strong>servers</strong> are <em>producers</em> and <em>consumers</em> of <em>events</em></li>
+<li><strong>clients</strong> commonly just interact with servers, as in <em>layered</em> architectures</li>
+</ul>
+</li>
+<li>
+<p>Which <strong>interaction patterns</strong>?</p>
+<ul>
+<li><em>Request—Response</em>: client $\leftrightarrow$ server</li>
+<li><em>Publish-Subscribe</em>: server $\leftrightarrow$ event bus</li>
+</ul>
+</li>
+<li>
+<p>Constraints:</p>
+<ul>
+<li>servers do <em>not</em> really <em>know</em> each other…</li>
+<li>… they just know which <strong>event</strong> <em>to react</em> to or <em>to produce</em></li>
+</ul>
+</li>
+<li>
+<p>Remarks:</p>
+<ul>
+<li>much used in the <em>industry</em> to create <strong>modular</strong> systems
+<ul>
+<li>where <em>modules</em> are realised in different moments/technologies</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-3-1">Architectural Styles in Practice (pt. 3)</h2>
+<h3 id="event-based-architecture-analysis">Event Based Architecture (analysis)</h3>
+<h4 id="pros-2">Pros</h4>
+<ol>
+<li>
+<p><strong>Scalability</strong>: event-driven systems can scale more easily as components are decoupled and can handle many events concurrently.</p>
+</li>
+<li>
+<p><strong>Real-time Processing</strong>: events are processed as they happen, enabling real-time responses and immediate actions.</p>
+</li>
+<li>
+<p><strong>Loose Coupling</strong>: components are loosely coupled, improving flexibility and allowing independent service updates without affecting the whole system.</p>
+</li>
+<li>
+<p><strong>Resilience</strong>: fault tolerance is improved, as event producers and consumers are decoupled, reducing the risk of single points of failure.</p>
+</li>
+<li>
+<p><strong>Asynchronous Communication</strong>: systems can handle tasks asynchronously, improving responsiveness and system performance.</p>
+</li>
+</ol>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-3-2">Architectural Styles in Practice (pt. 3)</h2>
+<h3 id="event-based-architecture-analysis-1">Event Based Architecture (analysis)</h3>
+<h4 id="cons-2">Cons</h4>
+<ol>
+<li>
+<p><strong>Complexity</strong>: event-driven systems can be more complex to design, implement, and maintain, particularly with large-scale event flows.</p>
+</li>
+<li>
+<p><strong>Debugging Challenges</strong>: tracking the flow of events and identifying issues can be difficult, especially in distributed systems with asynchronous operations.</p>
+</li>
+<li>
+<p><strong>Event Ordering</strong>: ensuring the correct order of event processing can be challenging, especially in distributed systems with multiple consumers.</p>
+</li>
+<li>
+<p><strong>Latency</strong>: while events are often processed in real-time, network latency or communication issues can delay event delivery or processing.</p>
+</li>
+<li>
+<p><strong>Data Consistency</strong>: ensuring consistency across different services or systems can be harder in event-driven systems due to asynchronous processing.</p>
+</li>
+<li>
+<p><strong>Single point of failure</strong>: if the event hub is not properly managed (e.g., no fault-tolerant mechanisms), system may become faulty or unavailable.</p>
+</li>
+</ol>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-3-3">Architectural Styles in Practice (pt. 3)</h2>
+<h3 id="event-based-architecture-analysis-2">Event Based Architecture (analysis)</h3>
+<h4 id="personal-opinion-of-the-teacher-2">Personal Opinion of the Teacher</h4>
+<ul>
+<li><strong>Event-based</strong> architectures are <em>very</em> <em>popular</em> in the <em>industry</em></li>
+<li>They are also pretty complex to <em>design</em> and <em>implement</em>: not at all entry level</li>
+<li>Future courses in <em>this master programme</em> will cover this in <em>more detail</em></li>
+<li>Understanding of how <em>layered</em> architectures work is a good <em>starting point</em> for <em>event-based</em> architectures
+<ul>
+<li>also because the two styles are often combined</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-4">Architectural Styles in Practice (pt. 4)</h2>
+<h3 id="shared-dataspace-architecture-concept">Shared Dataspace Architecture (concept)</h3>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><img src="./architecture-shareddataspace.png" alt="Shared Dataspace Architecture" style="width: 40vw; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</div>
+<div class="col "><ul>
+<li>
+<p>Which <strong>infrastructural components</strong>?</p>
+<ul>
+<li><em>clients</em> and <em>databases</em></li>
+</ul>
+</li>
+<li>
+<p>Which <strong>interaction patterns</strong>?</p>
+<ul>
+<li><em>Request—Response</em>: client <em>reads/writes</em> <strong>data</strong> from/to database</li>
+<li><em>Publish-Subscribe</em>:
+<ul>
+<li>support for asynchronous <em>notifications</em> of <em>data</em> changes</li>
+<li>support for <em>streaming</em> big query results</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Constraints:</p>
+<ul>
+<li>clients only perform <em>CRUD</em> operations on the database</li>
+</ul>
+</li>
+<li>
+<p>Examples:</p>
+<ul>
+<li>Oracle’s <a href="https://www.oracle.com/technical-resources/articles/javase/javaspaces.html">JavaSpaces</a></li>
+<li>IBM’s <a href="https://ieeexplore.ieee.org/abstract/document/5387119">TSpaces</a></li>
+<li>GigaSpaces’s <a href="https://xap.github.io/">XAP</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-4-1">Architectural Styles in Practice (pt. 4)</h2>
+<h3 id="shared-dataspace-architecture-analysis">Shared Dataspace Architecture (analysis)</h3>
+<h4 id="pros-3">Pros</h4>
+<ol>
+<li>
+<p><strong>Decoupled Communication</strong>: clients do not need to interact directly, allowing for more flexible and asynchronous communication.</p>
+</li>
+<li>
+<p><strong>Simplified Coordination</strong>: by using a shared space, different processes can coordinate without knowing about each other, simplifying synchronization in distributed systems.</p>
+</li>
+<li>
+<p><strong>Scalability</strong>: components can be added or removed from the system without affecting others, making the architecture inherently scalable.</p>
+</li>
+<li>
+<p><strong>Fault Tolerance</strong>: since communication happens through a shared space, if one component fails, others can still operate, improving resilience.</p>
+</li>
+<li>
+<p><strong>Loose Coupling</strong>: different parts of the system are loosely coupled through the shared data space, enabling more flexibility in how the system components interact.</p>
+</li>
+<li>
+<p><strong>Asynchronous Processing</strong>: processes can post data to the space and move on without waiting for others to consume it, improving system responsiveness and throughput.0</p>
+</li>
+</ol>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-4-2">Architectural Styles in Practice (pt. 4)</h2>
+<h3 id="shared-dataspace-architecture-analysis-1">Shared Dataspace Architecture (analysis)</h3>
+<h4 id="cons-3">Cons</h4>
+<ol>
+<li>
+<p><strong>Performance Overhead</strong>: accessing a shared space, particularly in a distributed environment, can introduce latency and performance bottlenecks.</p>
+</li>
+<li>
+<p><strong>Data Consistency Challenges</strong>: ensuring consistency between the data posted in the shared space and its consumers can be difficult, especially with concurrent access.</p>
+</li>
+<li>
+<p><strong>Concurrency Issues</strong>: managing multiple processes accessing or modifying the same shared data can lead to race conditions and other concurrency issues.</p>
+</li>
+<li>
+<p><strong>Limited Visibility</strong>: because of the decoupled nature of the system, it can be harder to track or debug the flow of data and interactions between components.</p>
+</li>
+<li>
+<p><strong>Complexity in Data Management</strong>: house-keeping the shared data space (e.g., cleaning up outdated data, managing space, etc.) adds additional complexity to the system.</p>
+</li>
+<li>
+<p><strong>Single point of failure</strong>: if the shared space is not properly managed (e.g., no fault-tolerant mechanisms), data may be lost if the space fails or system may become completely unavailable.</p>
+</li>
+</ol>
+</section><section>
+<h2 id="architectural-styles-in-practice-pt-4-3">Architectural Styles in Practice (pt. 4)</h2>
+<h3 id="event-based-architecture-analysis-3">Event Based Architecture (analysis)</h3>
+<h4 id="personal-opinion-of-the-teacher-3">Personal Opinion of the Teacher</h4>
+<ul>
+<li><strong>Shared dataspace</strong> architectures only make sense in few <em>niches</em></li>
+<li>e.g. in <em>distributed</em> <strong>data processing</strong>, where computational burdens are <em>shared</em> among <em>many</em> nodes</li>
+<li>e.g. when the distributed systems’ <em>state</em> is <em>shared</em> among most/all nodes, and <em>concurrent updates</em> are necessary
+<ul>
+<li>such as in <em>distributed databases</em> or <em>distributed file systems</em>, or in <em>non-real-time</em> <strong>multiplayer</strong> video games</li>
+</ul>
+</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="features-impacting-ds-design">Features Impacting DS Design</h2>
+<p>These features impact the infrastructure, interaction patterns, or architecture of DS:</p>
+<ol>
+<li>
+<p><strong>Redundancy</strong>: data, services, or hardware are replicated across multiple nodes or servers to ensure availability in case of failure.</p>
+</li>
+<li>
+<p><strong>Failover</strong>: when a primary node or service fails, a backup (secondary node) takes over.</p>
+</li>
+<li>
+<p><strong>Checkpoints</strong> and <strong>Rollback Recovery</strong>: periodically saving the state of a process so that in case of failure, the system can roll back to the last known good state.</p>
+</li>
+<li>
+<p><strong>Consensus</strong>: achieving agreement between distributed nodes, ensuring consistent decision-making, even in case of failures.</p>
+</li>
+<li>
+<p><strong>Hearth-beats</strong>: periodic signals sent between nodes to ensure they are alive and responsive.</p>
+</li>
+<li>
+<p><strong>Timeouts</strong> and <strong>Retries</strong>: setting timeouts for operations and retrying them in case of failure or unresponsiveness.</p>
+</li>
+<li>
+<p><strong>Authorization</strong> and <strong>Authentication</strong>: ensuring that only authorized users or systems can access data or services.</p>
+</li>
+<li>
+<p><strong>Data Partitioning</strong>: splitting data across multiple nodes to improve performance and scalability, or respect administrative constraints.</p>
+</li>
+</ol>
+</section><section>
+<h2 id="about-redundancy">About Redundancy</h2>
+<h3 id="what">What</h3>
+<ul>
+<li><strong>Data</strong>: making <em>copies</em> of the data across multiple nodes</li>
+<li><strong>Services</strong>: deploying <em>multiple instances</em> of the same service across different nodes</li>
+<li><strong>Hardware</strong>: using multiple computers, <em>storage devices</em>, or network components</li>
+</ul>
+<h3 id="why">Why</h3>
+<ul>
+<li><strong>Fault Tolerance</strong>: ensures that the system remains operational even if some components fail
+<ul>
+<li>also avoiding <em>data loss</em></li>
+</ul>
+</li>
+<li><strong>Availability</strong>: distributing the load across multiple nodes, reducing the load on each node</li>
+<li><strong>Scalability</strong>: easier to <em>scale</em> the system up/down when the load increases/decreases</li>
+</ul>
+<h3 id="how">How</h3>
+<ul>
+<li><strong>Replication</strong>: copying data or services across multiple nodes</li>
+<li>[Data] <strong>Sharding</strong> : splitting data into smaller parts and distributing them across multiple nodes
+<ul>
+<li>when <em>all</em> nodes have <em>all</em> data, it’s called <em>replication</em>…</li>
+<li>… when <em>each</em> node has <em>only</em> a <em>part</em> of the data, it’s called <em>sharding</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="implications">Implications</h3>
+<ul>
+<li><em>Data</em> replication $\Rightarrow$ <em>consistency</em> issues $\Rightarrow$ <em>consensus</em> algorithms OR <em>master—slave</em> replication</li>
+<li><em>Service</em> replication $\Rightarrow$ <em>load balancing</em> issues $\Rightarrow$ more complex infrastructure</li>
+<li><em>Service</em> replication $\Rightarrow$ <em>state management</em> issues $\Rightarrow$ <em>state-less</em> server + <em>stateful</em> database</li>
+</ul>
+</section><section>
+<h2 id="about-failover">About Failover</h2>
+<h3 id="what-1">What</h3>
+<ul>
+<li>
+<p><strong>Active-passive</strong> failover: the backup node become active when the primary fails</p>
+</li>
+<li>
+<p><strong>Active-active</strong> failover: all replicas are active, and traffic is rerouted in case of failure</p>
+</li>
+</ul>
+<h3 id="why-1">Why</h3>
+<ul>
+<li><strong>Fault Tolerance</strong> and <strong>Availability</strong>: ensures that the system remains operational even the component fail</li>
+</ul>
+<h3 id="how-1">How</h3>
+<ul>
+<li><strong>Load-balancer</strong> or <strong>proxy</strong> to reroute traffic to the backup node(s)</li>
+</ul>
+<h3 id="implications-1">Implications</h3>
+<ul>
+<li>Same as in <em>service replication</em></li>
+<li>Need for a mechanism to <em>detect</em> failures, e.g. <strong>hear-beats</strong> (see next slides)</li>
+</ul>
+</section><section>
+<h2 id="about-checkpoints-and-rollback-recovery">About Checkpoints and Rollback Recovery</h2>
+<h3 id="what-2">What</h3>
+<ul>
+<li><strong>Checkpoints</strong>: saving the state of a process at regular intervals
+<ul>
+<li>this is similar to <em>backups</em>, but it’s most commonly <em>automatic</em></li>
+</ul>
+</li>
+<li><strong>Rollback Recovery</strong>: in case of failure, the system can roll back to the last known good state
+<ul>
+<li>again, stress on the <em>automatic</em> part</li>
+</ul>
+</li>
+</ul>
+<h3 id="why-2">Why</h3>
+<ul>
+<li><strong>Fault Tolerance</strong>: it may be hard to prevent some <em>bad situation</em> from happening,
+so this is a way to <em>recover</em> from it when it does</li>
+</ul>
+<h3 id="how-2">How</h3>
+<ol>
+<li>by designing your system to be able <em>snapshot</em> its state &amp; <em>restore</em> snapshots upon failures <strong>automatically</strong></li>
+<li>by designing your system to track <em>variations</em> (rather than <em>states</em>) and compute the <em>states</em> from the <em>variations</em>
+<ul>
+<li>e.g. <a href="https://martinfowler.com/bliki/CQRS.html">Command Query Responsibility Segregation</a> (CQRS)</li>
+</ul>
+</li>
+</ol>
+<h3 id="implications-2">Implications</h3>
+<ul>
+<li>Requires ad-hoc <em>modelling</em>, <em>architectural</em>, and <em>infrastructural</em> <strong>decisions</strong></li>
+</ul>
+</section><section>
+<h2 id="about-consensus">About Consensus</h2>
+<h3 id="what-3">What</h3>
+<ul>
+<li>A <strong>protocol</strong> to ensure that some nodes (most commonly <em>servers</em> or <em>databases</em>) in a DS agree on a common decision
+<ul>
+<li>decision could be <em>“which operation to perform on data”</em> or <em>“who to elect as a leader”</em>, etc</li>
+<li>even in case of <em>failures</em>
+<ul>
+<li>e.g. <strong>crashes</strong>: one node stops responding</li>
+<li>e.g. <strong>byzantine failures</strong>: one node sends wrong information (either by mistake or deliberately)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="why-3">Why</h3>
+<ul>
+<li><strong>Consistency</strong>: ensures that nodes in the system have the same view of the data</li>
+<li><strong>Fault Tolerance</strong>: ensures that the system can continue to operate even if some nodes fail</li>
+<li><strong>Data Redundancy</strong>: see previous slides</li>
+</ul>
+<h3 id="how-3">How</h3>
+<ul>
+<li><em>Byzantine Fault Tolerant</em> (BFT) protocols, e.g. <a href="https://www.usenix.org/legacy/publications/library/proceedings/osdi99/full_papers/castro/castro.ps">PBFT</a></li>
+<li><em>Crash Fault Tolerant</em> protocols,  e.g. <a href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">Paxos</a>, <a href="https://en.wikipedia.org/wiki/Raft_(computer_science)">Raft</a></li>
+</ul>
+<h3 id="implications-3">Implications</h3>
+<ul>
+<li><strong>Complexity</strong>: design is more complex, e.g. clients may need to know <em>which</em> replica(s) to contact</li>
+<li><strong>Latency</strong>: in the eyes of <em>clients</em>, due to consensus going on <em>between</em> request and response</li>
+</ul>
+</section><section>
+<h2 id="about-heart-beats-timeout-retries">About Heart-beats, Timeout, Retries</h2>
+<h3 id="what-4">What</h3>
+<ul>
+<li><strong>Heart-beats</strong> are <em>periodic</em> signals sent between nodes to ensure they are <em>alive</em> and <em>responsive</em>
+<ul>
+<li>if a node stops sending heart-beats within <em>the period</em>, it’s considered <em>dead</em></li>
+<li>signal $\approx$ (almost) empty message: only its reception matter</li>
+</ul>
+</li>
+<li><strong>Timeout</strong>: amount of <em>time</em> necessary to <em>locally</em> mark a <em>remote operation</em> as <em>failed</em> (e.g. node as unreachable)</li>
+<li><strong>Retry</strong>: commonly a single failure not enough (e.g. short timeout, bad luck) so better to <em>retry a few times</em>
+  <!-- * commonly implies to parameters:  -->
+<ul>
+<li><strong>max retries</strong>: maximum amount of retries before considering an actual failure</li>
+<li><strong>delay</strong>: amount of time to wait before retrying again (may be variable, cf. <a href="https://en.wikipedia.org/wiki/Exponential_backoff">exponential back-off</a>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="why-4">Why</h3>
+<ul>
+<li><strong>Fault Tolerance</strong>: basic mechanism to <em>detect</em> failures, to be able to <em>react</em> to them ASAP</li>
+</ul>
+<h3 id="how-4">How</h3>
+<ol>
+<li>Nodes keep a connection open between them, and send data periodically
+<ul>
+<li>alternatively, they send each other messages with no connection</li>
+<li>some application may have this feature <em>built-in</em>, others may need ad-hoc design</li>
+</ul>
+</li>
+<li><em>Timeout</em> + <em>retrial threshold</em> + <em>retrial delay</em> to mark nodes as unreachable</li>
+<li>Decide what to do when depending on which and how many nodes are unreachable
+<ul>
+<li>e.g. prioritize consistency? prioritize availability?</li>
+</ul>
+</li>
+</ol>
+<h3 id="implications-4">Implications</h3>
+<ul>
+<li>More complex (and robust) design and implementation</li>
+<li><strong>Note</strong>: this is useful also when reliable network protocols (e.g. TCP) are in place</li>
+</ul>
+</section><section>
+<h2 id="about-authorization-and-authentication">About Authorization and Authentication</h2>
+<h3 id="what-5">What</h3>
+<ol>
+<li>
+<p><strong>Authentication</strong>: letting the nodes of a DS <em>recognise</em> and <em>distinguish</em> themselves from one another</p>
+<ul>
+<li>this includes <em>users’ clients</em> (a.k.a. identifying the legitimate users of the system)</li>
+</ul>
+</li>
+<li>
+<p><strong>Authorization</strong>: a server granting (or forbidding) access to resources depending on the identity / role of the <em>authenticated</em> client</p>
+</li>
+</ol>
+<h3 id="why-5">Why</h3>
+<ul>
+<li><strong>Access control</strong>: to control who can (or cannot) do what</li>
+<li><strong>Monitoring</strong>: to record who is doing what</li>
+<li>Prerequisite for many <strong>cyber-security</strong>-related aspects</li>
+</ul>
+<h3 id="how-5">How</h3>
+<ol>
+<li>Allow the system to register <em>legitimate users</em> and/or <em>roles</em>, endowing them with <em>credentials</em></li>
+<li>One or more server is in charge of generating <em>session tokens</em> upon client <em>request</em></li>
+<li>Authenticated nodes <em>include</em> session tokens in <em>any subsequent interaction</em></li>
+<li>Nodes know how to <em>verify</em> session <em>tokens</em> are <strong>valid</strong> and <em>genuine</em></li>
+<li>Nodes <em>enforce</em> access control depending on the <em>content of the token</em></li>
+</ol>
+<h3 id="implications-5">Implications</h3>
+<ul>
+<li>Requires one <em>authentication server</em>, possibly backed by a <em>database</em></li>
+<li>Requires <em>cryptography</em> to handle session tokens</li>
+<li>Requires <em>designing</em> and <em>implementing</em> some access control mechanism,
+e.g. <a href="https://en.wikipedia.org/wiki/Access-control_list">ACLs</a>, <a href="https://en.wikipedia.org/wiki/Role-based_access_control">RBAC</a>, etc.</li>
+</ul>
+</section><section>
+<h2 id="about-data-partitioning">About Data Partitioning</h2>
+<h3 id="what-6">What</h3>
+<ul>
+<li><em>Clones</em> of the same <em>functionality</em> are deployed, each one covering a <em>partition</em> of the <em>geographic region</em> where the system operates
+<ul>
+<li>e.g. amazon**.uk** vs. amazon**.it**, google**.fr** vs. google*.com**, etc.</li>
+</ul>
+</li>
+<li>Clones are <em>not consistent</em> among each other, because data is <em>partitioned</em> on a geographical basis
+<ul>
+<li>mechanisms are in place to <em>direct</em> users towards <em>closest</em> partition</li>
+</ul>
+</li>
+</ul>
+<h3 id="why-6">Why</h3>
+<ul>
+<li><strong>Fault-tolerance</strong>: one fault in one region does not propagate to others region</li>
+<li><strong>Availability</strong> and <strong>Load-balancing</strong>: divide-and-conquer approach to serve users</li>
+<li>It is sometimes a mandatory accomplishment due to regulations (cf. <a href="https://www.privacy-regulation.eu/it/44.htm">GDPR, art. 44</a>)</li>
+</ul>
+<h3 id="how-6">How</h3>
+<ul>
+<li>The same infrastructure is deployed in different places</li>
+<li>Mechanisms may be present to connect the clones of the system (hence hiding partitioning to users)</li>
+</ul>
+<h3 id="implications-6">Implications</h3>
+<ul>
+<li>Deployment procedures should be <em>reproducible</em> and <em>parametric</em>, possibly <em>automated</em></li>
+<li>Clones should be designed to be aware of the existence of other clones</li>
+</ul>
+
+</section>
+</section><section>
+<h1 id="lecture-is-over">Lecture is Over</h1>
+<br>
+<p>Compiled on: 2025-03-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/course-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/course-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"github","history":true,"mermaid":[{"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false}],"slide_number":true,"theme":"league","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/course-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/course-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+
+    
+  
+
+</body></html>

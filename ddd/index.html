@@ -494,26 +494,23 @@
 </ul>
 </section><section>
 <h2 id="entities-vs-value-objects-example">Entities vs. Value Objects (example)</h2>
-<figure id="plantuml-figure-1741183382209192092" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1741186896493657314" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface Customer {
-+ CustomerID getID()
-..
-+ String getName()
-+ void <strong>setName</strong>(name: String)
-+ String getEmail()
-+ void <strong>setEmail</strong>(email: String)
++ id: CustomerID <strong>{readonly}</strong>
++ name: str
++ email: str
 }
 note left: Entity</p>
 <p>interface CustomerID {
-+ Object getValue()
++ value <strong>{readonly}</strong>
 }
 note right: Value Object</p>
 <p>interface TaxCode {
-+ String getValue()
++ value: str
 }
 note left: Value Object</p>
 <p>interface VatNumber {
-+ long getValue()
++ value: int
 }
 note right: Value Object</p>
 <p>VatNumber -d-|&gt; CustomerID
@@ -521,7 +518,7 @@ TaxCode -d-|&gt; CustomerID</p>
 <p>Customer *-r- CustomerID</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1741183382209192092");
+    handlePlantumlFigureByID("plantuml-figure-1741186896493657314");
 </script>
 </section><section>
 <h2 id="aggregate-root">Aggregate Root</h2>
@@ -640,7 +637,7 @@ TaxCode -d-|&gt; CustomerID</p>
 </ul>
 </section><section>
 <h2 id="factories-example">Factories (example)</h2>
-<figure id="plantuml-figure-1741183382209956691" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1741186896494596681" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface TaxCode</p>
 <p>interface VatNumber</p>
@@ -649,12 +646,12 @@ TaxCode -d-|&gt; CustomerID</p>
 <p>VatNumber -u-|&gt; CustomerID
 TaxCode -u-|&gt; CustomerID</p>
 <p>interface CustomerFactory {
-+ VatNumber computeVatNumber(String name, String surname, Date birthDate, String birthPlace)
++ compute_vat_number(name: str, surname: str, birth_date: date, birth_place: str) -&gt; VatNumber
 ..
-+ Customer newCustomerPerson(TaxCode code, String fullName, string email)
-+ Customer newCustomerPerson(String name, String surname, Date birthDate, String birthPlace, String email)
++ new_customer_person(code: TaxCode, full_name: str, email: str) -&gt; Customer
++ new_customer_person(name: str, surname: str, birth_date: date, birth_place: str, email: str) -&gt; Customer
 ..
-+ Customer newCustomerCompany(VatNumber code, String fullName, String email)
++ new_costumer_company(code: VatNumber, full_name: str, email: str) -&gt; Customer
 }
 note bottom of CustomerFactory</p>
 <ul>
@@ -667,7 +664,7 @@ end note</li>
 CustomerFactory -u-&gt; Customer: creates</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1741183382209956691");
+    handlePlantumlFigureByID("plantuml-figure-1741186896494596681");
 </script>
 </section><section>
 <h2 id="repositories-definition">Repositories (definition)</h2>
@@ -734,26 +731,26 @@ CustomerFactory -u-&gt; Customer: creates</p>
 </ul>
 </section><section>
 <h2 id="repositories-example">Repositories (example)</h2>
-<figure id="plantuml-figure-1741183382209980144" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1741186896494623992" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface Customer</p>
 <p>Customer “1” *-u- “1” CustomerID</p>
 <p>interface CustomerRegistry {
-+ Iterable<customer> getAllCustomers()
++ get_all_customers() -&gt; Iterable[Customer]
 ..
-+ Customer findCustomerById(CustomerID id)
-+ Iterable<customer> findCustomerByName(string name)
-+ Iterable<customer> findCustomerByEmail(string email)
++ find_customer_by_id(id: CustomerID) -&gt; Customer
++ find_customer_by_name(name: str) -&gt; Iterable[Customer]
++ find_customer_by_email(email: str) -&gt; Iterable[Customer]
 ..
-+ void addNewCustomer(Customer customer)
-+ void updateCustomer(Customer customer)
-+ void removeCustomer(Customer customer)
-}</customer></customer></customer></p>
++ add_new_customer(customer: Customer)
++ update_customer(customer: Customer)
++ remove_customer(customer: Customer)
+}</p>
 <p>CustomerRegistry “1” o–&gt; “N” Customer: contains
 CustomerRegistry –&gt; CustomerID: exploits</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1741183382209980144");
+    handlePlantumlFigureByID("plantuml-figure-1741186896494623992");
 </script>
 </section><section>
 <h2 id="services">Services</h2>
@@ -813,17 +810,15 @@ CustomerRegistry –&gt; CustomerID: exploits</p>
 </ul>
 </section><section>
 <h2 id="services-example">Services (example)</h2>
-<figure id="plantuml-figure-1741183382210008336" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1741186896494653156" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
-+ void performOrder(Order order)
++ perform_order(order: Order)
 }</p>
 <p>interface Order {
-+ OrderID getId()
-+ Customer getCustomer()
-+ void setCustomer(Customer customer)
-+ Date getTimestamp()
-+ void setTimestamp(Date timestamp)
-+ Map&lt;Product, long&gt; Amounts getAmounts()
++ id: OrderID <strong>{readonly}</strong>
++ customer: Customer
++ timestamp: datetime
++ amounts: dict[Product, long]
 }</p>
 <p>interface OrderID</p>
 <p>interface Customer</p>
@@ -845,7 +840,7 @@ note top of OrderManagementService: service</p>
 OrderID -d[hidden]- Customer</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1741183382210008336");
+    handlePlantumlFigureByID("plantuml-figure-1741186896494653156");
 </script>
 </section><section>
 <h2 id="domain-events-definition">Domain Events (definition)</h2>
@@ -906,7 +901,7 @@ OrderID -d[hidden]- Customer</p>
 <li>
 <p>[Teacher’s Suggestion]: prefer <em>neutral</em> names for event classes in the model</p>
 <ul>
-<li>e.g. <code>OrderEventArgs</code> instead of <code>OrderPerformedEventArgs</code></li>
+<li>e.g. <code>OrderEvent</code> instead of <code>OrderPerformedEventArgs</code></li>
 <li>e.g. <code>OrderEvent</code> instead of <code>OrderPerformedEvent</code></li>
 <li>the reason: the same OOP type may be used to represent different events:
 <ul>
@@ -918,33 +913,33 @@ OrderID -d[hidden]- Customer</p>
 </ul>
 </section><section>
 <h2 id="domain-events-example">Domain Events (example)</h2>
-<figure id="plantuml-figure-1741183382210035487" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1741186896494679656" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
-+ void performOrder(Order order)
++ perform_order(order: Order)
 ..
-+ void <strong>notifyOrderPerformed</strong>(OrderEventArgs event)
++ <strong>notify_order_performed</strong>(event: OrderEvent)
 }</p>
-<p>interface OrderEventArgs {
-+ OrderID getID()
-+ CustomerID getCustomer()
-+ Date <strong>getTimestamp</strong>()
-+ Dictionary&lt;ProductID, long&gt; getAmounts()
+<p>interface OrderEvent {
++ id: OrderID <strong>{readonly}</strong>
++ customer: CustomerID <strong>{readonly}</strong>
++ timestamp: datetime <strong>{readonly}</strong>
++ amounts: dict[ProductID, float] <strong>{readonly}</strong>
 }</p>
 <p>interface OrderID</p>
 <p>interface CustomerID</p>
 <p>interface ProductID</p>
-<p>OrderEventArgs “1” *-u- “1” OrderID
-OrderEventArgs “1” *-r- “1” CustomerID
-OrderEventArgs “1” *-d- “N” ProductID</p>
-<p>OrderEventArgs .. OrderManagementService</p>
-<p>note left of OrderEventArgs: domain event
+<p>OrderEvent “1” *-u- “1” OrderID
+OrderEvent “1” *-r- “1” CustomerID
+OrderEvent “1” *-d- “N” ProductID</p>
+<p>OrderEvent .. OrderManagementService</p>
+<p>note left of OrderEvent: domain event
 note left of OrderID: value object
 note left of ProductID: value object
 note right of CustomerID: value object
 note right of OrderManagementService: service</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1741183382210035487");
+    handlePlantumlFigureByID("plantuml-figure-1741186896494679656");
 </script>
 
 </section>
@@ -1286,7 +1281,7 @@ This is helpful from several perspectives:</p>
 </li>
 </ul>
 
-<figure id="plantuml-figure-1741183382211964015" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1741186896496414470" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     
 top to bottom direction
 
@@ -1315,7 +1310,7 @@ product -u-|&gt; mq
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1741183382211964015");
+    handlePlantumlFigureByID("plantuml-figure-1741186896496414470");
 </script>
 </section><section>
 <h1 id="advanced-aspects-of-ddd">Advanced aspects of DDD</h1>
@@ -1416,32 +1411,32 @@ product -u-|&gt; mq
 <h2 id="cqrs-workflow-writing">CQRS workflow (writing)</h2>
 <p>Whenever users are willing to <em>perform an action</em> into the system:</p>
 <ol>
-<li>they create a <strong>command</strong> and forward it to the <strong>write model</strong></li>
-</ol>
+<li>
+<p>they create a <strong>command</strong> and forward it to the <strong>write model</strong></p>
 <ul>
 <li>i.e. an object describing a <em>variation</em> to be applied to some domain aspect</li>
 </ul>
-<br>
-<ol start="2">
-<li>the command is possibly <em>validated</em> &amp; <strong>stored</strong> onto some database</li>
-</ol>
+</li>
+<li>
+<p>the command is possibly <em>validated</em> &amp; <strong>stored</strong> onto some database</p>
 <ul>
 <li>an ad-hoc <strong>database</strong> is available in the model for storing commands</li>
 </ul>
+</li>
+</ol>
 </section><section>
 <h2 id="cqrs-workflow-reading">CQRS workflow (reading)</h2>
 <p>Whenever users are willing to <em>inspect/observe the system</em> at time $t$:</p>
 <ol>
-<li>they perform a <strong>query</strong> on the <strong>read model</strong>
+<li>
+<p>they perform a <strong>query</strong> on the <strong>read model</strong></p>
 <ul>
 <li>asking for the state of the system <em>at time $t$</em></li>
 <li>e.g. $t$ $\equiv$ now</li>
 </ul>
 </li>
-</ol>
-<br>
-<ol start="2">
-<li>commands up to time $t$ are assumed to be <strong>reified</strong> when reading
+<li>
+<p>commands up to time $t$ are assumed to be <strong>reified</strong> when reading</p>
 <ul>
 <li>a <strong>snapshot</strong> of the system state <em>at time $t$</em> is returned to users</li>
 </ul>

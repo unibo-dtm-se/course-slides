@@ -1087,9 +1087,178 @@ Model the _structure_ of a system in terms of _packages_ (a.k.a. __namespaces__)
 
 ---
 
-# PlantUML
+# PlantUML: <https://plantuml.com/>
 
-TBD
+- Technology for generating __UML diagrams__ (in either `.png` or `.svg` format) out of a simple _declarative language_
+
+- Online documentation (useful to learn the declarative language from examples):
+    + [Use Case Diagrams](https://plantuml.com/use-case-diagram)
+    + [Sequence Diagrams](https://plantuml.com/sequence-diagram)
+    + [Class Diagrams](https://plantuml.com/class-diagram)
+    + [Activity Diagrams](https://plantuml.com/activity-diagram-beta)
+    + [State Diagrams](https://plantuml.com/state-diagram)
+    + [Deployment Diagrams](https://plantuml.com/deployment-diagram)
+
+- Online editor: <https://www.plantuml.com/plantuml/uml>
+    + assigning embeddable URLs to your diagrams (e.g., as images in Markdown documents):
+        ```markdown
+        ![Diagram description](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80)
+        ```
+
+    + the string `SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80` encodes the diagram' content
+        + URL `http://www.plantuml.com/plantuml/svg/ENCODED_DIAGRAM_STRING` will return the diagram as an SVG image
+        + URL `http://www.plantuml.com/plantuml/png/ENCODED_DIAGRAM_STRING` will return the diagram as a PNG image
+        + URL `http://www.plantuml.com/plantuml/uml/ENCODED_DIAGRAM_STRING` will open the PlantUML editor with the diagram
+
+---
+
+{{% section %}}
+
+## PlantUML Diagrams Examples: Class Diagrams (pt. 1)
+
+```plantuml
+enum Status {
+  + MISSING
+  + AVAILABLE
+  + BORROWED
+  + LATE
+}
+
+abstract class LibraryItem {
+    - __id: str
+    + title: str
+    + author: str
+    + state: Status
+    + {abstract} get_info() -> str
+    + front: Page
+    + back: Page
+}
+
+interface Borrowable {
+    + borrow(member: Member) -> bool
+    + return_item() -> bool
+}
+
+class Book extends LibraryItem {
+    - __isbn: str
+    + genre: str
+    + get_info() -> str
+}
+
+class Magazine extends LibraryItem {
+    - __issue_number: int
+    + category: str
+    + get_info() -> str
+}
+
+Borrowable <|-- LibraryItem
+
+class Library {
+    - __items: list[LibraryItem]
+    + add_item(item: LibraryItem) -> None
+    + remove_item(item: LibraryItem) -> None
+    + find_item(title: str) -> LibraryItem
+}
+
+Library "1" o-- "0..*" LibraryItem : manages
+
+class Loan {
+    + item: LibraryItem
+    + due_date: str
+    + renew() -> bool
+}
+
+Loan "1" -- "1" LibraryItem
+
+class Page {
+    + content: str
+}
+
+
+LibraryItem "1" *-r- "2" Page
+
+LibraryItem -l- Status
+```
+
+---
+
+## PlantUML Diagrams Examples: Class Diagrams (pt. 2)
+
+![](https://www.plantuml.com/plantuml/svg/ZLJFRjiy3B_xAOXSldujN6mx6iDGTok604axDCDs68Q0jcbNg2q54hsko_hkKsWvaHSKtIMAI8Q_FwHouHWjzrsRaEuxM35oxs2R09p1ShvQpQy_olVyIpvVv9UBAxbTtjpUtdoz-Y2NHVxvAdbAalyWBnnRB1dA5fs3sbXeLM7HFe9Ywbo2quB5a9pxd402fB1Ugoe3NoRtCs35BSK1xFdEs3ZY9J1bWNk8RKUe9sY8rqhNvkH_IDz5FwkjqPp19smeH0eixqD0zCmrawsn995I66lD0nOj1JLgdxuyfBPZBmcTTDGLvDakvHG6XJ5jABB4lTNhNRkJGqwmtnjT-ZGDLf5BvFH8vXxe9vEkdlNF5Jgsfo5jOmUF3V68eVqI6_obDBq8uNfQwtxGfZI7pYKoDSO-leWM6VRsTvh6C44yewTXdzsaoG95p2IR-MB7twActyVbgQh1xTr75iCAkskZQJ-QploWVookbGvz3-igDR4k6Ul869l6KeDCxYzXOy7izGoCTsRswlpyT3QPGmOTQcp8IKE36YoroCfeTwSsmHg9Zyju9234Ap_52dco7POqFKotCTar4qPfAiVHkBgDSMh788Dy8WYKWrBIL86fXqS7g2jvRB0H6S9OtjsUSUdBI7CM5YO250AdgVLCtio6npf9fsqw_XLSaAxwhlq3)
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+## PlantUML Diagrams Examples: Sequence Diagrams (pt. 1)
+
+```plantuml
+hide footbox
+
+participant “Client” as Client
+participant “MyCollection” as Collection
+participant “MyIterator” as Iterator
+
+== Initialization ==
+
+activate Client
+Client -> Collection: add(“A”)
+Client -> Collection: add(“B”)
+Client -> Collection: add(“C”)
+
+== Retrieving the Iterator ==
+
+Client -> Collection: iter()
+activate Collection
+create Iterator
+Collection -> Iterator: Create Instance
+Collection –> Client: return Instance
+deactivate Collection
+
+== Iterating Over Elements ==
+
+loop
+    Client -> Iterator: next()
+    activate Iterator
+    Iterator -> Iterator: Check if more elements
+    
+    alt More Elements Available
+        Iterator –> Client: return Current Item
+    else No More Elements
+        Iterator –> Client: raise StopIteration
+        deactivate Iterator
+    end
+end
+destroy Iterator
+```
+
+---
+
+## PlantUML Diagrams Examples: Sequence Diagrams (pt. 2)
+
+![](http://www.plantuml.com/plantuml/svg/XPD1Ri8m44NtFiKiOT4B80L1eovOq4hj2OPaAACwTkGC4NJ57RfjBvUJr0w94rfQ5f7byVEV_yUAMbI2JlQ5LZlE2RRMoiOULEcBd769Hg0vVQQQoKXp-WAiuBpvYQoFgTMQCc5hUZ0MViCh8OTYNOVsMvKai38iZ9hVCLo5957eHMeKwbkV5xYRZrhC0FDyuhMNNdBwFt9_6qbRnBjv9d5CDPjNa1r5ey7MTG7sn6GwyZnC8NCKAZ7iS1H4-l8Cqeup_d5CHcEkENtCkp7Cm97idHcudAvr3IDjfKE6fveSF6Wgl40LGcXhor6ImOIXWunpHDTn19UUTvIz0M-Xi8w0kWuAjS0wL6BFPOsiSQDf4BeMAjqx5pnvg52aAu97Uwdqrtra3x-8BRlKVWIZmSGOPFBsowaIPu_3mS9Nmm_n3G00)
+
+{{% /section %}}
+
+---
+
+## Check your understanding
+
+- What is a model? What are the potential purposes of a model?
+- How can software be modelled?
+- What is UML?
+- In the context of UML, what are class diagrams? What do they model? How?
+- In the context of UML, what is the difference between aggregation and composition?
+- In the context of UML class diagrams, what are the possible relations among classes?
+- In the context of UML, what are sequence diagrams? What do they model? How?
+- In the context of UML, what are state diagrams? What do they model? How?
+- In the context of UML, what are activity diagrams? What do they model? How?
+- In the context of UML, what are use case diagrams? What do they model? How?
+- In the context of UML, what are deployment diagrams? What do they model? How?
+- In the context of UML, what are package diagrams? What do they model? How?
+- What is PlantUML? 
 
 ---
 

@@ -22,7 +22,7 @@ aliases = [
 0. [Preliminary notions for Software Development](preliminaries)
 0. [Decentralized version control (with git) and team organization](dvcs-basics)
 0. [Object oriented programming (in Python)](oop)
-0. [WIP] [Software Modelling with UML (and PlantUML)](modelling)
+0. [Software Modelling with UML (and PlantUML)](modelling)
 0. [QA, testing, TDD, reproducibility and replicability (examples in Python)](qa-tdd)
 0. [Build automation, packaging, and release (examples with Poetry)](build)
 0. [Versioning, Conventional Commit](versioning)

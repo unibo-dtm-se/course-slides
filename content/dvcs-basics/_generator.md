@@ -832,11 +832,11 @@ bin/
 3. Ensure that your username and email are set up correctly, either globally or locally
 
 4. Add the `.gitignore` and the `.gitattributes` files, and commit them
-  + consider using [gitignore.io](https://www.toptal.com/developers/gitignore/)
-  + consider using several commits
+    + consider using [gitignore.io](https://www.toptal.com/developers/gitignore/)
+    + consider using several commits
 
 5. Add the files from the `modular-calculator` repository to the stage and commit them
-  + consider using several commits
+    + consider using several commits
 
 > What criterion to decide which and how many files to include per commit?
 
@@ -1103,7 +1103,7 @@ When **in detached head**, Git allows to make **commits**, but they **are lost**
 ## How does Git support collaboration?
 
 <!-- ![Real-world Decentralized VCS](./dvcs-sink.svg) -->
-{{<image src="./dvcs-sink.svg" height="50">}}
+{{<image src="./dvcs-sink.svg" max-h="50vh">}}
 
 <br>
 
@@ -1124,12 +1124,13 @@ They *enrich* the base git model with services built around the tool:
 
 * **Forks**: copies of a repository associated to different users/organizations
 * **Pull requests** (or **Merge requests**): formal requests to *pull* updates from *forks*
-  * repositories do not allow pushes from everybody
-  * what if we want to contribute to a project we cannot push to?
-    * *fork* the repository (we *own* that copy)
-    * write the contribution and push to our *fork*
-    * ask the maintainers of the *original repository* to *pull from* our fork
-* **Issue tracking**
+    - repositories do not allow pushes from everybody
+    - what if we want to contribute to a project we cannot push to?
+        + *fork* the repository (we *own* that copy)
+        + write the contribution and push to our *fork*
+        + ask the maintainers of the *original repository* to *pull from* our fork
+* **Issue tracking**: a system to track bugs, features, and tasks
+* **Wiki**: a collaborative documentation system
 
 ---
 

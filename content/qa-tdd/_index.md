@@ -1520,4 +1520,49 @@ Non-exhaustive list:
 
 ---
 
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- In the context of SE, what is quality assurance?
+- When is software considered "correctly working"?
+- When is software considered "of good quality"?
+- In the context of software engineering, what is testing?
+- In the context of software testing, what is the difference between an automated and manual test?
+- In the context of software testing, what are the most common testing scopes?
+- What is the difference among unit, integration, and end-to-end testing?
+
+---
+
+## Check your understanding (pt. 2)
+
+- What is the problem in skipping unit testing and just focus on integration testing?
+- Why one may want to have automated tests in a software project?
+- What issues may arise in the long run when a software project is lacking automated testing?
+- Why is reproducibility important in testing? How to achieve it?
+- What is test code? How to separate it from the main code? Why?
+- What is test driven development (TDD)?
+- In what sense can software test act as a form of specification?
+- What is technical debt? How is it related to software testing?
+- How to deal with a project which was not following TDD since the very beginning?
+
+---
+
+## Check your understanding (pt. 3)
+
+- In the context of software testing, what is a regression?
+- What are test doubles and what problem do they address?
+- In the context of software testing, what is test coverage?
+- What are the common metrics for test coverage?
+- How to measure the test coverage of a Python project?
+- If a project has 100% test coverage and 100% success rate for tests, can we declare it bug free? 
+    + Can we safely say it satisfies all requirements?
+- Aside from testing, what is quality assurance about?
+- In the context of software engineering, what is static analysis?
+- What static analysis tool may you exploit when working on a Python project? What's their purpose?
+
+{{% /section %}}
+
+---
+
 {{% import path="reusable/back.md" %}}

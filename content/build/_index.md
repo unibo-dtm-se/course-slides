@@ -521,22 +521,33 @@ Let's first create a new Python environment, and then install the `unibo-dtm-se-
 
 - Installation may fail, but in this case there must be an issue in the package itself
 
-<!-- --- -->
+---
 
-<!-- ---
-
-# Lessons learned
+## Lessons learned
 
 * Building a piece of software is not just writing code
 * Software requires dependencies
 * Dependency management is difficult
 * All components of a runtime are part of the dependencies
-  * Including interpreters
+    - Including interpreters
 * Build Reproducibility is paramount
 * Automatic configuration is desirable
 * The Python build ecosystem is fragmented
-  * Poetry is a modern take on Python dependency management and packaging
-  * PyEnv can be used to let multiple Python versions live together -->
+    - Poetry is a modern take on Python dependency management and packaging
+    - PyEnv can be used to let multiple Python versions live together
+
+---
+
+## Check your understanding
+
+- What is the build life cycle of a software project?
+- In the context of Software Engineering, what is build automation?
+- What can you expect, in general, from a build automation tool?
+- In the context of build automation, what is dependency locking? Why is it necessary?
+- In a Python project, what would you use Poetry for?
+- Where would you release a Python project on Test PyPI? When on PyPI?
+- What is Test PyPI? What's its purpose?
+- What are the steps to release a Python project via Poetry?
 
 ---
 

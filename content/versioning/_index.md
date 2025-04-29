@@ -492,4 +492,119 @@ An implementation of Semantic release: <https://github.com/semantic-release/sema
 
 ---
 
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- In the context of SE, what is versioning?
+- At what levels can version occur?
+- What are the admissible scopes for software versioning?
+- In the context of software versioning, what is code naming? What's its purpose?
+- What are the versioning approaches you are aware of?
+- Provide an overview of date-based versioning: purpose, functioning, pros, and cons
+- Provide an overview of unary numbering (in the context of software versioning): purpose, functioning, pros, and cons
+- Provide an overview of semantic versioning: purpose, functioning, pros, and cons
+- How can one tie semantic versioning to DVCS commits?
+
+---
+
+## Check your understanding (pt. 2)
+
+- In the context of DVCS, what are conventional commits? What's their purpose?
+- In the context of conventional commits, what is a `breaking change`?
+- In the context of conventional commits, what is a `feat`?
+- In the context of conventional commits, what is a `fix`?
+- In the context of conventional commits, what is a `chore`?
+
+---
+
+## Check your understanding (pt. 3)
+
+- In the context of semantic versioning, what is the difference among a major, minor, or patch change?
+- What is the idea behind semantic release?
+- How are semantic versioning, conventional commits, and semantic release related?
+- Suppose that, in your Python project, you add one more public method to a class or module. 
+    + Is this a major, minor, or patch change?
+- Suppose that, in your Python project, you add one more private method to a class or module and you use it inside another public function of that class or module. 
+    + Is this a major, minor, or patch change?
+- Suppose that, in your Python project, you rename (all occurrences of) a public function. 
+    + Is this a major, minor, or patch change? 
+- Suppose that, in your Python project, you rename (all occurrences of) a private function. 
+    + Is this a major, minor, or patch change? 
+- Suppose that, in your Python project, you rename (all usages of) a public function's parameter name. 
+    + Is this a major, minor, or patch change? 
+- Suppose that, in your Python project, you rename (all usages of) a private function's parameter name. 
+    + Is this a major, minor, or patch change? 
+- Suppose that, in your Python project, you rename (all occurrences of) a public class. 
+    + Is this a major, minor, or patch change? 
+- Suppose that, in your Python project, you rename (all usages of) a public class's constructor's parameter name. 
+    + Is this a major, minor, or patch change? 
+
+---
+
+## Check your understanding (pt. 4)
+
+- Suppose that, in your Python project, there's function f which is slow. After some edits to its body, you manage to make it much faster. 
+    + Is this a major, minor, or patch change? 
+- Suppose that, in your Python project, you add one more public method to a class or module. You commit the changes using conventional commit. 
+    + What type would you use for the commit?
+- Suppose that, in your Python project, you add one more private method to a class or module and you use it inside another public function of that class or module. You commit the changes using conventional commit. 
+    + What type tag would you use for the commit?
+- Suppose that, in your Python project, you rename (all occurrences of) a public function. You commit the changes using conventional commit.
+    +  What type would you use for the commit? 
+- Suppose that, in your Python project, you rename (all occurrences of) a private function. You commit the changes using conventional commit. 
+    + What type would you use for the commit? 
+- Suppose that, in your Python project, you rename (all usages of) a public function's parameter name. You commit the changes using conventional commit. 
+    + What type would you use for the commit? 
+- Suppose that, in your Python project, you rename (all usages of) a private function's parameter name. You commit the changes using conventional commit. 
+    + What type would you use for the commit? 
+
+---
+
+## Check your understanding (pt. 5)
+
+- Suppose that, in your Python project, you rename (all occurrences of) a public class. You commit the changes using conventional commit. 
+    + What type would you use for the commit? 
+- Suppose that, in your Python project, you rename (all usages of) a public class's constructor's parameter name. You commit the changes using conventional commit. 
+    + What type would you use for the commit? 
+- Suppose that, in your Python project, there's function f which is slow. After some edits to its body, you manage to make it much faster. You commit the changes using conventional commit. 
+    + What type would you use for the commit? 
+- Suppose your Python project is currently at version `1.2.3`. You add one more public method to a class or module. 
+    + What should be the next version number if this change is going to be released immediately?
+- Suppose your Python project is currently at version `1.2.3`. You add one more private method to a class or module and you use it inside another public function of that class or module. 
+    + What should be the next version number if this change is going to be released immediately?
+- Suppose your Python project is currently at version `1.2.3`. You rename (all occurrences of) a public function. 
+    + What should be the next version number if this change is going to be released immediately?
+- Suppose your Python project is currently at version `1.2.3`. You rename (all occurrences of) a private function. 
+    + What should be the next version number if this change is going to be released immediately?
+- Suppose your Python project is currently at version `1.2.3`. You rename (all usages of) a public function's parameter name. 
+    + What should be the next version number if this change is going to be released immediately?
+- Suppose your Python project is currently at version `1.2.3`. You rename (all usages of) a private function's parameter name. 
+    + What should be the next version number if this change is going to be released immediately?
+
+---
+
+## Check your understanding (pt. 6)
+
+- Suppose your Python project is currently at version `1.2.3`. You rename (all occurrences of) a public class. 
+    + What should be the next version number if this change is going to be released immediately?
+- Suppose your Python project is currently at version `1.2.3`. You rename (all usages of) a public class's constructor's parameter name. 
+    + What should be the next version number if this change is going to be released immediately?
+- Suppose your Python project is currently at version `1.2.3`. There's function f which is slow. After some edits to its body, you manage to make it much faster. 
+    + What should be the next version number if this change is going to be released immediately?
+- Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `fix`, `fix`, `fix`. 
+    + Should you release now, what's the next version number?
+- Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `fix`, `feat`, `feat`.  
+    + Should you release now, what's the next version number?
+- Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `feat`, `feat`, `feat`.  
+    + Should you release now, what's the next version number?
+- Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `chore`, `feat!`, `fix`.  
+    + Should you release now, what's the next version number?
+- Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `fix`, `feat!`, `feat`.  
+    + Should you release now, what's the next version number?
+
+{{% /section %}}
+
+---
+
 {{% import path="reusable/back.md" %}}

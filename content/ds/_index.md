@@ -534,7 +534,7 @@ e.g. _request-response_, _publish-subscribe_, _auction_, _etc.
     * the graph may contain _cycles_, if the pattern allows for _repeated_ interactions, or _resets_
     * nodes may be represented in different colours/shapes depending on which _role_ sends/receives the message
 
-{{< image src="./user-agent-protocol.svg" width="65vw" link="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3" >}}
+{{< image src="./user-agent-protocol.svg" width="65vw" max-h="50vh" link="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3" >}}
 
 ### Hints
 
@@ -555,10 +555,10 @@ e.g. _request-response_, _publish-subscribe_, _auction_, _etc.
 
 {{% multicol %}}
 {{% col %}}
-{{< image src="./user-state-diagram.svg" width="40vw" link="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3" >}}
+{{< image src="./user-state-diagram.svg" width="100%" max-h="50vh" link="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3" >}}
 {{% /col %}}
 {{% col %}}
-{{< image src="./agent-state-diagram.svg" width="40vw" link="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3" >}}
+{{< image src="./agent-state-diagram.svg" width="100%" max-h="50vh" link="https://link.springer.com/chapter/10.1007/978-3-031-40878-6_3" >}}
 {{% /col %}}
 {{% /multicol %}}
 
@@ -594,7 +594,7 @@ The most common and basic pattern for communication between two components
 
 {{% multicol %}}
 {{% col %}}
-{{% plantuml %}}
+{{% plantuml max-h="70vh" %}}
 hide footbox
 participant Client
 participant Server
@@ -629,7 +629,7 @@ A simple pattern to spread information among multiple recipients
 
 {{% multicol %}}
 {{% col %}}
-{{% plantuml %}}
+{{% plantuml max-h="70vh" %}}
 hide footbox
 actor User
 participant Publisher
@@ -741,7 +741,7 @@ A simple protocol for _auctions_ and _negotiations_
 
 {{% multicol %}}
 {{% col %}}
-{{% plantuml %}}
+{{% plantuml max-h="70vh" %}}
 hide footbox
 participant Initiator
 participant Contractor1

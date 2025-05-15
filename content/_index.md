@@ -27,7 +27,6 @@ aliases = [
 0. [Build automation, packaging, and release (examples with Poetry)](build)
 0. [Versioning, Conventional Commit](versioning)
 0. [Overview on Distributed Systems Engineering](ds)
-0. [TODO] WebServices and RESTful APIs
 0. [Domain Driven Design](ddd)
 0. [Continuous integration (examples with GitHub Actions)](ci)
 0. [Licensing](https://unibo-spe.github.io/06-licenses/)
@@ -35,3 +34,4 @@ aliases = [
 ## Extras (if we have time)
 
 - [Introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)
+- [TODO] WebServices and RESTful APIs

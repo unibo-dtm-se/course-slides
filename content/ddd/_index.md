@@ -221,7 +221,18 @@ outputs = ["Reveal"]
 
 ## Example of context map
 
-![Context map](./context-map.jpg)
+{{% multicol %}}
+{{% col %}}
+Abstract
+
+![Abstract context map](./context-map.jpg)
+{{% /col %}}
+{{% col %}}
+Actual
+
+![Actual context map](./bounded-contexts.png)
+{{% /col %}}
+{{% /multicol %}}
 
 {{% /section %}}
 
@@ -328,7 +339,7 @@ outputs = ["Reveal"]
     - structures in .NET
     - _data classes_ in Kotlin, Scala, Python
     - records in Java
-- _Must_ implement `equals()` and `hashCode()` on JVM
+- _Must_ implement `__eq__()` and `__hash__()` on JVM
     + implementation must compare the objects' attributes
 
 ---
@@ -344,7 +355,7 @@ outputs = ["Reveal"]
     + modifiable properties
     + state-changing methods
 - May be implemented via _classes_ in most languages
-- Must implement `equals()` and `hashCode()` on JVM
+- Must implement `__eq__()` and `__hash__()` on JVM
     + implementation must compare (at least) the objects' identifiers
 
 ---
@@ -411,7 +422,7 @@ Customer *-r- CustomerID
 
 - May be better implemented as _classes_ in most programming languages
 
-- _Must_ implement `equals()` and `hashCode()` on JVM (as any other entity)
+- _Must_ implement `__eq__()` and `__hash__()` on JVM (as any other entity)
     + implementation may take _composing_ items into account
 
 - Components of an aggregate should _not_ hold **references** to components of _other_ aggregates
@@ -470,7 +481,7 @@ Customer *-r- CustomerID
 
 - Usually they require _no mutable_ field/property
 
-- No need to implement `equals()` and `hashCode()` on JVM
+- No need to implement `__eq__()` and `__hash__()` on JVM
 
 ---
 

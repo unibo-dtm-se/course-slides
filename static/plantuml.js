@@ -1712,6 +1712,9 @@ function encode6bit(b) {
     return '?';
 }
 
+const UML_SERVER = "https://teaching.lavbic.net";
+// const UML_SERVER = "http://www.plantuml.com";
+
 function plantumlImageFromServer(server, format, content) {
     encoded = unescape(encodeURIComponent(content));
     encoded = encode64(deflate(encoded, 9));
@@ -1719,7 +1722,7 @@ function plantumlImageFromServer(server, format, content) {
 }
 
 function plantumlImage(format, content) {
-    return plantumlImageFromServer("http://www.plantuml.com", format, content);
+    return plantumlImageFromServer(UML_SERVER, format, content);
 }
 
 function handlePlantumlFigure(element) {

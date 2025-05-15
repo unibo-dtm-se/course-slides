@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2025-05-08 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-05-15 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="disclaimer">Disclaimer</h2>
@@ -320,7 +320,15 @@
 </ol>
 </section><section>
 <h2 id="example-of-context-map">Example of context map</h2>
-<p><img src="./context-map.jpg" alt="Context map"></p>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><p>Abstract</p>
+<p><img src="./context-map.jpg" alt="Abstract context map"></p>
+</div>
+<div class="col "><p>Actual</p>
+<p><img src="./bounded-contexts.png" alt="Actual context map"></p>
+</div>
+</div>
+</div>
 
 </section>
 </section><section>
@@ -463,7 +471,7 @@
 <li>records in Java</li>
 </ul>
 </li>
-<li><em>Must</em> implement <code>equals()</code> and <code>hashCode()</code> on JVM
+<li><em>Must</em> implement <code>__eq__()</code> and <code>__hash__()</code> on JVM
 <ul>
 <li>implementation must compare the objects’ attributes</li>
 </ul>
@@ -486,7 +494,7 @@
 </ul>
 </li>
 <li>May be implemented via <em>classes</em> in most languages</li>
-<li>Must implement <code>equals()</code> and <code>hashCode()</code> on JVM
+<li>Must implement <code>__eq__()</code> and <code>__hash__()</code> on JVM
 <ul>
 <li>implementation must compare (at least) the objects’ identifiers</li>
 </ul>
@@ -494,7 +502,7 @@
 </ul>
 </section><section>
 <h2 id="entities-vs-value-objects-example">Entities vs. Value Objects (example)</h2>
-<figure id="plantuml-figure-1746690834564208500" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747298676544601393" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface Customer {
 + id: CustomerID <strong>{readonly}</strong>
 + name: str
@@ -518,7 +526,7 @@ TaxCode -d-|&gt; CustomerID</p>
 <p>Customer *-r- CustomerID</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1746690834564208500");
+    handlePlantumlFigureByID("plantuml-figure-1747298676544601393");
 </script>
 </section><section>
 <h2 id="aggregate-root">Aggregate Root</h2>
@@ -559,7 +567,7 @@ TaxCode -d-|&gt; CustomerID</p>
 <p>May be better implemented as <em>classes</em> in most programming languages</p>
 </li>
 <li>
-<p><em>Must</em> implement <code>equals()</code> and <code>hashCode()</code> on JVM (as any other entity)</p>
+<p><em>Must</em> implement <code>__eq__()</code> and <code>__hash__()</code> on JVM (as any other entity)</p>
 <ul>
 <li>implementation may take <em>composing</em> items into account</li>
 </ul>
@@ -632,12 +640,12 @@ TaxCode -d-|&gt; CustomerID</p>
 <p>Usually they require <em>no mutable</em> field/property</p>
 </li>
 <li>
-<p>No need to implement <code>equals()</code> and <code>hashCode()</code> on JVM</p>
+<p>No need to implement <code>__eq__()</code> and <code>__hash__()</code> on JVM</p>
 </li>
 </ul>
 </section><section>
 <h2 id="factories-example">Factories (example)</h2>
-<figure id="plantuml-figure-1746690834564977451" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747298676545008675" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface TaxCode</p>
 <p>interface VatNumber</p>
@@ -664,7 +672,7 @@ end note</li>
 CustomerFactory -u-&gt; Customer: creates</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1746690834564977451");
+    handlePlantumlFigureByID("plantuml-figure-1747298676545008675");
 </script>
 </section><section>
 <h2 id="repositories-definition">Repositories (definition)</h2>
@@ -731,7 +739,7 @@ CustomerFactory -u-&gt; Customer: creates</p>
 </ul>
 </section><section>
 <h2 id="repositories-example">Repositories (example)</h2>
-<figure id="plantuml-figure-1746690834565003620" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747298676545029434" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface Customer</p>
 <p>Customer “1” *-u- “1” CustomerID</p>
@@ -750,7 +758,7 @@ CustomerFactory -u-&gt; Customer: creates</p>
 CustomerRegistry –&gt; CustomerID: exploits</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1746690834565003620");
+    handlePlantumlFigureByID("plantuml-figure-1747298676545029434");
 </script>
 </section><section>
 <h2 id="services">Services</h2>
@@ -810,7 +818,7 @@ CustomerRegistry –&gt; CustomerID: exploits</p>
 </ul>
 </section><section>
 <h2 id="services-example">Services (example)</h2>
-<figure id="plantuml-figure-1746690834565046330" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747298676545055683" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
 + perform_order(order: Order)
 }</p>
@@ -840,7 +848,7 @@ note top of OrderManagementService: service</p>
 OrderID -d[hidden]- Customer</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1746690834565046330");
+    handlePlantumlFigureByID("plantuml-figure-1747298676545055683");
 </script>
 </section><section>
 <h2 id="domain-events-definition">Domain Events (definition)</h2>
@@ -913,7 +921,7 @@ OrderID -d[hidden]- Customer</p>
 </ul>
 </section><section>
 <h2 id="domain-events-example">Domain Events (example)</h2>
-<figure id="plantuml-figure-1746690834565073441" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747298676545093704" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
 + perform_order(order: Order)
 ..
@@ -939,7 +947,7 @@ note right of CustomerID: value object
 note right of OrderManagementService: service</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1746690834565073441");
+    handlePlantumlFigureByID("plantuml-figure-1747298676545093704");
 </script>
 
 </section>
@@ -1281,7 +1289,7 @@ This is helpful from several perspectives:</p>
 </li>
 </ul>
 
-<figure id="plantuml-figure-1746690834566824783" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747298676546774030" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     
 top to bottom direction
 
@@ -1310,7 +1318,7 @@ product -u-|&gt; mq
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1746690834566824783");
+    handlePlantumlFigureByID("plantuml-figure-1747298676546774030");
 </script>
 </section><section>
 <h1 id="advanced-aspects-of-ddd">Advanced aspects of DDD</h1>
@@ -1468,7 +1476,7 @@ product -u-|&gt; mq
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-05-08 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-05-15 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

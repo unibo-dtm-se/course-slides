@@ -1430,6 +1430,82 @@ e.g. [ACLs](https://en.wikipedia.org/wiki/Access-control_list), [RBAC](https://e
 
 {{% /section %}}
 
-----
+---
+
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- What is a distributed system? What are its essential characteristics?
+- In the context of distributed systems, what is scalability? Is that desirable? Why?
+- In the context of distributed systems, what is fault tolerance? Is that desirable? Why?
+- In the context of distributed systems, what is availability? Is that desirable? Why?
+- In the context of distributed systems, what is consistency? Is that desirable? Why?
+- In the context of distributed systems, what is latency? Is that desirable? Why?
+- In the context of distributed systems, what is geographical distribution? Is that desirable? Why?
+- In the context of distributed systems, what is resource sharing? Is that desirable? Why?
+- How do distributed systems help to handle big data?
+- In the context of distributed systems, what is parallelism? Is that desirable? Why?
+- In what way do distributed systems contribute to cost efficiency?
+- How do distributed systems foster collaboration among users?
+- Enumerate and describe the reasons why one may want to design and implement a software system as distributed
+
+---
+
+## Check your understanding (pt. 2)
+
+- Describe some real-world distributed system of your choice, focussing on
+    1. whether and how it deals with relevant features such as scalability, fault tolerance, etc., and
+    2. why it needs distribution in the first place
+- In the context of software engineering,
+    * how to understand whether a new system to be realised needs distribution or not?
+    * what are relevant aspects to be taken into account in the "design" phase of a distributed system?
+    * what are relevant aspects to be taken into account in the "implementation" phase of a distributed system?
+    * what are relevant aspects to be taken into account in the "verification" phase of a distributed system?
+    * what are relevant aspects to be taken into account in the "release" phase of a distributed system?
+    * what are relevant aspects to be taken into account in the "deployment" phase of a distributed system?
+    * what are relevant aspects to be taken into account in the "maintenance" phase of a distributed system?
+- In the context of distributed systems,
+    * what is the infrastructure?
+    * what are infrastructural components?
+    * what does it mean for a node to act as a client? What are clients necessary in a system?
+    * what does it mean for a node to act as a server? Why are servers often necessary in a system?
+    * what does it mean for a node to act as a proxy? Why would that be beneficial in a system?
+    * what does it mean for a node to act as a cache? Why would that be beneficial in a system?
+    * what does it mean for a node to act as a load balancer? What balancing strategies may it employ? Why would that be beneficial in a system?
+    * what does it mean for a node to act as a broker? What could a broker be useful for in a system?
+    * how could a broker exploit a queue?
+    * what is a message oriented middleware?
+    * what does it mean for a node to act as database?
+    * what does it mean for a node to act as master?
+    * what does it mean for a node to act as worker?
+
+---
+
+## Check your understanding (pt. 3)
+
+- In the context of distributed systems,
+    * what is an interaction pattern (a.k.a. protocol)? How to represent it?
+    * describe the request–response interaction pattern (a.k.a. protocol)
+    * describe the publish–subscribe interaction pattern (a.k.a. protocol)
+    * what is the difference among unicast, multicast, and broadcast?
+    * describe the contract-net protocol
+    * what is a software architecture? And what is an architectural style?
+    * describe the "layered architecture" architectural style
+    * describe the "three-tier architecture" architectural style
+    * describe the "hexagonal architecture" architectural style
+    * describe the "event-based architecture" architectural style
+    * describe the "shared dataspace architecture" architectural style
+    * what is redundancy? Why is it useful? How to achieve it and what implications does each solution come with?
+    * what is a failover mechanism? Why is it useful? How to achieve it and what implications does each solution come with?
+    * what is check-pointing? How is it related to rollbacking? Why are they useful? How to achieve them and what implications does each - solution come with?
+    * what is consensus? Why is it useful? How to achieve it and what implications does each solution come with?
+    * what is a heart-beat mechanism? Why is it useful? How to achieve it and what implications does each solution come with?
+    * what is authentication? How is it related to authorization? Why are they useful? How to achieve them and what implications does each - solution come with?
+    * what is data partitioning? Why is it useful? How to achieve it and what implications does each solution come with?
+
+{{% /section %}}
+
+---
 
 {{% import path="reusable/back.md" %}}

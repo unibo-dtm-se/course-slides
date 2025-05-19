@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2025-05-15 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-05-19 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 
@@ -761,7 +761,7 @@ These patterns define the <em>flow of messages</em>, <em>responsibilities</em> o
 <h3 id="requestresponse">Request—Response</h3>
 <p>The most common and basic pattern for communication between two components</p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1747299127475452634" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1747660095986309013" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 participant Client
 participant Server</p>
@@ -769,7 +769,7 @@ participant Server</p>
 Server -&gt; Client: Response</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747299127475452634");
+    handlePlantumlFigureByID("plantuml-figure-1747660095986309013");
 </script>
 </div>
 <div class="col "><ul>
@@ -795,7 +795,7 @@ Server -&gt; Client: Response</p>
 <h3 id="publishsubscribe">Publish—Subscribe</h3>
 <p>A simple pattern to spread information among multiple recipients</p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1747299127475757124" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1747660095986853429" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 actor User
 participant Publisher
@@ -818,7 +818,7 @@ Publisher -&gt; Subscriber2: notify Message
 deactivate Publisher</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747299127475757124");
+    handlePlantumlFigureByID("plantuml-figure-1747660095986853429");
 </script>
 </div>
 <div class="col "><ul>
@@ -854,7 +854,7 @@ deactivate Publisher</p>
 <li>this is commonly useful to <em>decouple</em> the <em>publisher</em> from the <em>subscribers</em></li>
 <li>most commonly, brokers <em>store</em> messages until they are <em>consumed</em></li>
 </ul>
-<figure id="plantuml-figure-1747299127476186387" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747660095987484887" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     <p>hide footbox
 actor User
 participant Publisher
@@ -886,7 +886,7 @@ Broker -&gt; Subscriber2: notify Message
 deactivate Broker</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747299127476186387");
+    handlePlantumlFigureByID("plantuml-figure-1747660095987484887");
 </script>
 </section><section>
 <h2 id="common-interaction-protocols-pt-2-2">Common Interaction Protocols (pt. 2)</h2>
@@ -907,7 +907,7 @@ deactivate Broker</p>
 <h3 id="contractnet-protocol">ContractNet Protocol</h3>
 <p>A simple protocol for <em>auctions</em> and <em>negotiations</em></p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1747299127476659543" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1747660095987702724" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 participant Initiator
 participant Contractor1
@@ -931,7 +931,7 @@ deactivate Contractor1
 deactivate Initiator</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747299127476659543");
+    handlePlantumlFigureByID("plantuml-figure-1747660095987702724");
 </script>
 </div>
 <div class="col "><ul>
@@ -1740,9 +1740,95 @@ e.g. <a href="https://en.wikipedia.org/wiki/Access-control_list">ACLs</a>, <a hr
 
 </section>
 </section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="check-your-understanding-pt-1">Check your understanding (pt. 1)</h2>
+<ul>
+<li>What is a distributed system? What are its essential characteristics?</li>
+<li>In the context of distributed systems, what is scalability? Is that desirable? Why?</li>
+<li>In the context of distributed systems, what is fault tolerance? Is that desirable? Why?</li>
+<li>In the context of distributed systems, what is availability? Is that desirable? Why?</li>
+<li>In the context of distributed systems, what is consistency? Is that desirable? Why?</li>
+<li>In the context of distributed systems, what is latency? Is that desirable? Why?</li>
+<li>In the context of distributed systems, what is geographical distribution? Is that desirable? Why?</li>
+<li>In the context of distributed systems, what is resource sharing? Is that desirable? Why?</li>
+<li>How do distributed systems help to handle big data?</li>
+<li>In the context of distributed systems, what is parallelism? Is that desirable? Why?</li>
+<li>In what way do distributed systems contribute to cost efficiency?</li>
+<li>How do distributed systems foster collaboration among users?</li>
+<li>Enumerate and describe the reasons why one may want to design and implement a software system as distributed</li>
+</ul>
+</section><section>
+<h2 id="check-your-understanding-pt-2">Check your understanding (pt. 2)</h2>
+<ul>
+<li>Describe some real-world distributed system of your choice, focussing on
+<ol>
+<li>whether and how it deals with relevant features such as scalability, fault tolerance, etc., and</li>
+<li>why it needs distribution in the first place</li>
+</ol>
+</li>
+<li>In the context of software engineering,
+<ul>
+<li>how to understand whether a new system to be realised needs distribution or not?</li>
+<li>what are relevant aspects to be taken into account in the “design” phase of a distributed system?</li>
+<li>what are relevant aspects to be taken into account in the “implementation” phase of a distributed system?</li>
+<li>what are relevant aspects to be taken into account in the “verification” phase of a distributed system?</li>
+<li>what are relevant aspects to be taken into account in the “release” phase of a distributed system?</li>
+<li>what are relevant aspects to be taken into account in the “deployment” phase of a distributed system?</li>
+<li>what are relevant aspects to be taken into account in the “maintenance” phase of a distributed system?</li>
+</ul>
+</li>
+<li>In the context of distributed systems,
+<ul>
+<li>what is the infrastructure?</li>
+<li>what are infrastructural components?</li>
+<li>what does it mean for a node to act as a client? What are clients necessary in a system?</li>
+<li>what does it mean for a node to act as a server? Why are servers often necessary in a system?</li>
+<li>what does it mean for a node to act as a proxy? Why would that be beneficial in a system?</li>
+<li>what does it mean for a node to act as a cache? Why would that be beneficial in a system?</li>
+<li>what does it mean for a node to act as a load balancer? What balancing strategies may it employ? Why would that be beneficial in a system?</li>
+<li>what does it mean for a node to act as a broker? What could a broker be useful for in a system?</li>
+<li>how could a broker exploit a queue?</li>
+<li>what is a message oriented middleware?</li>
+<li>what does it mean for a node to act as database?</li>
+<li>what does it mean for a node to act as master?</li>
+<li>what does it mean for a node to act as worker?</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="check-your-understanding-pt-3">Check your understanding (pt. 3)</h2>
+<ul>
+<li>In the context of distributed systems,
+<ul>
+<li>what is an interaction pattern (a.k.a. protocol)? How to represent it?</li>
+<li>describe the request–response interaction pattern (a.k.a. protocol)</li>
+<li>describe the publish–subscribe interaction pattern (a.k.a. protocol)</li>
+<li>what is the difference among unicast, multicast, and broadcast?</li>
+<li>describe the contract-net protocol</li>
+<li>what is a software architecture? And what is an architectural style?</li>
+<li>describe the “layered architecture” architectural style</li>
+<li>describe the “three-tier architecture” architectural style</li>
+<li>describe the “hexagonal architecture” architectural style</li>
+<li>describe the “event-based architecture” architectural style</li>
+<li>describe the “shared dataspace architecture” architectural style</li>
+<li>what is redundancy? Why is it useful? How to achieve it and what implications does each solution come with?</li>
+<li>what is a failover mechanism? Why is it useful? How to achieve it and what implications does each solution come with?</li>
+<li>what is check-pointing? How is it related to rollbacking? Why are they useful? How to achieve them and what implications does each - solution come with?</li>
+<li>what is consensus? Why is it useful? How to achieve it and what implications does each solution come with?</li>
+<li>what is a heart-beat mechanism? Why is it useful? How to achieve it and what implications does each solution come with?</li>
+<li>what is authentication? How is it related to authorization? Why are they useful? How to achieve them and what implications does each - solution come with?</li>
+<li>what is data partitioning? Why is it useful? How to achieve it and what implications does each solution come with?</li>
+</ul>
+</li>
+</ul>
+
+</section>
+</section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-05-15 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-05-19 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

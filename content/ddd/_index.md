@@ -123,7 +123,7 @@ outputs = ["Reveal"]
 
 {{% section %}}
 
-## Overview of main notions 
+## Overview of main notions
 
 - __Domain__: the reference area of knowledge
 
@@ -152,7 +152,7 @@ outputs = ["Reveal"]
 
 - e.g. departments, divisions, complex numbers, etc.
 
---- 
+---
 
 ## Domain _vs._ Context
 
@@ -198,13 +198,13 @@ outputs = ["Reveal"]
 
 3. Identify the actual meaning of __relevant words__ from the domain, and track them into a __glossary__
     - possibly, by interacting with experts
-    
+
     - _without assuming you already know the meaning of words_
         + i.e. do __not__ rely on (your) __common sense__
 
     - keep in mind that the meaning of words may vary among contexts
         + __homonyms__: similar names, different meanings
-        + __synonyms__: different names, similar meanings 
+        + __synonyms__: different names, similar meanings
 
 4. Adhere to the language, use it, make it yours
     - especially when talking about the domain / model / software
@@ -294,7 +294,7 @@ Actual
 
 - __Factory__: objects creating other objects
 
---- 
+---
 
 ## Building blocks (concept)
 
@@ -335,7 +335,7 @@ Actual
 - Must be _stateless_ $\Rightarrow$ better to use _immutable_ design
     + read-only properties
     + lack of state-changing methods
-- May be implemented as 
+- May be implemented as
     - structures in .NET
     - _data classes_ in Kotlin, Scala, Python
     - records in Java
@@ -519,7 +519,7 @@ CustomerFactory -r-> VatNumber: creates
 CustomerFactory -u-> Customer: creates
 {{< /plantuml >}}
 
---- 
+---
 
 ## Repositories (definition)
 
@@ -533,7 +533,7 @@ CustomerFactory -u-> Customer: creates
 
 ### Purpose
 
-- Hiding (i.e. be backed by) some _database technology_ 
+- Hiding (i.e. be backed by) some _database technology_
 - Possibly realising some sort of [object-relational mapping (ORM)](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
 - _Storing_ / _retrieving_ aggregate roots as _wholes_
 - Supporting _CRUD_ operations on aggregate roots
@@ -542,30 +542,30 @@ CustomerFactory -u-> Customer: creates
 ### Remarks
 
 - They may exploit _factories_ for turning retrieved data into objects
-- If properly engineered, _avoids lock-in_ effect for database technologies 
+- If properly engineered, _avoids lock-in_ effect for database technologies
 - Design & implementation may require thinking about:
-    - the architecture, 
-    - the infrastructure, 
-    - the expected load, 
+    - the architecture,
+    - the infrastructure,
+    - the expected load,
     - etc.
 
 ---
 
 ## Repositories (constraints)
 
-- They are usually _identity-less_, _stateful_, and _composed_ objects 
+- They are usually _identity-less_, _stateful_, and _composed_ objects
     + state may consist of the _stored objects_
     + state may consist of _DB connections_
 
 - May be implemented as _classes_ in most OOP languages
 
 - Provide methods to
-    + _add_, _remove_, _update_ aggregate root entities 
+    + _add_, _remove_, _update_ aggregate root entities
     + _select_ and return one or more entities, possibly in a _lazy_ way
-        * this should return `Iterable`, `Collection`, or `Stream` on JVM 
+        * this should return `Iterable`, `Collection`, or `Stream` on JVM
 
 - _Non-trivial_ implementations should take care of
-    + enforcing _consistency_, in spite of _concurrent_ access 
+    + enforcing _consistency_, in spite of _concurrent_ access
     + support complex _transactions_
 
 ---
@@ -573,7 +573,7 @@ CustomerFactory -u-> Customer: creates
 ## Repositories (example)
 
 {{< plantuml height="70vh" >}}
-interface CustomerID 
+interface CustomerID
 
 interface Customer
 
@@ -599,13 +599,13 @@ CustomerRegistry --> CustomerID: exploits
 
 ## Services
 
-> _Functional_ objects encapsulating the _business logic_ of the software 
+> _Functional_ objects encapsulating the _business logic_ of the software
 > <br> e.g. operations spanning through _several_ entities, objects, aggregates, etc.
 
 ### Purpose
 
 - Reifying _control-related_ aspects of the software
-- _Wiring_ aggregates, entities, and value objects _together_ 
+- _Wiring_ aggregates, entities, and value objects _together_
 - Exposing _coarse-grained functionalities_ to the users
 - Providing a _façade_ for the domain
 - Make the business logic evolvable, interchangeable, replaceable
@@ -620,24 +620,24 @@ CustomerRegistry --> CustomerID: exploits
 
 ## Services (constraints)
 
-- They are usually _identity-less_, _stateless_ objects 
+- They are usually _identity-less_, _stateless_ objects
 
 - May be implemented as classes in OOP languages
     + or bare _functions_ in functional languages
 
-- Commonly provide _procedures_ to do business-related stuff 
+- Commonly provide _procedures_ to do business-related stuff
     + e.g. a particular operation...
-        * ... concerning some particular aggregate root 
+        * ... concerning some particular aggregate root
         * ... which does not support it directly through its methods
         * ... because the operation is use-case specific
     + e.g. proxying an external service
     + e.g. a complex operation involving several aggregates, repositories, factories, etc.
 
 - Non-trivial implementations should take care of
-    + supporting _concurrent access_ to the service’s facilities 
+    + supporting _concurrent access_ to the service’s facilities
     + exposing _domain events_ to the external world
 
---- 
+---
 
 ## Services (example)
 
@@ -677,7 +677,7 @@ note right of Customer: entity
 note top of OrderManagementService: service
 
 OrderID -u[hidden]- Product
-OrderID -d[hidden]- Customer 
+OrderID -d[hidden]- Customer
 
 {{< /plantuml >}}
 
@@ -685,7 +685,7 @@ OrderID -d[hidden]- Customer
 
 ## Domain Events (definition)
 
-> A value-like object capturing some domain-related _event_ 
+> A value-like object capturing some domain-related _event_
 > <br> (i.e., an observable _variation_ in the domain, which is _relevant_ to the software)
 
 - actually, only the event _notification_/description is reified to a type
@@ -702,9 +702,9 @@ OrderID -d[hidden]- Customer
 
 ### Remarks
 
-- Strong relation with the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) (i.e. publish-subscribe) 
+- Strong relation with the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) (i.e. publish-subscribe)
 
-- Strong relation with the _event sourcing_ approach (described later) 
+- Strong relation with the _event sourcing_ approach (described later)
 
 - Strong relation with the _CQRS pattern_ (described later)
 
@@ -771,7 +771,7 @@ note right of OrderManagementService: service
 
 {{% /section %}}
 
---- 
+---
 
 # DDD Patterns
 
@@ -863,7 +863,7 @@ note right of OrderManagementService: service
     + each context should be as independent as possible
     + each change affect as few contexts as possible
 
---- 
+---
 
 ## Model integrity patterns (background, pt. 1)
 
@@ -872,7 +872,7 @@ note right of OrderManagementService: service
 - Context maps highlight relations among contexts
     + yet, _not_ __all relations are equal__, nor symmetric
 
---- 
+---
 
 ## Model integrity patterns (background, pt. 2)
 
@@ -916,9 +916,9 @@ __Integration__ among _contexts_ $\leftrightarrow$ __interaction__ among _teams_
 
 ![Customer--supplier concept](./customer-supplier.jpg)
 
-- Best when: 
+- Best when:
     + multiple teams
-    + __mutual trust__ 
+    + __mutual trust__
     + good communication
 
 - Key idea:
@@ -936,7 +936,7 @@ __Integration__ among _contexts_ $\leftrightarrow$ __interaction__ among _teams_
 
 ![Conformist concept](./conformist.jpg)
 
-- Best when: 
+- Best when:
     + multiple teams
     + poor communication / different pace
     + some trust
@@ -951,9 +951,9 @@ __Integration__ among _contexts_ $\leftrightarrow$ __interaction__ among _teams_
 
 ![Anti-corruption layer concept](./anti-corruption-layer.jpg)
 
-- Best when: 
+- Best when:
     + multiple teams
-    + poor communication 
+    + poor communication
     + poor trust
 
  - If upstream cannot be trusted, and interaction is pointless...
@@ -964,7 +964,7 @@ __Integration__ among _contexts_ $\leftrightarrow$ __interaction__ among _teams_
 - The upstream's model is then reverse engineered & __adapted__
     + e.g. often, repository types are anti-corruption layers for DB technologies
 
---- 
+---
 
 # Layered Architecture
 
@@ -1035,7 +1035,7 @@ component "third-party serialization library" as gson
 component "third-party DB client library" as db
 component ":storage" as storage
 component ":web-api" as server
-component ":message-queue" as mq 
+component ":message-queue" as mq
 component ":command-line" as cli
 component product
 
@@ -1046,10 +1046,10 @@ presentation <|-- mq
 application <|-- storage
 presentation -r-|> gson
 presentation <|-- cli
-db <|-l- storage  
+db <|-l- storage
 product -u-|> server
 product -u-|> storage
-product -u-|> mq    
+product -u-|> mq
 {{< /plantuml >}}
 
 ---
@@ -1097,7 +1097,7 @@ product -u-|> mq
 - A lot of data is generated and must be stored, which costs _space_
 - Reconstructing the (current) state costs _time_
 
---- 
+---
 
 ## Command--Query Responsibility Segregation (__CQRS__)
 
@@ -1167,6 +1167,48 @@ Whenever users are willing to _inspect/observe the system_ at time $t$:
     + __pull__: commands are reified upon reading queries
     + __push__: commands are reified in background, periodically
 
-----
+---
+
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- In the context of domain driven design,
+    * what are: the problem, the model, and the solution?
+    * what is the domain? What are the contexts?
+    * what is the ubiquitous language?
+    * what is a context map?
+    * when should a concept be modelled as an entity? When as a value object?
+    * what is the "aggregate-root" building block about?
+    * when should a concept be modelled as a domain event?
+    * when should a concept be modelled as a repository?
+    * what is the "service" building block about?
+    * what is the "factory" building block about?
+    * how to translate an entity concept into an OOP class?
+    * how to translate a value object concept into an OOP class?
+    * how to translate a domain event concept into an OOP class?
+    * how to translate a repository concept into an OOP class?
+    * how to translate a service concept into an OOP class?
+    * how to translate a factory concept into an OOP class?
+
+- Invent a domain of choice, and a few relevant concepts in it to be modelled via the domain driven design approach. The model should include (at least) an entity, a value object, a repository, a domain event, a service. Factories are welcome too. Identify aggregate roots if any. Provide a textual description of the domain concepts, and a UML chart of the corresponding classes
+
+---
+
+## Check your understanding (pt. 2)
+
+- In the context of domain driven design,
+    + what are model integrity patterns?
+    + what is the purpose of the "shared kernel" pattern? How does it work?
+    + what is the purpose of the "customer–supplier" pattern? How does it work?
+    + what is the purpose of the "comformist" pattern? How does it work?
+    + what is the purpose of the "anti-corruption layer" pattern? How does it work?
+    + what is event sourcing?
+    + what is the "Command–Query Responsibility Segregation" pattern about?
+- How are domain driven design and the "hexagonal architecture" related?
+
+{{% /section %}}
+
+---
 
 {{% import path="reusable/back.md" %}}

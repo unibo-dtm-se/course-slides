@@ -502,7 +502,7 @@
 </ul>
 </section><section>
 <h2 id="entities-vs-value-objects-example">Entities vs. Value Objects (example)</h2>
-<figure id="plantuml-figure-1747660095968968839" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747663784145589845" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface Customer {
 + id: CustomerID <strong>{readonly}</strong>
 + name: str
@@ -526,7 +526,7 @@ TaxCode -d-|&gt; CustomerID</p>
 <p>Customer *-r- CustomerID</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747660095968968839");
+    handlePlantumlFigureByID("plantuml-figure-1747663784145589845");
 </script>
 </section><section>
 <h2 id="aggregate-root">Aggregate Root</h2>
@@ -645,7 +645,7 @@ TaxCode -d-|&gt; CustomerID</p>
 </ul>
 </section><section>
 <h2 id="factories-example">Factories (example)</h2>
-<figure id="plantuml-figure-1747660095969399062" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747663784145999852" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface TaxCode</p>
 <p>interface VatNumber</p>
@@ -672,7 +672,7 @@ end note</li>
 CustomerFactory -u-&gt; Customer: creates</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747660095969399062");
+    handlePlantumlFigureByID("plantuml-figure-1747663784145999852");
 </script>
 </section><section>
 <h2 id="repositories-definition">Repositories (definition)</h2>
@@ -739,7 +739,7 @@ CustomerFactory -u-&gt; Customer: creates</p>
 </ul>
 </section><section>
 <h2 id="repositories-example">Repositories (example)</h2>
-<figure id="plantuml-figure-1747660095969422155" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747663784146020631" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface Customer</p>
 <p>Customer “1” *-u- “1” CustomerID</p>
@@ -758,7 +758,7 @@ CustomerFactory -u-&gt; Customer: creates</p>
 CustomerRegistry –&gt; CustomerID: exploits</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747660095969422155");
+    handlePlantumlFigureByID("plantuml-figure-1747663784146020631");
 </script>
 </section><section>
 <h2 id="services">Services</h2>
@@ -818,7 +818,7 @@ CustomerRegistry –&gt; CustomerID: exploits</p>
 </ul>
 </section><section>
 <h2 id="services-example">Services (example)</h2>
-<figure id="plantuml-figure-1747660095969453754" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747663784146044816" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
 + perform_order(order: Order)
 }</p>
@@ -848,7 +848,7 @@ note top of OrderManagementService: service</p>
 OrderID -d[hidden]- Customer</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747660095969453754");
+    handlePlantumlFigureByID("plantuml-figure-1747663784146044816");
 </script>
 </section><section>
 <h2 id="domain-events-definition">Domain Events (definition)</h2>
@@ -921,7 +921,7 @@ OrderID -d[hidden]- Customer</p>
 </ul>
 </section><section>
 <h2 id="domain-events-example">Domain Events (example)</h2>
-<figure id="plantuml-figure-1747660095969477378" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747663784146080092" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
 + perform_order(order: Order)
 ..
@@ -947,7 +947,7 @@ note right of CustomerID: value object
 note right of OrderManagementService: service</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747660095969477378");
+    handlePlantumlFigureByID("plantuml-figure-1747663784146080092");
 </script>
 
 </section>
@@ -1289,7 +1289,7 @@ This is helpful from several perspectives:</p>
 </li>
 </ul>
 
-<figure id="plantuml-figure-1747660095974820010" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1747663784155493976" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     
 top to bottom direction
 
@@ -1300,7 +1300,7 @@ component "third-party serialization library" as gson
 component "third-party DB client library" as db
 component ":storage" as storage
 component ":web-api" as server
-component ":message-queue" as mq 
+component ":message-queue" as mq
 component ":command-line" as cli
 component product
 
@@ -1311,14 +1311,14 @@ presentation &lt;|-- mq
 application &lt;|-- storage
 presentation -r-|&gt; gson
 presentation &lt;|-- cli
-db &lt;|-l- storage  
+db &lt;|-l- storage
 product -u-|&gt; server
 product -u-|&gt; storage
-product -u-|&gt; mq    
+product -u-|&gt; mq
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1747660095974820010");
+    handlePlantumlFigureByID("plantuml-figure-1747663784155493976");
 </script>
 </section><section>
 <h1 id="advanced-aspects-of-ddd">Advanced aspects of DDD</h1>
@@ -1473,6 +1473,55 @@ product -u-|&gt; mq
 </ul>
 </li>
 </ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="check-your-understanding-pt-1">Check your understanding (pt. 1)</h2>
+<ul>
+<li>
+<p>In the context of domain driven design,</p>
+<ul>
+<li>what are: the problem, the model, and the solution?</li>
+<li>what is the domain? What are the contexts?</li>
+<li>what is the ubiquitous language?</li>
+<li>what is a context map?</li>
+<li>when should a concept be modelled as an entity? When as a value object?</li>
+<li>what is the “aggregate-root” building block about?</li>
+<li>when should a concept be modelled as a domain event?</li>
+<li>when should a concept be modelled as a repository?</li>
+<li>what is the “service” building block about?</li>
+<li>what is the “factory” building block about?</li>
+<li>how to translate an entity concept into an OOP class?</li>
+<li>how to translate a value object concept into an OOP class?</li>
+<li>how to translate a domain event concept into an OOP class?</li>
+<li>how to translate a repository concept into an OOP class?</li>
+<li>how to translate a service concept into an OOP class?</li>
+<li>how to translate a factory concept into an OOP class?</li>
+</ul>
+</li>
+<li>
+<p>Invent a domain of choice, and a few relevant concepts in it to be modelled via the domain driven design approach. The model should include (at least) an entity, a value object, a repository, a domain event, a service. Factories are welcome too. Identify aggregate roots if any. Provide a textual description of the domain concepts, and a UML chart of the corresponding classes</p>
+</li>
+</ul>
+</section><section>
+<h2 id="check-your-understanding-pt-2">Check your understanding (pt. 2)</h2>
+<ul>
+<li>In the context of domain driven design,
+<ul>
+<li>what are model integrity patterns?</li>
+<li>what is the purpose of the “shared kernel” pattern? How does it work?</li>
+<li>what is the purpose of the “customer–supplier” pattern? How does it work?</li>
+<li>what is the purpose of the “comformist” pattern? How does it work?</li>
+<li>what is the purpose of the “anti-corruption layer” pattern? How does it work?</li>
+<li>what is event sourcing?</li>
+<li>what is the “Command–Query Responsibility Segregation” pattern about?</li>
+</ul>
+</li>
+<li>How are domain driven design and the “hexagonal architecture” related?</li>
+</ul>
+
+</section>
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>

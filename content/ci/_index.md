@@ -1,4 +1,4 @@
- 
+
 +++
 
 title = "Continuous Integration"
@@ -130,7 +130,7 @@ Naming and organization is variable across platforms, but *in general*:
 * Every pipeline is composed of a **sequence** of **operations**
 * Every **operation** could be composed of _sequential_ or _parallel_ **sub-operations**
 * How many hierarchical levels are available depends on the specific platform
-  * GitHub Actions: *workflow* $\Rightarrow$ *job* $\Rightarrow$ *step* 
+  * GitHub Actions: *workflow* $\Rightarrow$ *job* $\Rightarrow$ *step*
   * Travis CI: *build* $\Rightarrow$ *stage* $\Rightarrow$ *job*  $\Rightarrow$ *phase*
 * Execution happens in a **fresh system** (virtual machine or container)
   * Often containers inside virtual machines
@@ -194,7 +194,7 @@ Configuration can grow complex, and is usually stored in a YAML file
 
 ## GitHub Actions: Configuration
 
-- Workflows are configured in [YAML files]() located in the _default branch_ of the repository 
+- Workflows are configured in [YAML files]() located in the _default branch_ of the repository
   + in the `.github/workflows/` folder.
 
 - One configuration file $\Rightarrow$ one workflow
@@ -206,7 +206,7 @@ workflows may need to get manually activated in the *Actions* tab of the GitHub 
 
 ## GitHub Actions: Runners
 
-- Executors of GitHub actions are called *runners* 
+- Executors of GitHub actions are called *runners*
   + virtual machines (hosted by GitHub)
     * with the GitHub Actions runner application installed.
 
@@ -295,7 +295,7 @@ jobs:
 
       - name: Install poetry
         run: pip install poetry
-      
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -334,7 +334,7 @@ jobs:
         shell: bash
         run: |
           git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"  
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
           git add pyproject.toml
           git commit -m "chore(release): v.$(poetry version --short) [skip ci]"
 
@@ -412,7 +412,34 @@ The solution is the adoption of a **build matrix**
 
 ## Build matrix in GHA
 
-{{< github repo="Tutorial-GitHub-Actions-Minimal" path=".github/workflows/workflow-matrix.yml" from=19 >}}
+```yaml
+jobs:
+  Build:
+    strategy:
+      matrix:
+        os: [windows, macos, ubuntu]
+        jvm_version: [8, 11, 15, 16] # Arbitrarily-made and arbitrarily-valued variables
+        ruby_version: [2.7, 3.0]
+        python_version: [3.7, 3.9.12]
+    runs-on: ${{ matrix.os }}-latest ## The string is computed interpolating a variable value
+    steps:
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: ${{ matrix.jvm_version }} # "${{ }}" contents are interpreted by the github actions runner
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python_version }}
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby_version }}
+      - shell: bash
+        run: java -version
+      - shell: bash
+        run: ruby --version
+      - shell: bash
+        run: python --version
+```
 
 ---
 
@@ -528,7 +555,7 @@ here is a possible workflow for **automatic** dependency updates:
 
 1. *Check* if there are new updates
 2. *Apply* the update in a new branch
-3. *Open* a pull request 
+3. *Open* a pull request
 4. *Verify* if changes break anything
     * If they do, manual intervention is required
 5. *Merge*

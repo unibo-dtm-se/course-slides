@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2025-05-21 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-05-22 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h1 id="continuous-integration-1">Continuous Integration</h1>
@@ -46,7 +46,70 @@
 <li>Now widespread in the larger DevOps community</li>
 </ul>
 </section><section>
-<h1 id="the-integration-hell">The Integration Hell</h1>
+<!-- ## Microreleases and protoduction
+
+* High frequency integration may lead to high frequency releases
+    * Possibly, *one per commit*
+    * Of course, *versioning* must be appropriate...
+
+Traditionally, **protoduction** is jargon for a *prototype that ends up in production*
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <img src="protoduction.jpg" onerror="this.onerror=null; this.src='../../assets/protoduction.jpg'" width=90% />
+      <td/>
+      <td>
+
+* Traditionally used with a *negative* meaning
+    * It implied software
+        * *unfinished*,
+        * *unpolished*,
+        * *badly designed*
+    * Very common, unfortunately
+* This is different in a continuously integrated environment
+    * *Incrementality* is fostered
+    * Partial features are *up to date* with the mainline
+
+      <td/>
+    </tr>
+  </tbody> 
+</table> -->
+<h2 id="what-is-integration-in-the-first-place">What is integration in the first place?</h2>
+<ol>
+<li>
+<p>Not just simply <strong>merging</strong> code from different <em>branches</em>/developers…</p>
+</li>
+<li>
+<p>… but actually also <strong>building</strong> the software, with all its <em>dependencies</em>…</p>
+<ul>
+<li>restoring dependencies</li>
+<li>compiling</li>
+<li>linking</li>
+<li>packaging</li>
+</ul>
+</li>
+<li>
+<p>… and <strong>testing</strong> the software</p>
+<ul>
+<li>all sorts of <em>automated tests</em>: unit, integration, system, etc.</li>
+<li>possibly, also <em>deployment</em> and <em>release</em> procedures</li>
+</ul>
+</li>
+<li>
+<p>for the sake of <em>checking</em> that the software as a whole is still <em>working</em> despite the changes since the last release</p>
+</li>
+<li>
+<p>possibly, doing further <strong>adjustments</strong> to the software <em>code</em> if necessary</p>
+<ul>
+<li>e.g., if the component is <em>not working</em> any more, or if the <em>tests are failing</em>, etc.</li>
+<li>here code may also include <em>configuration</em> files or <em>build</em>, <em>test</em>, or <em>deployment</em> scripts</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h1 id="the-integration-hell">The integration hell</h1>
 <ul>
 <li>Traditional software development takes several months for <em>“integrating”</em> a couple of years of development</li>
 <li>The longer there is no integrated project, the higher the <strong>risk</strong></li>
@@ -55,67 +118,73 @@
 $\Rightarrow$
 <img src="integration-continuous.png" onerror="this.onerror=null; this.src='../../assets/integration-continuous.png'" width="40%">
 </section><section>
-<h2 id="microreleases-and-protoduction">Microreleases and protoduction</h2>
-<ul>
-<li>High frequency integration may lead to high frequency releases
-<ul>
-<li>Possibly, <em>one per commit</em></li>
-<li>Of course, <em>versioning</em> must be appropriate…</li>
-</ul>
-</li>
-</ul>
-<p>Traditionally, <strong>protoduction</strong> is jargon for a <em>prototype that ends up in production</em></p>
-<table>
-  <tbody>
-    <tr>
-      <td>
-        <img src="protoduction.jpg" onerror="this.onerror=null; this.src='../../assets/protoduction.jpg'" width="90%">
-      </td><td>
-      </td><td>
-<ul>
-<li>Traditionally used with a <em>negative</em> meaning
-<ul>
-<li>It implied software
-<ul>
-<li><em>unfinished</em>,</li>
-<li><em>unpolished</em>,</li>
-<li><em>badly designed</em></li>
-</ul>
-</li>
-<li>Very common, unfortunately</li>
-</ul>
-</li>
-<li>This is different in a continuously integrated environment
-<ul>
+<h2 id="how-to-make-the-integration-_continuous_">How to make the integration <em>continuous</em>?</h2>
+<ol>
 <li>
-<p><em>Incrementality</em> is fostered</p>
+<p><strong>Repeat</strong> the integration process as <em>frequently as possible</em></p>
+<ul>
+<li>ideally, as frequently as <em>every commit</em>, in practice, as frequently as <strong>every push</strong> to GitHub</li>
+</ul>
 </li>
 <li>
-<p>Partial features are <em>up to date</em> with the mainline</p>
-</li></ul></li></ul></td><td>
-
-
-  </td></tr>
-</tbody>
-
-
-</table>
+<p>This implies running <em>build</em>, <em>testing</em>, and <em>deployment</em> processes <strong>very frequently</strong> as well</p>
+<ul>
+<li>which is only possible if the entire process is <strong>automated</strong>
+<ul>
+<li>which is only possible if _<em>automatic tests</em> are available, as well as <em>build automation</em> scripts, and <em>automatic release/deployment</em> scripts</li>
+</ul>
+</li>
+<li>of course, retrospective adjustments are <em>hard to automate</em>, and should be done <em>manually</em></li>
+</ul>
+</li>
+<li>
+<p>Do not rely on the assumption that developers will <em>always</em> <strong>remember</strong> to run these steps consistently before pushing</p>
+<ul>
+<li>they will not, and they will forget to do it at some point</li>
+<li>so we also need to <em>automate</em> the <strong>triggerig</strong> of the <em>build</em>, <em>testing</em>, and <em>deployment</em> processes</li>
+</ul>
+</li>
+<li>
+<p>Once the entire process is automated, there are <strong>further benefits</strong>:</p>
+<ul>
+<li>integration <em>issues</em> can be <em>spotted ASAP</em></li>
+<li>the process can be repeated on <em>different platforms</em> (e.g. different OSs, and different versions of Python)
+<ul>
+<li>which is far more than what a developer can do on their own</li>
+</ul>
+</li>
+<li>emails and notifications can be sent upon <em>failures</em> of the process</li>
+</ul>
+</li>
+</ol>
 </section><section>
-<h2 id="intensive-operations-should-be-elsewhere">Intensive operations should be elsewhere</h2>
+<h2 id="continous-integration-concept">Continous integration concept</h2>
 <ul>
-<li>The build process should be <em>rich</em> and <em>fast</em></li>
-<li>Operations requiring a long time should be <em>automated</em>
+<li>The build process should be <em>rich</em> (comprehensive), <em>fast</em>, and <strong>automated</strong></li>
+<li>And run on <em>another machine</em> (or VM) than the developer’s one
 <ul>
-<li>And run somewhere else than devs’ PCs</li>
+<li>this is to avoid the developer from being <em>unable to work</em> while the build is running</li>
+<li>but also to ensure that the software runs <em>outside</em> from the <em>developer’s environment</em>
+<ul>
+<li>which increases the chances that the software will run on <em>other</em> machines as well</li>
+</ul>
+</li>
+<li>to allow for testing the software onto many, <em>controlled environments</em>
+<ul>
+<li>which in turns allows for giving <em>compatibility guarantees</em> to the customers/users</li>
 </ul>
 </li>
 </ul>
-<p>
-<img src="compiling.png" onerror="this.onerror=null; this.src='../../assets/compiling.png'" height="100%">
-</p>
-</section><section>
-<h2 id="continuous-integration-concept">Continuous integration concept</h2>
-<p><img src="./concept.png" alt=""></p>
+</li>
+</ul>
+
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><img src="compiling.png" onerror="this.onerror=null; this.src='../../assets/compiling.png'" height="100%">
+</div>
+<div class="col "><img src="./concept2.png" alt="Continuous integration concept" style="width: 100%; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</div>
+</div>
+</div>
 </section><section>
 <h2 id="continuous-integration-software">Continuous integration software</h2>
 <h3 id="software-that-promotes-ci-practices-should">Software that promotes CI practices should:</h3>
@@ -150,7 +219,7 @@ $\Rightarrow$
 <p>We will use <strong>GitHub Actions</strong>: GitHub integration, <em>free for FOSS</em>, multi-os OSs supported</p></blockquote>
 </section><section>
 <h1 id="core-concepts">Core concepts</h1>
-<p>Naming and organization is variable across platforms, but <em>in general</em>:</p>
+<p>Naming and organization is variable across different technological, but <em>in general</em>:</p>
 <ul>
 <li>One or more <strong>pipelines</strong> can be associated to <strong>events</strong>
 <ul>
@@ -202,23 +271,47 @@ with the abstractions provided by the selected provider.</p>
 <li>Rectangles represent <em>operations</em></li>
 </ul>
 </section><section>
-<h2 id="github-actions-structure">GitHub Actions: Structure</h2>
+<h2 id="github-actions-gha-structure">GitHub Actions (GHA): Structure</h2>
 <ul>
-<li><strong>Workflows</strong> react to events, launching <em>jobs</em>
+<li>
+<p><strong>Workflows</strong> are groups of one or many <em>jobs</em></p>
 <ul>
-<li>Multiple workflows run in parallel, unless explicitly restricted</li>
+<li>triggered by events such as: a developer <em>pushing</em> on the repository, a <em>pull request</em> being opened, a <em>timeout</em>, a <em>manual</em> trigger, etc.</li>
+<li>multiple workflows run in parallel, unless specified otherwise by whoever designed the workflows</li>
 </ul>
 </li>
-<li><strong>Jobs</strong> of the same workflow run a sequence of <em>steps</em>
+<li>
+<p><strong>Jobs</strong> is a sequential list of logical <em>steps</em></p>
 <ul>
-<li>Multiple jobs run in parallel, unless a dependency among them is explicitly declared</li>
-<li>Concurrency limits can be imposed across workflows</li>
-<li>They can communicate via outputs</li>
+<li>different jobs from the same workflow run in <em>parallel</em>, unless a <em>dependency</em> among them is explicitly declared
+<ul>
+<li>in case of a dependency, the <em>dependent</em> job will run <em>only after</em> the dependency job is <em>completed successfully</em></li>
 </ul>
 </li>
-<li><strong>Steps</strong> of the same job run <em>sequentially</em>
+<li>steps of the same job run in the <em>exact same order</em> as they are defined in the job</li>
+<li>each job runs inside a <em>fresh</em> new <strong>Virtual Machine</strong> (VM), with a <em>selectable OS</em>
 <ul>
-<li>They can communicate via outputs</li>
+<li>most common development tools (e.g. Git, Python, Poetry, etc.) are pre-installed by default…</li>
+<li>but further may be installed if needed (e.g. <code>MySQL</code>, <code>PostgreSQL</code>, etc.)</li>
+</ul>
+</li>
+<li>the VM is <em>destroyed</em> after the job is completed
+<ul>
+<li>users can see the <em>logs</em> of the job execution</li>
+<li>any relevant data produced by the job must be explicitly saved <em>elsewhere</em> (as part of the job), otherwise it will be lost</li>
+</ul>
+</li>
+<li>[IMPORTANT] jobs can be configured to run <em>multiple times</em> with different OS/runtimes: this is the <strong>matrix</strong> execution strategy</li>
+</ul>
+</li>
+<li>
+<p><strong>Steps</strong> is just executing a <em>command</em> in the <em>shell</em> of the job’s VM</p>
+<ul>
+<li>e.g. cloning the repository via <code>git</code></li>
+<li>e.g. restoring Python dependencies via <code>poetry</code></li>
+<li>e.g. running the tests via <code>unittest</code></li>
+<li>e.g. releasing the software via <code>poetry</code></li>
+<li>e.g. doing some <em>automatic edit</em> to the repository (such as updating the version number), then <em>committing</em> and <em>pushing</em> the change <strong>automatically</strong></li>
 </ul>
 </li>
 </ul>
@@ -234,7 +327,7 @@ with the abstractions provided by the selected provider.</p>
 <h2 id="github-actions-configuration">GitHub Actions: Configuration</h2>
 <ul>
 <li>
-<p>Workflows are configured in <a href="">YAML files</a> located in the <em>default branch</em> of the repository</p>
+<p>Workflows are configured in <a href="https://yaml.org/">YAML files</a> located in the <em>default branch</em> of the repository</p>
 <ul>
 <li>in the <code>.github/workflows/</code> folder.</li>
 </ul>
@@ -245,6 +338,9 @@ with the abstractions provided by the selected provider.</p>
 <li>
 <p>For security reasons,
 workflows may need to get manually activated in the <em>Actions</em> tab of the GitHub web interface.</p>
+<ul>
+<li>on a per-repository basis</li>
+</ul>
 </li>
 </ul>
 </section><section>
@@ -252,7 +348,7 @@ workflows may need to get manually activated in the <em>Actions</em> tab of the 
 <ul>
 <li>Executors of GitHub actions are called <em>runners</em>
 <ul>
-<li>virtual machines (hosted by GitHub)
+<li>virtual machines (commonly hosted by GitHub)
 <ul>
 <li>with the GitHub Actions runner application installed.</li>
 </ul>
@@ -307,17 +403,150 @@ if left unconfigured, the runner does nothing
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">steps</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">... ]</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span></code></pre></div></section><section>
 <h2 id="workflow-minimal-example">Workflow minimal example</h2>
-<p><a href="https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check.yml">Consider <code>check.yml</code> file on the <code>calculator</code> repository</a>:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">CI/CD</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> 
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">push</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">paths-ignore</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#4e9a06">'.gitignore'</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#4e9a06">'CHANGELOG.md'</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#4e9a06">'LICENSE'</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#4e9a06">'README.md'</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">pull_request</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">workflow_dispatch</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">branches</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">main ]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">jobs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">test</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">runs-on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ubuntu-latest</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Test on Linux</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">timeout-minutes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">45</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">steps</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Checkout code</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">uses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">actions/checkout@v4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Restore Python dependencies</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">poetry install</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Test</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">poetry run python -m unittest discover -v -s tests</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span></code></pre></div><p><a href="https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check.yml">Consider <code>check.yml</code> file on the <code>calculator</code> repository</a> for a more complete example</p>
+</section><section>
+<h2 id="gha-steps-run-vs-uses">GHA Steps: <code>run</code> vs <code>uses</code></h2>
+<ul>
+<li>
+<p><code>run</code>: run a command in the shell of the runner</p>
+<ul>
+<li>e.g. <code>run: poetry install</code></li>
+<li>e.g. <code>run: python -m unittest discover -v -s tests</code></li>
+</ul>
+</li>
+<li>
+<p><code>uses</code>: run a <em>GitHub Actions’ <strong>action</strong></em></p>
+<ul>
+<li>e.g. <a href="https://github.com/actions/checkout"><code>actions/checkout@v4</code></a></li>
+<li>e.g. <a href="https://github.com/actions/setup-python"><code>actions/setup-python@v5</code></a></li>
+<li>e.g. <a href="https://github.com/actions/upload-artifact"><code>actions/upload-artifact@v3</code></a></li>
+<li>e.g. <a href="https://github.com/actions/download-artifact"><code>actions/download-artifact@v3</code></a></li>
+</ul>
+</li>
+</ul>
+<h3 id="what-is-a-gha-action">What is a GHA action?</h3>
+<ul>
+<li>
+<p>In the eyes of the GHA <strong>user</strong>: a <em>reusable</em> and <em>parametric</em> functionality which makes sense in the GHA ecosystem</p>
+</li>
+<li>
+<p>In the eyes of the GHA <strong>developer</strong>: a <em>GitHub repository</em> the code to parametrise and reuse some functionality</p>
+</li>
+</ul>
+</section><section>
+<h2 id="checking-out-the-repository">Checking out the repository</h2>
+<blockquote>
+<p>By default, GitHub actions’ <em>runners do <strong>not</strong> clone the repository</em></p></blockquote>
+<p>(this is because actions may, sometimes, not need to access the code, e.g., when automating issues, projects, etc.)</p>
+<h3 id="cloning-and-checking-out-the-repository-is-done-via-a-dedicated-action">Cloning and checking out the repository is done via a dedicated action:</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Example workflow</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">push</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">branches</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">main ]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">jobs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">permissions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">contents</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">write</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Give write (e.g. push) permissions to this Job (i.e. steps may perform changes to the repository it self)</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Explore-GitHub-Actions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Check out repository code</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">uses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">actions/checkout@v4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">with</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">fetch-depth</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Fetch all history for all branches and tags</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">token</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">${{ secrets.GITHUB_TOKEN }}</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the GITHUB_TOKEN secret to clone, enabling future pushes in next steps</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span></code></pre></div>
+
+<span class="fragment ">
+  <p>By default, only the last commit of the current branch is fetched by this action (<em>shallow cloning</em> has better <em>performance</em>)</p>
+<ul>
+<li>$\Rightarrow$ It may break operations that rely on the entire history!
+<ul>
+<li>e.g., computing the next version number depending on the last tag in the Git history</li>
+<li>use <code>fetch-depth: 0</code> to fetch the entire history</li>
+</ul>
+</li>
+<li>If you plan to be able to push changes to the repository, you need to
+<ul>
+<li>provide a token with write permissions, e.g. <code>token: ${{ secrets.GITHUB_TOKEN }}</code>
+<ul>
+<li>secrets are explained a few slides later</li>
+</ul>
+</li>
+<li>if you use the <code>GITHUB_TOKEN</code> secret, you need to set the <code>permissions</code> field to <code>write</code> for the <code>contents</code> permission
+<ul>
+<li>this is because the default permission for the <code>GITHUB_TOKEN</code> secret are read-only</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</span>
+
+</section><section>
+<h2 id="writing-outputs">Writing outputs</h2>
+<p>Communication with the runner happens via <em><a href="https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions">workflow commands</a></em>
+<br>
+The simplest way to create outputs for actions is to print on standard output a message in the form:
+<br>
+<code>"{name}={value}"</code>
+<br>
+and redirect it to the end of the file stored in the <code>$GITHUB_OUTPUT</code> environment variable:
+<code>echo "{name}={value}" &gt;&gt; $GITHUB_OUTPUT</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Outputs</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># ...</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">jobs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Build</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">runs-on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ubuntu-latest</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">steps</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">output-from-shell</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">python -c 'import random; print(f"dice={random.randint(1, 6)}")' &gt;&gt; $GITHUB_OUTPUT</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">|</span><span style="color:#8f5902;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">          echo "The dice roll resulted in number ${{ steps.output-from-shell.outputs.dice }}"</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span></code></pre></div></section><section>
+<h2 id="build-matrix">Build matrix</h2>
+<p>Most software products are meant to be <em>portable</em></p>
+<ul>
+<li>Across operating systems</li>
+<li>Across different frameworks and languages</li>
+<li>Across runtime configuration</li>
+</ul>
+<p>A good continuous integration pipeline should test <em>all the supported combinations</em>*</p>
+<ul>
+<li>or a sample, if the performance is otherwise unbearable</li>
+</ul>
+<p>The solution is the adoption of a <strong>build matrix</strong></p>
+<ul>
+<li>Build variables and their allowed values are specified</li>
+<li>The CI integrator generates the <em>cartesian product</em> of the variable values, and launches a build for each!</li>
+<li>Note: there is no built-in feature to exclude some combination
+<ul>
+<li>It must be done manually using <code>if</code> conditionals</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="build-matrix-in-gha">Build matrix in GHA</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Workflow with Matrix</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># ...</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">jobs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">test</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">strategy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -342,7 +571,7 @@ if left unconfigured, the runner does nothing
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Install poetry</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pip install poetry</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
+</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Checkout code</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">uses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">actions/checkout@v4</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
@@ -352,138 +581,6 @@ if left unconfigured, the runner does nothing
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Test</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">poetry run python -m unittest discover -v -s tests</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">release</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">needs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">test</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">github.ref == 'refs/heads/master'</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">runs-on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ubuntu-latest</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Release on PyPI and GitHub</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">permissions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">contents</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">write</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">steps</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Checkout code</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">uses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">actions/checkout@v4</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">with</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">fetch-depth</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">token</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">${{ secrets.GITHUB_TOKEN }}</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Install poetry</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pip install poetry</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Restore Python dependencies</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">poetry install</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Bump version</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">poetry run python bump_version.py --apply | tee CHANGELOG.md</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Commit version change</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">|</span><span style="color:#8f5902;font-style:italic">
-</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">          git config user.name "${{ github.actor }}"
-</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">          git config user.email "${{ github.actor }}@users.noreply.github.com"
-</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">          git add pyproject.toml
-</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">          git commit -m "chore(release): v.$(poetry version --short) [skip ci]"</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Build Python Package</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">poetry build</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Push changes</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">git push</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Publish on TestPyPI</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">poetry publish --repository pypi-test --username __token__ --password ${{ secrets.TEST_PYPI_TOKEN }}</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Create GitHub Release</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">|</span><span style="color:#8f5902;font-style:italic">
-</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">          RELEASE_TAG=$(poetry version --short)
-</span></span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">          gh release create $RELEASE_TAG dist/* -t v$RELEASE_TAG -F CHANGELOG.md</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">env</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">GITHUB_TOKEN</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">${{ secrets.GITHUB_TOKEN }}</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span></code></pre></div></section><section>
-<h2 id="checking-out-the-repository">Checking out the repository</h2>
-<p>By default, GitHub actions’ <em>runners do <strong>not</strong> check out the repository</em></p>
-<ul>
-<li>Actions may not need to access the code
-<ul>
-<li>e.g., Actions automating issues, projects</li>
-</ul>
-</li>
-</ul>
-<p>It is a <em>common</em> and <em>non-trivial</em> operation (the checked out version must be the version originating the workflow), thus GitHub provides an action:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""></code></pre></div>
-<p>Since actions typically do not need the entire history of the project, by default the action checks out <em>only the commit that originated the workflow</em> (<code>--depth=1</code> when cloning)</p>
-<ul>
-<li><em>Shallow cloning</em> has better <em>performance</em></li>
-<li>$\Rightarrow$ It may break operations that rely on the entire history!
-<ul>
-<li>e.g., the git-sensitive semantic versioning system</li>
-</ul>
-</li>
-</ul>
-<p>Also, <em><strong>tags</strong> don’t get checked out</em></p>
-</section><section>
-<h2 id="writing-outputs">Writing outputs</h2>
-<p>Communication with the runner happens via <em><a href="https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions">workflow commands</a></em>
-<br>
-The simplest way to create outputs for actions is to print on standard output a message in the form:
-<br>
-<code>"{name}={value}"</code>
-<br>
-and redirect it to the end of the file stored in the <code>$GITHUB_OUTPUT</code> environment variable:
-<code>echo "{name}={value}" &gt;&gt; $GITHUB_OUTPUT</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""></code></pre></div>
-</section><section>
-<h2 id="build-matrix">Build matrix</h2>
-<p>Most software products are meant to be <em>portable</em></p>
-<ul>
-<li>Across operating systems</li>
-<li>Across different frameworks and languages</li>
-<li>Across runtime configuration</li>
-</ul>
-<p>A good continuous integration pipeline should test <em>all the supported combinations</em>*</p>
-<ul>
-<li>or a sample, if the performance is otherwise unbearable</li>
-</ul>
-<p>The solution is the adoption of a <strong>build matrix</strong></p>
-<ul>
-<li>Build variables and their allowed values are specified</li>
-<li>The CI integrator generates the <em>cartesian product</em> of the variable values, and launches a build for each!</li>
-<li>Note: there is no built-in feature to exclude some combination
-<ul>
-<li>It must be done manually using <code>if</code> conditionals</li>
-</ul>
-</li>
-</ul>
-</section><section>
-<h2 id="build-matrix-in-gha">Build matrix in GHA</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">jobs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Build</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">strategy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">matrix</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">os</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">windows, macos, ubuntu]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">jvm_version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">8</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">11</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">15</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">16</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Arbitrarily-made and arbitrarily-valued variables</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">ruby_version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">2.7</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3.0</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">python_version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">3.7</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3.9.12</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">runs-on</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">${{ matrix.os }}-latest</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic">## The string is computed interpolating a variable value</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">steps</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">uses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">actions/setup-java@v4</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">with</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">distribution</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">'adopt'</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">java-version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">${{ matrix.jvm_version }}</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># "${{ }}" contents are interpreted by the github actions runner</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">uses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">actions/setup-python@v5</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">with</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">python-version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">${{ matrix.python_version }}</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">uses</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ruby/setup-ruby@v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">with</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">ruby-version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">${{ matrix.ruby_version }}</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">java -version</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ruby --version</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">python --version</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></span></span></code></pre></div></section><section>
 <h2 id="private-data-and-continuous-integration">Private data and continuous integration</h2>
 <p>We would like the CI to be able to</p>
@@ -516,20 +613,8 @@ and redirect it to the end of the file stored in the <code>$GITHUB_OUTPUT</code>
 </ul>
 </li>
 </ul>
-<p>Secrets can be added from the web interface (for mice lovers), or via the GitHub API.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">#!/usr/bin/env ruby</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87">require</span> <span style="color:#4e9a06">'rubygems'</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87">require</span> <span style="color:#4e9a06">'bundler/setup'</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87">require</span> <span style="color:#4e9a06">'octokit'</span>
-</span></span><span style="display:flex;"><span><span style="color:#204a87">require</span> <span style="color:#4e9a06">'rbnacl'</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">repo_slug</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">name</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">value</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">ARGV</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">client</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Octokit</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Client</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">new</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">:access_token</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#4e9a06">'access_token_from_github'</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">pubkey</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">client</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">get_public_key</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">repo_slug</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">key</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Base64</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">decode64</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pubkey</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">sodium_box</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">RbNaCl</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Boxes</span><span style="color:#ce5c00;font-weight:bold">::</span><span style="color:#000">Sealed</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">from_public_key</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">encrypted_value</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Base64</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strict_encode64</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sodium_box</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">encrypt</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">))</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">payload</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#4e9a06">'key_id'</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">pubkey</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">key_id</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">'encrypted_value'</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">encrypted_value</span> <span style="color:#000;font-weight:bold">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">client</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">create_or_update_secret</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">repo_slug</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">name</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">payload</span><span style="color:#000;font-weight:bold">)</span>
+<p>Secrets can be added from the web interface (for mice lovers), or via the GitHub CLI:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>gh secret <span style="color:#204a87">set</span> TEST_PYPI_TOKEN -b <span style="color:#4e9a06">"dhhfuidhfiudhfidnalnflkanjakl"</span>
 </span></span></code></pre></div></section><section>
 <h1 id="stale-builds">Stale builds</h1>
 <ol>
@@ -626,7 +711,7 @@ here is a possible workflow for <strong>automatic</strong> dependency updates:</
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-05-21 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2025-05-22 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 
@@ -717,8 +802,6 @@ here is a possible workflow for <strong>automatic</strong> dependency updates:</
   
 
   
-    
-  
   
 
   
@@ -752,30 +835,6 @@ here is a possible workflow for <strong>automatic</strong> dependency updates:</
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 

@@ -24,21 +24,9 @@ _Verifying_ that the build remains intact
 * Historically introduced by the extreme programming (XP) community
 * Now widespread in the larger DevOps community
 
-
 ---
 
-# The Integration Hell
-
-* Traditional software development takes several months for *“integrating”* a couple of years of development
-* The longer there is no integrated project, the higher the **risk**
-
-<img src="integration-traditional.png" onerror="this.onerror=null; this.src='../../assets/integration-traditional.png'" width=40% />
-$\Rightarrow$
-<img src="integration-continuous.png" onerror="this.onerror=null; this.src='../../assets/integration-continuous.png'" width=40% />
-
----
-
-## Microreleases and protoduction
+<!-- ## Microreleases and protoduction
 
 * High frequency integration may lead to high frequency releases
     * Possibly, *one per commit*
@@ -66,25 +54,83 @@ Traditionally, **protoduction** is jargon for a *prototype that ends up in produ
 
       <td/>
     </tr>
-  </tbody>
-</table>
+  </tbody> 
+</table> -->
+
+## What is integration in the first place?
+
+1. Not just simply **merging** code from different *branches*/developers...
+
+2. ... but actually also **building** the software, with all its *dependencies*...
+    * restoring dependencies
+    * compiling
+    * linking
+    * packaging
+
+3. ... and **testing** the software
+    * all sorts of *automated tests*: unit, integration, system, etc.
+    * possibly, also *deployment* and *release* procedures 
+
+4. for the sake of _checking_ that the software as a whole is still *working* despite the changes since the last release
+  
+
+5. possibly, doing further **adjustments** to the software *code* if necessary
+    * e.g., if the component is _not working_ any more, or if the _tests are failing_, etc.
+    * here code may also include *configuration* files or *build*, *test*, or *deployment* scripts
 
 ---
 
-## Intensive operations should be elsewhere
-* The build process should be *rich* and *fast*
-* Operations requiring a long time should be *automated*
-    * And run somewhere else than devs' PCs
+# The integration hell
 
-<p>
+* Traditional software development takes several months for *“integrating”* a couple of years of development
+* The longer there is no integrated project, the higher the **risk**
+
+<img src="integration-traditional.png" onerror="this.onerror=null; this.src='../../assets/integration-traditional.png'" width=40% />
+$\Rightarrow$
+<img src="integration-continuous.png" onerror="this.onerror=null; this.src='../../assets/integration-continuous.png'" width=40% />
+
+---
+
+## How to make the integration _continuous_?
+
+1. __Repeat__ the integration process as _frequently as possible_
+    * ideally, as frequently as _every commit_, in practice, as frequently as __every push__ to GitHub
+
+2. This implies running _build_, _testing_, and _deployment_ processes __very frequently__ as well
+    * which is only possible if the entire process is __automated__
+      * which is only possible if __automatic tests_ are available, as well as _build automation_ scripts, and _automatic release/deployment_ scripts
+    * of course, retrospective adjustments are _hard to automate_, and should be done _manually_
+
+3. Do not rely on the assumption that developers will _always_ __remember__ to run these steps consistently before pushing
+    * they will not, and they will forget to do it at some point
+    * so we also need to _automate_ the __triggerig__ of the _build_, _testing_, and _deployment_ processes
+
+4. Once the entire process is automated, there are __further benefits__:
+    * integration _issues_ can be _spotted ASAP_
+    * the process can be repeated on _different platforms_ (e.g. different OSs, and different versions of Python)
+       - which is far more than what a developer can do on their own
+    * emails and notifications can be sent upon _failures_ of the process
+
+---
+
+## Continous integration concept
+
+* The build process should be *rich* (comprehensive), *fast*, and **automated**
+* And run on _another machine_ (or VM) than the developer's one
+    + this is to avoid the developer from being _unable to work_ while the build is running 
+    + but also to ensure that the software runs _outside_ from the _developer's environment_
+        - which increases the chances that the software will run on _other_ machines as well
+    + to allow for testing the software onto many, _controlled environments_
+        - which in turns allows for giving _compatibility guarantees_ to the customers/users
+
+{{% multicol %}}
+{{% col %}}
 <img src="compiling.png" onerror="this.onerror=null; this.src='../../assets/compiling.png'" height=100% />
-</p>
-
----
-
-## Continuous integration concept
-
-![](./concept.png)
+{{% /col %}}
+{{% col %}}
+{{<image src="./concept2.png" width="100%" alt="Continuous integration concept" >}}
+{{% /col %}}
+{{% /multicol %}}
 
 ---
 
@@ -123,7 +169,7 @@ Traditionally, **protoduction** is jargon for a *prototype that ends up in produ
 
 # Core concepts
 
-Naming and organization is variable across platforms, but *in general*:
+Naming and organization is variable across different technological, but *in general*:
 
 * One or more **pipelines** can be associated to **events**
   * For instance, a *new commit*, an update to a *pull request*, or a *timeout*
@@ -169,16 +215,31 @@ Configuration can grow complex, and is usually stored in a YAML file
 
 ---
 
-## GitHub Actions: Structure
+## GitHub Actions (GHA): Structure
 
-* **Workflows** react to events, launching *jobs*
-    * Multiple workflows run in parallel, unless explicitly restricted
-* **Jobs** of the same workflow run a sequence of *steps*
-    * Multiple jobs run in parallel, unless a dependency among them is explicitly declared
-    * Concurrency limits can be imposed across workflows
-    * They can communicate via outputs
-* **Steps** of the same job run *sequentially*
-    * They can communicate via outputs
+* **Workflows** are groups of one or many *jobs*
+    - triggered by events such as: a developer _pushing_ on the repository, a _pull request_ being opened, a _timeout_, a _manual_ trigger, etc.
+    - multiple workflows run in parallel, unless specified otherwise by whoever designed the workflows
+
+* **Jobs** is a sequential list of logical *steps*
+    * different jobs from the same workflow run in _parallel_, unless a _dependency_ among them is explicitly declared
+       + in case of a dependency, the _dependent_ job will run _only after_ the dependency job is _completed successfully_
+    * steps of the same job run in the _exact same order_ as they are defined in the job
+    * each job runs inside a _fresh_ new __Virtual Machine__ (VM), with a _selectable OS_
+        + most common development tools (e.g. Git, Python, Poetry, etc.) are pre-installed by default...
+        + but further may be installed if needed (e.g. `MySQL`, `PostgreSQL`, etc.)
+    * the VM is _destroyed_ after the job is completed
+        + users can see the _logs_ of the job execution
+        + any relevant data produced by the job must be explicitly saved _elsewhere_ (as part of the job), otherwise it will be lost
+    * [IMPORTANT] jobs can be configured to run _multiple times_ with different OS/runtimes: this is the __matrix__ execution strategy
+
+* **Steps** is just executing a _command_ in the _shell_ of the job's VM
+    + e.g. cloning the repository via `git`
+    + e.g. restoring Python dependencies via `poetry`
+    + e.g. running the tests via `unittest`
+    + e.g. releasing the software via `poetry`
+    + e.g. doing some _automatic edit_ to the repository (such as updating the version number), then _committing_ and _pushing_ the change __automatically__
+
 
 ---
 
@@ -194,20 +255,21 @@ Configuration can grow complex, and is usually stored in a YAML file
 
 ## GitHub Actions: Configuration
 
-- Workflows are configured in [YAML files]() located in the _default branch_ of the repository
+- Workflows are configured in [YAML files](https://yaml.org/) located in the _default branch_ of the repository
   + in the `.github/workflows/` folder.
 
 - One configuration file $\Rightarrow$ one workflow
 
 - For security reasons,
 workflows may need to get manually activated in the *Actions* tab of the GitHub web interface.
+  + on a per-repository basis
 
 ---
 
 ## GitHub Actions: Runners
 
 - Executors of GitHub actions are called *runners*
-  + virtual machines (hosted by GitHub)
+  + virtual machines (commonly hosted by GitHub)
     * with the GitHub Actions runner application installed.
 
 > **Note**: the GitHub Actions application is open source and can be installed locally,
@@ -254,48 +316,23 @@ jobs: # Jobs composing the workflow, each one will run on a different runner
         steps: [ ... ]
 ```
 
+
+
 ---
 
 ## Workflow minimal example
 
-[Consider `check.yml` file on the `calculator` repository](https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check.yml):
-
 ```yaml
 name: CI/CD
-on:
+on: 
   push:
-    paths-ignore:
-      - '.gitignore'
-      - 'CHANGELOG.md'
-      - 'LICENSE'
-      - 'README.md'
-  pull_request:
-  workflow_dispatch:
+    branches: [ main ]
 jobs:
   test:
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
-        python-version:
-          - '3.10'
-          - '3.11'
-          - '3.12'
-    runs-on: ${{ matrix.os }}
-    name: Test on Python ${{ matrix.python-version }}, on ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    name: Test on Linux
     timeout-minutes: 45
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install poetry
-        run: pip install poetry
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -305,75 +342,70 @@ jobs:
       - name: Test
         shell: bash
         run: poetry run python -m unittest discover -v -s tests
-
-  release:
-    needs: test
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    name: Release on PyPI and GitHub
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install poetry
-        run: pip install poetry
-
-      - name: Restore Python dependencies
-        run: poetry install
-
-      - name: Bump version
-        shell: bash
-        run: poetry run python bump_version.py --apply | tee CHANGELOG.md
-
-      - name: Commit version change
-        shell: bash
-        run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git add pyproject.toml
-          git commit -m "chore(release): v.$(poetry version --short) [skip ci]"
-
-      - name: Build Python Package
-        run: poetry build
-
-      - name: Push changes
-        run: git push
-
-      - name: Publish on TestPyPI
-        run: poetry publish --repository pypi-test --username __token__ --password ${{ secrets.TEST_PYPI_TOKEN }}
-
-      - name: Create GitHub Release
-        shell: bash
-        run: |
-          RELEASE_TAG=$(poetry version --short)
-          gh release create $RELEASE_TAG dist/* -t v$RELEASE_TAG -F CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+[Consider `check.yml` file on the `calculator` repository](https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check.yml) for a more complete example
+
+---
+
+## GHA Steps: `run` vs `uses`
+
+- `run`: run a command in the shell of the runner
+  + e.g. `run: poetry install`
+  + e.g. `run: python -m unittest discover -v -s tests`
+
+
+- `uses`: run a *GitHub Actions' __action__*
+  + e.g. [`actions/checkout@v4`](https://github.com/actions/checkout)
+  + e.g. [`actions/setup-python@v5`](https://github.com/actions/setup-python)
+  + e.g. [`actions/upload-artifact@v3`](https://github.com/actions/upload-artifact)
+  + e.g. [`actions/download-artifact@v3`](https://github.com/actions/download-artifact)
+
+### What is a GHA action?
+
+- In the eyes of the GHA __user__: a _reusable_ and _parametric_ functionality which makes sense in the GHA ecosystem
+
+- In the eyes of the GHA __developer__: a _GitHub repository_ the code to parametrise and reuse some functionality
 
 ---
 
 ## Checking out the repository
 
-By default, GitHub actions' *runners do **not** check out the repository*
-* Actions may not need to access the code
-    * e.g., Actions automating issues, projects
+> By default, GitHub actions' *runners do **not** clone the repository*
 
-It is a *common* and *non-trivial* operation (the checked out version must be the version originating the workflow), thus GitHub provides an action:
+(this is because actions may, sometimes, not need to access the code, e.g., when automating issues, projects, etc.)
 
-{{< github repo="Tutorial-GitHub-Actions-Minimal" path=".github/workflows/workflow-example.yml" from=46 to=47 >}}
+### Cloning and checking out the repository is done via a dedicated action:
 
-Since actions typically do not need the entire history of the project, by default the action checks out *only the commit that originated the workflow* (`--depth=1` when cloning)
-* *Shallow cloning* has better *performance*
+```yaml
+name: Example workflow
+on: 
+  push:
+    branches: [ main ]
+jobs:
+  permissions:
+    contents: write # Give write (e.g. push) permissions to this Job (i.e. steps may perform changes to the repository it self)
+  Explore-GitHub-Actions:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # Fetch all history for all branches and tags
+        token: ${{ secrets.GITHUB_TOKEN }} # Use the GITHUB_TOKEN secret to clone, enabling future pushes in next steps
+```
+
+{{% fragment %}}
+
+By default, only the last commit of the current branch is fetched by this action (*shallow cloning* has better *performance*)
 * $\Rightarrow$ It may break operations that rely on the entire history!
-    * e.g., the git-sensitive semantic versioning system
+    * e.g., computing the next version number depending on the last tag in the Git history
+    * use `fetch-depth: 0` to fetch the entire history
+* If you plan to be able to push changes to the repository, you need to 
+    * provide a token with write permissions, e.g. `token: ${{ secrets.GITHUB_TOKEN }}`
+      + secrets are explained a few slides later
+    * if you use the `GITHUB_TOKEN` secret, you need to set the `permissions` field to `write` for the `contents` permission
+      + this is because the default permission for the `GITHUB_TOKEN` secret are read-only
 
-Also, *__tags__ don't get checked out*
+{{% /fragment %}}
 
 ---
 
@@ -388,7 +420,19 @@ The simplest way to create outputs for actions is to print on standard output a 
 and redirect it to the end of the file stored in the `$GITHUB_OUTPUT` environment variable:
 `echo "{name}={value}" >> $GITHUB_OUTPUT`
 
-{{< github repo="Tutorial-GitHub-Actions-Minimal" path=".github/workflows/use-step-outputs.yml" from=6 >}}
+```yaml
+name: Outputs
+on: # ...
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - id: output-from-shell
+        run: python -c 'import random; print(f"dice={random.randint(1, 6)}")' >> $GITHUB_OUTPUT
+
+      - run: |
+          echo "The dice roll resulted in number ${{ steps.output-from-shell.outputs.dice }}"
+```
 
 ---
 
@@ -413,32 +457,42 @@ The solution is the adoption of a **build matrix**
 ## Build matrix in GHA
 
 ```yaml
+name: Workflow with Matrix
+on: # ...
 jobs:
-  Build:
+  test:
     strategy:
+      fail-fast: false
       matrix:
-        os: [windows, macos, ubuntu]
-        jvm_version: [8, 11, 15, 16] # Arbitrarily-made and arbitrarily-valued variables
-        ruby_version: [2.7, 3.0]
-        python_version: [3.7, 3.9.12]
-    runs-on: ${{ matrix.os }}-latest ## The string is computed interpolating a variable value
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version:
+          - '3.10'
+          - '3.11'
+          - '3.12'
+    runs-on: ${{ matrix.os }}
+    name: Test on Python ${{ matrix.python-version }}, on ${{ matrix.os }}
+    timeout-minutes: 45
     steps:
-      - uses: actions/setup-java@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          distribution: 'adopt'
-          java-version: ${{ matrix.jvm_version }} # "${{ }}" contents are interpreted by the github actions runner
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python_version }}
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby_version }}
-      - shell: bash
-        run: java -version
-      - shell: bash
-        run: ruby --version
-      - shell: bash
-        run: python --version
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install poetry
+        run: pip install poetry
+      
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Restore Python dependencies
+        run: poetry install
+
+      - name: Test
+        shell: bash
+        run: poetry run python -m unittest discover -v -s tests
 ```
 
 ---

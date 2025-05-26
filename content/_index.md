@@ -29,7 +29,7 @@ aliases = [
 0. [Overview on Distributed Systems Engineering](ds)
 0. [Domain Driven Design](ddd)
 0. [Continuous integration (examples with GitHub Actions)](ci)
-0. [Licensing](https://unibo-spe.github.io/06-licenses/)
+0. [Software Licensing](licensing)
 
 ## Extras (if we have time)
 

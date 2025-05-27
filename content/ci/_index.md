@@ -54,7 +54,7 @@ Traditionally, **protoduction** is jargon for a *prototype that ends up in produ
 
       <td/>
     </tr>
-  </tbody> 
+  </tbody>
 </table> -->
 
 ## What is integration in the first place?
@@ -69,10 +69,10 @@ Traditionally, **protoduction** is jargon for a *prototype that ends up in produ
 
 3. ... and **testing** the software
     * all sorts of *automated tests*: unit, integration, system, etc.
-    * possibly, also *deployment* and *release* procedures 
+    * possibly, also *deployment* and *release* procedures
 
 4. for the sake of _checking_ that the software as a whole is still *working* despite the changes since the last release
-  
+
 
 5. possibly, doing further **adjustments** to the software *code* if necessary
     * e.g., if the component is _not working_ any more, or if the _tests are failing_, etc.
@@ -117,7 +117,7 @@ $\Rightarrow$
 
 * The build process should be *rich* (comprehensive), *fast*, and **automated**
 * And run on _another machine_ (or VM) than the developer's one
-    + this is to avoid the developer from being _unable to work_ while the build is running 
+    + this is to avoid the developer from being _unable to work_ while the build is running
     + but also to ensure that the software runs _outside_ from the _developer's environment_
         - which increases the chances that the software will run on _other_ machines as well
     + to allow for testing the software onto many, _controlled environments_
@@ -324,7 +324,7 @@ jobs: # Jobs composing the workflow, each one will run on a different runner
 
 ```yaml
 name: CI/CD
-on: 
+on:
   push:
     branches: [ main ]
 jobs:
@@ -379,7 +379,7 @@ jobs:
 
 ```yaml
 name: Example workflow
-on: 
+on:
   push:
     branches: [ main ]
 jobs:
@@ -399,7 +399,7 @@ By default, only the last commit of the current branch is fetched by this action
 * $\Rightarrow$ It may break operations that rely on the entire history!
     * e.g., computing the next version number depending on the last tag in the Git history
     * use `fetch-depth: 0` to fetch the entire history
-* If you plan to be able to push changes to the repository, you need to 
+* If you plan to be able to push changes to the repository, you need to
     * provide a token with write permissions, e.g. `token: ${{ secrets.GITHUB_TOKEN }}`
       + secrets are explained a few slides later
     * if you use the `GITHUB_TOKEN` secret, you need to set the `permissions` field to `write` for the `contents` permission
@@ -483,7 +483,7 @@ jobs:
 
       - name: Install poetry
         run: pip install poetry
-      
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -615,6 +615,37 @@ They are usually integrated with the repository hosting provider
 * Dependabot (Multiple)
 * Gemnasium (Ruby)
 * Greenkeeper (NPM)
+
+---
+
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- In your own words, what is continuous integration?
+- In your own words, what is integration hell?
+- In the context of continuous integration, what is a pipeline?
+- What is GitHub Actions?
+- In the context of continuous integration, provide an overview of the abstract pipeline design
+- In the context of GitHub Actions, what is the difference among workflow, jobs, steps
+- How would you design a GitHub Actions workflow for a Python project?
+- In the context of GitHub Actions, what is a runner?
+- What is YAML? What is the difference between YAML and JSON?
+- In the context of GitHub Actions, what is a matrix?
+- In the context of GitHub Actions, what is a secret?
+
+---
+
+## Check your understanding (pt. 2)
+
+- In the context of software engineering, what is integration? What is continuous integration?
+- In the context of software engineering, what are the issues arising from infrequent integration/release events?
+- In the context of software engineering, how to make integration continuous?
+- What is GitHub Actions? What is its purpose? How does it work?
+- In the context of GitHub Actions, what is the difference among workflow, jobs, steps
+- In an ordinary Python project using Poetry for build automation and release on PyPi and `unittest` for automatic tests, how would you organize a continuous integration pipeline? (What operations should be performed in each run of the pipeline?)
+
+{{% /section %}}
 
 ---
 

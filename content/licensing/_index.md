@@ -286,4 +286,29 @@ good for data, documentation, and resources
 
 ---
 
+## Check your understanding
+
+- What is a license?
+- What is copyright?
+- What is copyleft?
+- From a legal perspective, what is the difference between ownership and licensing?
+- In the context of free software, what is the difference between "free as in speech" and "free as in beer"?
+- What is the difference among free and open-source software?
+- In which situations may a software lack a license?
+- What are the most common constraints proprietary software licenses may require?
+- What are the features of the GNU General Public License (GPL)?
+- What are the features of the GNU Lesser General Public License (LGPL)?
+- In the context of software licensing, what is the linking exception?
+- What are the features of the MIT licenses?
+- What are the features of the Apache License?
+- Why is the "Do What The Fuck You Want" Public License considered problematic?
+- In the context of software licenses, what is the difference between combined and derivative work?
+- What are the creative commons licenses? What are (or aren't) they good for? Why are they so many?
+- How would you apply a license to your software project?
+- What are the implications of choosing the GPL license for your software project instead of LGPL?
+- What are the implications of choosing the GPL license for your software project instead of MIT?
+- What are the implications of choosing the GPL license for your software project instead of Apache?
+
+---
+
 {{% import path="reusable/back.md" %}}

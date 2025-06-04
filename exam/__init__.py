@@ -100,7 +100,7 @@ class Question:
 
 def load_questions_from_csv(file_path):
     with open(file_path, newline='') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=";")
+        reader = csv.DictReader(csvfile, delimiter=",")
         for row in reader:
             yield Question(
                 category=row["Category"],

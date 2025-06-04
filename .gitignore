@@ -8,3 +8,5 @@ _gen/
 .DS_Store
 *.xml
 .venv
+*.pyc
+__pycache__/

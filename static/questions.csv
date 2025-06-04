@@ -1,289 +1,385 @@
-Category;Question;Weight
-Definition;What is computer science?;1
-Definition;What is an algorithm?;1
-Definition;Difference among information, data, and representation;1
-Definition;What is software?;1
-Definition;What is software engineering?;1
-History;What were software crises?;1
-Commonsense;What makes software development costs rise?;1
-Commonsense;What may delay software development?;1
-Commonsense;Why could software miss requirements?;1
-Commonsense;Why may software be inefficient?;1
-Commonsense;What does it mean for software to be of low-quality?;1
-Commonsense;What makes code (un)manageable or (un)maintainable?;1
-Definition;What are the main SE phases?;2
-Definition;"In the context of SE phases, what is the ""Use case collection"" phase about?";1
-Definition;"In the context of SE phases, what is the ""Requirements analysis"" phase about?";1
-Definition;"In the context of SE phases, what is the ""Design"" phase about?";1
-Definition;"In the context of SE phases, what is the ""Implementation"" phase about?";1
-Definition;"In the context of SE phases, what is the ""Verification"" phase about?";1
-Definition;"In the context of SE phases, what is the ""Release"" phase about?";1
-Definition;"In the context of SE phases, what is the ""Deployment"" phase about?";1
-Definition;"In the context of SE phases, what is the ""Documentation"" phase about?";1
-Definition;"In the context of SE phases, what is the ""Maintenance"" phase about?";1
-Definition;What are tha main SE Lifecycle Models?;2
-Definition;In the context of SE Lifecycle, what is the Waterfall Model?;1
-Definition;In the context of SE Lifecycle, what is the V-Model?;1
-Definition;In the context of SE Lifecycle, what is the Incremental Model?;1
-Definition;In the context of SE Lifecycle, what is the Iterative Model?;1
-Definition;In the context of SE Lifecycle, what is the Spiral Model?;1
-Definition;In the context of SE Lifecycle, what is the Scum Model?;1
-Definition;In the context of SE Lifecycle, what is the Extreme Programming Model?;1
-Definition;Difference among shell, terminal, REPL;1
-Commonsense;What are the benefits of command-line interfaces over graphical ones?;2
-Definition;In the context of software engineering, what is a script?;1
-Commonsense;Pros and cons of automating activities via scripts;2
-Terminal;In a *nix system shell, how would you inspect the content of a directory?;1
-Terminal;In a *nix system shell, how would you to print the current directory location?;1
-Terminal;In a *nix system shell, how would you to remove the file foo?;1
-Terminal;In a *nix system shell, how would you to remove directory bar?;1
-Terminal;In a *nix system shell, how would you to change disk?;1
-Terminal;In a *nix system shell, how would you to move into some directory?;1
-Terminal;In a *nix system shell, how would you to move to the parent directory?;1
-Terminal;In a *nix system shell, how would you to move a file to another directory?;1
-Terminal;In a *nix system shell, how would you to rename a file?;1
-Terminal;In a *nix system shell, how would you to copy a file into another directory?;1
-Terminal;In a *nix system shell, how would you to create a directory?;1
-Terminal;In a Windows system shell, how would you inspect the content of a directory?;1
-Terminal;In a Windows system shell, how would you to print the current directory location?;1
-Terminal;In a Windows system shell, how would you to remove the file foo?;1
-Terminal;In a Windows system shell, how would you to remove directory bar?;1
-Terminal;In a Windows system shell, how would you to change disk?;1
-Terminal;In a Windows system shell, how would you to move into some directory?;1
-Terminal;In a Windows system shell, how would you to move to the parent directory?;1
-Terminal;In a Windows system shell, how would you to move a file to another directory?;1
-Terminal;In a Windows system shell, how would you to rename a file?;1
-Terminal;In a Windows system shell, how would you to copy a file into another directory?;1
-Terminal;In a Windows system shell, how would you to create a directory?;1
-Operative Systems;In the context of operative systems' shells, what is a directory?;1
-Operative Systems;In the context of operative systems' shells, what is a path?;1
-Commonsense;What would you do if you don't remember how to use a terminal's command?;1
-Commonsense;What makes a shell's command interactive?;1
-Operative Systems;What is the exit code of a command-line program?;1
-Operative Systems;In the context of operative systems, what is a process?;1
-Operative Systems;In the context of software, what is a stream?;1
-Operative Systems;In the context of operative systems, what are the default streams of a process?;1
-Terminal;Should you edit a textual file via the terminal, what would you do?;1
-Python;What is Python?;1
-Python;In which and how many ways can the python command be invoked?;2
-Project;In a Python project, what is the purpose of the requirements.txt file?;1
-Project;In a Python project, what is the purpose of the .python-version file?;1
-Python;In the context of the Python programming language, what is pip?;1
-Python;In the context of the Python programming language, what is Kivy?;1
-Python;In the context of the Python programming language, what is the compilation cache?;1
-Definition;What is a software library?;1
-Definition;What is a dependency of a software project?;1
-Definition;What is a transitive dependency of a software project?;1
-Definition;What is the dependency graph of a software project?;1
-Definition;What is a cyclic dependency in a software project?;1
-Definition;What is the runtime of a software?;1
-Definition;In the context of programmin languages, what is a package manager?;1
-Definition;What is the difference between compiled and interpreted programming languages?;1
-Definition;What is the Von Neuman architecture?;1
-Definition;What are the most common instruction set architectures?;1
-Commonsense;Is Python a compiled or interpreted programming language?;1
-Definition;What is the standard library of a programming language?;1
-Definition;In the context of programming languages, what is the difference between standard and third-party libraries?;1
-Definition;In the context of programming languages, what is a package repository?;1
-Python;In the context of the Python programming language, what is PyPI?;1
-Commonsense;What are the main software platforms you are aware of?;1
-Commonsense;What are the main package managers and repositories of the main software platforms?;2
-Definition;In a software application involving a UI, what is the difference among the model, the view, and the controller?;2
-Definition;In the context of programming, what is the purpose of code decomposition and modularity?;2
-Definition;In the context of programming, what is encapsulation?;1
-Definition;In the context of programming, what is information hiding?;1
-Python;What mechanisms does Python provide to support code decompositon?;1
-Definition;What is the interface of a software?;1
-Definition;What is the API of a software?;1
-Commonsense;Describe the overall functioning of UI;2
-Definition;In the context of software interfaces, what is the difference among public and private?;1
-Python;When, how, and why should you differentiate among public and private members in Pythons?;2
-Commonsense;What are the classic, inefficient ways of tracking changes in software projects? Why are they inadequate?;3
-DVCS;What are the functionalities provided by Distributed Version Control Systems?;1
-DVCS;In the context of DVCS, what is a repository?;1
-DVCS;In the context of DVCS, what is the working tree?;1
-DVCS;In the context of DVCS, what is a commit?;1
-DVCS;In the context of DVCS, what is a merge commit?;1
-DVCS;In the context of DVCS, what is a branch?;1
-Git;In the context of Git, what is a commit reference?;1
-Git;In the context of Git, what is the HEAD reference?;1
-Git;In the context of Git, what is the difference between relative and absolute commit references?;1
-DVCS;"In the context of DVCS, what does the ""checkout"" operation mean and involve?";1
-DVCS;"In the context of DVCS, what does the ""branching"" operation mean and involve?";1
-DVCS;"In the context of DVCS, what does the ""merging"" operation mean and involve?";1
-Git;What is Git?;3
-Git;"What is the purpose of the command git config --global user.name ""Your Real Name""?";1
-Git;"What is the purpose of the command git config --global user.email ""your.email@address""?";1
-Git;What is the purpose of the command git config --global core.editor nano?;1
-Git;What is the purpose of the command git config --global init.defaultbranch master?;1
-Git;What is the purose and the effect of the command git init in directory my-project?;1
-Git;In the context of Git, what is the stage?;2
-Git;What is the purpose of the command git add .?;1
-Git;What is the purpose of the command git reset .?;1
-Git;What is the purpose and the effect of the command git commit?;1
-Git;What is the purpose of the command git status?;1
-Git;In the context of Git, what is HEAD?;1
-Git;In the context of Git, what is the purpose of ignoring files? How do you do that?;2
-Git;In the context of Git, what is the purpose of the .gitattributes files?;1
-Operative Systems;In the context of operative systems, what is the line terminator?;2
-Operative Systems;In the context of operative systems, what are the most common line terminators, and what systems use which one?;1
-DVCS;Let's say you have a number of uncommitted changes in your working tree. What criteria would you adopt to decide which and how many commit to do?;2
-Git;What is the purpose of the command git log?;1
-Git;What is the purpose and the effect of the command git checkout -b NAME?;1
-Git;What is the purpose and the effect of the command git checkout NAME?;1
-Git;What is the purpose and the effect of the command git checkout XXX -- YYY?;2
-Git;"In the context of Git, what does ""detached head"" mean?";2
-GitHub;What is the difference between Git and GitHub?;2
-GitHub;In the context of GitHub, what is a fork? What's its purpose?;1
-GitHub;In the context of GitHub, what is a pull request? What's its purpose?;1
-GitHub;In the context of GitHub, what is an issue? What's its purpose?;1
-Git;Let's say you have an unpublished reporitory onto your computer. How can you publish it on GitHub? Specify the terminal commands.;3
-Git;Let's say you have access to a GitHub repository. How can you clone it? Specify the commands and their effects;1
-Git;In the context of Git, what is a remote?;1
-Git;In the context of Git, what is the upstream of a branch?;1
-Git;"In the context of Git, what is the ""divergent history"" situation about? How can that happen? How to fix it?";2
-Git;In the context of Git, what are merge conflicts? How can they happen? How to fix them?;2
-Git;In the context of Git, what is a branching workflow?;2
-Git;In the context of Git, what is the GitFlow branching workflow? How does it work?;2
-Git;What is the purpose and the effect of the command git push? ;1
-Git;What is the purpose and the effect of the command git pull? ;1
-GitHub;In the context of GitHub, what is an organization?;1
-GitHub;In the context of GitHub, what is a Wiki?;1
-QA;In the context of SE, what is quality assurance?;1
-QA;"When is software considered ""correctly working""?";2
-QA;"When is software considered ""of good quality""?";2
-Testing;In the context of software engineering, what is testing?;1
-Testing;In the context of software testing, what is the difference between an automated and manual test?;2
-Testing;In the context of software testing, what are the most common testing scopes?;2
-Testing;What is the difference among unit, integration, and end-to-end testing?;3
-Commonsense;What is the problem in skipping unit testing and just focus on integration testing?;1
-Testing;Why one may want to have automated tests in a software project?;1
-Testing;What issues may arise in the long run when a software project is lacking automated testing?;1
-Commonsense;Why is reproducibility important in testing? How to achieve it?;2
-Testing;What is test code? How to separate it from the main code? Why?;2
-Testing;What is test driven development (TDD)?;2
-Testing;In what sense can software test act as a form of specification?;1
-Testing;What is technical debt? How is it related to software testing?;2
-Testing;How to deal with a project which was not following TDD since the very beginning?;3
-Testing;In the context of software testing, what is a regression?;1
-Testing;What are test doubles and what problem do they address?;3
-Testing;In the context of software testing, what is test coverage?;2
-Testing;What are the common metrics for test coverage?;2
-Testing;How to measure the test coverage of a Python project?;2
-Testing;If a project has 100% test coversage and 100% success rate for tests, can we declare it bug free? Can we safely say it satisfies all requirements?;2
-QA;Aside from testing, what is quality assurance about?;2
-QA;In the context of software engineering, what is static analysis?;1
-QA;What static analysis tool may you exploit when working on a Python project? What's their purpose?;2
-Build Automation;What is the build life cycle of a software project?;2
-Build Automation;In the context of Software Engineering, what is build automation?;2
-Build Automation;What can you expect, in general, from a build automation tool?;2
-Build Automation;In the context of build automation, what is dependency locking? Why is it necessary?;2
-Poetry;In a Python project, what would you use Poetry for?;3
-Python;Where would you release a Python project on Test PyPI? When on PyPI?;2
-Python;What is Test PyPI? What's its purpose?;1
-Poetry;What are the steps to release a Python project via Poetry?;2
-Versioning;In the context of SE, what is versioning?;1
-Versioning;At what levels can versioning occur?;2
-Versioning;What are the admissible scopes for software versioning?;1
-Versioning;In the context of software versioning, what is code naming? What's its purpose?;1
-Versioning;What are the versioning approaches you are aware of?;2
-Versioning;Provide an overview of date-based versioning: purpose, functioning, pros, and cons;2
-Versioning;Provide an overview of unary numbering (in the context of software versioning): purpose, functioning, pros, and cons;2
-Versioning;Provide an overview of semantic versioning: purpose, functioning, pros, and cons;3
-Versioning;How can one tie semantic versioning to DVCS commits?;1
-Versioning;In the context of DVCS, what are conventional commits? What's their purpose?;2
-Versioning;In the context of conventional commits, what is a breaking change?;1
-Versioning;In the context of conventional commits, what is a feat?;1
-Versioning;In the context of conventional commits, what is a fix?;1
-Versioning;In the context of conventional commits, what is a chore?;1
-Versioning;In the context of semantic versioning, what is the difference among a major, minor, or patch change?;2
-Versioning;What is the idea behind semantic release?;2
-Versioning;How are semantic versioning, conventional commits, and semantic release related?;2
-Versioning;Soppose that, in your Python project, you add one more public method to a class or module. Is this a major, minor, or patch change?;1
-Versioning;Soppose that, in your Python project, you add one more private method to a class or module and you use it inside another public function of that class or module. Is this a major, minor, or patch change?;1
-Versioning;Soppose that, in your Python project, you rename (all occurrences of) a public function. Is this a major, minor, or patch change? ;1
-Versioning;Soppose that, in your Python project, you rename (all occurrences of) a private function. Is this a major, minor, or patch change? ;1
-Versioning;Soppose that, in your Python project, you rename (all usages of) a public function's parameter name. Is this a major, minor, or patch change? ;1
-Versioning;Soppose that, in your Python project, you rename (all usages of) a private function's parameter name. Is this a major, minor, or patch change? ;1
-Versioning;Soppose that, in your Python project, you rename (all occurrences of) a public class. Is this a major, minor, or patch change? ;1
-Versioning;Soppose that, in your Python project, you rename (all usages of) a public class's constructor's parameter name. Is this a major, minor, or patch change? ;1
-Versioning;Soppose that, in your Python project, there's function f which is slow. After some edits to its body, you manage to make it much faster. Is this a major, minor, or patch change? ;1
-Versioning;Soppose that, in your Python project, you add one more public method to a class or module. You commit the changes using conventional commit. What type would you use for the commit?;1
-Versioning;Soppose that, in your Python project, you add one more private method to a class or module and you use it inside another public function of that class or module. You commit the changes using conventional commit. What type would you use for the commit?;1
-Versioning;Soppose that, in your Python project, you rename (all occurrences of) a public function. You commit the changes using conventional commit. What type would you use for the commit? ;1
-Versioning;Soppose that, in your Python project, you rename (all occurrences of) a private function. You commit the changes using conventional commit. What type would you use for the commit? ;1
-Versioning;Soppose that, in your Python project, you rename (all usages of) a public function's parameter name. You commit the changes using conventional commit. What type would you use for the commit? ;1
-Versioning;Soppose that, in your Python project, you rename (all usages of) a private function's parameter name. You commit the changes using conventional commit. What type would you use for the commit? ;1
-Versioning;Soppose that, in your Python project, you rename (all occurrences of) a public class. You commit the changes using conventional commit. What type would you use for the commit? ;1
-Versioning;Soppose that, in your Python project, you rename (all usages of) a public class's constructor's parameter name. You commit the changes using conventional commit. What type would you use for the commit? ;1
-Versioning;Soppose that, in your Python project, there's function f which is slow. After some edits to its body, you manage to make it much faster. You commit the changes using conventional commit. What type would you use for the commit? ;1
-Versioning;Suppose your Python project is currently at version 1.2.3. You add one more public method to a class or module. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Suppose your Python project is currently at version 1.2.3. You add one more private method to a class or module and you use it inside another public function of that class or module. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Suppose your Python project is currently at version 1.2.3. You rename (all occurrences of) a public function. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Suppose your Python project is currently at version 1.2.3. You rename (all occurrences of) a private function. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Suppose your Python project is currently at version 1.2.3. You rename (all usages of) a public function's parameter name. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Suppose your Python project is currently at version 1.2.3. You rename (all usages of) a private function's parameter name. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Suppose your Python project is currently at version 1.2.3. You rename (all occurrences of) a public class. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Suppose your Python project is currently at version 1.2.3. You rename (all usages of) a public class's constructor's parameter name. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Suppose your Python project is currently at version 1.2.3. There's function f which is slow. After some edits to its body, you manage to make it much faster. What should be the next version number if this change is going to be released immediately?;1
-Versioning;Since the last release (1.2.3), your semantic-versioned project's main branch contains the following comit types: fix, fix, fix. Should you release now, what's the next version number?;1
-Versioning;Since the last release (1.2.3), your semantic-versioned project's main branch contains the following comit types: fix, feat, feat.  Should you release now, what's the next version number?;1
-Versioning;Since the last release (1.2.3), your semantic-versioned project's main branch contains the following comit types: feat, feat, feat.  Should you release now, what's the next version number?;1
-Versioning;Since the last release (1.2.3), your semantic-versioned project's main branch contains the following comit types: chore, feat!, fix.  Should you release now, what's the next version number?;1
-Versioning;Since the last release (1.2.3), your semantic-versioned project's main branch contains the following comit types: fix, feat!, feat.  Should you release now, what's the next version number?;1
-CI;In your own words, what is continous integration?;1
-CI;In your own words, what is integration hell?;1
-CI;In the context of continous integration, what is a pipeline?;2
-GHA;What is GitHub Actions?;1
-CI;In the context of continous integration, provide an overview of the abstract pipeline design;2
-GHA;In the context of GitHub Actions, what is the difference among workflow, jobs, steps;2
-GHA;How would you design a GitHub Actions workflow for a Python project?;3
-GHA;In the context of GitHub Actions, what is a runner?;1
-Commonsense;What is YAML? What is the difference between YAML and JSON?;2
-GHA;In the context of GitHub Actions, what is a matrix?;2
-GHA;In the context of GitHub Actions, what is a secret?;1
-Lincense;What is a license?;1
-Lincense;What is copyright?;1
-Lincense;What is copyleft?;1
-Lincense;From a legal perspective, what is the difference between ownership and licensing?;2
-Lincense;"In the context of free software, what is the difference between ""free as in speech"" and ""free as in beer""?";2
-Lincense;What is the difference among free and open-source software?;2
-Lincense;In which situations may a software lack a license?;2
-Lincense;What are the most common constraints proprietary software licenses may require?;1
-Lincense;What are the features of the GNU General Public License (GPL)?;2
-Lincense;What are the features of the GNU Lesser General Public License (LGPL)?;2
-Lincense;In the context of software licensing, what is the linking exception?;2
-Lincense;What are the features of the MIT liencese?;2
-Lincense;What are the features of the Apache License?;2
-Lincense;"Why is the ""Do What The Fuck You Want"" Public License considered problematic? ";1
-Lincense;In the context of software licenses, what is the difference between combined and derivative work?;2
-Lincense;What are the creative commons licenses? What are (or are't) they good for? Why are they so many?;3
-Lincense;How would you apply a license to your software project?;1
-Lincense;What are the implications of choosing the GPL license for your software project instead of LGPL?;3
-Lincense;What are the implications of choosing the GPL license for your software project instead of MIT?;3
-Lincense;What are the implications of choosing the GPL license for your software project instead of Apache?;3
-OOP;Explain the key principles of OOP;3
-OOP;In the context of OOP, what is the difference among fields, properties, and methods;2
-OOP;In the context of OOP, what is the difference between objects and classes;1
-OOP;In the context of OOP, what is an interface?;2
-OOP;In the context of OOP, explain the notions of encapsulation and information hiding;2
-OOP;In the context of OOP, what is the difference between identity and equality?;1
-Python;What's the strategy to implement good __eq__ methods in Python classes?;2
-Python;What's the strategy to implement good __hash__ methods in Python classes?;2
-Python;In Python, what's the difference among __repr__ and __str__?;2
-OOP;In the context of OOP, what is the difference between a mutable and immutable design?;3
-OOP;In the context of OOP, when is a data type considered immutable?;1
-OOP;In the context of OOP, what does it mean that object exchange messages?;1
-OOP;In the context of OOP, what is operator overloading?;1
-OOP;In the context of OOP, what is inheritance?;2
-OOP;In the context of OOP, what does it mean to override a method?;1
-OOP;In the context of OOP, what is the difference between instance and static methods?;2
-Python;While writing Python code, how would you choose between implementing a function as an instance, class, or static method?;3
-OOP;In the context of OOP, what is the difference among public, private, and protected?;2
-Python;In Python, how would you mark a class attribute as private?;1
-Python;In Python, how would you mark a class attribute as protected?;1
-OOP;In the context of OOP, what is the Liskov substitution principle?;2
-OOP;In the context of OOP, what is polymorphism?;2
-Python;In Python, what's the purpose of overriding the __add__ method?;1
-Python;In Python, what's the purpose of overriding the __neg__ method?;1
-Python;In Python, what's the purpose of overriding the __getitem__ method?;1
+Category,Question,Weight
+Definition,What is computer science?,1
+Definition,What is an algorithm?,1
+Definition,"Difference among information, data, and representation",1
+Definition,What is software?,1
+Definition,What is software engineering?,1
+History,What were software crises?,1
+Commonsense,What makes software development costs rise?,1
+Commonsense,What may delay software development?,1
+Commonsense,Why could software miss requirements?,1
+Commonsense,Why may software be inefficient?,1
+Commonsense,What does it mean for software to be of low-quality?,1
+Commonsense,What makes code (un)manageable or (un)maintainable?,1
+Definition,What are the main SE phases?,2
+Definition,"In the context of SE phases, what is the ""Use case collection"" phase about?",1
+Definition,"In the context of SE phases, what is the ""Requirements analysis"" phase about?",1
+Definition,"In the context of SE phases, what is the ""Design"" phase about?",1
+Definition,"In the context of SE phases, what is the ""Implementation"" phase about?",1
+Definition,"In the context of SE phases, what is the ""Verification"" phase about?",1
+Definition,"In the context of SE phases, what is the ""Release"" phase about?",1
+Definition,"In the context of SE phases, what is the ""Deployment"" phase about?",1
+Definition,"In the context of SE phases, what is the ""Documentation"" phase about?",1
+Definition,"In the context of SE phases, what is the ""Maintenance"" phase about?",1
+Definition,What are the main SE Lifecycle Models?,2
+Definition,"In the context of SE Lifecycle, what is the Waterfall Model?",1
+Definition,"In the context of SE Lifecycle, what is the V-Model?",1
+Definition,"In the context of SE Lifecycle, what is the Incremental Model?",1
+Definition,"In the context of SE Lifecycle, what is the Iterative Model?",1
+Definition,"In the context of SE Lifecycle, what is the Spiral Model?",1
+Definition,"In the context of SE Lifecycle, what is the Scum Model?",1
+Definition,"In the context of SE Lifecycle, what is the Extreme Programming Model?",1
+Definition,"Difference among shell, terminal, REPL",1
+Commonsense,What are the benefits of command-line interfaces over graphical ones?,2
+Definition,"In the context of software engineering, what is a script?",1
+Commonsense,Pros and cons of automating activities via scripts,2
+Terminal,"In a *nix system shell, how would you inspect the content of a directory?",1
+Terminal,"In a *nix system shell, how would you to print the current directory location?",1
+Terminal,"In a *nix system shell, how would you to remove the file foo?",1
+Terminal,"In a *nix system shell, how would you to remove directory bar?",1
+Terminal,"In a *nix system shell, how would you to change disk?",1
+Terminal,"In a *nix system shell, how would you to move into some directory?",1
+Terminal,"In a *nix system shell, how would you to move to the parent directory?",1
+Terminal,"In a *nix system shell, how would you to move a file to another directory?",1
+Terminal,"In a *nix system shell, how would you to rename a file?",1
+Terminal,"In a *nix system shell, how would you to copy a file into another directory?",1
+Terminal,"In a *nix system shell, how would you to create a directory?",1
+Terminal,"In a Windows system shell, how would you inspect the content of a directory?",1
+Terminal,"In a Windows system shell, how would you to print the current directory location?",1
+Terminal,"In a Windows system shell, how would you to remove the file foo?",1
+Terminal,"In a Windows system shell, how would you to remove directory bar?",1
+Terminal,"In a Windows system shell, how would you to change disk?",1
+Terminal,"In a Windows system shell, how would you to move into some directory?",1
+Terminal,"In a Windows system shell, how would you to move to the parent directory?",1
+Terminal,"In a Windows system shell, how would you to move a file to another directory?",1
+Terminal,"In a Windows system shell, how would you to rename a file?",1
+Terminal,"In a Windows system shell, how would you to copy a file into another directory?",1
+Terminal,"In a Windows system shell, how would you to create a directory?",1
+Operative Systems,"In the context of operative systems' shells, what is a directory?",1
+Operative Systems,"In the context of operative systems' shells, what is a path?",1
+Commonsense,What would you do if you don't remember how to use a terminal's command?,1
+Commonsense,What makes a shell's command interactive?,1
+Operative Systems,What is the exit code of a command-line program?,1
+Operative Systems,"In the context of operative systems, what is a process?",1
+Operative Systems,"In the context of software, what is a stream?",1
+Operative Systems,"In the context of operative systems, what are the default streams of a process?",1
+Terminal,"Should you edit a textual file via the terminal, what would you do?",1
+Python,What is Python?,1
+Python,In which and how many ways can the python command be invoked?,2
+Project,"In a Python project, what is the purpose of the `requirements.txt` file?",1
+Project,"In a Python project, what is the purpose of the `.python-version` file?",1
+Python,"In the context of the Python programming language, what is `pip`?",1
+Python,"In the context of the Python programming language, what is Kivy?",1
+Python,"In the context of the Python programming language, what is the compilation cache?",1
+Definition,What is a software library?,1
+Definition,What is a dependency of a software project?,1
+Definition,What is a transitive dependency of a software project?,1
+Definition,What is the dependency graph of a software project?,1
+Definition,What is a cyclic dependency in a software project?,1
+Definition,What is the runtime of a software?,1
+Definition,"In the context of programming languages, what is a package manager?",1
+Definition,What is the difference between compiled and interpreted programming languages?,1
+Definition,What is the Von Neuman architecture?,1
+Definition,What are the most common instruction set architectures?,1
+Commonsense,Is Python a compiled or interpreted programming language?,1
+Definition,What is the standard library of a programming language?,1
+Definition,"In the context of programming languages, what is the difference between standard and third-party libraries?",1
+Definition,"In the context of programming languages, what is a package repository?",1
+Python,"In the context of the Python programming language, what is PyPI?",1
+Commonsense,What are the main software platforms you are aware of?,1
+Commonsense,What are the main package managers and repositories of the main software platforms?,2
+Definition,"In a software application involving a UI, what is the difference among the model, the view, and the controller?",2
+Definition,"In the context of programming, what is the purpose of code decomposition and modularity?",2
+Definition,"In the context of programming, what is encapsulation?",1
+Definition,"In the context of programming, what is information hiding?",1
+Python,What mechanisms does Python provide to support code decompositon?,1
+Definition,What is the interface of a software?,1
+Definition,What is the API of a software?,1
+Commonsense,Describe the overall functioning of UI,2
+Definition,"In the context of software interfaces, what is the difference among public and private?",1
+Python,"When, how, and why should you differentiate among public and private members in Pythons?",2
+Commonsense,"What are the classic, inefficient ways of tracking changes in software projects? Why are they inadequate?",3
+DVCS,What are the functionalities provided by Distributed Version Control Systems?,1
+DVCS,"In the context of DVCS, what is a repository?",1
+DVCS,"In the context of DVCS, what is the working tree?",1
+DVCS,"In the context of DVCS, what is a commit?",1
+DVCS,"In the context of DVCS, what is a merge commit?",1
+DVCS,"In the context of DVCS, what is a branch?",1
+Git,"In the context of Git, what is a commit reference?",1
+Git,"In the context of Git, what is the `HEAD` reference?",1
+Git,"In the context of Git, what is the difference between relative and absolute commit references?",1
+DVCS,"In the context of DVCS, what does the ""checkout"" operation mean and involve?",1
+DVCS,"In the context of DVCS, what does the ""branching"" operation mean and involve?",1
+DVCS,"In the context of DVCS, what does the ""merging"" operation mean and involve?",1
+Git,What is Git?,3
+Git,"What is the purpose of the command `git config --global user.name ""Your Real Name""`?",1
+Git,"What is the purpose of the command `git config --global user.email ""your.email@address""`?",1
+Git,What is the purpose of the command `git config --global core.editor nano`?,1
+Git,What is the purpose of the command `git config --global init.defaultbranch master`?,1
+Git,What is the purpose and the effect of the command `git init in directory my-project`?,1
+Git,"In the context of Git, what is the stage?",2
+Git,What is the purpose of the command `git add .`?,1
+Git,What is the purpose of the command `git reset .`?,1
+Git,What is the purpose and the effect of the command `git commit`?,1
+Git,What is the purpose of the command `git status`?,1
+Git,"In the context of Git, what is `HEAD`?",1
+Git,"In the context of Git, what is the purpose of ignoring files? How do you do that?",2
+Git,"In the context of Git, what is the purpose of the `.gitattributes` files?",1
+Operative Systems,"In the context of operative systems, what is the line terminator?",2
+Operative Systems,"In the context of operative systems, what are the most common line terminators, and what systems use which one?",1
+DVCS,Let's say you have a number of uncommitted changes in your working tree. What criteria would you adopt to decide which and how many commit to do?,2
+Git,What is the purpose of the command `git log`?,1
+Git,What is the purpose and the effect of the command `git checkout -b NAME`?,1
+Git,What is the purpose and the effect of the command `git checkout NAME`?,1
+Git,What is the purpose and the effect of the command `git checkout XXX -- YYY`?,2
+Git,"In the context of Git, what does ""detached head"" mean?",2
+GitHub,What is the difference between Git and GitHub?,2
+GitHub,"In the context of GitHub, what is a fork? What's its purpose?",1
+GitHub,"In the context of GitHub, what is a pull request? What's its purpose?",1
+GitHub,"In the context of GitHub, what is an issue? What's its purpose?",1
+Git,Let's say you have an unpublished repository onto your computer. How can you publish it on GitHub? Specify the terminal commands.,3
+Git,Let's say you have access to a GitHub repository. How can you clone it? Specify the commands and their effects,1
+Git,"In the context of Git, what is a remote?",1
+Git,"In the context of Git, what is the upstream of a branch?",1
+Git,"In the context of Git, what is the ""divergent history"" situation about? How can that happen? How to `fix` it?",2
+Git,"In the context of Git, what are merge conflicts? How can they happen? How to `fix` them?",2
+Git,"In the context of Git, what is a branching workflow?",2
+Git,"In the context of Git, what is the GitFlow branching workflow? How does it work?",2
+Git,What is the purpose and the effect of the command `git push`?,1
+Git,What is the purpose and the effect of the command `git pull`?,1
+GitHub,"In the context of GitHub, what is an organization?",1
+GitHub,"In the context of GitHub, what is a Wiki?",1
+QA,"In the context of software engineering, what is quality assurance?",1
+QA,"When is software considered ""correctly working""?",2
+QA,"When is software considered ""of good quality""?",2
+Testing,"In the context of software engineering, what is testing?",1
+Testing,"In the context of software testing, what is the difference between an automated and manual test?",2
+Testing,"In the context of software testing, what are the most common testing scopes?",2
+Testing,"What is the difference among unit, integration, and end-to-end testing?",3
+Commonsense,What is the problem in skipping unit testing and just focus on integration testing?,1
+Testing,Why one may want to have automated tests in a software project?,1
+Testing,What issues may arise in the long run when a software project is lacking automated testing?,1
+Commonsense,Why is reproducibility important in testing? How to achieve it?,2
+Testing,What is test code? How to separate it from the main code? Why?,2
+Testing,What is test driven development (TDD)?,2
+Testing,In what sense can software test act as a form of specification?,1
+Testing,What is technical debt? How is it related to software testing?,2
+Testing,How to deal with a project which was not following TDD since the very beginning?,3
+Testing,"In the context of software testing, what is a regression?",1
+Testing,What are test doubles and what problem do they address?,3
+Testing,"In the context of software testing, what is test coverage?",2
+Testing,What are the common metrics for test coverage?,2
+Testing,How to measure the test coverage of a Python project?,2
+Testing,"If a project has 100% test coverage and 100% success rate for tests, can we declare it bug free? Can we safely say it satisfies all requirements?",2
+QA,"Aside from testing, what is quality assurance about?",2
+QA,"In the context of software engineering, what is static analysis?",1
+QA,What static analysis tool may you exploit when working on a Python project? What's their purpose?,2
+Build Automation,What is the build life cycle of a software project?,2
+Build Automation,"In the context of Software Engineering, what is build automation?",2
+Build Automation,"What can you expect, in general, from a build automation tool?",2
+Build Automation,"In the context of build automation, what is dependency locking? Why is it necessary?",2
+Poetry,"In a Python project, what would you use Poetry for?",3
+Python,Where would you release a Python project on Test PyPI? When on PyPI?,2
+Python,What is Test PyPI? What's its purpose?,1
+Poetry,What are the steps to release a Python project via Poetry?,2
+Versioning,"In the context of SE, what is versioning?",1
+Versioning,At what levels can versioning occur?,2
+Versioning,What are the admissible scopes for software versioning?,1
+Versioning,"In the context of software versioning, what is code naming? What's its purpose?",1
+Versioning,What are the versioning approaches you are aware of?,2
+Versioning,"Provide an overview of date-based versioning: purpose, functioning, pros, and cons",2
+Versioning,"Provide an overview of unary numbering (in the context of software versioning): purpose, functioning, pros, and cons",2
+Versioning,"Provide an overview of semantic versioning: purpose, functioning, pros, and cons",3
+Versioning,How can one tie semantic versioning to DVCS commits?,1
+Versioning,"In the context of DVCS, what are conventional commits? What's their purpose?",2
+Versioning,"In the context of conventional commits, what is a breaking change?",1
+Versioning,"In the context of conventional commits, what is a `feat`?",1
+Versioning,"In the context of conventional commits, what is a `fix`?",1
+Versioning,"In the context of conventional commits, what is a `chore`?",1
+Versioning,"In the context of semantic versioning, what is the difference among a major, minor, or patch change?",2
+Versioning,What is the idea behind semantic release?,2
+Versioning,"How are semantic versioning, conventional commits, and semantic release related?",2
+Versioning,"Suppose that, in your Python project, you add one more public method to a class or module. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, you add one more private method to a class or module and you use it inside another public function of that class or module. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, you rename (all occurrences of) a public function. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, you rename (all occurrences of) a private function. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, you rename (all usages of) a public function's parameter name. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, you rename (all usages of) a private function's parameter name. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, you rename (all occurrences of) a public class. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, you rename (all usages of) a public class's constructor's parameter name. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, there's function f which is slow. After some edits to its body, you manage to make it much faster. Is this a major, minor, or patch change?",1
+Versioning,"Suppose that, in your Python project, you add one more public method to a class or module. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,"Suppose that, in your Python project, you add one more private method to a class or module and you use it inside another public function of that class or module. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,"Suppose that, in your Python project, you rename (all occurrences of) a public function. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,"Suppose that, in your Python project, you rename (all occurrences of) a private function. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,"Suppose that, in your Python project, you rename (all usages of) a public function's parameter name. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,"Suppose that, in your Python project, you rename (all usages of) a private function's parameter name. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,"Suppose that, in your Python project, you rename (all occurrences of) a public class. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,"Suppose that, in your Python project, you rename (all usages of) a public class's constructor's parameter name. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,"Suppose that, in your Python project, there's function f which is slow. After some edits to its body, you manage to make it much faster. You commit the changes using conventional commit. What type would you use for the commit?",1
+Versioning,Suppose your Python project is currently at version `1.2.3`. You add one more public method to a class or module. What should be the next version number if this change is going to be released immediately?,1
+Versioning,Suppose your Python project is currently at version `1.2.3`. You add one more private method to a class or module and you use it inside another public function of that class or module. What should be the next version number if this change is going to be released immediately?,1
+Versioning,Suppose your Python project is currently at version `1.2.3`. You rename (all occurrences of) a public function. What should be the next version number if this change is going to be released immediately?,1
+Versioning,Suppose your Python project is currently at version `1.2.3`. You rename (all occurrences of) a private function. What should be the next version number if this change is going to be released immediately?,1
+Versioning,Suppose your Python project is currently at version `1.2.3`. You rename (all usages of) a public function's parameter name. What should be the next version number if this change is going to be released immediately?,1
+Versioning,Suppose your Python project is currently at version `1.2.3`. You rename (all usages of) a private function's parameter name. What should be the next version number if this change is going to be released immediately?,1
+Versioning,Suppose your Python project is currently at version `1.2.3`. You rename (all occurrences of) a public class. What should be the next version number if this change is going to be released immediately?,1
+Versioning,Suppose your Python project is currently at version `1.2.3`. You rename (all usages of) a public class's constructor's parameter name. What should be the next version number if this change is going to be released immediately?,1
+Versioning,"Suppose your Python project is currently at version `1.2.3`. There's function f which is slow. After some edits to its body, you manage to make it much faster. What should be the next version number if this change is going to be released immediately?",1
+Versioning,"Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `fix`, `fix`, `fix`. Should you release now, what's the next version number?",1
+Versioning,"Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `fix`, `feat`, `feat`. Should you release now, what's the next version number?",1
+Versioning,"Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `feat`, `feat`, `feat`. Should you release now, what's the next version number?",1
+Versioning,"Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `chore`, `feat!`, `fix`. Should you release now, what's the next version number?",1
+Versioning,"Since the last release (`1.2.3`), your semantic-versioned project's main branch contains the following commit types: `fix`, `feat!`, `feat`. Should you release now, what's the next version number?",1
+CI,"In your own words, what is continuous integration?",1
+CI,"In your own words, what is integration hell?",1
+CI,"In the context of continuous integration, what is a pipeline?",2
+GHA,What is GitHub Actions?,1
+CI,"In the context of continuous integration, provide an overview of the abstract pipeline design",2
+GHA,"In the context of GitHub Actions, what is the difference among workflow, jobs, steps",2
+GHA,How would you design a GitHub Actions workflow for a Python project?,3
+GHA,"In the context of GitHub Actions, what is a runner?",1
+Commonsense,What is YAML? What is the difference between YAML and JSON?,2
+GHA,"In the context of GitHub Actions, what is a matrix?",2
+GHA,"In the context of GitHub Actions, what is a secret?",1
+Lincense,What is a licence?,1
+Lincense,What is copyright?,1
+Lincense,What is copyleft?,1
+Lincense,"From a legal perspective, what is the difference between ownership and licensing?",2
+Lincense,"In the context of free software, what is the difference between ""free as in speech"" and ""free as in beer""?",2
+Lincense,What is the difference among free and open-source software?,2
+Lincense,In which situations may a software lack a licence?,2
+Lincense,What are the most common constraints proprietary software licences may require?,1
+Lincense,What are the `feat`ures of the GNU General Public License (GPL)?,2
+Lincense,What are the `feat`ures of the GNU Lesser General Public License (LGPL)?,2
+Lincense,"In the context of software licensing, what is the linking exception?",2
+Lincense,What are the `feat`ures of the MIT License?,2
+Lincense,What are the `feat`ures of the Apache License?,2
+Lincense,"Why is the ""Do What The Fuck You Want"" Public License considered problematic?",1
+Lincense,"In the context of software licences, what is the difference between combined and derivative work?",2
+Lincense,What are the creative commons licences? What are (or aren't) they good for? Why are they so many?,3
+Lincense,How would you apply a licence to your software project?,1
+Lincense,What are the implications of choosing the GPL licence for your software project instead of LGPL?,3
+Lincense,What are the implications of choosing the GPL licence for your software project instead of MIT?,3
+Lincense,What are the implications of choosing the GPL licence for your software project instead of Apache?,3
+OOP,Explain the key principles of OOP,3
+OOP,"In the context of OOP, what is the difference among fields, properties, and methods",2
+OOP,"In the context of OOP, what is the difference between objects and classes",1
+OOP,"In the context of OOP, what is an interface?",2
+OOP,"In the context of OOP, explain the notions of encapsulation and information hiding",2
+OOP,"In the context of OOP, what is the difference between identity and equality?",1
+Python,What's the strategy to implement good `__eq__` methods in Python classes?,2
+Python,What's the strategy to implement good `__hash__` methods in Python classes?,2
+Python,"In Python, what's the difference among `__repr__` and `__str__`?",2
+OOP,"In the context of OOP, what is the difference between a mutable and immutable design?",3
+OOP,"In the context of OOP, when is a data type considered immutable?",1
+OOP,"In the context of OOP, what does it mean that object exchange messages?",1
+OOP,"In the context of OOP, what is operator overloading?",1
+OOP,"In the context of OOP, what is inheritance?",2
+OOP,"In the context of OOP, what does it mean to override a method?",1
+OOP,"In the context of OOP, what is the difference between instance and static methods?",2
+Python,"While writing Python code, how would you choose between implementing a function as an instance, class, or static method?",3
+OOP,"In the context of OOP, what is the difference among public, private, and protected?",2
+Python,"In Python, how would you mark a class attribute as private?",1
+Python,"In Python, how would you mark a class attribute as protected?",1
+OOP,"In the context of OOP, what is the Liskov substitution principle?",2
+OOP,"In the context of OOP, what is polymorphism?",2
+Python,"In Python, what's the purpose of overriding the `__add__` method?",1
+Python,"In Python, what's the purpose of overriding the `__neg__` method?",1
+Python,"In Python, what's the purpose of overriding the `__getitem__` method?",1
+Modelling,What is a model? What are the potential purposes of a model?,1
+Modelling,How can software be modelled?,1
+Modelling,What is UML?,1
+Modelling,"In the context of UML, what are class diagrams? What do they model? How?",2
+Modelling,"In the context of UML, what is the difference between aggregation and composition?",2
+Modelling,"In the context of UML class diagrams, what are the possible relations among classes?",2
+Modelling,"In the context of UML, what are sequence diagrams? What do they model? How?",2
+Modelling,"In the context of UML, what are state diagrams? What do they model? How?",2
+Modelling,"In the context of UML, what are activity diagrams? What do they model? How?",2
+Modelling,"In the context of UML, what are use case diagrams? What do they model? How?",2
+Modelling,"In the context of UML, what are deployment diagrams? What do they model? How?",2
+Modelling,"In the context of UML, what are package diagrams? What do they model? How?",2
+Modelling,What is PlantUML?,1
+Distributed Systems,What is a distributed system? What are its essential characteristics?,1
+Distributed Systems,"In the context of distributed systems, what is scalability? Is that desirable? Why?",1
+Distributed Systems,"In the context of distributed systems, what is fault tolerance? Is that desirable? Why?",1
+Distributed Systems,"In the context of distributed systems, what is availability? Is that desirable? Why?",1
+Distributed Systems,"In the context of distributed systems, what is consistency? Is that desirable? Why?",1
+Distributed Systems,"In the context of distributed systems, what is latency? Is that desirable? Why?",1
+Distributed Systems,"In the context of distributed systems, what is geographical distribution? Is that desirable? Why?",1
+Distributed Systems,"In the context of distributed systems, what is resource sharing? Is that desirable? Why?",1
+Distributed Systems,How do distributed systems help to handle big data?,1
+Distributed Systems,"In the context of distributed systems, what is parallelism? Is that desirable? Why?",1
+Distributed Systems,In what way do distributed systems contribute to cost efficiency?,1
+Distributed Systems,How do distributed systems foster collaboration among users?,1
+Distributed Systems,Enumerate and describe the reasons why one may want to design and implement a software system as distributed,3
+Distributed Systems,"Describe some real-world distributed system of your choice, focussing on (i) whether and how it deals with relevant features such as scalability, fault tolerance, etc., and (ii) why it need distribution in the first place",3
+Distributed Systems,"In the context of software engineering, how to understand whether a new system to be realized needs distribution or not?",1
+Distributed Systems,"In the context of software engineering, what are relevant aspects to be taken into account in the ""design"" phase of a distributed system?",1
+Distributed Systems,"In the context of software engineering, what are relevant aspects to be taken into account in the ""implementation"" phase of a distributed system?",1
+Distributed Systems,"In the context of software engineering, what are relevant aspects to be taken into account in the ""verification"" phase of a distributed system?",1
+Distributed Systems,"In the context of software engineering, what are relevant aspects to be taken into account in the ""release"" phase of a distributed system?",1
+Distributed Systems,"In the context of software engineering, what are relevant aspects to be taken into account in the ""deployment"" phase of a distributed system?",1
+Distributed Systems,"In the context of software engineering, what are relevant aspects to be taken into account in the ""maintenance"" phase of a distributed system?",1
+Distributed Systems,"In the context of distributed systems, what is the infrastructure?",1
+Distributed Systems,"In the context of distributed systems, what are infrastructural components?",2
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as a client?",1
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as a server? Why are servers often necessary in a system?",1
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as a proxy? Why would that be beneficial in a system?",1
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as a cache? Why would that be beneficial in a system?",1
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as a load balancer? What balancing strategies may it employ? Why would that be beneficial in a system?",1
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as a broker? What could a broker be useful for in a system?",1
+Distributed Systems,"In the context of distributed systems, how could a broker exploit a queue?",1
+Distributed Systems,"In the context of distributed systems, what is a message oriented middleware?",1
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as database?",1
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as master?",1
+Distributed Systems,"In the context of distributed systems, what does it mean for a node to act as worker?",1
+Distributed Systems,"In the context of distributed systems, what is an interaction pattern (a.k.a. protocol)? How to represent it?",3
+Distributed Systems,"In the context of distributed systems, describe the request�response interaction pattern (a.k.a. protocol)",2
+Distributed Systems,"In the context of distributed systems, describe the publish�subscribe interaction pattern (a.k.a. protocol)",2
+Distributed Systems,"In the context of distributed systems, what is the difference among unicast, multicast, and broadcast?",1
+Distributed Systems,"In the context of distributed systems, describe the contract-net protocol",2
+Distributed Systems,"In the context of distributed systems, what is a software architecture? And what is an architectural style?",1
+Distributed Systems,"In the context of distributed systems, describe the ""layered architecture"" architectural style",1
+Distributed Systems,"In the context of distributed systems, describe the ""three-tier architecture"" architectural style",1
+Distributed Systems,"In the context of distributed systems, describe the ""hexagonal architecture"" architectural style",3
+Distributed Systems,"In the context of distributed systems, describe the ""event-based architecture"" architectural style",1
+Distributed Systems,"In the context of distributed systems, describe the ""shared data-space architecture"" architectural style",1
+Distributed Systems,"In the context of distributed systems, what is redundancy? Why is it useful? How to achieve it and what implications does each solution come with?",2
+Distributed Systems,"In the context of distributed systems, what is a failover mechanism? Why is it useful? How to achieve it and what implications does each solution come with?",2
+Distributed Systems,"In the context of distributed systems, what is check-pointing? How is it related to rollbacking? Why are they useful? How to achieve them and what implications does each solution come with?",2
+Distributed Systems,"In the context of distributed systems, what is consensus? Why is it useful? How to achieve it and what implications does each solution come with?",2
+Distributed Systems,"In the context of distributed systems, what is a heart-beat mechanism? Why is it useful? How to achieve it and what implications does each solution come with?",2
+Distributed Systems,"In the context of distributed systems, what is authentication? How is it related to authorization? Why are they useful? How to achieve them and what implications does each solution come with?",2
+Distributed Systems,"In the context of distributed systems, what is data partitioning? Why is it useful? How to achieve it and what implications does each solution come with?",2
+DDD,"In the context of domain driven design, what are: the problem, the model, and the solution?",1
+DDD,"In the context of domain driven design, what is the domain? What are the contexts?",1
+DDD,"In the context of domain driven design, what is the ubiquitous language?",1
+DDD,"In the context of domain driven design, what is a context map?",1
+DDD,"In the context of domain driven design, when should a concept be modelled as an entity? When as a value object?",2
+DDD,"Invent a domain of choice, and a few relevant concepts in it to be modelled via the domain driven design approach. The model should include (at least) an entity, a value object, a repository, a domain event, a service. Factories are welcome too. Identify aggregate roots if any. Provide a textual description of the domain concepts, and a UML chart of the corresponding classes.",4
+DDD,"In the context of domain driven design, what is the ""aggregate-root"" building block about?",1
+DDD,"In the context of domain driven design, when should a concept be modelled as a domain event?",1
+DDD,"In the context of domain driven design, when should a concept be modelled as a repository?",1
+DDD,"In the context of domain driven design, what is the ""service"" building block about?",1
+DDD,"In the context of domain driven design, what is the ""factory"" building block about?",1
+DDD,"In the context of domain driven design, how to translate an entity concept into an OOP class?",2
+DDD,"In the context of domain driven design, how to translate a value object concept into an OOP class?",2
+DDD,"In the context of domain driven design, how to translate a domain event concept into an OOP class?",2
+DDD,"In the context of domain driven design, how to translate a repository concept into an OOP class?",2
+DDD,"In the context of domain driven design, how to translate a service concept into an OOP class?",2
+DDD,"In the context of domain driven design, how to translate a factory concept into an OOP class?",2
+DDD,"In the context of domain driven design, what are model integrity patterns?",1
+DDD,"In the context of domain driven design, what is the purpose of the ""shared kernel"" pattern? How does it work?",2
+DDD,"In the context of domain driven design, what is the purpose of the ""customer�supplier"" pattern? How does it work?",2
+DDD,"In the context of domain driven design, what is the purpose of the ""comformist"" pattern? How does it work?",2
+DDD,"In the context of domain driven design, what is the purpose of the ""anti-corruption layer"" pattern? How does it work?",2
+DDD,"How are domain driven design and the ""hexagonal architecture"" related?",3
+DDD,"In the context of domain driven design, what is event sourcing?",1
+DDD,"In the context of domain driven design, what is the ""Command�Query Responsibility Segregation"" pattern about?",3
+CI,"In the context of software engineering, what is integration? What is continuous integration?",2
+CI,"In the context of software engineering, what are the issues arising from infrequent integration/release events?",1
+CI,"In the context of software engineering, how to make integration continuous?",2
+CI,What is GitHub Actions? What is its purpose? How does it work?,2
+CI,"In the context of GitHub Actions, what is the difference among workflow, jobs, steps?",2
+CI,"In an ordinary Python project using Poetry for build automation and release on PyPi and `unittest` for automatic tests, how would you organize a continuous integration pipeline? (What operations should be performed in each run of the pipeline?)",3

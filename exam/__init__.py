@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import xml.etree.ElementTree as xml
 from pathlib import Path
 from io import StringIO
+from markdown import markdown
 
 
 DIR_ROOT = Path(__file__).parent.parent
@@ -86,7 +87,7 @@ class Question:
         xml.SubElement(name, "text").text = self.id
         questiontext = xml.SubElement(root, "questiontext")
         questiontext.set("format", "html")
-        xml.SubElement(questiontext, "text").text = self.text
+        xml.SubElement(questiontext, "text").text = markdown(self.text)
         xml.SubElement(root, "defaultgrade").text = str(float(self.weight))
         xml.SubElement(root, "penalty").text = "0"
         xml.SubElement(root, "hidden").text = "0"

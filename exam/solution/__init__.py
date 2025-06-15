@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.chat_models import init_chat_model
 from exam.openai import ensure_openai_api_key
+from exam.rag import sqlite_vector_store
 
 
 class Answer(BaseModel):
@@ -9,23 +10,27 @@ class Answer(BaseModel):
     score: float = Field(description="Score for the answer, must be between 0 (totally wrong) and 1 (perfectly correct).", ge=0.0, le=1.0)
 
 
-def get_prompt(question: str, target_score: float = None):
+def get_prompt(question: str, target_score: float = None, *helps: str):
     if target_score is None:
         target_score = 1.0  # Default to perfect score if not specified
     template = ChatPromptTemplate.from_template(
         "You are a student in the Software Engineering course, for the Digital Transformantion and Management master programme.\n"
         "Your task is to provide an answer to the following question, which is part of a written test, "
         "which you have to pass in order to pass the exam for the course.\n"
+        "The teacher asks to provide examples, background, and context even if the question does not explicitly ask for it.\n"
         "You're tergetting a score of more or less {target_score_pecent} for your answer, "
         "where 0% meanse completely idiotic, and 100% means perfect and complete.\n"
         "Only extract the properties mentioned in the '{class_name}' function.\n"
-        "Question is below:\n\n"
-        "{question}" 
+        "Question is:\n"
+        "\t{question}\n\n" 
+        "Below are snippets from the course material that may help you answer the question:\n\n"
+        "{help}"
     )
     return template.invoke({
         "class_name": Answer.__name__,
         "target_score_pecent": target_score * 100,
-        "question": question
+        "question": question,
+        "help": "\n\n".join(helps) if helps else "",
     })
 
 
@@ -42,10 +47,15 @@ def llm_client(model_name: str = None, model_provider: str = None):
 class SolutionProvider:
     def __init__(self, model_name: str = None, model_provider: str = None):
         self.__llm = llm_client(model_name, model_provider)
+        self.__vector_store = sqlite_vector_store()
+        self.__use_helps = self.__vector_store.get_dimensionality() > 0
 
-    def answer(self, question, target_score: float = None) -> Answer:
+    def answer(self, question, target_score: float = None, k=5) -> Answer:
         text = question if isinstance(question, str) else question.text
-        prompt = get_prompt(text, target_score)
+        helps = []
+        if self.__use_helps:
+            helps = [doc.page_content for doc in self.__vector_store.similarity_search(text, k=k)]
+        prompt = get_prompt(text, target_score, *helps)
         result = self.__llm.invoke(prompt)
         if isinstance(result, Answer):
             return result

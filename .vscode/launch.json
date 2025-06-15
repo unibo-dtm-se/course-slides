@@ -27,6 +27,12 @@
             "type": "debugpy",
             "request": "launch",
             "module": "exam.rag",
+        },
+        {
+            "name": "Generate solutions",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "exam.solution",
         }
     ]
 }

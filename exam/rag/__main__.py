@@ -6,19 +6,14 @@ vector_store = sqlite_vector_store()
 
 
 if any(arg == "--fill" for arg in sys.argv):
-    loader = DoclingLoader(
-        file_path=MARKDOWN_FILES,
-        export_type=ExportType.DOC_CHUNKS,
-        # chunker=SlideChunker(),
-    )
-    
     print(f"# vector store created at {FILE_DB}")
 
-    for doc in loader.lazy_load():
-        if not isinstance(source := doc.metadata['source'], str):
-            doc.metadata['source'] = source = str(source)
-        vector_store.add_documents([doc])
-        print(f"# added {doc.page_content.count("\n") + 1} lines from {source} to vector store")
+    for slide in all_slides():
+        vector_store.add_texts(
+            texts=[slide.content],
+            metadatas=[{"source": slide.source, "lines": slide.lines, "index": slide.index}],
+        )
+        print(f"# added {slide.lines_count} lines of text from {slide.source} (slide {slide.index}, lines {'%d-%s' % slide.lines}) to vector store")
     print("# vector store filled successfully")
 else:
     print(f"# vector store loaded successfully: it contains {vector_store.get_dimensionality()} embeddings.")

@@ -1,58 +1,61 @@
-from langchain_docling.loader import ExportType, DoclingLoader
-from docling_core.transforms.chunker.base import BaseChunk, BaseChunker, BaseMeta
-# from docling_core.types.doc.document import ListItem
 from langchain_community.embeddings.openai import OpenAIEmbeddings
 from langchain_community.vectorstores import SQLiteVec
 from exam.openai import ensure_openai_api_key
-import re
 from exam import DIR_ROOT
+from pydantic import BaseModel
+import re
 
 
 DIR_CONTENT = DIR_ROOT / "content"
 FILE_DB = DIR_ROOT / "slides-rag.db"
-MARKDOWN_FILES = list(DIR_CONTENT.glob("**/*.md"))
-REGEX_ITEM_TO_SANITIZE = re.compile(r"\[<\w+ children='([^']*)'>\]")
+MARKDOWN_FILES = list(DIR_CONTENT.glob("**/_index.md"))
+REGEX_SLIDE_DELIMITER = re.compile(r"^\s*(---|\+\+\+)")
 
 
-class SlideChunker(BaseChunker):
-    def __item_to_string(self, item):
-        if isinstance(item, str):
-            return item
-        elif hasattr(item, 'text'):
-            result = item.text
-            if match := REGEX_ITEM_TO_SANITIZE.match(result):
-                result = f"{item.marker} {match.group(1)}"
-                result = result.replace("\\'", "'")
-                return result
-            return result
-        else:
-            raise TypeError(f"Unsupported item type: {type(item)}")
+class Slide(BaseModel):
+    content: str
+    source: str
+    lines: tuple[int, int]
+    index: int
 
-    def __join_into_chunk(self, *items, delim=None):
-        if delim is None:
-            delim = self.delim
-        text = delim.join(self.__item_to_string(item) for item in items)
-        return BaseChunk(text=text, meta=BaseMeta())
+    @property
+    def lines_count(self):
+        return self.content.count("\n") + 1 if self.content else 0
 
-    def chunk(self, doc, **kwargs):
-        skipping = False
-        accumulator = []
-        for item in doc.texts:
-            if item.text.startswith("+++"):
-                if skipping:
-                    skipping = False
-                    accumulator = [] 
+
+def all_slides(files = None):
+    if files is None:
+        files = MARKDOWN_FILES
+    for file in files:
+        with open(file, "r", encoding="utf-8") as f:
+            slide_beginning_line_num = 0
+            line_number = 0
+            slide_lines = []
+            slide_index = 0
+            last_was_blank = False
+            for line in f.readlines():
+                line_number += 1
+                if REGEX_SLIDE_DELIMITER.match(line):
+                    if slide_lines:
+                        yield Slide(
+                            content="\n".join(slide_lines),
+                            source=str(file.relative_to(DIR_CONTENT)),
+                            lines=(slide_beginning_line_num, line_number - 1),
+                            index=slide_index,
+                        )
+                        slide_index += 1
+                    slide_lines = []
+                    slide_beginning_line_num = line_number + 1
                 else:
-                    skipping = True
-            elif skipping:
-                continue
-            elif item.text.startswith("---"):
-                if accumulator:
-                    yield self.__join_into_chunk(*accumulator)
-                    accumulator = []
-            else:
-                accumulator.append(item)
-        yield self.__join_into_chunk(*accumulator)
+                    if (stripped := line.strip()) or not last_was_blank:
+                        slide_lines.append(line.rstrip())
+                    last_was_blank = not stripped
+            yield Slide(
+                content="\n".join(slide_lines),
+                source=str(file.relative_to(DIR_CONTENT)),
+                lines=(slide_beginning_line_num, line_number - 1),
+                index=slide_index,
+            )
 
 
 def openai_embeddings(model):

@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.chat_models import init_chat_model
+from exam.openai import ensure_openai_api_key
 
 
 class Answer(BaseModel):
@@ -33,6 +34,7 @@ def llm_client(model_name: str = None, model_provider: str = None):
         model_name = "gpt-4o-mini"
     if not model_provider:
         model_provider = "openai"
+    ensure_openai_api_key()
     llm = init_chat_model(model_name, model_provider=model_provider)
     return llm.with_structured_output(Answer)
 

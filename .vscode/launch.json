@@ -12,6 +12,21 @@
             "args": [
                 "-v"
             ]
+        },
+        {
+            "name": "RAG fill",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "exam.rag",
+            "args": [
+                "--fill"
+            ],
+        },
+        {
+            "name": "RAG query",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "exam.rag",
         }
     ]
 }

@@ -1,11 +1,5 @@
-import getpass
-import os
 from exam import *
 from exam.solution import SolutionProvider
-
-
-if not os.environ.get("OPENAI_API_KEY"):
-  os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
 
 
 questions = QuestionsStore()

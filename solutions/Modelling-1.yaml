@@ -1,0 +1,118 @@
+examples:
+- 'Example of a model: A weather forecast is used to predict future weather patterns
+  based on atmospheric data.'
+- 'Example of a simplified model: The Bohr model of the atom for teaching basic atomic
+  structure concepts.'
+helps:
+- "## What is a model?\n\n(cf. <https://plato.stanford.edu/entries/models-science/>)\n\
+  \n> A __model__ is a _simplified_ _representation_ of something complex\n\n### What\
+  \ are models useful for?\n\n- __Understanding__ of the real world, via _simplification_\
+  \ and _abstraction_ (i.e., by removing details)\n    + think about the many [models\
+  \ of the atom](https://en.wikipedia.org/wiki/History_of_atomic_theory) (Bohr, Rutherford,\
+  \ etc.), or the wooden miniature of a bridge\n\n- __Explain__ a _phenomenon_ by\
+  \ fitting the model onto the _observed_ data, to reconstruct the process\n    +\
+  \ think about the [attachment theory](https://en.wikipedia.org/wiki/Attachment_theory)\
+  \ in psychology\n\n- __Predicting__ the _dynamic_ behaviour of a system (possibly,\
+  \ before/without building the system)\n    + think about the [weather forecast](https://en.wikipedia.org/wiki/Weather_forecasting),\
+  \ or, again, the wooden miniature of a bridge\n"
+- '## Model in Statistics / Machine Learning
+
+
+  In _statistics_ (and _machine learning_) a __model__ is a _mathematical representation_
+  of a real-world process
+
+  <br> (commonly attained by _fitting_ a parametric _function_ over a _sample_ of
+  _data_ describing the process)
+
+
+  ![](./model-statistics.webp)
+
+
+  e.g.: __$f(x) = \beta_0 + \beta_1 x $__ where __$f$__ is the amount of minutes played,
+  and __$x$__ is the age
+
+  '
+- "## Why do engineers model systems?\n\n- Models allow engineers to _design_ and\
+  \ _study_ a system __before__ building it\n\n- Building is commonly more _expensive_\
+  \ and _time-consuming_ than _modelling_\n\n- Models can __verify__ (to some extent)\
+  \ the system they want to create, _before_ fully building it\n\n- Models allow designers\
+  \ to __take design decisions__ _early_, and _cheaply_\n\n- Models can be used to\
+  \ __represent__ and __communicate__ the design of a system\n    + useful for _collaboration_\
+  \ and _documentation_...\n    + ... which in turn allow new people to _join_ the\
+  \ project\n"
+- "## Models are simplifications\n\n(cf. <https://en.wikipedia.org/wiki/All_models_are_wrong>)\n\
+  \n> \"_All_ models are __wrong__, but _some_ are __useful__\" — George Box\n\n-\
+  \ Each model is _stressing some aspects_ of the real world, and _ignoring others_\n\
+  - Focus on the _purpose_ and the _context_ of a model:\n    * if the goal is __understanding__,\
+  \ the model should be _simple_ and _intuitive_\n    * if the goal is __prediction__,\
+  \ the model should be _accurate_ and _precise_\n\n### Example\n\n- __Newton's Laws__:\
+  \ they are not fully correct (Einstein’s relativity refined them)\n    * but they\
+  \ are still useful for _engineering_ and _daily_ physics\n"
+- '## Check your understanding
+
+
+  - What is a model? What are the potential purposes of a model?
+
+  - How can software be modelled?
+
+  - What is UML?
+
+  - In the context of UML, what are class diagrams? What do they model? How?
+
+  - In the context of UML, what is the difference between aggregation and composition?
+
+  - In the context of UML class diagrams, what are the possible relations among classes?
+
+  - In the context of UML, what are sequence diagrams? What do they model? How?
+
+  - In the context of UML, what are state diagrams? What do they model? How?
+
+  - In the context of UML, what are activity diagrams? What do they model? How?
+
+  - In the context of UML, what are use case diagrams? What do they model? How?
+
+  - In the context of UML, what are deployment diagrams? What do they model? How?
+
+  - In the context of UML, what are package diagrams? What do they model? How?
+
+  - What is PlantUML?
+
+  '
+id: Modelling-1
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: What is a model? What are the potential purposes of a model?
+see_also:
+- The importance of abstraction and simplification in modeling complex systems.
+- The role of models in the iterative design process in software engineering and system
+  design.
+- Discussion on the limitations of models, emphasizing George Box's quote about models
+  being wrong but useful.
+should:
+- Define a model as a simplified representation of a complex system or phenomenon.
+- 'Mention the purpose of models: understanding, explanation, and prediction.'
+- Provide examples of models (e.g., weather forecasting, atomic models, attachment
+  theory).
+- Explain how models can help in engineering, design, and decision-making processes.
+- Discuss the concept of models being simplifications, stressing some aspects while
+  ignoring others.
+should_not:
+- Avoid vague definitions; do not just say a model is 'something used in science'
+  without clarity.
+- Do not ignore the purpose of models; failing to mention all three major purposes
+  (understanding, explanation, prediction) is a common mistake.
+- Avoid overly complex technical jargon without explanation; the answer should be
+  comprehensible to all levels of students.

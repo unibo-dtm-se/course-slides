@@ -1,0 +1,134 @@
+examples:
+- 'Example of creating a simple directory: `mkdir myfolder`'
+- 'Example of creating nested directories: `mkdir -p parent/child`'
+helps:
+- '## Check your understanding (pt. 2)
+
+
+  - In a Windows system shell, how would you inspect the content of a directory?
+
+  - In a Windows system shell, how would you to print the current directory location?
+
+  - In a Windows system shell, how would you to remove the file foo?
+
+  - In a Windows system shell, how would you to remove directory bar?
+
+  - In a Windows system shell, how would you to change disk?
+
+  - In a Windows system shell, how would you to move into some directory?
+
+  - In a Windows system shell, how would you to move to the parent directory?
+
+  - In a Windows system shell, how would you to move a file to another directory?
+
+  - In a Windows system shell, how would you to rename a file?
+
+  - In a Windows system shell, how would you to copy a file into another directory?
+
+  - In a Windows system shell, how would you to create a directory?
+
+  - In the context of operative systems'' shells, what is a directory?
+
+  - In the context of operative systems'' shells, what is a path?
+
+  '
+- '{{% section %}}
+
+
+  ## Check your understanding (pt. 1)
+
+
+  - Difference among shell, terminal, REPL
+
+  - What are the benefits of command-line interfaces over graphical ones?
+
+  - In the context of software engineering, what is a script?
+
+  - Pros and cons of automating activities via scripts
+
+  - In a *nix system shell, how would you inspect the content of a directory?
+
+  - In a *nix system shell, how would you to print the current directory location?
+
+  - In a *nix system shell, how would you to remove the file foo?
+
+  - In a *nix system shell, how would you to remove directory bar?
+
+  - In a *nix system shell, how would you to change disk?
+
+  - In a *nix system shell, how would you to move into some directory?
+
+  - In a *nix system shell, how would you to move to the parent directory?
+
+  - In a *nix system shell, how would you to move a file to another directory?
+
+  - In a *nix system shell, how would you to rename a file?
+
+  - In a *nix system shell, how would you to copy a file into another directory?
+
+  - In a *nix system shell, how would you to create a directory?
+
+  '
+- "## Stuff you need to know about the shell (pt. 2)\n\n- Whenver you open a shell,\
+  \ the shell is \"in\" a directory, which is called the __current working directory__\
+  \ (CWD)\n    - by default, commands _operate_ on the CWD (i.e. they read and write\
+  \ files in the CWD)\n    - that directory should be shown _somewhere_ in the shell's\
+  \ _prompt_\n    - if not shown, you can always _ask_ the shell to show it, via some\
+  \ command\n\n- If one wants to operate on a _file_ in a _different directory_...\n\
+  \    + ... they have to _change_ the CWD\n        - this is done via the `cd` command\
+  \ (change directory)\n\n    + ... without changing the CWD, they have to _specify_\
+  \ the __path__ to the file\n        - this is done via the _absolute_ or _relative_\
+  \ __path__ to the file\n"
+- '# The command-line
+
+
+  (a.k.a. the shell, the terminal, the console)
+
+  '
+- "## Initializing a repository\n\n### `git init`\n* Initializes a new repository\
+  \ *inside the current directory*\n* Reified in the `.git` folder\n* The location\
+  \ of the `.git` folder marks the root of the repository\n  * Do not nest repositories\
+  \ inside repositories, it is fragile\n  * Nested projects are realized via *submodules*\
+  \ (not discussed in this course)\n* **Beware of the place where you issue the command!**\n\
+  \  * First use `cd` to locate yourself inside the folder that contains (or will\
+  \ containe the project)\n    * (possibly, first create the folder with `mkdir`)\n\
+  \  * **Then** issue `git init`\n  * if something goes awry, you can delete the repository\
+  \ by deleting the `.git` folder.\n"
+id: Terminal-11
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In a *nix system shell, how would you to create a directory?
+see_also:
+- Importance of understanding command-line interfaces vs. graphical user interfaces
+  in software engineering.
+- How directory structures are fundamental in organizing files in operating systems.
+- The concept of paths in *nix systems, both absolute and relative, and their usage
+  with the `mkdir` command.
+should:
+- 'Mention the command to create a directory in a *nix system shell: `mkdir <directory_name>`.'
+- Explain the purpose of the `mkdir` command in creating directories.
+- Indicate how to verify that the directory has been created (e.g., using `ls` to
+  list the contents of the parent directory).
+- Provide examples of both absolute and relative paths when creating a directory with
+  `mkdir`.
+- Discuss common options for `mkdir`, such as `-p` for creating parent directories
+  as needed.
+should_not:
+- Use incorrect syntax or command names, such as `mkfolder` instead of `mkdir`.
+- Neglect to explain the significance of the command or the directory structure in
+  *nix systems.
+- Fail to mention that the command must be run in the shell and what context the command
+  needs (current working directory).

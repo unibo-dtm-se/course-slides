@@ -1,0 +1,153 @@
+examples:
+- 'Perfect answer: ''Since renaming a constructor''s parameter is a backward-compatible
+  change, the next version number should be `1.2.4`. This is fitting under semantic
+  versioning where patches are incremented for backward-compatible changes.'''
+- 'Common incorrect response: ''The version should be `1.3.0` because it is a change
+  in functionality.'' -- This is incorrect as it doesn''t introduce new functionality.'
+helps:
+- "## Check your understanding (pt. 5)\n\n- Suppose that, in your Python project,\
+  \ you rename (all occurrences of) a public class. You commit the changes using conventional\
+  \ commit.\n    + What type would you use for the commit?\n- Suppose that, in your\
+  \ Python project, you rename (all usages of) a public class's constructor's parameter\
+  \ name. You commit the changes using conventional commit.\n    + What type would\
+  \ you use for the commit?\n- Suppose that, in your Python project, there's function\
+  \ f which is slow. After some edits to its body, you manage to make it much faster.\
+  \ You commit the changes using conventional commit.\n    + What type would you use\
+  \ for the commit?\n- Suppose your Python project is currently at version `1.2.3`.\
+  \ You add one more public method to a class or module.\n    + What should be the\
+  \ next version number if this change is going to be released immediately?\n- Suppose\
+  \ your Python project is currently at version `1.2.3`. You add one more private\
+  \ method to a class or module and you use it inside another public function of that\
+  \ class or module.\n    + What should be the next version number if this change\
+  \ is going to be released immediately?\n- Suppose your Python project is currently\
+  \ at version `1.2.3`. You rename (all occurrences of) a public function.\n    +\
+  \ What should be the next version number if this change is going to be released\
+  \ immediately?\n- Suppose your Python project is currently at version `1.2.3`. You\
+  \ rename (all occurrences of) a private function.\n    + What should be the next\
+  \ version number if this change is going to be released immediately?\n- Suppose\
+  \ your Python project is currently at version `1.2.3`. You rename (all usages of)\
+  \ a public function's parameter name.\n    + What should be the next version number\
+  \ if this change is going to be released immediately?\n- Suppose your Python project\
+  \ is currently at version `1.2.3`. You rename (all usages of) a private function's\
+  \ parameter name.\n    + What should be the next version number if this change is\
+  \ going to be released immediately?\n"
+- "## Check your understanding (pt. 6)\n\n- Suppose your Python project is currently\
+  \ at version `1.2.3`. You rename (all occurrences of) a public class.\n    + What\
+  \ should be the next version number if this change is going to be released immediately?\n\
+  - Suppose your Python project is currently at version `1.2.3`. You rename (all usages\
+  \ of) a public class's constructor's parameter name.\n    + What should be the next\
+  \ version number if this change is going to be released immediately?\n- Suppose\
+  \ your Python project is currently at version `1.2.3`. There's function f which\
+  \ is slow. After some edits to its body, you manage to make it much faster.\n  \
+  \  + What should be the next version number if this change is going to be released\
+  \ immediately?\n- Since the last release (`1.2.3`), your semantic-versioned project's\
+  \ main branch contains the following commit types: `fix`, `fix`, `fix`.\n    + Should\
+  \ you release now, what's the next version number?\n- Since the last release (`1.2.3`),\
+  \ your semantic-versioned project's main branch contains the following commit types:\
+  \ `fix`, `feat`, `feat`.\n    + Should you release now, what's the next version\
+  \ number?\n- Since the last release (`1.2.3`), your semantic-versioned project's\
+  \ main branch contains the following commit types: `feat`, `feat`, `feat`.\n   \
+  \ + Should you release now, what's the next version number?\n- Since the last release\
+  \ (`1.2.3`), your semantic-versioned project's main branch contains the following\
+  \ commit types: `chore`, `feat!`, `fix`.\n    + Should you release now, what's the\
+  \ next version number?\n- Since the last release (`1.2.3`), your semantic-versioned\
+  \ project's main branch contains the following commit types: `fix`, `feat!`, `feat`.\n\
+  \    + Should you release now, what's the next version number?\n\n{{% /section %}}\n"
+- "# Versioning approaches\n## Degree of retro compatibility\n\n> The version is represented\
+  \ one or more _numbers_, separately incremented, that\n> <br>\n> **reflect incrementally\
+  \ widespread changes in the product**\n\nExample: `1.0.1`, `1.1.0`, `2.0.0`\n\n\
+  * Often used *in conjunction with other techniques*\n* Often used *badly* (see the\
+  \ Linux kernel)\n* *Formal methodologies* for applying it exist\n* Sometimes instead\
+  \ of indicating API-level changes, the version may indicate user-level perceivable\
+  \ changes\n    * Very much depends on who are the clients/customers\n"
+- "## Check your understanding (pt. 3)\n\n- In the context of semantic versioning,\
+  \ what is the difference among a major, minor, or patch change?\n- What is the idea\
+  \ behind semantic release?\n- How are semantic versioning, conventional commits,\
+  \ and semantic release related?\n- Suppose that, in your Python project, you add\
+  \ one more public method to a class or module.\n    + Is this a major, minor, or\
+  \ patch change?\n- Suppose that, in your Python project, you add one more private\
+  \ method to a class or module and you use it inside another public function of that\
+  \ class or module.\n    + Is this a major, minor, or patch change?\n- Suppose that,\
+  \ in your Python project, you rename (all occurrences of) a public function.\n \
+  \   + Is this a major, minor, or patch change?\n- Suppose that, in your Python project,\
+  \ you rename (all occurrences of) a private function.\n    + Is this a major, minor,\
+  \ or patch change?\n- Suppose that, in your Python project, you rename (all usages\
+  \ of) a public function's parameter name.\n    + Is this a major, minor, or patch\
+  \ change?\n- Suppose that, in your Python project, you rename (all usages of) a\
+  \ private function's parameter name.\n    + Is this a major, minor, or patch change?\n\
+  - Suppose that, in your Python project, you rename (all occurrences of) a public\
+  \ class.\n    + Is this a major, minor, or patch change?\n- Suppose that, in your\
+  \ Python project, you rename (all usages of) a public class's constructor's parameter\
+  \ name.\n    + Is this a major, minor, or patch change?\n"
+- '# Versioning in the real world
+
+  ## Python Enhancement Proposal 440 ([PEP440](https://www.python.org/dev/peps/pep-0440/))
+
+
+  It is *the* way Python software should be versioned
+
+  * Flexible but complicated
+
+  * Order of release segments is mandated
+
+
+  Format: `[N!]N(.N)*[{a|b|rc}N][.postN][.devN]`
+
+  1. Optional _epoch segment_: an integer number `N` followed by exclamation mark
+  (e.g. `1!`)
+
+  1. __Mandatory__ _release segment_: as many integer numbers `N1`, `N2`, ..., separated
+  by `.` (e.g. `1.2.3.4.5`)
+
+  1. Optional _pre-release segment_: one of `a`, `b`, `rc` followed by an integer
+  number `N` (e.g. `a1`, `b2`, `rc3`)
+
+  1. Optional _post-release segment_: one `.` followed by `post` and an integer number
+  `N` (e.g. `.post1`)
+
+  1. Optional _development release segment_: one `.` followed by `dev` and an integer
+  number `N` (e.g. `.dev1`)
+
+  '
+id: Versioning-43
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: Suppose your Python project is currently at version `1.2.3`. You rename
+  (all usages of) a public class's constructor's parameter name. What should be the
+  next version number if this change is going to be released immediately?
+see_also:
+- Understanding semantic versioning and how it differentiates between major, minor,
+  and patch increments.
+- The significance of backward compatibility in software development and release management.
+- Conventional commits and their role in maintaining clarity in version history, especially
+  in collaborative projects.
+should:
+- Identify that the versioning follows semantic versioning principles.
+- Recognize that renaming a public class's constructor's parameter name is a backward-compatible
+  change and does not introduce incompatibility for users.
+- Determine that since it is a backward-compatible change, the patch version should
+  be incremented, resulting in version `1.2.4`.
+- Mention that the semantics of the change do not warrant a major (1.x.x to 2.0.0)
+  or minor version increase (1.x.x to 1.3.0).
+- Explain the role of conventional commits, stating that a commit type like `chore`
+  or `refactor` would be appropriate for such changes.
+should_not:
+- State that the version needs to be incremented to `1.3.0` as this implies a new
+  feature set or breaking changes, which is not the case here.
+- Claim that such a change can be classified as a major version increment, as it does
+  not involve incompatibilities.
+- Mention irrelevant versioning strategies that do not apply, such as indicating user-level
+  perceivable changes without context.

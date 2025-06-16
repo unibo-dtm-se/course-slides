@@ -1,0 +1,117 @@
+examples:
+- 'Example of an API: A weather API that provides temperature and weather conditions
+  based on location input and returns corresponding data.'
+- 'Example of a broken API contract: When a software provider changes the output format
+  without informing the consumer.'
+helps:
+- '## About application programming interfaces (pt. 1)
+
+
+  > The __application programming interface__ (_API_) of a software is:
+
+  > 1. the set of __functionalities__ the software _provides_ to __developers__ for
+  building _other_ software on top of it
+
+  > 2. a (semi-)formal __specification__ of 1, including, _for each functionality_:
+
+  >   + the _name_ by which it is known / _referenced_
+
+  >   + the _formal parameters_ it accepts as _input_
+
+  >   + the _return values_ or _effects_ it produces as _outcome_
+
+  >   + the _pre-conditions_ and _post-conditions_ it satisfies/establishes
+
+  '
+- '## About application programming interfaces (pt. 3)
+
+
+  ### Useful metaphor
+
+
+  - The _API_ is the __contract__ between the _provider_ and the _consumer_ of services
+
+
+  - The _provider_ of the services knows __how to provide__ the services
+
+
+  - The _consumer_ of the services knows __what__ the services do, and __how to exploit__
+  them
+
+
+  - A __change__ in the contract would _affect both_ sides
+
+  '
+- "## About application programming interfaces (pt. 2)\n\nRecall that software is\
+  \ often _built_ on top of _other_ software, in a __layered__ way:\n![Layers in a\
+  \ software system](./layers.jpg)\n\n- You can think of a piece of software as a\
+  \ __provider__ of _services_ to their users\n    + here users are, again, software\n\
+  \n- At the same time, a piece of software could be a __consumer__ of services from\
+  \ other software\n"
+- "## Application programming interfaces in practice (pt. 1)\n\n### Rule of thumb\
+  \ for Python projects\n\nThe _API_ of a _Python project_ consists of\n1. the set\
+  \ of all _public_ __modules__\n2. plus, the set of all _public_ __definitions__\
+  \ in those modules\n    + e.g. functions, classes, variables, constants\n3. plus,\
+  \ the set of all _public_ __attributes__ of those definitions\n    + e.g. methods,\
+  \ properties, fields\n\n### What does \"public\" means here?\n\n> - \"__Public__\"\
+  \ means \"intended for _external_ usage\"\n>   + i.e. \"to be used by _other_ developers\
+  \ (other than the ones who wrote the current code)\"\n> - the opposite of \"public\"\
+  \ is \"__private__\"\n"
+- "## Is CLI a UI or an API?\n\n(spoiler: both)\n\n- A command line application can\
+  \ be seen as:\n    + a __UI__ for _users_ who interact with the application via\
+  \ the terminal\n    + part of the __API__ for _developers_ who write __scripts__\
+  \ for a given _shell_\n\n- Recall that a command-line application is just one more\
+  \ __command__ for the _shell_\n\n- The __API__ of a command line application is\
+  \ a description of\n    + the set of __arguments__ it accepts when _invoked_ as\
+  \ a command on a shell\n    + the __output__ it prints on the shell after the command\
+  \ is _executed_\n    + the __exit code__ it returns to the shell after the command\
+  \ is _executed_\n    + the __side effects__ it produces on the system after the\
+  \ command is _executed_\n        - e.g. file creation, file deletion, file modification,\
+  \ etc.\n\n- Most commonly, the __API__ of a command line application can be inspected\
+  \ via the `--help` argument\n"
+id: Definition-44
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: What is the API of a software?
+see_also:
+- Highlight the importance of APIs in enabling software interoperability and the layered
+  architecture of software development.
+- Discuss the implications of changing APIs on both service providers and consumers,
+  reinforcing the idea that changes in contract affect both sides.
+- Introduce the concept of API documentation and its vital role in enabling effective
+  software development.
+should:
+- Define what an API is and clarify it stands for 'Application Programming Interface'.
+- Explain that the API is a set of functionalities provided to developers for building
+  software.
+- 'Mention the semi-formal specification of an API, including key components: name,
+  formal parameters, return values, pre-conditions, and post-conditions.'
+- Use metaphors to illustrate the relationship between provider and consumer, emphasizing
+  the contract nature of APIs.
+- Discuss the public vs. private distinction of API components in software, particularly
+  in the context of Python projects.
+- Provide examples of what a public API would include, such as public modules and
+  definitions in Python.
+should_not:
+- Avoid vague descriptions that do not specify what an API actually provides or consists
+  of.
+- Do not confuse API with user interfaces; clarify that APIs are meant for developers,
+  while UIs are for end-users.
+- Steer clear of saying APIs are only about URLs or endpoints without discussing their
+  broader functionality.
+- Do not include irrelevant information about specific programming languages unless
+  it directly relates to the definition of API. Mentioning private APIs without context
+  can also be misleading.

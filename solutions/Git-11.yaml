@@ -1,0 +1,114 @@
+examples:
+- 'A good example of a response: "The command `git add .` stages all modified and
+  new files within the current working directory for the next commit, while ignoring
+  any files that match patterns in the `.gitignore` file, allowing developers to manage
+  which changes are tracked in the Git history."'
+helps:
+- "## Ignoring files\n\nIn general, we do not want to track *all* the files in the\
+  \ repository folder:\n* Some files could be *temporary* (e.g., created by the editor)\n\
+  * Some files could be *regenerable* (e.g., compiled binaries and application archives)\n\
+  * Some files could contain *private* information\n\nOf course, we could just not\
+  \ `add` them, but the error is around the corner!\n\nIt would be much better to\
+  \ just tell Git to ignore some files.\n\nThis is achieved through a *special `.gitignore`\
+  \ file*.\n  * the file must be named `.gitignore`, names like `foo.gitignore` or\
+  \ `gitignore.txt` won't work\n    * A good way to create/append to this file is\
+  \ via `echo whatWeWantToIgnore >> .gitignore` (multiplatform command)\n  * it is\
+  \ a list of paths that git will ignore (unless `git add` is called with the `--force`\
+  \ option)\n  * it is possible to add exceptions\n"
+- '## Check your understanding (pt. 2)
+
+
+  - What is the purpose of the command `git config --global user.name "Your Real Name"`?
+
+  - What is the purpose of the command `git config --global user.email "your.email@address"`?
+
+  - What is the purpose of the command `git config --global core.editor nano`?
+
+  - What is the purpose of the command `git config --global init.defaultbranch master`?
+
+  - What is the purose and the effect of the command `git init in directory my-project`?
+
+  - What is the purpose of the command `git add .`?
+
+  - What is the purpose of the command `git reset .`?
+
+  - What is the purpose and the effect of the command `git commit`?
+
+  - What is the purpose of the command `git status`?
+
+  - What is the purpose and the effect of the command `git checkout -b NAME`?
+
+  - What is the purpose and the effect of the command `git checkout NAME`?
+
+  - What is the purpose and the effect of the command `git checkout XXX -- YYY`?
+
+  - What is the purpose of the command `git log`?
+
+  - What is the purpose and the effect of the command `git push`?
+
+  - What is the purpose and the effect of the command `git pull`?
+
+  - What is the purpose and the effect of the command `git merge`?
+
+  '
+- "## Staging\n\nGit has the concept of *stage* (or *index*).\n* Changes must be added\
+  \ to the stage to be committed.\n* Commits save the *__changes__ included in the\
+  \ stage*\n  * Files changed after being added to the stage neet to be re-staged\n\
+  * `git add <files>` moves the current state of the files into the stage as *changes*\n\
+  * `git reset <files>` removes currently staged *changes* of the files from stage\n\
+  * `git commit` creates a new *changeset* with the contents of the stage\n\n```mermaid\n\
+  flowchart LR\nworkdir(\"working directory\") --add--> stage(\"stage (or index)\"\
+  ) --commit--> repository(repository)\nstage --reset-->workdir\n```\n"
+- "## `.gitattributes`\n\n* A sensible strategy is to use `LF` everywhere, but for\
+  \ Windows scripts (`bat`, `cmd`, `ps1`)\n* Git can be configured through a `.gitattributes`\
+  \ file in the repository root\n  * It can do [much more than enforcing line endings](https://git-scm.com/docs/gitattributes),\
+  \ actually\n* Example:\n```text\n* text=auto eol=lf\n*.[cC][mM][dD] text eol=crlf\n\
+  *.[bB][aA][tT] text eol=crlf\n*.[pP][sS]1 text eol=crlf\n```\n"
+- "## Initializing a repository\n\n### `git init`\n* Initializes a new repository\
+  \ *inside the current directory*\n* Reified in the `.git` folder\n* The location\
+  \ of the `.git` folder marks the root of the repository\n  * Do not nest repositories\
+  \ inside repositories, it is fragile\n  * Nested projects are realized via *submodules*\
+  \ (not discussed in this course)\n* **Beware of the place where you issue the command!**\n\
+  \  * First use `cd` to locate yourself inside the folder that contains (or will\
+  \ containe the project)\n    * (possibly, first create the folder with `mkdir`)\n\
+  \  * **Then** issue `git init`\n  * if something goes awry, you can delete the repository\
+  \ by deleting the `.git` folder.\n"
+id: Git-11
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: What is the purpose of the command `git add .`?
+see_also:
+- Discuss the staging area in Git and why it is important for organizing commits cleanly.
+- Mention best practices regarding what types of files should typically be added or
+  ignored in a project.
+- Reference the necessity of reviewing changes before committing them, using `git
+  status` to see what is staged and ready for commit.
+should:
+- Explain that `git add .` stages all the changes in the current directory and its
+  subdirectories for the next commit.
+- Mention that using `.` means all changes across all files will be included except
+  those specified in `.gitignore` (if applicable).
+- Indicate that this command does not permanently save changes but prepares them for
+  commit.
+- Provide a brief explanation of staging in Git and the relationship between staging
+  and commits.
+should_not:
+- Avoid stating that the command deletes files or makes changes permanent, as it only
+  stages files.
+- Do not confuse `git add .` with `git commit`, which actually saves the staged changes
+  to the repository.
+- Refrain from omitting the importance of the `.gitignore` file and its interactions
+  with the `git add` process.

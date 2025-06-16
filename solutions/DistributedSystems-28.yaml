@@ -1,0 +1,162 @@
+examples:
+- In a web application, a load balancer distributes user requests to diverse server
+  instances, balancing the load and improving response times.
+- A retail website during a holiday season uses a round-robin load balancer to evenly
+  distribute traffic across several database servers.
+helps:
+- "## Load Balancer\n\n{{< image src=\"./load-balancer.png\" height=\"60vh\" alt=\"\
+  Load Balancer concept\" >}}\n\n<br>\n\n- __Load Balancer__ $\\equiv$ a proxy _distributing_\
+  \ incoming requests among multiple servers\n    * according to some _distribution\
+  \ policy_:\n        + _round-robin_,\n        + _least connections_,\n        +\
+  \ _least response time_,\n        + etc.\n"
+- "## Check your understanding (pt. 2)\n\n- Describe some real-world distributed system\
+  \ of your choice, focussing on\n    1. whether and how it deals with relevant features\
+  \ such as scalability, fault tolerance, etc., and\n    2. why it needs distribution\
+  \ in the first place\n- In the context of software engineering,\n    * how to understand\
+  \ whether a new system to be realised needs distribution or not?\n    * what are\
+  \ relevant aspects to be taken into account in the \"design\" phase of a distributed\
+  \ system?\n    * what are relevant aspects to be taken into account in the \"implementation\"\
+  \ phase of a distributed system?\n    * what are relevant aspects to be taken into\
+  \ account in the \"verification\" phase of a distributed system?\n    * what are\
+  \ relevant aspects to be taken into account in the \"release\" phase of a distributed\
+  \ system?\n    * what are relevant aspects to be taken into account in the \"deployment\"\
+  \ phase of a distributed system?\n    * what are relevant aspects to be taken into\
+  \ account in the \"maintenance\" phase of a distributed system?\n- In the context\
+  \ of distributed systems,\n    * what is the infrastructure?\n    * what are infrastructural\
+  \ components?\n    * what does it mean for a node to act as a client? What are clients\
+  \ necessary in a system?\n    * what does it mean for a node to act as a server?\
+  \ Why are servers often necessary in a system?\n    * what does it mean for a node\
+  \ to act as a proxy? Why would that be beneficial in a system?\n    * what does\
+  \ it mean for a node to act as a cache? Why would that be beneficial in a system?\n\
+  \    * what does it mean for a node to act as a load balancer? What balancing strategies\
+  \ may it employ? Why would that be beneficial in a system?\n    * what does it mean\
+  \ for a node to act as a broker? What could a broker be useful for in a system?\n\
+  \    * how could a broker exploit a queue?\n    * what is a message oriented middleware?\n\
+  \    * what does it mean for a node to act as database?\n    * what does it mean\
+  \ for a node to act as master?\n    * what does it mean for a node to act as worker?\n"
+- '## About Failover
+
+
+  ### What
+
+
+  - __Active-passive__ failover: the backup node become active when the primary fails
+
+
+  - __Active-active__ failover: all replicas are active, and traffic is rerouted in
+  case of failure
+
+
+  ### Why
+
+
+  - __Fault Tolerance__ and __Availability__: ensures that the system remains operational
+  even the component fail
+
+
+  ### How
+
+
+  - __Load-balancer__ or __proxy__ to reroute traffic to the backup node(s)
+
+
+  ### Implications
+
+
+  - Same as in _service replication_
+
+  - Need for a mechanism to _detect_ failures, e.g. __hear-beats__ (see next slides)
+
+  '
+- '{{%section%}}
+
+
+  ## Why would you make your system distributed?
+
+
+  Any or some of the following reasons:
+
+
+  - __Scalability__: Handling large-scale systems efficiently
+
+  - __Fault Tolerance__ and __Availability__: Ensuring reliability despite failures
+
+  - __Low Latency__ and __Geographical Distribution__: Providing better user experience
+  across the globe
+
+  - __Resource Sharing__: Efficiently using computing power and storage
+
+  - __Handling Big Data__: Processing data locally rather than moving it
+
+  - __Parallelism__: Speeding up tasks through concurrent execution
+
+  - __Cost Efficiency__: Reducing infrastructure costs through resource pooling
+
+  - __Collaboration__: Enabling real-time updates and interactions across distances
+
+  - _The functionality to be provided_ by the system simply **implies** _distribution_
+
+  '
+- "## About Redundancy\n\n### What\n\n- __Data__: making _copies_ of the data across\
+  \ multiple nodes\n- __Services__: deploying _multiple instances_ of the same service\
+  \ across different nodes\n- __Hardware__: using multiple computers, _storage devices_,\
+  \ or network components\n\n### Why\n\n- __Fault Tolerance__: ensures that the system\
+  \ remains operational even if some components fail\n    + also avoiding _data loss_\n\
+  - __Availability__: distributing the load across multiple nodes, reducing the load\
+  \ on each node\n- __Scalability__: easier to _scale_ the system up/down when the\
+  \ load increases/decreases\n\n### How\n\n- __Replication__: copying data or services\
+  \ across multiple nodes\n- \\[Data\\] __Sharding__ : splitting data into smaller\
+  \ parts and distributing them across multiple nodes\n    * when _all_ nodes have\
+  \ _all_ data, it's called _replication_...\n    * ... when _each_ node has _only_\
+  \ a _part_ of the data, it's called _sharding_\n\n### Implications\n\n- _Data_ replication\
+  \ $\\Rightarrow$ _consistency_ issues $\\Rightarrow$ _consensus_ algorithms OR _master—slave_\
+  \ replication\n- _Service_ replication $\\Rightarrow$ _load balancing_ issues $\\\
+  Rightarrow$ more complex infrastructure\n- _Service_ replication $\\Rightarrow$\
+  \ _state management_ issues $\\Rightarrow$ _state-less_ server + _stateful_ database\n"
+id: DistributedSystems-28
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In the context of distributed systems, what does it mean for a node to act
+  as a load balancer? What balancing strategies may it employ? Why would that be beneficial
+  in a system?
+see_also:
+- Load balancing is integral to achieving high availability in distributed systems,
+  enabling better resource allocation under varying loads.
+- Understanding the trade-offs involved in various load balancing strategies is key
+  to designing effective distributed systems.
+- Motivation for using distributed systems includes scalability, fault tolerance,
+  and improved user experiences through load distribution.
+should:
+- Define what a load balancer does in the context of distributed systems, emphasizing
+  its role in distributing requests among multiple servers.
+- Mention specific balancing strategies that load balancers may employ, such as round-robin,
+  least connections, and least response time.
+- Explain the concept of fault tolerance and how load balancing contributes to maintaining
+  availability in a distributed system.
+- Discuss the benefits of load balancing, highlighting scalability, resource optimization,
+  and enhanced performance.
+- Include examples of real-world distributed systems that effectively utilize load
+  balancers, such as cloud services or content delivery networks (CDNs).
+- Provide a comparison of different load balancing strategies and when each might
+  be preferable.
+should_not:
+- Avoid vague descriptions of load balancers; instead, provide concrete definitions
+  and examples.
+- Do not state that load balancing is unnecessary or can be ignored in any distributed
+  system, as this undermines its significance.
+- Refrain from using technical jargon without explaining it; ensure clarity in communication.
+- Do not solely focus on one strategy (e.g., round-robin) without referencing others
+  or discussing their applicability.

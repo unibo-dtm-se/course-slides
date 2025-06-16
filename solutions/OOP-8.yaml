@@ -1,0 +1,90 @@
+examples:
+- A string in Python is immutable; once created, you cannot change its state.
+- A tuple cannot have its elements changed after it is created, making it a good example
+  of an immutable type.
+helps:
+- "## Immutable vs. Mutable Objects (pt. 1)\n\n- Objects are __immutable__ if their\
+  \ _state_ cannot be _changed_ after they are _created_\n    + e.g., `int`, `float`,\
+  \ `str`, `tuple`, `frozenset`\n\n- Objects are __mutable__ if their _state_ can\
+  \ be _changed_ after they are _created_\n    + e.g., `list`, `dict`, `set`\n\n-\
+  \ Immutability is a _good_ thing, as it makes objects _easier_ to reason about,\
+  \ and _safer_ to use\n    + e.g., you can pass an immutable object to a function\
+  \ without worrying that it will be changed by that function\n\n- Yet, immutability\
+  \ can be _inconvenient_ in some cases\n    + e.g., data needs to be _updated_ in\
+  \ place, rather than _replaced_ by a new object\n"
+- "## Immutable vs. Mutable Objects (pt. 2)\n\n> When designing a class, you should\
+  \ decide whether it should be _immutable_ or _mutable_ design\n\n### How to achieve\
+  \ immutability\n\n1. The attributes of an _immutable_ object should be _read-only_\n\
+  \    + i.e., they should be _set_ only in the constructor, and _never_ changed afterwards\n\
+  \n2. The attributes of an _immutable_ object should be _immutable_ themselves\n\
+  \    + e.g., if an attribute is a `list`, it should be replaced by a `tuple`\n\n\
+  3. State-changing methods should apply the __copy-on-write__ pattern\n    + i.e.,\
+  \ they should _not_ change the object's state, but return a _new_ object with the\
+  \ _updated_ state\n\n### Suggestions\n\n- Make classes _immutable_ by default, and\
+  \ _mutable_ only when necessary\n    + this is a _good_ practice, as it makes the\
+  \ class _safer_ to use\n\n- Alternatively, support both mutability and immutability\n\
+  \    + e.g., implement methods via the __copy-on-write__ pattern, but provide an\
+  \ optional parameter to _activate_ in-place updates\n"
+- "## Entities vs. Value Objects (constraints)\n\n### Entities\n\n- They have an inherent\
+  \ _identity_, which never changes during their lifespan\n    + common modelling:\
+  \ __identifier attribute__, of some value type\n    + equality compares identity\n\
+  - Can be _stateful_ $\\Rightarrow$ may have a _mutable_ design\n    + modifiable\
+  \ properties\n    + state-changing methods\n- May be implemented via _classes_ in\
+  \ most languages\n- Must implement `__eq__()` and `__hash__()` on JVM\n    + implementation\
+  \ must compare (at least) the objects' identifiers\n"
+- "## Entities vs. Value Objects (constraints)\n\n### Value Objects\n\n- Identified\
+  \ by their _attributes_\n    + equality compares attributes alone\n- Must be _stateless_\
+  \ $\\Rightarrow$ better to use _immutable_ design\n    + read-only properties\n\
+  \    + lack of state-changing methods\n- May be implemented as\n    - structures\
+  \ in .NET\n    - _data classes_ in Kotlin, Scala, Python\n    - records in Java\n\
+  - _Must_ implement `__eq__()` and `__hash__()` on JVM\n    + implementation must\
+  \ compare the objects' attributes\n"
+- "## Key principles of OOP\n\n- __Everything__ is an _object_\n\n- A __program__\
+  \ is a _bunch of objects_ telling each other what to do by __sending messages__\n\
+  \n- Every object can have its own __memory__ (state) composed by other objects\n\
+  \n- Every object is an _instance_ of a __class__\n\n- Every object has an __interface__,\
+  \ which defines what messages it can receive\n    + and so what the __type__ of\
+  \ the object is\n"
+id: OOP-8
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In the context of OOP, when is a data type considered immutable?
+see_also:
+- Discuss when immutability is beneficial, such as in concurrent programming or functional
+  programming paradigms.
+- Mention the trade-offs between mutable and immutable designs, particularly in software
+  performance and memory management.
+- Explore the concept of 'value objects' in OOP and their association with immutability.
+- Relate the decision of immutability versus mutability to software maintainability
+  and readability.
+should:
+- Define immutability in the context of OOP and its significance.
+- Provide examples of immutable data types (e.g., `str`, `tuple`, `frozenset`).
+- Explain how immutable objects differ from mutable objects (e.g., `list`, `dict`).
+- Identify the characteristics that make an object immutable (e.g., read-only attributes,
+  immutable attribute types).
+- Mention the benefits of using immutable objects (e.g., safety, ease of reasoning).
+- Discuss the implications of immutability in terms of function arguments and data
+  consistency.
+- Explain design considerations when deciding to use immutability, such as the use
+  of copy-on-write patterns.
+should_not:
+- Confuse immutability with mutability; clarity is crucial in definitions.
+- Provide examples of mutable objects when discussing immutability (e.g., lists should
+  not be included when explaining immutability).
+- Use vague terms or abstract concepts without specific definitions or relevant examples.
+- Overgeneralize the benefits or drawbacks of immutability without providing context
+  or examples.

@@ -1,0 +1,93 @@
+examples:
+- An example of a CI pipeline could include operations such as code checkout, building
+  the application, running unit tests, and deploying to a staging environment.
+- Comparing CI pipeline designs for different technologies, such as GitHub Actions
+  vs. Travis CI, to show how different tools handle operations.
+helps:
+- "## Pipeline design\n\nIn essence, designing a CI system is designing a software\
+  \ construction, verification, and delivery *pipeline*\nwith the abstractions provided\
+  \ by the selected provider.\n\n1. **Think** of all the operations required starting\
+  \ from one or more *blank* VMs\n    * OS configuration\n    * Software installation\n\
+  \    * Project checkout\n    * Compilation\n    * Testing\n    * Secrets configuration\n\
+  \    * Delivery\n    * ...\n2. **Organize** them in a dependency graph\n3. **Model**\
+  \ the graph with the provided CI tooling\n\nConfiguration can grow complex, and\
+  \ is usually stored in a YAML file\n<br>\n(but there are exceptions, JetBrains TeamCity\
+  \ uses a Kotlin DSL).\n"
+- '## Pipeline design (abstract example)
+
+
+  ![](./abstract-workflow.svg)
+
+
+  - Rectangles represent *operations*
+
+  '
+- "## Continous integration concept\n\n* The build process should be *rich* (comprehensive),\
+  \ *fast*, and **automated**\n* And run on _another machine_ (or VM) than the developer's\
+  \ one\n    + this is to avoid the developer from being _unable to work_ while the\
+  \ build is running\n    + but also to ensure that the software runs _outside_ from\
+  \ the _developer's environment_\n        - which increases the chances that the\
+  \ software will run on _other_ machines as well\n    + to allow for testing the\
+  \ software onto many, _controlled environments_\n        - which in turns allows\
+  \ for giving _compatibility guarantees_ to the customers/users\n\n{{% multicol %}}\n\
+  {{% col %}}\n<img src=\"compiling.png\" onerror=\"this.onerror=null; this.src='../../assets/compiling.png'\"\
+  \ height=100% />\n{{% /col %}}\n{{% col %}}\n{{<image src=\"./concept2.png\" width=\"\
+  100%\" alt=\"Continuous integration concept\" >}}\n{{% /col %}}\n{{% /multicol %}}\n"
+- '## CI Pipeline
+
+
+  ![pipeline](https://raw.githubusercontent.com/DanySK/shared-slides/6824b93d3d52b841386a744f57953a73ccb67378/devops/docker-publish.svg)
+
+  '
+- "# Core concepts\n\nNaming and organization is variable across different technological,\
+  \ but *in general*:\n\n* One or more **pipelines** can be associated to **events**\n\
+  \  * For instance, a *new commit*, an update to a *pull request*, or a *timeout*\n\
+  * Every pipeline is composed of a **sequence** of **operations**\n* Every **operation**\
+  \ could be composed of _sequential_ or _parallel_ **sub-operations**\n* How many\
+  \ hierarchical levels are available depends on the specific platform\n  * GitHub\
+  \ Actions: *workflow* $\\Rightarrow$ *job* $\\Rightarrow$ *step*\n  * Travis CI:\
+  \ *build* $\\Rightarrow$ *stage* $\\Rightarrow$ *job*  $\\Rightarrow$ *phase*\n\
+  * Execution happens in a **fresh system** (virtual machine or container)\n  * Often\
+  \ containers inside virtual machines\n  * The specific point of the hierarchy at\
+  \ which the VM/container is spawned depends on the CI platform\n"
+id: CI-4
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In the context of continuous integration, provide an overview of the abstract
+  pipeline design
+see_also:
+- Consider discussing additional CI/CD concepts such as delivery and deployment stages
+  post-build.
+- Mention the role of tools like Jenkins, GitLab CI, or CircleCI in implementing CI
+  pipelines.
+- Discuss common challenges in CI pipeline design such as managing secrets, scaling
+  tests, and maintaining performance.
+should:
+- Describe the concept of continuous integration (CI) and its importance in software
+  development.
+- Outline the key components involved in designing an abstract CI pipeline.
+- Discuss the operations typically required in a CI pipeline, such as OS configuration,
+  software installation, compilation, and testing.
+- Explain the significance of organizing operations in a dependency graph.
+- Mention how CI systems help maintain software quality and delivery speed.
+- Illustrate the concept of building in isolated environments to avoid dependency
+  issues and improve compatibility.
+should_not:
+- Provide vague descriptions without specific details on CI operations or design.
+- Overlook the necessity for automation and speed in the CI process.
+- Mention irrelevant aspects of CI that do not pertain to pipeline design, like user
+  interfaces or unrelated software tools.
+- Fail to acknowledge the context of using isolated environments for build processes.

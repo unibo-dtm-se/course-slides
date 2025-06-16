@@ -1,0 +1,124 @@
+examples:
+- Providing specific instances where automated tests have caught bugs early in a project's
+  lifecycle.
+- Discussing a case study of a project that suffered from a lack of automated tests
+  and subsequent problems encountered.
+helps:
+- "## Automated tests as sentinels\n\n- Creating _automated_ test procedures makes\
+  \ the activity of _testing_ very __cheap__ (in terms of effort)\n    - this allows\
+  \ developers to _test_ the software _often_ and _early_\n\n- Being cheap, automated\
+  \ tests can serve as [canaries in cold mines](https://en.wikipedia.org/wiki/Sentinel_species)\n\
+  \    - i.e. __sentinels__ for the (early) detection of _problems_\n\n- Test __failures__\
+  \ are _precious_ during development\n    - they help in localising the _source_\
+  \ of the problem\n\n> The more granular the tests, the easier it is to spot and\
+  \ fix problems\n"
+- '## Automated vs. manual
+
+
+  Running an application manually is a form of testing: *exploratory testing*.
+
+  * Done **without a plan**
+
+
+  <br>
+
+
+  If there is a plan that can be followed step-by-step, then *there is a program that
+  can do it for you*
+
+  * If a program can do it for you, the it *should* do it for you
+
+  '
+- "## Testing scope (pt. 2)\n\n> A well-maintained engineering product _must_ have\
+  \ tests at __all granularity levels__\n\n* But why?\n  - after all, if the _end-to-end_\
+  \ test passes...\n  - ... then all the _unit_ and _integration_ tests should pass\
+  \ as well, right?\n\n<br>\n\n* Yes, but:\n  - tests are not only about _verifying_\
+  \ that the software works\n  - they are particularly useful to _understand_ __why__\
+  \ it _doesn't_ work\n"
+- '## Check your understanding (pt. 2)
+
+
+  - What is the problem in skipping unit testing and just focus on integration testing?
+
+  - Why one may want to have automated tests in a software project?
+
+  - What issues may arise in the long run when a software project is lacking automated
+  testing?
+
+  - Why is reproducibility important in testing? How to achieve it?
+
+  - What is test code? How to separate it from the main code? Why?
+
+  - What is test driven development (TDD)?
+
+  - In what sense can software test act as a form of specification?
+
+  - What is technical debt? How is it related to software testing?
+
+  - How to deal with a project which was not following TDD since the very beginning?
+
+  '
+- '## On the cost of testing
+
+
+  Developing without testing is *unsustainable*
+
+
+  <br>
+
+
+  Yet many software projects have no or minimal tests, as:
+
+
+  > __Common misconception__: We do not have time (or money) for testing
+
+
+  <br>
+
+
+  Beware: **testing saves times in the long run**, not testing is a *cost*!
+
+  * Untested software components are likely sources of *technical debt*
+
+  '
+id: Testing-5
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: Why one may want to have automated tests in a software project?
+see_also:
+- Mention the long-term cost implications of not having automated tests, linked to
+  technical debt.
+- Introduce the concept of test-driven development (TDD) and its relevance to automated
+  testing.
+- Highlight common misconceptions about time and resources for testing versus the
+  benefits it brings.
+should:
+- Explain that automated tests reduce the cost of testing, allowing for frequent and
+  early testing.
+- Discuss the value of automated tests as early detection tools (sentinels) for identifying
+  issues in the software.
+- Mention that test failures provide critical information for debugging and isolating
+  problems.
+- Highlight the importance of having tests at all levels of granularity (unit, integration,
+  end-to-end).
+- Illustrate how automated testing contrasts with manual testing and why automation
+  is preferable when a plan exists.
+should_not:
+- Avoid stating that automated tests are optional or not essential for all projects.
+- Do not suggest that manual testing is always sufficient or better than automated
+  testing.
+- Refrain from oversimplifying the discussion by stating that just one type of testing
+  (unit, integration, etc.) is enough.

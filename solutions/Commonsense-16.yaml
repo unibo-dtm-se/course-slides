@@ -1,0 +1,119 @@
+examples:
+- An example of a failed integration test where the underlying unit tests were skipped
+  could involve a module that successfully interacts with others at face value, but
+  the individual unit has logic errors that are untested.
+helps:
+- '## Check your understanding (pt. 2)
+
+
+  - What is the problem in skipping unit testing and just focus on integration testing?
+
+  - Why one may want to have automated tests in a software project?
+
+  - What issues may arise in the long run when a software project is lacking automated
+  testing?
+
+  - Why is reproducibility important in testing? How to achieve it?
+
+  - What is test code? How to separate it from the main code? Why?
+
+  - What is test driven development (TDD)?
+
+  - In what sense can software test act as a form of specification?
+
+  - What is technical debt? How is it related to software testing?
+
+  - How to deal with a project which was not following TDD since the very beginning?
+
+  '
+- "## Testing scope (pt. 2)\n\n> A well-maintained engineering product _must_ have\
+  \ tests at __all granularity levels__\n\n* But why?\n  - after all, if the _end-to-end_\
+  \ test passes...\n  - ... then all the _unit_ and _integration_ tests should pass\
+  \ as well, right?\n\n<br>\n\n* Yes, but:\n  - tests are not only about _verifying_\
+  \ that the software works\n  - they are particularly useful to _understand_ __why__\
+  \ it _doesn't_ work\n"
+- "## Testing scope (pt. 1)\n\nAs any engineering product, software can be tested\
+  \ at different levels of abstraction\n\n* **Unit** testing: test *single software\
+  \ components*\n  * Is this `class` (or `function` or `module`) behavior the expected\
+  \ one?\n  * For a car: is the *tire* working correctly?\n    * e.g. are shape, pression,\
+  \ etc. as expected?\n\n* **Integration** testing: test *an entire subsystem*, i.e.\
+  \ the interplay among *multiple components*\n  * Class `A` uses class `B` and `C`.\
+  \ Are they working together as expected?\n  * For a car: if we attach the *wheels*\
+  \ to the *engine* via the *transmission*, does it work as expected?\n    * e.g.\
+  \ we _turn on_ the engine, does the wheel _spin_?\n\n* **End-to-end** (or **acceptance**)\
+  \ testing: test *an entire system* (may involve _aesthetics_/_usability_ criteria)\n\
+  \  * Is this whole __application__ functional, when used from the __UI__?\n    *\
+  \ implies that _all_ components are correctly integrated\n  * For a car: is it usable\
+  \ by a person to drive in the real world?\n    * e.g. we _turn on_ the engine, does\
+  \ the car _move_?\n    * e.g. can the user _change direction_ via the _steering\
+  \ wheel_?\n    * e.g. is the _speed indicator_ reactive to the actual spees? is\
+  \ the _unit of measure_ what the user expects?\n"
+- '# The integration hell
+
+
+  * Traditional software development takes several months for *“integrating”* a couple
+  of years of development
+
+  * The longer there is no integrated project, the higher the **risk**
+
+
+  <img src="integration-traditional.png" onerror="this.onerror=null; this.src=''../../assets/integration-traditional.png''"
+  width=40% />
+
+  $\Rightarrow$
+
+  <img src="integration-continuous.png" onerror="this.onerror=null; this.src=''../../assets/integration-continuous.png''"
+  width=40% />
+
+  '
+- "## What if a project is not using TDD since the very beginning?\n\nDecreasing preference\
+  \ order:\n\n1. __Ideal situation__: always writing tests during design, _before_\
+  \ implementation\n\n2. __Common situation__: design and implement, then _write_\
+  \ tests\n\n3. __Barely tolerable situation__: design and implement, _only_ add tests\
+  \ upon bugs\n    + (see next slide)\n\n4. __Very bad situation__: _never_ write\
+  \ tests\n"
+id: Commonsense-16
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: What is the problem in skipping unit testing and just focus on integration
+  testing?
+see_also:
+- Discuss the implications of 'technical debt' in the context of inadequate testing,
+  particularly how it accumulates when unit tests are not implemented.
+- Explain the importance of reproducibility in testing and how unit tests contribute
+  to making tests more reliable under various conditions.
+- Reference 'test-driven development' (TDD) to illustrate the benefits of writing
+  tests before code, which enhances both design clarity and reduces integration issues.
+should:
+- Mention that skipping unit testing can lead to undetected bugs in individual components
+  before they are integrated.
+- Explain that unit tests help isolate specific parts of the code, making it easier
+  to identify where a problem originates when integration testing fails.
+- Discuss the concept of 'fault localization' and how unit tests aid in debugging
+  by narrowing down issues to specific components.
+- Highlight that reliance solely on integration testing increases the complexity of
+  identifying issues as multiple components interact, which can lead to a bottleneck
+  in the testing process.
+- Provide examples of scenarios where integration tests pass while unit tests fail,
+  potentially leading to serious application flaws in production.
+should_not:
+- Avoid vague statements about testing being unnecessary or that integration testing
+  is sufficient on its own.
+- Do not underestimate the time and cost implications of debugging issues that arise
+  too late in the development process due to skipping unit tests.
+- Steer clear of claiming that all bugs would be caught in integration testing without
+  mentioning that it may not always provide detailed insights into component-level
+  failures.

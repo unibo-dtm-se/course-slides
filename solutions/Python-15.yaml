@@ -1,8 +1,8 @@
 examples:
-- "```python\nclass Example:\n    def __init__(self):\n        self.__private_attribute\
-  \ = 'value'\n```"
-- Mention how calling `example.__private_attribute` from outside the class will raise
-  an error.
+- 'Example of a private attribute: `self.__my_private_var` is defined within a class
+  and cannot be accessed directly outside it.'
+- 'Example of incorrect access: Attempting `instance.__my_private_var` from outside
+  the class would raise an AttributeError.'
 helps:
 - "## Private vs. Protected\n\n- __Private__ attributes and methods are _not_ accessible\
   \ from outside the class\n    + they cannot be accessed from outside the class,\
@@ -75,22 +75,20 @@ prompt_template: "You are a teacher in the Software Engineering course, for the 
   \ from the course material that may help you answer the question:\n\n{help}"
 question: In Python, how would you mark a class attribute as private?
 see_also:
-- The principle of information hiding and its importance in software design.
-- How encapsulation can lead to more maintainable and error-free code.
-- The 'consenting adults' philosophy in Python and how it affects attribute accessibility.
+- Mention Python's 'consenting adults' principle, explaining that private attributes
+  can technically be accessed but should not.
+- Discuss the impact of private attribute usage on future maintainability of code.
+- Introduce the concept of encapsulation and why it is critical in software design.
 should:
-- Explain that private attributes are defined by prefixing the attribute name with
-  double underscores (`__`).
-- Provide an example of declaring a private attribute, such as `self.__attributeName`.
-- 'Discuss the advantage of using private attributes for information hiding and encapsulation. '
-- Mention that private attributes are inherited by subclasses but not accessible from
-  them.
-- Clarify the difference between private attributes (double underscore) and protected
-  attributes (single underscore) to avoid confusion.
+- Define a private class attribute clearly as one that starts with `__`, e.g., `self.__attribute_name`.
+- Explain that private attributes are not accessible from outside the class or derived
+  classes.
+- Mention the significance of information hiding for data encapsulation and protection.
+- Provide examples of both private and protected attributes, contrasting them effectively.
+- Use clear terminology to describe private and protected attributes, avoiding ambiguity
+  about their accessibility.
 should_not:
-- Confuse 'private' with 'protected'; private attributes are prefixed with `__`, while
-  protected attributes are prefixed with `_`.
-- Use vague language (like 'it should be private') without specifying the actual syntax
-  required.
-- Introduce unnecessary complexity by discussing magic methods in this context without
-  a clear connection to the question.
+- Include vague terms like 'private variables' without clear definitions and examples.
+- Confuse private attributes with protected or public attributes.
+- Fail to mention the convention of using double underscores for truly private members.
+- Omit the potential pitfalls of accessing private attributes from outside the class.

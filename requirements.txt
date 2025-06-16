@@ -4,3 +4,4 @@ langchain[openai]~=0.3.25
 langchain-community~=0.3.25
 langchain-docling~=1.0.0
 sqlite-vec~=0.1.6
+PyYAML~=6.0.2

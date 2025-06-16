@@ -7,37 +7,59 @@ from exam.rag import sqlite_vector_store
 from yaml import safe_dump, safe_load
 
 
+FILE_TEMPLATE = DIR_ROOT / "exam" / "solution" / "prompt-template.txt"
 DIR_SOLUTIONS = DIR_ROOT / "solutions"
 DIR_SOLUTIONS.mkdir(exist_ok=True)
 
 
 class Answer(BaseModel):
-    answer: str = Field(description="Text of the answer to some question in the test, in Markdown.")
-    score: float = Field(description="Score for the answer, must be between 0 (totally wrong) and 1 (perfectly correct).", ge=0.0, le=1.0)
+    should: list[str] = Field(
+        description="List of features that the perfect answer should contain. Each item is a Markdown string line.",
+    )
+    examples: list[str] = Field(
+        description="List of examples that the perfect answer may contain. Each item is a Markdown string line.",
+    )
+    should_not: list[str] = Field(
+        description="List of features that the perfect answer should not contain (e.g. common errors). Each item is a Markdown string line.",
+    )
+    see_also: list[str] = Field(
+        description="List of relevant background/contextual/motivational aspects that should be mentioned in the answer. Each item is a Markdown string line.",
+    )
+
+    def pretty(self, indent=0, prefix="\t") -> str:
+        result = "Should:\n"
+        if self.should:
+            result += "\n".join(f"- {item}" for item in self.should) + "\n"
+        else:
+            result += "- <none>\n"
+        result += "Should not:\n"
+        if self.should_not: 
+            result += "\n".join(f"- {item}" for item in self.should_not) + "\n"
+        else:
+            result += "- <none>\n"
+        result += "Examples:\n"
+        if self.examples:
+            result += "\n".join(f"- {item}" for item in self.examples) + "\n"
+        else:
+            result += "- <none>\n"
+        result += "Other aspects to be mentioned:\n"
+        if self.see_also:
+            result += "\n".join(f"- {item}" for item in self.see_also) + "\n"
+        else:
+            result += "- <none>\n"
+        result = result.strip()
+        if indent > 0:
+            result = (indent * prefix) + result.replace("\n", "\n" + indent * prefix)
+        return result
 
 
-TEMPLATE = (
-    "You are a student in the Software Engineering course, for the Digital Transformantion and Management master programme.\n"
-    "Your task is to provide an answer to the following question, which is part of a written test, "
-    "which you have to pass in order to pass the exam for the course.\n"
-    "The teacher asks to provide examples, background, and context even if the question does not explicitly ask for it.\n"
-    "You're tergetting a score of more or less {target_score_pecent} for your answer, "
-    "where 0% meanse completely idiotic, and 100% means perfect and complete.\n"
-    "Only extract the properties mentioned in the '{class_name}' function.\n"
-    "Question is:\n"
-    "\t{question}\n\n" 
-    "Below are snippets from the course material that may help you answer the question:\n\n"
-    "{help}"
-)
+TEMPLATE = FILE_TEMPLATE.read_text(encoding="utf-8")
 
 
-def get_prompt(question: str, target_score: float = None, *helps: str):
-    if target_score is None:
-        target_score = 1.0  # Default to perfect score if not specified
+def get_prompt(question: str, *helps: str):
     template = ChatPromptTemplate.from_template(TEMPLATE)
     return template.invoke({
         "class_name": Answer.__name__,
-        "target_score_pecent": target_score * 100,
         "question": question,
         "help": "\n\n".join(helps) if helps else "",
     })
@@ -59,7 +81,7 @@ class SolutionProvider:
         self.__vector_store = sqlite_vector_store()
         self.__use_helps = self.__vector_store.get_dimensionality() > 0
 
-    def answer(self, question: Question, target_score: float = None, k=5) -> Answer:
+    def answer(self, question: Question, max_helps=5) -> Answer:
         cache_file = DIR_SOLUTIONS / f"{question.id}.yaml"
         if cache_file.exists():
             with open(cache_file, "r", encoding="utf-8") as f:
@@ -76,8 +98,8 @@ class SolutionProvider:
         text = question.text
         helps = []
         if self.__use_helps:
-            helps = [doc.page_content for doc in self.__vector_store.similarity_search(text, k=k)]
-        prompt = get_prompt(text, target_score, *helps)
+            helps = [doc.page_content for doc in self.__vector_store.similarity_search(text, k=max_helps)]
+        prompt = get_prompt(text, *helps)
         result = self.__llm.invoke(prompt)
         if isinstance(result, Answer):
             with open(cache_file, "w", encoding="utf-8") as f:
@@ -88,7 +110,6 @@ class SolutionProvider:
                 yaml["id"] = question.id
                 yaml["model_name"] = self.__model_name
                 yaml["model_provider"] = self.__model_provider
-                yaml["target_score"] = target_score
                 yaml["prompt_template"] = TEMPLATE
                 safe_dump(yaml, f, sort_keys=True, allow_unicode=True)
             return result

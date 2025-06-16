@@ -1,4 +1,3 @@
-from constraint import *
 from exam import *
 import exam.test as etest
 

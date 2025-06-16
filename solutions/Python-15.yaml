@@ -1,0 +1,96 @@
+examples:
+- "```python\nclass Example:\n    def __init__(self):\n        self.__private_attribute\
+  \ = 'value'\n```"
+- Mention how calling `example.__private_attribute` from outside the class will raise
+  an error.
+helps:
+- "## Private vs. Protected\n\n- __Private__ attributes and methods are _not_ accessible\
+  \ from outside the class\n    + they cannot be accessed from outside the class,\
+  \ _not even_ from the _derived_ classes\n    + they are _inherited_ __but not accessible__\
+  \ from the _derived_ classes\n\n- __Private__ attributes are the ones whose names\
+  \ start (and does _not_ end) with `__`\n    + e.g., `self.__name`\n    + not to\
+  \ be confused with [magic methods](https://realpython.com/python-magic-methods/),\
+  \ whose names start _and end_ with `__`\n        * e.g., `def __init__(self):`\n\
+  \        * these are _not_ private, but rather _special_, methods: override them\
+  \ only if you know what you are doing\n\n- __Protected__ attributes and methods\
+  \ are _not_ accessible from outside the class, _but_ are accessible from the _derived_\
+  \ classes\n    + they are _inherited_ and _accessible_ from the _derived_ classes\n\
+  \    + they are the ones whose names start with `_`\n    + e.g., `self._name`\n\n\
+  - __Protected__ attributes can be used to factorize some functionality in a _base_\
+  \ class, and _reuse_ it __only__ in the _derived_ classes\n\n- __Public__ attributes\
+  \ and methods are _accessible_ from outside the class\n    + non-private and non-protected\
+  \ attributes and methods are _public_ by default\n"
+- "## Application programming interfaces in practice (pt. 2)\n\n- In Python, everything\
+  \ is _public_ by convention\n    + except for the _names_ starting with one or more\
+  \ _underscores_ (`_`)\n    + yet, names wrapped by _double_ underscores (`__example__`)\
+  \ are [magic methods](https://realpython.com/python-magic-methods/)\n        * they\
+  \ __alter__ the _behaviour_ of the _classes_ / _modules_ they belong to...\n   \
+  \     * ... hence, you should consider them as _public_ too\n\n- __Beware__ because\
+  \ Python adopts the [\"consenting adults\"](https://stackoverflow.com/a/70736) convention\n\
+  \    + nothing _prevents_ you from using _private_ names, or _magic_ names, as if\
+  \ they were _public_\n    + yet, in doing that you are opening yourself to a __risk__\n\
+  \        * i.e. the _private_ functionality you're using may __change abruptly__\
+  \ in some future version of the software\n\n<br>\n\nAnother way to think about _private_\
+  \ stuff in a software project is:\n> _private_ stuff may change __without notice__,\
+  \ in any moment\n"
+- "## Class Diagram Explained (pt. 3)\n\n### Common questions\n\n- should you include\
+  \ _type_ information in attributes? $\\Rightarrow$ __not mandatory__, _but recommended_\n\
+  - should you include _visibility_ information in attributes? $\\Rightarrow$ __yes__\n\
+  - should you include Python's _underscore prefixes_ for visibility (`_` or `__`)in\
+  \ the diagram $\\Rightarrow$ __as you like__\n- should you include _all_ attributes?\n\
+  \    + if you're willing to provide a _complete model_ of the code's _structure_\
+  \ $\\Rightarrow$ __yes__\n    + if you're willing to provide an _overview_ of the\
+  \ _public API_ $\\Rightarrow$ __public attributes only__\n    + if you're willing\
+  \ to an _overview_ of the types $\\Rightarrow$ __no__\n"
+- '# Code and code organization
+
+
+  (in Python)
+
+  '
+- "## Aspects to notice\n\n- The `intensity` and `last_intensity` attributes are _private_\
+  \ (i.e., their names start with `__`)\n    + this means that they are _not_ accessible\
+  \ from outside the class\n    + this is a way to enforce _information hiding_\n\n\
+  - The technical detail \"intensity is represented as a byte\" is _hidden_ from the\
+  \ user\n    + the user only sees the intensity as a percentage\n\n- The invariant\
+  \ \"intensity must be in the [0, 100] range\" is _enforced_ by the setter of the\
+  \ `intensity` property\n    + if the user tries to set an intensity outside this\
+  \ range, a `ValueError` is raised\n    + as that's the _only_ way to set the intensity,\
+  \ the invariant is _always_ respected\n\n{{% /section %}}\n"
+id: Python-15
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In Python, how would you mark a class attribute as private?
+see_also:
+- The principle of information hiding and its importance in software design.
+- How encapsulation can lead to more maintainable and error-free code.
+- The 'consenting adults' philosophy in Python and how it affects attribute accessibility.
+should:
+- Explain that private attributes are defined by prefixing the attribute name with
+  double underscores (`__`).
+- Provide an example of declaring a private attribute, such as `self.__attributeName`.
+- 'Discuss the advantage of using private attributes for information hiding and encapsulation. '
+- Mention that private attributes are inherited by subclasses but not accessible from
+  them.
+- Clarify the difference between private attributes (double underscore) and protected
+  attributes (single underscore) to avoid confusion.
+should_not:
+- Confuse 'private' with 'protected'; private attributes are prefixed with `__`, while
+  protected attributes are prefixed with `_`.
+- Use vague language (like 'it should be private') without specifying the actual syntax
+  required.
+- Introduce unnecessary complexity by discussing magic methods in this context without
+  a clear connection to the question.

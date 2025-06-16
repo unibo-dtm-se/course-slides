@@ -1,0 +1,181 @@
+examples:
+- A broker using a queue to store messages when the consumer is temporarily offline,
+  ensuring no message loss until the consumer is ready to process them.
+- An example of a publish-subscribe model where the broker maintains queues for different
+  topics, allowing multiple subscribers to retrieve messages independently.
+helps:
+- "## \\[Broker with\\] Queues\n\n![Queue concept](./queue.jpg)\n\n- __Queue__ $\\\
+  approx$ a data structure where messages are _stored_ in a _FIFO_ manner\n    * FIFO\
+  \ $\\rightarrow$ messages are consumed in the order they were produced\n    * storage\
+  \ $\\rightarrow$ messages are _not_ lost if consumers are _unavailable_\n"
+- "## Broker\n\n![Broker concept](./broker.png)\n\n- __Broker__ $\\equiv$ a server\
+  \ _mediating_ the _communication_ between _producers_ and _consumers_ of data (a.k.a.\
+  \ messages)\n    * it _receives_ messages from producers and _forwards_ them to\
+  \ (1 or more) consumers\n    * common assumption: consumers _declare_ their interest\
+  \ in receiving messages\n\n- __Producer__ $\\equiv$ the component _sending_ messages\
+  \ to _producer(s)_ (via the broker)\n\n- __Consumer__ $\\equiv$ the component _receiving_\
+  \ messages from _consumer(s)_ (via the broker)\n\n- The same component can be simultaneously\
+  \ a _producer_ and a _consumer_\n"
+- "## Check your understanding (pt. 2)\n\n- Describe some real-world distributed system\
+  \ of your choice, focussing on\n    1. whether and how it deals with relevant features\
+  \ such as scalability, fault tolerance, etc., and\n    2. why it needs distribution\
+  \ in the first place\n- In the context of software engineering,\n    * how to understand\
+  \ whether a new system to be realised needs distribution or not?\n    * what are\
+  \ relevant aspects to be taken into account in the \"design\" phase of a distributed\
+  \ system?\n    * what are relevant aspects to be taken into account in the \"implementation\"\
+  \ phase of a distributed system?\n    * what are relevant aspects to be taken into\
+  \ account in the \"verification\" phase of a distributed system?\n    * what are\
+  \ relevant aspects to be taken into account in the \"release\" phase of a distributed\
+  \ system?\n    * what are relevant aspects to be taken into account in the \"deployment\"\
+  \ phase of a distributed system?\n    * what are relevant aspects to be taken into\
+  \ account in the \"maintenance\" phase of a distributed system?\n- In the context\
+  \ of distributed systems,\n    * what is the infrastructure?\n    * what are infrastructural\
+  \ components?\n    * what does it mean for a node to act as a client? What are clients\
+  \ necessary in a system?\n    * what does it mean for a node to act as a server?\
+  \ Why are servers often necessary in a system?\n    * what does it mean for a node\
+  \ to act as a proxy? Why would that be beneficial in a system?\n    * what does\
+  \ it mean for a node to act as a cache? Why would that be beneficial in a system?\n\
+  \    * what does it mean for a node to act as a load balancer? What balancing strategies\
+  \ may it employ? Why would that be beneficial in a system?\n    * what does it mean\
+  \ for a node to act as a broker? What could a broker be useful for in a system?\n\
+  \    * how could a broker exploit a queue?\n    * what is a message oriented middleware?\n\
+  \    * what does it mean for a node to act as database?\n    * what does it mean\
+  \ for a node to act as master?\n    * what does it mean for a node to act as worker?\n"
+- '## Common Interaction Protocols (pt. 2)
+
+
+  ### Publish—Subscribe with Broker
+
+
+  Notice that the publisher here is acting as a __broker__
+
+  * one may re-design the pattern with _explicit_ broker
+
+  * this is commonly useful to _decouple_ the _publisher_ from the _subscribers_
+
+  * most commonly, brokers _store_ messages until they are _consumed_
+
+
+  {{% plantuml height="50vh" %}}
+
+  hide footbox
+
+  actor User
+
+  participant Publisher
+
+  participant Broker
+
+  participant Subscriber1
+
+  participant Subscriber2
+
+  participant Subscriber3
+
+
+  == Subscription Phase ==
+
+  Subscriber1 -> Broker: subscribe TopicA
+
+  activate Broker
+
+  Broker --> Subscriber1: confirmation
+
+  deactivate Broker
+
+
+  Subscriber2 -> Broker: subscribe TopicA
+
+  activate Broker
+
+  Broker --> Subscriber2: confirmation
+
+  deactivate Broker
+
+
+  Subscriber3 -> Broker: subscribe TopicB
+
+  activate Broker
+
+  Broker --> Subscriber3: confirmation
+
+  deactivate Broker
+
+
+  == Notification Phase ==
+
+  User --> Publisher: Event
+
+  activate Publisher
+
+  Publisher -> Broker: publish Message\non TopicA
+
+  deactivate Publisher
+
+  activate Broker
+
+  Broker -> Subscriber1: notify Message
+
+  Broker -> Subscriber2: notify Message
+
+  deactivate Broker
+
+  {{% /plantuml %}}
+
+  '
+- '## Example: Online Shopping (e.g., Amazon)
+
+
+  - __Scalability__: Millions of users are active at the same time
+
+  - __Fault Tolerance__ and __Availability__: A single server cannot handle such a
+  massive amount of data
+
+  - __Low Latency__: By distributing the service across multiple servers worldwide,
+  the app can deliver messages quickly and reliably
+
+  - __Geographical Distribution__: Comply to local regulations and regional preferences,
+  e.g., language, currency, etc.
+
+  - __Parallelism__: Processing multiple orders concurrently
+
+  - _The functionality to be provided_ by the system simply **implies** _distribution_
+
+  '
+id: DistributedSystems-30
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In the context of distributed systems, how could a broker exploit a queue?
+see_also:
+- Importance of middleware in decoupling system components for scalability and maintainability.
+- Real-world examples of distributed systems that effectively utilize brokers and
+  queues such as messaging in microservices architecture or event-driven systems.
+- Concepts of fault tolerance and scalability, particularly how they relate to the
+  use of queues for message delivery.
+should:
+- Define what a broker is and its role in distributed systems.
+- Explain the FIFO (First In, First Out) nature of queues and its importance.
+- Discuss how brokers manage message storage to ensure messages are not lost if consumers
+  are unavailable.
+- Provide examples of how brokers use queues to mediate communication between producers
+  and consumers.
+- Mention specific use cases or scenarios illustrating the benefits of using a queue
+  in messaging systems.
+should_not:
+- Fail to describe the relationship between producers, consumers, and brokers.
+- Omit the significance of message delivery order and the implications of message
+  loss.
+- Provide overly technical jargon without clear explanations.

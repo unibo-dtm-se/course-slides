@@ -1,0 +1,113 @@
+examples:
+- An ideal response may mention tools like Apache Ant for imperative build automation
+  and Maven for declarative automation.
+- A positive example would be a discussion on how continuous integration complements
+  build automation by running builds in isolated environments to prevent developer
+  bottleneck.
+helps:
+- '# Build automation
+
+
+  Automation of the build lifecycle
+
+
+  * In principle, the lifecycle could be executed manually
+
+  * In reality *time is precious* and *repetitivy is boring* (and __error-prone__)
+
+
+  > $\Rightarrow$ Create software that automates the building of some software!
+
+
+  * All those concerns that hold for software creation hold for build systems creation...
+
+  '
+- "<!-- ## Build automation: basics and styles\n\nDifferent lifecycle types generate\
+  \ different build automation **styles**\n\n**Imperative**: write a script that tells\
+  \ the system what to do to get\nfrom code to artifacts\n* *Examples*: make, cmake,\
+  \ Apache Ant\n* *Abstraction gap*: verbose, repetitive\n* Configuration (*declarative*)\
+  \ and actionable (*imperative*) logics *mixed* together\n* Highly *configurable*\n\
+  \n**Declarative**: adhere to some convention, customizing some settings\n* *Examples*:\
+  \ Apache Maven\n* Separation between *what* to do and *how* to do it\n  * The build\
+  \ system decides how to do the stuff\n* *Configuration limited* by the provided\
+  \ options -->\n\n## __Declarative__ build automation systems\n\nModern build automation\
+  \ systems are __declarative__\n\n> __Declarative__ software $\\approx$ the program\
+  \ describes *what* to do, not *how* to do it\n> <br>\n> (as opposed to _imperative_\
+  \ software $\\approx$ the program describes *how* to do it,\n> <br>\n> e.g. Python)\n\
+  \nIn other words:\n- they rely on *conventions* and *defaults*\n- as long as developers\
+  \ follow them, the configuration is _minimal_\n- good look if you try to deviate\
+  \ from conventions :)\n\n<!-- ---\n\n## Hybrid automators\n\nCreate a *declarative\
+  \ infrastructure* upon an *imperative basis*, and\n*allow easy access to the underlying\
+  \ machinery*\n\n**Domain-Specific Languages** are helpful in this context: they\
+  \ can \"hide\" imperativity without ruling it out\n\nStill, many challenges remain\
+  \ open:\n* How to reuse the build logic?\n    * within a project, and among projects\
+  \ -->\n"
+- "## Continous integration concept\n\n* The build process should be *rich* (comprehensive),\
+  \ *fast*, and **automated**\n* And run on _another machine_ (or VM) than the developer's\
+  \ one\n    + this is to avoid the developer from being _unable to work_ while the\
+  \ build is running\n    + but also to ensure that the software runs _outside_ from\
+  \ the _developer's environment_\n        - which increases the chances that the\
+  \ software will run on _other_ machines as well\n    + to allow for testing the\
+  \ software onto many, _controlled environments_\n        - which in turns allows\
+  \ for giving _compatibility guarantees_ to the customers/users\n\n{{% multicol %}}\n\
+  {{% col %}}\n<img src=\"compiling.png\" onerror=\"this.onerror=null; this.src='../../assets/compiling.png'\"\
+  \ height=100% />\n{{% /col %}}\n{{% col %}}\n{{<image src=\"./concept2.png\" width=\"\
+  100%\" alt=\"Continuous integration concept\" >}}\n{{% /col %}}\n{{% /multicol %}}\n"
+- "## Automated evolution\n\n**Bots** performing the aforementioned process for a\
+  \ variety of build systems exist.\n\nThey are usually integrated with the repository\
+  \ hosting provider\n\n* Whitesource Renovate (Multiple)\n    * Also updates github\
+  \ actions and Gradle Catalogs\n* Dependabot (Multiple)\n* Gemnasium (Ruby)\n* Greenkeeper\
+  \ (NPM)\n"
+- "## To automate or not to automate?\n\nBeware, 'cause scripts are __software__ too,\
+  \ and they require engineering:\n\n![A comic making fun of the excess of automation](https://imgs.xkcd.com/comics/automation.png)\n\
+  \n<https://xkcd.com/1319/>\n\n<br>\n\n- There is an implict __trade-off__ between\n\
+  \    1. the time _spent_ to automate a task (i.e. __coding__)\n    2. and the time\
+  \ _saved_ w.r.t. doing the task __manually__\n\nThis is not really the case of everyday\
+  \ programming tasks, but let's keep this in mind\n"
+id: BuildAutomation-2
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In the context of Software Engineering, what is build automation?
+see_also:
+- Understanding continuous delivery and its implications for build automation.
+- The role of build automation in agile methodologies and DevOps practices.
+- Best practices for writing build automation scripts and choosing the right tools
+  for various scenarios.
+should:
+- Define build automation clearly as the process of automating the build lifecycle
+  of software development.
+- Explain the importance of build automation in saving time and reducing errors due
+  to repetition.
+- Distinguish between imperative and declarative build automation styles, providing
+  examples for each.
+- Mention the advantages of declarative build automation systems, such as minimal
+  configuration and reliance on conventions.
+- Discuss the concept of continuous integration and its relationship with build automation,
+  emphasizing the need for builds to be run in a controlled environment.
+- Provide insights into automated evolution and the role of bots in managing build
+  systems effectively.
+- Highlight the need for engineering good automation scripts, mentioning the trade-offs
+  involved in automating versus manual processes.
+should_not:
+- Avoid vague definitions that do not clearly explain what build automation is.
+- Do not confuse build automation with other types of automation; keep the focus strictly
+  on the build lifecycle.
+- Avoid providing irrelevant examples that do not illustrate build automation concepts,
+  such as personal productivity tools unrelated to software development.
+- Steer clear of overly technical jargon without explanations, which may confuse readers
+  unfamiliar with build automation.
+- Do not imply that automation eliminates human oversight completely; it's essential
+  to convey that automation still requires proper engineering.

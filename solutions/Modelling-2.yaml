@@ -1,0 +1,103 @@
+examples:
+- Examples of UML diagrams (like class diagrams or sequence diagrams) can be included
+  to strengthen understanding.
+- Comparative analysis of a modeled system versus its actual implementation can illustrate
+  the purpose and usefulness of modeling.
+helps:
+- "## What about _software_?\n\n- Writing _software_ _implies_ __modelling__ the world\
+  \ and __representing__ it in a formal way\n    + so, in a sense, the _source code_\
+  \ is a _model_ of the _world_ (or, at least, of the _problem_)\n\n- Yet, the _source\
+  \ code_ of a project can easily grow in __complexity__\n    + think about _large\
+  \ projects_ with __millions of LoC__:\n        1. how can a person keep them _all_\
+  \ in their _mind_?\n        2. how could that person _transfer_ all that _knowledge_\
+  \ to _others_?\n\n- Indeed, as software projects tend to grow complex, the aforementioned\
+  \ motivations for modelling apply to _software_ as well\n    + we need _more abstract_\
+  \ (than code) and _visual_ ways to __represent__ _software systems_\n\n> Software\
+  \ systems are commonly modelled using the __Unified Modelling Language__ (UML)\n"
+- "## About software design (pt. 1)\n\n### Just to give you an insight\n\n1. After\
+  \ understanding the __requirements__, and the __domain__ at hand...\n\n2. ... _software\
+  \ architects_ will reason about the __design__ of the software\n    + which _relevant_\
+  \ __concepts__ from the domain must be represented in the software?\n    + how should\
+  \ those concepts be _related_ to each other?\n\n3. the _result_ of such reasoning\
+  \ is a __model__ of the software\n    1. __classes__ / __functions__ are envisioned\
+  \ to _represent_ each _concept_\n        + possibly __reusing__ existing stuff from\
+  \ _standard_, or _third-party_ libraries\n    2. __relationships__ between classes\
+  \ / functions are described\n        + e.g. _sub-typing_, _composition_, _aggregation_,\
+  \ _inheritance_, etc.\n    3. the __behaviour__ of each class / function is described\n\
+  \        + e.g. _pre-conditions_, _post-conditions_, _invariants_, _state-transition_,\
+  \ etc.\n    4. the __interactions__ between classes / functions are described\n\
+  \        + e.g. who calls what, when, and why\n"
+- "## About software design (pt. 2)\n\n### Just to give you an insight (continued)\n\
+  \n4. Focus is then directed torwards other _non-functional_ or _trasversal_ aspects\
+  \ of the software\n    + e.g. classes / functions for __UI__, and their attachment\
+  \ to the _model_\n        * how do _humans_ __use__ the software?\n    + e.g. classes\
+  \ / functions for __persistence__, and their attachment to the _model_\n       \
+  \ * do the software need to __store__ or __retrieve__ data? _which_ data? _where_?\
+  \ _how_?\n    + e.g. classes / functions for __communication__ (over the _network_),\
+  \ and their attachment to the _model_\n        * does the software need to __talk__\
+  \ to other software, located __elsewhere__?\n        * _where_ is \"elsewhere\"\
+  ? what network? (Web? Internet? Bluetooth?)\n        * are _intermetiary_ components\
+  \ involved? (e.g. _servers_, _message brokers_, etc.)\n    + e.g. classes / functions\
+  \ for __authentication__ and __authorization__, and their attachment to the _model_\n\
+  \        * how to _recognise_ __legitimate__ users? _who_ can do _what_?\n"
+- "## Why do engineers model systems?\n\n- Models allow engineers to _design_ and\
+  \ _study_ a system __before__ building it\n\n- Building is commonly more _expensive_\
+  \ and _time-consuming_ than _modelling_\n\n- Models can __verify__ (to some extent)\
+  \ the system they want to create, _before_ fully building it\n\n- Models allow designers\
+  \ to __take design decisions__ _early_, and _cheaply_\n\n- Models can be used to\
+  \ __represent__ and __communicate__ the design of a system\n    + useful for _collaboration_\
+  \ and _documentation_...\n    + ... which in turn allow new people to _join_ the\
+  \ project\n"
+- "## What is a model?\n\n(cf. <https://plato.stanford.edu/entries/models-science/>)\n\
+  \n> A __model__ is a _simplified_ _representation_ of something complex\n\n### What\
+  \ are models useful for?\n\n- __Understanding__ of the real world, via _simplification_\
+  \ and _abstraction_ (i.e., by removing details)\n    + think about the many [models\
+  \ of the atom](https://en.wikipedia.org/wiki/History_of_atomic_theory) (Bohr, Rutherford,\
+  \ etc.), or the wooden miniature of a bridge\n\n- __Explain__ a _phenomenon_ by\
+  \ fitting the model onto the _observed_ data, to reconstruct the process\n    +\
+  \ think about the [attachment theory](https://en.wikipedia.org/wiki/Attachment_theory)\
+  \ in psychology\n\n- __Predicting__ the _dynamic_ behaviour of a system (possibly,\
+  \ before/without building the system)\n    + think about the [weather forecast](https://en.wikipedia.org/wiki/Weather_forecasting),\
+  \ or, again, the wooden miniature of a bridge\n"
+id: Modelling-2
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: How can software be modelled?
+see_also:
+- Models serve as tools for architects to ensure that all relevant concepts from the
+  domain are incorporated into software design.
+- Discuss the dynamic behavior of systems in modeling, connecting predictions made
+  through models to real-world outcomes.
+should:
+- Explain that software can be modeled as a representation of the world or a problem,
+  highlighting the abstraction and simplification aspects.
+- Mention various modeling techniques, particularly focusing on Unified Modeling Language
+  (UML) as a standard approach for visualizing software designs.
+- Describe the role of software architects in the modeling process, including their
+  tasks in defining relevant concepts, relationships, and behaviors.
+- Discuss the importance of modeling in managing complexity, especially in large software
+  projects with many lines of code (LoC).
+- Include examples of different modeling elements in UML, such as classes, relationships,
+  and interactions, to illustrate how software is structured and organized.
+- State the benefits of modeling, such as cost-effectiveness, early design decision-making,
+  verification, and facilitating communication among team members.
+should_not:
+- Avoid vague descriptions of modeling without practical examples, such as just stating
+  'modeling is important' without elaborating.
+- Do not include irrelevant technical jargon without explaining it, which could confuse
+  readers instead of clarifying concepts.
+- Steer clear of overly simplistic definitions of models that do not capture their
+  nuanced role in software engineering.

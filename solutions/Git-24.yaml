@@ -1,0 +1,123 @@
+examples:
+- Using `git clone <repository-url>` to clone from a remote repository will create
+  a new folder containing all files and history from that repository.
+- Describing the command with an example of cloning a specific repository such as
+  `git clone https://github.com/unibo-dtm-se/repository-example.git`.
+- Mention that if the command is run without a destination path, it will name the
+  new directory after the last segment of the repository URL.
+helps:
+- "## Cloning a repository (pt. 3)\n\n### Situation after cloning\n\n```mermaid\n\
+  flowchart RL\n\nsubgraph somesite.com/repo.git\n  direction RL\n  HEAD{{\"HEAD\"\
+  }}\n  master(master)\n  serverless(feat/serverless)\n\n  C10([10]) --> C9([9]) -->\
+  \ C8([8]) --> C7([7]) --> C6([6]) --> C5([5]) --> C4([4]) --> C3([3]) --> C2([2])\
+  \ --> C1([1])\n  C12([12]) --> C11([11]) --> C7\n\n  master -.-> C10\n  serverless\
+  \ -.-> C12\n\n  HEAD -.-> C10\n  HEAD --\"fas:fa-link\"--o master\nend\n\nsubgraph\
+  \ local\n  direction RL\n  origin[(origin)]\n\n  HEADL{{\"HEAD\"}}\n  masterl(master)\n\
+  \n  CL10([10]) --> CL9([9]) --> CL8([8]) --> CL7([7]) --> CL6([6]) --> CL5([5])\
+  \ --> CL4([4]) --> CL3([3]) --> CL2([2]) --> CL1([1])\n\n  masterl -.-> CL10\n \
+  \ masterl ==o master\n\n  HEADL -.-> CL10\n  HEADL --\"fas:fa-link\"--o masterl\n\
+  end\n\norigin ==o somesite.com/repo.git\n\nclass local,somesite.com/repo.git repo;\n\
+  class origin remote;\nclass HEAD,HEADL head;\nclass master,masterl,bug22,serverless\
+  \ branch;\nclass C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,CL1,CL2,CL3,CL4,CL5,CL6,CL7,CL8,CL9,CL10,CL11,CL12,CL13\
+  \ commit;\n```\n\n* `git@somesite.com/repo.git` is saved as `origin`\n* The main\
+  \ branch (the branch where `HEAD` is attached, in our case `master`) on `origin`\
+  \ gets checked out locally with the same name\n* The local branch `master` is set\
+  \ up to track `origin/master` as upstream\n* Additional branches are *fetched* (they\
+  \ are known locally), but they are not checked out\n"
+- "## Cloning a repository (pt. 2)\n\n### Examples\n\n* `git clone /some/repository/on/my/file/system\
+  \ destination`\n  * creates a local folder called `destination` and copies the repository\
+  \ from the local directory\n* `git clone https://somewebsite.com/someRepository.git\
+  \ myfolder`\n  * creates a local folder called `myfolder` and copies the repository\
+  \ located at the specified `URL`\n* `git clone user@sshserver.com:SomePath/SomeRepo.git`\n\
+  \  * creates a local folder called `SomeRepo` and copies the repository located\
+  \ at the specified `URL`\n"
+- "# \\[New\\] Exercise (pt. 1)\n\n## Clone somebody else's repository\n\n1. Clone\
+  \ the following repository: <https://github.com/unibo-dtm-se/repository-example>\n\
+  \  - `git clone https://github.com/unibo-dtm-se/repository-example.git`\n\n> Such\
+  \ repository is an instance of\n> [`template-project-work`](https://github.com/unibo-dtm-se/template-project-work),\
+  \ i.e. a template for\n> your final reports. It consists of static Web-site, based\
+  \ on the [Jekyll](https://jekyllrb.com/) technology.\n> You write `.md` files, and\
+  \ Jekyll generates the HTML for you.\n> The site is then hosted on GitHub pages,\
+  \ i.e. [here](https://unibo-dtm-se.github.io/template-project-work).\n\n2. Wait\
+  \ for the _teacher_ to create and _push_ a few more commits\n    + have a look to\
+  \ the commit history, on <i class=\"fa-brands fa-github\"></i>\n\n3. _Pull_ the\
+  \ commits from the remote\n    + `git pull`\n\n4. Ensure you have the teacher's\
+  \ commits locally\n    + `git log --oneline`\n"
+- "## Cloning a repository (pt. 1)\n\n* We can initialize an **emtpy** repository\
+  \ with `git init`\n* But most of the time we want to start from a *local copy* of\
+  \ an **existing** repository\n\nGit provides a `clone` subcommand that copies *the\
+  \ whole history* of a repository locally\n* `git clone URL destination` creates\
+  \ the folder `destination` and clones the repository found at `URL`\n  * If `destination`\
+  \ is not empty, fails\n  * if `destination` is omitted, a folder with the same namen\
+  \ of the last segment of `URL` is created\n  * `URL` can be remote or local, Git\
+  \ supports the `file://`, `https://`, and `ssh` protocols\n      * `ssh` *recommended*\
+  \ when available\n* The `clone` subcommand checks out the remote branch where the\
+  \ `HEAD` is attached (*default branch*)\n"
+- "## Checking out the repository\n\n> By default, GitHub actions' *runners do **not**\
+  \ clone the repository*\n\n(this is because actions may, sometimes, not need to\
+  \ access the code, e.g., when automating issues, projects, etc.)\n\n### Cloning\
+  \ and checking out the repository is done via a dedicated action:\n\n```yaml\nname:\
+  \ Example workflow\non:\n  push:\n    branches: [ main ]\njobs:\n  permissions:\n\
+  \    contents: write # Give write (e.g. push) permissions to this Job (i.e. steps\
+  \ may perform changes to the repository it self)\n  Explore-GitHub-Actions:\n  \
+  \  - name: Check out repository code\n      uses: actions/checkout@v4\n      with:\n\
+  \        fetch-depth: 0 # Fetch all history for all branches and tags\n        token:\
+  \ ${{ secrets.GITHUB_TOKEN }} # Use the GITHUB_TOKEN secret to clone, enabling future\
+  \ pushes in next steps\n```\n\n{{% fragment %}}\n\nBy default, only the last commit\
+  \ of the current branch is fetched by this action (*shallow cloning* has better\
+  \ *performance*)\n* $\\Rightarrow$ It may break operations that rely on the entire\
+  \ history!\n    * e.g., computing the next version number depending on the last\
+  \ tag in the Git history\n    * use `fetch-depth: 0` to fetch the entire history\n\
+  * If you plan to be able to push changes to the repository, you need to\n    * provide\
+  \ a token with write permissions, e.g. `token: ${{ secrets.GITHUB_TOKEN }}`\n  \
+  \    + secrets are explained a few slides later\n    * if you use the `GITHUB_TOKEN`\
+  \ secret, you need to set the `permissions` field to `write` for the `contents`\
+  \ permission\n      + this is because the default permission for the `GITHUB_TOKEN`\
+  \ secret are read-only\n\n{{% /fragment %}}\n"
+id: Git-24
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: Let's say you have access to a GitHub repository. How can you clone it?
+  Specify the commands and their effects
+see_also:
+- Understanding Git command line syntax and the role of various commands such as `git
+  clone`, `git pull`, and `git push`.
+- Familiarity with the concept of remote repositories and how local and remote repositories
+  are linked in Git.
+- The relevance of using SSH when cloning repositories due to security benefits as
+  well as when HTTPS is beneficial.
+- Understanding the structure of a Git repository and what `HEAD` and branches represent
+  within that context.
+should:
+- Specify the command used to clone a GitHub repository (`git clone https://github.com/unibo-dtm-se/repository-example.git`).
+- Explain that this command creates a local directory with the name specified in the
+  command (or with the repository name if no name is given).
+- Mention that it fetches the entire history of the repository, including all branches,
+  but only checks out the default branch (usually `master` or `main`).
+- Indicate that the cloned repository is set up with a remote named `origin` that
+  points to the original repository location.
+- Include an explanation of what happens if the destination directory already exists
+  (the command fails).
+should_not:
+- Use vague answers that do not clearly specify the necessary command and its effects.
+- Make common mistakes, such as suggesting commands that do not exist or are incorrectly
+  formatted (e.g., `git clone <incorrect-url>`).
+- Neglect the importance of specifying what happens in case the destination directory
+  is not empty (failing the clone operation).
+- Provide overly technical jargon without ensuring understanding of important terms
+  like `HEAD`, `origin`, or `default branch`.
+- Avoid giving a step-by-step breakdown of what the command does (e.g., what is 'checking
+  out' and why it’s vital) thereby leaving gaps in understanding.

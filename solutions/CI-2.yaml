@@ -1,0 +1,158 @@
+examples:
+- Discuss real-world examples where projects faced integration hell due to prolonged
+  periods without proper integration, resulting in failed deadlines or major bugs
+  upon release.
+- Provide a comparison between integration hell and a successful continuous integration
+  environment, highlighting how the latter prevents various kinds of issues.
+helps:
+- '# The integration hell
+
+
+  * Traditional software development takes several months for *“integrating”* a couple
+  of years of development
+
+  * The longer there is no integrated project, the higher the **risk**
+
+
+  <img src="integration-traditional.png" onerror="this.onerror=null; this.src=''../../assets/integration-traditional.png''"
+  width=40% />
+
+  $\Rightarrow$
+
+  <img src="integration-continuous.png" onerror="this.onerror=null; this.src=''../../assets/integration-continuous.png''"
+  width=40% />
+
+  '
+- "<!-- ## Microreleases and protoduction\n\n* High frequency integration may lead\
+  \ to high frequency releases\n    * Possibly, *one per commit*\n    * Of course,\
+  \ *versioning* must be appropriate...\n\nTraditionally, **protoduction** is jargon\
+  \ for a *prototype that ends up in production*\n\n<table>\n  <tbody>\n    <tr>\n\
+  \      <td>\n        <img src=\"protoduction.jpg\" onerror=\"this.onerror=null;\
+  \ this.src='../../assets/protoduction.jpg'\" width=90% />\n      <td/>\n      <td>\n\
+  \n* Traditionally used with a *negative* meaning\n    * It implied software\n  \
+  \      * *unfinished*,\n        * *unpolished*,\n        * *badly designed*\n  \
+  \  * Very common, unfortunately\n* This is different in a continuously integrated\
+  \ environment\n    * *Incrementality* is fostered\n    * Partial features are *up\
+  \ to date* with the mainline\n\n      <td/>\n    </tr>\n  </tbody>\n</table> -->\n\
+  \n## What is integration in the first place?\n\n1. Not just simply **merging** code\
+  \ from different *branches*/developers...\n\n2. ... but actually also **building**\
+  \ the software, with all its *dependencies*...\n    * restoring dependencies\n \
+  \   * compiling\n    * linking\n    * packaging\n\n3. ... and **testing** the software\n\
+  \    * all sorts of *automated tests*: unit, integration, system, etc.\n    * possibly,\
+  \ also *deployment* and *release* procedures\n\n4. for the sake of _checking_ that\
+  \ the software as a whole is still *working* despite the changes since the last\
+  \ release\n\n5. possibly, doing further **adjustments** to the software *code* if\
+  \ necessary\n    * e.g., if the component is _not working_ any more, or if the _tests\
+  \ are failing_, etc.\n    * here code may also include *configuration* files or\
+  \ *build*, *test*, or *deployment* scripts\n"
+- '{{% section %}}
+
+
+  ## Check your understanding (pt. 1)
+
+
+  - In your own words, what is continuous integration?
+
+  - In your own words, what is integration hell?
+
+  - In the context of continuous integration, what is a pipeline?
+
+  - What is GitHub Actions?
+
+  - In the context of continuous integration, provide an overview of the abstract
+  pipeline design
+
+  - In the context of GitHub Actions, what is the difference among workflow, jobs,
+  steps
+
+  - How would you design a GitHub Actions workflow for a Python project?
+
+  - In the context of GitHub Actions, what is a runner?
+
+  - What is YAML? What is the difference between YAML and JSON?
+
+  - In the context of GitHub Actions, what is a matrix?
+
+  - In the context of GitHub Actions, what is a secret?
+
+  '
+- '# Continuous Integration
+
+
+  The practice of integrating code with a main development line **continuously**
+
+  <br>
+
+  _Verifying_ that the build remains intact
+
+  * Requires *build automation* to be in place
+
+  * Requires *testing* to be in place
+
+  * Pivot point of the *DevOps* practices
+
+  * Historically introduced by the extreme programming (XP) community
+
+  * Now widespread in the larger DevOps community
+
+  '
+- "## How to make the integration _continuous_?\n\n1. __Repeat__ the integration process\
+  \ as _frequently as possible_\n    * ideally, as frequently as _every commit_, in\
+  \ practice, as frequently as __every push__ to GitHub\n\n2. This implies running\
+  \ _build_, _testing_, and _deployment_ processes __very frequently__ as well\n \
+  \   * which is only possible if the entire process is __automated__\n      * which\
+  \ is only possible if __automatic tests_ are available, as well as _build automation_\
+  \ scripts, and _automatic release/deployment_ scripts\n    * of course, retrospective\
+  \ adjustments are _hard to automate_, and should be done _manually_\n\n3. Do not\
+  \ rely on the assumption that developers will _always_ __remember__ to run these\
+  \ steps consistently before pushing\n    * they will not, and they will forget to\
+  \ do it at some point\n    * so we also need to _automate_ the __triggerig__ of\
+  \ the _build_, _testing_, and _deployment_ processes\n\n4. Once the entire process\
+  \ is automated, there are __further benefits__:\n    * integration _issues_ can\
+  \ be _spotted ASAP_\n    * the process can be repeated on _different platforms_\
+  \ (e.g. different OSs, and different versions of Python)\n       - which is far\
+  \ more than what a developer can do on their own\n    * emails and notifications\
+  \ can be sent upon _failures_ of the process\n"
+id: CI-2
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In your own words, what is integration hell?
+see_also:
+- The concept of continuous integration and its benefits over traditional software
+  development methodologies.
+- The role of automation in reducing integration issues and promoting a smooth development
+  workflow.
+- The risks of ignoring integration practices and how they can derail software projects
+  in the long run.
+should:
+- Define integration hell as a scenario in traditional software development where
+  there is a significant delay in integrating code from various developers, leading
+  to a multitude of problems during the integration phase.
+- Explain the risks associated with integration hell, such as increased complexity,
+  higher likelihood of bugs, and the potential for project delays.
+- Mention that integration hell typically arises from infrequent integration practices,
+  resulting in a backlog of unintegrated code and features that accumulate over time.
+- Discuss how integration hell contrasts with continuous integration, where shorter
+  feedback loops and frequent integration help mitigate risks.
+- Provide a high-level overview of the integration process, emphasizing the importance
+  of building, testing, and verifying software as a whole after integrating changes.
+should_not:
+- Avoid vague definitions of integration hell that do not convey the impact on software
+  development cycles or team dynamics.
+- Do not focus too heavily on technical jargon without first explaining concepts like
+  'building' and 'testing' in the context of integration.
+- Refrain from making overly generalized statements without backing them up with examples
+  or context from course material.

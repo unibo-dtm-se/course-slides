@@ -1,0 +1,123 @@
+examples:
+- An example illustrating how locking dependencies can prevent conflicts in multi-team
+  projects where different teams might use varying versions of the same library.
+- A scenario where not using dependency locking led to issues, e.g. a build breaking
+  due to an unintentionally upgraded library.
+helps:
+- "## Dependency ranges and locking\n\n* A project can depend on a specific version\
+  \ of a library or on a *range* of versions\n* We want to be able to specify ranges,\
+  \ but *retain the ability to use an exact version*\n\n> This software is compatible\
+  \ with `library` version 2.3. For our examples, we used version 2.3._10_\n\nExpressing\
+  \ something like this is done via **dependency locking**:\n* Configure the build\
+  \ file with the range of supported versions\n* Use the build tool to *lock* the\
+  \ dependencies (pinpoint their version)\n  * In practice, create a lock file where\
+  \ the exact version is explicit\n* Locking usually also locks the **transitive dependencies**!\n\
+  \  * Once locked, we have a snapshot of a working environment\n\n[Poetry allows\
+  \ range specifications and locks automatically](https://python-poetry.org/docs/dependency-specification/)\n"
+- '## Check your understanding
+
+
+  - What is the build life cycle of a software project?
+
+  - In the context of Software Engineering, what is build automation?
+
+  - What can you expect, in general, from a build automation tool?
+
+  - In the context of build automation, what is dependency locking? Why is it necessary?
+
+  - In a Python project, what would you use Poetry for?
+
+  - Where would you release a Python project on Test PyPI? When on PyPI?
+
+  - What is Test PyPI? What''s its purpose?
+
+  - What are the steps to release a Python project via Poetry?
+
+  '
+- '# Build automation
+
+
+  Automation of the build lifecycle
+
+
+  * In principle, the lifecycle could be executed manually
+
+  * In reality *time is precious* and *repetitivy is boring* (and __error-prone__)
+
+
+  > $\Rightarrow$ Create software that automates the building of some software!
+
+
+  * All those concerns that hold for software creation hold for build systems creation...
+
+  '
+- "## Dependencies (pt. 1)\n\n- Developers _exploit libraries_ produced by others\
+  \ to _avoid_ __wasting time__ reinventing the wheel\n\n- The reasoning is more or\
+  \ less as follows:\n    1. one needs to realise some software for functionality\
+  \ **$F$**\n    2. writing the code for **$F$** requires some effort **$E_{scratch}\
+  \ > 0$**\n    3. there exist some library **$L$** which reduces the effort to **$0\
+  \ < E_{use} < E_{scratch}$**\n    4. installing the library requires some effort\
+  \ **$E_{install} > 0$**\n    5. learning how to use the library requires some effort\
+  \ **$E_{learn} > 0$**\n    6. in the likely case that **$E_{install} + E_{learn}\
+  \ + E_{use} < E_{scratch}$**, one should use the library\n\n<br>\n\n> A __dependency__\
+  \ among some _software_ **$S$** and some _other software_ **$L$**\n>\n> occurs when\
+  \ **$S$** _requires_ **$L$** to _work_\n\n- __requires__ $\\approx$ **$S$** needs\
+  \ **$L$** to be part of its runtime to be _executed_\n- this is commonly the result\
+  \ of the reasoning above\n- for instance, the _calculator_ application __depends\
+  \ on__ the _Kivy_ library, and on the _Python 3.11_ standard library\n"
+- "## Dependency declaration\n\n- It is a good practice to __document__ which _dependencies_\
+  \ a _software_ relies upon\n    + names and versions, possibly\n\n- It is even a\
+  \ better practice to __automate__ the _installation_ of _dependencies_\n    + so\
+  \ that they can be _restored_ in automatically in any new development / usage environment\n\
+  \n- Other than package managers and repositories, automation requires __dependency\
+  \ declaration__\n    + each package manager supports some __file format__ for this\
+  \ purpose\n\n- In the Python world, there are __several conventions__ for dependency\
+  \ declaration\n    + the most common is the `requirements.txt` file\n        * which\
+  \ contains a list of _dependencies_ in the form `NAME==VERSION`\n        * the `pip\
+  \ install -r requirements.txt` command installs all depndencis in the file\n   \
+  \ + another common convention is to declare Python version in a `.python-version`\
+  \ file\n        + the [`pyenv`](https://github.com/pyenv/pyenv) `install` command\
+  \ can _install_ corresponding version of Python\n"
+id: BuildAutomation-4
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In the context of build automation, what is dependency locking? Why is it
+  necessary?
+see_also:
+- Contextualize the dependency locking within broader build automation practices and
+  its significance in agile development.
+- Mention how modern CI/CD practices emphasize the importance of reliable build environments
+  that dependency locking can support.
+- Include references to challenges in dependency management, like version conflicts,
+  to elaborate on the necessity of locking.
+should:
+- Define dependency locking clearly, explaining how it specifies exact versions of
+  dependencies while allowing ranges.
+- Discuss the importance of dependency locking in ensuring consistent builds and avoiding
+  'dependency hell'.
+- Explain how dependency locking helps to maintain reproducible environments, particularly
+  in large projects with many dependencies.
+- Mention how transitive dependencies are also locked, providing a stable state for
+  the software.
+- Give examples of tools (like Poetry) that facilitate dependency locking and its
+  use in modern build automation.
+should_not:
+- Avoid vague explanations that don't clearly articulate what dependency locking is
+  or why it's needed.
+- Do not confuse dependency locking with simply listing dependencies—locking requires
+  specifying exact versions.
+- Refrain from discussing dependency management strategies unrelated to locking, as
+  it detracts from the question.

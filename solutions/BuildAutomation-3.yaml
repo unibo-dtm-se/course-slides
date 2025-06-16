@@ -1,0 +1,106 @@
+examples:
+- An ideal response could cite Maven as an example of a declarative tool and Ant as
+  an imperative one, explaining their differences in configuration and usability.
+- A student might explain how build automation tools can help in executing unit tests
+  automatically as part of the build process.
+helps:
+- '# Build automation
+
+
+  Automation of the build lifecycle
+
+
+  * In principle, the lifecycle could be executed manually
+
+  * In reality *time is precious* and *repetitivy is boring* (and __error-prone__)
+
+
+  > $\Rightarrow$ Create software that automates the building of some software!
+
+
+  * All those concerns that hold for software creation hold for build systems creation...
+
+  '
+- "<!-- ## Build automation: basics and styles\n\nDifferent lifecycle types generate\
+  \ different build automation **styles**\n\n**Imperative**: write a script that tells\
+  \ the system what to do to get\nfrom code to artifacts\n* *Examples*: make, cmake,\
+  \ Apache Ant\n* *Abstraction gap*: verbose, repetitive\n* Configuration (*declarative*)\
+  \ and actionable (*imperative*) logics *mixed* together\n* Highly *configurable*\n\
+  \n**Declarative**: adhere to some convention, customizing some settings\n* *Examples*:\
+  \ Apache Maven\n* Separation between *what* to do and *how* to do it\n  * The build\
+  \ system decides how to do the stuff\n* *Configuration limited* by the provided\
+  \ options -->\n\n## __Declarative__ build automation systems\n\nModern build automation\
+  \ systems are __declarative__\n\n> __Declarative__ software $\\approx$ the program\
+  \ describes *what* to do, not *how* to do it\n> <br>\n> (as opposed to _imperative_\
+  \ software $\\approx$ the program describes *how* to do it,\n> <br>\n> e.g. Python)\n\
+  \nIn other words:\n- they rely on *conventions* and *defaults*\n- as long as developers\
+  \ follow them, the configuration is _minimal_\n- good look if you try to deviate\
+  \ from conventions :)\n\n<!-- ---\n\n## Hybrid automators\n\nCreate a *declarative\
+  \ infrastructure* upon an *imperative basis*, and\n*allow easy access to the underlying\
+  \ machinery*\n\n**Domain-Specific Languages** are helpful in this context: they\
+  \ can \"hide\" imperativity without ruling it out\n\nStill, many challenges remain\
+  \ open:\n* How to reuse the build logic?\n    * within a project, and among projects\
+  \ -->\n"
+- "## Automated evolution\n\n**Bots** performing the aforementioned process for a\
+  \ variety of build systems exist.\n\nThey are usually integrated with the repository\
+  \ hosting provider\n\n* Whitesource Renovate (Multiple)\n    * Also updates github\
+  \ actions and Gradle Catalogs\n* Dependabot (Multiple)\n* Gemnasium (Ruby)\n* Greenkeeper\
+  \ (NPM)\n"
+- "## Build matrix\n\nMost software products are meant to be *portable*\n* Across\
+  \ operating systems\n* Across different frameworks and languages\n* Across runtime\
+  \ configuration\n\nA good continuous integration pipeline should test *all the supported\
+  \ combinations**\n* or a sample, if the performance is otherwise unbearable\n\n\
+  The solution is the adoption of a **build matrix**\n* Build variables and their\
+  \ allowed values are specified\n* The CI integrator generates the *cartesian product*\
+  \ of the variable values, and launches a build for each!\n* Note: there is no built-in\
+  \ feature to exclude some combination\n    * It must be done manually using `if`\
+  \ conditionals\n"
+- "# The build \"life cycle\"\n\n(Not to be confused with the system development life\
+  \ cycle (SDLC))\n\n> The process of creating *tested deployable software artifacts*\n\
+  > <br/>\n> from *source* code\n\nMay include, depending on the system specifics:\n\
+  1. *Source code manipulation* and generation\n1. Source code *quality assurance*\n\
+  1. __Dependency management__\n1. *Compilation*, linking\n1. *Binary manipulation*\n\
+  1. *Test execution*\n1. Test *quality assurance* (e.g., coverage)\n1. API *documentation*\n\
+  1. __Packaging__\n1. __Delivery__\n\n<!-- ---\n\n# Lifecycle styles\n\n* **Custom**:\
+  \ select some phases that the product needs and perform them.\n    * *Flexible and\
+  \ configurable*: tailored on each project's needs\n    * *Hard to adapt and port*\n\
+  \n* **Standard**: run a sequence of pre-defined actions/phases.\n    * *Portable\
+  \ and easy to understand*: replicated on every product\n    * *Limited configuration\
+  \ options* -->\n"
+id: BuildAutomation-3
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: What can you expect, in general, from a build automation tool?
+see_also:
+- The importance of Continuous Integration/Continuous Delivery (CI/CD) practices in
+  modern software development.
+- The role of dependency updates and how tools like Dependabot automate this process.
+- An overview of common build systems and their normalized outputs and configurations.
+should:
+- Mention that a build automation tool automates various stages of the software build
+  lifecycle.
+- Highlight the importance of saving time and reducing human error associated with
+  manual builds.
+- Describe the different styles of build automation (imperative vs. declarative) and
+  provide examples.
+- Explain dependency management as one of the key functions of build automation tools.
+- Discuss the concept of a build matrix for ensuring software portability across systems.
+should_not:
+- Avoid vague statements like "it makes building software easier" without explanation.
+- Do not confuse build automation with version control systems, which serve a different
+  purpose.
+- Steer clear of overly technical jargon without context or explanation that might
+  confuse the reader.

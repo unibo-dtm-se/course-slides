@@ -1,0 +1,114 @@
+examples:
+- A perfect example of continuous integration is when a developer commits code changes
+  to a shared repository, triggering an automated build and testing process that runs
+  on a CI server, allowing for immediate feedback on the integration.
+- An example of a CI tool is Jenkins, which automates the building and testing of
+  code.
+helps:
+- '# Continuous Integration
+
+
+  The practice of integrating code with a main development line **continuously**
+
+  <br>
+
+  _Verifying_ that the build remains intact
+
+  * Requires *build automation* to be in place
+
+  * Requires *testing* to be in place
+
+  * Pivot point of the *DevOps* practices
+
+  * Historically introduced by the extreme programming (XP) community
+
+  * Now widespread in the larger DevOps community
+
+  '
+- "## Continous integration concept\n\n* The build process should be *rich* (comprehensive),\
+  \ *fast*, and **automated**\n* And run on _another machine_ (or VM) than the developer's\
+  \ one\n    + this is to avoid the developer from being _unable to work_ while the\
+  \ build is running\n    + but also to ensure that the software runs _outside_ from\
+  \ the _developer's environment_\n        - which increases the chances that the\
+  \ software will run on _other_ machines as well\n    + to allow for testing the\
+  \ software onto many, _controlled environments_\n        - which in turns allows\
+  \ for giving _compatibility guarantees_ to the customers/users\n\n{{% multicol %}}\n\
+  {{% col %}}\n<img src=\"compiling.png\" onerror=\"this.onerror=null; this.src='../../assets/compiling.png'\"\
+  \ height=100% />\n{{% /col %}}\n{{% col %}}\n{{<image src=\"./concept2.png\" width=\"\
+  100%\" alt=\"Continuous integration concept\" >}}\n{{% /col %}}\n{{% /multicol %}}\n"
+- "## Continuous integration software\n\n### Software that promotes CI practices should:\n\
+  \n* Provide *clean environments* for compilation/testing\n* Provide a *wide range*\
+  \ of environments\n    * Matching the relevant specifications of the actual targets\n\
+  * High degree of *configurability*\n* Possibly, *declarative configuration*\n* A\
+  \ *notification system* to alert about failures or issues\n* Support for *authentication*\
+  \ and deployment to external services\n"
+- "## How to make the integration _continuous_?\n\n1. __Repeat__ the integration process\
+  \ as _frequently as possible_\n    * ideally, as frequently as _every commit_, in\
+  \ practice, as frequently as __every push__ to GitHub\n\n2. This implies running\
+  \ _build_, _testing_, and _deployment_ processes __very frequently__ as well\n \
+  \   * which is only possible if the entire process is __automated__\n      * which\
+  \ is only possible if __automatic tests_ are available, as well as _build automation_\
+  \ scripts, and _automatic release/deployment_ scripts\n    * of course, retrospective\
+  \ adjustments are _hard to automate_, and should be done _manually_\n\n3. Do not\
+  \ rely on the assumption that developers will _always_ __remember__ to run these\
+  \ steps consistently before pushing\n    * they will not, and they will forget to\
+  \ do it at some point\n    * so we also need to _automate_ the __triggerig__ of\
+  \ the _build_, _testing_, and _deployment_ processes\n\n4. Once the entire process\
+  \ is automated, there are __further benefits__:\n    * integration _issues_ can\
+  \ be _spotted ASAP_\n    * the process can be repeated on _different platforms_\
+  \ (e.g. different OSs, and different versions of Python)\n       - which is far\
+  \ more than what a developer can do on their own\n    * emails and notifications\
+  \ can be sent upon _failures_ of the process\n"
+- 'title = "Continuous Integration"
+
+  description = "Make things work, keep them working, move fast"
+
+  outputs = ["Reveal"]
+
+  '
+id: CI-1
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In your own words, what is continuous integration?
+see_also:
+- Continuous delivery and its relationship to continuous integration, as both are
+  vital aspects of modern software development practices.
+- The role of version control systems like Git in facilitating continuous integration
+  through frequent commits and pushes.
+- The concept of build pipelines and the importance of automated testing frameworks
+  that support continuous integration.
+should:
+- Define continuous integration in clear terms, emphasizing its purpose of integrating
+  code continuously into a main codebase.
+- Mention the importance of build automation in the continuous integration process.
+- Explain the role of automated testing in ensuring that the build remains intact
+  after integration.
+- Discuss the pivot role of continuous integration in DevOps practices.
+- Reference the historical context of continuous integration, including its origins
+  in extreme programming (XP).
+- Highlight the benefits of running the build process on a machine different from
+  the developer's, improving software reliability and capability to run in diverse
+  environments.
+- Include the need for a clean and configurable environment for testing and compilation.
+should_not:
+- Avoid vague definitions or explanations that do not demonstrate an understanding
+  of the continuous integration process.
+- Do not state that continuous integration is simply merging code; rather, explain
+  the broader practices surrounding it.
+- Refrain from discussing unrelated concepts or technologies that do not directly
+  pertain to continuous integration.
+- Do not overlook the significance of automation—failing to mention this can indicate
+  a misunderstanding of CI's purpose.

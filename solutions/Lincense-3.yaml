@@ -1,0 +1,179 @@
+examples:
+- 'Example of strong copyleft: GPL license which requires all derivatives to be licensed
+  under GPL.'
+- 'Example of weak copyleft: LGPL which allows some derivatives not to be licensed
+  under LGPL.'
+- Comparison with proprietary licenses which restrict user freedoms and modifications.
+helps:
+- '# Copyright vs. Copyleft
+
+
+  ### Copyright
+
+
+  **Legal right** that *grants the creator* of an original work *exclusive* rights
+  for its *use* and *(re)distribution*
+
+
+  ### Copyleft
+
+
+  **Practice** (*not a legal right!*) in which *the creators surrenders some, but
+  not all, rights* under copyright law.
+
+  * *Strong*: all derived works inherit the copyleft license
+
+  * *Weak*: some derived work may not inherit it
+
+  * *Full*: all the parts of the work are distributed under the terms of the copyleft
+  license
+
+  * *Partial*: only some parts are covered by the copyleft license.
+
+  '
+- '## Creative Commons
+
+  * Set of licenses with *increasing copyleft*
+
+  * [**not designed for software**](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software),
+
+  good for data, documentation, and resources
+
+
+  **Available rights**
+
+  * `BY` (Attribution) -- Derivative works must credit the original author
+
+  * `SA` (Share-alike) -- Enables copyleft
+
+  * `NC` (Non-commercial) -- — Derivative work can only be used for non commercial
+  purposes
+
+  * `ND` (No derivative Works) -- Free distribution and copy, but derivatives are
+  forbidden
+
+
+  **Valid combinations**
+
+  * `CC0` -- Public domain (prefer the MIT licens for a similar protection)
+
+  * `CC-BY` -- Attribution
+
+  * `CC-BY-SA` -- Attribution, Share-alike (enables copyleft)
+
+  * `CC-BY-NC` -- Attribution Noncommercial
+
+  * `CC-BY-NC-SA` -- As above, plus copyleft
+
+  * `CC-BY-ND` -- Attribution Noderivatives (commercially usable, but not modifiable)
+
+  * `CC-BY-NC-ND` -- As above, non commercial
+
+  '
+- '## Proprietary vs. Free
+
+
+  ![Rights scale, public domain on the left, proprietary on the right.](./rights.svg)
+
+
+  #### Proprietary
+
+
+  The software publisher grants the right to use *a certain number of copies under
+  the conditions of an EULA*, but **does not transfer ownership** of the copies to
+  the customer.
+
+  Usage of the software may be subjected to acceptance of the EULA.
+
+
+  #### Free
+
+
+  The software publisher grants *extensive rights to modify and redistribute* the
+  software, often prohibiting rolling back such rights (strong copyleft).
+
+  '
+- '## Apache License 2.0
+
+
+  * *More restrictive than MIT*
+
+  * *Free and open source*
+
+  * *GPL compatible*
+
+  * *No copyleft*: the work or a derivative can be redistributed under any other license
+
+  * Protects trademarks
+
+  * Allows for placing a warranty
+
+  * Protects patent claims
+
+  * Forces authors of derived works to *state significant changes* made to the software
+
+  * If a `NOTICE` file with authors is provided, it must be included when redistributed.
+  Entries can be appended.
+
+  '
+- '## MIT License
+
+
+  * **Extremely permissive**
+
+  * *Free and open source*
+
+  * *GPL compatible*
+
+  * *No copyleft*: the work or a derivative can be redistributed under any other license
+
+  * Does not protect trademarks
+
+  * Does not protect patent claims
+
+  '
+id: Lincense-3
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: What is copyleft?
+see_also:
+- Discuss the significance of copyleft in the open-source movement and its impact
+  on collaboration.
+- Mention Creative Commons licenses and their role in providing varying degrees of
+  copyleft for creative works.
+- Explain how copyleft relates to software distribution and ownership rights, referencing
+  important legal cases or historical context.
+should:
+- Define copyleft and explain it as a practice rather than a legal right.
+- Differentiate between copyleft and copyright, highlighting their key differences.
+- 'Mention the various types of copyleft: strong, weak, full, and partial, providing
+  clear definitions and examples for each.'
+- Discuss how copyleft enables the sharing and modification of derivatives, ensuring
+  that the same freedoms are preserved in derivative works.
+- Include examples of copyleft licenses such as GPL and their implications for software
+  reuse and modification.
+- Explain the relationship between copyleft and software freedom, including how it
+  contrasts with proprietary software.
+should_not:
+- Confuse copyleft with copyright; they are distinct concepts with different implications
+  for users.
+- State that copyleft is a legal right, rather than a practice.
+- Provide overly technical details without explaining their relevance to the concept
+  of copyleft.
+- Neglect to mention the differences between strong and weak copyleft, leading to
+  confusion.
+- Use generalities without specific examples or definitions, making the answer vague
+  or uninformative.

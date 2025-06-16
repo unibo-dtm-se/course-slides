@@ -1,0 +1,152 @@
+examples:
+- 'Example of a correct commit message: `feat: add new public method for user authentication`.'
+helps:
+- "## Check your understanding (pt. 4)\n\n- Suppose that, in your Python project,\
+  \ there's function f which is slow. After some edits to its body, you manage to\
+  \ make it much faster.\n    + Is this a major, minor, or patch change?\n- Suppose\
+  \ that, in your Python project, you add one more public method to a class or module.\
+  \ You commit the changes using conventional commit.\n    + What type would you use\
+  \ for the commit?\n- Suppose that, in your Python project, you add one more private\
+  \ method to a class or module and you use it inside another public function of that\
+  \ class or module. You commit the changes using conventional commit.\n    + What\
+  \ type tag would you use for the commit?\n- Suppose that, in your Python project,\
+  \ you rename (all occurrences of) a public function. You commit the changes using\
+  \ conventional commit.\n    +  What type would you use for the commit?\n- Suppose\
+  \ that, in your Python project, you rename (all occurrences of) a private function.\
+  \ You commit the changes using conventional commit.\n    + What type would you use\
+  \ for the commit?\n- Suppose that, in your Python project, you rename (all usages\
+  \ of) a public function's parameter name. You commit the changes using conventional\
+  \ commit.\n    + What type would you use for the commit?\n- Suppose that, in your\
+  \ Python project, you rename (all usages of) a private function's parameter name.\
+  \ You commit the changes using conventional commit.\n    + What type would you use\
+  \ for the commit?\n"
+- "## Check your understanding (pt. 5)\n\n- Suppose that, in your Python project,\
+  \ you rename (all occurrences of) a public class. You commit the changes using conventional\
+  \ commit.\n    + What type would you use for the commit?\n- Suppose that, in your\
+  \ Python project, you rename (all usages of) a public class's constructor's parameter\
+  \ name. You commit the changes using conventional commit.\n    + What type would\
+  \ you use for the commit?\n- Suppose that, in your Python project, there's function\
+  \ f which is slow. After some edits to its body, you manage to make it much faster.\
+  \ You commit the changes using conventional commit.\n    + What type would you use\
+  \ for the commit?\n- Suppose your Python project is currently at version `1.2.3`.\
+  \ You add one more public method to a class or module.\n    + What should be the\
+  \ next version number if this change is going to be released immediately?\n- Suppose\
+  \ your Python project is currently at version `1.2.3`. You add one more private\
+  \ method to a class or module and you use it inside another public function of that\
+  \ class or module.\n    + What should be the next version number if this change\
+  \ is going to be released immediately?\n- Suppose your Python project is currently\
+  \ at version `1.2.3`. You rename (all occurrences of) a public function.\n    +\
+  \ What should be the next version number if this change is going to be released\
+  \ immediately?\n- Suppose your Python project is currently at version `1.2.3`. You\
+  \ rename (all occurrences of) a private function.\n    + What should be the next\
+  \ version number if this change is going to be released immediately?\n- Suppose\
+  \ your Python project is currently at version `1.2.3`. You rename (all usages of)\
+  \ a public function's parameter name.\n    + What should be the next version number\
+  \ if this change is going to be released immediately?\n- Suppose your Python project\
+  \ is currently at version `1.2.3`. You rename (all usages of) a private function's\
+  \ parameter name.\n    + What should be the next version number if this change is\
+  \ going to be released immediately?\n"
+- "## Conventional commits\n\nOne of the possible ways to write standardized commits\
+  \ -- <https://www.conventionalcommits.org/>\n\nHeavily inspired by *the Angular\
+  \ convention*: https://bit.ly/3VnAp4T\n\nFormat (optional parts in `[`square brackets`]`):\n\
+  \n```text\ntype[(scope)][!]: description\n\n[body]\n\n[BREAKING CHANGE: <breaking\
+  \ change description>]\n```\n\n* `type`: *what the commit introduces*\n    * Can\
+  \ differ among projects\n    * `fix` (bug fix, no API change) and `feat` (new feature)\
+  \ always present\n    * common optional types: `build`, `chore`, `ci`, `docs`, `style`,\
+  \ `refactor`, `perf`, `test`\n* Optionally, the `scope` identifies the *module*\
+  \ of the software that was changed\n* **Breaking changes** are identified by a `!`\
+  \ before the `:` and/or by a description in the footer of the commit after `BREAKING\
+  \ CHANGE: `\n"
+- '## Commit message-based versioning
+
+
+  What do we need commit messages for?
+
+
+  {{% fragment %}}
+
+  Identify what is *different between changes*
+
+  {{% /fragment %}}
+
+
+  {{% fragment %}}
+
+  But isn''t this essentially what _DVCS_ is about?
+
+  {{% /fragment %}}
+
+
+  {{% fragment %}}
+
+  ### Idea
+
+
+  find a way to write *conventional* commit messages such that some _automatic tool_
+  can understand whether a new version should be released
+
+  {{% /fragment %}}
+
+
+  {{% fragment %}}
+
+  Put humans and sentiments out of the loop
+
+  {{% /fragment %}}
+
+  '
+- "## Check your understanding (pt. 3)\n\n- In the context of semantic versioning,\
+  \ what is the difference among a major, minor, or patch change?\n- What is the idea\
+  \ behind semantic release?\n- How are semantic versioning, conventional commits,\
+  \ and semantic release related?\n- Suppose that, in your Python project, you add\
+  \ one more public method to a class or module.\n    + Is this a major, minor, or\
+  \ patch change?\n- Suppose that, in your Python project, you add one more private\
+  \ method to a class or module and you use it inside another public function of that\
+  \ class or module.\n    + Is this a major, minor, or patch change?\n- Suppose that,\
+  \ in your Python project, you rename (all occurrences of) a public function.\n \
+  \   + Is this a major, minor, or patch change?\n- Suppose that, in your Python project,\
+  \ you rename (all occurrences of) a private function.\n    + Is this a major, minor,\
+  \ or patch change?\n- Suppose that, in your Python project, you rename (all usages\
+  \ of) a public function's parameter name.\n    + Is this a major, minor, or patch\
+  \ change?\n- Suppose that, in your Python project, you rename (all usages of) a\
+  \ private function's parameter name.\n    + Is this a major, minor, or patch change?\n\
+  - Suppose that, in your Python project, you rename (all occurrences of) a public\
+  \ class.\n    + Is this a major, minor, or patch change?\n- Suppose that, in your\
+  \ Python project, you rename (all usages of) a public class's constructor's parameter\
+  \ name.\n    + Is this a major, minor, or patch change?\n"
+id: Versioning-27
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: Suppose that, in your Python project, you add one more public method to
+  a class or module. You commit the changes using conventional commit. What type would
+  you use for the commit?
+see_also:
+- Understanding conventional commits and their importance in version control and semantic
+  versioning.
+- Explanation of how conventional commits relate to the concept of semantic release,
+  which automates the release process based on commit messages.
+should:
+- The commit type should be `feat` since adding a new public method is considered
+  introducing a new feature.
+- The answer should explain that `feat` indicates a new feature added to the codebase
+  and is essential for functional enhancements in the software.
+- 'Contextual usage of the conventional commit format should be mentioned: `feat:
+  add new public method to [module/class]`.'
+should_not:
+- The response should not use `fix`, as that refers to bug fixes without introducing
+  new features.
+- The answer should not confuse the concept of public methods with private methods
+  when determining the commit type.

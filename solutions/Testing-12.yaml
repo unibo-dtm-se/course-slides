@@ -1,0 +1,139 @@
+examples:
+- Citing an example of a software feature that was modified and subsequently caused
+  a previously working feature to fail, exemplifying the concept of regression.
+- Describing a case study where proper regression testing prevented a significant
+  software failure.
+helps:
+- '## Tackling bugs and regressions
+
+
+  When a new **bug** (or a **regression**, namely, a feature that was working and
+  it is now compromised) is discovered,
+
+  *resist the temptation to "fix" the issue right away*
+
+
+  * A fix without a test could be *insufficient*
+
+  * The "fix" could break another feature (create a *regression*)
+
+
+  A more **robust approach**:
+
+  1. Reproduce the issue in a *minimal context*
+
+  2. Create a new *test case* that *correctly fails*
+
+  3. *Fix* the issue, and make sure that the test now *passes*
+
+  4. Ensure that _all other tests_ still pass
+
+
+  > Motivations:
+
+  > - the new test case __prevents__ the issue from being _mistakenly re-introduced_
+  __again__
+
+  > - develop the test case _before_ the fix will help the __debugging__ process
+
+  '
+- "## Check your understanding (pt. 3)\n\n- In the context of software testing, what\
+  \ is a regression?\n- What are test doubles and what problem do they address?\n\
+  - In the context of software testing, what is test coverage?\n- What are the common\
+  \ metrics for test coverage?\n- How to measure the test coverage of a Python project?\n\
+  - If a project has 100% test coverage and 100% success rate for tests, can we declare\
+  \ it bug free?\n    + Can we safely say it satisfies all requirements?\n- Aside\
+  \ from testing, what is quality assurance about?\n- In the context of software engineering,\
+  \ what is static analysis?\n- What static analysis tool may you exploit when working\
+  \ on a Python project? What's their purpose?\n\n{{% /section %}}\n"
+- "## Reproducibility\n\n> Would you be comfortable with a car that passes the crash\
+  \ test `99.9%` of time, but on the `0.1%` of the cases fails _unexplicably_?\n\n\
+  **Reproducibility** is **central** for testing\n\n(true for any engineering, but\
+  \ in particular for software)\n\n* *Tests should always provide the same results*\
+  \ when run on the same system\n  * tests that *\"work sometimes but sometimes not\"\
+  * are called **flaky tests**\n  * of course, running the same test procude on _different_\
+  \ systems may produce different results\n    * as well as different _versions_ of\
+  \ the _same_ system\n* Tests should be **self-contained** (they should not depend\
+  \ on the results of previous tests)\n* Testing procedures should be **deterministic**\
+  \ ($\\approx$ no randomness)\n  * _unpredicable_ events / scenarios (e.g. user inputs,\
+  \ lack of Internet connection) should be __simulated__\n    * one cannot predict\
+  \ _when_ events will occur, but one must predict _what sorts_ of events / scenarios\
+  \ _may_ occur\n"
+- "## Testing scope (pt. 1)\n\nAs any engineering product, software can be tested\
+  \ at different levels of abstraction\n\n* **Unit** testing: test *single software\
+  \ components*\n  * Is this `class` (or `function` or `module`) behavior the expected\
+  \ one?\n  * For a car: is the *tire* working correctly?\n    * e.g. are shape, pression,\
+  \ etc. as expected?\n\n* **Integration** testing: test *an entire subsystem*, i.e.\
+  \ the interplay among *multiple components*\n  * Class `A` uses class `B` and `C`.\
+  \ Are they working together as expected?\n  * For a car: if we attach the *wheels*\
+  \ to the *engine* via the *transmission*, does it work as expected?\n    * e.g.\
+  \ we _turn on_ the engine, does the wheel _spin_?\n\n* **End-to-end** (or **acceptance**)\
+  \ testing: test *an entire system* (may involve _aesthetics_/_usability_ criteria)\n\
+  \  * Is this whole __application__ functional, when used from the __UI__?\n    *\
+  \ implies that _all_ components are correctly integrated\n  * For a car: is it usable\
+  \ by a person to drive in the real world?\n    * e.g. we _turn on_ the engine, does\
+  \ the car _move_?\n    * e.g. can the user _change direction_ via the _steering\
+  \ wheel_?\n    * e.g. is the _speed indicator_ reactive to the actual spees? is\
+  \ the _unit of measure_ what the user expects?\n"
+- '{{% section %}}
+
+
+  ## Check your understanding (pt. 1)
+
+
+  - In the context of SE, what is quality assurance?
+
+  - When is software considered "correctly working"?
+
+  - When is software considered "of good quality"?
+
+  - In the context of software engineering, what is testing?
+
+  - In the context of software testing, what is the difference between an automated
+  and manual test?
+
+  - In the context of software testing, what are the most common testing scopes?
+
+  - What is the difference among unit, integration, and end-to-end testing?
+
+  '
+id: Testing-12
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In the context of software testing, what is a regression?
+see_also:
+- The concept of 'flaky tests' and their impact on software reliability.
+- The lifecycle of software development and the iterative nature of programming, highlighting
+  the recurrence of bugs and the need for regression testing.
+- Different approaches to managing regression tests, such as continuous integration/continuous
+  deployment (CI/CD) processes, and their significance in modern software engineering.
+should:
+- Define regression as it relates to software testing, specifically as a reoccurrence
+  of previously fixed bugs or unintended changes in functionality.
+- Explain the importance of regression testing in maintaining software quality and
+  stability over the course of development.
+- Discuss methods of preventing regressions, such as writing tests before fixing bugs,
+  and ensuring all tests pass after code changes.
+- Provide a brief overview of how regression tests fit into the wider software testing
+  strategy, including unit, integration, and end-to-end tests.
+- Mention how automated testing frameworks can help manage regression tests effectively.
+should_not:
+- Use vague or overly technical jargon without explanation, assuming the reader understands
+  without context.
+- Overlook the role of regression tests in overall software maintenance and stability,
+  focusing only on new feature testing.
+- Assume that regression testing is only necessary after major changes; emphasize
+  its importance after any change, big or small.

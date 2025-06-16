@@ -1,0 +1,110 @@
+examples:
+- 'Example of a high-quality response: ''The build lifecycle involves steps like source
+  code manipulation, quality assurance, and automated tests that ensure the software
+  is ready for deployment. For example, using CI/CD tools automates many of these
+  phases, increasing efficiency and reducing manual errors.'''
+helps:
+- "# The build \"life cycle\"\n\n(Not to be confused with the system development life\
+  \ cycle (SDLC))\n\n> The process of creating *tested deployable software artifacts*\n\
+  > <br/>\n> from *source* code\n\nMay include, depending on the system specifics:\n\
+  1. *Source code manipulation* and generation\n1. Source code *quality assurance*\n\
+  1. __Dependency management__\n1. *Compilation*, linking\n1. *Binary manipulation*\n\
+  1. *Test execution*\n1. Test *quality assurance* (e.g., coverage)\n1. API *documentation*\n\
+  1. __Packaging__\n1. __Delivery__\n\n<!-- ---\n\n# Lifecycle styles\n\n* **Custom**:\
+  \ select some phases that the product needs and perform them.\n    * *Flexible and\
+  \ configurable*: tailored on each project's needs\n    * *Hard to adapt and port*\n\
+  \n* **Standard**: run a sequence of pre-defined actions/phases.\n    * *Portable\
+  \ and easy to understand*: replicated on every product\n    * *Limited configuration\
+  \ options* -->\n"
+- '# Build automation
+
+
+  Automation of the build lifecycle
+
+
+  * In principle, the lifecycle could be executed manually
+
+  * In reality *time is precious* and *repetitivy is boring* (and __error-prone__)
+
+
+  > $\Rightarrow$ Create software that automates the building of some software!
+
+
+  * All those concerns that hold for software creation hold for build systems creation...
+
+  '
+- "## Software engineering phases (pt. 3)\n\n6. __Release__: make one particular _version_\
+  \ of the software _available_ to the _customers_\n    + most commonly, publish the\
+  \ software _package_ on a _server_ and make it _accessible_ via the _web_\n\n7.\
+  \ __Deployment__: install and activate the software for the software\n    + e.g.\
+  \ installer for desktop software, or mobile apps\n    + e.g. continous deployment\
+  \ for web services\n\n8. __Documentation__: produce _manuals_ and _guides_ for the\
+  \ software\n    + _user manual_: how to _use_ the software\n    + _developer manual_:\
+  \ how to _manipualte_ the software code base\n\n9. __Maintenance__: fix _bugs_,\
+  \ _improve_ the software, _adapt_ it to _new_ requirements\n    + potentially _reiterate_\
+  \ the whole process\n"
+- '## SE Lifecycle Models Overview (pt. 7)
+
+
+  ![Extreme Programming](./extreme-programming.png)
+
+
+  Focus on the delivery of _working software_ in _short_ time frames.
+
+
+  Attempts to mitigate the consequnet risk of _low-quality_ code.
+
+  '
+- '## SE Lifecycle Models Overview (pt. 4)
+
+
+  ![Iterative model](./iterative.png)
+
+
+  Design and subsequent phases are _repeated_ over and over again, for refinement
+
+  '
+id: BuildAutomation-1
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: What is the build life cycle of a software project?
+see_also:
+- Background on the differences between build lifecycle and software development lifecycle.
+- Motivation for automating the build process to save time and reduce human error.
+- Insight into how continuous integration (CI) and continuous deployment (CD) practices
+  fit into the build lifecycle.
+- Contextual understanding of how build errors can arise from poorly defined lifecycle
+  processes.
+should:
+- Clearly define the build lifecycle and distinguish it from the software development
+  life cycle (SDLC).
+- List all key phases of the build lifecycle such as source code manipulation, quality
+  assurance, dependency management, compilation, binary manipulation, and test execution.
+- Explain the purpose behind each phase in the build lifecycle, focusing on creating
+  tested deployable software artifacts.
+- Mention the role of automation in the build lifecycle and its importance in improving
+  efficiency and reducing errors.
+- Discuss different lifecycle styles (Custom vs. Standard) and their implications
+  for project adaptability and portability.
+- Provide examples of tools or practices used in build automation and their benefits.
+should_not:
+- Use vague language or concepts like 'the build lifecycle is just a series of steps'
+  without elaboration.
+- Confuse the build lifecycle with the software development lifecycle (SDLC).
+- Exclude important phases such as documentation, maintenance, and deployment, which
+  are critical components of the build lifecycle.
+- Fail to mention automation's significance in managing and executing the build process.
+- Present incorrect sequences of build lifecycle phases or omit necessary ones.

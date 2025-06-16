@@ -1,0 +1,122 @@
+examples:
+- 'A good CI pipeline might have steps like: checkout, install dependencies, run tests,
+  build the application, and potentially publish packages if all tests pass.'
+- Using GitHub Actions, a `.yml` configuration file will outline the required steps
+  and workflows for automation.
+helps:
+- '## Check your understanding (pt. 2)
+
+
+  - In the context of software engineering, what is integration? What is continuous
+  integration?
+
+  - In the context of software engineering, what are the issues arising from infrequent
+  integration/release events?
+
+  - In the context of software engineering, how to make integration continuous?
+
+  - What is GitHub Actions? What is its purpose? How does it work?
+
+  - In the context of GitHub Actions, what is the difference among workflow, jobs,
+  steps
+
+  - In an ordinary Python project using Poetry for build automation and release on
+  PyPi and `unittest` for automatic tests, how would you organize a continuous integration
+  pipeline? (What operations should be performed in each run of the pipeline?)
+
+
+  {{% /section %}}
+
+  '
+- '## Check your understanding
+
+
+  - What is the build life cycle of a software project?
+
+  - In the context of Software Engineering, what is build automation?
+
+  - What can you expect, in general, from a build automation tool?
+
+  - In the context of build automation, what is dependency locking? Why is it necessary?
+
+  - In a Python project, what would you use Poetry for?
+
+  - Where would you release a Python project on Test PyPI? When on PyPI?
+
+  - What is Test PyPI? What''s its purpose?
+
+  - What are the steps to release a Python project via Poetry?
+
+  '
+- "## How to publish Python packages on Test-PyPI with Poetry\n\n1. Build the project,\
+  \ i.e. produce *installable package* __(only do this after all Q/A checks pass)__\n\
+  \    * `poetry build`\n    * this will create a `.whl` file and a `.tar.gz` file\
+  \ in the `dist/` directory\n\n2. Upload installable packages on Test-PyPI\n    *\
+  \ `poetry publish --repository pypi-test --username __token__ --password TEST_PYPI_API_TOKEN`\n\
+  \        + [the username is _literally_ `__token__`](https://pypi.org/help/#apitoken)\n\
+  \        + the password is the API token you generated on Test-PyPI\n    * this\
+  \ will upload the package to Test-PyPI\n\n3. That's it!\n    * visit the page of\
+  \ your package on Test-PyPI\n    * try to install it in a virgin environment via\
+  \ `pip install -i https://test.pypi.org/simple/ unibo-dtm-se-calculator`\n"
+- "## How to publish Python packages on PyPI with Poetry\n\n1. Build the project,\
+  \ i.e. produce *installable package* __(only do this after all Q/A checks pass)__\n\
+  \    * `poetry build`\n    * this will create a `.whl` file and a `.tar.gz` file\
+  \ in the `dist/` directory\n\n2. Upload installable packages on PyPI\n    * `poetry\
+  \ publish --repository pypi-test --username __token__ --password PYPI_API_TOKEN`\n\
+  \        + [the username is _literally_ `__token__`](https://pypi.org/help/#apitoken)\n\
+  \        + the password is the API token you generated on PyPI\n    * this will\
+  \ upload the package to PyPI\n\n3. That's it!\n    * visit the page of your package\
+  \ on PyPI\n    * try to install it in a virgin environment via `pip install unibo-dtm-se-calculator`\n"
+- "## From now on, let's use Poetry\n\n> Poetry is a _declarative_ tool for __dependency\
+  \ management__, __packaging__, and __release__ in Python\n\n- It handles both *dependencies*\
+  \ and *dev-dependencies*\n    * _replacing_ `requirements.txt` and `requirements-dev.txt`\n\
+  \n- It _automates_ the __1-project-1-Python-env__ convention\n\n- It simplifies\
+  \ the _packaging_ process for the project\n\n- It simplifies the _publication_ process\
+  \ on PyPI (or other software repositories)\n"
+id: CI-10
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: In an ordinary Python project using Poetry for build automation and release
+  on PyPi and `unittest` for automatic tests, how would you organize a continuous
+  integration pipeline? (What operations should be performed in each run of the pipeline?)
+see_also:
+- Reference the concept of CI/CD (Continuous Integration/Continuous Delivery) for
+  a broader understanding.
+- Discuss the role of automated testing in CI and its importance in ensuring code
+  quality.
+- Mention the benefits of publishing to Test PyPI before the official release on PyPI,
+  such as validating the build process without impacting the production environment.
+- Highlight how dependency management with Poetry leads to more reliable builds.
+should:
+- Describe the purpose of continuous integration (CI) in the context of a Python project.
+- Explain the components of a CI pipeline using GitHub Actions, including workflows,
+  jobs, and steps.
+- 'List specific operations that should be included in each CI pipeline run, such
+  as:'
+- '- Code checkout from the repository.'
+- '- Dependency installation using Poetry.'
+- '- Running automated tests using `unittest`.'
+- '- Building the project if tests pass (e.g., using `poetry build`).'
+- '- Publishing a package to Test PyPI or PyPI after successful tests and build.'
+- Discuss the importance of maintaining a feedback loop through CI for developers.
+should_not:
+- Omit specific details about CI operations; instead, provide generalized or vague
+  responses.
+- Include irrelevant operations that do not pertain to CI (e.g., manual steps that
+  would be better handled in local development).
+- Overly complicate the explanation with unnecessary jargon without defining terms
+  like 'workflow' or 'jobs.'
+- Suggest skipping any of the essential steps (e.g., not running tests before publishing).

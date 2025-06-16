@@ -1,0 +1,161 @@
+examples:
+- C is a compiled language because it requires a compiler for machine code execution,
+  while Python is interpreted, executing code through an interpreter.
+helps:
+- "## Compilation vs. Interpretation of Programs (pt. 2)\n\n- Compilation implies:\n\
+  \    1. a __compiler__ should be created _for each_ target platform\n    2. each\
+  \ software project should be __compiled__, _for each_ target platform, _before_\
+  \ being executed\n    3. execution is potentially _faster_, as the _machine code_\
+  \ is _optimised_ for the target CPU\n        * but higher speed is not guaranteed,\
+  \ and it may be _negligible_ in many cases\n        * but many application do not\
+  \ require high-speed execution\n    4. the compiler may spot some _errors_ in the\
+  \ program __before__ it is executed\n\n- Interpretation implies:\n    1. an __interpreter__\
+  \ should be created _for each_ target platform\n    2. the software can be executed\
+  \ __as is__ on all supported platforms\n        + one less step in the workflow!\n\
+  \    3. execution is potentially _slower_, as the interpreter translates code _on\
+  \ the fly_\n        + but the write-test-debug cycle is potentially _faster_\n \
+  \   4. the programmer may only spot _errors_ in the program __after__ it is executed\n\
+  \n- Historically, _programming languages_ have been __categorised__ as _either compiled\
+  \ or interpreted_\n    + C, C++, Rust, Go, etc. are _compiled_ languages\n    +\
+  \ Ruby, JavaScript, etc. are _interpreted_ languages\n"
+- "## Compilation vs. Interpretation of Programs\n\n- A program is a __set of instructions__\
+  \ that a _computer_ can __execute__\n\n- Computers nowadays follow the [Von Neumann\
+  \ architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture)\n    + put\
+  \ it simply, they follow a _list_ of __instructions__, from some __instruction language__\n\
+  \        * modern CPU producers (Intel, AMD, ARM, etc.) constuct CPU which comply\
+  \ to well known instruction sets (e.g. `x86`, `amd64`, `arm`, etc.)\n        — different\
+  \ architectures have different instruction sets\n\n- Programming languages are meant\
+  \ to be __understood__ by _humans_ (_not_ by computers)\n\n- To make a _computer_\
+  \ understand a _program_, the _program_ must be __translated__ into _machine code_\n\
+  \    + i.e. a list of instructions in the _instruction language_ of that computer's\
+  \ _CPU_\n\n- The __translation__ procedure is _hardware-dependent_, and it may vary\
+  \ _among OS_\n    + to generalise, we say the translation procedure is __platform-dependent__\n\
+  \n- There are two main ways to _translate_ a _program_ into _machine code_:\n  \
+  \  1. __compilation__: the program is translated into an _executable_, via some\
+  \ __compiler__, and then executed\n    2. __interpretation__: the program is read\
+  \ by an __interpreter__ (i.e. an _executable_), which _executes_ it\n\n- The result\
+  \ is the same (the program is executed, i.e. the computer follows the instructions)\n\
+  \    + but the _implications_ are different\n"
+- "## Compilation vs. Interpretation of Programs (pt. 3)\n\n- Nowadays, the _distinction_\
+  \ is _blurred_\n    + many languages are _both_ compiled and interpreted, there\
+  \ including _Python_, and _Java_\n        1. on the surface, they are _interpreted_\n\
+  \        2. but the interpreter _compiles_ the code _on the fly_...\n        3.\
+  \ and __saves__ the compiled version for later _re-use_\n\n- As always, mixing opposite\
+  \ approaches may lead to the _best of both worlds_\n    + e.g. the _interpreter_\
+  \ may spot errors in the program before it is executed\n    + e.g. in then interpretation\
+  \ and compilation are mixed, the _interpreter_ can _optimise_ the _machine code_\
+  \ in a very fine grained way\n\n- The idea of __saving__ a _hard-to-achieve_ result\
+  \ for _later re-use_ is called __caching__\n    + and it is common trick in _software\
+  \ development_\n\n- The CPython interpreter (i.e. the _reference_ Python implementaton)\
+  \ adopts a strategy of this sort\n    + the __.pyc__ files you met before, are the\
+  \ __cache files__ produced by the Python interpreter\n        + upon _first_ __succesful__\
+  \ execution of a script\n"
+- '## Check your understanding (pt. 5)
+
+
+  - In the context of programming languages, what is a package manager?
+
+  - What is the difference between compiled and interpreted programming languages?
+
+  - What is the Von Neuman architecture?
+
+  - What are the most common instruction set architectures?
+
+  - Is Python a compiled or interpreted programming language?
+
+  - What is the standard library of a programming language?
+
+  - In the context of programming languages, what is the difference between standard
+  and third-party libraries?
+
+  - In the context of programming languages, what is a package repository?
+
+  - In the context of the Python programming language, what is PyPI?
+
+  - What are the main software platforms you are aware of?
+
+  - What are the main package managers and repositories of the main software platforms?
+
+  '
+- '## Many programming paradigms
+
+
+  (cf. <https://en.wikipedia.org/wiki/Programming_paradigm>)
+
+
+  - **Imperative programming**: programs are made by __instructions__ that change
+  the state of the program.
+
+  - **Procedural programming**: programs are made by __blocks__ of code that can be
+  reused.
+
+  - **Functional programming**: programs are made by __functions__ that transform
+  data.
+
+  - **Logic programming**: programs are made by __rules__ that define relationships
+  between data.
+
+  - **Object-oriented programming**: programs are made by __objects__ that interact
+  with each other.
+
+
+  {{% fragment %}}
+
+  > Mainstream programming languages are actually _blending_ multiple paradigms
+
+  - e.g., Python is considered imperative, functional, and object-oriented
+
+  {{% /fragment %}}
+
+  '
+id: Definition-33
+model_name: gpt-4o-mini
+model_provider: openai
+prompt_template: "You are a teacher in the Software Engineering course, for the Digital\
+  \ Transformantion and Management master programme.\nYour goal is to evaluate students\
+  \ via a questionnaire composed by open questions.\n\nYour task is to create a checklist\
+  \ of \"should\" and \"should not\" items for each question.\nIn particular, for\
+  \ each question, you should tell what contents should be mentioned in the perfect\
+  \ response,\nand, possibly, what would be contents would be common mistakes, and\
+  \ should be avoided.\nExamples as well as background/contextual/motivational information\
+  \ are welcome even if not explicitly requested.\nIn that case, fill the list with\
+  \ positive/negative examples, comparisons, and relevant background/context/motivational\
+  \ concepts to be mentioned in the perfect answer.\nEach item in the list should\
+  \ be verifiable and not fluffy.\n\nOnly extract the properties mentioned in the\
+  \ '{class_name}' function.\n\nQuestion is:\n    {question}\n\nBelow are snippets\
+  \ from the course material that may help you answer the question:\n\n{help}"
+question: What is the difference between compiled and interpreted programming languages?
+see_also:
+- Consider discussing the impact of development environments that may include both
+  compilers and interpreters.
+- Explain the concept of Just-In-Time (JIT) compilation and how it applies to hybrid
+  languages like Java.
+- Discuss how the choice between compiled and interpreted languages can affect software
+  design and developer workflow.
+should:
+- Clearly define what a compiled programming language is, providing examples such
+  as C, C++, Rust, and Go.
+- Clearly define what an interpreted programming language is, providing examples such
+  as Ruby and JavaScript.
+- Discuss the compilation process, explaining that it translates code into machine
+  code before execution.
+- Explain the interpretation process, detailing that it executes the code line-by-line
+  during execution.
+- Describe the performance implications, noting that compiled languages can offer
+  faster execution but not always.
+- 'Mention error checking differences: compiled languages can identify some errors
+  before execution, while interpreted languages may do so only during runtime.'
+- Highlight that many modern languages use a combination of compilation and interpretation,
+  like Python and Java.
+- Incorporate the historical context of how languages were categorized as either compiled
+  or interpreted.
+should_not:
+- Use vague or overly technical jargon without explanation, which may confuse the
+  reader.
+- Fail to distinguish between compilers and interpreters clearly.
+- Ignore the distinction between performance and speed; stating one is always faster
+  than the other is incorrect.
+- Neglect to mention the historical context and blending of paradigms in modern programming
+  languages.
+- Provide incorrect examples, such as categorizing Java as purely interpreted without
+  discussing its compilation by the Java Virtual Machine.

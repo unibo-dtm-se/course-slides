@@ -13,7 +13,14 @@ if not args.categories:
         print(f"{i + 1})", category.name, f"({questions.category_size(category)} questions, total weight: {questions.category_weight(category)})")
         categories_by_index[i + 1] = category
     input_categories = input("Enter categories to include in the test (space separated): ")
-    indexes = map(int, input_categories.split())
+    selected_categories = []
+    for i in input_categories.split():
+        if "-" in i:
+            start, end = i.split("-")
+            selected_categories.extend(range(int(start), int(end) + 1))
+        else:
+            selected_categories.append(int(i))
+    indexes = map(int, selected_categories)
     args.categories = {categories_by_index[i] for i in indexes}
 
 etest.VERBOSE = args.verbose

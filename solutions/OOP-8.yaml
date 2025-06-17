@@ -1,7 +1,9 @@
 examples:
 - A string in Python is immutable; once created, you cannot change its state.
-- A tuple cannot have its elements changed after it is created, making it a good example
-  of an immutable type.
+- A tuple cannot have its elements changed after it is created, making it a good example of an immutable type.
+- A class where all fields are private, and no public methods/property is provided to change the state of the object after creation,
+  and the fields are immutable types themselves.
+- 'Provide an example where the same concept is translated into OOP twice: one as an immutable type and another as a mutable type'
 helps:
 - "## Immutable vs. Mutable Objects (pt. 1)\n\n- Objects are __immutable__ if their\
   \ _state_ cannot be _changed_ after they are _created_\n    + e.g., `int`, `float`,\
@@ -63,28 +65,16 @@ prompt_template: "You are a teacher in the Software Engineering course, for the 
   \ from the course material that may help you answer the question:\n\n{help}"
 question: In the context of OOP, when is a data type considered immutable?
 see_also:
-- Discuss when immutability is beneficial, such as in concurrent programming or functional
-  programming paradigms.
-- Mention the trade-offs between mutable and immutable designs, particularly in software
-  performance and memory management.
-- Explore the concept of 'value objects' in OOP and their association with immutability.
-- Relate the decision of immutability versus mutability to software maintainability
-  and readability.
+- Mention the notion of side-effects in programming, and how immutability helps to avoid them.
+- Mention value objects in Domain Driven Design (DDD).
+- The copy-on-write pattern as a way to implement immutability in mutable objects.
 should:
 - Define immutability in the context of OOP and its significance.
 - Provide examples of immutable data types (e.g., `str`, `tuple`, `frozenset`).
 - Explain how immutable objects differ from mutable objects (e.g., `list`, `dict`).
-- Identify the characteristics that make an object immutable (e.g., read-only attributes,
-  immutable attribute types).
+- Identify the characteristics that make an object immutable (e.g., read-only attributes, immutable attribute types).
 - Mention the benefits of using immutable objects (e.g., safety, ease of reasoning).
-- Discuss the implications of immutability in terms of function arguments and data
-  consistency.
-- Explain design considerations when deciding to use immutability, such as the use
-  of copy-on-write patterns.
+- Mention potential drawbacks of immutability (e.g., performance overhead, memory usage).
 should_not:
-- Confuse immutability with mutability; clarity is crucial in definitions.
-- Provide examples of mutable objects when discussing immutability (e.g., lists should
-  not be included when explaining immutability).
-- Use vague terms or abstract concepts without specific definitions or relevant examples.
-- Overgeneralize the benefits or drawbacks of immutability without providing context
-  or examples.
+- 'Forget about recursion in data structures: a type is mutable if its attributes are of immutable types.'
+- Provide wrong examples of immutable types, such as suggesting that a `list` or `dict` is immutable.

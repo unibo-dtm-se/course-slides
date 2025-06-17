@@ -1,8 +1,8 @@
 examples:
-- 'Example of an API: A weather API that provides temperature and weather conditions
-  based on location input and returns corresponding data.'
-- 'Example of a broken API contract: When a software provider changes the output format
-  without informing the consumer.'
+- Example of a some OOP class interface
+- Example of the arguments accepted by some shell command
+- Examples of the routes supported by a web API
+- 'Example of a broken API contract: when a software provider changes the output format without informing the consumer'
 helps:
 - '## About application programming interfaces (pt. 1)
 
@@ -87,31 +87,17 @@ prompt_template: "You are a teacher in the Software Engineering course, for the 
   \ from the course material that may help you answer the question:\n\n{help}"
 question: What is the API of a software?
 see_also:
-- Highlight the importance of APIs in enabling software interoperability and the layered
-  architecture of software development.
-- Discuss the implications of changing APIs on both service providers and consumers,
-  reinforcing the idea that changes in contract affect both sides.
-- Introduce the concept of API documentation and its vital role in enabling effective
-  software development.
+- Highlight the importance of APIs in enabling software interoperability and the layered architecture of software development.
+- Discuss the implications of changing APIs on both service providers and consumers, reinforcing the idea that changes in contract affect both sides.
+- Describe the distinction among public, protected, and private visibility in OOP, and how this relates to APIs.
+- Mention encapsulation and information hiding, and their relevance to API design.
 should:
 - Define what an API is and clarify it stands for 'Application Programming Interface'.
-- Explain that the API is a set of functionalities provided to developers for building
-  software.
-- 'Mention the semi-formal specification of an API, including key components: name,
-  formal parameters, return values, pre-conditions, and post-conditions.'
-- Use metaphors to illustrate the relationship between provider and consumer, emphasizing
-  the contract nature of APIs.
-- Discuss the public vs. private distinction of API components in software, particularly
-  in the context of Python projects.
-- Provide examples of what a public API would include, such as public modules and
-  definitions in Python.
+- Explain that the API is a set of functionalities provided to developers for building software.
+- 'Mention the semi-formal specification of an API, including key components: name, formal parameters, return values, pre-conditions, and post-conditions.'
+- Use metaphors to illustrate the relationship between provider and consumer, emphasizing the contract nature of APIs.
+- Discuss the public vs. private distinction of API components in software, particularly in the context of Python projects.
+- Provide examples of what a public API would include, such as public modules and definitions in Python.
 should_not:
-- Avoid vague descriptions that do not specify what an API actually provides or consists
-  of.
-- Do not confuse API with user interfaces; clarify that APIs are meant for developers,
-  while UIs are for end-users.
-- Steer clear of saying APIs are only about URLs or endpoints without discussing their
-  broader functionality.
-- Do not include irrelevant information about specific programming languages unless
-  it directly relates to the definition of API. Mentioning private APIs without context
-  can also be misleading.
+- Confuse API with user interfaces; clarify that APIs are meant for developers, while UIs are for end-users.
+- Collapse API and ReST API, implying that all APIs are Web APIs.

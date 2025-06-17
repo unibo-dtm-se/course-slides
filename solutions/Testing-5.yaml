@@ -99,26 +99,20 @@ prompt_template: "You are a teacher in the Software Engineering course, for the 
   \ from the course material that may help you answer the question:\n\n{help}"
 question: Why one may want to have automated tests in a software project?
 see_also:
-- Mention the long-term cost implications of not having automated tests, linked to
-  technical debt.
-- Introduce the concept of test-driven development (TDD) and its relevance to automated
-  testing.
-- Highlight common misconceptions about time and resources for testing versus the
-  benefits it brings.
+- Mention technical debt and how the lack of automated tests can lead to accumulating technical debt over time.
+- Mention test-driven development (TDD) and its relevance to guarantee that tests are written before code.
+- Highlight the importance of having tests at all levels of granularity (unit, integration, end-to-end).
+- Mention test coverage and how it helps ensure that all parts of the code are tested.
+- Regressions and regression testing.
 should:
-- Explain that automated tests reduce the cost of testing, allowing for frequent and
-  early testing.
-- Discuss the value of automated tests as early detection tools (sentinels) for identifying
-  issues in the software.
-- Mention that test failures provide critical information for debugging and isolating
-  problems.
-- Highlight the importance of having tests at all levels of granularity (unit, integration,
-  end-to-end).
-- Illustrate how automated testing contrasts with manual testing and why automation
-  is preferable when a plan exists.
+- Mention that the time spent on writing tests is an investment that pays off in the long run.
+- Explain that automated tests reduce the cost of development, allowing for frequent and early testing.
+- Discuss the value of automated tests as early detection tools (sentinels) for identifying issues in the software.
+- Mention that test failures provide critical information for debugging and isolating problems.
+- Illustrate how automated testing contrasts with manual testing and why automation is preferable when a plan exists.
+- Argue that adding automated tests later is still better than not having them at all.
+- Mention the risks related to the lack of automated tests.
 should_not:
-- Avoid stating that automated tests are optional or not essential for all projects.
-- Do not suggest that manual testing is always sufficient or better than automated
-  testing.
-- Refrain from oversimplifying the discussion by stating that just one type of testing
-  (unit, integration, etc.) is enough.
+- Forget to differentiate among automated tests and manual testing.
+- Suggest that manual testing is sufficient or better than automated testing.
+- Argue that testing makes code bug free–it does not, it only helps to find bugs.

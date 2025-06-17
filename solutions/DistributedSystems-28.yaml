@@ -1,8 +1,7 @@
 examples:
-- In a web application, a load balancer distributes user requests to diverse server
-  instances, balancing the load and improving response times.
-- A retail website during a holiday season uses a round-robin load balancer to evenly
-  distribute traffic across several database servers.
+- In a web application, a load balancer distributes user requests to diverse server instances, balancing the load and improving response times.
+- In an HPC cluster (High-Performance Computing), a load balancer allocates computational tasks to various nodes, optimizing resource usage and minimizing bottlenecks.
+- In content delivery networks (CDNs), a load balancer directs user requests to the nearest edge server, reducing latency and enhancing user experience.
 helps:
 - "## Load Balancer\n\n{{< image src=\"./load-balancer.png\" height=\"60vh\" alt=\"\
   Load Balancer concept\" >}}\n\n<br>\n\n- __Load Balancer__ $\\equiv$ a proxy _distributing_\
@@ -133,30 +132,16 @@ question: In the context of distributed systems, what does it mean for a node to
   as a load balancer? What balancing strategies may it employ? Why would that be beneficial
   in a system?
 see_also:
-- Load balancing is integral to achieving high availability in distributed systems,
-  enabling better resource allocation under varying loads.
-- Understanding the trade-offs involved in various load balancing strategies is key
-  to designing effective distributed systems.
-- Motivation for using distributed systems includes scalability, fault tolerance,
-  and improved user experiences through load distribution.
+- Explain the concept of fault tolerance and how load balancing contributes to it.
+- Explain the concept of availability and how load balancing helps maintain it.
+- Explain the concept of scalability and how load balancing supports it.
+- Explain the trade-offs involved in various load balancing strategies is key to designing effective distributed systems.
 should:
-- Define what a load balancer does in the context of distributed systems, emphasizing
-  its role in distributing requests among multiple servers.
-- Mention specific balancing strategies that load balancers may employ, such as round-robin,
-  least connections, and least response time.
-- Explain the concept of fault tolerance and how load balancing contributes to maintaining
-  availability in a distributed system.
-- Discuss the benefits of load balancing, highlighting scalability, resource optimization,
-  and enhanced performance.
-- Include examples of real-world distributed systems that effectively utilize load
-  balancers, such as cloud services or content delivery networks (CDNs).
-- Provide a comparison of different load balancing strategies and when each might
-  be preferable.
+- Define what a load balancer does in the context of distributed systems, emphasizing its role in distributing clients requests among multiple servers.
+- Mention specific balancing strategies that load balancers may employ, such as round-robin, least connections, and least response time.
+- Mention the concepts of fault tolerance and availability and how load balancing contributes to maintaining them in a distributed system.
+- Explain how the round-robin strategy works and when it is most effective.
+- Explain how the least connections strategy works and when it is most effective.
+- Explain how the least response time strategy works and when it is most effective.
 should_not:
-- Avoid vague descriptions of load balancers; instead, provide concrete definitions
-  and examples.
-- Do not state that load balancing is unnecessary or can be ignored in any distributed
-  system, as this undermines its significance.
-- Refrain from using technical jargon without explaining it; ensure clarity in communication.
-- Do not solely focus on one strategy (e.g., round-robin) without referencing others
-  or discussing their applicability.
+- Suggest that load balancing is only relevant for large-scale systems; it is applicable to various distributed systems, regardless of size.

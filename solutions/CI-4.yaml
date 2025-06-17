@@ -1,8 +1,8 @@
 examples:
-- An example of a CI pipeline could include operations such as code checkout, building
-  the application, running unit tests, and deploying to a staging environment.
-- Comparing CI pipeline designs for different technologies, such as GitHub Actions
-  vs. Travis CI, to show how different tools handle operations.
+- An example of a CI pipeline could include operations such as environment configuration, building
+  the application, running unit tests, and deploying to some online artifact repository.
+- An example of a GitHub Actions involving runtime configuration, code checkout, running static checks on the code,
+  running unit tests, and deploying to a staging environment.
 helps:
 - "## Pipeline design\n\nIn essence, designing a CI system is designing a software\
   \ construction, verification, and delivery *pipeline*\nwith the abstractions provided\
@@ -69,25 +69,18 @@ prompt_template: "You are a teacher in the Software Engineering course, for the 
 question: In the context of continuous integration, provide an overview of the abstract
   pipeline design
 see_also:
-- Consider discussing additional CI/CD concepts such as delivery and deployment stages
-  post-build.
-- Mention the role of tools like Jenkins, GitLab CI, or CircleCI in implementing CI
-  pipelines.
-- Discuss common challenges in CI pipeline design such as managing secrets, scaling
-  tests, and maintaining performance.
+- Consider discussing additional CI/CD such as self-hosted runners, build matrices, etc.
+- Mention actual technologies such as GitHub Actions, Jenkins, GitLab CI, or CircleCI in implementing CI pipelines.
+- Discuss common challenges in CI pipeline design such as managing secrets, scaling tests, and caching.
 should:
-- Describe the concept of continuous integration (CI) and its importance in software
-  development.
-- Outline the key components involved in designing an abstract CI pipeline.
-- Discuss the operations typically required in a CI pipeline, such as OS configuration,
-  software installation, compilation, and testing.
-- Explain the significance of organizing operations in a dependency graph.
+- Describe what is continuous integration (CI) and its role in software development.
+- Motivate the naming CI, emphasizing the meaning of "continous"
+- Outline the key steps involved in designing an abstract CI pipeline.
+- Discuss the operations typically required in a CI pipeline, such as runtime configuration, compilation, testing, release.
+- Describe which events can trigger a CI pipeline and why.
 - Mention how CI systems help maintain software quality and delivery speed.
-- Illustrate the concept of building in isolated environments to avoid dependency
-  issues and improve compatibility.
+- Mention that building in isolated environments to avoid dependency issues and improve compatibility, while allowing developers to continue working.
 should_not:
-- Provide vague descriptions without specific details on CI operations or design.
 - Overlook the necessity for automation and speed in the CI process.
-- Mention irrelevant aspects of CI that do not pertain to pipeline design, like user
-  interfaces or unrelated software tools.
+- Focus too much on irrelevant aspects of CI that do not pertain to pipeline design, like user interfaces or unrelated software tools.
 - Fail to acknowledge the context of using isolated environments for build processes.

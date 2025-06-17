@@ -1,8 +1,8 @@
 examples:
-- 'A good example of a response: "The command `git add .` stages all modified and
-  new files within the current working directory for the next commit, while ignoring
-  any files that match patterns in the `.gitignore` file, allowing developers to manage
-  which changes are tracked in the Git history."'
+- And examples involving fake file names and extensions, some of which are ignored,
+  and some of which are not, to illustrate the effect of `.gitignore` when using `git add .`.
+- An example where `git commit` is used to save changes after staging them with `git add .`,
+  and how `git status` can be used to check what is staged.
 helps:
 - "## Ignoring files\n\nIn general, we do not want to track *all* the files in the\
   \ repository folder:\n* Some files could be *temporary* (e.g., created by the editor)\n\
@@ -91,24 +91,18 @@ prompt_template: "You are a teacher in the Software Engineering course, for the 
   \ from the course material that may help you answer the question:\n\n{help}"
 question: What is the purpose of the command `git add .`?
 see_also:
-- Discuss the staging area in Git and why it is important for organizing commits cleanly.
-- Mention best practices regarding what types of files should typically be added or
-  ignored in a project.
-- Reference the necessity of reviewing changes before committing them, using `git
-  status` to see what is staged and ready for commit.
+- Discuss what the working tree is
+- Discuss what a commit is
+- Discuss what is the effect of `git add PATH`
+- Discuss what is the effect of `git reset PATH`
+- Mention best practices regarding what types of files should typically be added or ignored in a project.
+- Reference the necessity of reviewing changes before committing them, using `git status` to see what is staged and ready for commit.
 should:
-- Explain that `git add .` stages all the changes in the current directory and its
-  subdirectories for the next commit.
-- Mention that using `.` means all changes across all files will be included except
-  those specified in `.gitignore` (if applicable).
-- Indicate that this command does not permanently save changes but prepares them for
-  commit.
-- Provide a brief explanation of staging in Git and the relationship between staging
-  and commits.
+- Explain what is the notion of staging in Git, and how it relates to commits.
+- Explain that `git add .` stages all the changes in the current directory and its subdirectories for the next commit.
+- Mention that using `.` means all changes across all files will be included except those specified in `.gitignore`.
+- Clarify the role of `.gitignore` in preventing certain files from being staged, and why is that important.
+- Indicate that this command does not permanently save changes but prepares them for commit.
 should_not:
-- Avoid stating that the command deletes files or makes changes permanent, as it only
-  stages files.
-- Do not confuse `git add .` with `git commit`, which actually saves the staged changes
-  to the repository.
-- Refrain from omitting the importance of the `.gitignore` file and its interactions
-  with the `git add` process.
+- Confuse addition of file to the stage with committing changes to the repository.
+- Suggest that `git add .` is a permanent action; it only stages changes, not commits them.

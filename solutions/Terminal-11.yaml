@@ -1,6 +1,6 @@
 examples:
 - 'Example of creating a simple directory: `mkdir myfolder`'
-- 'Example of creating nested directories: `mkdir -p parent/child`'
+- 'Example of creating nested directories: `mkdir -p path/to/myfolder`'
 helps:
 - '## Check your understanding (pt. 2)
 
@@ -112,23 +112,12 @@ prompt_template: "You are a teacher in the Software Engineering course, for the 
   \ from the course material that may help you answer the question:\n\n{help}"
 question: In a *nix system shell, how would you to create a directory?
 see_also:
-- Importance of understanding command-line interfaces vs. graphical user interfaces
-  in software engineering.
-- How directory structures are fundamental in organizing files in operating systems.
-- The concept of paths in *nix systems, both absolute and relative, and their usage
-  with the `mkdir` command.
+- How to verify that the directory has been created (e.g., using `ls` to
+  list the contents of the parent directory).
+- The concept of paths in *nix systems, both absolute and relative, and their usage with the `mkdir` command.
+- Discuss common options for `mkdir`, such as `-p` for creating parent directories as needed.
 should:
 - 'Mention the command to create a directory in a *nix system shell: `mkdir <directory_name>`.'
-- Explain the purpose of the `mkdir` command in creating directories.
-- Indicate how to verify that the directory has been created (e.g., using `ls` to
-  list the contents of the parent directory).
-- Provide examples of both absolute and relative paths when creating a directory with
-  `mkdir`.
-- Discuss common options for `mkdir`, such as `-p` for creating parent directories
-  as needed.
+- Explain what a directory is in the context of a *nix system shell, emphasizing its role in organizing files..
 should_not:
-- Use incorrect syntax or command names, such as `mkfolder` instead of `mkdir`.
-- Neglect to explain the significance of the command or the directory structure in
-  *nix systems.
-- Fail to mention that the command must be run in the shell and what context the command
-  needs (current working directory).
+- Use a wrong syntax for the command (e.g., `mk dir <directory name>` with a space).

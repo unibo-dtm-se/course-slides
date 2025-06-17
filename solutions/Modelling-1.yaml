@@ -1,8 +1,10 @@
 examples:
-- 'Example of a model: A weather forecast is used to predict future weather patterns
-  based on atmospheric data.'
-- 'Example of a simplified model: The Bohr model of the atom for teaching basic atomic
-  structure concepts.'
+- A weather forecast is used to predict future weather patterns based on atmospheric data
+- The Bohr model of the atom for teaching basic atomic structure concepts.
+- A wooden miniature of a bridge to visualize the design before construction.
+- The attachment theory in psychology to explain human relationships and behaviors.
+- A mathematical model like $f(x) = \beta_0 + \beta_1 x$ to represent the relationship between age and minutes played in a sports context.
+- A UML class diagram representing the structure of a software system, showing classes and their relationships.
 helps:
 - "## What is a model?\n\n(cf. <https://plato.stanford.edu/entries/models-science/>)\n\
   \n> A __model__ is a _simplified_ _representation_ of something complex\n\n### What\
@@ -97,22 +99,12 @@ prompt_template: "You are a teacher in the Software Engineering course, for the 
 question: What is a model? What are the potential purposes of a model?
 see_also:
 - The importance of abstraction and simplification in modeling complex systems.
-- The role of models in the iterative design process in software engineering and system
-  design.
-- Discussion on the limitations of models, emphasizing George Box's quote about models
-  being wrong but useful.
+- The role of models in the iterative design process in software engineering and system design.
+- Discussion on the limitations of models, emphasizing George Box's quote about models being wrong but useful.
 should:
 - Define a model as a simplified representation of a complex system or phenomenon.
-- 'Mention the purpose of models: understanding, explanation, and prediction.'
-- Provide examples of models (e.g., weather forecasting, atomic models, attachment
-  theory).
+- 'Mention the purposes of models: understanding, explanation, and prediction.'
 - Explain how models can help in engineering, design, and decision-making processes.
-- Discuss the concept of models being simplifications, stressing some aspects while
-  ignoring others.
+- Discuss the concept of models being simplifications, stressing some aspects while ignoring others.
 should_not:
-- Avoid vague definitions; do not just say a model is 'something used in science'
-  without clarity.
-- Do not ignore the purpose of models; failing to mention all three major purposes
-  (understanding, explanation, prediction) is a common mistake.
-- Avoid overly complex technical jargon without explanation; the answer should be
-  comprehensible to all levels of students.
+- Focus only on UML modelling or software modelling.

@@ -8,6 +8,15 @@ from yaml import safe_dump, safe_load
 from dataclasses import dataclass
 import re
 from dataclasses import dataclass, field
+import sys
+import os
+
+
+OUTPUT_FILE = os.getenv("OUTPUT_FILE", None)
+if OUTPUT_FILE:
+    OUTPUT_FILE = open(OUTPUT_FILE, "w", encoding="utf-8")
+else:
+    OUTPUT_FILE = sys.stdout
 
 
 ALL_QUESTIONS = QuestionsStore()
@@ -133,25 +142,25 @@ class TestAssessment:
     def assessments(self) -> list[StudentAssessment]:
         return list(self.__students_by_name.values())
 
-    def pretty_print(self, per_question: Question = None):
+    def pretty_print(self, per_question: Question = None, file=OUTPUT_FILE):
         if per_question is not None:
-            print(f"Assessments for question {per_question.id}: {per_question.text}")
+            print(f"Assessments for question {per_question.id}: {per_question.text}", file=file)
         for index, name in enumerate(sorted(self.__students_by_name)):
             if index > 0 or per_question is not None:
-                print("---")
+                print("---", file=file)
             student = self.__students_by_name[name]
-            print(f"Student: {student.name} ({student.code})")
+            print(f"Student: {student.name} ({student.code})", file=file)
             question_answers = student.answers
             if per_question is not None:
                 question_answers = {per_question: question_answers[per_question]}
             for question, answer in question_answers.items():
                 if per_question is None:
-                    print(f"  Question: {question.text}")
-                print(f"  Answer:\n\t{answer.answer.replace('\n', '\n\t')}")
-                print("  Assessments:")
+                    print(f"  Question: {question.text}", file=file)
+                print(f"  Answer:\n\t{answer.answer.replace('\n', '\n\t')}", file=file)
+                print("  Assessments:", file=file)
                 for feature, assessment in answer.assessment.items():
-                    print(f"    - [{'ok' if assessment.satisfied else 'KO'}] {feature.type.name}: {feature.description}")
-                    print(f"        * {assessment.motivation.replace('\n', '\n          ')}")
+                    print(f"    - [{'ok' if assessment.satisfied else 'KO'}] {feature.type.name}: {feature.description}", file=file)
+                    print(f"        * {assessment.motivation.replace('\n', '\n          ')}", file=file)
 
 
 def first(iterable):
@@ -234,7 +243,9 @@ class Assessor(AIOracle):
 
     def assess_all(self):
         assessments = TestAssessment()
-        for code, name, question, target, answer, dir in self.__iterate_over_answers(on_question_over=assessments.pretty_print):
+        def log(q):
+            assessments.pretty_print(per_question=q, file=OUTPUT_FILE)
+        for code, name, question, target, answer, dir in self.__iterate_over_answers(on_question_over=log):
             for index, feature in enumerate_features(target):
                 assessment = self.__assess_feature(question, feature, answer, dir, index)
                 assessments.add_assessment(code, name, question, answer, feature, assessment)

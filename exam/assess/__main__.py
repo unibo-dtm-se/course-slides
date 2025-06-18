@@ -8,4 +8,8 @@ if not path:
 
 assessor = Assessor(path)
 assessments = assessor.assess_all()
-assessments.pretty_print()
+assessments.pretty_print(file=OUTPUT_FILE)
+if OUTPUT_FILE is not sys.stdout:
+    assessments.pretty_print(file=sys.stdout)
+    OUTPUT_FILE.close()
+

@@ -164,6 +164,11 @@ class QuestionsStore:
     def __total_weight(self):
         return sum(q.weight for q in self.__questions_by_id.values())
     
+    def sample(self, id: str, *others: str) -> 'QuestionsStore':
+        ids = [id] + list(others)
+        questions = [self.question(q_id) for q_id in ids]
+        return QuestionsStore(questions)
+    
     @property
     def total_weight(self):
         return self.__total_weight()

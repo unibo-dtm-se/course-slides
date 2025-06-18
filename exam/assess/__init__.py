@@ -133,18 +133,25 @@ class TestAssessment:
     def assessments(self) -> list[StudentAssessment]:
         return list(self.__students_by_name.values())
 
-    def pretty_print(self):
+    def pretty_print(self, per_question: Question = None):
+        if per_question is not None:
+            print(f"Assessments for question {per_question.id}: {per_question.text}")
         for index, name in enumerate(sorted(self.__students_by_name)):
+            if index > 0 or per_question is not None:
+                print("---")
             student = self.__students_by_name[name]
             print(f"Student: {student.name} ({student.code})")
-            for question, answer in student.answers.items():
-                print(f"  Question: {question.text}")
+            question_answers = student.answers
+            if per_question is not None:
+                question_answers = {per_question: question_answers[per_question]}
+            for question, answer in question_answers.items():
+                if per_question is None:
+                    print(f"  Question: {question.text}")
                 print(f"  Answer:\n\t{answer.answer.replace('\n', '\n\t')}")
+                print("  Assessments:")
                 for feature, assessment in answer.assessment.items():
                     print(f"    - [{'ok' if assessment.satisfied else 'KO'}] {feature.type.name}: {feature.description}")
                     print(f"        * {assessment.motivation.replace('\n', '\n          ')}")
-            if index > 0:
-                print("---")
 
 
 def first(iterable):
@@ -164,7 +171,7 @@ class Assessor(AIOracle):
             else:
                 raise ValueError(f"Cached answer for question {question.id} not found")
 
-    def __iterate_over_answers(self):
+    def __iterate_over_answers(self, on_question_over: callable = None):
         for question in self.__exam.questions:
             target = self.__answers.get(question.id)
             for dir in self.__root.glob(f"Q* - {question.id}/*"):
@@ -173,6 +180,8 @@ class Assessor(AIOracle):
                     attempt_file = first(dir.glob("Attempt*_textresponse"))
                     answer = attempt_file.read_text(encoding="utf-8") if attempt_file else None
                     yield (code, name, question, target, answer, dir)
+            if on_question_over:
+                on_question_over(question)
 
     def __save_cache(self, dir: Path, feature: Feature, assessment: FeatureAssessment, index: int):
         if not dir:
@@ -225,7 +234,7 @@ class Assessor(AIOracle):
 
     def assess_all(self):
         assessments = TestAssessment()
-        for code, name, question, target, answer, dir in self.__iterate_over_answers():
+        for code, name, question, target, answer, dir in self.__iterate_over_answers(on_question_over=assessments.pretty_print):
             for index, feature in enumerate_features(target):
                 assessment = self.__assess_feature(question, feature, answer, dir, index)
                 assessments.add_assessment(code, name, question, answer, feature, assessment)

@@ -7,6 +7,7 @@ This is the description of a feature ({feature_type}) that {feature_verb_ideal} 
     {feature}
 
 You must check if the {feature_type} {feature_verb_actual} in the student's answer, and why.
+Phrase motivations as concise, kind, yet firm feedback for the student, using "you" as the subject.
 In doing so, you just need to fill an instance of class {class_name}.
 
 Below is the student's answer:

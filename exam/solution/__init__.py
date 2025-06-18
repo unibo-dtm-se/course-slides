@@ -74,9 +74,9 @@ def save_cache(
         helps: list[str] = None,
         model_name: str = None,
         model_provider: str = None):
-    cache_file = cache_file(question)
-    with open(cache_file, "w", encoding="utf-8") as f:
-        print(f"# saving answer to {cache_file}")
+    cache_file_path = cache_file(question)
+    with open(cache_file_path, "w", encoding="utf-8") as f:
+        print(f"# saving answer to {cache_file_path}")
         yaml = answer.model_dump()
         yaml["question"] = question.text
         yaml["helps"] = helps
@@ -94,8 +94,8 @@ def load_cache(question: Question) -> Answer | None:
     cache_file_path = cache_file(question)
     if not cache_file_path.exists():
         return None
-    with open(cache_file, "r", encoding="utf-8") as f:
-        print(f"# loading cached answer from {cache_file}")
+    with open(cache_file_path, "r", encoding="utf-8") as f:
+        print(f"# loading cached answer from {cache_file_path}")
         try:
             cached_answer = safe_load(f)
             return Answer(
@@ -105,8 +105,8 @@ def load_cache(question: Question) -> Answer | None:
                 see_also=cached_answer.get("see_also", []),
             )
         except Exception as e:
-            print(f"# error loading cached answer from {cache_file}: {e}")
-            cache_file.unlink()
+            print(f"# error loading cached answer from {cache_file_path}: {e}")
+            cache_file_path.unlink()
             return None
 
 

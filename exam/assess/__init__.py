@@ -5,7 +5,9 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 from enum import Enum
 from yaml import safe_dump, safe_load
+from dataclasses import dataclass
 import re
+from dataclasses import dataclass, field
 
 
 ALL_QUESTIONS = QuestionsStore()
@@ -15,7 +17,7 @@ TEMPLATE = FILE_TEMPLATE.read_text(encoding="utf-8")
 
 
 def _load_exam(exam: Path | str | list[str] | QuestionsStore) -> QuestionsStore:
-    if isinstance(str):
+    if isinstance(exam, str):
         exam = Path(exam)
     if isinstance(exam, Path):
         questions = [d.name for d in exam.glob("Q* - *") if d.is_dir()]
@@ -43,19 +45,23 @@ class FeatureType(str, Enum):
     SEE_ALSO = "optional mention"
 
 
-class Feature(BaseModel):
-    type: FeatureType = Field(description="Type of the feature being assessed (e.g. example, mandatory mention, mistake, optional mention)")
-    description: str = Field(description="Natural language description of the feature being assessed")
+@dataclass(frozen=True)
+class Feature:
+    # Type of the feature, indicating whether it is an example, a mandatory mention, a mistake, or an optional mention.
+    type: FeatureType
+
+    # Description of the feature, typically a string that explains what the feature is about.
+    description: str
 
     @property
     def verb_ideal(self) -> str:
-        if self.type == FeatureType.SHOULDNT:
+        if self.type != FeatureType.SHOULDNT:
             return "should be present"
         return "should be absent"
 
     @property
     def verb_actual(self) -> str:
-        if self.type == FeatureType.SHOULDNT:
+        if self.type != FeatureType.SHOULDNT:
             return "is actually present"
         return "is actually absent"
 
@@ -67,7 +73,7 @@ def enumerate_features(answer: Answer):
     for should in answer.should:
         yield i, Feature(type=FeatureType.SHOULD, description=should)
         i += 1
-    for shouldnt in answer.shouldnt:
+    for shouldnt in answer.should_not:
         yield i, Feature(type=FeatureType.SHOULDNT, description=shouldnt)
         i += 1
     for example in answer.examples:
@@ -83,19 +89,22 @@ class FeatureAssessment(BaseModel):
     motivation: str = Field(description="Explanation of why the feature is present or not")
 
 
-class AnswerAssessment(BaseModel):
-    answer: str = Field(description="The student's answer to the question")
-    assessment: dict[Feature, FeatureAssessment] = Field(
-        description="Dictionary of feature assessments keyed by feature, each containing presence and motivation"
-    )
+@dataclass
+class AnswerAssessment:
+    # The student's answer to the question.
+    answer: str
+    # A dictionary mapping each feature to its assessment.
+    assessment: dict[Feature, FeatureAssessment] = field(default_factory=dict)
 
 
-class StudentAssessment(BaseModel):
-    name: str = Field(description="Name of the student")
-    code: str = Field(description="ID of the student, e.g. student number or email address")
-    answers: dict[Question, AnswerAssessment] = Field(
-        description="Dictionary of answers keyed by question ID, each containing the student's answer and its assessment"
-    )
+@dataclass
+class StudentAssessment:
+    # The name of the student.
+    name: str
+    # The student's code, typically an identifier or registration number.
+    code: str
+    # A dictionary mapping each question to its answer and assessments.
+    answers: dict[Question, AnswerAssessment] = field(default_factory=dict)
 
 
 class TestAssessment:
@@ -172,7 +181,8 @@ class Assessor(AIOracle):
         cache_data = assessment.model_dump()
         cache_data["feature"] = feature.description
         cache_data["feature_type"] = feature.type.name
-        safe_dump(cache_data, cache_file.open("w", encoding="utf-8"))
+        with cache_file.open("w", encoding="utf-8") as f:
+            safe_dump(cache_data, f, sort_keys=True, allow_unicode=True)
         print(f"# saved assessment to {cache_file}")
 
     def __load_cache(self, dir: Path, feature: Feature, index: int) -> FeatureAssessment | None:

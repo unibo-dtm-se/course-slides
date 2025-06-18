@@ -1,8 +1,7 @@
 from pydantic import BaseModel, Field
 from langchain_core.prompts import ChatPromptTemplate
-from langchain.chat_models import init_chat_model
 from exam import DIR_ROOT, Question
-from exam.openai import ensure_openai_api_key
+from exam.openai import AIOracle
 from exam.rag import sqlite_vector_store
 from yaml import safe_dump, safe_load
 
@@ -65,53 +64,66 @@ def get_prompt(question: str, *helps: str):
     })
 
 
-def llm_client(model_name: str = None, model_provider: str = None):
-    if not model_name:
-        model_name = "gpt-4o-mini"
-    if not model_provider:
-        model_provider = "openai"
-    ensure_openai_api_key()
-    llm = init_chat_model(model_name, model_provider=model_provider)
-    return llm.with_structured_output(Answer), model_name, model_provider
+def cache_file(question: Question):
+    return DIR_SOLUTIONS / f"{question.id}.yaml"
 
 
-class SolutionProvider:
+def save_cache(
+        question: Question, 
+        answer: Answer, helps: list[str] = None,
+        model_name: str = None,
+        model_provider: str = None):
+    cache_file = cache_file(question)
+    with open(cache_file, "w", encoding="utf-8") as f:
+        print(f"# saving answer to {cache_file}")
+        yaml = answer.model_dump()
+        yaml["question"] = question.text
+        yaml["helps"] = helps
+        yaml["id"] = question.id
+        if model_name:
+            yaml["model_name"] = model_name
+        if model_provider:
+            yaml["model_provider"] = model_provider
+        yaml["prompt_template"] = TEMPLATE
+        safe_dump(yaml, f, sort_keys=True, allow_unicode=True)
+        return yaml
+
+
+def load_cache(question: Question) -> Answer | None:
+    cache_file_path = cache_file(question)
+    if not cache_file_path.exists():
+        return None
+    with open(cache_file, "r", encoding="utf-8") as f:
+        print(f"# loading cached answer from {cache_file}")
+        try:
+            cached_answer = safe_load(f)
+            return Answer(
+                answer=cached_answer["answer"], 
+                score=cached_answer["score"],
+            )
+        except Exception as e:
+            print(f"# error loading cached answer from {cache_file}: {e}")
+            cache_file.unlink()
+            return None
+
+
+class SolutionProvider(AIOracle):
     def __init__(self, model_name: str = None, model_provider: str = None):
-        self.__llm, self.__model_name, self.__model_provider = llm_client(model_name, model_provider)
+        super().__init__(model_name, model_provider, Answer)
         self.__vector_store = sqlite_vector_store()
         self.__use_helps = self.__vector_store.get_dimensionality() > 0
 
     def answer(self, question: Question, max_helps=5) -> Answer:
-        cache_file = DIR_SOLUTIONS / f"{question.id}.yaml"
-        if cache_file.exists():
-            with open(cache_file, "r", encoding="utf-8") as f:
-                print(f"# loading cached answer from {cache_file}")
-                try:
-                    cached_answer = safe_load(f)
-                    return Answer(
-                        answer=cached_answer["answer"], 
-                        score=cached_answer["score"],
-                    )
-                except Exception as e:
-                    print(f"# error loading cached answer from {cache_file}: {e}")
-                    cache_file.unlink()
+        if (cache := load_cache(question)):
+            return cache
         text = question.text
         helps = []
         if self.__use_helps:
             helps = [doc.page_content for doc in self.__vector_store.similarity_search(text, k=max_helps)]
         prompt = get_prompt(text, *helps)
-        result = self.__llm.invoke(prompt)
+        result = self.llm.invoke(prompt)
         if isinstance(result, Answer):
-            with open(cache_file, "w", encoding="utf-8") as f:
-                print(f"# saving answer to {cache_file}")
-                yaml = result.model_dump()
-                yaml["question"] = text
-                yaml["helps"] = helps
-                yaml["id"] = question.id
-                yaml["model_name"] = self.__model_name
-                yaml["model_provider"] = self.__model_provider
-                yaml["prompt_template"] = TEMPLATE
-                safe_dump(yaml, f, sort_keys=True, allow_unicode=True)
+            save_cache( question, result, helps, self.model_name, self.model_provider)
             return result
         else:
-            raise ValueError(f"Expected Answer, got {type(result)}: {result}")
+            raise ValueError(f"Expected {Answer.__name__}, got {type(result)}: {result}")

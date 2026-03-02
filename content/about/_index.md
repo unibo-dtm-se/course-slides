@@ -202,8 +202,7 @@ Students _must_ enroll
     - ... of course taking the teachers' availability into account
 
 6. **Discussion**: students _present_ and _discuss_ their project work with the teacher
-    - the discussion will be held _in English_
-    - remote discussion may be possible via [Microsoft Teams](https://teams.microsoft.com/), in case of well-justified needs
+    - the discussion will be held _in English_, and __in presence__
     - the discussion will include _all the members_ of the group
 
 ---
@@ -389,7 +388,7 @@ Students _must_ enroll
 
 ---
 
-## About the exploitation of Generative AI in the course
+## About the exploitation of Generative AI in the course (pt. 1)
 
 - If you use __Generative AI__ tool (e.g. ChatGPT, Copilot, etc.) in writing your _code_ or _report_, this is __fine__ 
     * notice that as UniBo students, you may request a _free_ license to GitHub Pro, which includes GitHub Copilot, at <https://education.github.com/pack>
@@ -407,6 +406,27 @@ Students _must_ enroll
 - If the disclaimer is _not present_ in your report, this will be interpreted as __"no Generative AI was used at all"__
 
 > If I have the impression that some student has _blindly copy-pasted_ content (from either AI chat, or the slides, or some book) _without understanding it_, I will set up an _oral examination_ and ask _further questions_ to investigate whether the student has actually understood what they wrote or not
+
+---
+
+## About the exploitation of Generative AI in the course (pt. 2)
+
+- Using __AI agents__ for developing the software artifact is __not forbidden__, but:
+    1. you must be _transparent_ about it, by adapting the __disclaimer__ at the beginning of your report accordingly
+        - also put a disclaimer in the `README.md` of your software repository
+    2. you must still simulate a _manual_ software engineering process
+        - e.g. you should still do _many, small, self-contained commits_ with a _credible order_, __do not__ commit many generated files all at once
+    3. you must _understand_ —and therefore **be able to explain**— any single line of _generated code_
+
+- If the disclaimer is _not present_ in your report and repository, this will be interpreted as __"no Generative AI was used at all"__
+
+- If you want to use _AI agents_ __for free__ for coding, we recommend:
+    1. join the [GitHub Education program](https://github.com/education/students)
+    2. configure & use [the VS Code extension of GitHub Copilot](https://code.visualstudio.com/docs/copilot/overview)
+    3. use it in co-pilot
+    4. report your chat history in the report, and declare Copilot usage in the disclaimer
+
+> If I have the impression that some student has _blindly generated_ code (by any means) _without understanding it_, I will ask detailed questions about the code and score the students responses accordingly
 
 ---
 

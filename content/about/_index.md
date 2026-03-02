@@ -17,7 +17,7 @@ aliases = [
 
 ## Teacher
 
-- **teacher:** {{<gc>}}, Junior assistant professor (RTD-A)
+- **teacher:** {{<gc>}}, Tenure-Track Researcher (RTT)
 
 - **email:** {{<gc-address>}}
 
@@ -40,7 +40,7 @@ Students _must_ enroll
 
 ## Organization
 
-- __Tuesdays__ (_14:30-17:30_) in lab 4.2
+- __Tuesdays__ (_14:30-17:30_) in room 2.5
     + you may use the PCs in the lab, or bring your laptops
 
 - __Thursdays__ (_11:00-13:00_) in lab 3.1
@@ -189,7 +189,7 @@ Students _must_ enroll
 
 3. **Repositories creation**: students _create a GitHub organization_ and _grant the teacher access_ to it
     - granting _admin_ access to the teacher's GitHub account (username: [`gciatto`](https://github.com/gciatto))
-    - the organization should be named `unibo-dtm-se-2425-YOUR_PROJECT_NAME`
+    - the organization should be named `unibo-dtm-se-2526-YOUR_PROJECT_NAME`
     - the organization should contain (at least) _one repository_ for the software artifact and _another_ for the report
 
 4. **Development**: students _develop_ the software artifact and _write_ the report
@@ -341,7 +341,7 @@ Students _must_ enroll
     + possibly, with a __professional username__ (e.g., `john-doe` instead of `johnny-the-king`)
 
 - A working installation of [Python](https://www.python.org/)
-    + possibly version `3.11.x`
+    + possibly version `3.13.x`
 
 - A working installation of [Git](https://git-scm.com/)
     + if you need a GUI, you may choose 

@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.fb12bbf399da036eabb8be9e12a3291990eec0a750f867980e4161be3f38eac3.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
@@ -27,11 +27,11 @@
 <br>
 <h2 style="margin-bottom: 0;">Software Engineering</h2>
 <h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
-<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2025/2026</h4>
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 
@@ -39,39 +39,43 @@
 <section data-shortcode-section="">
 <h1 id="what-is-a-distributed-system">What is a Distributed System?</h1>
 </section><section>
-<h3 id="leslie-lamport-1987httpsenwikiquoteorgwikileslie_lamport"><a href="https://en.wikiquote.org/wiki/Leslie_Lamport">Leslie Lamport (1987)</a></h3>
+<h3 id="leslie-lamport-1987"><a href="https://en.wikiquote.org/wiki/Leslie_Lamport">Leslie Lamport (1987)</a></h3>
 <blockquote>
-<p>A distributed system is one in which the failure of a computer you didn’t even know existed can render your own computer unusable</p></blockquote>
-<h3 id="__interpretation__"><strong>Interpretation</strong></h3>
+<p>A distributed system is one in which the failure of a computer you didn’t even know existed can render your own computer unusable</p>
+</blockquote>
+<h3 id="interpretation"><strong>Interpretation</strong></h3>
 <ul>
 <li>hidden <em>interdependencies</em> between machines</li>
 <li>how a <em>failure</em> in one part of the system can have <em>unforeseen consequences</em> elsewhere</li>
 </ul>
 </section><section>
-<h3 id="distributed-systems-tannenbaum-and-van-steenhttpcsispaceedumarchesecs865lectureschap1chapter1ahtm-the-book-herehttpskomputasiwordpresscomwp-contentuploads201803mvsteen-distributed-systems-3rd-preliminary-version-3-01pre-2017-170215pdf"><a href="http://csis.pace.edu/~marchese/CS865/Lectures/Chap1/Chapter1a.htm">“Distributed Systems”, Tannenbaum and Van Steen</a> (the <a href="https://komputasi.wordpress.com/wp-content/uploads/2018/03/mvsteen-distributed-systems-3rd-preliminary-version-3-01pre-2017-170215.pdf">book here</a>)</h3>
+<h3 id="-the-book-here"><a href="http://csis.pace.edu/~marchese/CS865/Lectures/Chap1/Chapter1a.htm">“Distributed Systems”, Tannenbaum and Van Steen</a> (the <a href="https://komputasi.wordpress.com/wp-content/uploads/2018/03/mvsteen-distributed-systems-3rd-preliminary-version-3-01pre-2017-170215.pdf">book here</a>)</h3>
 <blockquote>
-<p>A distributed system is a collection of independent computers that appears to its users as a single coherent system</p></blockquote>
-<h3 id="__interpretation__-1"><strong>Interpretation</strong></h3>
+<p>A distributed system is a collection of independent computers that appears to its users as a single coherent system</p>
+</blockquote>
+<h3 id="interpretation-1"><strong>Interpretation</strong></h3>
 <ul>
 <li><em>illusion</em> of a <em>unified</em> system…</li>
 <li>… despite the fact that it is made up of <em>multiple</em> independent machines</li>
 <li>the key idea is that users <em>may NOT be aware</em> that the system is <em>distributed</em></li>
 </ul>
 </section><section>
-<h3 id="distributed-systems--concepts-and-design-coulouris-et-alhttpsapipageplacedepreviewdt04009781447930174_a24570107preview-9781447930174_a24570107pdf"><a href="https://api.pageplace.de/preview/DT0400.9781447930174_A24570107/preview-9781447930174_A24570107.pdf">“Distributed Systems — Concepts and Design”, Coulouris et. al.</a></h3>
+<h3 id="heading"><a href="https://api.pageplace.de/preview/DT0400.9781447930174_A24570107/preview-9781447930174_A24570107.pdf">“Distributed Systems — Concepts and Design”, Coulouris et. al.</a></h3>
 <blockquote>
 <p>We define a distributed system as one in which hardware or software components
 located at networked computers communicate and coordinate their actions only by
-passing messages.</p></blockquote>
-<h3 id="__interpretation__-2"><strong>Interpretation</strong></h3>
+passing messages.</p>
+</blockquote>
+<h3 id="interpretation-2"><strong>Interpretation</strong></h3>
 <ul>
 <li>reliance on <em>message passing</em> across a network for communication</li>
 </ul>
 </section><section>
-<h3 id="concepts-techniques-and-models-of-computer-programming-van-roy-and-haridihttpswebpersoinfouclacbepvrvanroyharidi2003-bookpdf"><a href="https://webperso.info.ucl.ac.be/~pvr/VanRoyHaridi2003-book.pdf">“Concepts, Techniques, and Models of Computer Programming”, Van Roy and Haridi</a></h3>
+<h3 id="heading-1"><a href="https://webperso.info.ucl.ac.be/~pvr/VanRoyHaridi2003-book.pdf">“Concepts, Techniques, and Models of Computer Programming”, Van Roy and Haridi</a></h3>
 <blockquote>
-<p>A distributed system is a set of computers that are linked together by a network</p></blockquote>
-<h3 id="__interpretation__-3"><strong>Interpretation</strong></h3>
+<p>A distributed system is a set of computers that are linked together by a network</p>
+</blockquote>
+<h3 id="interpretation-3"><strong>Interpretation</strong></h3>
 <ul>
 <li>very abstract definition focusing on how distribution should be interpreted</li>
 </ul>
@@ -154,7 +158,7 @@ passing messages.</p></blockquote>
 <li><strong>Parallelism</strong> and <strong>Collaboration</strong>: Multiple users can edit the same document concurrently</li>
 </ul>
 </section><section>
-<h2 id="example-federated-learning-eg-googles-gboardhttpssupportgooglecomgboardanswer12373137hlen">Example: Federated Learning (e.g. <a href="https://support.google.com/gboard/answer/12373137?hl=en">Google’s Gboard</a>)</h2>
+<h2 id="example-federated-learning-eg-google">Example: Federated Learning (e.g. <a href="https://support.google.com/gboard/answer/12373137?hl=en">Google’s Gboard</a>)</h2>
 <ul>
 <li><strong>Scalability</strong>: Improve learning for all users (while keeping their data private)</li>
 <li><strong>Geo-Distribution</strong>: Improve the functionality based on the data from different regions</li>
@@ -216,7 +220,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <p>(only additional steps are listed)</p>
 <ol>
 <li><strong>Use case collection</strong>:
@@ -230,7 +234,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_-1">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems-1">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <ol start="2">
 <li><strong>Requirements analysis</strong>:
 <ul>
@@ -249,7 +253,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_-2">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems-2">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <ol start="3">
 <li><strong>Design</strong>:
 <ul>
@@ -295,7 +299,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_-3">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems-3">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <ol start="4">
 <li><strong>Implementation</strong>:
 <ul>
@@ -333,7 +337,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_-4">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems-4">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <ol start="5">
 <li><strong>Verification</strong>:
 <ul>
@@ -349,7 +353,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_-5">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems-5">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <ol start="6">
 <li><strong>Release</strong>:
 <ul>
@@ -360,7 +364,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_-6">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems-6">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <ol start="7">
 <li><strong>Deployment</strong>:
 <ul>
@@ -398,7 +402,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_-7">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems-7">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <ol start="8">
 <li><strong>Documentation</strong>:
 <ul>
@@ -412,7 +416,7 @@ passing messages.</p></blockquote>
 </li>
 </ol>
 </section><section>
-<h2 id="software-engineering-workflow-for-_distributed-systems_-8">Software Engineering Workflow for <em>Distributed Systems</em></h2>
+<h2 id="software-engineering-workflow-for-distributed-systems-8">Software Engineering Workflow for <em>Distributed Systems</em></h2>
 <ol start="9">
 <li><strong>Maintenance</strong>:
 <ul>
@@ -437,7 +441,8 @@ passing messages.</p></blockquote>
 </section><section>
 <h2 id="infrastructure">Infrastructure</h2>
 <blockquote>
-<p>The set of hardware, software, and networking facilities that allow the many pieces of a distributed system to communicate and inter-operate over a network</p></blockquote>
+<p>The set of hardware, software, and networking facilities that allow the many pieces of a distributed system to communicate and inter-operate over a network</p>
+</blockquote>
 <p>$\approx$ the set of <em>infrastructural components</em> composing the <em>backbone</em> of the distributed system</p>
 <ul>
 <li>Distributed systems may rely on similar infrastructures, regardless of the different functionalities they provide</li>
@@ -446,7 +451,7 @@ passing messages.</p></blockquote>
 
 
 <span class="fragment ">
-  <h4 id="br-example"><br> Example</h4>
+  <h4 id="example"><br> Example</h4>
 <p>Consider your fancy social network of choice (e.g., Instagram, TikTok, Twitter, etc.)</p>
 <ul>
 <li>it looks like a dashboard on you phone / computer, but…
@@ -468,9 +473,10 @@ passing messages.</p></blockquote>
 <h2 id="infrastructural-components">Infrastructural Components</h2>
 <blockquote>
 <p>An infrastructural component consists of a <em>software unit</em>&nbsp;playing a precise role in the distributed system.
-The role depends on the purpose of the component in the system, and/or how it interacts.</p></blockquote>
+The role depends on the purpose of the component in the system, and/or how it interacts.</p>
+</blockquote>
 <p>software unit $\approx$ <strong>process</strong> (in the OS sense)</p>
-<h3 id="heading"></h3>
+<h3></h3>
 <h3 id="examples">Examples</h3>
 <p>clients, servers, brokers, load balancers, caches, databases, queues, masters, workers, proxies, etc.</p>
 </section><section>
@@ -640,7 +646,8 @@ The role depends on the purpose of the component in the system, and/or how it in
 <h2 id="interaction-patterns">Interaction Patterns</h2>
 <blockquote>
 <p>An <strong>interaction pattern</strong> describes how different <em>components</em> (nodes, processes, etc.) <em>communicate</em> and <em>coordinate</em> their actions to achieve a common goal.
-These patterns define the <em>flow of messages</em>, <em>responsibilities</em> of <strong>participants</strong>, and the <em>timing</em> and <em>sequencing</em> of <strong>communications</strong>.</p></blockquote>
+These patterns define the <em>flow of messages</em>, <em>responsibilities</em> of <strong>participants</strong>, and the <em>timing</em> and <em>sequencing</em> of <strong>communications</strong>.</p>
+</blockquote>
 <p>e.g. <em>request-response</em>, <em>publish-subscribe</em>, <em>auction</em>, _etc.</p>
 <h3 id="key-points">Key points</h3>
 <ul>
@@ -761,7 +768,7 @@ These patterns define the <em>flow of messages</em>, <em>responsibilities</em> o
 <h3 id="requestresponse">Request—Response</h3>
 <p>The most common and basic pattern for communication between two components</p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1751290357357693216" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1772451926338434870" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 participant Client
 participant Server</p>
@@ -769,7 +776,7 @@ participant Server</p>
 Server -&gt; Client: Response</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357357693216");
+    handlePlantumlFigureByID("plantuml-figure-1772451926338434870");
 </script>
 </div>
 <div class="col "><ul>
@@ -795,7 +802,7 @@ Server -&gt; Client: Response</p>
 <h3 id="publishsubscribe">Publish—Subscribe</h3>
 <p>A simple pattern to spread information among multiple recipients</p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1751290357357973501" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1772451926339082362" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 actor User
 participant Publisher
@@ -818,7 +825,7 @@ Publisher -&gt; Subscriber2: notify Message
 deactivate Publisher</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357357973501");
+    handlePlantumlFigureByID("plantuml-figure-1772451926339082362");
 </script>
 </div>
 <div class="col "><ul>
@@ -854,7 +861,7 @@ deactivate Publisher</p>
 <li>this is commonly useful to <em>decouple</em> the <em>publisher</em> from the <em>subscribers</em></li>
 <li>most commonly, brokers <em>store</em> messages until they are <em>consumed</em></li>
 </ul>
-<figure id="plantuml-figure-1751290357358243948" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926339659048" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     <p>hide footbox
 actor User
 participant Publisher
@@ -886,7 +893,7 @@ Broker -&gt; Subscriber2: notify Message
 deactivate Broker</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357358243948");
+    handlePlantumlFigureByID("plantuml-figure-1772451926339659048");
 </script>
 </section><section>
 <h2 id="common-interaction-protocols-pt-2-2">Common Interaction Protocols (pt. 2)</h2>
@@ -907,7 +914,7 @@ deactivate Broker</p>
 <h3 id="contractnet-protocol">ContractNet Protocol</h3>
 <p>A simple protocol for <em>auctions</em> and <em>negotiations</em></p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1751290357358379192" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1772451926339976432" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 participant Initiator
 participant Contractor1
@@ -931,7 +938,7 @@ deactivate Contractor1
 deactivate Initiator</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357358379192");
+    handlePlantumlFigureByID("plantuml-figure-1772451926339976432");
 </script>
 </div>
 <div class="col "><ul>
@@ -1003,12 +1010,14 @@ deactivate Initiator</p>
 <blockquote>
 <p>A <strong>software architecture</strong> is an abstraction of the run-time elements of a software system during some phase of its operation.
 […]
-It is defined by a <em>configuration</em> of <strong>architectural elements</strong> constrained in their relationships in order to achieve a desired set of <em>architectural properties</em>.</p></blockquote>
+It is defined by a <em>configuration</em> of <strong>architectural elements</strong> constrained in their relationships in order to achieve a desired set of <em>architectural properties</em>.</p>
+</blockquote>
 <ul>
 <li>Very roughly:</li>
 </ul>
 <blockquote>
-<p><strong>Architectural style</strong> $\approx$ <em>patterns</em> of architectures which are known to work in practice</p></blockquote>
+<p><strong>Architectural style</strong> $\approx$ <em>patterns</em> of architectures which are known to work in practice</p>
+</blockquote>
 <h3 id="main-architectural-styles-for-distributed-systems">Main architectural styles for distributed systems</h3>
 <ul>
 <li><em>layered</em> architectures</li>
@@ -1828,7 +1837,7 @@ e.g. <a href="https://en.wikipedia.org/wiki/Access-control_list">ACLs</a>, <a hr
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 
@@ -1919,8 +1928,6 @@ e.g. <a href="https://en.wikipedia.org/wiki/Access-control_list">ACLs</a>, <a hr
   
 
   
-    
-  
   
 
   
@@ -1957,30 +1964,6 @@ e.g. <a href="https://en.wikipedia.org/wiki/Access-control_list">ACLs</a>, <a hr
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"gitGraph":{"mainBranchName":"master","rotateCommitLabel":true},"startOnLoad":false,"useMaxWidth":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 

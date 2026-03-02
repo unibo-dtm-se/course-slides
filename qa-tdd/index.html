@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.fb12bbf399da036eabb8be9e12a3291990eec0a750f867980e4161be3f38eac3.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
@@ -27,11 +27,11 @@
 <br>
 <h2 style="margin-bottom: 0;">Software Engineering</h2>
 <h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
-<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2025/2026</h4>
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="quality-assurance">Quality assurance</h2>
@@ -40,16 +40,18 @@
 <p>As any engineered product, software should be <em>subject to <strong>quality assurance</strong> control</em>.</p>
 <br>
 <blockquote>
-<p><strong>Quality assurance</strong> (in SE) is the set of activities and practices aimed at ensuring that a software product <em>works</em> and it is <em>of good quality</em>.</p></blockquote>
+<p><strong>Quality assurance</strong> (in SE) is the set of activities and practices aimed at ensuring that a software product <em>works</em> and it is <em>of good quality</em>.</p>
+</blockquote>
 <ul>
 <li>what does <em>“works”</em> mean for software?</li>
 <li>what does <em>“good quality”</em> mean for software?</li>
 </ul>
 </section><section>
 <h2 id="quality-assurance-works">Quality assurance: “works”</h2>
-<h3 id="what-does-_works_-mean-for-software">What does <em>“works”</em> mean for software?</h3>
+<h3 id="what-does--mean-for-software">What does <em>“works”</em> mean for software?</h3>
 <blockquote>
-<p>Insight: software works when it <em>meets the requirements</em></p></blockquote>
+<p>Insight: software works when it <em>meets the requirements</em></p>
+</blockquote>
 <ul>
 <li>Recall that software requirements should come with clear <em>acceptance criteria</em>
 <ul>
@@ -59,10 +61,11 @@
 </ul>
 </section><section>
 <h2 id="quality-assurance-good-quality">Quality assurance: “good quality”</h2>
-<h3 id="what-does-_good-quality_-mean-for-software">What does <em>“good quality”</em> mean for software?</h3>
+<h3 id="what-does--mean-for-software-1">What does <em>“good quality”</em> mean for software?</h3>
 <blockquote>
 <p>Insight: software is good when it is</p>
-<p><em>easy for developers to evolve or maintain it</em></p></blockquote>
+<p><em>easy for developers to evolve or maintain it</em></p>
+</blockquote>
 <ul>
 <li>
 <p>Recall that good software should have many <em>quality attributes</em></p>
@@ -163,7 +166,8 @@
 </section><section>
 <h2 id="testing-scope-pt-2">Testing scope (pt. 2)</h2>
 <blockquote>
-<p>A well-maintained engineering product <em>must</em> have tests at <strong>all granularity levels</strong></p></blockquote>
+<p>A well-maintained engineering product <em>must</em> have tests at <strong>all granularity levels</strong></p>
+</blockquote>
 <ul>
 <li>But why?
 <ul>
@@ -204,11 +208,13 @@
 </li>
 </ul>
 <blockquote>
-<p>The more granular the tests, the easier it is to spot and fix problems</p></blockquote>
+<p>The more granular the tests, the easier it is to spot and fix problems</p>
+</blockquote>
 </section><section>
 <h2 id="reproducibility">Reproducibility</h2>
 <blockquote>
-<p>Would you be comfortable with a car that passes the crash test <code>99.9%</code> of time, but on the <code>0.1%</code> of the cases fails <em>unexplicably</em>?</p></blockquote>
+<p>Would you be comfortable with a car that passes the crash test <code>99.9%</code> of time, but on the <code>0.1%</code> of the cases fails <em>unexplicably</em>?</p>
+</blockquote>
 <p><strong>Reproducibility</strong> is <strong>central</strong> for testing</p>
 <p>(true for any engineering, but in particular for software)</p>
 <ul>
@@ -270,7 +276,7 @@
 </ol>
 </section><section>
 <h2 id="updated-project-structure">Updated project structure</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root_directory/
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root_directory/
 </span></span><span style="display:flex;"><span>├── main_package/               <span style="color:#8f5902;font-style:italic"># main package (i.e. directory for the main code)</span>
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub_module.py
@@ -301,10 +307,10 @@
 <div class="container w-100 m-0 p-0">
     <div class="row ">
 <div class="col "><p><code>requirements.txt</code> example:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>Kivy&gt;=2.3.0
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>Kivy&gt;=2.3.0
 </span></span></code></pre></div></div>
 <div class="col "><p><code>requirements-dev.txt</code> example:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>-r requirements.txt
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>-r requirements.txt
 </span></span><span style="display:flex;"><span>pytest&gt;=8.1.0
 </span></span></code></pre></div></div>
 </div>
@@ -361,7 +367,7 @@
 <p>Let’s assume this is the <code>test_my_system.py</code> test suite (full code <a href="https://gist.github.com/gciatto/151182ff015df80df21e5d0a8a5e88b1">here</a>)</p>
 <p>⬇️</p>
 </section><section>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># first test case</span>
@@ -482,7 +488,7 @@
 <ul>
 <li>
 <p>Minimalistic: <code>python -m unittest discover -s tests</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>..............
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>..............
 </span></span><span style="display:flex;"><span>---------------------------------------------------------------------- 
 </span></span><span style="display:flex;"><span>Ran 14 tests in 0.478s
 </span></span><span style="display:flex;"><span>
@@ -491,7 +497,7 @@
 </li>
 <li>
 <p>Verbose: <code>python -m unittest discover -v -s tests</code> (notice option <code>-v</code>)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>test_cli_with_invalid_expression (test_cli.TestCalculatorCli.test_cli_with_invalid_expression) ... ok
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>test_cli_with_invalid_expression (test_cli.TestCalculatorCli.test_cli_with_invalid_expression) ... ok
 </span></span><span style="display:flex;"><span>test_cli_with_single_expression (test_cli.TestCalculatorCli.test_cli_with_single_expression) ... ok
 </span></span><span style="display:flex;"><span>test_cli_with_sliced_expression (test_cli.TestCalculatorCli.test_cli_with_sliced_expression) ... ok
 </span></span><span style="display:flex;"><span>[...]
@@ -522,13 +528,13 @@
 </div>
 <p>(if you cannot find the <em>Test</em> section, look at the next slide)</p>
 </section><section>
-<h2 id="what-if-you-cannot-find-the-_test_-section-pt-1">What if you cannot find the <em>Test</em> section? (pt. 1)</h2>
+<h2 id="what-if-you-cannot-find-the-test-section-pt-1">What if you cannot find the <em>Test</em> section? (pt. 1)</h2>
 <p><img src="./test-explorer-missing.png" alt="Missing Test section in VS Code"></p>
 <p>You probably have and <em>old version</em> of VS Code, and you should <strong>update</strong> it</p>
 <br>
 <p>⬇️ Meanwhile, you can follow this workaround ⬇️</p>
 </section><section>
-<h2 id="what-if-you-cannot-find-the-_test_-section-pt-2">What if you cannot find the <em>Test</em> section? (pt. 2)</h2>
+<h2 id="what-if-you-cannot-find-the-test-section-pt-2">What if you cannot find the <em>Test</em> section? (pt. 2)</h2>
 <ol>
 <li>
 <p>Go to the <em>Extensions</em> section of VS Code</p>
@@ -550,7 +556,7 @@
 </li>
 </ol>
 </section><section>
-<h2 id="what-if-you-cannot-find-the-_test_-section-pt-3">What if you cannot find the <em>Test</em> section? (pt. 3)</h2>
+<h2 id="what-if-you-cannot-find-the-test-section-pt-3">What if you cannot find the <em>Test</em> section? (pt. 3)</h2>
 <ol start="3">
 <li>Click on the <strong>Install</strong> button of both extensions
 <ul>
@@ -562,7 +568,7 @@
 </li>
 </ol>
 </section><section>
-<h2 id="what-if-you-cannot-find-the-_test_-section-pt-4">What if you cannot find the <em>Test</em> section? (pt. 4)</h2>
+<h2 id="what-if-you-cannot-find-the-test-section-pt-4">What if you cannot find the <em>Test</em> section? (pt. 4)</h2>
 <ol start="4">
 <li>
 <p>Once the installation is complete, you should see the <em>Test</em> section in the <em>Activity Bar</em> on the side of the window</p>
@@ -582,7 +588,7 @@
 </ol>
 <p>⬇️</p>
 </section><section>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Calculator</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
@@ -669,7 +675,7 @@
 <li>edit the <code>Calculator</code> in file <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/master/calculator/__init__.py"><code>calculator/__init__.py</code></a> to introduce a bug
 <ul>
 <li>e.g. change the <code>__init__</code> function as follows:
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">expression</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">"0"</span> <span style="color:#8f5902;font-style:italic"># bug: the expression is not initially empty</span>
 </span></span></code></pre></div></li>
 </ul>
@@ -706,7 +712,7 @@ which adds
 </ol>
 <p>⬇️</p>
 </section><section>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">unittest</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator.ui.gui</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">CalculatorApp</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># this is not a test case! </span>
@@ -756,7 +762,7 @@ test case, and listen to the teacher explanation</p>
 </ol>
 <p>⬇️</p>
 </section><section>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># this is a test case! (based upon the aforementioned base class)</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># this is a test case! (based upon the aforementioned base class)</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestExpressions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># test procedure: inserting and evaluating a simple integer expression</span>
@@ -795,7 +801,7 @@ test case, and listen to the teacher explanation</p>
 <div class="container w-100 m-0 p-0">
     <div class="row ">
 <div class="col "><p>Before:</p>
-<figure id="plantuml-figure-1751290357433898917" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926421818612" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class CalculatorApp {
 - _calc: Calculator
 - _display: Label
@@ -804,11 +810,11 @@ test case, and listen to the teacher explanation</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357433898917");
+    handlePlantumlFigureByID("plantuml-figure-1772451926421818612");
 </script>
 </div>
 <div class="col "><p>After:</p>
-<figure id="plantuml-figure-1751290357434033419" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926421904826" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class CalculatorApp {
 - _calc: Calculator
 + display: Label
@@ -819,7 +825,7 @@ test case, and listen to the teacher explanation</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357434033419");
+    handlePlantumlFigureByID("plantuml-figure-1772451926421904826");
 </script>
 </div>
 </div>
@@ -833,7 +839,7 @@ test case, and listen to the teacher explanation</p>
 </section><section>
 <h2 id="interesting-things-to-notice-pt-2">Interesting things to notice (pt. 2)</h2>
 <p>How these novel functionalities are implemented in practice is not that relevant, but here it is:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorApp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">App</span><span style="color:#000;font-weight:bold">):</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorApp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">App</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># returns a sort of list of all the widgets directly or indirectly contained in the given container</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">_browse_children</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">container</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">yield</span> <span style="color:#000">container</span>
@@ -858,7 +864,8 @@ test case, and listen to the teacher explanation</p>
 <blockquote>
 <p><strong>Take-away</strong>: when writing <em>post-hoc</em> tests (i.e., after the main code has been already written),
 it is often necessary to <em>extend</em> the <strong>public API</strong> of the <em>SUT</em> to make its internal state and functioning
-<em>observable</em> and <em>controllable</em> from the outside, and therefore <strong>testable</strong></p></blockquote>
+<em>observable</em> and <em>controllable</em> from the outside, and therefore <strong>testable</strong></p>
+</blockquote>
 <ul>
 <li>to avoid this situation, it’s paramount to <strong>write tests <em>before</em> the main code</strong> is written
 <ul>
@@ -889,7 +896,8 @@ it is often necessary to <em>extend</em> the <strong>public API</strong> of the 
 </ul>
 <blockquote>
 <p><strong>Take-away</strong>: the story you can picture in your mind when reading a test is a way to describe the <em>test plan</em>,
-the designer of the test suite was envisioning when writing the tests</p></blockquote>
+the designer of the test suite was envisioning when writing the tests</p>
+</blockquote>
 
 </section>
 </section><section>
@@ -931,7 +939,7 @@ the designer of the test suite was envisioning when writing the tests</p></block
 </section><section>
 <h2 id="one-possible-solution">One possible solution</h2>
 <p>(also available on <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/01-test-layout/tests/test_gui.py#L44">branch <code>exercises/01-test-layout</code> of the <code>testable-calculator</code> repository</a>)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># rest of the class is unchanged </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">assert_button_exists</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">button_text</span><span style="color:#000;font-weight:bold">):</span>
@@ -994,7 +1002,8 @@ the designer of the test suite was envisioning when writing the tests</p></block
 <p>When designing <em>cars</em>,
 the <strong>crash testing</strong> procedure,
 the <em>engine test</em> bench,
-and so on are prepared <em>well before</em> the car prototype is ready!</p></blockquote>
+and so on are prepared <em>well before</em> the car prototype is ready!</p>
+</blockquote>
 </section><section>
 <h2 id="test-driven-development-tdd">Test-Driven Development (TDD)</h2>
 <p>The practice of:</p>
@@ -1005,7 +1014,8 @@ and so on are prepared <em>well before</em> the car prototype is ready!</p></blo
 <li>track all development by <em>always testing all cases</em></li>
 </ul>
 <blockquote>
-<p><strong>Key-point</strong>: in TDD, tests are not only a form of validation, but also a form of <strong>specification</strong></p></blockquote>
+<p><strong>Key-point</strong>: in TDD, tests are not only a form of validation, but also a form of <strong>specification</strong></p>
+</blockquote>
 </section><section>
 <h2 id="development-cycle-in-tdd">Development cycle in TDD</h2>
 <ol>
@@ -1027,7 +1037,8 @@ and so on are prepared <em>well before</em> the car prototype is ready!</p></blo
 <li>possibility to write expressions with <em>parentheses</em> (e.g. <code>(1+2)*3</code>)</li>
 <li>possibility to write expressions with the <em>square root</em> function (e.g. <code>sqrt(4)</code>)</li>
 <li>possibility to write expressions with the <em>power</em> function (e.g. <code>2**3</code>)</li>
-</ol></blockquote>
+</ol>
+</blockquote>
 <ol>
 <li>
 <p>Extend the model’s test suite (i.e. file
@@ -1060,7 +1071,7 @@ which aims at testing the
 <h2 id="one-possible-solution">One possible solution</h2>
 <p>(also available on <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9b62a434a032677fba449324379fe07b2ac72f30">branch <code>exercises/02-tdd-before-impl</code> of the <code>testable-calculator</code>repository</a>)</p>
 <p>Test suite for the model (i.e. <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/02-tdd-before-impl/tests/test_model.py#L54"><code>test_model.py</code></a>)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># other test cases are unchanged</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># other test cases are unchanged</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestComplexExpressions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">unittest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">TestCase</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">setUp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
@@ -1104,7 +1115,7 @@ which aims at testing the
 <h2 id="one-possible-solution-1">One possible solution</h2>
 <p>(also available on <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9b62a434a032677fba449324379fe07b2ac72f30">branch <code>exercises/02-tdd-before-impl</code> of the <code>testable-calculator</code>repository</a>)</p>
 <p>Test suite for the GUI (i.e. <a href="https://github.com/unibo-dtm-se/testable-calculator/blob/exercises/02-tdd-before-impl/tests/test_gui.py#L40"><code>test_gui.py</code></a>)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestExpressions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">):</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">TestExpressions</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">CalculatorGUITestCase</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic"># other test methods are unchanged</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_expression_with_parentheses</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
@@ -1150,7 +1161,8 @@ which aims at testing the
 </li>
 </ol>
 <blockquote>
-<p>One possible solution is on the <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9cce0dc19f572a31567294085c8168951de75bd2"><code>exercises/02-tdd-after-impl</code> branch of the <code>testable-calculator</code> repository</a></p></blockquote>
+<p>One possible solution is on the <a href="https://github.com/unibo-dtm-se/testable-calculator/commit/9cce0dc19f572a31567294085c8168951de75bd2"><code>exercises/02-tdd-after-impl</code> branch of the <code>testable-calculator</code> repository</a></p>
+</blockquote>
 <ul>
 <li>feel free to inspect it, after you attempted to produce your own solution</li>
 </ul>
@@ -1160,7 +1172,8 @@ which aims at testing the
 <br>
 <p>Yet many software projects have no or minimal tests, as:</p>
 <blockquote>
-<p><strong>Common misconception</strong>: We do not have time (or money) for testing</p></blockquote>
+<p><strong>Common misconception</strong>: We do not have time (or money) for testing</p>
+</blockquote>
 <br>
 <p>Beware: <strong>testing saves times in the long run</strong>, not testing is a <em>cost</em>!</p>
 <ul>
@@ -1169,7 +1182,8 @@ which aims at testing the
 </section><section>
 <h2 id="important-notion">Important notion</h2>
 <blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Technical_debt">Technical debt</a> is a concept in software development that reflects the <em>implied</em> <strong>cost</strong> of additional rework caused by choosing an <em>easy</em> (limited) <em>solution now</em> <strong>instead of</strong> using a <em>better approach</em> that would take <em>longer</em>.</p></blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Technical_debt">Technical debt</a> is a concept in software development that reflects the <em>implied</em> <strong>cost</strong> of additional rework caused by choosing an <em>easy</em> (limited) <em>solution now</em> <strong>instead of</strong> using a <em>better approach</em> that would take <em>longer</em>.</p>
+</blockquote>
 <ul>
 <li>
 <p>Not writing tests on <em>ASAP</em>, greatly increases the technical debt</p>
@@ -1198,7 +1212,8 @@ which aims at testing the
 </section><section>
 <h2 id="what-happens-when-theres-too-much-technical-debt">What happens when there’s too much technical debt?</h2>
 <blockquote>
-<p>we never have the money to do it <em>right</em> but somehow we always have the fucking money to do it <em>twice</em></p></blockquote>
+<p>we never have the money to do it <em>right</em> but somehow we always have the fucking money to do it <em>twice</em></p>
+</blockquote>
 <p>$—$ UserInputSucks (@UserInputSucks) <a href="https://twitter.com/UserInputSucks/status/1132904286415929345">May 27, 2019</a></p>
 </section><section>
 <h2 id="what-if-a-project-is-not-using-tdd-since-the-very-beginning">What if a project is not using TDD since the very beginning?</h2>
@@ -1240,11 +1255,13 @@ which aims at testing the
 <ul>
 <li>the new test case <strong>prevents</strong> the issue from being <em>mistakenly re-introduced</em> <strong>again</strong></li>
 <li>develop the test case <em>before</em> the fix will help the <strong>debugging</strong> process</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 </section><section>
-<h2 id="testing-software-before-it-is-ready-_boundaries_">Testing software before it is ready: <em>boundaries</em></h2>
+<h2 id="testing-software-before-it-is-ready-boundaries">Testing software before it is ready: <em>boundaries</em></h2>
 <blockquote>
-<p><strong>Problem</strong>: how is it possible to test code that <em>does not exist</em>?</p></blockquote>
+<p><strong>Problem</strong>: how is it possible to test code that <em>does not exist</em>?</p>
+</blockquote>
 <ul>
 <li>More in general: how to design a testbed for an engineering product that is not prototypied yet?</li>
 </ul>
@@ -1269,7 +1286,7 @@ which aims at testing the
 </li>
 </ul>
 </section><section>
-<h2 id="testing-software-before-it-is-ready-_missing_-components">Testing software before it is ready: <em>missing</em> components</h2>
+<h2 id="testing-software-before-it-is-ready-missing-components">Testing software before it is ready: <em>missing</em> components</h2>
 <ul>
 <li>We can now <em>design our tests</em>,
 <ul>
@@ -1291,18 +1308,18 @@ which aims at testing the
 <!-- ---
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/QMcj58TbsyU?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/QMcj58TbsyU?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
 
 ---
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kchq9AGXsyA?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kchq9AGXsyA?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
  -->
 </section><section>
-<h2 id="testing-software-before-it-is-ready-_test-doubles_">Testing software before it is ready: <em>test doubles</em></h2>
+<h2 id="testing-software-before-it-is-ready-test-doubles">Testing software before it is ready: <em>test doubles</em></h2>
 <p>The trick: <em>simulate components that are not ready yet</em>!</p>
 <p>When writing software, components required for the execution that are not ready yet can be simulated
 <strong>if their API has been clearly defined</strong></p>
@@ -1342,7 +1359,8 @@ which aims at testing the
 </section><section>
 <h2 id="test-doubles-and-development-cost">Test doubles and development cost</h2>
 <blockquote>
-<p>Why should the team “waste” time creating doubles instead of just writing the thing?</p></blockquote>
+<p>Why should the team “waste” time creating doubles instead of just writing the thing?</p>
+</blockquote>
 <ul>
 <li>
 <p>doubles are <strong>cheaper</strong>: dedicated libraries make doubles <em>implementation extremely quick</em></p>
@@ -1560,10 +1578,11 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 
 
 <section data-shortcode-section="">
-<h2 id="quality-assurance-_syntactical-correctness_">Quality Assurance: <em>syntactical correctness</em></h2>
+<h2 id="quality-assurance-syntactical-correctness">Quality Assurance: <em>syntactical correctness</em></h2>
 <blockquote>
 <p><strong>Syntactical correctness</strong> is the <em>first</em> level of quality assurance:</p>
-<p>“Is the code <strong>well-formed</strong>, i.e. <em>readable</em> for a computer?</p></blockquote>
+<p>“Is the code <strong>well-formed</strong>, i.e. <em>readable</em> for a computer?</p>
+</blockquote>
 <ul>
 <li>
 <p>In <em>compiled</em> languages, the compiler checks for <em>syntactical correctness</em></p>
@@ -1603,7 +1622,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 <ul>
 <li>
 <p>you may notice an output similar to the following one:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>Listing 'calculator'...
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>Listing 'calculator'...
 </span></span><span style="display:flex;"><span>Listing 'calculator\\ui'...
 </span></span><span style="display:flex;"><span>Listing 'tests'...
 </span></span></code></pre></div><p>which means that all <code>.py</code> files in those directories were checked, and they are <em>syntactically correct</em></p>
@@ -1629,7 +1648,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 
 </section>
 </section><section>
-<h2 id="quality-assurance-_static-analysis_">Quality Assurance: <em>static analysis</em></h2>
+<h2 id="quality-assurance-static-analysis">Quality Assurance: <em>static analysis</em></h2>
 <p>Code analysis without execution is called <em>static analysis</em>.</p>
 <p>Static analysis tools are often referred to as <em>linters</em>
 (especially those providing auto-formatting tools)</p>
@@ -1643,7 +1662,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 <li>improves <em>security</em></li>
 </ul>
 </section><section>
-<h2 id="_static-analysis_-flawed-programming-patterns"><em>Static analysis</em>: flawed programming patterns</h2>
+<h2 id="static-analysis-flawed-programming-patterns"><em>Static analysis</em>: flawed programming patterns</h2>
 <p>Identification and reporting of <em>patterns</em> known to be <em>problematic</em></p>
 <ul>
 <li>Early-interception of <em>potential bugs</em></li>
@@ -1653,7 +1672,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 <li>Reduces <em>maintenance cost</em></li>
 </ul>
 </section><section>
-<h2 id="quality-assurance-_static-analysis_-in-__python__">Quality Assurance: <em>static analysis</em> in <strong>Python</strong></h2>
+<h2 id="quality-assurance-static-analysis-in-python">Quality Assurance: <em>static analysis</em> in <strong>Python</strong></h2>
 <ul>
 <li><a href="http://mypy-lang.org/">Mypy</a>: static analysis for bug detection (requires <a href="https://www.python.org/dev/peps/pep-0484/">annotations</a>)</li>
 <li><a href="https://github.com/PyCQA/pyflakes">Pyflakes</a>: effective programming, excluding style</li>
@@ -1680,7 +1699,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 <ul>
 <li><code>mypy calculator tests</code></li>
 <li>you may notice an output similar to the following one:
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>calculator\__init__.py:13: error: Unsupported operand types for + ("str" and "int")  [operator]
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>calculator\__init__.py:13: error: Unsupported operand types for + ("str" and "int")  [operator]
 </span></span><span style="display:flex;"><span>calculator\__init__.py:44: error: Parameterized generics cannot be used with class or instance checks  [misc]
 </span></span><span style="display:flex;"><span>calculator\__init__.py:44: error: Argument 2 to "isinstance" has incompatible type "&lt;typing special form&gt;"; expected "_ClassInfo"  [arg-type]
 </span></span><span style="display:flex;"><span>calculator\__init__.py:46: error: Returning Any from function declared to return "int | float"  [no-any-return]
@@ -1716,7 +1735,8 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 </section><section>
 <h2 id="quality-assurance-violations-of-the-dry-principle">Quality Assurance: violations of the DRY principle</h2>
 <blockquote>
-<p><strong>DRY</strong>: <em>D</em>on’t <em>R</em>epeat <em>Y</em>ourself</p></blockquote>
+<p><strong>DRY</strong>: <em>D</em>on’t <em>R</em>epeat <em>Y</em>ourself</p>
+</blockquote>
 <ul>
 <li>
 <p>General advice: <strong>never copy-paste</strong> your code</p>
@@ -1739,7 +1759,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 
 
 <div class="col "><p>Before (reliance on copy-paste):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_my_gui</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_my_gui</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">find_button_by</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"1"</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">trigger_action</span><span style="color:#000;font-weight:bold">()</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">find_button_by</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"2"</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">trigger_action</span><span style="color:#000;font-weight:bold">()</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">find_button_by</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">"3"</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">trigger_action</span><span style="color:#000;font-weight:bold">()</span>
@@ -1749,7 +1769,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 
 
 <div class="col "><p>After refactor (no more duplication):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">text</span><span style="color:#000;font-weight:bold">):</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">press_button</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">text</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sut</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">find_button_by</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">text</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">trigger_action</span><span style="color:#000;font-weight:bold">()</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">test_my_gui</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">):</span>
@@ -1841,7 +1861,7 @@ Dolphin or Nautilus etc <i class="fab fa-linux"></i></li>
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

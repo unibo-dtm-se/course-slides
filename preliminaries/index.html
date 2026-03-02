@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.fb12bbf399da036eabb8be9e12a3291990eec0a750f867980e4161be3f38eac3.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
@@ -27,11 +27,11 @@
 <br>
 <h2 style="margin-bottom: 0;">Software Engineering</h2>
 <h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
-<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2025/2026</h4>
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="motivation-and-goals">Motivation and goals</h2>
@@ -69,7 +69,8 @@
 </ol>
 <blockquote>
 <p>The terminal is a text-based interface to the operative system (OS).
-Each terminal application is executing a <strong>shell</strong> program</p></blockquote>
+Each terminal application is executing a <strong>shell</strong> program</p>
+</blockquote>
 <blockquote>
 <p>The shell is a program that has a simple job: <strong>REPL</strong> (Read, Evaluate, Print, Loop)</p>
 <ol>
@@ -77,7 +78,8 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 <li>it <strong>evaluates</strong> the command</li>
 <li>it <strong>prints</strong> the result</li>
 <li>it <strong>loops</strong> back to step 1, unless the user explicitly asks to <strong>exit</strong></li>
-</ol></blockquote>
+</ol>
+</blockquote>
 <ol start="2">
 <li>Write a few simple commands and observe the effect
 <ul>
@@ -108,14 +110,17 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 <ul>
 <li><strong>interactively</strong>, from the user</li>
 <li>from a <strong>script</strong>, which is a file containing commands to be executed by a shell</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 </section><section>
 <h2 id="developers-are-inherently-lazy">Developers are inherently lazy</h2>
 <p>Developers’ mindset:</p>
 <blockquote>
-<p>If a <strong>person</strong> can do it <em>manually</em> via the shell, then a <strong>script</strong> can do it <em>automatically</em></p></blockquote>
+<p>If a <strong>person</strong> can do it <em>manually</em> via the shell, then a <strong>script</strong> can do it <em>automatically</em></p>
+</blockquote>
 <blockquote>
-<p>If a <strong>script</strong> can do it <em>automatically</em>, then that’s the way of doing it</p></blockquote>
+<p>If a <strong>script</strong> can do it <em>automatically</em>, then that’s the way of doing it</p>
+</blockquote>
 <ul>
 <li>these are the basic principles behind <strong>automation</strong></li>
 <li>a part from <em>time-saving</em> and <em>precision</em> in execution, automation enables <strong>reproducibility</strong> of the process
@@ -192,7 +197,8 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 <li><code>bash</code> if are using the Windows Subsystem for Linux (WSL) or Git Bash</li>
 </ul>
 </li>
-</ol></blockquote>
+</ol>
+</blockquote>
 </section><section>
 <h2 id="stuff-you-need-to-know-about-the-shell-pt-2">Stuff you need to know about the shell (pt. 2)</h2>
 <ul>
@@ -227,7 +233,8 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 <p>A <strong>path</strong> is a string that represents the location of a file or a directory in the <strong>file system</strong></p>
 <blockquote>
 <p><strong>Beware</strong>: path-separator is different among Windows (<code>\</code>) and other OS (<code>/</code>),</p>
-<p>and <strong>we only use <code>/</code> in the slides</strong></p></blockquote>
+<p>and <strong>we only use <code>/</code> in the slides</strong></p>
+</blockquote>
 <ul>
 <li>
 <p>A <strong>relative path</strong> is a path that is relative to the CWD</p>
@@ -321,7 +328,8 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 </li>
 </ul>
 <blockquote>
-<p>Do not waste your memory, learn how to look up the documentation instead</p></blockquote>
+<p>Do not waste your memory, learn how to look up the documentation instead</p>
+</blockquote>
 </section><section>
 <h2 id="about-interactive-commands-pt-1">About interactive commands (pt. 1)</h2>
 <ul>
@@ -405,7 +413,8 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 </li>
 </ul>
 <blockquote>
-<p>a <strong>stream</strong> is an <em>unlimited</em> sequence of <em>bytes</em> (or <em>characters</em>)</p></blockquote>
+<p>a <strong>stream</strong> is an <em>unlimited</em> sequence of <em>bytes</em> (or <em>characters</em>)</p>
+</blockquote>
 <ul>
 <li>this may represent <strong>anything</strong> having a digital representation (e.g. a file, a network connection, a device, etc.)</li>
 </ul>
@@ -434,11 +443,12 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 <h2 id="about-interactive-processes-pt-3">About interactive processes (pt. 3)</h2>
 <h3 id="example-the-nano-command">Example: the <code>nano</code> command</h3>
 <blockquote>
-<p><code>nano</code> is a simple, interactive, text editor for the terminal</p></blockquote>
+<p><code>nano</code> is a simple, interactive, text editor for the terminal</p>
+</blockquote>
 <ol>
 <li>
 <p>Open a shell, and run the following command</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>nano myfile.txt
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>nano myfile.txt
 </span></span></code></pre></div></li>
 <li>
 <p>This should transform the terminal into a text editor, editing the file <code>myfile.txt</code></p>
@@ -563,7 +573,7 @@ Each terminal application is executing a <strong>shell</strong> program</p></blo
 <ol>
 <li>open a terminal in the directory of the application (the VS Code is fine)</li>
 <li>run the following command
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python calculator.py
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python calculator.py
 </span></span></code></pre></div></li>
 <li>you may observe the following output in the terminal:
 <pre tabindex="0"><code>Traceback (most recent call last):
@@ -587,13 +597,13 @@ ModuleNotFoundError: No module named 'kivy'
 <p>The solution is pretty simple: let’s <em>install</em> the missing <strong>dependency</strong></p>
 <ul>
 <li>we can do that via the <code>pip</code> command, which is the <em>Python package manager</em>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>pip install kivy
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>pip install kivy
 </span></span></code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>After the installation, we can try to run the application again</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python calculator.py
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python calculator.py
 </span></span></code></pre></div><p>this time, the application should start, and you should see the calculator Window</p>
 </li>
 <li>
@@ -789,7 +799,8 @@ ModuleNotFoundError: No module named 'kivy'
 </li>
 </ul>
 <blockquote>
-<p>Don’t reinvent the wheel</p></blockquote>
+<p>Don’t reinvent the wheel</p>
+</blockquote>
 <ul>
 <li>
 <p>SE is essentially about how to write <em>good</em> code, which works well, and <strong>can be reused in the future</strong></p>
@@ -867,7 +878,8 @@ ModuleNotFoundError: No module named 'kivy'
 </li>
 </ul>
 <blockquote>
-<p><strong>Runtime</strong> of a program $\approx$ jargon for “the <em>set of</em> <strong>libraries</strong> actually available for that program at run-time”</p></blockquote>
+<p><strong>Runtime</strong> of a program $\approx$ jargon for “the <em>set of</em> <strong>libraries</strong> actually available for that program at run-time”</p>
+</blockquote>
 <ul>
 <li>this commonly includes:
 <ol>
@@ -905,7 +917,8 @@ ModuleNotFoundError: No module named 'kivy'
 <br>
 <blockquote>
 <p>A <strong>dependency</strong> among some <em>software</em> <strong>$S$</strong> and some <em>other software</em> <strong>$L$</strong></p>
-<p>occurs when <strong>$S$</strong> <em>requires</em> <strong>$L$</strong> to <em>work</em></p></blockquote>
+<p>occurs when <strong>$S$</strong> <em>requires</em> <strong>$L$</strong> to <em>work</em></p>
+</blockquote>
 <ul>
 <li><strong>requires</strong> $\approx$ <strong>$S$</strong> needs <strong>$L$</strong> to be part of its runtime to be <em>executed</em></li>
 <li>this is commonly the result of the reasoning above</li>
@@ -915,14 +928,16 @@ ModuleNotFoundError: No module named 'kivy'
 <h2 id="dependencies-pt-2">Dependencies (pt. 2)</h2>
 <p>Some definitions related to the notion of <strong>dependency</strong>:</p>
 <blockquote>
-<p><strong>Transitive dependency</strong>: if <strong>$S$</strong> depends on <strong>$L$</strong>, and <strong>$L$</strong> depends on <strong>$M$</strong>, then <strong>$S$</strong> <em>transitively</em> depends on <strong>$M$</strong></p></blockquote>
+<p><strong>Transitive dependency</strong>: if <strong>$S$</strong> depends on <strong>$L$</strong>, and <strong>$L$</strong> depends on <strong>$M$</strong>, then <strong>$S$</strong> <em>transitively</em> depends on <strong>$M$</strong></p>
+</blockquote>
 <ul>
 <li>non-transitive dependencies are called <strong>direct</strong> dependencies</li>
 </ul>
 </section><section>
 <h2 id="dependencies-pt-3">Dependencies (pt. 3)</h2>
 <blockquote>
-<p><strong>Dependency graph</strong> of a software <strong>$S$</strong>: the graph spawned by all the dependencies (direct or transitive) depedencies of <strong>$S$</strong></p></blockquote>
+<p><strong>Dependency graph</strong> of a software <strong>$S$</strong>: the graph spawned by all the dependencies (direct or transitive) depedencies of <strong>$S$</strong></p>
+</blockquote>
 <ul>
 <li>e.g. the dependency graph of our <em>calculator</em> application includes <em>Kivy</em> and <em>Python 3.11</em> standard library, and all transitive depedencies of <em>Kivy</em>:
 <pre tabindex="0"><code>calculator.py
@@ -1084,7 +1099,7 @@ ModuleNotFoundError: No module named 'kivy'
 <h2 id="what-about-the-actual-code">What about the actual code?</h2>
 <p>Let’s delve into the <a href="https://github.com/unibo-dtm-se/compact-calculator/blob/master/calculator.py">actual code</a> of the <em>calculator</em> application</p>
 <p>(focus on the comments)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># Import a bunch of stuff from the Kivy library, used below</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># Import a bunch of stuff from the Kivy library, used below</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">kivy.app</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">App</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">kivy.uix.boxlayout</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">BoxLayout</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">kivy.uix.button</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Button</span>
@@ -1337,7 +1352,7 @@ ModuleNotFoundError: No module named 'kivy'
 <ul>
 <li>function <em>encapsulate</em> a piece of <em>code</em>, aimed at either <em>returning a value</em>, or <em>performing some action</em></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">sum</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">):</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">sum</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">b</span>
 </span></span></code></pre></div></li>
 <li>
@@ -1346,7 +1361,7 @@ ModuleNotFoundError: No module named 'kivy'
 <li>syntactically, think of classes as <em>groups of related functions</em>, possibly operating on <em>shared variables</em></li>
 <li>semantically, classes are <em>templates</em> for <strong>objects</strong> (cf. <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object Oriented Programming</a>)</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Pair</span><span style="color:#000;font-weight:bold">:</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Pair</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">fst</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">snd</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">first</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fst</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">second</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">snd</span>
@@ -1363,7 +1378,7 @@ ModuleNotFoundError: No module named 'kivy'
 <ul>
 <li>syntactically, a module is a <code>.py</code> <em>file</em> containing <em>Python code</em></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># file: path/to/pair.py</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># file: path/to/pair.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Pair</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">fst</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">snd</span><span style="color:#000;font-weight:bold">):</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">first</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fst</span>
@@ -1380,7 +1395,7 @@ ModuleNotFoundError: No module named 'kivy'
 <ul>
 <li>syntactically, a package is a <em>directory</em> containing <em>modules</em> and <em>sub-packages</em></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># another Python file in the same root directory</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># another Python file in the same root directory</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">path.to.pair</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">p1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">p2</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">x1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">p1</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">sum</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># 3</span>
@@ -1392,7 +1407,8 @@ ModuleNotFoundError: No module named 'kivy'
 <blockquote>
 <p><strong>Beware</strong>: Other programming languages may have similar mechanisms, but with different names,
 or they may have different mechanisms to achieve the same goals,
-or they may have a subset of the mechanisms available in Python</p></blockquote>
+or they may have a subset of the mechanisms available in Python</p>
+</blockquote>
 </section><section>
 <h2 id="about-code-organization">About code organization</h2>
 <p>As code is decomposed into smaller and smaller units…</p>
@@ -1437,12 +1453,12 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 
 <div class="col "><h3 id="the-gui">The GUI</h3>
 <p><img src="./calculator.png" alt=""></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.gui
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.gui
 </span></span></code></pre></div></div>
 
 
 <div class="col "><h3 id="the-cli">The CLI</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.cli <span style="color:#4e9a06">"1 + 1"</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.cli <span style="color:#4e9a06">"1 + 1"</span>
 </span></span><span style="display:flex;"><span><span style="color:#0000cf;font-weight:bold">2</span>
 </span></span><span style="display:flex;"><span>python -m calculator.ui.cli <span style="color:#4e9a06">"2*3"</span>
 </span></span><span style="display:flex;"><span><span style="color:#0000cf;font-weight:bold">6</span>
@@ -1465,7 +1481,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 <li>Inspect the content of the directory (e.g. via the terminal, using the <code>tree</code> command)
 <ul>
 <li>you should note the following directories and files:
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>modular-calculator/     <span style="color:#8f5902;font-style:italic"># project root directory</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>modular-calculator/     <span style="color:#8f5902;font-style:italic"># project root directory</span>
 </span></span><span style="display:flex;"><span>├── calculator/         <span style="color:#8f5902;font-style:italic"># the main package of the project (full name: calculator)</span>
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py     <span style="color:#8f5902;font-style:italic"># the package initialization content</span>
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; └── ui/             <span style="color:#8f5902;font-style:italic"># the user interface sub-package (full name: calculator.ui)</span>
@@ -1485,12 +1501,12 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 <ol start="5">
 <li>
 <p>Let’s try to run the GUI application</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.gui
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.gui
 </span></span></code></pre></div><p>the application should start, and you should see the calculator Window</p>
 </li>
 <li>
 <p>Let’s try to run the CLI application</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.cli
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>python -m calculator.ui.cli
 </span></span></code></pre></div><p>you should get a hint about how to use the CLI application</p>
 </li>
 <li>
@@ -1517,7 +1533,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 </section><section>
 <h2 id="the-calculator-model-pt-1">The calculator model (pt. 1)</h2>
 <p>Code from <code>calculator/__init__.py</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Number</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">|</span> <span style="color:#204a87">float</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Number</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span> <span style="color:#ce5c00;font-weight:bold">|</span> <span style="color:#204a87">float</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">:</span>
 </span></span><span style="display:flex;"><span>
@@ -1573,7 +1589,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 
 
 <div class="col "><p>Class diagram:</p>
-<figure id="plantuml-figure-1751290357475563322" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926408214238" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class Calculator {
 + expression: str
 - _ensure_is_digit(value: int | str) → int
@@ -1588,13 +1604,13 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357475563322");
+    handlePlantumlFigureByID("plantuml-figure-1772451926408214238");
 </script>
 </div>
 
 
 <div class="col "><p>Usage example:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Calculator</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Calculator</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Calculator</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># create a new calculator</span>
 </span></span><span style="display:flex;"><span>
@@ -1611,7 +1627,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 </section><section>
 <h2 id="the-calculator-gui">The calculator GUI</h2>
 <p>Code from <code>calculator/ui/gui.py</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">kivy.app</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">App</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">kivy.app</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">App</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">kivy.uix.boxlayout</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">BoxLayout</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">kivy.uix.button</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Button</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">kivy.uix.label</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Label</span>
@@ -1677,7 +1693,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 </span></span></code></pre></div></section><section>
 <h2 id="the-calculator-cli">The calculator CLI</h2>
 <p>Content of <code>calculator/ui/cli.py</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Calculator</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">calculator</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Calculator</span>
 </span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">sys</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
@@ -1703,7 +1719,7 @@ or they may have a subset of the mechanisms available in Python</p></blockquote>
 </span></span></code></pre></div></section><section>
 <h2 id="overview-on-code-organization-pt-1">Overview on code organization (pt. 1)</h2>
 
-<figure id="plantuml-figure-1751290357477300547" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926420178444" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
     
 
 package calculator {
@@ -1745,13 +1761,13 @@ package calculator {
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357477300547");
+    handlePlantumlFigureByID("plantuml-figure-1772451926420178444");
 </script>
 </section><section>
 <h2 id="overview-on-code-organization-pt-2">Overview on code organization (pt. 2)</h2>
 <p>(including dependencies from Python and Kivy)</p>
 
-<figure id="plantuml-figure-1751290357477361982" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926420246644" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package "Python Standard Library" as Python {
@@ -1825,7 +1841,7 @@ calculator .left.&gt; Python: uses extensively
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357477361982");
+    handlePlantumlFigureByID("plantuml-figure-1772451926420246644");
 </script>
 </section><section>
 <h2 id="many-hidden-concepts-in-this-example-1">Many hidden concepts in this example</h2>
@@ -1881,7 +1897,7 @@ calculator .left.&gt; Python: uses extensively
 </li>
 <li>
 <p>… for the time being, let’s stick to the following project structure:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root-directory/
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root-directory/
 </span></span><span style="display:flex;"><span>├── main_package/
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub_module.py
@@ -1942,7 +1958,8 @@ calculator .left.&gt; Python: uses extensively
 <p>Disclaimer:</p>
 <blockquote>
 <p>While <strong>UI</strong> is very <em>important</em>, and <em>engineering UI</em> <strong>is part</strong> <em>of SE</em>, it is <em>not</em> the <em>only</em> part of SE.
-It is far <em>more important</em> in SE to take care about the <strong>API</strong></p></blockquote>
+It is far <em>more important</em> in SE to take care about the <strong>API</strong></p>
+</blockquote>
 <br>
 <p>The rationale is as follows:</p>
 <ul>
@@ -1962,7 +1979,8 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <li>the <em>formal parameters</em> it accepts as <em>input</em></li>
 <li>the <em>return values</em> or <em>effects</em> it produces as <em>outcome</em></li>
 <li>the <em>pre-conditions</em> and <em>post-conditions</em> it satisfies/establishes</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 </section><section>
 <h2 id="about-application-programming-interfaces-pt-2">About application programming interfaces (pt. 2)</h2>
 <p>Recall that software is often <em>built</em> on top of <em>other</em> software, in a <strong>layered</strong> way:
@@ -2021,7 +2039,8 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 </ul>
 </li>
 <li>the opposite of “public” is “<strong>private</strong>”</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 </section><section>
 <h2 id="application-programming-interfaces-in-practice-pt-2">Application programming interfaces in practice (pt. 2)</h2>
 <ul>
@@ -2052,7 +2071,8 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <br>
 <p>Another way to think about <em>private</em> stuff in a software project is:</p>
 <blockquote>
-<p><em>private</em> stuff may change <strong>without notice</strong>, in any moment</p></blockquote>
+<p><em>private</em> stuff may change <strong>without notice</strong>, in any moment</p>
+</blockquote>
 </section><section>
 <h2 id="application-programming-interfaces-in-practice-pt-3">Application programming interfaces in practice (pt. 3)</h2>
 <ul>
@@ -2084,7 +2104,8 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <li><em>draw</em> class diagrams for your software projects</li>
 <li><em>read</em> class diagrams of other software projects</li>
 <li>reverse-engineer (or just imagine) the class diagrams of software projects you use</li>
-</ol></blockquote>
+</ol>
+</blockquote>
 </section><section>
 <h1 id="exercise">Exercise</h1>
 <ol>
@@ -2339,7 +2360,8 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <h2 id="exercise-1">Exercise 1</h2>
 <h3 id="the-impact-of-modularity-on-bug-detection--fixing">The impact of modularity on bug detection / fixing</h3>
 <blockquote>
-<p>The calculator has a <em>bug</em>: <strong>it does not properly handle division by zero</strong></p></blockquote>
+<p>The calculator has a <em>bug</em>: <strong>it does not properly handle division by zero</strong></p>
+</blockquote>
 <p>Is this a <em>presentation</em>, a <em>modelling</em>, or an <em>implementation</em> issue?</p>
 <ul>
 <li>do the software presents information poorly, or misinterprets inputs?</li>
@@ -2364,7 +2386,8 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 <h2 id="exercise-2">Exercise 2</h2>
 <h3 id="new-feature-request">New feature request</h3>
 <blockquote>
-<p>The calculator GUI is missing a feature: <strong>it gives no way to the user to clear the current expression</strong></p></blockquote>
+<p>The calculator GUI is missing a feature: <strong>it gives no way to the user to clear the current expression</strong></p>
+</blockquote>
 <p>We totally missed that functionality when designing the <em>model</em> and the <em>GUI</em></p>
 <ul>
 <li>what is missing in the model?</li>
@@ -2478,7 +2501,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

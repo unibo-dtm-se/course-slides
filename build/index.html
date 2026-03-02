@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.fb12bbf399da036eabb8be9e12a3291990eec0a750f867980e4161be3f38eac3.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
@@ -27,11 +27,11 @@
 <br>
 <h2 style="margin-bottom: 0;">Software Engineering</h2>
 <h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
-<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2025/2026</h4>
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h1 id="the-build-life-cycle">The build “life cycle”</h1>
@@ -39,7 +39,8 @@
 <blockquote>
 <p>The process of creating <em>tested deployable software artifacts</em>
 <br>
-from <em>source</em> code</p></blockquote>
+from <em>source</em> code</p>
+</blockquote>
 <p>May include, depending on the system specifics:</p>
 <ol>
 <li><em>Source code manipulation</em> and generation</li>
@@ -72,7 +73,8 @@ from <em>source</em> code</p></blockquote>
 <li>In reality <em>time is precious</em> and <em>repetitivy is boring</em> (and <strong>error-prone</strong>)</li>
 </ul>
 <blockquote>
-<p>$\Rightarrow$ Create software that automates the building of some software!</p></blockquote>
+<p>$\Rightarrow$ Create software that automates the building of some software!</p>
+</blockquote>
 <ul>
 <li>All those concerns that hold for software creation hold for build systems creation…</li>
 </ul>
@@ -93,14 +95,15 @@ from code to artifacts
 * Separation between *what* to do and *how* to do it
   * The build system decides how to do the stuff
 * *Configuration limited* by the provided options -->
-<h2 id="__declarative__-build-automation-systems"><strong>Declarative</strong> build automation systems</h2>
+<h2 id="declarative-build-automation-systems"><strong>Declarative</strong> build automation systems</h2>
 <p>Modern build automation systems are <strong>declarative</strong></p>
 <blockquote>
 <p><strong>Declarative</strong> software $\approx$ the program describes <em>what</em> to do, not <em>how</em> to do it
 <br>
 (as opposed to <em>imperative</em> software $\approx$ the program describes <em>how</em> to do it,
 <br>
-e.g. Python)</p></blockquote>
+e.g. Python)</p>
+</blockquote>
 <p>In other words:</p>
 <ul>
 <li>they rely on <em>conventions</em> and <em>defaults</em></li>
@@ -220,7 +223,8 @@ multiple tools <em>proliferated</em></p>
 <li>say, <strong>project A</strong> requires Python <code>3.8</code> and <strong>project B</strong> requires Python <code>3.10</code></li>
 </ul>
 </li>
-</ul></blockquote>
+</ul>
+</blockquote>
 </section><section>
 <h2 id="what-are-all-these-tools-pt-2">What are all these tools? (pt. 2)</h2>
 <p>(consider reading this page for further details <a href="https://stackoverflow.com/a/41573588">https://stackoverflow.com/a/41573588</a>)</p>
@@ -252,7 +256,8 @@ multiple tools <em>proliferated</em></p>
 </ol>
 <blockquote>
 <p><strong>New problem</strong>: many Python installations on the same system,
-<br> each one with a different version of Python, and different packages installed</p></blockquote>
+<br> each one with a different version of Python, and different packages installed</p>
+</blockquote>
 <p>recall all the issues we had in previous lectures?</p>
 </section><section>
 <h2 id="what-are-all-these-tools-pt-3">What are all these tools? (pt. 3)</h2>
@@ -283,7 +288,8 @@ multiple tools <em>proliferated</em></p>
 </section><section>
 <h2 id="from-now-on-lets-use-poetry">From now on, let’s use Poetry</h2>
 <blockquote>
-<p>Poetry is a <em>declarative</em> tool for <strong>dependency management</strong>, <strong>packaging</strong>, and <strong>release</strong> in Python</p></blockquote>
+<p>Poetry is a <em>declarative</em> tool for <strong>dependency management</strong>, <strong>packaging</strong>, and <strong>release</strong> in Python</p>
+</blockquote>
 <ul>
 <li>
 <p>It handles both <em>dependencies</em> and <em>dev-dependencies</em></p>
@@ -303,7 +309,7 @@ multiple tools <em>proliferated</em></p>
 </ul>
 </section><section>
 <h2 id="poetrys-canonical-project-structure">Poetry’s canonical project structure</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root-directory/
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>root-directory/
 </span></span><span style="display:flex;"><span>├── main_package/
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── __init__.py
 </span></span><span style="display:flex;"><span>│&nbsp;&nbsp; ├── sub_module.py
@@ -325,11 +331,11 @@ multiple tools <em>proliferated</em></p>
 </ul>
 </section><section>
 <h1 id="example-pt-1">Example (pt. 1)</h1>
-<h2 id="the-calculator-repositoryhttpsgithubcomunibo-dtm-secalculator">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
+<h2 id="the-calculator">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
 <ol>
 <li>
 <p>Look at the <a href="https://github.com/unibo-dtm-se/calculator/blob/master/pyproject.toml"><code>pyproject.toml</code> file</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tool</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">poetry</span><span style="color:#000;font-weight:bold">]</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tool</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">poetry</span><span style="color:#000;font-weight:bold">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># name of the package to be published</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">name</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#4e9a06">"unibo-dtm-se-calculator"</span>
 </span></span><span style="display:flex;"><span>
@@ -382,11 +388,11 @@ multiple tools <em>proliferated</em></p>
 </ol>
 </section><section>
 <h1 id="example-pt-2">Example (pt. 2)</h1>
-<h2 id="the-calculator-repositoryhttpsgithubcomunibo-dtm-secalculator-1">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
+<h2 id="the-calculator-1">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
 <ol start="2">
 <li>
 <p>Look at the <a href="https://github.com/unibo-dtm-se/calculator/blob/master/poetry.toml"><code>poetry.toml</code> file</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># the project-specific environment will be created in the local .venv folder</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># the project-specific environment will be created in the local .venv folder</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">virtualenvs</span><span style="color:#000;font-weight:bold">]</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">in-project</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">true</span> 
 </span></span><span style="display:flex;"><span>
@@ -400,7 +406,7 @@ multiple tools <em>proliferated</em></p>
 </ol>
 </section><section>
 <h1 id="exercise-pt-1">Exercise (pt. 1)</h1>
-<h2 id="the-calculator-repositoryhttpsgithubcomunibo-dtm-secalculator-2">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
+<h2 id="the-calculator-2">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
 <ol>
 <li>
 <p>Ensure you have Poetry installed on your system</p>
@@ -439,7 +445,8 @@ multiple tools <em>proliferated</em></p>
 <li>We want to be able to specify ranges, but <em>retain the ability to use an exact version</em></li>
 </ul>
 <blockquote>
-<p>This software is compatible with <code>library</code> version 2.3. For our examples, we used version 2.3.<em>10</em></p></blockquote>
+<p>This software is compatible with <code>library</code> version 2.3. For our examples, we used version 2.3.<em>10</em></p>
+</blockquote>
 <p>Expressing something like this is done via <strong>dependency locking</strong>:</p>
 <ul>
 <li>Configure the build file with the range of supported versions</li>
@@ -457,7 +464,7 @@ multiple tools <em>proliferated</em></p>
 <p><a href="https://python-poetry.org/docs/dependency-specification/">Poetry allows range specifications and locks automatically</a></p>
 </section><section>
 <h1 id="exercise-pt-2">Exercise (pt. 2)</h1>
-<h2 id="the-calculator-repositoryhttpsgithubcomunibo-dtm-secalculator-3">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
+<h2 id="the-calculator-3">The <a href="https://github.com/unibo-dtm-se/calculator"><code>calculator</code> repository</a></h2>
 <ol start="5">
 <li>
 <p>Let’s use a shell in the virtual environment created by Poetry</p>
@@ -493,13 +500,14 @@ multiple tools <em>proliferated</em></p>
 <p>So many Python environments in the shell… how to avoid mistakes?</p>
 <blockquote>
 <p>If you want to be 100% you’re running commands in the <em>right</em> environment, you can prefix them with <code>poetry run</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>poetry run python -m unittest discover -v -s tests
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>poetry run python -m unittest discover -v -s tests
 </span></span></code></pre></div></blockquote>
 </li>
 <li>
 <p>Ok but what about VS Code’s environments?</p>
 <blockquote>
-<p>Get the habit of configuring the VS Code environment <em>manually</em> when working with Python projects</p></blockquote>
+<p>Get the habit of configuring the VS Code environment <em>manually</em> when working with Python projects</p>
+</blockquote>
 </li>
 </ol>
 </section><section>
@@ -507,7 +515,8 @@ multiple tools <em>proliferated</em></p>
 <p>It supports publishing.</p>
 <blockquote>
 <p>Consider the following Web Page:
-<br> <a href="https://pypi.org/project/unibo-dtm-se-calculator">https://pypi.org/project/unibo-dtm-se-calculator</a></p></blockquote>
+<br> <a href="https://pypi.org/project/unibo-dtm-se-calculator">https://pypi.org/project/unibo-dtm-se-calculator</a></p>
+</blockquote>
 <ul>
 <li>
 <p>This is the <em>PyPI</em> page of the <code>unibo-dtm-se-calculator</code> package</p>
@@ -719,7 +728,7 @@ multiple tools <em>proliferated</em></p>
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

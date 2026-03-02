@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.fb12bbf399da036eabb8be9e12a3291990eec0a750f867980e4161be3f38eac3.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
@@ -27,11 +27,11 @@
 <br>
 <h2 style="margin-bottom: 0;">Software Engineering</h2>
 <h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
-<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2025/2026</h4>
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="disclaimer">Disclaimer</h2>
@@ -66,7 +66,8 @@
 </ul>
 <br>
 <blockquote>
-<p>What’s the <strong>criterion</strong> to choose <strong>if</strong> and <strong>when</strong> to adopt languages / patterns / best / practices?</p></blockquote>
+<p>What’s the <strong>criterion</strong> to choose <strong>if</strong> and <strong>when</strong> to adopt languages / patterns / best / practices?</p>
+</blockquote>
 </section><section>
 <h2 id="recommended-workflow">Recommended workflow</h2>
 <h3 id="problem-xrightarrowcolorredanalysis-model-xrightarrowcolorreddesign-architecture-xrightarrowimplementation-solution">Problem $\xrightarrow{\color{red}analysis}$ <strong>Model</strong> $\xrightarrow{\color{red}design}$ Architecture $\xrightarrow{implementation}$ Solution</h3>
@@ -206,34 +207,37 @@
 </li>
 </ul>
 </section><section>
-<h2 id="the-_domain_">The <em>Domain</em></h2>
+<h2 id="the-domain">The <em>Domain</em></h2>
 <blockquote>
-<p>A well established sphere of knowledge, influence or activity</p></blockquote>
+<p>A well established sphere of knowledge, influence or activity</p>
+</blockquote>
 <ul>
 <li>e.g. some university (department, faculty, HR, etc.), linear algebra, etc.</li>
 </ul>
 </section><section>
-<h2 id="_contexts_"><em>Contexts</em></h2>
+<h2 id="contexts"><em>Contexts</em></h2>
 <blockquote>
 <p>A <em>portion</em> of the domain with a clear <em>boundary</em>:
 <br> (i) relying on a sub-set of the concepts of the domain
 <br> (ii) where words/names have a unique, precise meaning
-<br> (iii) clearly distinguishable from other contexts</p></blockquote>
+<br> (iii) clearly distinguishable from other contexts</p>
+</blockquote>
 <ul>
 <li>e.g. departments, divisions, complex numbers, etc.</li>
 </ul>
 </section><section>
-<h2 id="domain-_vs_-context">Domain <em>vs.</em> Context</h2>
+<h2 id="domain-vs-context">Domain <em>vs.</em> Context</h2>
 <p><img src="./domain.png" alt="Domain and context"></p>
 </section><section>
-<h2 id="the-domain-_model_">The domain <em>Model</em></h2>
+<h2 id="the-domain-model">The domain <em>Model</em></h2>
 <blockquote>
-<p>Set of <strong>software</strong> abstractions mapping relevant <em>concepts</em> of the domain</p></blockquote>
+<p>Set of <strong>software</strong> abstractions mapping relevant <em>concepts</em> of the domain</p>
+</blockquote>
 <ul>
 <li>e.g. Java/Kotlin/Scala projects, packages, interfaces, classes, records, methods, etc.</li>
 </ul>
 </section><section>
-<h2 id="the-_ubiquitous-language_">The <em>Ubiquitous Language</em></h2>
+<h2 id="the-ubiquitous-language">The <em>Ubiquitous Language</em></h2>
 <blockquote>
 <ul>
 <li>A <em>language</em> structured around the domain model
@@ -243,7 +247,8 @@
 <li>in such a way that their <em>semantics is preserved</em></li>
 </ul>
 </li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <ul>
 <li>
 <p>underlying assumption:</p>
@@ -428,7 +433,8 @@
 <ul>
 <li><em>genus</em>: both can be used to model <strong>elementary</strong> concepts</li>
 <li><em>differentia</em>: entities have an explicit <strong>identity</strong>, value objects are <strong>interchangeable</strong></li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <br>
 <h3 id="quick-modelling-examples">Quick modelling examples</h3>
 <h4 id="classroom">Classroom</h4>
@@ -502,7 +508,7 @@
 </ul>
 </section><section>
 <h2 id="entities-vs-value-objects-example">Entities vs. Value Objects (example)</h2>
-<figure id="plantuml-figure-1751290357334048856" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926331242538" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface Customer {
 + id: CustomerID <strong>{readonly}</strong>
 + name: str
@@ -526,7 +532,7 @@ TaxCode -d-|&gt; CustomerID</p>
 <p>Customer *-r- CustomerID</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357334048856");
+    handlePlantumlFigureByID("plantuml-figure-1772451926331242538");
 </script>
 </section><section>
 <h2 id="aggregate-root">Aggregate Root</h2>
@@ -590,7 +596,8 @@ TaxCode -d-|&gt; CustomerID</p>
 </section><section>
 <h2 id="factories-definition">Factories (definition)</h2>
 <blockquote>
-<p>Objects aimed at <strong>creating</strong> other objects</p></blockquote>
+<p>Objects aimed at <strong>creating</strong> other objects</p>
+</blockquote>
 <br>
 <p><img src="./factories.png" alt="Concept of factory"></p>
 </section><section>
@@ -645,7 +652,7 @@ TaxCode -d-|&gt; CustomerID</p>
 </ul>
 </section><section>
 <h2 id="factories-example">Factories (example)</h2>
-<figure id="plantuml-figure-1751290357334369477" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926331517990" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface TaxCode</p>
 <p>interface VatNumber</p>
@@ -672,12 +679,13 @@ end note</li>
 CustomerFactory -u-&gt; Customer: creates</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357334369477");
+    handlePlantumlFigureByID("plantuml-figure-1772451926331517990");
 </script>
 </section><section>
 <h2 id="repositories-definition">Repositories (definition)</h2>
 <blockquote>
-<p>Objects mediating the <em>persistent</em> <strong>storage/retrieval</strong> of other objects</p></blockquote>
+<p>Objects mediating the <em>persistent</em> <strong>storage/retrieval</strong> of other objects</p>
+</blockquote>
 <p><img src="./repositories.png" alt="Concept of repositories"></p>
 </section><section>
 <h2 id="repositories-details">Repositories (details)</h2>
@@ -739,7 +747,7 @@ CustomerFactory -u-&gt; Customer: creates</p>
 </ul>
 </section><section>
 <h2 id="repositories-example">Repositories (example)</h2>
-<figure id="plantuml-figure-1751290357334397850" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926331542143" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface Customer</p>
 <p>Customer “1” *-u- “1” CustomerID</p>
@@ -758,13 +766,14 @@ CustomerFactory -u-&gt; Customer: creates</p>
 CustomerRegistry –&gt; CustomerID: exploits</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357334397850");
+    handlePlantumlFigureByID("plantuml-figure-1772451926331542143");
 </script>
 </section><section>
 <h2 id="services">Services</h2>
 <blockquote>
 <p><em>Functional</em> objects encapsulating the <em>business logic</em> of the software
-<br> e.g. operations spanning through <em>several</em> entities, objects, aggregates, etc.</p></blockquote>
+<br> e.g. operations spanning through <em>several</em> entities, objects, aggregates, etc.</p>
+</blockquote>
 <h3 id="purpose-2">Purpose</h3>
 <ul>
 <li>Reifying <em>control-related</em> aspects of the software</li>
@@ -818,7 +827,7 @@ CustomerRegistry –&gt; CustomerID: exploits</p>
 </ul>
 </section><section>
 <h2 id="services-example">Services (example)</h2>
-<figure id="plantuml-figure-1751290357334467451" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926331572376" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
 + perform_order(order: Order)
 }</p>
@@ -848,13 +857,14 @@ note top of OrderManagementService: service</p>
 OrderID -d[hidden]- Customer</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357334467451");
+    handlePlantumlFigureByID("plantuml-figure-1772451926331572376");
 </script>
 </section><section>
 <h2 id="domain-events-definition">Domain Events (definition)</h2>
 <blockquote>
 <p>A value-like object capturing some domain-related <em>event</em>
-<br> (i.e., an observable <em>variation</em> in the domain, which is <em>relevant</em> to the software)</p></blockquote>
+<br> (i.e., an observable <em>variation</em> in the domain, which is <em>relevant</em> to the software)</p>
+</blockquote>
 <ul>
 <li>actually, only the event <em>notification</em>/description is reified to a type</li>
 </ul>
@@ -921,7 +931,7 @@ OrderID -d[hidden]- Customer</p>
 </ul>
 </section><section>
 <h2 id="domain-events-example">Domain Events (example)</h2>
-<figure id="plantuml-figure-1751290357334497066" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926331600282" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
 + perform_order(order: Order)
 ..
@@ -947,7 +957,7 @@ note right of CustomerID: value object
 note right of OrderManagementService: service</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357334497066");
+    handlePlantumlFigureByID("plantuml-figure-1772451926331600282");
 </script>
 
 </section>
@@ -955,7 +965,7 @@ note right of OrderManagementService: service</p>
 <h1 id="ddd-patterns">DDD Patterns</h1>
 </section><section>
 <h2 id="towards-ddd-patterns">Towards DDD patterns</h2>
-<h3 id="further-notions-involving-__contexts__">Further notions involving <strong>contexts</strong></h3>
+<h3 id="further-notions-involving-contexts">Further notions involving <strong>contexts</strong></h3>
 <ul>
 <li>
 <p><strong>Bounded Context</strong>: enforce a model’s <em>boundaries</em> &amp; make them explicit</p>
@@ -974,7 +984,8 @@ This is helpful from several perspectives:</p>
 <li>technical (e.g., <strong>dependencies</strong> among classes/interfaces)</li>
 <li>physical (e.g., common database, <strong>common facilities</strong>)</li>
 <li>organizational (e.g. <strong>people/teams</strong> maintaining/using the code)</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <br>
 <h3 id="context-map">Context Map</h3>
 <blockquote>
@@ -986,7 +997,8 @@ This is helpful from several perspectives:</p>
 </ul>
 </li>
 <li>providing the whole picture of the domain</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 </section><section>
 <h2 id="example-of-bounded-context-map">Example of bounded context map</h2>
 <p><img src="./bounded-contexts.png" alt="Context map"></p>
@@ -1042,7 +1054,8 @@ This is helpful from several perspectives:</p>
 </li>
 </ul>
 <blockquote>
-<p>Domain / model <strong>changes are critical</strong> and should be done carefully</p></blockquote>
+<p>Domain / model <strong>changes are critical</strong> and should be done carefully</p>
+</blockquote>
 </section><section>
 <h2 id="model-integrity-patterns">Model integrity patterns</h2>
 <ul>
@@ -1120,7 +1133,7 @@ This is helpful from several perspectives:</p>
 </li>
 </ul>
 </section><section>
-<h2 id="customer--supplier">Customer–Supplier</h2>
+<h2 id="customersupplier">Customer–Supplier</h2>
 <p><img src="./customer-supplier.jpg" alt="Customer–supplier concept"></p>
 <ul>
 <li>
@@ -1289,7 +1302,7 @@ This is helpful from several perspectives:</p>
 </li>
 </ul>
 
-<figure id="plantuml-figure-1751290357337088141" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1772451926333415137" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     
 top to bottom direction
 
@@ -1318,7 +1331,7 @@ product -u-|&gt; mq
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1751290357337088141");
+    handlePlantumlFigureByID("plantuml-figure-1772451926333415137");
 </script>
 </section><section>
 <h1 id="advanced-aspects-of-ddd">Advanced aspects of DDD</h1>
@@ -1338,7 +1351,8 @@ product -u-|&gt; mq
 </section><section>
 <h2 id="event-sourcing">Event sourcing</h2>
 <blockquote>
-<p>A pattern where <em>domain events</em> are reified into <em>time-stamped data</em> and the whole <em>evolution</em> of a system is persistently <em>stored</em></p></blockquote>
+<p>A pattern where <em>domain events</em> are reified into <em>time-stamped data</em> and the whole <em>evolution</em> of a system is persistently <em>stored</em></p>
+</blockquote>
 <ul>
 <li>perfect match with DDD as domain events are first-class citizens</li>
 </ul>
@@ -1371,7 +1385,7 @@ product -u-|&gt; mq
 <li>Reconstructing the (current) state costs <em>time</em></li>
 </ul>
 </section><section>
-<h2 id="command--query-responsibility-segregation-__cqrs__">Command–Query Responsibility Segregation (<strong>CQRS</strong>)</h2>
+<h2 id="commandquery-responsibility-segregation-cqrs">Command–Query Responsibility Segregation (<strong>CQRS</strong>)</h2>
 <ul>
 <li>
 <p>Advanced pattern for building <em>highly-scalable</em> applications</p>
@@ -1390,7 +1404,8 @@ product -u-|&gt; mq
 </section><section>
 <h2 id="cqrs-definition">CQRS definition</h2>
 <blockquote>
-<p><strong>Split</strong> the <em>domain</em> and <em>application</em> layers to <em>segregate</em> <strong>read/write</strong> responsibilities</p></blockquote>
+<p><strong>Split</strong> the <em>domain</em> and <em>application</em> layers to <em>segregate</em> <strong>read/write</strong> responsibilities</p>
+</blockquote>
 <ul>
 <li>
 <p><strong>Read</strong> model (a.k.a. <em>view</em> or <em>query</em> model)</p>
@@ -1451,10 +1466,11 @@ product -u-|&gt; mq
 </li>
 </ol>
 </section><section>
-<h2 id="cqrs----when-are-commands-reified">CQRS – When are commands reified?</h2>
+<h2 id="cqrs--when-are-commands-reified">CQRS – When are commands reified?</h2>
 <blockquote>
 <p><strong>Reification</strong>: is the process of computing the state of the system at time $t$ by applying of commands recorded up to time $t$
-<br></p></blockquote>
+<br></p>
+</blockquote>
 <ul>
 <li>
 <p>If queries and commands are stored on different databases</p>
@@ -1525,7 +1541,7 @@ product -u-|&gt; mq
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

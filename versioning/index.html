@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/course-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/course-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.3bee906a09133576f8ef092100894160e8353673dfec5c3b5e6c6a2c025152eb.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
+  <link rel="stylesheet" href="/course-slides/css/custom-theme.min.fb12bbf399da036eabb8be9e12a3291990eec0a750f867980e4161be3f38eac3.css" id="theme"><link rel="stylesheet" href="/course-slides/highlight-js/github.min.css">
 <link rel="stylesheet" href="https://raw.githubusercontent.com/DanySK/css-blur-animation/master/blur.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
@@ -27,16 +27,17 @@
 <br>
 <h2 style="margin-bottom: 0;">Software Engineering</h2>
 <h3 id="for-intelligent-distributed-systems"><strong>(for Intelligent Distributed Systems)</strong></h3>
-<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2024/2025</h4>
+<h4 id="hahahugoshortcode1s1hbhb">A.Y. 2025/2026</h4>
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h1 id="software-versioning">Software versioning</h1>
 <blockquote>
-<p><strong>Versioning</strong>: the process of assigning a <strong>unique identifier</strong> to a <strong>unique state</strong> of some software</p></blockquote>
+<p><strong>Versioning</strong>: the process of assigning a <strong>unique identifier</strong> to a <strong>unique state</strong> of some software</p>
+</blockquote>
 <ul>
 <li>Used to <em>distinguish</em> different software states</li>
 <li>Used to <em>refer</em> to different states of the same software</li>
@@ -91,7 +92,8 @@
 <h1 id="versioning-approaches">Versioning approaches</h1>
 <h2 id="code-naming">Code naming</h2>
 <blockquote>
-<p>The version is represented by a (usually pronounceable) <em>word</em>, <em>short phrase</em> or <em>acronym</em></p></blockquote>
+<p>The version is represented by a (usually pronounceable) <em>word</em>, <em>short phrase</em> or <em>acronym</em></p>
+</blockquote>
 <p>Examples: macOS <strong>Sierra</strong>, Windows <strong>Vista</strong>, Ubuntu <strong>Bionic Beaver</strong></p>
 <ul>
 <li>With few exceptions, <em>does not provide any direct information on the project</em> (often by purpose)</li>
@@ -114,7 +116,8 @@
 <h1 id="versioning-approaches-1">Versioning approaches</h1>
 <h2 id="date-based-versioning">Date based versioning</h2>
 <blockquote>
-<p>The version is represented by <strong>a string representing the release date</strong></p></blockquote>
+<p>The version is represented by <strong>a string representing the release date</strong></p>
+</blockquote>
 <p>Example: Ubuntu <code>18.04</code>, Windows <code>2000</code>, Office <code>2007</code>, Visual Studio <code>2022</code></p>
 <ul>
 <li>
@@ -140,7 +143,8 @@
 <h1 id="versioning-approaches-2">Versioning approaches</h1>
 <h2 id="unary-numbering">Unary numbering</h2>
 <blockquote>
-<p>The version is represented by a <strong>string whose length grows at each version</strong></p></blockquote>
+<p>The version is represented by a <strong>string whose length grows at each version</strong></p>
+</blockquote>
 <p>Example: $\TeX$ <code>3.1</code>, <code>3.14</code>, <code>3.141</code>, …, $\pi$</p>
 <ul>
 <li>
@@ -159,7 +163,8 @@
 <blockquote>
 <p>The version is represented one or more <em>numbers</em>, separately incremented, that
 <br>
-<strong>reflect incrementally widespread changes in the product</strong></p></blockquote>
+<strong>reflect incrementally widespread changes in the product</strong></p>
+</blockquote>
 <p>Example: <code>1.0.1</code>, <code>1.1.0</code>, <code>2.0.0</code></p>
 <ul>
 <li>Often used <em>in conjunction with other techniques</em></li>
@@ -173,7 +178,7 @@
 </ul>
 </section><section>
 <h1 id="versioning-in-the-real-world">Versioning in the real world</h1>
-<h2 id="microsoft-windows-versioninghttpsenwikipediaorgwikilist_of_microsoft_windows_versions"><a href="https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions">Microsoft Windows versioning</a></h2>
+<h2 id="microsoft-windows-versioning"><a href="https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions">Microsoft Windows versioning</a></h2>
 <p>Combination of all the techniques:</p>
 <ul>
 <li>
@@ -209,7 +214,7 @@
 </ul>
 </section><section>
 <h1 id="versioning-in-the-real-world-1">Versioning in the real world</h1>
-<h2 id="macintosh-versioninghttpsenwikipediaorgwikilist_of_apple_operating_systemsmacintosh_computers"><a href="https://en.wikipedia.org/wiki/List_of_Apple_operating_systems#Macintosh_computers">Macintosh versioning</a></h2>
+<h2 id="macintosh-versioning"><a href="https://en.wikipedia.org/wiki/List_of_Apple_operating_systems#Macintosh_computers">Macintosh versioning</a></h2>
 <ul>
 <li>
 <p>Different versioning styles over time</p>
@@ -298,7 +303,8 @@ same letter.</p>
 <ul>
 <li>one version does not stop to exist when the next one is released</li>
 <li>bug fixes are often back-ported to older versions</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 </section><section>
 <h1 id="support-of-software-products-pt-2">“Support” of software products (pt. 2)</h1>
 <ul>
@@ -382,10 +388,11 @@ same letter.</p>
 except that the final version numbers to be reported in the “banner” lines of the programs should become:
 <strong>TeX, Version $\pi $</strong> […].
 From that moment on, all “bugs” will be permanent “features”.
-<strong></strong></p><div style="text-align: right"><strong> Donald E. Knuth</strong><p></p></div></blockquote>
+<strong></strong></p><div style="text-align: right"><strong> Donald E. Knuth</strong><p></p>
+</div></blockquote>
 </section><section>
 <h1 id="versioning-in-the-real-world-4">Versioning in the real world</h1>
-<h2 id="python-enhancement-proposal-440-pep440httpswwwpythonorgdevpepspep-0440">Python Enhancement Proposal 440 (<a href="https://www.python.org/dev/peps/pep-0440/">PEP440</a>)</h2>
+<h2 id="python-enhancement-proposal-440-pep440">Python Enhancement Proposal 440 (<a href="https://www.python.org/dev/peps/pep-0440/">PEP440</a>)</h2>
 <p>It is <em>the</em> way Python software should be versioned</p>
 <ul>
 <li>Flexible but complicated</li>
@@ -401,7 +408,7 @@ From that moment on, all “bugs” will be permanent “features”.
 </ol>
 </section><section>
 <h1 id="versioning-in-the-real-world-5">Versioning in the real world</h1>
-<h2 id="semantic-versioning-semverhttpssemverorg"><a href="https://semver.org/">Semantic Versioning (SemVer)</a></h2>
+<h2 id="semantic-versioning-semver"><a href="https://semver.org/">Semantic Versioning (SemVer)</a></h2>
 <p>Encodes version numbers and their change to <em>convey meaning about the underlying code</em> and what has been modified from one version to the next.</p>
 <ul>
 <li>Written in RFC-style</li>
@@ -419,7 +426,7 @@ From that moment on, all “bugs” will be permanent “features”.
 </ul>
 </section><section>
 <h1 id="versioning-in-the-real-world-6">Versioning in the real world</h1>
-<h2 id="semantic-versioning-semverhttpssemverorg-overivew"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> overivew</h2>
+<h2 id="semantic-versioning-semver-overivew"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> overivew</h2>
 <ul>
 <li>Software using Semantic Versioning <strong>MUST</strong> <em>declare a public API</em>.
 This API could be declared in the code itself or exist strictly in documentation.
@@ -432,7 +439,7 @@ Each element <strong>MUST</strong> <em>increase numerically</em>.</li>
 </ul>
 </section><section>
 <h1 id="versioning-in-the-real-world-7">Versioning in the real world</h1>
-<h2 id="semantic-versioning-semverhttpssemverorg-criteria"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> criteria</h2>
+<h2 id="semantic-versioning-semver-criteria"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> criteria</h2>
 <ul>
 <li>Patch version <code>Z</code> <strong>MUST</strong> be <em>incremented if only backwards compatible bug fixes are introduced</em>.
 A bug fix is defined as an internal change that fixes incorrect behavior.</li>
@@ -453,7 +460,7 @@ A bug fix is defined as an internal change that fixes incorrect behavior.</li>
 </ul>
 </section><section>
 <h1 id="versioning-in-the-real-world-8">Versioning in the real world</h1>
-<h2 id="semantic-versioning-semverhttpssemverorg-details"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> details</h2>
+<h2 id="semantic-versioning-semver-details"><a href="https://semver.org/">Semantic Versioning (SemVer)</a> details</h2>
 <ul>
 <li>
 <p>Version number <code>0.1.0</code> is the <strong>minimum</strong> (i.e. first) one</p>
@@ -589,7 +596,7 @@ A bug fix is defined as an internal change that fixes incorrect behavior.</li>
 <p>One of the possible ways to write standardized commits – <a href="https://www.conventionalcommits.org/">https://www.conventionalcommits.org/</a></p>
 <p>Heavily inspired by <em>the Angular convention</em>: <a href="https://bit.ly/3VnAp4T">https://bit.ly/3VnAp4T</a></p>
 <p>Format (optional parts in <code>[</code>square brackets<code>]</code>):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>type[(scope)][!]: description
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>type[(scope)][!]: description
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[body]
 </span></span><span style="display:flex;"><span>
@@ -845,7 +852,7 @@ create a release tag and perform the release procedure</li>
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2025-06-30 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-02 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

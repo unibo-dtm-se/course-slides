@@ -51,7 +51,7 @@ Students _must_ enroll
 
 ## Organization
 
-- __Tuesdays__ (_14:30-17:30_) in room 2.5
+- __Tuesdays__ (_14:30-17:30_) in lab 4.2
     + you may use the PCs in the lab, or bring your laptops
 
 - __Thursdays__ (_11:00-13:00_) in lab 3.1

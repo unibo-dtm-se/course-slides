@@ -17,13 +17,24 @@ aliases = [
 
 ## Teacher
 
-- **teacher:** {{<gc>}}, Tenure-Track Researcher (RTT)
+- **name/role:** {{<gc>}}, Tenure-Track Researcher (RTT)
 
 - **email:** {{<gc-address>}}
 
 - **home page**: https://www.unibo.it/sitoweb/giovanni.ciatto/en
 
 - **office hours:** dynamic, send an email to the teacher for an appointment
+
+### Tutor
+
+- **name/role:** Davide Domini, PhD student
+
+- **email:** [`davide.domini@unibo.it`](mailto:davide.domini@unibo.it)
+
+- **home page**: https://www.unibo.it/sitoweb/davide.domini/en
+
+- **office hours:** dynamic, send an email for an appointment
+    + only concerning technical support for project work, laboratory exercises, and other practical aspects of the course
 
 ---
 

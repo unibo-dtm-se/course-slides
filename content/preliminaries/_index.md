@@ -147,7 +147,7 @@ This is not really the case of everyday programming tasks, but let's keep this i
 
 ## Stuff you need to know about the shell (pt. 2)
 
-- Whenver you open a shell, the shell is "in" a directory, which is called the __current working directory__ (CWD)
+- Whenever you open a shell, the shell is "in" a directory, which is called the __current working directory__ (CWD)
     - by default, commands _operate_ on the CWD (i.e. they read and write files in the CWD)
     - that directory should be shown _somewhere_ in the shell's _prompt_
     - if not shown, you can always _ask_ the shell to show it, via some command
@@ -161,7 +161,86 @@ This is not really the case of everyday programming tasks, but let's keep this i
 
 ---
 
+{{% section %}}
+
 ## Stuff you need to know about the shell (pt. 3)
+
+### File system (overview)
+
+- Files on the computer are organised in a __file system__
+    + a file system is a _hierarchical_ structure of _directories_ and _files_
+    + directories can contain other directories (called _sub-directories_) and files
+    + files are the _leaves_ of the file system, while directories are the _nodes_
+
+![](./fs-abstract.png)
+
+---
+
+## Stuff you need to know about the shell (pt. 3)
+
+### File system (Linux)
+
+{{% multicol %}}
+{{% col %}}
+![](./fs-linux.jpg)
+{{% /col %}}
+{{% col %}}
+- All paths are _rooted_ in the __root directory__ (`/`)
+- Many system-level directories
+    * e.g. `/bin`, `/usr`, `/etc`, etc.
+- User-level files are stored in the __home directory__ 
+    * e.g. `/home/USERNAME`
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Stuff you need to know about the shell (pt. 3)
+
+### File system (MacOS)
+
+See also <https://umass-gis.github.io/workshops/content/extras/filepaths-mac.html>
+
+{{% multicol %}}
+{{% col %}}
+![](./fs-mac.png)
+{{% /col %}}
+{{% col %}}
+- All paths are _rooted_ in the __root directory__ (`/`)
+- Many system-level directories
+    * e.g. `/Applications`, `/System`, `/Library`, etc.
+- User-level files are stored in the __home directory__ 
+    * e.g. `/Users/USERNAME`
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Stuff you need to know about the shell (pt. 3)
+
+### File system (Windows)
+
+See also <https://www.geeksforgeeks.org/ethical-hacking/windows-file-system-structure/>
+
+{{% multicol %}}
+{{% col %}}
+![](./fs-win.webp)
+{{% /col %}}
+{{% col %}}
+![](./fs-win2.png)
+{{% /col %}}
+{{% /multicol %}}
+
+- All paths are _rooted_ in some __drive__, named after a letter (e.g. `C:\`, `D:\`, etc.)
+- System is commonly installed on the `C:\` drive
+    - many system-level directories, e.g. `C:\Windows`, `C:\Program Files`, etc.
+- User-level files are stored in the __home directory__ (`C:\Users\USERNAME`)
+
+---
+
+## Stuff you need to know about the shell (pt. 3)
+
+### Paths (overview)
 
 A __path__ is a string that represents the location of a file or a directory in the __file system__
 
@@ -179,14 +258,48 @@ A __path__ is a string that represents the location of a file or a directory in 
         * e.g. `/home/giovanni/file.txt` refers to a file named `file.txt` in `giovanni`'s home directory on __Linux__
         * e.g. `/Users/giovanni/file.txt` refers to a file named `file.txt` in `giovanni`'s home directory on __macOS__
     - on __Windows__, there are _several roots_, one per __drive__ (e.g., `C:`, `D:`, etc.)
-        * e.g. `C:\Users\giovanni\file.txt` refers file `file.txt` in `giovanni`'s home directory, _on drive `C:`_
-        * e.g. `D:\Data\Photos\profile.jpg` refers file `profile.jpg` in the `Data\Photos` directory, _on drive `D:`_
+        * e.g. `C:\Users\giovanni\file.txt` refers to file `file.txt` in `giovanni`'s home directory, _on drive `C:`_
+        * e.g. `D:\Data\Photos\profile.jpg` refers to file `profile.jpg` in the `Data\Photos` directory, _on drive `D:`_
 
 ---
 
-<!-- write-here "shared-slides/terminal-cheatsheet.md" -->
+## Stuff you need to know about the shell (pt. 3)
 
-<!-- end-write -->
+### Paths (syntax)
+
+{{% multicol %}}
+{{% col %}}
+![](./paths.svg)
+{{% /col %}}
+{{% col %}}
+- Extension $\approx$ the `.something` suffix of the file name, denoting file _type_
+    * e.g. `.txt`, `.pdf`, `.jpg`, `.docx`
+    * necessary for the OS to know how to handle the file
+    * commonly hidden by GUIs, but not by the terminal
+    * users may change the extension of a file, but that may cause issues
+
+- Spaces are allowed in paths, but
+    * you'll need to _escape_ them in the terminal...
+        + e.g. `path/to/My\ File.txt` on _Unix_-like systems
+    * ... or put the whole path in quotes 
+        + e.g. `"path\to\My File.txt"`
+
+- Prefer to avoid spaces in paths, and using various strategies:
+    * e.g. `PascalCase` or `camelCase`
+    * e.g. `snake_case`
+    * e.g. `kebab-case`
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+## Stuff you need to know about the shell (pt. 3)
+
+### Paths (graphical representation)
+
+![](./path-abs-rel.png)
+
+{{% /section %}}
 
 ---
 
@@ -205,6 +318,24 @@ A __path__ is a string that represents the location of a file or a directory in 
     + `ls` lists the files in the CWD, _as an inline list_
     + `ls -l` lists the files in the CWD, _as a detailed list_
     + `ls -l /path/to/dir` lists the files in the `/path/to/dir` directory, _as a detailed list_
+
+---
+
+{{% section %}}
+
+## Cheat sheet for Linux and macOS (or GitBash on Windows)
+
+![Cheat Sheet with most common commands for Linux and macOS](./terminal-cheatsheet-bash.png)
+
+---
+
+## Cheat sheet for Windows (comparison with Linux)
+
+[Comparison among Linux and Windows commands](./Linux-to-Windows-Cheat-Sheet.pdf):
+
+<iframe src="./Linux-to-Windows-Cheat-Sheet.pdf" width="100%" height="700px"></iframe>
+
+{{% /section %}}
 
 ---
 
@@ -241,7 +372,7 @@ You should not.
 
 + In this case we say that the command is just _starting_ a __process__
     + "process" is a technical term for a _program that is running_
-    + an __app__ is commonly a process attached to a __graphical user interace__ (_GUI_) shown on the screen
+    + an __app__ is commonly a process attached to a __graphical user interface__ (_GUI_) shown on the screen
 
 + There is _no difference_ among __interactive__ and __non__-_interactive_ processes, _for the shell_
     1. a command is used to _start_ the process

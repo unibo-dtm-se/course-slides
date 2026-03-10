@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2026-03-03 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-10 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="motivation-and-goals">Motivation and goals</h2>
@@ -203,7 +203,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <h2 id="stuff-you-need-to-know-about-the-shell-pt-2">Stuff you need to know about the shell (pt. 2)</h2>
 <ul>
 <li>
-<p>Whenver you open a shell, the shell is “in” a directory, which is called the <strong>current working directory</strong> (CWD)</p>
+<p>Whenever you open a shell, the shell is “in” a directory, which is called the <strong>current working directory</strong> (CWD)</p>
 <ul>
 <li>by default, commands <em>operate</em> on the CWD (i.e. they read and write files in the CWD)</li>
 <li>that directory should be shown <em>somewhere</em> in the shell’s <em>prompt</em></li>
@@ -229,7 +229,89 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 </li>
 </ul>
 </section><section>
+
+
+<section data-shortcode-section="">
 <h2 id="stuff-you-need-to-know-about-the-shell-pt-3">Stuff you need to know about the shell (pt. 3)</h2>
+<h3 id="file-system-overview">File system (overview)</h3>
+<ul>
+<li>Files on the computer are organised in a <strong>file system</strong>
+<ul>
+<li>a file system is a <em>hierarchical</em> structure of <em>directories</em> and <em>files</em></li>
+<li>directories can contain other directories (called <em>sub-directories</em>) and files</li>
+<li>files are the <em>leaves</em> of the file system, while directories are the <em>nodes</em></li>
+</ul>
+</li>
+</ul>
+<p><img src="./fs-abstract.png" alt=""></p>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-3-1">Stuff you need to know about the shell (pt. 3)</h2>
+<h3 id="file-system-linux">File system (Linux)</h3>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><p><img src="./fs-linux.jpg" alt=""></p>
+</div>
+<div class="col "><ul>
+<li>All paths are <em>rooted</em> in the <strong>root directory</strong> (<code>/</code>)</li>
+<li>Many system-level directories
+<ul>
+<li>e.g. <code>/bin</code>, <code>/usr</code>, <code>/etc</code>, etc.</li>
+</ul>
+</li>
+<li>User-level files are stored in the <strong>home directory</strong>
+<ul>
+<li>e.g. <code>/home/USERNAME</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-3-2">Stuff you need to know about the shell (pt. 3)</h2>
+<h3 id="file-system-macos">File system (MacOS)</h3>
+<p>See also <a href="https://umass-gis.github.io/workshops/content/extras/filepaths-mac.html">https://umass-gis.github.io/workshops/content/extras/filepaths-mac.html</a></p>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><p><img src="./fs-mac.png" alt=""></p>
+</div>
+<div class="col "><ul>
+<li>All paths are <em>rooted</em> in the <strong>root directory</strong> (<code>/</code>)</li>
+<li>Many system-level directories
+<ul>
+<li>e.g. <code>/Applications</code>, <code>/System</code>, <code>/Library</code>, etc.</li>
+</ul>
+</li>
+<li>User-level files are stored in the <strong>home directory</strong>
+<ul>
+<li>e.g. <code>/Users/USERNAME</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-3-3">Stuff you need to know about the shell (pt. 3)</h2>
+<h3 id="file-system-windows">File system (Windows)</h3>
+<p>See also <a href="https://www.geeksforgeeks.org/ethical-hacking/windows-file-system-structure/">https://www.geeksforgeeks.org/ethical-hacking/windows-file-system-structure/</a></p>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><p><img src="./fs-win.webp" alt=""></p>
+</div>
+<div class="col "><p><img src="./fs-win2.png" alt=""></p>
+</div>
+</div>
+</div>
+<ul>
+<li>All paths are <em>rooted</em> in some <strong>drive</strong>, named after a letter (e.g. <code>C:\</code>, <code>D:\</code>, etc.)</li>
+<li>System is commonly installed on the <code>C:\</code> drive
+<ul>
+<li>many system-level directories, e.g. <code>C:\Windows</code>, <code>C:\Program Files</code>, etc.</li>
+</ul>
+</li>
+<li>User-level files are stored in the <strong>home directory</strong> (<code>C:\Users\USERNAME</code>)</li>
+</ul>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-3-4">Stuff you need to know about the shell (pt. 3)</h2>
+<h3 id="paths-overview">Paths (overview)</h3>
 <p>A <strong>path</strong> is a string that represents the location of a file or a directory in the <strong>file system</strong></p>
 <blockquote>
 <p><strong>Beware</strong>: path-separator is different among Windows (<code>\</code>) and other OS (<code>/</code>),</p>
@@ -255,16 +337,62 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 </li>
 <li>on <strong>Windows</strong>, there are <em>several roots</em>, one per <strong>drive</strong> (e.g., <code>C:</code>, <code>D:</code>, etc.)
 <ul>
-<li>e.g. <code>C:\Users\giovanni\file.txt</code> refers file <code>file.txt</code> in <code>giovanni</code>’s home directory, <em>on drive <code>C:</code></em></li>
-<li>e.g. <code>D:\Data\Photos\profile.jpg</code> refers file <code>profile.jpg</code> in the <code>Data\Photos</code> directory, <em>on drive <code>D:</code></em></li>
+<li>e.g. <code>C:\Users\giovanni\file.txt</code> refers to file <code>file.txt</code> in <code>giovanni</code>’s home directory, <em>on drive <code>C:</code></em></li>
+<li>e.g. <code>D:\Data\Photos\profile.jpg</code> refers to file <code>profile.jpg</code> in the <code>Data\Photos</code> directory, <em>on drive <code>D:</code></em></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </section><section>
-<!-- write-here "shared-slides/terminal-cheatsheet.md" -->
-<!-- end-write -->
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-3-5">Stuff you need to know about the shell (pt. 3)</h2>
+<h3 id="paths-syntax">Paths (syntax)</h3>
+<div class="container w-100 m-0 p-0">
+    <div class="row "><div class="col "><p><img src="./paths.svg" alt=""></p>
+</div>
+<div class="col "><ul>
+<li>
+<p>Extension $\approx$ the <code>.something</code> suffix of the file name, denoting file <em>type</em></p>
+<ul>
+<li>e.g. <code>.txt</code>, <code>.pdf</code>, <code>.jpg</code>, <code>.docx</code></li>
+<li>necessary for the OS to know how to handle the file</li>
+<li>commonly hidden by GUIs, but not by the terminal</li>
+<li>users may change the extension of a file, but that may cause issues</li>
+</ul>
+</li>
+<li>
+<p>Spaces are allowed in paths, but</p>
+<ul>
+<li>you’ll need to <em>escape</em> them in the terminal…
+<ul>
+<li>e.g. <code>path/to/My\ File.txt</code> on <em>Unix</em>-like systems</li>
+</ul>
+</li>
+<li>… or put the whole path in quotes
+<ul>
+<li>e.g. <code>"path\to\My File.txt"</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Prefer to avoid spaces in paths, and using various strategies:</p>
+<ul>
+<li>e.g. <code>PascalCase</code> or <code>camelCase</code></li>
+<li>e.g. <code>snake_case</code></li>
+<li>e.g. <code>kebab-case</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section>
+<h2 id="stuff-you-need-to-know-about-the-shell-pt-3-6">Stuff you need to know about the shell (pt. 3)</h2>
+<h3 id="paths-graphical-representation">Paths (graphical representation)</h3>
+<p><img src="./path-abs-rel.png" alt=""></p>
+
+</section>
 </section><section>
 <h2 id="stuff-you-need-to-know-about-the-shell-pt-4">Stuff you need to know about the shell (pt. 4)</h2>
 <ul>
@@ -291,6 +419,18 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 </ul>
 </li>
 </ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="cheat-sheet-for-linux-and-macos-or-gitbash-on-windows">Cheat sheet for Linux and macOS (or GitBash on Windows)</h2>
+<p><img src="./terminal-cheatsheet-bash.png" alt="Cheat Sheet with most common commands for Linux and macOS"></p>
+</section><section>
+<h2 id="cheat-sheet-for-windows-comparison-with-linux">Cheat sheet for Windows (comparison with Linux)</h2>
+<p><a href="./Linux-to-Windows-Cheat-Sheet.pdf">Comparison among Linux and Windows commands</a>:</p>
+<iframe src="./Linux-to-Windows-Cheat-Sheet.pdf" width="100%" height="700px"></iframe>
+
+</section>
 </section><section>
 <h2 id="how-the-hell-can-i-memorise-all-these-commands">How the hell can I memorise all these commands?</h2>
 <p>You should not.</p>
@@ -344,7 +484,7 @@ Each terminal application is executing a <strong>shell</strong> program</p>
 <p>In this case we say that the command is just <em>starting</em> a <strong>process</strong></p>
 <ul>
 <li>“process” is a technical term for a <em>program that is running</em></li>
-<li>an <strong>app</strong> is commonly a process attached to a <strong>graphical user interace</strong> (<em>GUI</em>) shown on the screen</li>
+<li>an <strong>app</strong> is commonly a process attached to a <strong>graphical user interface</strong> (<em>GUI</em>) shown on the screen</li>
 </ul>
 </li>
 <li>
@@ -1589,7 +1729,7 @@ or they may have a subset of the mechanisms available in Python</p>
 
 
 <div class="col "><p>Class diagram:</p>
-<figure id="plantuml-figure-1772544353915611290" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1773143925057590887" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>class Calculator {
 + expression: str
 - _ensure_is_digit(value: int | str) → int
@@ -1604,7 +1744,7 @@ or they may have a subset of the mechanisms available in Python</p>
 }</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1772544353915611290");
+    handlePlantumlFigureByID("plantuml-figure-1773143925057590887");
 </script>
 </div>
 
@@ -1719,7 +1859,7 @@ or they may have a subset of the mechanisms available in Python</p>
 </span></span></code></pre></div></section><section>
 <h2 id="overview-on-code-organization-pt-1">Overview on code organization (pt. 1)</h2>
 
-<figure id="plantuml-figure-1772544353916975208" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1773143925059520955" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
     
 
 package calculator {
@@ -1761,13 +1901,13 @@ package calculator {
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1772544353916975208");
+    handlePlantumlFigureByID("plantuml-figure-1773143925059520955");
 </script>
 </section><section>
 <h2 id="overview-on-code-organization-pt-2">Overview on code organization (pt. 2)</h2>
 <p>(including dependencies from Python and Kivy)</p>
 
-<figure id="plantuml-figure-1772544353917007539" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1773143925059564136" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
     
 
 package "Python Standard Library" as Python {
@@ -1841,7 +1981,7 @@ calculator .left.&gt; Python: uses extensively
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1772544353917007539");
+    handlePlantumlFigureByID("plantuml-figure-1773143925059564136");
 </script>
 </section><section>
 <h2 id="many-hidden-concepts-in-this-example-1">Many hidden concepts in this example</h2>
@@ -2501,7 +2641,7 @@ It is far <em>more important</em> in SE to take care about the <strong>API</stro
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2026-03-03 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-10 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

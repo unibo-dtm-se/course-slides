@@ -139,17 +139,53 @@ Object of type `Light` have:
 
 - a __method__ `switch` that toggles the `state` of the light
 
-- a constructor `__init__` that initializes the `state` of the light to its initial value (`initially_on`)
-    + this is invoked via the name of the class, e.g. `Light)`
+- a constructor `__init__` that initializes the `state` each _new_ light to its initial value (`initially_on`), upon creating a new light object
+    + this is invoked via the name of the class, e.g. `Light()` or `Light(Flase)` or `Light(initially_on=True)`
 
 {{% /col %}}
 {{% /multicol %}}
+
+---
+
+## Class vs. Instance
+
+A _class_ is the __template__ out of which _instances_ of objects are created
+
+![](class-instance.png)
+
+---
+
+## Class vs. Instance + Constructor
+
+- Each class _name_ can be thought as a __special function__ (namely, the __constructor__) that creates _different instances_ of that class
+    ```python
+    class MyClass:
+        ...
+
+    obj1 = MyClass() # creates an instance of MyClass, and assigns it to the variable obj1
+    obj2 = MyClass() # creates another instance of MyClass, and assigns it to the variable obj2
+    ```
+
+- To parametrize the construction logic of instances, the magic method `__init__` can be implemented in the class
+    + this method is called by the constructor, and it is in charge of initializing the instance's attributes
+    
+    ```python
+    class MyClass:
+        def __init__(self, param1, param2="default value"):
+            ...
+            
+    obj1 = MyClass(param1=42) # creates an instance of MyClass, and assigns it to the variable obj1
+    # the above line is equivalent to obj1 = MyClass(param1=42, param2="default value")
+    obj2 = MyClass(param1=43, param2="custom value") # creates another instance of MyClass, and assigns it to the variable obj2
+    # you can also pass arguments positionally, e.g.:
+    obj3 = MyClass(44, "another custom value")
+    ```
 
 --- 
 
 ## What is `self`?
 
-- You can think about a class as group of functions, which all have an _implicit_ first argument, `self`
+- You can think about a class as group of functions, which all have a _default_ first argument, `self`
     + this is a reference to the _instance_ of the class that is being manipulated
     + it is _not_ passed explicitly when calling the method
 

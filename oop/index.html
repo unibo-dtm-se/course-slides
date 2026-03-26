@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2026-03-10 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-26 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="many-programming-paradigms">Many programming paradigms</h2>
@@ -192,9 +192,9 @@
 <p>a <strong>method</strong> <code>switch</code> that toggles the <code>state</code> of the light</p>
 </li>
 <li>
-<p>a constructor <code>__init__</code> that initializes the <code>state</code> of the light to its initial value (<code>initially_on</code>)</p>
+<p>a constructor <code>__init__</code> that initializes the <code>state</code> each <em>new</em> light to its initial value (<code>initially_on</code>), upon creating a new light object</p>
 <ul>
-<li>this is invoked via the name of the class, e.g. <code>Light)</code></li>
+<li>this is invoked via the name of the class, e.g. <code>Light()</code> or <code>Light(Flase)</code> or <code>Light(initially_on=True)</code></li>
 </ul>
 </li>
 </ul>
@@ -202,10 +202,41 @@
 </div>
 </div>
 </section><section>
+<h2 id="class-vs-instance">Class vs. Instance</h2>
+<p>A <em>class</em> is the <strong>template</strong> out of which <em>instances</em> of objects are created</p>
+<p><img src="class-instance.png" alt=""></p>
+</section><section>
+<h2 id="class-vs-instance--constructor">Class vs. Instance + Constructor</h2>
+<ul>
+<li>
+<p>Each class <em>name</em> can be thought as a <strong>special function</strong> (namely, the <strong>constructor</strong>) that creates <em>different instances</em> of that class</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ce5c00;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">obj1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># creates an instance of MyClass, and assigns it to the variable obj1</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">obj2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># creates another instance of MyClass, and assigns it to the variable obj2</span>
+</span></span></code></pre></div></li>
+<li>
+<p>To parametrize the construction logic of instances, the magic method <code>__init__</code> can be implemented in the class</p>
+<ul>
+<li>this method is called by the constructor, and it is in charge of initializing the instance’s attributes</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">param1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">param2</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"default value"</span><span style="color:#000;font-weight:bold">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ce5c00;font-weight:bold">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">obj1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">param1</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">42</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># creates an instance of MyClass, and assigns it to the variable obj1</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># the above line is equivalent to obj1 = MyClass(param1=42, param2="default value")</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">obj2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">param1</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">43</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">param2</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"custom value"</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic"># creates another instance of MyClass, and assigns it to the variable obj2</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># you can also pass arguments positionally, e.g.:</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">obj3</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">MyClass</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">44</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">"another custom value"</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div></li>
+</ul>
+</section><section>
 <h2 id="what-is-self">What is <code>self</code>?</h2>
 <ul>
 <li>
-<p>You can think about a class as group of functions, which all have an <em>implicit</em> first argument, <code>self</code></p>
+<p>You can think about a class as group of functions, which all have a <em>default</em> first argument, <code>self</code></p>
 <ul>
 <li>this is a reference to the <em>instance</em> of the class that is being manipulated</li>
 <li>it is <em>not</em> passed explicitly when calling the method</li>
@@ -2300,7 +2331,7 @@
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2026-03-10 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-03-26 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

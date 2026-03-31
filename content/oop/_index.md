@@ -2107,4 +2107,43 @@ class PolarComplex(Complex):
 
 ---
 
+{{% section %}}
+
+## Check your understanding (pt. 1)
+
+- Explain the key principles of OOP
+- In the context of OOP, what is the difference among fields, properties, and methods?
+- In the context of OOP, what is the difference between objects and classes?
+- In the context of OOP, what is an interface?
+- In the context of OOP, explain the notions of encapsulation and information hiding
+- In the context of OOP, what is the difference between identity and equality?
+- What's the strategy to implement good `__eq__` methods in Python classes?
+- What's the strategy to implement good `__hash__` methods in Python classes?
+- In Python, what's the difference among `__repr__` and `__str__`?
+- In the context of OOP, what is the difference between a mutable and immutable design?
+- In the context of OOP, when is a data type considered immutable?
+- In the context of OOP, what does it mean that object exchange messages?
+
+---
+
+## Check your understanding (pt. 2)
+
+- In the context of OOP, what is operator overloading?
+- In the context of OOP, what is inheritance?
+- In the context of OOP, what does it mean to override a method?
+- In the context of OOP, what is the difference between instance and static methods?
+- While writing Python code, how would you choose between implementing a function as an instance, class, or static method?
+- In the context of OOP, what is the difference among public, private, and protected?
+- In Python, how would you mark a class attribute as private?
+- In Python, how would you mark a class attribute as protected?
+- In the context of OOP, what is the Liskov substitution principle?
+- In the context of OOP, what is polymorphism?
+- In Python, what's the purpose of overriding the `__add__` method?
+- In Python, what's the purpose of overriding the `__neg__` method?
+- In Python, what's the purpose of overriding the `__getitem__` method?
+
+{{% /section %}}
+
+---
+
 {{% import path="reusable/back.md" %}}

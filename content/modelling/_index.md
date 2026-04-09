@@ -231,7 +231,7 @@ Related "1" -- "1..*" Associated : relation / association
 
 (Remark: this is not a "good" diagram from a real system, but just an example to show the graphical syntax)
 
-{{< plantuml >}}
+{{< plantuml max-h="70vh" >}}
 @startuml
 enum Status {
   + MISSING
@@ -573,7 +573,7 @@ for item in collection:
 
 ## Sequence Diagram Example in Distributed Systems
 
-{{< plantuml >}}
+{{< plantuml max-h="80vh" >}}
 @startuml
 hide footbox
 
@@ -962,7 +962,7 @@ __so that:__ I can share moments, updates, or engage with my followers in a fun 
 
 ## Example: Activity Diagram To Represent User Stories (pt. 2)
 
-{{< image width="100%" src="https://www.plantuml.com/plantuml/svg/ZLAnRjim4Dtr5GSFXOqQw1uFJL2WG9SKHT0X8qkUf4Ce7i4xIVNVzqmAZTjuY2Rg-DxZUu-y5tL5vobsNLrrTpy52t369F0jsMmeRZfjOtLPW1FamZr5X4nUvuB01NOVTq2Uaq4VtKA3KmHbU58kP_05dP8HnLPec8vws5V9rIML2zAxNBKIhZ1X8FVv03fYWlqpog43--w-coq3JbZSgKsgnaOLo2ChVree89ywZ8AmV-J35L8mebTf1q1VU8B1nOZbRFWKgE-wkwUHDmUM4nV2rVoke-Nztx9X5EIIqBoIN3jzo3cURO_y2nOvWk9lFK8eRgKqsB_LftM32qopa3zjl120acqvhxGWOCG9avfsvXWD_-F3mn4YfHTRsywbLJbKyyrY3TpzcrP6L-nOu7o1drhvru3TCy-btTNkHkrFniSM55RI4QmowCqFhrXaQ_gjw9V8DlzQoCp9ktHzPVIDOIb5hwwbmaWWioW6S2d0GaA_8e9oExNEvs1qZzkRDGok0fW6DzGgOLydnzUQMuCtdkJaaf6QmRVs_-Bzo2nO6G4Zwct6zhtcQDZGBhvLU4FH5J_Iyav9SGk6ArRJRWrkFPfExkxjPvxY7m00" >}}
+{{< image width="100%" max-h="70vh" src="https://www.plantuml.com/plantuml/svg/ZLAnRjim4Dtr5GSFXOqQw1uFJL2WG9SKHT0X8qkUf4Ce7i4xIVNVzqmAZTjuY2Rg-DxZUu-y5tL5vobsNLrrTpy52t369F0jsMmeRZfjOtLPW1FamZr5X4nUvuB01NOVTq2Uaq4VtKA3KmHbU58kP_05dP8HnLPec8vws5V9rIML2zAxNBKIhZ1X8FVv03fYWlqpog43--w-coq3JbZSgKsgnaOLo2ChVree89ywZ8AmV-J35L8mebTf1q1VU8B1nOZbRFWKgE-wkwUHDmUM4nV2rVoke-Nztx9X5EIIqBoIN3jzo3cURO_y2nOvWk9lFK8eRgKqsB_LftM32qopa3zjl120acqvhxGWOCG9avfsvXWD_-F3mn4YfHTRsywbLJbKyyrY3TpzcrP6L-nOu7o1drhvru3TCy-btTNkHkrFniSM55RI4QmowCqFhrXaQ_gjw9V8DlzQoCp9ktHzPVIDOIb5hwwbmaWWioW6S2d0GaA_8e9oExNEvs1qZzkRDGok0fW6DzGgOLydnzUQMuCtdkJaaf6QmRVs_-Bzo2nO6G4Zwct6zhtcQDZGBhvLU4FH5J_Iyav9SGk6ArRJRWrkFPfExkxjPvxY7m00" >}}
 
 {{% /section %}}
 

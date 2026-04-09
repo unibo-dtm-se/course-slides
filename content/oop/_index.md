@@ -1973,6 +1973,10 @@ class Complex:
         return f"{type(self).__name__}({', '.join(str(c) for c in self.__coords)})"
 ```
 
+---
+
+## Example: Separating the _interface_ from the _implementation_ (pt. 3)
+
 ### Implementation (Derived Classes)
 
 {{% multicol %}}
@@ -2031,7 +2035,7 @@ class PolarComplex(Complex):
 
 ---
 
-## Example: Separating the _interface_ from the _implementation_ (pt.3)
+## Example: Separating the _interface_ from the _implementation_ (pt. 4)
 
 ### Rationale
 
@@ -2056,6 +2060,10 @@ class PolarComplex(Complex):
         - it is good for _additions_, _subtractions_, and _conjugations_
         - it only memorizes the _real_ and _imaginary_ parts of the complex number (computing the _modulus_ and the _phase_ on-the-fly)
         - represents the complex number in the _rectangular_ form ($z = x + i y$)
+
+---
+
+## Example: Separating the _interface_ from the _implementation_ (pt. 5)
 
 3. We define a _base_ class, _partially_ implementing the aforementioned interface with _shared_ code
 

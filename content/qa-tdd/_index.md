@@ -346,7 +346,7 @@ class TestMySystemUnderSpecialConditions(unittest.TestCase):
 1. __Fork__ the following repository: https://github.com/unibo-dtm-se/testable-calculator
 
 2. __Clone__ the forked repository on your machine
-    + `git clone https://github.com/YOUR_GITHUB_USERNAME/testable-calculator
+    + `git clone https://github.com/YOUR_GITHUB_USERNAME/testable-calculator`
 
 3. __Open VS Code__ into the `testable-calculator` directory
     + let's use VS Code's _integrated terminal_ from now on 

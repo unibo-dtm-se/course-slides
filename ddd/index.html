@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2026-04-16 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h2 id="disclaimer">Disclaimer</h2>
@@ -508,7 +508,7 @@
 </ul>
 </section><section>
 <h2 id="entities-vs-value-objects-example">Entities vs. Value Objects (example)</h2>
-<figure id="plantuml-figure-1776329848098113761" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1777973895984824293" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface Customer {
 + id: CustomerID <strong>{readonly}</strong>
 + name: str
@@ -532,7 +532,7 @@ TaxCode -d-|&gt; CustomerID</p>
 <p>Customer *-r- CustomerID</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1776329848098113761");
+    handlePlantumlFigureByID("plantuml-figure-1777973895984824293");
 </script>
 </section><section>
 <h2 id="aggregate-root">Aggregate Root</h2>
@@ -652,7 +652,7 @@ TaxCode -d-|&gt; CustomerID</p>
 </ul>
 </section><section>
 <h2 id="factories-example">Factories (example)</h2>
-<figure id="plantuml-figure-1776329848098385644" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1777973895985149800" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface TaxCode</p>
 <p>interface VatNumber</p>
@@ -679,7 +679,7 @@ end note</li>
 CustomerFactory -u-&gt; Customer: creates</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1776329848098385644");
+    handlePlantumlFigureByID("plantuml-figure-1777973895985149800");
 </script>
 </section><section>
 <h2 id="repositories-definition">Repositories (definition)</h2>
@@ -747,7 +747,7 @@ CustomerFactory -u-&gt; Customer: creates</p>
 </ul>
 </section><section>
 <h2 id="repositories-example">Repositories (example)</h2>
-<figure id="plantuml-figure-1776329848098411242" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1777973895985176510" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface CustomerID</p>
 <p>interface Customer</p>
 <p>Customer “1” *-u- “1” CustomerID</p>
@@ -766,7 +766,7 @@ CustomerFactory -u-&gt; Customer: creates</p>
 CustomerRegistry –&gt; CustomerID: exploits</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1776329848098411242");
+    handlePlantumlFigureByID("plantuml-figure-1777973895985176510");
 </script>
 </section><section>
 <h2 id="services">Services</h2>
@@ -827,7 +827,7 @@ CustomerRegistry –&gt; CustomerID: exploits</p>
 </ul>
 </section><section>
 <h2 id="services-example">Services (example)</h2>
-<figure id="plantuml-figure-1776329848098441106" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1777973895985213969" class="plantuml" alt="" style="width: 100%;height: 70vh;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
 + perform_order(order: Order)
 }</p>
@@ -857,7 +857,7 @@ note top of OrderManagementService: service</p>
 OrderID -d[hidden]- Customer</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1776329848098441106");
+    handlePlantumlFigureByID("plantuml-figure-1777973895985213969");
 </script>
 </section><section>
 <h2 id="domain-events-definition">Domain Events (definition)</h2>
@@ -931,7 +931,7 @@ OrderID -d[hidden]- Customer</p>
 </ul>
 </section><section>
 <h2 id="domain-events-example">Domain Events (example)</h2>
-<figure id="plantuml-figure-1776329848098548284" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1777973895985245218" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 80vh;">
 <p>interface OrderManagementService {
 + perform_order(order: Order)
 ..
@@ -957,7 +957,7 @@ note right of CustomerID: value object
 note right of OrderManagementService: service</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1776329848098548284");
+    handlePlantumlFigureByID("plantuml-figure-1777973895985245218");
 </script>
 
 </section>
@@ -1302,7 +1302,7 @@ This is helpful from several perspectives:</p>
 </li>
 </ul>
 
-<figure id="plantuml-figure-1776329848100341929" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1777973895987227104" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     
 top to bottom direction
 
@@ -1331,7 +1331,7 @@ product -u-|&gt; mq
 
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1776329848100341929");
+    handlePlantumlFigureByID("plantuml-figure-1777973895987227104");
 </script>
 </section><section>
 <h1 id="advanced-aspects-of-ddd">Advanced aspects of DDD</h1>
@@ -1541,7 +1541,7 @@ product -u-|&gt; mq
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2026-04-16 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

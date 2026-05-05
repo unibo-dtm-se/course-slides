@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb-reusing-material-made-by-hahahugoshortcode1s3hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a> (reusing material made by <a href="mailto:danilo.pianini@unibo.it">Danilo Pianini</a>)</h5>
 <br>
 <br>
-<p>Compiled on: 2026-04-16 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 <h1 id="continuous-integration-1">Continuous Integration</h1>
@@ -131,7 +131,7 @@ $\Rightarrow$
 <ul>
 <li>which is only possible if the entire process is <strong>automated</strong>
 <ul>
-<li>which is only possible if _<em>automatic tests</em> are available, as well as <em>build automation</em> scripts, and <em>automatic release/deployment</em> scripts</li>
+<li>which is only possible if <em>automatic tests</em> are available, as well as <em>build automation</em> scripts, and <em>automatic release/deployment</em> scripts</li>
 </ul>
 </li>
 <li>of course, retrospective adjustments are <em>hard to automate</em>, and should be done <em>manually</em></li>
@@ -425,7 +425,7 @@ if left unconfigured, the runner does nothing
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8"> </span><span style="color:#000">Test</span><span style="color:#f8f8f8">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8">        </span><span style="color:#204a87;font-weight:bold">shell</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8"> </span><span style="color:#000">bash</span><span style="color:#f8f8f8">
 </span></span></span><span style="display:flex;"><span><span style="color:#f8f8f8">        </span><span style="color:#204a87;font-weight:bold">run</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8"> </span><span style="color:#000">poetry run python -m unittest discover -v -s tests</span><span style="color:#f8f8f8">
-</span></span></span></code></pre></div><p><a href="https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check.yml">Consider <code>check.yml</code> file on the <code>calculator</code> repository</a> for a more complete example</p>
+</span></span></span></code></pre></div><p><a href="https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check-and-deploy.yml">Consider <code>check-and-deploy.yml</code> file on the <code>calculator</code> repository</a> for a more complete example</p>
 </section><section>
 <h2 id="gha-steps-run-vs-uses">GHA Steps: <code>run</code> vs <code>uses</code></h2>
 <ul>
@@ -433,7 +433,7 @@ if left unconfigured, the runner does nothing
 <p><code>run</code>: run a command in the shell of the runner</p>
 <ul>
 <li>e.g. <code>run: poetry install</code></li>
-<li>e.g. <code>run: python -m unittest discover -v -s tests</code></li>
+<li>e.g. <code>run: poetry run python -m unittest discover -v -s tests</code></li>
 </ul>
 </li>
 <li>
@@ -745,7 +745,7 @@ here is a possible workflow for <strong>automatic</strong> dependency updates:</
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2026-04-16 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

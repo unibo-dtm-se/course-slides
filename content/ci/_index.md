@@ -98,7 +98,7 @@ $\Rightarrow$
 
 2. This implies running _build_, _testing_, and _deployment_ processes __very frequently__ as well
     * which is only possible if the entire process is __automated__
-      * which is only possible if __automatic tests_ are available, as well as _build automation_ scripts, and _automatic release/deployment_ scripts
+      * which is only possible if _automatic tests_ are available, as well as _build automation_ scripts, and _automatic release/deployment_ scripts
     * of course, retrospective adjustments are _hard to automate_, and should be done _manually_
 
 3. Do not rely on the assumption that developers will _always_ __remember__ to run these steps consistently before pushing
@@ -344,7 +344,7 @@ jobs:
         run: poetry run python -m unittest discover -v -s tests
 ```
 
-[Consider `check.yml` file on the `calculator` repository](https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check.yml) for a more complete example
+[Consider `check-and-deploy.yml` file on the `calculator` repository](https://github.com/unibo-dtm-se/calculator/blob/master/.github/workflows/check-and-deploy.yml) for a more complete example
 
 ---
 
@@ -352,7 +352,7 @@ jobs:
 
 - `run`: run a command in the shell of the runner
   + e.g. `run: poetry install`
-  + e.g. `run: python -m unittest discover -v -s tests`
+  + e.g. `run: poetry run python -m unittest discover -v -s tests`
 
 
 - `uses`: run a *GitHub Actions' __action__*

@@ -187,14 +187,16 @@ These definitions cover the _essential characteristics_ of distributed systems:
 
 Any or some of the following reasons:
 
-- __Scalability__: Handling large-scale systems efficiently
-- __Fault Tolerance__ and __Availability__: Ensuring reliability despite failures
-- __Low Latency__ and __Geographical Distribution__: Providing better user experience across the globe
-- __Resource Sharing__: Efficiently using computing power and storage
-- __Handling Big Data__: Processing data locally rather than moving it
-- __Parallelism__: Speeding up tasks through concurrent execution
-- __Cost Efficiency__: Reducing infrastructure costs through resource pooling
-- __Collaboration__: Enabling real-time updates and interactions across distances
+- __Scalability__: letting the system support more users, more data, more requests, etc.
+- __Fault Tolerance__: ensuring reliability despite failures that may occur
+- High __Availability__: ensuring the system is accessible and operational when needed (for as long as possible)
+- Low __Latency__: ensure that the system responds to user requests within an acceptable time frame
+- __Geographical Distribution__: allowing users to access the system from different locations around the world
+- __Resource Sharing__: efficiently using computing power and storage as provided by multiple, different machines
+- __Handling Big Data__: processing big amount of data that cannot be handled by a single machine
+- __Parallelism__ (in computation): speeding up processing by distributing tasks across multiple machines
+- __Cost Efficiency__: reducing infrastructural costs through resource pooling, factorization, and economies of scale
+- __Collaboration__: enabling real-time interactions among users across distances
 - _The functionality to be provided_ by the system simply **implies** _distribution_
 
 ---

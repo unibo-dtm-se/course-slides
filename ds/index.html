@@ -236,14 +236,16 @@ passing messages.</p>
 <h2 id="why-would-you-make-your-system-distributed">Why would you make your system distributed?</h2>
 <p>Any or some of the following reasons:</p>
 <ul>
-<li><strong>Scalability</strong>: Handling large-scale systems efficiently</li>
-<li><strong>Fault Tolerance</strong> and <strong>Availability</strong>: Ensuring reliability despite failures</li>
-<li><strong>Low Latency</strong> and <strong>Geographical Distribution</strong>: Providing better user experience across the globe</li>
-<li><strong>Resource Sharing</strong>: Efficiently using computing power and storage</li>
-<li><strong>Handling Big Data</strong>: Processing data locally rather than moving it</li>
-<li><strong>Parallelism</strong>: Speeding up tasks through concurrent execution</li>
-<li><strong>Cost Efficiency</strong>: Reducing infrastructure costs through resource pooling</li>
-<li><strong>Collaboration</strong>: Enabling real-time updates and interactions across distances</li>
+<li><strong>Scalability</strong>: letting the system support more users, more data, more requests, etc.</li>
+<li><strong>Fault Tolerance</strong>: ensuring reliability despite failures that may occur</li>
+<li>High <strong>Availability</strong>: ensuring the system is accessible and operational when needed (for as long as possible)</li>
+<li>Low <strong>Latency</strong>: ensure that the system responds to user requests within an acceptable time frame</li>
+<li><strong>Geographical Distribution</strong>: allowing users to access the system from different locations around the world</li>
+<li><strong>Resource Sharing</strong>: efficiently using computing power and storage as provided by multiple, different machines</li>
+<li><strong>Handling Big Data</strong>: processing big amount of data that cannot be handled by a single machine</li>
+<li><strong>Parallelism</strong> (in computation): speeding up processing by distributing tasks across multiple machines</li>
+<li><strong>Cost Efficiency</strong>: reducing infrastructural costs through resource pooling, factorization, and economies of scale</li>
+<li><strong>Collaboration</strong>: enabling real-time interactions among users across distances</li>
 <li><em>The functionality to be provided</em> by the system simply <strong>implies</strong> <em>distribution</em></li>
 </ul>
 </section><section>
@@ -906,7 +908,7 @@ These patterns define the <em>flow of messages</em>, <em>responsibilities</em> o
 <h3 id="requestresponse">Request—Response</h3>
 <p>The most common and basic pattern for communication between two components</p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1778136586172223657" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1778137686892512302" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 participant Client
 participant Server</p>
@@ -914,7 +916,7 @@ participant Server</p>
 Server -&gt; Client: Response</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1778136586172223657");
+    handlePlantumlFigureByID("plantuml-figure-1778137686892512302");
 </script>
 </div>
 <div class="col "><ul>
@@ -940,7 +942,7 @@ Server -&gt; Client: Response</p>
 <h3 id="publishsubscribe">Publish—Subscribe</h3>
 <p>A simple pattern to spread information among multiple recipients</p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1778136586172520013" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1778137686893070937" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 actor User
 participant Publisher
@@ -963,7 +965,7 @@ Publisher -&gt; Subscriber2: notify Message
 deactivate Publisher</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1778136586172520013");
+    handlePlantumlFigureByID("plantuml-figure-1778137686893070937");
 </script>
 </div>
 <div class="col "><ul>
@@ -999,7 +1001,7 @@ deactivate Publisher</p>
 <li>this is commonly useful to <em>decouple</em> the <em>publisher</em> from the <em>subscribers</em></li>
 <li>most commonly, brokers <em>store</em> messages until they are <em>consumed</em></li>
 </ul>
-<figure id="plantuml-figure-1778136586172822218" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1778137686893443634" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     <p>hide footbox
 actor User
 participant Publisher
@@ -1031,7 +1033,7 @@ Broker -&gt; Subscriber2: notify Message
 deactivate Broker</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1778136586172822218");
+    handlePlantumlFigureByID("plantuml-figure-1778137686893443634");
 </script>
 </section><section>
 <h2 id="common-interaction-protocols-pt-2-2">Common Interaction Protocols (pt. 2)</h2>
@@ -1052,7 +1054,7 @@ deactivate Broker</p>
 <h3 id="contractnet-protocol">ContractNet Protocol</h3>
 <p>A simple protocol for <em>auctions</em> and <em>negotiations</em></p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1778136586173069912" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1778137686893601580" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 participant Initiator
 participant Contractor1
@@ -1076,7 +1078,7 @@ deactivate Contractor1
 deactivate Initiator</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1778136586173069912");
+    handlePlantumlFigureByID("plantuml-figure-1778137686893601580");
 </script>
 </div>
 <div class="col "><ul>

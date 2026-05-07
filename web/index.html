@@ -92,12 +92,199 @@
     - possibly each sub-project may have its own versioning and release cycle
 -->
 </section><section>
+<h1 id="what-is-the-web">What is the Web?</h1>
+<p>The Web is, at the same time:</p>
+<ul>
+<li>a distributed hypermedia information system</li>
+<li>a collection of resources accessible via the Internet</li>
+<li>an infrastructure for distributed systems based on HTTP</li>
+</ul>
+<p>In practice, the Web revolves around:</p>
+<ul>
+<li>resources identified by URLs</li>
+<li>interactions mediated by HTTP</li>
+<li>documents and applications built with HTML, CSS, and JavaScript</li>
+<li>hyperlinks connecting information and behaviour</li>
+</ul>
+</section><section>
+<h2 id="urls-identify-resources">URLs identify resources</h2>
+<p><img src="./http-url.png" alt="Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier"></p>
+<ul>
+<li>a URL tells the client where a resource is and how to reach it</li>
+<li>different parts of the URL may identify host, port, path, query parameters, or fragment</li>
+<li>in ReSTful systems, URLs should identify resources rather than actions</li>
+</ul>
+</section><section>
+<h2 id="http-is-the-webs-application-protocol">HTTP is the Web’s application protocol</h2>
+<p>HTTP standardizes how clients and servers exchange messages:</p>
+<ol>
+<li>requests from client to server</li>
+<li>responses from server to client</li>
+<li>methods describing the intended operation</li>
+<li>status codes describing the outcome</li>
+<li>headers and bodies carrying metadata and content</li>
+</ol>
+</section><section>
+<h2 id="http-request-messages">HTTP request messages</h2>
+<p><img src="./http-req.png" alt="Diagram of an HTTP request showing request line, headers, blank line, and optional entity body"></p>
+<ul>
+<li>request line: method, target URL, protocol version</li>
+<li>headers: metadata such as content type, authorization, cache directives</li>
+<li>body: optional payload, common in POST, PUT, and PATCH</li>
+</ul>
+</section><section>
+<h2 id="http-response-messages">HTTP response messages</h2>
+<p><img src="./http-res.png" alt="Diagram of an HTTP response showing status line, headers, blank line, and optional entity body"></p>
+<ul>
+<li>status line: protocol version, status code, reason phrase</li>
+<li>headers: metadata such as content type, caching, or location</li>
+<li>body: the representation of the requested resource, or error details</li>
+</ul>
+</section><section>
+<h2 id="methods-and-status-codes">Methods and status codes</h2>
+<p><img src="./http-methods.png" alt="Table mapping HTTP verbs to CRUD operations for collections and specific resources"></p>
+<p><img src="./http_status_codes.png" alt="Chart grouping common HTTP status codes into success, client error, and server error classes"></p>
+<ul>
+<li>methods such as GET, POST, PUT, PATCH, DELETE define the operation semantics</li>
+<li>status codes such as 200, 201, 204, 404, 409, 500 summarize the result</li>
+<li>together, methods and status codes form the vocabulary of Web APIs</li>
+</ul>
+</section><section>
+<h2 id="content-on-the-web">Content on the Web</h2>
+<p>The classic Web stack separates concerns:</p>
+<ul>
+<li>HTML for structure and content</li>
+<li>CSS for presentation and styling</li>
+<li>JavaScript for dynamic behaviour</li>
+</ul>
+<p>HTTP bodies can carry many media types, not just HTML pages.</p>
+<p><img src="./mime_types.png" alt="Table of MIME type families including text, image, audio, video, and application with examples"></p>
+</section><section>
+<h2 id="hypertext-and-hypermedia">Hypertext and hypermedia</h2>
+<ul>
+<li>hypertext means documents contain links to other documents</li>
+<li>hypermedia generalizes the same idea to images, audio, video, forms, and executable behaviour</li>
+<li>the Web became successful because resources are loosely coupled and navigable through links</li>
+</ul>
+<blockquote>
+<p>Links are what transform isolated documents into an information space.</p>
+</blockquote>
+</section><section>
+<h2 id="history-of-the-web-in-a-nutshell">History of the Web in a nutshell</h2>
+<ol>
+<li>Web 1.0: mostly static pages, read-only browsing</li>
+<li>Web 2.0: server-side dynamic pages, forms, template engines, user-generated content</li>
+<li>Web 3.0: rich clients using AJAX to talk to Web services asynchronously</li>
+<li>Web 4.0: single-page applications with highly interactive frontends</li>
+</ol>
+<p><img src="./web-evolution.png" alt="Timeline or comparison figure showing Web 1.0 static pages, Web 2.0 dynamic server-rendered pages, Web 3.0 AJAX-based applications, and Web 4.0 single-page applications"></p>
+</section><section>
+<h2 id="what-are-web-services">What are Web Services?</h2>
+<p>A Web service is, roughly speaking:</p>
+<ul>
+<li>a distributed software component exposed through an HTTP interface</li>
+<li>accessible over the network by heterogeneous clients</li>
+<li>designed to encapsulate data and functionality behind a stable API</li>
+</ul>
+<p>Its API typically specifies:</p>
+<ul>
+<li>endpoints and URL patterns</li>
+<li>admissible HTTP methods</li>
+<li>input parameters, headers, and body formats</li>
+<li>output formats and status codes</li>
+</ul>
+<p><img src="./web-service-overview.png" alt="Architecture figure showing multiple clients such as browser, mobile app, and backend service calling the same HTTP web service"></p>
+</section><section>
+<h2 id="why-web-services-dominate-distributed-systems">Why Web Services dominate distributed systems</h2>
+<p>Web services are the backbone of modern distributed systems because:</p>
+<ul>
+<li>Web mechanisms are simple yet flexible</li>
+<li>HTTP is pervasive and highly optimized</li>
+<li>the Web stack is language- and platform-independent</li>
+<li>HTTP is widely supported and usually firewall-friendly</li>
+<li>ReST encourages interoperability through a uniform interface</li>
+</ul>
+<p>They are also useful to wrap legacy software so as to:</p>
+<ul>
+<li>expose existing capabilities on the Web</li>
+<li>let heterogeneous components interoperate</li>
+</ul>
+<p><img src="./legacy-to-web-service.png" alt="Figure showing a legacy system wrapped by a web API so browsers, apps, and other services can access it over HTTP"></p>
+</section><section>
+<h2 id="the-rest-architectural-style">The ReST architectural style</h2>
+<p>ReST is an architectural style for distributed hypermedia systems.</p>
+<p>Its key constraints are:</p>
+<ol>
+<li>client-server</li>
+<li>representational state transfer</li>
+<li>uniform interface</li>
+<li>stateless interactions</li>
+<li>cacheable responses</li>
+<li>layered system</li>
+<li>code on demand</li>
+</ol>
+<p>The point is not to use HTTP superficially, but to structure interactions around resources and representations.</p>
+</section><section>
+<h2 id="rest-constraints-in-practice">ReST constraints in practice</h2>
+<ol>
+<li>client-server: clients consume resources, servers host them</li>
+<li>representation-oriented: clients exchange representations, not direct access to server internals</li>
+<li>uniform interface: resources are identified by URLs and manipulated via standard HTTP methods</li>
+<li>stateless: each request contains all the information needed to process it</li>
+<li>cacheable: responses may be reused when allowed</li>
+<li>layered: proxies, gateways, and intermediaries can be inserted transparently</li>
+<li>code on demand: optional transfer of executable code, for example JavaScript</li>
+</ol>
+<p><img src="./rest-constraints-overview.png" alt="Diagram showing clients, proxies, cache, API gateway, and origin server to illustrate client-server, statelessness, caching, and layers in REST"></p>
+</section><section>
+<h2 id="restful-apis-in-practice">ReSTful APIs in practice</h2>
+<p>Design the system in terms of:</p>
+<ol>
+<li>collections of resources</li>
+<li>individual resources</li>
+<li>admissible operations on each resource</li>
+</ol>
+<p>Typical reasoning pattern:</p>
+<ul>
+<li>collection endpoint: /customers</li>
+<li>item endpoint: /customers/{id}</li>
+<li>operation semantics mapped onto HTTP methods</li>
+</ul>
+<p><img src="./http-methods.png" alt="Table mapping GET, POST, PUT, PATCH, and DELETE to resource collections and single resources in a REST API"></p>
+</section><section>
+<h2 id="from-api-design-to-implementation">From API design to implementation</h2>
+<ol>
+<li>devise the API, for example with OpenAPI Specification</li>
+<li>identify endpoints and parametric URLs</li>
+<li>identify admissible HTTP operations</li>
+<li>identify input parameters and body formats</li>
+<li>optionally define relevant headers</li>
+<li>define response formats and status codes</li>
+</ol>
+<p>Then implement:</p>
+<ul>
+<li>the server side with frameworks such as Flask, FastAPI, or Spring Boot</li>
+<li>the frontend side with frameworks such as React, Angular, or Vue</li>
+</ul>
+<p><img src="./api-design-to-implementation.png" alt="Figure showing workflow from resource modeling to OpenAPI description to backend implementation to frontend consuming the API"></p>
+</section><section>
 
 
 <section data-shortcode-section="">
 <h2 id="check-your-understanding-pt-1">Check your understanding (pt. 1)</h2>
 <ul>
-<li>TBD</li>
+<li>What does it mean to say that the Web is a distributed hypermedia information system?</li>
+<li>What is the role of a URL in Web communication?</li>
+<li>Which parts make up an HTTP request? And an HTTP response?</li>
+<li>What is the difference between an HTTP method and an HTTP status code?</li>
+<li>What are HTML, CSS, and JavaScript responsible for in a Web application?</li>
+<li>What is the difference between hypertext and hypermedia?</li>
+<li>How did the Web evolve from static pages to single-page applications?</li>
+<li>What is a Web service, and how is its API usually described?</li>
+<li>Why are Web services so effective for distributed systems integration?</li>
+<li>What are the main constraints of the ReST architectural style?</li>
+<li>What does it mean for a ReST interaction to be stateless?</li>
+<li>How would you model a simple domain in terms of collections, resources, and operations?</li>
 </ul>
 
 </section>

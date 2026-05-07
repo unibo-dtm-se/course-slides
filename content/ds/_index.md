@@ -79,6 +79,110 @@ These definitions cover the _essential characteristics_ of distributed systems:
 
 {{%section%}}
 
+## Technicalities Recap for DS: IP Addresses (pt. 1)
+
+- __IP address__: a unique identifier for a _device_ on a network
+    * allows devices to _locate_ and _communicate_ with each other
+    * e.g. `137.204.71.16` (IPv4) or `2001:0db8:85a3:0000:0000:8a2e:0370:7334` (IPv6)
+
+- __Switch__: a network device that _connects_ devices within a local network
+    * assigns IP addresses to devices in the local network
+
+- __Router__: a network device that _connects_ different networks together
+    * forwards messages based on _IP addresses_
+    * they have _look-up tables_ to determine the best path for forwarding messages
+
+<br/>
+
+{{< image src="./simple-network.png" height="50vh" alt="IP addresses, switches, and routers" >}}
+
+---
+
+## Technicalities Recap for DS: Domain Name System (DNS) pt. 1
+
+1. __DNS__: a hierarchical system for _translating_ human-readable domain names (e.g. `www.google.com`) into IP addresses (e.g. `42.251.150.119`)
+    * allows users to _access_ websites and services using easy-to-remember names instead of IP addresses
+    * DNS servers maintain a _distributed database_ of domain names and their corresponding IP addresses
+
+        ![](dns-hierarchy.avif)
+
+---
+
+## Technicalities Recap for DS: Domain Name System (DNS) pt. 2
+
+2. __DNS resolution__: the process of _querying_ DNS servers to _resolve_ a domain name into an IP address
+    * involves multiple steps, including querying _root_, _top-level domain (TLD)_, and _authoritative_ DNS servers
+
+        ![](dns-resolution.avif)
+
+3. Domain __names__ become valuable resources in a global database, and are often _traded_ as such
+    * e.g. `google.com` is worth billions of dollars
+
+---
+
+## Technicalities Recap for DS: Structure of IP addresses (pt. 1)
+
+![](IPv4-address-format.png)
+
+- 4 octets (32 bits) in IPv4 $\rightarrow$ __$2^{32}$ possible addresses__, i.e. _~4.3 billion_
+    * __way too few__ for the modern Internet, leading to the development of IPv6
+
+---
+
+## Technicalities Recap for DS: Structure of IP addresses (pt. 2)
+
+![](IPv6-address-format.png)
+
+- 8 groups of 4 hexadecimal digits (128 bits) in IPv6 $\rightarrow$ __$2^{128}$ possible addresses__, i.e. _~3.4 x 10^38_
+    * enough to assign a unique IP address to every device on Earth, and then some!
+
+- sadly, not so widely adopted yet, but it's the future of the Internet
+
+---
+
+## Technicalities Recap for DS: Network Address Translation (NAT)
+
+- __NAT__: a technique used to _conserve_ IP addresses by allowing multiple devices on a local network to share a single public IP address
+    * the NAT device (e.g. router) _translates_ private IP addresses to the public IP address for outgoing traffic, and vice versa for incoming traffic
+
+        ![](nat.jpg)
+
+- __Public__ IP addresses become a scarce and valuable resource
+    + leading to the widespread use of NAT in home and enterprise networks
+    + _traded_ as a valuable resource in the global market
+
+- NAT is why:
+    + one cannot easily host a server on your home network without additional configuration
+    + network engineering and configuration is necessary in any non-trivial organization
+
+---
+
+## Technicalities Recap for DS: Stack of Well-Known Protocols
+
+{{% multicol class="col-16"%}}
+{{% col %}}
+![](network-levels.png)
+
+- __Link layer__: connecting devices with each others
+- __Internet layer__: routing messages across the network
+- __Transport layer__: ensuring reliable communication between device (e.g. pairs)
+- __Application layer__: providing high-level functionalities for applications
+    * e.g. browsing Web pages
+    * e.g. sending / receiving emails
+    * e.g. instant messaging
+    * e.g. DNS resolution
+{{% /col %}}
+{{% col %}}
+![](network-protocols.svg)
+{{% /col %}}
+{{% /multicol %}}
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
 ## Why would you make your system distributed?
 
 Any or some of the following reasons:

@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2026-05-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-07 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 </section><section>
 
@@ -91,6 +91,144 @@ passing messages.</p>
 <li>challenge of presenting a unified system to the user…</li>
 <li>… despite failures or complexities within the system</li>
 </ul>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="technicalities-recap-for-ds-ip-addresses-pt-1">Technicalities Recap for DS: IP Addresses (pt. 1)</h2>
+<ul>
+<li>
+<p><strong>IP address</strong>: a unique identifier for a <em>device</em> on a network</p>
+<ul>
+<li>allows devices to <em>locate</em> and <em>communicate</em> with each other</li>
+<li>e.g. <code>137.204.71.16</code> (IPv4) or <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code> (IPv6)</li>
+</ul>
+</li>
+<li>
+<p><strong>Switch</strong>: a network device that <em>connects</em> devices within a local network</p>
+<ul>
+<li>assigns IP addresses to devices in the local network</li>
+</ul>
+</li>
+<li>
+<p><strong>Router</strong>: a network device that <em>connects</em> different networks together</p>
+<ul>
+<li>forwards messages based on <em>IP addresses</em></li>
+<li>they have <em>look-up tables</em> to determine the best path for forwarding messages</li>
+</ul>
+</li>
+</ul>
+<br>
+<img src="./simple-network.png" alt="IP addresses, switches, and routers" style="height: 50vh; max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+</section><section>
+<h2 id="technicalities-recap-for-ds-domain-name-system-dns-pt-1">Technicalities Recap for DS: Domain Name System (DNS) pt. 1</h2>
+<ol>
+<li><strong>DNS</strong>: a hierarchical system for <em>translating</em> human-readable domain names (e.g. <code>www.google.com</code>) into IP addresses (e.g. <code>42.251.150.119</code>)
+<ul>
+<li>
+<p>allows users to <em>access</em> websites and services using easy-to-remember names instead of IP addresses</p>
+</li>
+<li>
+<p>DNS servers maintain a <em>distributed database</em> of domain names and their corresponding IP addresses</p>
+<p><img src="dns-hierarchy.avif" alt=""></p>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="technicalities-recap-for-ds-domain-name-system-dns-pt-2">Technicalities Recap for DS: Domain Name System (DNS) pt. 2</h2>
+<ol start="2">
+<li>
+<p><strong>DNS resolution</strong>: the process of <em>querying</em> DNS servers to <em>resolve</em> a domain name into an IP address</p>
+<ul>
+<li>
+<p>involves multiple steps, including querying <em>root</em>, <em>top-level domain (TLD)</em>, and <em>authoritative</em> DNS servers</p>
+<p><img src="dns-resolution.avif" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Domain <strong>names</strong> become valuable resources in a global database, and are often <em>traded</em> as such</p>
+<ul>
+<li>e.g. <code>google.com</code> is worth billions of dollars</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="technicalities-recap-for-ds-structure-of-ip-addresses-pt-1">Technicalities Recap for DS: Structure of IP addresses (pt. 1)</h2>
+<p><img src="IPv4-address-format.png" alt=""></p>
+<ul>
+<li>4 octets (32 bits) in IPv4 $\rightarrow$ <strong>$2^{32}$ possible addresses</strong>, i.e. <em>~4.3 billion</em>
+<ul>
+<li><strong>way too few</strong> for the modern Internet, leading to the development of IPv6</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="technicalities-recap-for-ds-structure-of-ip-addresses-pt-2">Technicalities Recap for DS: Structure of IP addresses (pt. 2)</h2>
+<p><img src="IPv6-address-format.png" alt=""></p>
+<ul>
+<li>
+<p>8 groups of 4 hexadecimal digits (128 bits) in IPv6 $\rightarrow$ <strong>$2^{128}$ possible addresses</strong>, i.e. <em>~3.4 x 10^38</em></p>
+<ul>
+<li>enough to assign a unique IP address to every device on Earth, and then some!</li>
+</ul>
+</li>
+<li>
+<p>sadly, not so widely adopted yet, but it’s the future of the Internet</p>
+</li>
+</ul>
+</section><section>
+<h2 id="technicalities-recap-for-ds-network-address-translation-nat">Technicalities Recap for DS: Network Address Translation (NAT)</h2>
+<ul>
+<li>
+<p><strong>NAT</strong>: a technique used to <em>conserve</em> IP addresses by allowing multiple devices on a local network to share a single public IP address</p>
+<ul>
+<li>
+<p>the NAT device (e.g. router) <em>translates</em> private IP addresses to the public IP address for outgoing traffic, and vice versa for incoming traffic</p>
+<p><img src="nat.jpg" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Public</strong> IP addresses become a scarce and valuable resource</p>
+<ul>
+<li>leading to the widespread use of NAT in home and enterprise networks</li>
+<li><em>traded</em> as a valuable resource in the global market</li>
+</ul>
+</li>
+<li>
+<p>NAT is why:</p>
+<ul>
+<li>one cannot easily host a server on your home network without additional configuration</li>
+<li>network engineering and configuration is necessary in any non-trivial organization</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="technicalities-recap-for-ds-stack-of-well-known-protocols">Technicalities Recap for DS: Stack of Well-Known Protocols</h2>
+<div class="container w-100 m-0 p-0">
+    <div class="row col-16"><div class="col "><p><img src="network-levels.png" alt=""></p>
+<ul>
+<li><strong>Link layer</strong>: connecting devices with each others</li>
+<li><strong>Internet layer</strong>: routing messages across the network</li>
+<li><strong>Transport layer</strong>: ensuring reliable communication between device (e.g. pairs)</li>
+<li><strong>Application layer</strong>: providing high-level functionalities for applications
+<ul>
+<li>e.g. browsing Web pages</li>
+<li>e.g. sending / receiving emails</li>
+<li>e.g. instant messaging</li>
+<li>e.g. DNS resolution</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="col "><p><img src="network-protocols.svg" alt=""></p>
+</div>
+</div>
+</div>
+
+</section>
 </section><section>
 
 
@@ -768,7 +906,7 @@ These patterns define the <em>flow of messages</em>, <em>responsibilities</em> o
 <h3 id="requestresponse">Request—Response</h3>
 <p>The most common and basic pattern for communication between two components</p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1777973895996525579" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1778136586172223657" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 participant Client
 participant Server</p>
@@ -776,7 +914,7 @@ participant Server</p>
 Server -&gt; Client: Response</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1777973895996525579");
+    handlePlantumlFigureByID("plantuml-figure-1778136586172223657");
 </script>
 </div>
 <div class="col "><ul>
@@ -802,7 +940,7 @@ Server -&gt; Client: Response</p>
 <h3 id="publishsubscribe">Publish—Subscribe</h3>
 <p>A simple pattern to spread information among multiple recipients</p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1777973895996978634" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1778136586172520013" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 actor User
 participant Publisher
@@ -825,7 +963,7 @@ Publisher -&gt; Subscriber2: notify Message
 deactivate Publisher</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1777973895996978634");
+    handlePlantumlFigureByID("plantuml-figure-1778136586172520013");
 </script>
 </div>
 <div class="col "><ul>
@@ -861,7 +999,7 @@ deactivate Publisher</p>
 <li>this is commonly useful to <em>decouple</em> the <em>publisher</em> from the <em>subscribers</em></li>
 <li>most commonly, brokers <em>store</em> messages until they are <em>consumed</em></li>
 </ul>
-<figure id="plantuml-figure-1777973895997389801" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
+<figure id="plantuml-figure-1778136586172822218" class="plantuml" alt="" style="width: 100%;height: 50vh;max-width: 95vw;max-height: 80vh;">
     <p>hide footbox
 actor User
 participant Publisher
@@ -893,7 +1031,7 @@ Broker -&gt; Subscriber2: notify Message
 deactivate Broker</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1777973895997389801");
+    handlePlantumlFigureByID("plantuml-figure-1778136586172822218");
 </script>
 </section><section>
 <h2 id="common-interaction-protocols-pt-2-2">Common Interaction Protocols (pt. 2)</h2>
@@ -914,7 +1052,7 @@ deactivate Broker</p>
 <h3 id="contractnet-protocol">ContractNet Protocol</h3>
 <p>A simple protocol for <em>auctions</em> and <em>negotiations</em></p>
 <div class="container w-100 m-0 p-0">
-    <div class="row "><div class="col "><figure id="plantuml-figure-1777973895997677457" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
+    <div class="row "><div class="col "><figure id="plantuml-figure-1778136586173069912" class="plantuml" alt="" style="width: 100%;max-width: 95vw;max-height: 70vhvh;">
     <p>hide footbox
 participant Initiator
 participant Contractor1
@@ -938,7 +1076,7 @@ deactivate Contractor1
 deactivate Initiator</p>
 </figure>
 <script>
-    handlePlantumlFigureByID("plantuml-figure-1777973895997677457");
+    handlePlantumlFigureByID("plantuml-figure-1778136586173069912");
 </script>
 </div>
 <div class="col "><ul>
@@ -1837,7 +1975,7 @@ e.g. <a href="https://en.wikipedia.org/wiki/Access-control_list">ACLs</a>, <a hr
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2026-05-05 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-07 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

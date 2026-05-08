@@ -34,4 +34,4 @@ aliases = [
 ## Extras (if we have time)
 
 - [Introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)
-- [TODO] WebServices and RESTful APIs
+- [WIP] [WebServices and RESTful APIs](web)

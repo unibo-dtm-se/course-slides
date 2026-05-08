@@ -76,94 +76,363 @@ outputs = ["Reveal"]
 
 The Web is, at the same time:
 
-- a distributed hypermedia information system
-- a collection of resources accessible via the Internet
-- an infrastructure for distributed systems based on HTTP
+- a __distributed__ _hypermedia_ information system
+- a collection of __linked__ _resources_ accessible via the _Internet_ (in particular, via _HTTP_)
+- an _infrastructure_ for __distributed systems__ based on _HTTP_
+
+{{% fragment %}}
 
 In practice, the Web revolves around:
 
-- resources identified by URLs
-- interactions mediated by HTTP
-- documents and applications built with HTML, CSS, and JavaScript
-- hyperlinks connecting information and behaviour
+- resources __identified__ by _URLs_
+- interactions __mediated__ by _HTTP_
+- documents and applications __built__ with _HTML_, _CSS_, and _JavaScript_
+- _hyperlinks_ __connecting__ information and behaviour
+
+{{% /fragment %}}
+
+---
+
+## Hyper-links, hyper-text, and hyper-media
+
+- __hyper-links__ are _references_ from one resource to another, enabling navigation and discovery
+- __hyper-text__ is text that contains links to other text
+- __hyper-media__ generalizes the concept to include links in images, audio, video, forms, etc.
+- the Web's success is largely due to its ability to connect resources through links
+    + in the user's perspective, the Web is something to _navigate_ and _explore_ through links...
+    + ... not just a collection of isolated documents
 
 ---
 
 ## URLs identify resources
 
-![Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier](./http-url.png)
+<!-- ![Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier](./http-url.png) -->
+{{< image max-h="80vh"  src="./http-url.png" alt="Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier" >}}
+<br>
 
 - a URL tells the client where a resource is and how to reach it
 - different parts of the URL may identify host, port, path, query parameters, or fragment
 - in ReSTful systems, URLs should identify resources rather than actions
+    + e.g. WRONG URL: `https://example.com/getCustomer?id=123`
+    + e.g. RIGHT URL: `https://example.com/customers/123`
 
 ---
 
+{{% section %}}
+
 ## HTTP is the Web's application protocol
 
-HTTP standardizes how clients and servers exchange messages:
+__Hyper-Text Transfer Protocol__ (_HTTP_) standardizes how clients and servers exchange messages:
 
-1. requests from client to server
-2. responses from server to client
-3. methods describing the intended operation
-4. status codes describing the outcome
-5. headers and bodies carrying metadata and content
+{{< image max-h="50vh" src="./http-ingredients.svg" alt="Diagram showing HTTP request and response messages with headers and body" >}}
+
+1. _clients_ acting on behalf of users or applications
+0. _servers_ hosting resources or providing functionalities
+0. _requests_ from client to server
+0. _responses_ from server to client
+0. _methods_ describing the intended operation
+0. _status codes_ describing the outcome
+0. _headers_ and _bodies_ carrying metadata and content
+
+---
+
+## Example of simple HTTP interaction (read)
+
+1. Client wants to remotely _read_ volume of a speaker (id: `123`), hosted by server at `https://example.com`
+2. Server allows users to _read_/change volume of speakers, by speaker ID, through HTTP
+3. To read the volume, client sends an HTTP _request_ to URL `https://example.com/speakers/123/volume`
+    - method: `GET` ["I want to read some information about the resource"]
+    - headers:
+        * `Accept: text/html` ["I want the response to be an HTML page describing the volume"]
+        * `Authorization: <auth token here>` ["I am authorized to access this resource, here is my token"]
+    - body: (empty)
+4. Server processes the request, reads the actual volume value, and produces a Web page describing that speaker's volume, sending back an HTTP _response_
+    - status code: `200 OK` ["The request was successful, here is the information you asked for"]
+    - headers:
+        * `Content-Type: text/html` ["The body of this response is an HTML document"]
+        * `Cache-Control: no-cache` ["Don't cache this response, it may change frequently"]
+    - body: `<html><body><h1>Speaker 123</h1><p>Volume: 75%</p></body></html>` ["Here is the HTML page describing the speaker's volume"]
+
+---
+
+## Example of simple HTTP interaction (write)
+
+1. Client wants to remotely _increase_ volume of a speaker (id: `123`), hosted by server at `https://example.com`
+2. Server allows users to read/_change_ volume of speakers, by speaker ID, through HTTP
+3. To increase the volume, client sends an HTTP _request_ to URL `https://example.com/speakers/123/volume`
+    - method: `POST` ["I want to change some information about the resource"]
+    - headers:
+        * `Content-Type: application/json` ["The body of this request is a JSON document describing the change I want to make"]
+        * `Authorization: <auth token here>` ["I am authorized to access this resource, here is my token"]
+    - body: `{"change": "+10%"}` ["I want to increase the volume by 10%"]
+4. Server processes the request, updates the actual volume value, and sends back an HTTP _response_
+    - status code: `204 No Content` ["The request was successful, but there is no content to return in the body"]
+    - headers: (none)
+    - body: (empty)
+
+{{% /section %}}
 
 ---
 
 ## HTTP request messages
 
-![Diagram of an HTTP request showing request line, headers, blank line, and optional entity body](./http-req.png)
+<!-- ![Diagram of an HTTP request showing request line, headers, blank line, and optional entity body](./http-req.png) -->
+{{< image max-h="70vh" src="./http-req.png" alt="Diagram of an HTTP request showing request line, headers, blank line, and optional entity body" >}}
 
-- request line: method, target URL, protocol version
-- headers: metadata such as content type, authorization, cache directives
-- body: optional payload, common in POST, PUT, and PATCH
+- __Method__: what to do on the resource (e.g., GET, POST, PUT, DELETE)
+- __URL__: what resource to access and where (e.g., https://example.com/speakers/123/volume)
+- __Headers__: metadata about the request (e.g., format of the body, authentication token, requested response format, etc.)
+- __Body__: optional content sent to the server (e.g., requested changes to the resource, etc.)
+- \[Protocol\] __Version__: necessary to let older and newer client/servers interoperate
 
 ---
 
 ## HTTP response messages
 
-![Diagram of an HTTP response showing status line, headers, blank line, and optional entity body](./http-res.png)
+<!-- ![Diagram of an HTTP response showing status line, headers, blank line, and optional entity body](./http-res.png) -->
+{{< image max-h="70vh" src="./http-res.png" alt="Diagram of an HTTP response showing status line, headers, blank line, and optional entity body" >}}
 
-- status line: protocol version, status code, reason phrase
-- headers: metadata such as content type, caching, or location
-- body: the representation of the requested resource, or error details
-
----
-
-## Methods and status codes
-
-![Table mapping HTTP verbs to CRUD operations for collections and specific resources](./http-methods.png)
-
-![Chart grouping common HTTP status codes into success, client error, and server error classes](./http_status_codes.png)
-
-- methods such as GET, POST, PUT, PATCH, DELETE define the operation semantics
-- status codes such as 200, 201, 204, 404, 409, 500 summarize the result
-- together, methods and status codes form the vocabulary of Web APIs
+- __Status code__: numeric code identifying the success or failure of the request (e.g., 200, 404, 500)
+- __Reason phrase__: human-readable description of the status code (e.g., "OK", "Not Found", "Internal Server Error")
+- __Headers__: metadata about the response (e.g., format of the body, caching directives, etc.)
+- __Body__: optional content sent to the client (e.g., requested information, error message, etc.)
+- \[Protocol\] __Version__: necessary to let older and newer client/servers interoperate
 
 ---
 
-## Content on the Web
+## About HTTP methods
 
-The classic Web stack separates concerns:
+_Standard_ set of admissible operations that clients may request on resources:
 
-- HTML for structure and content
-- CSS for presentation and styling
-- JavaScript for dynamic behaviour
+- main ones: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
 
-HTTP bodies can carry many media types, not just HTML pages.
+    ![Table mapping HTTP verbs to CRUD operations for collections and specific resources](./http-methods.png)
 
-![Table of MIME type families including text, image, audio, video, and application with examples](./mime_types.png)
+- many more are supported, for example `HEAD`, `OPTIONS`, `CONNECT`, `TRACE`, etc.
+    * see https://developer.mozilla.org/docs/Web/HTTP/Methods for a complete list
 
 ---
 
-## Hypertext and hypermedia
+## About HTTP status codes
 
-- hypertext means documents contain links to other documents
-- hypermedia generalizes the same idea to images, audio, video, forms, and executable behaviour
-- the Web became successful because resources are loosely coupled and navigable through links
+<!-- ![Chart grouping common HTTP status codes into success, client error, and server error classes](./http_status_codes.png) -->
+{{< image max-h="70vh" src="./http_status_codes.png" alt="Chart grouping common HTTP status codes into success, client error, and server error classes" >}}
 
-> Links are what transform isolated documents into an information space.
+- 3-digit, positive integer numbers, the most significant digit identifying the class of the response:
+    + `1xx`: informational responses (e.g., "time to swap to another protocol")
+    + `2xx`: successful responses (e.g. "successfully processed the request with/without body being returned")
+    + `3xx`: redirection messages (e.g. "the resource has moved, here is the new URL")
+    + `4xx`: client-side error responses (e.g. "cannot process the request due to client's mistake")
+    + `5xx`: server-side error responses (e.g. "cannot process the request due to server's mistake")
+
+- most common status codes are in the picture:
+    + see https://developer.mozilla.org/docs/Web/HTTP/Status for a complete list
+
+---
+
+## About HTTP headers
+
+Key–value pairs that carry metadata about the request or response, for example:
+
+- `Content-Type`: specifies the media type of the body content \[both in reqs and resps\]
+- `Authorization`: contains credentials for authenticating the client \[commonly in reqs\]
+- `Cache-Control`: provides directives for caching mechanisms \[commonly in resps\]
+- `Accept`: indicates the media types that the client can process \[commonly in reqs\]
+- `Set-Cookie`: instructs the client to store a cookie \[commonly in resps\]
+- `User-Agent`: identifies the client software making the request \[commonly in reqs\]
+- `Location`: indicates the URL of a newly created resource or a redirection target \[commonly in resps\]
+- full list of standard headers: https://developer.mozilla.org/docs/Web/HTTP/Headers
+
+{{% fragment %}}
+
+> Server designers may "invent" _custom headers_, but it's best to stick to standard ones when possible for better interoperability
+- custom headers should be prefixed with `X-` to avoid conflicts with standard headers
+    + but this convention is being deprecated in favor of using a custom namespace (e.g., `MyApp-`) for non-standard headers.
+
+{{% /fragment %}}
+
+---
+
+## Content format ("type") negotiation
+
+Clients and servers may automatically _negotiate_ the format of the data being exchanged
+
+- Assumtion:
+    1. the server may represent resources in various formats (e.g., HTML, JSON, XML, etc.)
+    2. the client may prefer certain formats over others (e.g., a browser may prefer HTML, while an API client may prefer JSON)
+- Mechanism:
+    1. client sends an `Accept` header listing the media types it can process, possibly with quality values (e.g., `Accept: text/html, application/json;q=0.9, */*;q=0.8`)
+    2. server selects the best format it can produce based on the client's preferences and its own capabilities
+    3. server sends the response with the selected format and a `Content-Type` header indicating the media type of the body (e.g., `Content-Type: application/json`)
+    4. client processes the response according to the specified format
+- "Formats" are expressed as _media types_ (also known as __MIME types__), which are standardized identifiers for data formats (e.g., `text/html`, `application/json`, `image/png`, etc.)
+
+---
+
+## About MIME types
+
+1. MIME stands for "Multipurpose Internet Mail Extensions", but it is used far beyond email to identify media types in HTTP and other protocols
+
+2. A MIME type consists of a type and a subtype, separated by a slash (e.g., `text/html`, `application/json`, `image/png`)
+
+3. Full list is available at https://developer.mozilla.org/docs/Web/HTTP/Guides/MIME_types/Common_types
+
+4. Most common MIME types are in the table below:
+
+    <!-- ![Table of MIME type families including text, image, audio, video, and application with examples](./mime_types.png) -->
+    {{< image max-h="50vh" src="./mime_types.png" alt="Table of MIME type families including text, image, audio, video, and application with examples" >}}
+
+---
+
+{{% section %}}
+
+## Most common Web content types (pt. 1)
+
+- [Hypertext Markup Language](https://html.spec.whatwg.org/) (_HTML_): `text/html` (for Web pages) should describe the content of a Web page, with no stylistic or behavioural information
+    + "the page" usually represents some resource (physical, digital, or virtual) that exists on the server-side, in a human-friendly way
+    + it may contain links to other resources (e.g. media, other pages, scripts, etc.)
+    + it may contain forms to let users interact with the server (e.g. submit data, trigger actions, etc.)
+    + it may contain identifiers (e.g. `id` attributes) and classes for page contents (e.g. paragraphs, buttons, etc)
+        * so that CSS and JavaScript can refer to them for styling and behaviour purposes
+    + underlying assumption is that the client knows how to render HTML pages...
+        * ... after downloading and interpreting all the resources linked from the page (e.g. CSS, JS, media, etc.)
+
+    + example of HTML page describing a speaker resource:
+
+    ```html
+    <html>
+        <body>
+            <h1>Speaker 123</h1>
+            <p>Volume: 75%</p>
+            <button id="increase-btn">Increase Volume</button>
+        </body>
+    </html>
+
+---
+
+## Most common Web content types (pt. 2)
+
+- [Cascading Style Sheets](https://www.w3.org/Style/CSS/specs.en.html) (_CSS_): `text/css` (for stylesheets) should describe the styling of a Web page, with no content or behaviour information
+    + it may contain rules about how to depict individual elements or groups of elements of the page (as identified by their tag, id, class, etc.)
+    + these rules are interpreted by the client to determine how to render the page (e.g. colors, fonts, layout, etc.)
+
+    + example of CSS stylesheet describing the styling of a speaker page:
+
+    ```css
+    /* file styles.css */
+    body { font-family: Arial, sans-serif; background-color: #f0f0f0; }
+    h1 { color: #333; }
+    p { font-size: 18px; }
+    #increase-btn { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+    #increase-btn:hover { background-color: #45a049; }
+    ```
+
+---
+
+## Most common Web content types (pt. 3)
+
+- [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript) (_JS_): `application/javascript` (for scripts) should describe the behaviour of a Web page, with no content or styling information
+    + it may contain instructions to manipulate the content and styling of the page (e.g. by adding, removing, or changing elements, classes, attributes, etc.)
+    + such instructions may be triggered by events occurring after the page has been shown to the user (e.g. button clicks, form submissions, etc.)
+    + such instructions are provided by the server, along with the page, to let the client know how to "animate" the page and make it interactive
+
+    + example of JavaScript code reloading the page when the "Increase Volume" button is clicked:
+
+    ```javascript
+    // file script.js
+    document.getElementById('increase-btn').addEventListener('click', function() {
+        location.reload();
+    });
+
+---
+
+## Most common Web content types (pt. 4)
+
+__Wrap-up:__ most commonly the HTML pages contains references to the CSS and JS files that describe the styling and behaviour of the page, respectively, and the client is responsible for downloading and interpreting all these resources to render the page correctly:
+
+```html
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css"> <!-- reference to CSS stylesheet -->
+        <script src="script.js"></script>                         <!-- reference to JavaScript file -->
+    </head>
+    <body>
+        <h1>Speaker 123</h1>
+        <p>Volume: 75%</p>
+        <button id="increase-btn">Increase Volume</button>
+    </body>
+</html>
+```
+
+---
+
+## Most common Web content types (pt. 4)
+
+- [JavaScript Object Notation](https://www.json.org/) (_JSON_): `application/json` (for data exchange) should describe the content of a resource in a machine-friendly way, with no styling or behaviour information
+    + it may contain structured data representing the state of a resource, or the result of an operation on a resource, etc.
+    + \[[AJAX](https://en.wikipedia.org/wiki/Ajax_(programming))\] sometimes the JS code may contact the server to get some tiny piece of information in JSON format, rather than the entire HTML page, in order to update the page dynamically without reloading it
+    + other times, the client is not a browser, but some software component that just needs data in machine-friendly format
+
+    + example of JSON document describing a speaker resource:
+
+    ```json
+    {
+        "id": 123,
+        "name": "Living Room Speaker",
+        "volume": 75,
+        "status": "on"
+    }
+    ```
+
+    + example of JavaScript code exploiting AJAX to contact the server and update the page dynamically:
+
+    ```javascript
+    document.getElementById('increase-btn').addEventListener('click', function() {
+        // Send an AJAX request to the server to increase the volume
+        fetch('/speakers/123/volume', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ change: '+10%' })
+        }).then(response => {
+            if (response.ok) {
+                // If the request was successful, update the volume displayed on the page
+                let volumeElement = document.querySelector('p');
+                let currentVolume = parseInt(volumeElement.textContent.split(': ')[1]);
+                volumeElement.textContent = `Volume: ${currentVolume + 10}%`;
+            } else {
+                alert('Failed to increase volume');
+            }
+        });
+    });
+    ```
+
+---
+
+## Most common Web content types (pt. 3)
+
+- other common formats, conceptually equivalent to JSON, include:
+    + __eXtensible Markup Language__ (_XML_): `application/xml` (for data exchange) a sort of generalization of HTML, with custom tags and no predefined semantics:
+
+    ```xml
+    <speaker>
+        <id>123</id>
+        <name>Living Room Speaker</name>
+        <volume>75</volume>
+        <status>on</status>
+    </speaker>
+    ```
+
+    + __YAML Ain't Markup Language__ (_YAML_): `application/x-yaml` (for data exchange) a sort of generalization of JSON, with more human-friendly syntax (easier to read and write):
+
+    ```yaml
+    id: 123
+    name: Living Room Speaker
+    volume: 75
+    status: on
+    ```
+
+
+{{% /section %}}
 
 ---
 

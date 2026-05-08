@@ -107,7 +107,7 @@ In practice, the Web revolves around:
 ## URLs identify resources
 
 <!-- ![Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier](./http-url.png) -->
-{{< image max-h="80vh"  src="./http-url.png" alt="Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier" >}}
+{{< image max-h="60vh"  src="./http-url.png" alt="Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier" >}}
 <br>
 
 - a URL tells the client where a resource is and how to reach it
@@ -468,7 +468,7 @@ timeline
         + file paths are mapped to URL paths (e.g., `/var/www/html/index.html` is accessible at `https://example.com/index.html`)
 
 <!-- ![](web1.0.svg) -->
-{{< image max-h="70vh" src="./web1.0.svg" alt="Diagram showing a simple web server hosting static files and clients accessing them via HTTP" >}}
+{{< image max-h="60vh" src="./web1.0.svg" alt="Diagram showing a simple web server hosting static files and clients accessing them via HTTP" >}}
 
 ---
 
@@ -551,7 +551,9 @@ timeline
 
 {{< image max-h="50vh" src="./web3.0.png" alt="Diagram showing a web server hosting web services and clients accessing them via HTTP, with AJAX interactions for dynamic page updates" >}}
 
-<br>
+---
+
+## Web 3.0: dynamic pages using AJAX to contact Web Services (WS) pt. 3
 
 - Software engineering remarks:
     * _separation of concerns_ is now improved: servers may generate data in machine-friendly ways, and can be _tested separately_ from HTML views
@@ -573,97 +575,178 @@ timeline
         * notice that in the end, the frontend is an initially static page, which comes with JS code to update itself dynamically by contacting the backend WSs via AJAX
     3. an __API gateway__ (e.g., [Nginx](https://nginx.org/)) that makes the backend and frontend servers available to clients, as if they were a single server, by routing requests to the appropriate component based on the URL path or other criteria
 
-{{< image max-h="50vh" src="./web4.0.png" alt="Diagram showing a single-page application architecture with a frontend SPA communicating with backend web services via AJAX" >}}
+{{< image max-h="40vh" src="./web4.0.png" alt="Diagram showing a single-page application architecture with a frontend SPA communicating with backend web services via AJAX" >}}
 
 {{% /section %}}
 
 ---
 
-## What are Web Services?
+## Web Service (WS) vs. Application Programming Interface (API)
 
-A Web service is, roughly speaking:
+* Roughly speaking, a WS is:
+    - a distributed software component exposing an HTTP interface
+    - accessible over the network by heterogeneous clients
+    - designed to encapsulate data and functionality behind a stable API consisting of admissible HTTP requests and their expected responses
 
-- a distributed software component exposed through an HTTP interface
-- accessible over the network by heterogeneous clients
-- designed to encapsulate data and functionality behind a stable API
-
-Its API typically specifies:
-
-- endpoints and URL patterns
-- admissible HTTP methods
-- input parameters, headers, and body formats
-- output formats and status codes
-
-![Architecture figure showing multiple clients such as browser, mobile app, and backend service calling the same HTTP web service](./web-service-overview.png)
+> WS are nowadays often referred to as "APIs". __This is imprecise__, as API is a more general concept.
+- APIs are provided by any software component to allow other software components being written to interact with it
+    * if the software is _object-oriented_, API consist of the _public methods of its classes_
+    * if the software is a _command-line application_, API consist of the _(sub-)commands and their parameters_
+    * if the software is a _WS_, API consist of the admissible _HTTP requests and their expected responses_
+- Some people may say that they are exploiting "APIs provided by company X"...
+    * ... what they actually mean is that they "are writing some software which acts as the client for some WS provided by company X, and thas WS has a well-defined HTTP API that they are exploiting"
 
 ---
 
-## Why Web Services dominate distributed systems
+## Why WS dominate distributed systems
 
-Web services are the backbone of modern distributed systems because:
+WS have nowadays become the backbone of most distributed systems because:
 
-- Web mechanisms are simple yet flexible
-- HTTP is pervasive and highly optimized
-- the Web stack is language- and platform-independent
-- HTTP is widely supported and usually firewall-friendly
-- ReST encourages interoperability through a uniform interface
+- Web metaphors and mechanisms are _simple_ (to understand and engineer) yet very _flexible_ and _general_
+- HTTP is pervasive and highly optimized, so using it for novel projects is often sufficient and convenient
+- the Web stack is programming-language- and _platform-independent_, so WS are _enablers_ of __interoperability__ and _integration_ across _heterogeneous_ systems
+- HTTP is _widely supported_ and usually __firewall-friendly__, which usually implies less networking issues and better accessibility for clients
+    + and therefore less engineering effort to make the system work in real-world conditions 
+        * (as opposed to using some custom protocol or other Internet protocols)
 
-They are also useful to wrap legacy software so as to:
-
-- expose existing capabilities on the Web
-- let heterogeneous components interoperate
-
-![Figure showing a legacy system wrapped by a web API so browsers, apps, and other services can access it over HTTP](./legacy-to-web-service.png)
+- WS allow for __wrapping__ _pre-existing_ software so as to:
+    - expose __legacy__ software on the Web (in case the legacy software was not distributed and should be made available to remote clients)
+        * "legacy" means "old by still operational" (and "to be changed as little as possible")
+    - let __heterogeneous__ software components interoperate (in case they are implemented in different languages or platforms, yet they need to interoperate)
+        * "heterogeneous" means "different in terms of programming language, platform, or other technical aspects"
 
 ---
 
 ## The ReST architectural style
 
-ReST is an architectural style for distributed hypermedia systems.
+- Regardless of implementation technologies, WS can be designed according to different __architectural styles__
+    * mostly concerning the shape of the HTTP API and the default data formats
+- the _most common_ architectural style for WS is __ReST__ ([Representational State Transfer](https://en.wikipedia.org/wiki/REST)), as introduced by Roy Fielding in his [PhD thesis](https://roy.gbiv.com/pubs/dissertation/fielding_dissertation.pdf)
+    * Fielding's principles have then been translated in practical guidelines, that you can find documented in many places (e.g., <https://restfulapi.net>)
 
-Its key constraints are:
 
-1. client-server
-2. representational state transfer
-3. uniform interface
-4. stateless interactions
-5. cacheable responses
-6. layered system
-7. code on demand
+{{% fragment %}}
 
-The point is not to use HTTP superficially, but to structure interactions around resources and representations.
+### ReST principles in a nutshell
 
----
+ReST is an architertural style for hypermedia systems, which imposes the following constraints on the design of WS:
 
-## ReST constraints in practice
+1. __client-server__: _clients_ consume _resources_, _servers_ host them
+2. __representation-oriented__: only _representations_ of (_states_ of) resources are exchanged, <u>not</u> the resources themselves 
+    * this is the meaning of "representational state transfer": clients inspect and manipulate the state of resources by exchanging representation with servers
+        + HTML pages, JSON documents, XML documents, etc. are all examples of _representations_ of resources
+3. __uniform interface__: resources are located/identified by _URLs_ and manipulated via standard _HTTP methods_
+4. __stateless__: each request contains all the information needed to process it
+5. __cacheable__: responses may marked as _cacheable_ by servers, and clients may cache them to _improve performance_
+6. __layered__: _proxies_, gateways, and _intermediaries_ can be inserted transparently between clients and servers
+    * e.g. to provide load balancing, caching, security, etc.
+7. __code on-demand__: optional transfer of executable code from servers to clients, to expand clients' functionalities, e.g. JS
 
-1. client-server: clients consume resources, servers host them
-2. representation-oriented: clients exchange representations, not direct access to server internals
-3. uniform interface: resources are identified by URLs and manipulated via standard HTTP methods
-4. stateless: each request contains all the information needed to process it
-5. cacheable: responses may be reused when allowed
-6. layered: proxies, gateways, and intermediaries can be inserted transparently
-7. code on demand: optional transfer of executable code, for example JavaScript
-
-![Diagram showing clients, proxies, cache, API gateway, and origin server to illustrate client-server, statelessness, caching, and layers in REST](./rest-constraints-overview.png)
+{{% /fragment %}}
 
 ---
 
-## ReSTful APIs in practice
+## ReSTful APIs in practice (pt. 1)
 
-Design the system in terms of:
+ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReST style) is designed to accept, there including:
+- the __endpoints__ (i.e., _URLs_) that identify the resources managed by the WS
+    - the admissible __HTTP methods__ for each endpoint (i.e., the operations that clients can perform on the resources)
+        - the admissible __input parameters__, __body formats__, and __headers__ each method may accept for each endpoint
+            - the expected and exceptional __status codes__ and __response formats__ and for each method
 
-1. collections of resources
-2. individual resources
-3. admissible operations on each resource
+- Designing the Web API is important, and it is commonly performed before implementing either the client or the server, 
+    * as it defines the _contract_ between them and guides the implementation of both sides
 
-Typical reasoning pattern:
+- Formal _languages_ and _tools_ exist to help designing and documenting Web APIs
+    * for example the [OpenAPI Specification](https://www.openapis.org/) (formerly known as _Swagger_), 
+        + it allows to formally _describe_ the API in a _machine-readable_ format (either YAML or JSON)...
+        + ... and then _generate_ documentation Web pages, client/server _code skeletons_, etc. from it
+            - generated code skeletons let developers save time by providing a starting point for the implementation of the client and server, with the API contract already defined and implemented in the code structure
 
-- collection endpoint: /customers
-- item endpoint: /customers/{id}
-- operation semantics mapped onto HTTP methods
+- Useful references:
+    * OpenAPI Specification: <https://swagger.io/specification/>
+    * "Swagger Editor", Online editor for OpenAPI: <https://editor.swagger.io/>
+    * "SwaggerHub", Online platform for designing, documenting, and sharing APIs: <https://app.swaggerhub.com/>
 
-![Table mapping GET, POST, PUT, PATCH, and DELETE to resource collections and single resources in a REST API](./http-methods.png)
+---
+
+## ReSTful APIs in practice (pt. 2)
+
+### Example (full example [here](https://app.swaggerhub.com/apis-docs/PIKA-lab/E-commerce/1.0.1), sources available [here](https://app.swaggerhub.com/apis/PIKA-lab/E-commerce/1.0.1), editable via [Swagger Editor](https://editor.swagger.io/)):
+- Endpoint: `/products` \[whatever precedes the path component of the URL is omitted for brevity, e.g. `https://example.com`\]
+    - `GET` _method_ to read the list of products
+        * _query_ parameters: `?category=electronics&max_price=100`
+        * _responses_: 
+            1. JSON array of product objects, if status is `200 OK`
+            2. JSON object with error message, if status is `400 Bad Request` (e.g., if query parameters are invalid)
+    - `POST` _method_ to create a new product
+        * _body_: JSON object describing the new product (e.g., name, price, category, etc.)
+        * _responses_: 
+            1. `201 Created` with a `Location` header pointing to the URL of the newly created product (e.g., `https://example.com/products/123`)
+            2. JSON object with error message, if status is `400 Bad Request` (e.g., if body format is invalid)
+- Endpoint: `/products/{id}`
+    - where `{id}` is a _path parameter_, i.e. a placeholder for the product ID identifying a specific product by its ID
+    - `GET` _method_ to read a specific product by its ID
+        * _responses_: 
+            1. JSON object describing the product, if status is `200 OK`
+            2. JSON object with error message, if status is `404 Not Found` (e.g., if no product with the specified ID exists)
+    - `PUT` _method_ to update a specific product (e.g. price, description, quantity available) by its ID
+        * _body_: JSON object describing the updated product information
+        * _responses_: 
+            1. `204 No Content` if the update was successful (with no body in the response)
+            2. JSON object with error message, if status is `400 Bad Request` (e.g., if body format is invalid)
+            3. JSON object with error message, if status is `404 Not Found` (e.g., if no product with the specified ID exists)
+    - `DELETE` _method_ to delete a specific product by its ID
+        * _responses_: 
+            1. `204 No Content` if the deletion was successful (with no body in the response)
+            2. JSON object with error message, if status is `404 Not Found` (e.g., if no product with the specified ID exists)
+
+---
+
+## ReSTful APIs in practice (pt. 3)
+
+### Badly designed APIs
+
+- \[BAD PRACTICE\] put verbs/actions in the URL, which implies resources are not being modelled:
+    * `POST /increase_volume` ["I want to increase the volume, here is the change I want to apply"]
+        * more correct would be `POST /speakers/123/volume` with body object representing the desired change
+
+- \[BAD PRACTICE\] use the same endpoint for different resources, and distinguish them by query parameters:
+    * `GET /course/view.php?id=79314` (BTW this is how UniBO's Moodle work, unfortunately...)
+        * more correct would be `GET /courses/{academic_year}/{id_or_name}` 
+
+- \[BAD PRACTICE\] reveal implementation details in the API design, resources names after DB tables
+    * `GET /table_users` (implies that the server is using a table named "users" in its database)
+        * more correct would be `GET /users` (which is more abstract and does not reveal implementation details)
+
+- \[BAD PRACTICE\] put actions in URL, and abuse meaning of HTTP methods
+    * `GET /delete_user?id=123` (implies that the server is using a GET request to perform a delete operation, which is semantically incorrect and may cause issues with caching and other HTTP features)
+        * more correct would be `DELETE /users/123` (which uses the appropriate HTTP method for the intended action)
+
+---
+
+## ReSTful APIs in practice (pt. 4)
+
+- Most commonly, Web APIs are _designed_ by service _providers_, documented, and publicly described on the Web so that developers may _use_ them to build custom clients
+    + it's much more frequent for developers to consume APIs provided by others, rather than designing and implementing their own APIs from scratch
+    + examples of notable Web APIs: [OpenAI](https://developers.openai.com/api/reference/overview), [GitHub](https://docs.github.com/rest), [YouTube](https://developers.google.com/youtube/v3), etc.
+
+- If you're working on the _provider_ side, remember:
+    + _unlikely_ to have some long-term benefit from keeping your APIs _secret_, as they will be _reverse-engineered_ by clients anyway, so better to design them _public_
+    + well-engineered, documented, and stable APIs are a _great asset_ for your service, as they _attract_ more developers to use it and build on top of it, which in turn _increases the value_ of your service
+
+- There are many ways to control access to APIs, which are there both for cybersecurity and business reasons 
+    + __authentication__: verifying the _identity_ of the client (e.g., via API keys, OAuth tokens, etc.)
+    + __authorization__: determining what the authenticated client is _allowed_ to do (e.g., via role-based access control, permissions, etc.)
+    + __rate limitation__: WS may _limit_ the number of requests per _time unit_, depending on user _identity_, role, _premiumship_, etc. (implies authentication)
+        - there is often some default _per-IP-address rate limitation_ (preventing [DoS attacks](https://it.wikipedia.org/wiki/Denial_of_service) and _incentivising_ registration/premiumship)
+    + __monetization__: WS may charge clients based on their API usage (e.g., via _subscription_ plans, _pay-per-use_, etc.)
+        - there is often some _free tier_ with limited usage, to let developers try the API before committing to a paid plan
+
+- ReST APIs are so much "de-facto standards" that many __monitoring__ and __analytics__ tools exist to support developers and providers
+    + e.g. [Postman](https://www.postman.com/) for testing APIs
+    + e.g. [Prometheus](https://prometheus.io/) for monitoring APIs and collecting metrics about their usage
+    + e.g. [Graphana](https://grafana.com/) for visualizing metrics collected by Prometheus and other monitoring tools into management-ready dashboards
 
 ---
 

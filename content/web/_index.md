@@ -431,19 +431,151 @@ __Wrap-up:__ most commonly the HTML pages contains references to the CSS and JS 
     status: on
     ```
 
-
 {{% /section %}}
 
 ---
 
+{{% section %}}
+
 ## History of the Web in a nutshell
 
-1. Web 1.0: mostly static pages, read-only browsing
-2. Web 2.0: server-side dynamic pages, forms, template engines, user-generated content
-3. Web 3.0: rich clients using AJAX to talk to Web services asynchronously
-4. Web 4.0: single-page applications with highly interactive frontends
+1. Web 1.0: mostly _static pages_, read-only browsing
+2. Web 2.0: server-side _dynamic pages_, forms, _template_ engines, user-generated content
+3. Web 3.0: rich clients using _AJAX_ to talk to __Web services__ asynchronously
+4. Web 4.0: _single-page applications_ (SPAs) with highly interactive frontends
 
-![Timeline or comparison figure showing Web 1.0 static pages, Web 2.0 dynamic server-rendered pages, Web 3.0 AJAX-based applications, and Web 4.0 single-page applications](./web-evolution.png)
+```mermaid
+timeline
+    Web 1.0 (~1990–2004) : Mostly static pages
+        : Read-only browsing
+    Web 2.0 (~2004–2010) : Server-side dynamic pages
+        : Forms and template engines
+        : User-generated content
+    Web 3.0 (~2010–2015) : Rich clients using AJAX
+        : Asynchronous calls to Web services
+    Web 4.0 (~2015–today) : Single-page applications
+        : Highly interactive frontends
+```
+
+---
+
+## Web 1.0: static pages, read-only
+
+- Web Servers are essentially wrappers for folders of static files (HTML, CSS, JS, media, etc.)
+    * servers have a public IP address and a domain name (e.g., `example.com`)
+    * server have a root folder (e.g., `/var/www/html`) where the static files are stored
+    * clients may access the files by sending HTTP requests to the server, specifying the path to the file in the URL (e.g., `https://example.com/index.html`)
+        + file paths are mapped to URL paths (e.g., `/var/www/html/index.html` is accessible at `https://example.com/index.html`)
+
+<!-- ![](web1.0.svg) -->
+{{< image max-h="70vh" src="./web1.0.svg" alt="Diagram showing a simple web server hosting static files and clients accessing them via HTTP" >}}
+
+---
+
+## Web 2.0: dynamically generated pages + template engines (pt. 1)
+
+<!-- mention CGIs -->
+
+- Web Servers are now able to generate dynamic pages upon request, via [Common Gateway Interface](https://it.wikipedia.org/wiki/Common_Gateway_Interface) (CGI), that populates __HTML templates__ with data from databases or other sources
+    * [PHP](https://it.wikipedia.org/wiki/PHP), [JSP](https://it.wikipedia.org/wiki/JavaServer_Pages), [ASP](https://it.wikipedia.org/wiki/Active_Server_Pages), etc. are examples of server-side scripting languages used for this purpose
+    * upon receiving an HTTP request for _reading_ a page, the server:
+        1. looks for the corresponding CGI script (e.g., `index.php`)
+        2. executes the script via some template engine, which may query a database or perform other operations to gather data
+        3. the script then populates an HTML template with the gathered data and returns the generated HTML page as the HTTP response
+        4. it is now possible for clients to access dynamic content (e.g. user-personalized pages)
+    * upon receiving an HTTP request for _writing_ (e.g., form submission), the server:
+        1. looks for the corresponding CGI script (e.g., `submit.php`)
+        2. executes the script, which processes the submitted data (e.g., by storing it in a database) and then generates an appropriate response (commonly: a redirection to the same page or another)
+        3. it is now possible for clients to update the server-side state (e.g. by submitting forms)
+            + updates commonly imply reloading the entire page (which is slow for the user and inefficient for the server)
+
+{{< image max-h="50vh" src="./web2.0.svg" alt="Diagram showing a web server generating dynamic pages via CGI scripts and template engines, and clients accessing them via HTTP" >}}
+
+---
+
+## Web 2.0: dynamically generated pages + template engines (pt. 2)
+
+- Example of PHP script generating a dynamic page for a speaker resource:
+
+    ```php
+    <?php
+    // index.php
+    $speaker_id = $_GET['id']; // get speaker ID from query parameter
+    // query database to get speaker information (this is just a placeholder, actual DB code would be needed)
+    $speaker_info = getSpeakerInfoFromDatabase($speaker_id);
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Speaker <?php echo $speaker_info['name']; ?></title>
+    </head>
+    <body>
+        <h1>Speaker <?php echo $speaker_info['name']; ?></h1>
+        <p>Volume: <?php echo $speaker_info['volume']; ?>%</p>
+        <form action="update_volume.php" method="POST">
+            <input type="hidden" name="id" value="<?php echo $speaker_id; ?>">
+            <input type="number" name="change" value="10"> <!-- change in volume -->
+            <button type="submit">Increase Volume</button>
+        </form>
+    </body>
+    </html>
+    ```
+    * submitting a form to `update_volume.php` would trigger a server-side script that updates the speaker's volume in the database and then redirects back to `index.php` to show the updated information
+
+- Software engineering remarks:
+    * this approach _mixes_ content, styling, and behaviour in a single file, which is a __bad practice__ for maintainability and separation of concerns
+    * also __testability is poor__, as it is difficult to test input–output logic separately from its presentation, and there are __no clear interfaces__ for _unit testing_
+    * the situation where the client is <u>not</u> a human-driven browser – but some automated software which just needs data in _machine-friendly_ format (e.g., JSON) – is _poorly supported_ by this approach, as it is primarily designed for generating human-friendly HTML pages
+
+---
+
+## Web 3.0: dynamic pages using AJAX to contact Web Services (WS) pt. 1
+
+> __Intuition 1__: WS are a sort of distributed objects with an HTTP interface, letting clients send requests to produce remote operations and get remote data, without caring about the underlying implementation
+
+> __Intuition 2__: WS may be useful not only to allow visiting Web pages, but in general to build distributed systems where clients and servers exchange data via request–response interactions over HTTP
+
+> __Intuition 3__: clients may not necessarily be browsers, but also other software components (e.g., mobile apps, backend services, etc.) that need to exchange data and functionality over the Web
+
+---
+
+## Web 3.0: dynamic pages using AJAX to contact Web Services (WS) pt. 2
+
+- Web Services are __software components__ that expose _data_ and _functionality_ through an _HTTP interface_, allowing clients to interact with them over the Web
+    * in a sense, they bring _object-oriented_ programming to the Web, by letting clients interact with _remote objects_ (__resources__) through a well-defined interface (API)
+    * they are often designed to be _reusable_ by different clients (e.g., browsers, mobile apps, other backend services, etc.)
+    * they typically _encapsulate_ some __server-side logic and data__, and provide _programming-language-agnostic API_ for clients to access them
+    * when the client is a _browser_, it can use _AJAX_ to send HTTP requests to the Web Service and _update_ the page dynamically
+        * but the service supports other kinds of clients as well, not just browsers...
+        * ... so the service commonly supports multiple content formats (e.g., HTML for browsers, JSON for API clients, etc.) and lets clients negotiate the format they prefer
+
+{{< image max-h="50vh" src="./web3.0.png" alt="Diagram showing a web server hosting web services and clients accessing them via HTTP, with AJAX interactions for dynamic page updates" >}}
+
+<br>
+
+- Software engineering remarks:
+    * _separation of concerns_ is now improved: servers may generate data in machine-friendly ways, and can be _tested separately_ from HTML views
+    * engineers may now design the backend server in a _reusable_ way: Web- and mobile-frontends, may now be designed to leverage the same WS
+
+---
+
+## Web 4.0: single-page applications (SPA) pt. 1
+
+- [Single-page applications](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPAs) are Web applications that load a single HTML page and dynamically update it as the user interacts with the app, _without reloading the entire page_
+    * they rely heavily on _JS_ to manage the _application's state_ and to communicate with _backend WSs_ via _AJAX_
+    * they provide a more _fluid_ and _responsive_ user experience, as they can update only parts of the page instead of reloading everything at every update
+
+- On the _server-side_, the SPA architecture typically involves 3 components:
+    1. a __backend server__ that hosts WSs for data and functionalities (e.g., implemented with [Flask](https://flask.palletsprojects.com/), [FastAPI](https://fastapi.tiangolo.com/), [Spring Boot](https://spring.io/projects/spring-boot), etc.)
+        * $\approx$ encapsulating the _model_ of a Model-View-Controller (MVC) architecture
+    2. a __frontend server__ that runs serves HTML, CSS, and JavaScript to the browser (e.g., implemented with [React](https://reactjs.org/), [Angular](https://angular.io/), [Vue](https://vuejs.org/), etc.)
+        * $\approx$ encapsulating the _view_ and _controller_ of a MVC architecture
+        * notice that in the end, the frontend is an initially static page, which comes with JS code to update itself dynamically by contacting the backend WSs via AJAX
+    3. an __API gateway__ (e.g., [Nginx](https://nginx.org/)) that makes the backend and frontend servers available to clients, as if they were a single server, by routing requests to the appropriate component based on the URL path or other criteria
+
+{{< image max-h="50vh" src="./web4.0.png" alt="Diagram showing a single-page application architecture with a frontend SPA communicating with backend web services via AJAX" >}}
+
+{{% /section %}}
 
 ---
 

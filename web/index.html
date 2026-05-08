@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2026-05-07 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-08 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 <!-- ## TOC
 
@@ -95,80 +95,463 @@
 <h1 id="what-is-the-web">What is the Web?</h1>
 <p>The Web is, at the same time:</p>
 <ul>
-<li>a distributed hypermedia information system</li>
-<li>a collection of resources accessible via the Internet</li>
-<li>an infrastructure for distributed systems based on HTTP</li>
+<li>a <strong>distributed</strong> <em>hypermedia</em> information system</li>
+<li>a collection of <strong>linked</strong> <em>resources</em> accessible via the <em>Internet</em> (in particular, via <em>HTTP</em>)</li>
+<li>an <em>infrastructure</em> for <strong>distributed systems</strong> based on <em>HTTP</em></li>
 </ul>
-<p>In practice, the Web revolves around:</p>
+
+
+<span class="fragment ">
+  <p>In practice, the Web revolves around:</p>
 <ul>
-<li>resources identified by URLs</li>
-<li>interactions mediated by HTTP</li>
-<li>documents and applications built with HTML, CSS, and JavaScript</li>
-<li>hyperlinks connecting information and behaviour</li>
+<li>resources <strong>identified</strong> by <em>URLs</em></li>
+<li>interactions <strong>mediated</strong> by <em>HTTP</em></li>
+<li>documents and applications <strong>built</strong> with <em>HTML</em>, <em>CSS</em>, and <em>JavaScript</em></li>
+<li><em>hyperlinks</em> <strong>connecting</strong> information and behaviour</li>
+</ul>
+
+</span>
+
+</section><section>
+<h2 id="hyper-links-hyper-text-and-hyper-media">Hyper-links, hyper-text, and hyper-media</h2>
+<ul>
+<li><strong>hyper-links</strong> are <em>references</em> from one resource to another, enabling navigation and discovery</li>
+<li><strong>hyper-text</strong> is text that contains links to other text</li>
+<li><strong>hyper-media</strong> generalizes the concept to include links in images, audio, video, forms, etc.</li>
+<li>the Web’s success is largely due to its ability to connect resources through links
+<ul>
+<li>in the user’s perspective, the Web is something to <em>navigate</em> and <em>explore</em> through links…</li>
+<li>… not just a collection of isolated documents</li>
+</ul>
+</li>
 </ul>
 </section><section>
 <h2 id="urls-identify-resources">URLs identify resources</h2>
-<p><img src="./http-url.png" alt="Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier"></p>
+<!-- ![Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier](./http-url.png) -->
+<p>
+
+
+
+
+
+<img src="./http-url.png" alt="Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier" style="max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+
+<br></p>
 <ul>
 <li>a URL tells the client where a resource is and how to reach it</li>
 <li>different parts of the URL may identify host, port, path, query parameters, or fragment</li>
-<li>in ReSTful systems, URLs should identify resources rather than actions</li>
+<li>in ReSTful systems, URLs should identify resources rather than actions
+<ul>
+<li>e.g. WRONG URL: <code>https://example.com/getCustomer?id=123</code></li>
+<li>e.g. RIGHT URL: <code>https://example.com/customers/123</code></li>
+</ul>
+</li>
 </ul>
 </section><section>
+
+
+<section data-shortcode-section="">
 <h2 id="http-is-the-webs-application-protocol">HTTP is the Web’s application protocol</h2>
-<p>HTTP standardizes how clients and servers exchange messages:</p>
+<p><strong>Hyper-Text Transfer Protocol</strong> (<em>HTTP</em>) standardizes how clients and servers exchange messages:</p>
+<img src="./http-ingredients.svg" alt="Diagram showing HTTP request and response messages with headers and body" style="max-width: 95vw; max-height: 50vh; object-fit: contain; ">
 <ol>
-<li>requests from client to server</li>
-<li>responses from server to client</li>
-<li>methods describing the intended operation</li>
-<li>status codes describing the outcome</li>
-<li>headers and bodies carrying metadata and content</li>
+<li><em>clients</em> acting on behalf of users or applications</li>
+<li><em>servers</em> hosting resources or providing functionalities</li>
+<li><em>requests</em> from client to server</li>
+<li><em>responses</em> from server to client</li>
+<li><em>methods</em> describing the intended operation</li>
+<li><em>status codes</em> describing the outcome</li>
+<li><em>headers</em> and <em>bodies</em> carrying metadata and content</li>
 </ol>
 </section><section>
-<h2 id="http-request-messages">HTTP request messages</h2>
-<p><img src="./http-req.png" alt="Diagram of an HTTP request showing request line, headers, blank line, and optional entity body"></p>
+<h2 id="example-of-simple-http-interaction-read">Example of simple HTTP interaction (read)</h2>
+<ol>
+<li>Client wants to remotely <em>read</em> volume of a speaker (id: <code>123</code>), hosted by server at <code>https://example.com</code></li>
+<li>Server allows users to <em>read</em>/change volume of speakers, by speaker ID, through HTTP</li>
+<li>To read the volume, client sends an HTTP <em>request</em> to URL <code>https://example.com/speakers/123/volume</code>
 <ul>
-<li>request line: method, target URL, protocol version</li>
-<li>headers: metadata such as content type, authorization, cache directives</li>
-<li>body: optional payload, common in POST, PUT, and PATCH</li>
+<li>method: <code>GET</code> [“I want to read some information about the resource”]</li>
+<li>headers:
+<ul>
+<li><code>Accept: text/html</code> [“I want the response to be an HTML page describing the volume”]</li>
+<li><code>Authorization: &lt;auth token here&gt;</code> [“I am authorized to access this resource, here is my token”]</li>
+</ul>
+</li>
+<li>body: (empty)</li>
+</ul>
+</li>
+<li>Server processes the request, reads the actual volume value, and produces a Web page describing that speaker’s volume, sending back an HTTP <em>response</em>
+<ul>
+<li>status code: <code>200 OK</code> [“The request was successful, here is the information you asked for”]</li>
+<li>headers:
+<ul>
+<li><code>Content-Type: text/html</code> [“The body of this response is an HTML document”]</li>
+<li><code>Cache-Control: no-cache</code> [“Don’t cache this response, it may change frequently”]</li>
+</ul>
+</li>
+<li>body: <code>&lt;html&gt;&lt;body&gt;&lt;h1&gt;Speaker 123&lt;/h1&gt;&lt;p&gt;Volume: 75%&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</code> [“Here is the HTML page describing the speaker’s volume”]</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="example-of-simple-http-interaction-write">Example of simple HTTP interaction (write)</h2>
+<ol>
+<li>Client wants to remotely <em>increase</em> volume of a speaker (id: <code>123</code>), hosted by server at <code>https://example.com</code></li>
+<li>Server allows users to read/<em>change</em> volume of speakers, by speaker ID, through HTTP</li>
+<li>To increase the volume, client sends an HTTP <em>request</em> to URL <code>https://example.com/speakers/123/volume</code>
+<ul>
+<li>method: <code>POST</code> [“I want to change some information about the resource”]</li>
+<li>headers:
+<ul>
+<li><code>Content-Type: application/json</code> [“The body of this request is a JSON document describing the change I want to make”]</li>
+<li><code>Authorization: &lt;auth token here&gt;</code> [“I am authorized to access this resource, here is my token”]</li>
+</ul>
+</li>
+<li>body: <code>{"change": "+10%"}</code> [“I want to increase the volume by 10%”]</li>
+</ul>
+</li>
+<li>Server processes the request, updates the actual volume value, and sends back an HTTP <em>response</em>
+<ul>
+<li>status code: <code>204 No Content</code> [“The request was successful, but there is no content to return in the body”]</li>
+<li>headers: (none)</li>
+<li>body: (empty)</li>
+</ul>
+</li>
+</ol>
+
+</section>
+</section><section>
+<h2 id="http-request-messages">HTTP request messages</h2>
+<!-- ![Diagram of an HTTP request showing request line, headers, blank line, and optional entity body](./http-req.png) -->
+
+
+
+
+
+
+<img src="./http-req.png" alt="Diagram of an HTTP request showing request line, headers, blank line, and optional entity body" style="max-width: 95vw; max-height: 70vh; object-fit: contain; ">
+
+<ul>
+<li><strong>Method</strong>: what to do on the resource (e.g., GET, POST, PUT, DELETE)</li>
+<li><strong>URL</strong>: what resource to access and where (e.g., <a href="https://example.com/speakers/123/volume">https://example.com/speakers/123/volume</a>)</li>
+<li><strong>Headers</strong>: metadata about the request (e.g., format of the body, authentication token, requested response format, etc.)</li>
+<li><strong>Body</strong>: optional content sent to the server (e.g., requested changes to the resource, etc.)</li>
+<li>[Protocol] <strong>Version</strong>: necessary to let older and newer client/servers interoperate</li>
 </ul>
 </section><section>
 <h2 id="http-response-messages">HTTP response messages</h2>
-<p><img src="./http-res.png" alt="Diagram of an HTTP response showing status line, headers, blank line, and optional entity body"></p>
+<!-- ![Diagram of an HTTP response showing status line, headers, blank line, and optional entity body](./http-res.png) -->
+
+
+
+
+
+
+<img src="./http-res.png" alt="Diagram of an HTTP response showing status line, headers, blank line, and optional entity body" style="max-width: 95vw; max-height: 70vh; object-fit: contain; ">
+
 <ul>
-<li>status line: protocol version, status code, reason phrase</li>
-<li>headers: metadata such as content type, caching, or location</li>
-<li>body: the representation of the requested resource, or error details</li>
+<li><strong>Status code</strong>: numeric code identifying the success or failure of the request (e.g., 200, 404, 500)</li>
+<li><strong>Reason phrase</strong>: human-readable description of the status code (e.g., “OK”, “Not Found”, “Internal Server Error”)</li>
+<li><strong>Headers</strong>: metadata about the response (e.g., format of the body, caching directives, etc.)</li>
+<li><strong>Body</strong>: optional content sent to the client (e.g., requested information, error message, etc.)</li>
+<li>[Protocol] <strong>Version</strong>: necessary to let older and newer client/servers interoperate</li>
 </ul>
 </section><section>
-<h2 id="methods-and-status-codes">Methods and status codes</h2>
+<h2 id="about-http-methods">About HTTP methods</h2>
+<p><em>Standard</em> set of admissible operations that clients may request on resources:</p>
+<ul>
+<li>
+<p>main ones: <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code></p>
 <p><img src="./http-methods.png" alt="Table mapping HTTP verbs to CRUD operations for collections and specific resources"></p>
-<p><img src="./http_status_codes.png" alt="Chart grouping common HTTP status codes into success, client error, and server error classes"></p>
+</li>
+<li>
+<p>many more are supported, for example <code>HEAD</code>, <code>OPTIONS</code>, <code>CONNECT</code>, <code>TRACE</code>, etc.</p>
 <ul>
-<li>methods such as GET, POST, PUT, PATCH, DELETE define the operation semantics</li>
-<li>status codes such as 200, 201, 204, 404, 409, 500 summarize the result</li>
-<li>together, methods and status codes form the vocabulary of Web APIs</li>
+<li>see <a href="https://developer.mozilla.org/docs/Web/HTTP/Methods">https://developer.mozilla.org/docs/Web/HTTP/Methods</a> for a complete list</li>
+</ul>
+</li>
 </ul>
 </section><section>
-<h2 id="content-on-the-web">Content on the Web</h2>
-<p>The classic Web stack separates concerns:</p>
+<h2 id="about-http-status-codes">About HTTP status codes</h2>
+<!-- ![Chart grouping common HTTP status codes into success, client error, and server error classes](./http_status_codes.png) -->
+
+
+
+
+
+
+<img src="./http_status_codes.png" alt="Chart grouping common HTTP status codes into success, client error, and server error classes" style="max-width: 95vw; max-height: 70vh; object-fit: contain; ">
+
 <ul>
-<li>HTML for structure and content</li>
-<li>CSS for presentation and styling</li>
-<li>JavaScript for dynamic behaviour</li>
+<li>
+<p>3-digit, positive integer numbers, the most significant digit identifying the class of the response:</p>
+<ul>
+<li><code>1xx</code>: informational responses (e.g., “time to swap to another protocol”)</li>
+<li><code>2xx</code>: successful responses (e.g. “successfully processed the request with/without body being returned”)</li>
+<li><code>3xx</code>: redirection messages (e.g. “the resource has moved, here is the new URL”)</li>
+<li><code>4xx</code>: client-side error responses (e.g. “cannot process the request due to client’s mistake”)</li>
+<li><code>5xx</code>: server-side error responses (e.g. “cannot process the request due to server’s mistake”)</li>
 </ul>
-<p>HTTP bodies can carry many media types, not just HTML pages.</p>
-<p><img src="./mime_types.png" alt="Table of MIME type families including text, image, audio, video, and application with examples"></p>
+</li>
+<li>
+<p>most common status codes are in the picture:</p>
+<ul>
+<li>see <a href="https://developer.mozilla.org/docs/Web/HTTP/Status">https://developer.mozilla.org/docs/Web/HTTP/Status</a> for a complete list</li>
+</ul>
+</li>
+</ul>
 </section><section>
-<h2 id="hypertext-and-hypermedia">Hypertext and hypermedia</h2>
+<h2 id="about-http-headers">About HTTP headers</h2>
+<p>Key–value pairs that carry metadata about the request or response, for example:</p>
 <ul>
-<li>hypertext means documents contain links to other documents</li>
-<li>hypermedia generalizes the same idea to images, audio, video, forms, and executable behaviour</li>
-<li>the Web became successful because resources are loosely coupled and navigable through links</li>
+<li><code>Content-Type</code>: specifies the media type of the body content [both in reqs and resps]</li>
+<li><code>Authorization</code>: contains credentials for authenticating the client [commonly in reqs]</li>
+<li><code>Cache-Control</code>: provides directives for caching mechanisms [commonly in resps]</li>
+<li><code>Accept</code>: indicates the media types that the client can process [commonly in reqs]</li>
+<li><code>Set-Cookie</code>: instructs the client to store a cookie [commonly in resps]</li>
+<li><code>User-Agent</code>: identifies the client software making the request [commonly in reqs]</li>
+<li><code>Location</code>: indicates the URL of a newly created resource or a redirection target [commonly in resps]</li>
+<li>full list of standard headers: <a href="https://developer.mozilla.org/docs/Web/HTTP/Headers">https://developer.mozilla.org/docs/Web/HTTP/Headers</a></li>
 </ul>
-<blockquote>
-<p>Links are what transform isolated documents into an information space.</p>
+
+
+<span class="fragment ">
+  <blockquote>
+<p>Server designers may “invent” <em>custom headers</em>, but it’s best to stick to standard ones when possible for better interoperability</p>
 </blockquote>
+<ul>
+<li>custom headers should be prefixed with <code>X-</code> to avoid conflicts with standard headers
+<ul>
+<li>but this convention is being deprecated in favor of using a custom namespace (e.g., <code>MyApp-</code>) for non-standard headers.</li>
+</ul>
+</li>
+</ul>
+
+</span>
+
+</section><section>
+<h2 id="content-format-type-negotiation">Content format (“type”) negotiation</h2>
+<p>Clients and servers may automatically <em>negotiate</em> the format of the data being exchanged</p>
+<ul>
+<li>Assumtion:
+<ol>
+<li>the server may represent resources in various formats (e.g., HTML, JSON, XML, etc.)</li>
+<li>the client may prefer certain formats over others (e.g., a browser may prefer HTML, while an API client may prefer JSON)</li>
+</ol>
+</li>
+<li>Mechanism:
+<ol>
+<li>client sends an <code>Accept</code> header listing the media types it can process, possibly with quality values (e.g., <code>Accept: text/html, application/json;q=0.9, */*;q=0.8</code>)</li>
+<li>server selects the best format it can produce based on the client’s preferences and its own capabilities</li>
+<li>server sends the response with the selected format and a <code>Content-Type</code> header indicating the media type of the body (e.g., <code>Content-Type: application/json</code>)</li>
+<li>client processes the response according to the specified format</li>
+</ol>
+</li>
+<li>“Formats” are expressed as <em>media types</em> (also known as <strong>MIME types</strong>), which are standardized identifiers for data formats (e.g., <code>text/html</code>, <code>application/json</code>, <code>image/png</code>, etc.)</li>
+</ul>
+</section><section>
+<h2 id="about-mime-types">About MIME types</h2>
+<ol>
+<li>
+<p>MIME stands for “Multipurpose Internet Mail Extensions”, but it is used far beyond email to identify media types in HTTP and other protocols</p>
+</li>
+<li>
+<p>A MIME type consists of a type and a subtype, separated by a slash (e.g., <code>text/html</code>, <code>application/json</code>, <code>image/png</code>)</p>
+</li>
+<li>
+<p>Full list is available at <a href="https://developer.mozilla.org/docs/Web/HTTP/Guides/MIME_types/Common_types">https://developer.mozilla.org/docs/Web/HTTP/Guides/MIME_types/Common_types</a></p>
+</li>
+<li>
+<p>Most common MIME types are in the table below:</p>
+ <!-- ![Table of MIME type families including text, image, audio, video, and application with examples](./mime_types.png) -->
+
+    
+    
+    
+    
+    
+    <img src="./mime_types.png" alt="Table of MIME type families including text, image, audio, video, and application with examples" style="max-width: 95vw; max-height: 50vh; object-fit: contain; ">
+
+</li>
+</ol>
+</section><section>
+
+
+<section data-shortcode-section="">
+<h2 id="most-common-web-content-types-pt-1">Most common Web content types (pt. 1)</h2>
+<ul>
+<li>
+<p><a href="https://html.spec.whatwg.org/">Hypertext Markup Language</a> (<em>HTML</em>): <code>text/html</code> (for Web pages) should describe the content of a Web page, with no stylistic or behavioural information</p>
+<ul>
+<li>
+<p>“the page” usually represents some resource (physical, digital, or virtual) that exists on the server-side, in a human-friendly way</p>
+</li>
+<li>
+<p>it may contain links to other resources (e.g. media, other pages, scripts, etc.)</p>
+</li>
+<li>
+<p>it may contain forms to let users interact with the server (e.g. submit data, trigger actions, etc.)</p>
+</li>
+<li>
+<p>it may contain identifiers (e.g. <code>id</code> attributes) and classes for page contents (e.g. paragraphs, buttons, etc)</p>
+<ul>
+<li>so that CSS and JavaScript can refer to them for styling and behaviour purposes</li>
+</ul>
+</li>
+<li>
+<p>underlying assumption is that the client knows how to render HTML pages…</p>
+<ul>
+<li>… after downloading and interpreting all the resources linked from the page (e.g. CSS, JS, media, etc.)</li>
+</ul>
+</li>
+<li>
+<p>example of HTML page describing a speaker resource:</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">html</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">body</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">h1</span><span style="color:#000;font-weight:bold">&gt;</span>Speaker 123<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">h1</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">p</span><span style="color:#000;font-weight:bold">&gt;</span>Volume: 75%<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">p</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">button</span> <span style="color:#c4a000">id</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"increase-btn"</span><span style="color:#000;font-weight:bold">&gt;</span>Increase Volume<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">button</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">body</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">html</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span></code></pre></div></li>
+</ul>
+</section><section>
+<h2 id="most-common-web-content-types-pt-2">Most common Web content types (pt. 2)</h2>
+<ul>
+<li>
+<p><a href="https://www.w3.org/Style/CSS/specs.en.html">Cascading Style Sheets</a> (<em>CSS</em>): <code>text/css</code> (for stylesheets) should describe the styling of a Web page, with no content or behaviour information</p>
+<ul>
+<li>
+<p>it may contain rules about how to depict individual elements or groups of elements of the page (as identified by their tag, id, class, etc.)</p>
+</li>
+<li>
+<p>these rules are interpreted by the client to determine how to render the page (e.g. colors, fonts, layout, etc.)</p>
+</li>
+<li>
+<p>example of CSS stylesheet describing the styling of a speaker page:</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">/* file styles.css */</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">body</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">font-family</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Arial</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">sans-serif</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">background-color</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">#f0f0f0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">h1</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">color</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">#333</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">p</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">font-size</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">18</span><span style="color:#204a87;font-weight:bold">px</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">#</span><span style="color:#000">increase-btn</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">background-color</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">#4CAF50</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">color</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">white</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">padding</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">10</span><span style="color:#204a87;font-weight:bold">px</span> <span style="color:#0000cf;font-weight:bold">20</span><span style="color:#204a87;font-weight:bold">px</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">border</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">none</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">cursor</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">pointer</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">#</span><span style="color:#000">increase-btn</span><span style="color:#000;font-weight:bold">:</span><span style="color:#5c35cc;font-weight:bold">hover</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">background-color</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">#45a049</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</section><section>
+<h2 id="most-common-web-content-types-pt-3">Most common Web content types (pt. 3)</h2>
+<ul>
+<li>
+<p><a href="https://developer.mozilla.org/docs/Web/JavaScript">JavaScript</a> (<em>JS</em>): <code>application/javascript</code> (for scripts) should describe the behaviour of a Web page, with no content or styling information</p>
+<ul>
+<li>
+<p>it may contain instructions to manipulate the content and styling of the page (e.g. by adding, removing, or changing elements, classes, attributes, etc.)</p>
+</li>
+<li>
+<p>such instructions may be triggered by events occurring after the page has been shown to the user (e.g. button clicks, form submissions, etc.)</p>
+</li>
+<li>
+<p>such instructions are provided by the server, along with the page, to let the client know how to “animate” the page and make it interactive</p>
+</li>
+<li>
+<p>example of JavaScript code reloading the page when the “Increase Volume” button is clicked:</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">// file script.js
+</span></span></span><span style="display:flex;"><span><span style="color:#204a87">document</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">getElementById</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'increase-btn'</span><span style="color:#000;font-weight:bold">).</span><span style="color:#000">addEventListener</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'click'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">function</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">location</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">reload</span><span style="color:#000;font-weight:bold">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">});</span>
+</span></span></code></pre></div></li>
+</ul>
+</section><section>
+<h2 id="most-common-web-content-types-pt-4">Most common Web content types (pt. 4)</h2>
+<p><strong>Wrap-up:</strong> most commonly the HTML pages contains references to the CSS and JS files that describe the styling and behaviour of the page, respectively, and the client is responsible for downloading and interpreting all these resources to render the page correctly:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">html</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">head</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">link</span> <span style="color:#c4a000">rel</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"stylesheet"</span> <span style="color:#c4a000">type</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"text/css"</span> <span style="color:#c4a000">href</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"styles.css"</span><span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#8f5902;font-style:italic">&lt;!-- reference to CSS stylesheet --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">script</span> <span style="color:#c4a000">src</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"script.js"</span><span style="color:#000;font-weight:bold">&gt;&lt;/</span><span style="color:#204a87;font-weight:bold">script</span><span style="color:#000;font-weight:bold">&gt;</span>                         <span style="color:#8f5902;font-style:italic">&lt;!-- reference to JavaScript file --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">head</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">body</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">h1</span><span style="color:#000;font-weight:bold">&gt;</span>Speaker 123<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">h1</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">p</span><span style="color:#000;font-weight:bold">&gt;</span>Volume: 75%<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">p</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">button</span> <span style="color:#c4a000">id</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">"increase-btn"</span><span style="color:#000;font-weight:bold">&gt;</span>Increase Volume<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">button</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">body</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">html</span><span style="color:#000;font-weight:bold">&gt;</span>
+</span></span></code></pre></div></section><section>
+<h2 id="most-common-web-content-types-pt-4-1">Most common Web content types (pt. 4)</h2>
+<ul>
+<li>
+<p><a href="https://www.json.org/">JavaScript Object Notation</a> (<em>JSON</em>): <code>application/json</code> (for data exchange) should describe the content of a resource in a machine-friendly way, with no styling or behaviour information</p>
+<ul>
+<li>
+<p>it may contain structured data representing the state of a resource, or the result of an operation on a resource, etc.</p>
+</li>
+<li>
+<p>[<a href="https://en.wikipedia.org/wiki/Ajax_(programming)">AJAX</a>] sometimes the JS code may contact the server to get some tiny piece of information in JSON format, rather than the entire HTML page, in order to update the page dynamically without reloading it</p>
+</li>
+<li>
+<p>other times, the client is not a browser, but some software component that just needs data in machine-friendly format</p>
+</li>
+<li>
+<p>example of JSON document describing a speaker resource:</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">"id"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">123</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">"name"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"Living Room Speaker"</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">"volume"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">75</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">"status"</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">"on"</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><ul>
+<li>example of JavaScript code exploiting AJAX to contact the server and update the page dynamically:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87">document</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">getElementById</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'increase-btn'</span><span style="color:#000;font-weight:bold">).</span><span style="color:#000">addEventListener</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'click'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">function</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">// Send an AJAX request to the server to increase the volume
+</span></span></span><span style="display:flex;"><span>    <span style="color:#000">fetch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'/speakers/123/volume'</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">method</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">'POST'</span><span style="color:#000;font-weight:bold">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">headers</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#4e9a06">'Content-Type'</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">'application/json'</span> <span style="color:#000;font-weight:bold">},</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">body</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">JSON</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">stringify</span><span style="color:#000;font-weight:bold">({</span> <span style="color:#000">change</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#4e9a06">'+10%'</span> <span style="color:#000;font-weight:bold">})</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">}).</span><span style="color:#000">then</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">response</span> <span style="color:#000;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">response</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">ok</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic">// If the request was successful, update the volume displayed on the page
+</span></span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">let</span> <span style="color:#000">volumeElement</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">document</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">querySelector</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'p'</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#204a87;font-weight:bold">let</span> <span style="color:#000">currentVolume</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">parseInt</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">volumeElement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">textContent</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">split</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">': '</span><span style="color:#000;font-weight:bold">)[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">volumeElement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">textContent</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">`Volume: </span><span style="color:#4e9a06">${</span><span style="color:#000">currentVolume</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">10</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">%`</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">alert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">'Failed to increase volume'</span><span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">});</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">});</span>
+</span></span></code></pre></div></li>
+</ul>
+</section><section>
+<h2 id="most-common-web-content-types-pt-3-1">Most common Web content types (pt. 3)</h2>
+<ul>
+<li>
+<p>other common formats, conceptually equivalent to JSON, include:</p>
+<ul>
+<li><strong>eXtensible Markup Language</strong> (<em>XML</em>): <code>application/xml</code> (for data exchange) a sort of generalization of HTML, with custom tags and no predefined semantics:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">&lt;speaker&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">&lt;id&gt;</span>123<span style="color:#204a87;font-weight:bold">&lt;/id&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">&lt;name&gt;</span>Living Room Speaker<span style="color:#204a87;font-weight:bold">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">&lt;volume&gt;</span>75<span style="color:#204a87;font-weight:bold">&lt;/volume&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">&lt;status&gt;</span>on<span style="color:#204a87;font-weight:bold">&lt;/status&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">&lt;/speaker&gt;</span>
+</span></span></code></pre></div><ul>
+<li><strong>YAML Ain’t Markup Language</strong> (<em>YAML</em>): <code>application/x-yaml</code> (for data exchange) a sort of generalization of JSON, with more human-friendly syntax (easier to read and write):</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">id</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8"> </span><span style="color:#0000cf;font-weight:bold">123</span><span style="color:#f8f8f8">
+</span></span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8"> </span><span style="color:#000">Living Room Speaker</span><span style="color:#f8f8f8">
+</span></span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">volume</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8"> </span><span style="color:#0000cf;font-weight:bold">75</span><span style="color:#f8f8f8">
+</span></span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">status</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8"> </span><span style="color:#204a87;font-weight:bold">on</span><span style="color:#f8f8f8">
+</span></span></span></code></pre></div></li>
+</ul>
+
+</section>
 </section><section>
 <h2 id="history-of-the-web-in-a-nutshell">History of the Web in a nutshell</h2>
 <ol>
@@ -291,7 +674,7 @@
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2026-05-07 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-08 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

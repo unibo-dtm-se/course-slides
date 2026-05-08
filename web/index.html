@@ -134,7 +134,7 @@
 
 
 
-<img src="./http-url.png" alt="Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier" style="max-width: 95vw; max-height: 80vh; object-fit: contain; ">
+<img src="./http-url.png" alt="Annotated URL diagram showing scheme, subdomain, domain, top-level domain, port, path, query string, and fragment identifier" style="max-width: 95vw; max-height: 60vh; object-fit: contain; ">
 
 <br></p>
 <ul>
@@ -581,7 +581,7 @@
 </li>
 </ul>
 <!-- ![](web1.0.svg) -->
-<img src="./web1.0.svg" alt="Diagram showing a simple web server hosting static files and clients accessing them via HTTP" style="max-width: 95vw; max-height: 70vh; object-fit: contain; ">
+<img src="./web1.0.svg" alt="Diagram showing a simple web server hosting static files and clients accessing them via HTTP" style="max-width: 95vw; max-height: 60vh; object-fit: contain; ">
 </section><section>
 <h2 id="web-20-dynamically-generated-pages--template-engines-pt-1">Web 2.0: dynamically generated pages + template engines (pt. 1)</h2>
 <!-- mention CGIs -->
@@ -680,7 +680,8 @@
 </li>
 </ul>
 <img src="./web3.0.png" alt="Diagram showing a web server hosting web services and clients accessing them via HTTP, with AJAX interactions for dynamic page updates" style="max-width: 95vw; max-height: 50vh; object-fit: contain; ">
-<br>
+</section><section>
+<h2 id="web-30-dynamic-pages-using-ajax-to-contact-web-services-ws-pt-3">Web 3.0: dynamic pages using AJAX to contact Web Services (WS) pt. 3</h2>
 <ul>
 <li>Software engineering remarks:
 <ul>
@@ -717,82 +718,323 @@
 </ol>
 </li>
 </ul>
-<img src="./web4.0.png" alt="Diagram showing a single-page application architecture with a frontend SPA communicating with backend web services via AJAX" style="max-width: 95vw; max-height: 50vh; object-fit: contain; ">
+<img src="./web4.0.png" alt="Diagram showing a single-page application architecture with a frontend SPA communicating with backend web services via AJAX" style="max-width: 95vw; max-height: 40vh; object-fit: contain; ">
 
 </section>
 </section><section>
-<h2 id="what-are-web-services">What are Web Services?</h2>
-<p>A Web service is, roughly speaking:</p>
+<h2 id="web-service-ws-vs-application-programming-interface-api">Web Service (WS) vs. Application Programming Interface (API)</h2>
 <ul>
-<li>a distributed software component exposed through an HTTP interface</li>
+<li>Roughly speaking, a WS is:
+<ul>
+<li>a distributed software component exposing an HTTP interface</li>
 <li>accessible over the network by heterogeneous clients</li>
-<li>designed to encapsulate data and functionality behind a stable API</li>
+<li>designed to encapsulate data and functionality behind a stable API consisting of admissible HTTP requests and their expected responses</li>
 </ul>
-<p>Its API typically specifies:</p>
+</li>
+</ul>
+<blockquote>
+<p>WS are nowadays often referred to as “APIs”. <strong>This is imprecise</strong>, as API is a more general concept.</p>
+</blockquote>
 <ul>
-<li>endpoints and URL patterns</li>
-<li>admissible HTTP methods</li>
-<li>input parameters, headers, and body formats</li>
-<li>output formats and status codes</li>
+<li>APIs are provided by any software component to allow other software components being written to interact with it
+<ul>
+<li>if the software is <em>object-oriented</em>, API consist of the <em>public methods of its classes</em></li>
+<li>if the software is a <em>command-line application</em>, API consist of the <em>(sub-)commands and their parameters</em></li>
+<li>if the software is a <em>WS</em>, API consist of the admissible <em>HTTP requests and their expected responses</em></li>
 </ul>
-<p><img src="./web-service-overview.png" alt="Architecture figure showing multiple clients such as browser, mobile app, and backend service calling the same HTTP web service"></p>
+</li>
+<li>Some people may say that they are exploiting “APIs provided by company X”…
+<ul>
+<li>… what they actually mean is that they “are writing some software which acts as the client for some WS provided by company X, and thas WS has a well-defined HTTP API that they are exploiting”</li>
+</ul>
+</li>
+</ul>
 </section><section>
-<h2 id="why-web-services-dominate-distributed-systems">Why Web Services dominate distributed systems</h2>
-<p>Web services are the backbone of modern distributed systems because:</p>
+<h2 id="why-ws-dominate-distributed-systems">Why WS dominate distributed systems</h2>
+<p>WS have nowadays become the backbone of most distributed systems because:</p>
 <ul>
-<li>Web mechanisms are simple yet flexible</li>
-<li>HTTP is pervasive and highly optimized</li>
-<li>the Web stack is language- and platform-independent</li>
-<li>HTTP is widely supported and usually firewall-friendly</li>
-<li>ReST encourages interoperability through a uniform interface</li>
-</ul>
-<p>They are also useful to wrap legacy software so as to:</p>
+<li>
+<p>Web metaphors and mechanisms are <em>simple</em> (to understand and engineer) yet very <em>flexible</em> and <em>general</em></p>
+</li>
+<li>
+<p>HTTP is pervasive and highly optimized, so using it for novel projects is often sufficient and convenient</p>
+</li>
+<li>
+<p>the Web stack is programming-language- and <em>platform-independent</em>, so WS are <em>enablers</em> of <strong>interoperability</strong> and <em>integration</em> across <em>heterogeneous</em> systems</p>
+</li>
+<li>
+<p>HTTP is <em>widely supported</em> and usually <strong>firewall-friendly</strong>, which usually implies less networking issues and better accessibility for clients</p>
 <ul>
-<li>expose existing capabilities on the Web</li>
-<li>let heterogeneous components interoperate</li>
+<li>and therefore less engineering effort to make the system work in real-world conditions
+<ul>
+<li>(as opposed to using some custom protocol or other Internet protocols)</li>
 </ul>
-<p><img src="./legacy-to-web-service.png" alt="Figure showing a legacy system wrapped by a web API so browsers, apps, and other services can access it over HTTP"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>WS allow for <strong>wrapping</strong> <em>pre-existing</em> software so as to:</p>
+<ul>
+<li>expose <strong>legacy</strong> software on the Web (in case the legacy software was not distributed and should be made available to remote clients)
+<ul>
+<li>“legacy” means “old by still operational” (and “to be changed as little as possible”)</li>
+</ul>
+</li>
+<li>let <strong>heterogeneous</strong> software components interoperate (in case they are implemented in different languages or platforms, yet they need to interoperate)
+<ul>
+<li>“heterogeneous” means “different in terms of programming language, platform, or other technical aspects”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </section><section>
 <h2 id="the-rest-architectural-style">The ReST architectural style</h2>
-<p>ReST is an architectural style for distributed hypermedia systems.</p>
-<p>Its key constraints are:</p>
-<ol>
-<li>client-server</li>
-<li>representational state transfer</li>
-<li>uniform interface</li>
-<li>stateless interactions</li>
-<li>cacheable responses</li>
-<li>layered system</li>
-<li>code on demand</li>
-</ol>
-<p>The point is not to use HTTP superficially, but to structure interactions around resources and representations.</p>
-</section><section>
-<h2 id="rest-constraints-in-practice">ReST constraints in practice</h2>
-<ol>
-<li>client-server: clients consume resources, servers host them</li>
-<li>representation-oriented: clients exchange representations, not direct access to server internals</li>
-<li>uniform interface: resources are identified by URLs and manipulated via standard HTTP methods</li>
-<li>stateless: each request contains all the information needed to process it</li>
-<li>cacheable: responses may be reused when allowed</li>
-<li>layered: proxies, gateways, and intermediaries can be inserted transparently</li>
-<li>code on demand: optional transfer of executable code, for example JavaScript</li>
-</ol>
-<p><img src="./rest-constraints-overview.png" alt="Diagram showing clients, proxies, cache, API gateway, and origin server to illustrate client-server, statelessness, caching, and layers in REST"></p>
-</section><section>
-<h2 id="restful-apis-in-practice">ReSTful APIs in practice</h2>
-<p>Design the system in terms of:</p>
-<ol>
-<li>collections of resources</li>
-<li>individual resources</li>
-<li>admissible operations on each resource</li>
-</ol>
-<p>Typical reasoning pattern:</p>
 <ul>
-<li>collection endpoint: /customers</li>
-<li>item endpoint: /customers/{id}</li>
-<li>operation semantics mapped onto HTTP methods</li>
+<li>Regardless of implementation technologies, WS can be designed according to different <strong>architectural styles</strong>
+<ul>
+<li>mostly concerning the shape of the HTTP API and the default data formats</li>
 </ul>
-<p><img src="./http-methods.png" alt="Table mapping GET, POST, PUT, PATCH, and DELETE to resource collections and single resources in a REST API"></p>
+</li>
+<li>the <em>most common</em> architectural style for WS is <strong>ReST</strong> (<a href="https://en.wikipedia.org/wiki/REST">Representational State Transfer</a>), as introduced by Roy Fielding in his <a href="https://roy.gbiv.com/pubs/dissertation/fielding_dissertation.pdf">PhD thesis</a>
+<ul>
+<li>Fielding’s principles have then been translated in practical guidelines, that you can find documented in many places (e.g., <a href="https://restfulapi.net">https://restfulapi.net</a>)</li>
+</ul>
+</li>
+</ul>
+
+
+<span class="fragment ">
+  <h3 id="rest-principles-in-a-nutshell">ReST principles in a nutshell</h3>
+<p>ReST is an architertural style for hypermedia systems, which imposes the following constraints on the design of WS:</p>
+<ol>
+<li><strong>client-server</strong>: <em>clients</em> consume <em>resources</em>, <em>servers</em> host them</li>
+<li><strong>representation-oriented</strong>: only <em>representations</em> of (<em>states</em> of) resources are exchanged, <u>not</u> the resources themselves
+<ul>
+<li>this is the meaning of “representational state transfer”: clients inspect and manipulate the state of resources by exchanging representation with servers
+<ul>
+<li>HTML pages, JSON documents, XML documents, etc. are all examples of <em>representations</em> of resources</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>uniform interface</strong>: resources are located/identified by <em>URLs</em> and manipulated via standard <em>HTTP methods</em></li>
+<li><strong>stateless</strong>: each request contains all the information needed to process it</li>
+<li><strong>cacheable</strong>: responses may marked as <em>cacheable</em> by servers, and clients may cache them to <em>improve performance</em></li>
+<li><strong>layered</strong>: <em>proxies</em>, gateways, and <em>intermediaries</em> can be inserted transparently between clients and servers
+<ul>
+<li>e.g. to provide load balancing, caching, security, etc.</li>
+</ul>
+</li>
+<li><strong>code on-demand</strong>: optional transfer of executable code from servers to clients, to expand clients’ functionalities, e.g. JS</li>
+</ol>
+
+</span>
+
+</section><section>
+<h2 id="restful-apis-in-practice-pt-1">ReSTful APIs in practice (pt. 1)</h2>
+<p>ReSTful [Web] <strong>APIs</strong> are the set of HTTP requests that a WS (adhering to ReST style) is designed to accept, there including:</p>
+<ul>
+<li>
+<p>the <strong>endpoints</strong> (i.e., <em>URLs</em>) that identify the resources managed by the WS</p>
+<ul>
+<li>the admissible <strong>HTTP methods</strong> for each endpoint (i.e., the operations that clients can perform on the resources)
+<ul>
+<li>the admissible <strong>input parameters</strong>, <strong>body formats</strong>, and <strong>headers</strong> each method may accept for each endpoint
+<ul>
+<li>the expected and exceptional <strong>status codes</strong> and <strong>response formats</strong> and for each method</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Designing the Web API is important, and it is commonly performed before implementing either the client or the server,</p>
+<ul>
+<li>as it defines the <em>contract</em> between them and guides the implementation of both sides</li>
+</ul>
+</li>
+<li>
+<p>Formal <em>languages</em> and <em>tools</em> exist to help designing and documenting Web APIs</p>
+<ul>
+<li>for example the <a href="https://www.openapis.org/">OpenAPI Specification</a> (formerly known as <em>Swagger</em>),
+<ul>
+<li>it allows to formally <em>describe</em> the API in a <em>machine-readable</em> format (either YAML or JSON)…</li>
+<li>… and then <em>generate</em> documentation Web pages, client/server <em>code skeletons</em>, etc. from it
+<ul>
+<li>generated code skeletons let developers save time by providing a starting point for the implementation of the client and server, with the API contract already defined and implemented in the code structure</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Useful references:</p>
+<ul>
+<li>OpenAPI Specification: <a href="https://swagger.io/specification/">https://swagger.io/specification/</a></li>
+<li>“Swagger Editor”, Online editor for OpenAPI: <a href="https://editor.swagger.io/">https://editor.swagger.io/</a></li>
+<li>“SwaggerHub”, Online platform for designing, documenting, and sharing APIs: <a href="https://app.swaggerhub.com/">https://app.swaggerhub.com/</a></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="restful-apis-in-practice-pt-2">ReSTful APIs in practice (pt. 2)</h2>
+<h3 id="example-full-example-here-sources-available-here-editable-via-swagger-editor">Example (full example <a href="https://app.swaggerhub.com/apis-docs/PIKA-lab/E-commerce/1.0.1">here</a>, sources available <a href="https://app.swaggerhub.com/apis/PIKA-lab/E-commerce/1.0.1">here</a>, editable via <a href="https://editor.swagger.io/">Swagger Editor</a>):</h3>
+<ul>
+<li>Endpoint: <code>/products</code> [whatever precedes the path component of the URL is omitted for brevity, e.g. <code>https://example.com</code>]
+<ul>
+<li><code>GET</code> <em>method</em> to read the list of products
+<ul>
+<li><em>query</em> parameters: <code>?category=electronics&amp;max_price=100</code></li>
+<li><em>responses</em>:
+<ol>
+<li>JSON array of product objects, if status is <code>200 OK</code></li>
+<li>JSON object with error message, if status is <code>400 Bad Request</code> (e.g., if query parameters are invalid)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><code>POST</code> <em>method</em> to create a new product
+<ul>
+<li><em>body</em>: JSON object describing the new product (e.g., name, price, category, etc.)</li>
+<li><em>responses</em>:
+<ol>
+<li><code>201 Created</code> with a <code>Location</code> header pointing to the URL of the newly created product (e.g., <code>https://example.com/products/123</code>)</li>
+<li>JSON object with error message, if status is <code>400 Bad Request</code> (e.g., if body format is invalid)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Endpoint: <code>/products/{id}</code>
+<ul>
+<li>where <code>{id}</code> is a <em>path parameter</em>, i.e. a placeholder for the product ID identifying a specific product by its ID</li>
+<li><code>GET</code> <em>method</em> to read a specific product by its ID
+<ul>
+<li><em>responses</em>:
+<ol>
+<li>JSON object describing the product, if status is <code>200 OK</code></li>
+<li>JSON object with error message, if status is <code>404 Not Found</code> (e.g., if no product with the specified ID exists)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><code>PUT</code> <em>method</em> to update a specific product (e.g. price, description, quantity available) by its ID
+<ul>
+<li><em>body</em>: JSON object describing the updated product information</li>
+<li><em>responses</em>:
+<ol>
+<li><code>204 No Content</code> if the update was successful (with no body in the response)</li>
+<li>JSON object with error message, if status is <code>400 Bad Request</code> (e.g., if body format is invalid)</li>
+<li>JSON object with error message, if status is <code>404 Not Found</code> (e.g., if no product with the specified ID exists)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><code>DELETE</code> <em>method</em> to delete a specific product by its ID
+<ul>
+<li><em>responses</em>:
+<ol>
+<li><code>204 No Content</code> if the deletion was successful (with no body in the response)</li>
+<li>JSON object with error message, if status is <code>404 Not Found</code> (e.g., if no product with the specified ID exists)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="restful-apis-in-practice-pt-3">ReSTful APIs in practice (pt. 3)</h2>
+<h3 id="badly-designed-apis">Badly designed APIs</h3>
+<ul>
+<li>
+<p>[BAD PRACTICE] put verbs/actions in the URL, which implies resources are not being modelled:</p>
+<ul>
+<li><code>POST /increase_volume</code> [“I want to increase the volume, here is the change I want to apply”]
+<ul>
+<li>more correct would be <code>POST /speakers/123/volume</code> with body object representing the desired change</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>[BAD PRACTICE] use the same endpoint for different resources, and distinguish them by query parameters:</p>
+<ul>
+<li><code>GET /course/view.php?id=79314</code> (BTW this is how UniBO’s Moodle work, unfortunately…)
+<ul>
+<li>more correct would be <code>GET /courses/{academic_year}/{id_or_name}</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>[BAD PRACTICE] reveal implementation details in the API design, resources names after DB tables</p>
+<ul>
+<li><code>GET /table_users</code> (implies that the server is using a table named “users” in its database)
+<ul>
+<li>more correct would be <code>GET /users</code> (which is more abstract and does not reveal implementation details)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>[BAD PRACTICE] put actions in URL, and abuse meaning of HTTP methods</p>
+<ul>
+<li><code>GET /delete_user?id=123</code> (implies that the server is using a GET request to perform a delete operation, which is semantically incorrect and may cause issues with caching and other HTTP features)
+<ul>
+<li>more correct would be <code>DELETE /users/123</code> (which uses the appropriate HTTP method for the intended action)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="restful-apis-in-practice-pt-4">ReSTful APIs in practice (pt. 4)</h2>
+<ul>
+<li>
+<p>Most commonly, Web APIs are <em>designed</em> by service <em>providers</em>, documented, and publicly described on the Web so that developers may <em>use</em> them to build custom clients</p>
+<ul>
+<li>it’s much more frequent for developers to consume APIs provided by others, rather than designing and implementing their own APIs from scratch</li>
+<li>examples of notable Web APIs: <a href="https://developers.openai.com/api/reference/overview">OpenAI</a>, <a href="https://docs.github.com/rest">GitHub</a>, <a href="https://developers.google.com/youtube/v3">YouTube</a>, etc.</li>
+</ul>
+</li>
+<li>
+<p>If you’re working on the <em>provider</em> side, remember:</p>
+<ul>
+<li><em>unlikely</em> to have some long-term benefit from keeping your APIs <em>secret</em>, as they will be <em>reverse-engineered</em> by clients anyway, so better to design them <em>public</em></li>
+<li>well-engineered, documented, and stable APIs are a <em>great asset</em> for your service, as they <em>attract</em> more developers to use it and build on top of it, which in turn <em>increases the value</em> of your service</li>
+</ul>
+</li>
+<li>
+<p>There are many ways to control access to APIs, which are there both for cybersecurity and business reasons</p>
+<ul>
+<li><strong>authentication</strong>: verifying the <em>identity</em> of the client (e.g., via API keys, OAuth tokens, etc.)</li>
+<li><strong>authorization</strong>: determining what the authenticated client is <em>allowed</em> to do (e.g., via role-based access control, permissions, etc.)</li>
+<li><strong>rate limitation</strong>: WS may <em>limit</em> the number of requests per <em>time unit</em>, depending on user <em>identity</em>, role, <em>premiumship</em>, etc. (implies authentication)
+<ul>
+<li>there is often some default <em>per-IP-address rate limitation</em> (preventing <a href="https://it.wikipedia.org/wiki/Denial_of_service">DoS attacks</a> and <em>incentivising</em> registration/premiumship)</li>
+</ul>
+</li>
+<li><strong>monetization</strong>: WS may charge clients based on their API usage (e.g., via <em>subscription</em> plans, <em>pay-per-use</em>, etc.)
+<ul>
+<li>there is often some <em>free tier</em> with limited usage, to let developers try the API before committing to a paid plan</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>ReST APIs are so much “de-facto standards” that many <strong>monitoring</strong> and <strong>analytics</strong> tools exist to support developers and providers</p>
+<ul>
+<li>e.g. <a href="https://www.postman.com/">Postman</a> for testing APIs</li>
+<li>e.g. <a href="https://prometheus.io/">Prometheus</a> for monitoring APIs and collecting metrics about their usage</li>
+<li>e.g. <a href="https://grafana.com/">Graphana</a> for visualizing metrics collected by Prometheus and other monitoring tools into management-ready dashboards</li>
+</ul>
+</li>
+</ul>
 </section><section>
 <h2 id="from-api-design-to-implementation">From API design to implementation</h2>
 <ol>

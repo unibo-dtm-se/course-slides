@@ -31,7 +31,7 @@
 <h5 id="hahahugoshortcode1s2hbhb"><a href="mailto:giovanni.ciatto@unibo.it">Giovanni Ciatto</a></h5>
 <br>
 <br>
-<p>Compiled on: 2026-05-08 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-11 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back</a></p>
 <!-- ## TOC
 
@@ -949,7 +949,7 @@
 </ul>
 </section><section>
 <h2 id="restful-apis-in-practice-pt-3">ReSTful APIs in practice (pt. 3)</h2>
-<h3 id="badly-designed-apis">Badly designed APIs</h3>
+<h3 id="badly-designed-apis-12">Badly designed APIs (1/2)</h3>
 <ul>
 <li>
 <p>[BAD PRACTICE] put verbs/actions in the URL, which implies resources are not being modelled:</p>
@@ -989,6 +989,43 @@
 <li>more correct would be <code>DELETE /users/123</code> (which uses the appropriate HTTP method for the intended action)</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="restful-apis-in-practice-pt-3-1">ReSTful APIs in practice (pt. 3)</h2>
+<h3 id="badly-designed-apis-22">Badly designed APIs (2/2)</h3>
+<ul>
+<li>
+<p>[BAD PRACTICE] design URLs so that they imply some stateful interactions, which is against the statelessness constraint of ReST</p>
+<ul>
+<li><code>GET /products?page=next</code> (implies that the server is keeping track of the client’s current page and returns the next page of products, which is not stateless and may cause issues with caching and scalability)
+<ul>
+<li>more correct would be <code>GET /products?page=2</code> (where the client explicitly specifies the page number it wants to retrieve, making the interaction stateless)
+<ul>
+<li>implies the clients is responsible for keeping track of the current page and requesting the next one, which is more in line with ReST principles</li>
+<li>implies the server is aware of how the pagination works, but does not need to keep track of the client’s state, which is more scalable and cache-friendly</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>[BAD PRACTICE] use query parameters for actions that should be represented as resources</p>
+<ul>
+<li><code>POST /users?id=123&amp;action=deactivate</code> (implies that the server is using query parameters to specify an action on a resource, which is <u>not</u> RESTful and may lead to confusion and maintenance issues)
+<ul>
+<li>more correct would be <code>DELETE /users/123</code> (i.e. deactivating means deleting the user resource, which is more RESTful and semantically correct)</li>
+<li>alternatively <code>PUT /users/123</code> + body contains information about the deactivation (e.g., <code>{"active": false}</code>, i.e. deactivating means updating the user resource, which is also RESTful and semantically correct)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>[BAD PRACTICE] use non-standard status codes or ignore them altogether, returning <code>200 OK</code> for all responses</p>
+<ul>
+<li>more correct would be to use appropriate status codes (e.g., <code>201 Created</code> for successful resource creation, <code>400 Bad Request</code> for invalid input, <code>404 Not Found</code> for non-existent resources, etc.) to provide meaningful feedback to clients and leverage HTTP features effectively</li>
 </ul>
 </li>
 </ul>
@@ -1075,7 +1112,7 @@
 </section><section>
 <h1 id="lecture-is-over">Lecture is Over</h1>
 <br>
-<p>Compiled on: 2026-05-08 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
+<p>Compiled on: 2026-05-11 — <a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> printable version</a></p>
 <p><a href="../#/toc"><i class="fa fa-undo" aria-hidden="true"></i> back to ToC</a></p>
 </section>
 

@@ -606,7 +606,7 @@ WS have nowadays become the backbone of most distributed systems because:
 - HTTP is pervasive and highly optimized, so using it for novel projects is often sufficient and convenient
 - the Web stack is programming-language- and _platform-independent_, so WS are _enablers_ of __interoperability__ and _integration_ across _heterogeneous_ systems
 - HTTP is _widely supported_ and usually __firewall-friendly__, which usually implies less networking issues and better accessibility for clients
-    + and therefore less engineering effort to make the system work in real-world conditions 
+    + and therefore less engineering effort to make the system work in real-world conditions
         * (as opposed to using some custom protocol or other Internet protocols)
 
 - WS allow for __wrapping__ _pre-existing_ software so as to:
@@ -632,7 +632,7 @@ WS have nowadays become the backbone of most distributed systems because:
 ReST is an architertural style for hypermedia systems, which imposes the following constraints on the design of WS:
 
 1. __client-server__: _clients_ consume _resources_, _servers_ host them
-2. __representation-oriented__: only _representations_ of (_states_ of) resources are exchanged, <u>not</u> the resources themselves 
+2. __representation-oriented__: only _representations_ of (_states_ of) resources are exchanged, <u>not</u> the resources themselves
     * this is the meaning of "representational state transfer": clients inspect and manipulate the state of resources by exchanging representation with servers
         + HTML pages, JSON documents, XML documents, etc. are all examples of _representations_ of resources
 3. __uniform interface__: resources are located/identified by _URLs_ and manipulated via standard _HTTP methods_
@@ -654,11 +654,11 @@ ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReS
         - the admissible __input parameters__, __body formats__, and __headers__ each method may accept for each endpoint
             - the expected and exceptional __status codes__ and __response formats__ and for each method
 
-- Designing the Web API is important, and it is commonly performed before implementing either the client or the server, 
+- Designing the Web API is important, and it is commonly performed before implementing either the client or the server,
     * as it defines the _contract_ between them and guides the implementation of both sides
 
 - Formal _languages_ and _tools_ exist to help designing and documenting Web APIs
-    * for example the [OpenAPI Specification](https://www.openapis.org/) (formerly known as _Swagger_), 
+    * for example the [OpenAPI Specification](https://www.openapis.org/) (formerly known as _Swagger_),
         + it allows to formally _describe_ the API in a _machine-readable_ format (either YAML or JSON)...
         + ... and then _generate_ documentation Web pages, client/server _code skeletons_, etc. from it
             - generated code skeletons let developers save time by providing a starting point for the implementation of the client and server, with the API contract already defined and implemented in the code structure
@@ -676,28 +676,28 @@ ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReS
 - Endpoint: `/products` \[whatever precedes the path component of the URL is omitted for brevity, e.g. `https://example.com`\]
     - `GET` _method_ to read the list of products
         * _query_ parameters: `?category=electronics&max_price=100`
-        * _responses_: 
+        * _responses_:
             1. JSON array of product objects, if status is `200 OK`
             2. JSON object with error message, if status is `400 Bad Request` (e.g., if query parameters are invalid)
     - `POST` _method_ to create a new product
         * _body_: JSON object describing the new product (e.g., name, price, category, etc.)
-        * _responses_: 
+        * _responses_:
             1. `201 Created` with a `Location` header pointing to the URL of the newly created product (e.g., `https://example.com/products/123`)
             2. JSON object with error message, if status is `400 Bad Request` (e.g., if body format is invalid)
 - Endpoint: `/products/{id}`
     - where `{id}` is a _path parameter_, i.e. a placeholder for the product ID identifying a specific product by its ID
     - `GET` _method_ to read a specific product by its ID
-        * _responses_: 
+        * _responses_:
             1. JSON object describing the product, if status is `200 OK`
             2. JSON object with error message, if status is `404 Not Found` (e.g., if no product with the specified ID exists)
     - `PUT` _method_ to update a specific product (e.g. price, description, quantity available) by its ID
         * _body_: JSON object describing the updated product information
-        * _responses_: 
+        * _responses_:
             1. `204 No Content` if the update was successful (with no body in the response)
             2. JSON object with error message, if status is `400 Bad Request` (e.g., if body format is invalid)
             3. JSON object with error message, if status is `404 Not Found` (e.g., if no product with the specified ID exists)
     - `DELETE` _method_ to delete a specific product by its ID
-        * _responses_: 
+        * _responses_:
             1. `204 No Content` if the deletion was successful (with no body in the response)
             2. JSON object with error message, if status is `404 Not Found` (e.g., if no product with the specified ID exists)
 
@@ -705,7 +705,7 @@ ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReS
 
 ## ReSTful APIs in practice (pt. 3)
 
-### Badly designed APIs
+### Badly designed APIs (1/2)
 
 - \[BAD PRACTICE\] put verbs/actions in the URL, which implies resources are not being modelled:
     * `POST /increase_volume` ["I want to increase the volume, here is the change I want to apply"]
@@ -713,7 +713,7 @@ ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReS
 
 - \[BAD PRACTICE\] use the same endpoint for different resources, and distinguish them by query parameters:
     * `GET /course/view.php?id=79314` (BTW this is how UniBO's Moodle work, unfortunately...)
-        * more correct would be `GET /courses/{academic_year}/{id_or_name}` 
+        * more correct would be `GET /courses/{academic_year}/{id_or_name}`
 
 - \[BAD PRACTICE\] reveal implementation details in the API design, resources names after DB tables
     * `GET /table_users` (implies that the server is using a table named "users" in its database)
@@ -722,6 +722,27 @@ ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReS
 - \[BAD PRACTICE\] put actions in URL, and abuse meaning of HTTP methods
     * `GET /delete_user?id=123` (implies that the server is using a GET request to perform a delete operation, which is semantically incorrect and may cause issues with caching and other HTTP features)
         * more correct would be `DELETE /users/123` (which uses the appropriate HTTP method for the intended action)
+
+---
+
+## ReSTful APIs in practice (pt. 3)
+
+### Badly designed APIs (2/2)
+
+- \[BAD PRACTICE\] design URLs so that they imply some stateful interactions, which is against the statelessness constraint of ReST
+    * `GET /products?page=next` (implies that the server is keeping track of the client's current page and returns the next page of products, which is not stateless and may cause issues with caching and scalability)
+        * more correct would be `GET /products?page=2` (where the client explicitly specifies the page number it wants to retrieve, making the interaction stateless)
+            + implies the clients is responsible for keeping track of the current page and requesting the next one, which is more in line with ReST principles
+            + implies the server is aware of how the pagination works, but does not need to keep track of the client's state, which is more scalable and cache-friendly
+
+- \[BAD PRACTICE\] use query parameters for actions that should be represented as resources
+    * `POST /users?id=123&action=deactivate` (implies that the server is using query parameters to specify an action on a resource, which is <u>not</u> RESTful and may lead to confusion and maintenance issues)
+        * more correct would be `DELETE /users/123` (i.e. deactivating means deleting the user resource, which is more RESTful and semantically correct)
+        * alternatively `PUT /users/123` + body contains information about the deactivation (e.g., `{"active": false}`, i.e. deactivating means updating the user resource, which is also RESTful and semantically correct)
+
+- \[BAD PRACTICE\] use non-standard status codes or ignore them altogether, returning `200 OK` for all responses
+    * more correct would be to use appropriate status codes (e.g., `201 Created` for successful resource creation, `400 Bad Request` for invalid input, `404 Not Found` for non-existent resources, etc.) to provide meaningful feedback to clients and leverage HTTP features effectively
+
 
 ---
 
@@ -735,7 +756,7 @@ ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReS
     + _unlikely_ to have some long-term benefit from keeping your APIs _secret_, as they will be _reverse-engineered_ by clients anyway, so better to design them _public_
     + well-engineered, documented, and stable APIs are a _great asset_ for your service, as they _attract_ more developers to use it and build on top of it, which in turn _increases the value_ of your service
 
-- There are many ways to control access to APIs, which are there both for cybersecurity and business reasons 
+- There are many ways to control access to APIs, which are there both for cybersecurity and business reasons
     + __authentication__: verifying the _identity_ of the client (e.g., via API keys, OAuth tokens, etc.)
     + __authorization__: determining what the authenticated client is _allowed_ to do (e.g., via role-based access control, permissions, etc.)
     + __rate limitation__: WS may _limit_ the number of requests per _time unit_, depending on user _identity_, role, _premiumship_, etc. (implies authentication)

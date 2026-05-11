@@ -330,6 +330,56 @@
 </span>
 
 </section><section>
+<h2 id="about-url-query-parameters">About URL query parameters</h2>
+<ul>
+<li>
+<p>URL query parameters (e.g., <code>?page=2&amp;sort=asc</code>) are used to pass additional information to the server, often for filtering, sorting, or specifying options for the requested resource</p>
+<ul>
+<li>most common in reading operations… (e.g. <code>GET /products?page=2&amp;sort=asc</code>)</li>
+<li>most commonly used for collections of resources, to specify how to retrieve them (e.g. pagination, sorting, filtering, etc.)</li>
+</ul>
+</li>
+<li>
+<p>Syntactical aspects:</p>
+<ul>
+<li>query parameters are “whatever follows <code>?</code> [and precedes <code>#</code>, if present] in the URL”</li>
+<li>they are composed of <code>key=value</code> pairs, separated by <code>&amp;</code> (e.g., <code>?key1=value1&amp;key2=value2</code>)</li>
+<li>no spaces between keys and values, and special characters must be URL-encoded (e.g., space becomes <code>%20</code>)
+<ul>
+<li>URL encoding, a.k.a. <a href="https://en.wikipedia.org/wiki/Percent-encoding">Percent-encoding</a>, is a mechanism to encode special characters in URLs using <code>%</code> followed by two hexadecimal digits representing the ASCII code of the character</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Common query parameters include:</p>
+<ul>
+<li><code>page</code> for pagination, indicating which page of results to retrieve, assuming the server knows how to group data into pages (e.g., <code>?page=2</code>)</li>
+<li><code>limit</code> for limiting the number of results returned (e.g., <code>?limit=10</code>)</li>
+<li><code>offset</code> for specifying the starting point of results (e.g., <code>?offset=20</code>)</li>
+<li><code>sort</code> for sorting (e.g., <code>asc</code> or <code>desc</code>)</li>
+<li><code>filter</code> for filtering (e.g., <code>?filter=price&gt;100</code>)</li>
+<li><code>search</code> for search queries (e.g., <code>?search=keyword</code>)</li>
+<li>there could be other parameters, commonly containing tokens in <a href="https://en.wikipedia.org/wiki/Base64">Base64 encoding</a></li>
+</ul>
+</li>
+</ul>
+
+
+<span class="fragment ">
+  <ul>
+<li>Better to put meta-data in the headers or in the query parameters?
+<ul>
+<li>If there’s a standard header for the metadata, it’s better to use the header (e.g., <code>Authorization</code>)</li>
+<li>If you want users to easily manipulate or copy+paste the metadata in the URL, go with query parameters (e.g., <code>?query=search+term</code>)</li>
+<li>Otherwise go with headers, as they are more flexible and can carry more complex information without cluttering the URL</li>
+</ul>
+</li>
+</ul>
+
+</span>
+
+</section><section>
 <h2 id="content-format-type-negotiation">Content format (“type”) negotiation</h2>
 <p>Clients and servers may automatically <em>negotiate</em> the format of the data being exchanged</p>
 <ul>

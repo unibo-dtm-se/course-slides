@@ -253,6 +253,38 @@ Key–value pairs that carry metadata about the request or response, for example
 
 ---
 
+## About URL query parameters
+
+- URL query parameters (e.g., `?page=2&sort=asc`) are used to pass additional information to the server, often for filtering, sorting, or specifying options for the requested resource
+    + most common in reading operations... (e.g. `GET /products?page=2&sort=asc`)
+    + most commonly used for collections of resources, to specify how to retrieve them (e.g. pagination, sorting, filtering, etc.)
+
+- Syntactical aspects:
+    + query parameters are "whatever follows `?` \[and precedes `#`, if present\] in the URL"
+    + they are composed of `key=value` pairs, separated by `&` (e.g., `?key1=value1&key2=value2`)
+    + no spaces between keys and values, and special characters must be URL-encoded (e.g., space becomes `%20`)
+        + URL encoding, a.k.a. [Percent-encoding](https://en.wikipedia.org/wiki/Percent-encoding), is a mechanism to encode special characters in URLs using `%` followed by two hexadecimal digits representing the ASCII code of the character
+
+- Common query parameters include:
+    + `page` for pagination, indicating which page of results to retrieve, assuming the server knows how to group data into pages (e.g., `?page=2`)
+    + `limit` for limiting the number of results returned (e.g., `?limit=10`)
+    + `offset` for specifying the starting point of results (e.g., `?offset=20`)
+    + `sort` for sorting (e.g., `asc` or `desc`)
+    + `filter` for filtering (e.g., `?filter=price>100`)
+    + `search` for search queries (e.g., `?search=keyword`)
+    + there could be other parameters, commonly containing tokens in [Base64 encoding](https://en.wikipedia.org/wiki/Base64)
+
+{{% fragment %}}
+
+- Better to put meta-data in the headers or in the query parameters?
+    + If there's a standard header for the metadata, it's better to use the header (e.g., `Authorization`)
+    + If you want users to easily manipulate or copy+paste the metadata in the URL, go with query parameters (e.g., `?query=search+term`)
+    + Otherwise go with headers, as they are more flexible and can carry more complex information without cluttering the URL
+
+{{% /fragment %}}
+
+---
+
 ## Content format ("type") negotiation
 
 Clients and servers may automatically _negotiate_ the format of the data being exchanged

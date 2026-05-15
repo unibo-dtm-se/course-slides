@@ -803,22 +803,75 @@ ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReS
 
 ---
 
-## From API design to implementation
+## From API design to implementation Workflow
 
-1. devise the API, for example with OpenAPI Specification
-2. identify endpoints and parametric URLs
-3. identify admissible HTTP operations
-4. identify input parameters and body formats
-5. optionally define relevant headers
-6. define response formats and status codes
+0. identify __resources__, _collections_ of resources, _admissible operations_ on them, and _data schemas_
+    + (e.g., by modelling the domain with a UML class diagram, ER diagram, etc.)
+1. model the _API_, devising the __OpenAPI Specification__
+    + _how:_ use Swagger Editor or similar tools to design the API and generate documentation and code skeletons from it
+    + _what to do:_
+        1. identify endpoints and parametric URLs
+        1. identify admissible HTTP operations
+        1. identify input parameters and body formats
+        1. optionally define relevant headers
+        1. define response formats and status codes
+2. then _implement_ (better if by exploiting the code skeletons _generated_ [via Swagger](https://github.com/swagger-api/swagger-codegen), better in _2 distinct projects_) both:
+    - the __server side__ with frameworks such as [Flask](https://flask.palletsprojects.com/), [FastAPI](https://fastapi.tiangolo.com/), or [Spring Boot](https://spring.io/projects/spring-boot)
+        + keep it __parametric__ (via _environment variables_, configuration files, etc.) w.r.t. hostnames, ports, database connections, etc.
+            * so that it can be easily deployed in different environments (e.g., development, staging, production, etc.)
+    - the __frontend side__ with frameworks such as [React](https://reactjs.org/), [Angular](https://angular.io/), or [Vue](https://vuejs.org/) (or _bare JS+CSS+HTML_)
+        + keep it __parametric__ (via _environment variables_, configuration files, etc.) w.r.t. _API endpoints_ (i.e. the URL of the backend WS)
+3. recall to add _automatic_ __tests__ (to be exploited in CI pipelines) for both the server and the frontend, which may include:
+    - unit testing for server-side logic (e.g., with pytest, JUnit, etc.)
+        + possibly mocking the _database_ and other external dependencies (e.g., with [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) or similar tools)
+    - unit testing for frontend logic (e.g., with Jest, Mocha, etc.)
+        + possibly mocking the browser and the backend WS (e.g., with [jsdom](https://github.com/jsdom/jsdom))
+    - integration testing for both clients and servers (e.g. via [Docker](https://www.docker.com/), [Kubernetes](https://kubernetes.io/), etc.)
+        + possibly using tools like [Postman](https://www.postman.com/) to test the API endpoints and their expected responses
+        + Swagger-rendered documentation pages often come with some basic manual testing facilities, which can be a good starting point for testing the implementation
+4. add __deployment__ scripts (to start components orderly, e.g. DB $\rightarrow$ backend $\rightarrow$ frontend) and possibly a gateway (e.g., with [Nginx](https://nginx.org/)) to wire components together
 
-Then implement:
+---
 
-- the server side with frameworks such as Flask, FastAPI, or Spring Boot
-- the frontend side with frameworks such as React, Angular, or Vue
+## Example: Web3-structured WS for Anonymous QA
 
-![Figure showing workflow from resource modeling to OpenAPI description to backend implementation to frontend consuming the API](./api-design-to-implementation.png)
+<https://github.com/unibo-dtm-se/ws-example>
 
+### Outline of relevant aspects
+
+- Backend project structure
+- API design (OpenAPI Specification)
+- API implementation in Flask
+    - Routing and request handling
+    - Static files and templates
+    - APIs serving pages or data
+    - Database integration (SQLite)
+    - Testing with pytest
+- Starting the server
+    - Local IPs and ports
+    - Accessing the API via Swagger UI, curl, etc.
+    - Using the UI
+    - Letting students play with the app
+- Dataflow analysis with browser's console and network inspector
+- Discussion on testing and limited coverage
+
+---
+
+## Example: Web4-structured WS for Anonymous QA
+
+[https://github.com/unibo-dtm-se/ws-example on `web4.0` branch](https://github.com/unibo-dtm-se/ws-example/tree/web4.0)
+
+### Outline of relevant aspects
+
+- Splitting of backend and frontend sub-projects
+- Project structures (focus on JS frontend)
+    * What is being served by the backend and frontend servers, respectively?
+- Deploment procedure
+    * Manual, step-by-step, via terminal commands
+    * Authomatic via Python script
+    * Manual, with backend and frontend on different computers
+- Dataflow analysis with browser's console and network inspector
+- Discussion on testing and higher coverage
 
 ---
 

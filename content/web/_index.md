@@ -879,18 +879,65 @@ ReSTful \[Web\] __APIs__ are the set of HTTP requests that a WS (adhering to ReS
 
 ## Check your understanding (pt. 1)
 
-- What does it mean to say that the Web is a distributed hypermedia information system?
-- What is the role of a URL in Web communication?
-- Which parts make up an HTTP request? And an HTTP response?
-- What is the difference between an HTTP method and an HTTP status code?
-- What are HTML, CSS, and JavaScript responsible for in a Web application?
-- What is the difference between hypertext and hypermedia?
-- How did the Web evolve from static pages to single-page applications?
-- What is a Web service, and how is its API usually described?
-- Why are Web services so effective for distributed systems integration?
-- What are the main constraints of the ReST architectural style?
-- What does it mean for a ReST interaction to be stateless?
-- How would you model a simple domain in terms of collections, resources, and operations?
+- What is the Web, and why can it be seen both as a hypermedia system and as an infrastructure for distributed systems?
+- What is the difference among hyper-link, hyper-text, and hyper-media?
+- What is a URL, and what are its main components?
+- Why should URLs in ReSTful APIs identify resources rather than actions?
+- In HTTP interactions, what roles do clients and servers play?
+- What is the difference between an HTTP request and an HTTP response?
+- What is the content of HTTP requests and responses? What's their purpose?
+- In practical terms, when would you choose `GET` vs `POST` vs `PUT/PATCH` vs `DELETE`?
+- How are CRUD operations commonly mapped to HTTP methods for collections and single resources?
+- What do the `1xx`, `2xx`, `3xx`, `4xx`, and `5xx` status code classes represent?
+
+---
+
+## Check your understanding (pt. 2)
+
+- What are HTTP headers, and why are they important for interoperability?
+- What is the purpose of `Accept`, `Content-Type`, `Authorization`, and `Cache-Control` headers?
+- When should metadata be put in HTTP headers instead of query parameters?
+- What are URL query parameters, and what are common use cases such as pagination, sorting, and filtering?
+- What is percent-encoding in URLs, and why is it needed?
+- In the context of Web Services, what is content negotiation, and how do `Accept` and `Content-Type` cooperate in that process?
+- In the context of Web Services, what is a MIME type, and how is it structured?
+- What are the conceptual differences among HTML, CSS, and JavaScript in Web applications?
+- Why is JSON often preferred for machine-to-machine communication?
+- Analogies and differences between HTTP, JSON, XML, and YAML as "languages" for the Web
+- What is the difference between HTTP and HTML?
+
+---
+
+## Check your understanding (pt. 3)
+
+- How did the Web evolve from Web 1.0 to Web 4.0, and what changed in each phase?
+- In Web 1.0, how were Web sites working?
+- In Web 2.0, how were Web sites working?
+- In Web 3.0, how are Web services working?
+- In Web 4.0, how are Web apps working?
+- In Web systems, how is separation among content, style, and behavior realised?
+- What is a Web Service?
+- What role does AJAX play in Web sites / applications?
+- Why does Web 3.0 improve separation of concerns and backend reusability?
+- What is a Single-Page Application (SPA), and how does it differ from page-reload-based applications?
+- In a typical Single-Page Application (SPA) architecture, what are the responsibilities of backend server, frontend server, and API gateway?
+- What is a Web API? How does it specializes the general concept of API?
+
+---
+
+## Check your understanding (pt. 4)
+
+- Why are Web Services dominant in distributed systems?
+- What does it mean to wrap legacy software with Web Services, and why is this useful?
+- What are the seven ReST constraints, and what are their implications?
+- Why is the ReST architectural style called "representational state transfer"?
+- In what sense does the ReST architectural style prescribe a uniform interface for resources, and what are the implications of this constraint?
+- In what sense does the ReST architectural style prescribe stateless interactions, and what are the implications of this constraint?
+- What should be specified when designing a ReSTful API?
+- What is the role of OpenAPI Specification in Web Services design/development?
+- What are most common bad practices in Web API design?
+- What are authentication, authorization, rate limiting, and monetization in the context of public APIs?
+- From API design to implementation, what are the main engineering steps from domain modeling to tests and deployment?
 
 {{% /section %}}
 

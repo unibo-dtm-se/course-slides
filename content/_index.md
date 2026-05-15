@@ -28,10 +28,10 @@ aliases = [
 0. [Versioning, Conventional Commit](versioning)
 0. [Continuous integration (examples with GitHub Actions)](ci)
 0. [Overview on Distributed Systems Engineering](ds)
+0. [Web Services and RESTful APIs](web)
 0. [Domain Driven Design](ddd)
 0. [Software Licensing](licensing)
 
 ## Extras (if we have time)
 
 - [Introduction to agile and DevOps, a case from the literature, SCRUM](devops-intro)
-- [WIP] [WebServices and RESTful APIs](web)

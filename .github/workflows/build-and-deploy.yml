@@ -55,8 +55,13 @@ jobs:
         run: hugo version
       - name: Remove Hugo Installer
         run: rm hugo.deb
+      # - name: Start SSH session
+      #   uses: luchihoratiu/debug-via-ssh@main
+      #   with:
+      #     NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+      #     SSH_PASS: ${{ secrets.SSH_PASS }}
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.288.0
+        uses: ruby/setup-ruby@v1.308.0
         with:
           working-directory: shared-slides
       - name: Run the preprocessor
@@ -64,7 +69,7 @@ jobs:
       - name: Build slides with hugo
         run: hugo
       - name: Transform and Inline Mermaid charts
-        uses: cric96/inline-mermaid@1.19.0
+        uses: cric96/inline-mermaid@1.21.0
         with:
           css-file-regex: '^css\\/.*custom.*theme.*\\.css$'
           root-folder: build
@@ -104,7 +109,7 @@ jobs:
         id: version-compute
         run: echo "version=$(date +"%Y.%m.%d")" >> "$GITHUB_OUTPUT"
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.288.0
+        uses: ruby/setup-ruby@v1.308.0
         with:
           working-directory: shared-slides
       - name: Setup Chrome
@@ -119,7 +124,7 @@ jobs:
         run: shared-slides/makepdfs.rb pages
       - name: Deliver the pdfs
         if: ${{ github.event_name != 'pull_request' && (github.ref_name == 'main' || github.ref_name == 'master') }}
-        uses: ncipollo/release-action@v1.20.0
+        uses: ncipollo/release-action@v1.21.0
         with:
           allowUpdates: true
           artifacts: "*.pdf"

@@ -351,6 +351,50 @@ Distributed Systems,"In the context of distributed systems, what is check-pointi
 Distributed Systems,"In the context of distributed systems, what is consensus? Why is it useful? How to achieve it and what implications does each solution come with?",2
 Distributed Systems,"In the context of distributed systems, what is a heart-beat mechanism? Why is it useful? How to achieve it and what implications does each solution come with?",2
 Distributed Systems,"In the context of distributed systems, what is authentication? How is it related to authorization? Why are they useful? How to achieve them and what implications does each solution come with?",2
+WS,"What is the Web, and why can it be seen both as a hypermedia system and as an infrastructure for distributed systems?",1
+WS,"What is the difference among hyper-link, hyper-text, and hyper-media?",1
+WS,"What is a URL, and what are its main components?",2
+WS,Why should URLs in ReSTful APIs identify resources rather than actions?,1
+WS,"In HTTP interactions, what roles do clients and servers play?",1
+WS,What is the difference between an HTTP request and an HTTP response?,1
+WS,What is the content of HTTP requests and responses? What's their purpose?,1
+WS,"In practical terms, when would you choose `GET` vs `POST` vs `PUT/PATCH` vs `DELETE`?",1
+WS,"How are CRUD (Create, Read, Update, Delete) operations commonly mapped to HTTP methods for collections and single resources?",1
+WS,"What do the `1xx`, `2xx`, `3xx`, `4xx`, and `5xx` status code classes represent?",1
+WS,"What are HTTP headers, and why are they important for interoperability?",1
+WS,"What is the purpose of `Accept`, `Content-Type`, `Authorization`, and `Cache-Control` headers?",2
+WS,When should metadata be put in HTTP headers instead of query parameters?,1
+WS,"What are URL query parameters, and what are common use cases such as pagination, sorting, and filtering?",1
+WS,"What is percent-encoding in URLs, and why is it needed?",1
+WS,"In the context of Web Services, what is content negotiation, and how do `Accept` and `Content-Type` cooperate in that process?",1
+WS,"In the context of Web Services, what is a MIME type, and how is it structured?",1
+WS,"What are the conceptual differences among HTML, CSS, and JavaScript in Web applications?",1
+WS,Why is JSON often preferred for machine-to-machine communication?,1
+WS,"Analogies and differences between HTTP, JSON, XML, and YAML as ""languages"" for the Web",1
+WS,What is the difference between HTTP and HTML?,1
+WS,"How did the Web evolve from Web 1.0 to Web 4.0, and what changed in each phase?",3
+WS,"In Web 1.0, how were Web sites working?",2
+WS,"In Web 2.0, how were Web sites working?",2
+WS,"In Web 3.0, how are Web services working?",2
+WS,"In Web 4.0, how are Web apps working?",2
+WS,"In Web systems, how is separation among content, style, and behavior realised?",1
+WS,What is a Web Service?,1
+WS,What role does AJAX play in Web sites / applications?,1
+WS,Why does Web 3.0 improve separation of concerns and backend reusability?,1
+WS,"What is a Single-Page Application (SPA), and how does it differ from page-reload-based applications?",1
+WS,"In a typical Single-Page Application (SPA) architecture, what are the responsibilities of backend server, frontend server, and API gateway?",1
+WS,What is a Web API? How does it specializes the general concept of API?,1
+WS,Why are Web Services dominant in distributed systems?,1
+WS,"What does it mean to wrap legacy software with Web Services, and why is this useful?",1
+WS,"What are the seven ReST constraints, and what are their implications?",1
+WS,"Why is the ReST architectural style called ""representational state transfer""?",1
+WS,"In what sense does the ReST architectural style prescribe a uniform interface for resources, and what are the implications of this constraint?",1
+WS,"In what sense does the ReST architectural style prescribe stateless interactions, and what are the implications of this constraint?",1
+WS,What should be specified when designing a ReSTful API?,1
+WS,What is the role of OpenAPI Specification in Web Services design/development?,1
+WS,What are most common bad practices in Web API design?,3
+WS,"What are authentication, authorization, rate limiting, and monetization in the context of public APIs?",2
+WS,"From API design to implementation, what are the main engineering steps from domain modeling to tests and deployment?",1
 Distributed Systems,"In the context of distributed systems, what is data partitioning? Why is it useful? How to achieve it and what implications does each solution come with?",2
 DDD,"In the context of domain driven design, what are: the problem, the model, and the solution?",1
 DDD,"In the context of domain driven design, what is the domain? What are the contexts?",1

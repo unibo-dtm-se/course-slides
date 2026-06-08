@@ -182,9 +182,13 @@ class QuestionsStore:
         for question in self.questions:
             question.weight *= factor
     
-    def to_xml(self, rootname="quiz"):
+    def to_xml(self, rootname="quiz", white_list=None, black_list=None):
         quiz = xml.Element(rootname)
         for category in self.categories:
+            if white_list is not None and category not in white_list:
+                continue
+            if black_list is not None and category in black_list:
+                continue
             category.to_xml(quiz)
             for question in self.questions_in_category(category):
                 question.to_xml(quiz)

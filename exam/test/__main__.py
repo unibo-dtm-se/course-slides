@@ -22,10 +22,12 @@ if not args.categories:
             selected_categories.append(int(i))
     indexes = map(int, selected_categories)
     args.categories = {categories_by_index[i] for i in indexes}
+elif isinstance(args.categories[0], list):
+    args.categories = args.categories[0]
 
 etest.VERBOSE = args.verbose
 generator = etest.TestGenerator(questions, args.total_weight, args.categories, args.completely_different)
-etest.log("generating test for topics", [c.name for c in args.categories])
+etest.log("generating test for topics", args.categories)
 print("---")
 for test in generator.solutions:
     test.total_weight = args.max_grade

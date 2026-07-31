@@ -18,6 +18,12 @@ def create_arg_parser():
     parser.add_argument("--total-weight", "-w", type=int, help='Total weight of the test', default=9)
     parser.add_argument("--categories", "-c", type=str, nargs='+', help='Categories to include in the test', action='append')
     parser.add_argument("--completely-different", "-d", action='store_true', help='Generate completely different tests (no repeated questions)')
+    parser.add_argument(
+        "--different-categories",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help='Select at most one question from each category (enabled by default)',
+    )
     parser.add_argument("--max-grade", "-g", type=int, help='Maximum grade for the test', default=27)
     parser.add_argument("--verbose", "-v", action='store_true', help='Verbose mode')
     return parser
@@ -30,10 +36,11 @@ def parse_args(args = sys.argv[1:]):
 
 class TestGenerator:
     def __init__(self, db: QuestionsStore, total_weight: int, target_categories: set[Category],
-                 completely_different: bool = False):
+                 completely_different: bool = False, different_categories: bool = True):
         self.__db = db
         self.__total_weight = int(total_weight)
         self.__target_categories = target_categories
+        self.__different_categories = different_categories
         for category in target_categories:
             category = self.__db.category(category)
             assert self.__db.category_size(category) > 0, f"Category {category} is empty"
@@ -53,6 +60,9 @@ class TestGenerator:
             if category in self.__target_categories:
                 solver.add(sum(variables_in_category.values()) >= 1)
                 log(" + ".join(variables_in_category.keys()), ">= 1")
+            if self.__different_categories:
+                solver.add(sum(variables_in_category.values()) <= 1)
+                log(" + ".join(variables_in_category.keys()), "<= 1")
             variables.update(variables_in_category)
         id_to_variables = variables
         variables = {k: (v, self.__db.question(k).weight) for k, v in variables.items()}
@@ -74,7 +84,7 @@ class TestGenerator:
     def __compute_next_solution(self):
         log("computing next solution...")
         return self.__problem.check()
-    
+
     def __solution_to_questions(self):
         questions = []
         model = self.__problem.model()
@@ -83,4 +93,3 @@ class TestGenerator:
             if value != 0:
                 questions.append(self.__db.question(question_id))
         return QuestionsStore(questions)
-    

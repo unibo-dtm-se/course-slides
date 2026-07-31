@@ -26,7 +26,13 @@ elif isinstance(args.categories[0], list):
     args.categories = args.categories[0]
 
 etest.VERBOSE = args.verbose
-generator = etest.TestGenerator(questions, args.total_weight, args.categories, args.completely_different)
+generator = etest.TestGenerator(
+    questions,
+    args.total_weight,
+    args.categories,
+    completely_different=args.completely_different,
+    different_categories=args.different_categories,
+)
 etest.log("generating test for topics", args.categories)
 print("---")
 for test in generator.solutions:

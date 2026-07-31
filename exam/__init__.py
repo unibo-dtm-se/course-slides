@@ -8,7 +8,7 @@ from markdown import markdown
 
 
 DIR_ROOT = Path(__file__).parent.parent
-DEFAULT_QUESTIONS_FILE = DIR_ROOT / "static" / "questions.csv" 
+DEFAULT_QUESTIONS_FILE = DIR_ROOT / "static" / "questions.csv"
 
 
 class IdGenerator:
@@ -81,7 +81,7 @@ class Question:
         if root is None:
             root = xml.Element("question")
         else:
-            root = xml.SubElement(root, "question")  
+            root = xml.SubElement(root, "question")
         root.set("type", self.type)
         name = xml.SubElement(root, "name")
         xml.SubElement(name, "text").text = self.id
@@ -97,7 +97,7 @@ class Question:
         xml.SubElement(root, "attachments").text = "0"
         xml.SubElement(root, "attachmentsrequired").text = "0"
         return root
-    
+
 
 def load_questions_from_csv(file_path):
     with open(file_path, newline='') as csvfile:
@@ -129,50 +129,50 @@ class QuestionsStore:
     @property
     def categories(self):
         return sorted(self.__categories, key=lambda x: x.name)
-    
+
     @property
     def questions(self):
         return sorted(self.__questions_by_id.values(), key=lambda x: x.id)
-    
+
     def category(self, category):
         if not isinstance(category, Category):
             category = Category(category)
         if category not in self.__categories:
             raise KeyError(f"Category {category} not found")
         return category
-    
+
     def question(self, id):
         if id not in self.__questions_by_id:
             raise KeyError(f"Question {id} not found")
         return self.__questions_by_id[id]
-    
+
     def questions_in_category(self, category):
         category = self.category(category)
         return sorted(self.__questions_by_category.get(category, []), key=lambda x: x.id)
-    
+
     def category_size(self, category):
         category = self.category(category)
         return len(self.__questions_by_category.get(category, []))
-    
+
     def category_weight(self, category):
         category = self.category(category)
         return sum(q.weight for q in self.__questions_by_category.get(category, []))
-    
+
     def __len__(self):
         return len(self.questions)
-    
+
     def __total_weight(self):
         return sum(q.weight for q in self.__questions_by_id.values())
-    
+
     def sample(self, id: str, *others: str) -> 'QuestionsStore':
         ids = [id] + list(others)
         questions = [self.question(q_id) for q_id in ids]
         return QuestionsStore(questions)
-    
+
     @property
     def total_weight(self):
         return self.__total_weight()
-    
+
     @total_weight.setter
     def total_weight(self, value):
         old_weight = self.__total_weight()
@@ -181,7 +181,7 @@ class QuestionsStore:
         factor = value / old_weight
         for question in self.questions:
             question.weight *= factor
-    
+
     def to_xml(self, rootname="quiz", white_list=None, black_list=None):
         quiz = xml.Element(rootname)
         for category in self.categories:
@@ -193,24 +193,25 @@ class QuestionsStore:
             for question in self.questions_in_category(category):
                 question.to_xml(quiz)
         return xml.ElementTree(quiz)
-    
+
     def __str__(self):
         result = StringIO()
         print(f"# {len(self)} questions, total weight: {self.total_weight:.2f}", file=result)
+        question_index = 1
         for category in self.categories:
             print(f"## {category.name} ({self.category_size(category)} questions, total weight: {self.category_weight(category):.2f})", file=result)
             for question in self.questions_in_category(category):
-                print(f"- {question.id} ({question.weight:.2f}): {question.text}", file=result)
+                print(f"- [Q{question_index}] {question.id} ({question.weight:.2f}): {question.text}", file=result)
+                question_index += 1
         return result.getvalue()
-    
+
     def __repr__(self):
         return f"QuestionsStore({self.questions})"
-    
+
     def __eq__(self, value):
         if not isinstance(value, QuestionsStore):
             return False
         return self.questions == value.questions
-    
+
     def __hash__(self):
         return hash(self.questions)
-    

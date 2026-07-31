@@ -1,3 +1,5 @@
+import sys
+
 from exam import *
 import exam.test as etest
 
@@ -36,12 +38,72 @@ generator = etest.TestGenerator(
 )
 etest.log("generating test for topics", args.categories)
 print("---")
-for test in generator.solutions:
+
+
+def questions_in_display_order(test):
+    return [
+        question
+        for category in test.categories
+        for question in test.questions_in_category(category)
+    ]
+
+
+kept_question_ids = set()
+test = generator.next_solution()
+while test is not None:
     test.total_weight = args.max_grade
     print(test)
     print("---")
-    try:
-        input("Press enter for next test")
-    except (EOFError, KeyboardInterrupt):
-        exit(0)
+    displayed_questions = questions_in_display_order(test)
+    questions_by_index = {
+        index: question
+        for index, question in enumerate(displayed_questions, start=1)
+    }
+
+    while True:
+        try:
+            command = input(
+                "Next test (Enter for any different set; "
+                "'no Q1 Q3-Q5'; 'keep Q2'; or combine both): "
+            )
+        except (EOFError, KeyboardInterrupt):
+            exit(0)
+
+        try:
+            no_indexes, keep_indexes = etest.parse_question_commands(
+                command,
+                len(displayed_questions),
+            )
+            excluded_ids = {questions_by_index[index].id for index in no_indexes}
+            requested_kept_ids = {questions_by_index[index].id for index in keep_indexes}
+            next_kept_ids = kept_question_ids | requested_kept_ids
+            conflicting_ids = excluded_ids & next_kept_ids
+            if conflicting_ids:
+                raise ValueError("A previously kept question cannot be replaced")
+            if args.completely_different and (next_kept_ids or (excluded_ids and len(excluded_ids) < len(displayed_questions))):
+                raise ValueError(
+                    "'keep' and partial 'no' commands are incompatible with --completely-different"
+                )
+        except ValueError as error:
+            print(f"Invalid request: {error}", file=sys.stderr)
+            continue
+
+        retained_ids = set()
+        if excluded_ids:
+            retained_ids = {question.id for question in displayed_questions} - excluded_ids
+        next_test = generator.next_solution(
+            required_question_ids=next_kept_ids | retained_ids,
+            excluded_question_ids=excluded_ids,
+        )
+        if next_test is None:
+            if not command.strip():
+                test = None
+                break
+            print("No question set matches that request; try different constraints.", file=sys.stderr)
+            continue
+
+        kept_question_ids = next_kept_ids
+        test = next_test
+        print("---")
+        break
 print("No more tests")

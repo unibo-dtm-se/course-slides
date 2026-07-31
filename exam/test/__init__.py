@@ -1,10 +1,12 @@
 import argparse
+import re
 import sys
 from exam import *
 from z3 import Int, Solver, sat, Or, And
 
 
 VERBOSE = True
+QUESTION_INDEX_PATTERN = re.compile(r"Q?(\d+)(?:-Q?(\d+))?", re.IGNORECASE)
 
 
 def log(*args):
@@ -39,19 +41,59 @@ def parse_args(args = sys.argv[1:]):
     return parser.parse_args(args)
 
 
+def parse_question_commands(command: str, question_count: int):
+    """Parse commands such as ``no Q1 Q3-Q5 keep Q2``."""
+    tokens = command.split()
+    if not tokens:
+        return set(), set()
+
+    indexes = {"no": set(), "keep": set()}
+    current_command = None
+    command_has_indexes = False
+    for token in tokens:
+        normalized_token = token.lower()
+        if normalized_token in indexes:
+            if current_command is not None and not command_has_indexes:
+                raise ValueError(f"'{current_command}' must be followed by at least one question index")
+            current_command = normalized_token
+            command_has_indexes = False
+            continue
+        if current_command is None:
+            raise ValueError("Expected 'no' or 'keep' before the question indexes")
+
+        match = QUESTION_INDEX_PATTERN.fullmatch(token)
+        if match is None:
+            raise ValueError(f"Invalid question index or range: {token}")
+        start = int(match.group(1))
+        end = int(match.group(2) or start)
+        if start < 1 or end < 1 or start > question_count or end > question_count:
+            raise ValueError(f"Question indexes must be between Q1 and Q{question_count}")
+        if end < start:
+            raise ValueError(f"Question range must be ascending: {token}")
+        indexes[current_command].update(range(start, end + 1))
+        command_has_indexes = True
+
+    if not command_has_indexes:
+        raise ValueError(f"'{current_command}' must be followed by at least one question index")
+    overlap = indexes["no"] & indexes["keep"]
+    if overlap:
+        labels = " ".join(f"Q{index}" for index in sorted(overlap))
+        raise ValueError(f"Questions cannot be both replaced and kept: {labels}")
+    return indexes["no"], indexes["keep"]
+
+
 class TestGenerator:
     def __init__(self, db: QuestionsStore, total_weight: int, target_categories: set[Category],
                  completely_different: bool = False, different_categories: bool = True,
                  min_questions: int | None = None):
         self.__db = db
         self.__total_weight = int(total_weight)
-        self.__target_categories = target_categories
+        self.__target_categories = {self.__db.category(category) for category in target_categories}
         self.__different_categories = different_categories
-        self.__min_questions = len(set(target_categories)) if min_questions is None else int(min_questions)
+        self.__min_questions = len(self.__target_categories) if min_questions is None else int(min_questions)
         if self.__min_questions < 0:
             raise ValueError("Minimum number of questions cannot be negative")
-        for category in target_categories:
-            category = self.__db.category(category)
+        for category in self.__target_categories:
             assert self.__db.category_size(category) > 0, f"Category {category} is empty"
             assert self.__db.category_weight(category) > 0, f"Category {category} has no weight"
         self.__problem, self.__variables = self.__configure_problem()
@@ -83,14 +125,41 @@ class TestGenerator:
 
     @property
     def solutions(self):
-        while self.__compute_next_solution() == sat:
-            yield (solution := self.__solution_to_questions())
-            variables = self.__variables
-            current_solution = {variables[q.id]: 1 for q in solution.questions}
-            constraint = And if self.__completely_different else Or
-            constraint_name = ' and ' if self.__completely_different else ' or '
-            self.__problem.add(constraint([x != y for x, y in current_solution.items()]))
-            log("add constraint:", constraint_name.join([f'{q.id} != 1' for q in solution.questions]))
+        while (solution := self.next_solution()) is not None:
+            yield solution
+
+    def next_solution(self, required_question_ids=(), excluded_question_ids=()):
+        required_question_ids = set(required_question_ids)
+        excluded_question_ids = set(excluded_question_ids)
+        overlap = required_question_ids & excluded_question_ids
+        if overlap:
+            raise ValueError(f"Questions cannot be both required and excluded: {sorted(overlap)}")
+        unknown_ids = (required_question_ids | excluded_question_ids) - self.__variables.keys()
+        if unknown_ids:
+            raise KeyError(f"Unknown question ids: {sorted(unknown_ids)}")
+
+        self.__problem.push()
+        try:
+            for question_id in required_question_ids:
+                self.__problem.add(self.__variables[question_id] == 1)
+            for question_id in excluded_question_ids:
+                self.__problem.add(self.__variables[question_id] == 0)
+            if self.__compute_next_solution() != sat:
+                return None
+            solution = self.__solution_to_questions()
+        finally:
+            self.__problem.pop()
+
+        self.__exclude_solution(solution)
+        return solution
+
+    def __exclude_solution(self, solution):
+        variables = self.__variables
+        current_solution = {variables[q.id]: 1 for q in solution.questions}
+        constraint = And if self.__completely_different else Or
+        constraint_name = ' and ' if self.__completely_different else ' or '
+        self.__problem.add(constraint([x != y for x, y in current_solution.items()]))
+        log("add constraint:", constraint_name.join([f'{q.id} != 1' for q in solution.questions]))
 
     def __compute_next_solution(self):
         log("computing next solution...")

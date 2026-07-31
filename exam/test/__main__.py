@@ -32,6 +32,7 @@ generator = etest.TestGenerator(
     args.categories,
     completely_different=args.completely_different,
     different_categories=args.different_categories,
+    min_questions=args.min_questions,
 )
 etest.log("generating test for topics", args.categories)
 print("---")

@@ -24,6 +24,11 @@ def create_arg_parser():
         default=True,
         help='Select at most one question from each category (enabled by default)',
     )
+    parser.add_argument(
+        "--min-questions", "--minimum-questions", "-n",
+        type=int,
+        help='Minimum number of questions (defaults to the number of target categories)',
+    )
     parser.add_argument("--max-grade", "-g", type=int, help='Maximum grade for the test', default=27)
     parser.add_argument("--verbose", "-v", action='store_true', help='Verbose mode')
     return parser
@@ -36,11 +41,15 @@ def parse_args(args = sys.argv[1:]):
 
 class TestGenerator:
     def __init__(self, db: QuestionsStore, total_weight: int, target_categories: set[Category],
-                 completely_different: bool = False, different_categories: bool = True):
+                 completely_different: bool = False, different_categories: bool = True,
+                 min_questions: int | None = None):
         self.__db = db
         self.__total_weight = int(total_weight)
         self.__target_categories = target_categories
         self.__different_categories = different_categories
+        self.__min_questions = len(set(target_categories)) if min_questions is None else int(min_questions)
+        if self.__min_questions < 0:
+            raise ValueError("Minimum number of questions cannot be negative")
         for category in target_categories:
             category = self.__db.category(category)
             assert self.__db.category_size(category) > 0, f"Category {category} is empty"
@@ -65,6 +74,8 @@ class TestGenerator:
                 log(" + ".join(variables_in_category.keys()), "<= 1")
             variables.update(variables_in_category)
         id_to_variables = variables
+        solver.add(sum(id_to_variables.values()) >= self.__min_questions)
+        log(" + ".join(id_to_variables.keys()), ">=", self.__min_questions, "questions")
         variables = {k: (v, self.__db.question(k).weight) for k, v in variables.items()}
         solver.add(sum(w * v for v, w in variables.values()) == self.__total_weight)
         log(" + ".join(f'{q} * {w}' for q, (v, w) in variables.items()), "==", self.__total_weight)

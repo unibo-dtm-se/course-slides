@@ -33,6 +33,35 @@ class TestGeneratorTests(unittest.TestCase):
         self.assertTrue(parse_args([]).different_categories)
         self.assertFalse(parse_args(["--no-different-categories"]).different_categories)
 
+    def test_minimum_questions_can_be_set(self):
+        questions = QuestionsStore([
+            Question(category="A", weight=1, id="A-1"),
+            Question(category="B", weight=1, id="B-1"),
+            Question(category="C", weight=2, id="C-1"),
+        ])
+
+        solutions = list(TestGenerator(
+            questions,
+            2,
+            set(),
+            min_questions=2,
+        ).solutions)
+
+        self.assertTrue(solutions)
+        self.assertTrue(all(len(solution.questions) >= 2 for solution in solutions))
+
+    def test_minimum_questions_defaults_to_target_category_count(self):
+        args = parse_args([])
+        self.assertIsNone(args.min_questions)
+        self.assertEqual(parse_args(["--min-questions", "4"]).min_questions, 4)
+
+        generator = TestGenerator(self.questions, 2, {"A", "A"})
+        self.assertTrue(list(generator.solutions))
+
+    def test_negative_minimum_questions_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "cannot be negative"):
+            TestGenerator(self.questions, 2, {"A"}, min_questions=-1)
+
 
 if __name__ == "__main__":
     unittest.main()
